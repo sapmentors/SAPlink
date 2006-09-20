@@ -378,15 +378,14 @@ data _XMLDOC type ref to IF_IXML_DOCUMENT.
     IMPORTING
       HEADER               = sotrHeader
     TABLES
-      ENTRIES              = sotrTextTable.
-*   EXCEPTIONS
-*     NO_ENTRY_FOUND       = 1
-*     OTHERS               = 2
-*            .
-*  IF sy-subrc &lt;&gt; 0.
-**   MESSAGE ID SY-MSGID TYPE SY-MSGTY NUMBER SY-MSGNO
-**           WITH SY-MSGV1 SY-MSGV2 SY-MSGV3 SY-MSGV4.
-*  ENDIF.
+      ENTRIES              = sotrTextTable
+   EXCEPTIONS
+     NO_ENTRY_FOUND       = 1
+     OTHERS               = 2
+            .
+  IF sy-subrc &lt;&gt; 0.
+    exit.
+  ENDIF.
 
   sotrHeader-paket = &apos;$TMP&apos;. &quot;change devclass to $TMP for exports
 

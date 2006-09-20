@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<CLAS CLSNAME="ZSAPLINK_CLASS" VERSION="0" LANGU="E" DESCRIPT="SapLink Class Installer" UUID="4510282D0F510B0500000000A7E42BB6" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" AUTHOR="USEWH90" CREATEDON="20060919" CHANGEDON="00000000" CHGDANYON="00000000" CLSCCINCL="X" FIXPT="X" UNICODE="X" R3RELEASE="620" CLSBCCAT="00" REFCLSNAME="ZSAPLINK">
+<CLAS CLSNAME="ZSAPLINK_CLASS" VERSION="0" LANGU="E" DESCRIPT="SapLink Class Installer" UUID="450F772E574D039002000000A7E42BB6" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" AUTHOR="USEWH90" CREATEDON="20060920" CHANGEDON="00000000" CHGDANYON="00000000" CLSCCINCL="X" FIXPT="X" UNICODE="X" R3RELEASE="620" CLSBCCAT="00" REFCLSNAME="ZSAPLINK">
  <publicSection>class ZSAPLINK_CLASS definition
   public
   inheriting from ZSAPLINK
@@ -278,6 +278,29 @@ METHOD createixmldocfromobject .
   ENDLOOP.
 */***TPJ - End of Added Logic for TYPES  -------------------*/
 
+*/***TPJ - Added Logic for Friends  -------------------*/
+  DATA: clif_keys     TYPE STANDARD TABLE OF seoclskey,
+        friends       TYPE STANDARD TABLE OF seofriends,
+        wa_friend     LIKE LINE OF friends,
+        friends_node  TYPE REF TO if_ixml_element.
+
+  APPEND classkey TO clif_keys.
+  CALL FUNCTION &apos;SEO_FRIENDS_SELECT&apos;
+    EXPORTING
+      WITH_EXTERNAL_REF = &apos;X&apos;
+    TABLES
+      clif_keys         = clif_keys
+      friends_relations = friends.
+  IF sy-subrc &lt;&gt; 0.
+  ENDIF.
+  LOOP AT friends INTO wa_friend.
+    friends_node = xmldoc-&gt;create_element( &apos;friends&apos; ).
+    setattributesfromstructure( node = friends_node structure =
+    wa_friend ).
+    rc = rootnode-&gt;append_child( friends_node ).
+  ENDLOOP.
+*/***TPJ - End of Added Logic for Friends  -------------------*/
+
 */--------------------------------------------------------------------\
 *|                                                                    |
   includename = cl_oo_classname_service=&gt;get_pubsec_name( _classname ).
@@ -359,7 +382,9 @@ METHOD createixmldocfromobject .
     IS NOT INITIAL.
       _otrguid = attribproperties-attvalue+1(32).
       otrnode = createnodefromotr( _otrguid ).
-      rc = attribnode-&gt;append_child( otrnode ).
+      if otrnode is bound.
+        rc = attribnode-&gt;append_child( otrnode ).
+      endif.
     ENDIF.
 
 *   append attribute node to parent node
@@ -665,6 +690,33 @@ METHOD createobjectfromixmldoc .
     node ?= iterator-&gt;get_next( ).
   ENDWHILE.
 */***TPJ - End of Added Logic for TYPES  -------------------*/
+
+*/***TPJ - Added Logic for Friends  -------------------*/
+  DATA: wa_friend type seofriends.
+
+  filter = xmldoc-&gt;create_filter_name( &apos;friends&apos; ).
+  iterator = xmldoc-&gt;create_iterator_filtered( filter ).
+  node ?= iterator-&gt;get_next( ).
+  WHILE node IS NOT INITIAL.
+    CLEAR wa_friend.
+    CALL METHOD getstructurefromattributes
+      EXPORTING
+        node      = node
+      CHANGING
+        structure = wa_friend.
+    wa_friend-version = &apos;0&apos;.
+    IF wa_friend-clsname = classheader-clsname.
+      CALL FUNCTION &apos;SEO_FRIENDSHIP_CREATE_F_DATA&apos;
+        EXPORTING
+          save       = &apos; &apos;
+        CHANGING
+          friendship = wa_friend.
+    ENDIF.
+    node ?= iterator-&gt;get_next( ).
+  ENDWHILE.
+*/***TPJ - End of Added Logic for Friends  -------------------*/
+
+
 
 *Add Methods to new class
   filter = xmldoc-&gt;create_filter_name( &apos;method&apos; ).
@@ -1044,10 +1096,10 @@ data clsKey type SEOCLSKEY.
   endif.
 endmethod.</source>
  </method>
- <method CLSNAME="ZSAPLINK_CLASS" CMPNAME="FINDIMPLEMENTINGCLASS" VERSION="0" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="1 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20060919" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="620" BCMTDCAT="00" BCMTDSYN="0">
-  <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="FINDIMPLEMENTINGCLASS" SCONAME="METHODNAME" VERSION="0" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20060919" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
-  <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="FINDIMPLEMENTINGCLASS" SCONAME="STARTCLASS" VERSION="0" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20060919" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING" PAROPTIONL="X"/>
-  <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="FINDIMPLEMENTINGCLASS" SCONAME="CLASSNAME" VERSION="0" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20060919" CHANGEDON="00000000" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="1" TYPE="STRING"/>
+ <method CLSNAME="ZSAPLINK_CLASS" CMPNAME="FINDIMPLEMENTINGCLASS" VERSION="0" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="1 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20060920" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="620" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="FINDIMPLEMENTINGCLASS" SCONAME="METHODNAME" VERSION="0" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20060920" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
+  <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="FINDIMPLEMENTINGCLASS" SCONAME="STARTCLASS" VERSION="0" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20060920" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING" PAROPTIONL="X"/>
+  <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="FINDIMPLEMENTINGCLASS" SCONAME="CLASSNAME" VERSION="0" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20060920" CHANGEDON="00000000" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="1" TYPE="STRING"/>
   <source>*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
