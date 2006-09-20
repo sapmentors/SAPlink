@@ -1,0 +1,875 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<PROG NAME="ZSAPLINK" VARCL="X" SUBC="1" CNAM="USDWM01" CDAT="20060903" UNAM="USEWH90" UDAT="20060920" VERN="000027" RMAND="321" RLOAD="D" FIXPT="X" SDATE="20060920" STIME="110658" IDATE="20060920" ITIME="110658" UCCHECK="X">
+ <textPool>
+  <language SPRAS="D">
+   <textElement ID="I" KEY="NGA" ENTRY="Add Object to Nugget" LENGTH="20 "/>
+   <textElement ID="I" KEY="NGC" ENTRY="Create Empty Nugget" LENGTH="19 "/>
+   <textElement ID="I" KEY="NGI" ENTRY="Import Nugget" LENGTH="13 "/>
+   <textElement ID="I" KEY="OPT" ENTRY="Options" LENGTH="7 "/>
+   <textElement ID="I" KEY="SLK" ENTRY="SAPlink" LENGTH="7 "/>
+   <textElement ID="I" KEY="TB1" ENTRY="Object" LENGTH="6 "/>
+   <textElement ID="I" KEY="TB2" ENTRY="Nugget" LENGTH="6 "/>
+   <textElement ID="R" ENTRY="SAPlink" LENGTH="7 "/>
+   <textElement ID="S" KEY="EXPORT" ENTRY="        Export Object" LENGTH="21 "/>
+   <textElement ID="S" KEY="FILENAME" ENTRY="        SAPlink File Name" LENGTH="33 "/>
+   <textElement ID="S" KEY="IMPORT" ENTRY="        Import Object" LENGTH="21 "/>
+   <textElement ID="S" KEY="NOBJNAM" ENTRY="        Object Name" LENGTH="19 "/>
+   <textElement ID="S" KEY="NOVRWR" ENTRY="        Overwrite Originals" LENGTH="27 "/>
+   <textElement ID="S" KEY="NPLUGIN" ENTRY="        Object Type" LENGTH="19 "/>
+   <textElement ID="S" KEY="NUGA" ENTRY="        Add Object to Nugget" LENGTH="28 "/>
+   <textElement ID="S" KEY="NUGC" ENTRY="        Create Empty Nugget" LENGTH="27 "/>
+   <textElement ID="S" KEY="NUGD" ENTRY="        Display Objects in Nugget" LENGTH="33 "/>
+   <textElement ID="S" KEY="NUGFILE" ENTRY="        Nugget File Name" LENGTH="32 "/>
+   <textElement ID="S" KEY="NUGGNAM" ENTRY="        Nugget Name" LENGTH="19 "/>
+   <textElement ID="S" KEY="NUGI" ENTRY="        Import Nugget" LENGTH="21 "/>
+   <textElement ID="S" KEY="OBJNAME" ENTRY="        Object Name" LENGTH="19 "/>
+   <textElement ID="S" KEY="OVERWR" ENTRY="        Overwrite Originals" LENGTH="27 "/>
+   <textElement ID="S" KEY="PLUGIN" ENTRY="        Object Type" LENGTH="19 "/>
+  </language>
+  <language SPRAS="E">
+   <textElement ID="I" KEY="NGA" ENTRY="Add Object to Nugget" LENGTH="20 "/>
+   <textElement ID="I" KEY="NGC" ENTRY="Create Empty Nugget" LENGTH="19 "/>
+   <textElement ID="I" KEY="NGI" ENTRY="Import Nugget" LENGTH="13 "/>
+   <textElement ID="I" KEY="OPT" ENTRY="Options" LENGTH="7 "/>
+   <textElement ID="I" KEY="SLK" ENTRY="SAPlink" LENGTH="7 "/>
+   <textElement ID="I" KEY="TB1" ENTRY="Object" LENGTH="6 "/>
+   <textElement ID="I" KEY="TB2" ENTRY="Nugget" LENGTH="6 "/>
+   <textElement ID="R" ENTRY="SAPlink" LENGTH="7 "/>
+   <textElement ID="S" KEY="EXPORT" ENTRY="        Export Object" LENGTH="21 "/>
+   <textElement ID="S" KEY="FILENAME" ENTRY="        SAPlink File Name" LENGTH="33 "/>
+   <textElement ID="S" KEY="IMPORT" ENTRY="        Import Object" LENGTH="21 "/>
+   <textElement ID="S" KEY="NOBJNAM" ENTRY="        Object Name" LENGTH="19 "/>
+   <textElement ID="S" KEY="NOVRWR" ENTRY="        Overwrite Originals" LENGTH="27 "/>
+   <textElement ID="S" KEY="NPLUGIN" ENTRY="        Object Type" LENGTH="19 "/>
+   <textElement ID="S" KEY="NUGA" ENTRY="        Add Object to Nugget" LENGTH="28 "/>
+   <textElement ID="S" KEY="NUGC" ENTRY="        Create Empty Nugget" LENGTH="27 "/>
+   <textElement ID="S" KEY="NUGD" ENTRY="        Display Objects in Nugget" LENGTH="33 "/>
+   <textElement ID="S" KEY="NUGFILE" ENTRY="        Nugget File Name" LENGTH="32 "/>
+   <textElement ID="S" KEY="NUGGNAM" ENTRY="        Nugget Name" LENGTH="19 "/>
+   <textElement ID="S" KEY="NUGI" ENTRY="        Import Nugget" LENGTH="21 "/>
+   <textElement ID="S" KEY="OBJNAME" ENTRY="        Object Name" LENGTH="19 "/>
+   <textElement ID="S" KEY="OVERWR" ENTRY="        Overwrite Originals" LENGTH="27 "/>
+   <textElement ID="S" KEY="PLUGIN" ENTRY="        Object Type" LENGTH="19 "/>
+  </language>
+ </textPool>
+ <source>*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   SAPlink is free software; you can redistribute it and/or modify   |
+*|   it under the terms of the GNU General Public License as published |
+*|   by the Free Software Foundation; either version 2 of the License, |
+*|   or (at your option) any later version.                            |
+*|                                                                     |
+*|   SAPlink is distributed in the hope that it will be useful,        |
+*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
+*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
+*|   GNU General Public License for more details.                      |
+*|                                                                     |
+*|   You should have received a copy of the GNU General Public License |
+*|   along with SAPlink; if not, write to the                          |
+*|   Free Software Foundation, Inc.,                                   |
+*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*\---------------------------------------------------------------------/
+*/---------------------------------------------------------------------\
+*| /  __ \           | |      (_) |         | |                        |
+*| | /  \/ ___  _ __ | |_ _ __ _| |__  _   _| |_ ___  _ __ ___         |
+*| | |    / _ \| &apos;_ \| __| &apos;__| | &apos;_ \| | | | __/ _ \| &apos;__/ __|        |
+*| | \__/\ (_) | | | | |_| |  | | |_) | |_| | || (_) | |  \__ \        |
+*|  \____/\___/|_| |_|\__|_|  |_|_.__/ \__,_|\__\___/|_|  |___/        |
+*|---------------------------------------------------------------------|
+*| Lead Developers : ed herrmann                                       |
+*|                        ewherrmann+saplinkcred@gmail.com             |
+*|                   dan mcweeney                                      |
+*|                        daniel.mcweeney+saplinkcred@gmail.com        |
+*|                                                                     |
+*| Plugin Developers: Enhanced programs with dynpros - Rich Heilman    |
+*|                    Tables - Thomas Jung                             |
+*|                    Data Elements - Thomas Jung                      |
+*|                    Domains - Thomas Jung                            |
+*|                    Lock Objects - Thomas Jung                       |
+*|                    Index - Thomas Jung                              |
+*|                    Search Helps - Thomas Jung                       |
+*|                    Structures - Thomas Jung                         |
+*|                    Table Technical Settings - Thomas Jung           |
+*|                    Table Types - Thomas Jung                        |
+*|                    View Technical Settings - Thomas Jung            |
+*|                    Views - Thomas Jung                              |
+*|                    BSP Extensions - Phillip T Young                 |
+*|                                                                     |
+*| Fearless Alpha Testers: Matt Ammons                                 |
+*|                         Phillip T Young                             |
+*|                         Ryan Quackenboss                            |
+*|                         Sascha Kiefer                               |
+*|                         Todd Rowland                                |
+*\---------------------------------------------------------------------/
+REPORT  ZSAPLINK                                                    .
+TABLES SSCRFIELDS.
+
+types: begin of t_plugin,
+         object type KO100-object,
+         text type KO100-text,
+       end of t_plugin.
+
+types: begin of t_objectTable,
+         classname type string,
+         object type ko100-object,
+         text type ko100-text,
+       end of t_objectTable.
+
+types: begin of t_nuggetObject,
+          objType type string,
+          objName type string,
+          exists type flag,
+       end of t_nuggetObject.
+
+data pluginLine type t_plugin.
+data pluginList type table of t_plugin.
+data hidid(3) type c.
+data currentTab type string.
+data isNugget(1) type c value &apos; &apos;.
+data objectTable type table of t_objectTable.
+data objectLine type t_objectTable.
+data _objName type string.
+data _objType type string.
+data nuggetName type string.
+data targetObject type ref to zsaplink.
+data xml type string.
+data excClass type ref to ZCX_SAPLINK.
+data errorMsg type string.
+data statusMsg type string.
+data _pluginExists type flag.
+data _objectExists type flag.
+data _flag type flag.
+
+data errorFlag type flag.
+data it_nuggetObject type table of t_nuggetObject.
+data wa_nuggetObject type t_nuggetObject.
+
+data defFilename type string.
+data retFileName type string.
+data retPath type string.
+data retFullpath type string.
+data retUserAct type i.
+data retFileTable type FILETABLE.
+data retRc type sysubrc.
+data retUserAction type i.
+
+data nugg type ref to zsaplink_nugget.
+data sTemp type string.
+data anXMLDoc type ref to if_ixml_document.
+data ixmlDocument type ref to if_ixml_document.
+
+data foo type ref to data.
+data len type i.
+
+data: l_marker type i,
+      l_offset type i,
+      l_total_offset type i.
+
+*/------------------------SELECTION SCREEN----------------------------\
+
+
+SELECTION-SCREEN BEGIN OF TABBED BLOCK tabb FOR 20 LINES.
+SELECTION-SCREEN TAB (17) text-tb1 USER-COMMAND obj
+                     DEFAULT SCREEN 110.
+SELECTION-SCREEN TAB (17) text-tb2 USER-COMMAND nugg
+                     DEFAULT SCREEN 120.
+SELECTION-SCREEN END OF BLOCK tabb.
+
+
+SELECTION-SCREEN BEGIN OF SCREEN 110 AS SUBSCREEN.
+  selection-screen begin of block main with frame.
+    selection-screen begin of block splk with frame title text-slk.
+      parameters Import type c RADIOBUTTON GROUP 2 default &apos;X&apos;
+        user-command updown.
+      parameters Export type c RADIOBUTTON GROUP 2.
+    selection-screen end of block splk.
+
+    selection-screen begin of block opt with frame title text-opt.
+      parameters filename(300) type c modif id did.
+      parameters OverWr type c as checkbox modif id did.
+
+      parameters objName(40) type c modif id uid.
+      parameters plugin type KO100-object modif id uid.
+    selection-screen end of block opt.
+  selection-screen end of block main.
+SELECTION-SCREEN END OF SCREEN 110.
+
+SELECTION-SCREEN BEGIN OF SCREEN 120 AS SUBSCREEN.
+  selection-screen begin of block main2 with frame.
+    selection-screen begin of block splk2 with frame title text-slk.
+        parameters NugI type c RADIOBUTTON GROUP 3 default &apos;X&apos;
+          user-command updown.
+        parameters NugA type c RADIOBUTTON GROUP 3.
+        parameters nugD type c radiobutton group 3.
+        parameters nugC type c radiobutton group 3.
+    selection-screen end of block splk2.
+
+    selection-screen begin of block opt2 with frame title text-opt.
+      parameters NuggNam(300) type c modif id nnm.
+      parameters NObjNam(40) type c modif id npg.
+      parameters nPlugIn type  KO100-object modif id npg.
+      parameter NugFile(300) type c modif id nfl.
+      parameters nOvrWr type c as checkbox modif id now.
+    selection-screen end of block opt2.
+  selection-screen end of block main2.
+SELECTION-SCREEN END OF SCREEN 120.
+*\--------------------------------------------------------------------/
+
+
+*/----------------------selection screen events-----------------------\
+initialization.
+  call method zsaplink=&gt;getplugins(
+    changing objectTable = objectTable ).
+
+  IMPORT isNugget FROM MEMORY ID &apos;ISNUGG&apos;.
+
+  if isNugget = &apos;X&apos;.
+    tabb-dynnr   = 120.
+    tabb-activetab = &apos;NUGG&apos;.
+  endif.
+
+at selection-screen.
+  case SSCRFIELDS-UCOMM.
+    when &apos;OBJ&apos;.
+      isNugget = &apos; &apos;.
+    when &apos;NUGG&apos;.
+      isNugget = &apos;X&apos;.
+  endcase.
+  EXPORT isNugget TO MEMORY ID &apos;ISNUGG&apos;.
+
+AT SELECTION-SCREEN OUTPUT.
+  if Import = &apos;X&apos;.
+    hidID = &apos;UID&apos;.
+  else.
+    hidID = &apos;DID&apos;.
+  endif.
+
+  LOOP AT SCREEN.
+    if SCREEN-GROUP1 = hidID.
+      SCREEN-ACTIVE = &apos;0&apos;.
+      SCREEN-INVISIBLE = &apos;1&apos;.
+      MODIFY SCREEN.
+    endif.
+  ENDLOOP.
+
+
+  loop at screen.
+    if NugC = &apos;X&apos;.
+      if screen-group1 = &apos;NNM&apos;.
+        SCREEN-ACTIVE = &apos;1&apos;.
+        SCREEN-INVISIBLE = &apos;0&apos;.
+        MODIFY SCREEN.
+       elseif screen-group1 = &apos;NPG&apos; or screen-group1 = &apos;NFL&apos;
+         or screen-group1 = &apos;NOW&apos;.
+        SCREEN-ACTIVE = &apos;0&apos;.
+        SCREEN-INVISIBLE = &apos;1&apos;.
+        MODIFY SCREEN.
+       endif.
+    elseif NugI = &apos;X&apos;.
+      if screen-group1 = &apos;NFL&apos; or screen-group1 = &apos;NOW&apos;.
+        SCREEN-ACTIVE = &apos;1&apos;.
+        SCREEN-INVISIBLE = &apos;0&apos;.
+        MODIFY SCREEN.
+       elseif screen-group1 = &apos;NNM&apos; or screen-group1 =&apos;NPG&apos;.
+        SCREEN-ACTIVE = &apos;0&apos;.
+        SCREEN-INVISIBLE = &apos;1&apos;.
+        MODIFY SCREEN.
+       endif.
+    elseif NugA = &apos;X&apos;.
+      if screen-group1 = &apos;NFL&apos; or screen-group1 = &apos;NPG&apos;.
+        SCREEN-ACTIVE = &apos;1&apos;.
+        SCREEN-INVISIBLE = &apos;0&apos;.
+        MODIFY SCREEN.
+      elseif screen-group1 = &apos;NNM&apos; or screen-group1 = &apos;NOW&apos;.
+        SCREEN-ACTIVE = &apos;0&apos;.
+        SCREEN-INVISIBLE = &apos;1&apos;.
+        MODIFY SCREEN.
+      endif.
+    elseif NugD = &apos;X&apos;.
+      if screen-group1 = &apos;NFL&apos;.
+        SCREEN-ACTIVE = &apos;1&apos;.
+        SCREEN-INVISIBLE = &apos;0&apos;.
+        MODIFY SCREEN.
+       elseif screen-group1 = &apos;NNM&apos; or screen-group1 =&apos;NPG&apos;
+        or screen-group1 = &apos;NOW&apos;.
+        SCREEN-ACTIVE = &apos;0&apos;.
+        SCREEN-INVISIBLE = &apos;1&apos;.
+        MODIFY SCREEN.
+       endif.
+    endif.
+  endloop.
+
+at selection-screen on value-request for plugin.
+  refresh pluginList.
+  loop at objectTable into objectLine.
+    move-corresponding objectLine to pluginLine.
+    append pluginLine to pluginList.
+  endloop.
+
+  CALL FUNCTION &apos;F4IF_INT_TABLE_VALUE_REQUEST&apos;
+   EXPORTING
+     retfield               = &apos;OBJECT&apos;
+     window_title           = &apos;Installed Plugins&apos;
+     dynpprog    = sy-repid
+     dynpnr      = &apos;1000&apos;
+     dynprofield = &apos;PLUGIN&apos;
+     value_org   = &apos;S&apos;
+   TABLES
+     value_tab              =  pluginList
+   EXCEPTIONS
+     PARAMETER_ERROR        = 1
+     NO_VALUES_FOUND        = 2
+     OTHERS                 = 3.
+
+at selection-screen on value-request for Nplugin.
+  refresh pluginList.
+  loop at objectTable into objectLine.
+    move-corresponding objectLine to pluginLine.
+    append pluginLine to pluginList.
+  endloop.
+
+  CALL FUNCTION &apos;F4IF_INT_TABLE_VALUE_REQUEST&apos;
+   EXPORTING
+     retfield               = &apos;OBJECT&apos;
+     window_title           = &apos;Installed Plugins&apos;
+     dynpprog    = sy-repid
+     dynpnr      = &apos;1000&apos;
+     dynprofield = &apos;NPLUGIN&apos;
+     value_org   = &apos;S&apos;
+   TABLES
+     value_tab              =  pluginList
+   EXCEPTIONS
+     PARAMETER_ERROR        = 1
+     NO_VALUES_FOUND        = 2
+     OTHERS                 = 3.
+
+
+at selection-screen on value-request for filename.
+  call method CL_GUI_FRONTEND_SERVICES=&gt;FILE_OPEN_DIALOG
+      exporting
+        MULTISELECTION = abap_false
+        FILE_FILTER = &apos;*.slnk&apos;
+        DEFAULT_EXTENSION = &apos;slnk&apos;
+      changing
+        FILE_TABLE = retFileTable
+        rc = retRc
+        user_Action = retUserAction.
+  read table retFileTable into fileName index 1.
+
+at selection-screen on value-request for NugFile.
+  call method CL_GUI_FRONTEND_SERVICES=&gt;FILE_OPEN_DIALOG
+      exporting
+        MULTISELECTION = abap_false
+        FILE_FILTER = &apos;*.nugg&apos;
+        DEFAULT_EXTENSION = &apos;nugg&apos;
+      changing
+        FILE_TABLE = retFileTable
+        rc = retRc
+        user_Action = retUserAction.
+  read table retFileTable into NugFile index 1.
+
+*\--------------------------------------------------------------------/
+
+*/----------------------main------------------------------------------\
+start-of-selection.
+  clear: errorMsg, statusMsg.
+  if isNugget is initial.
+    _objName = objName.
+    if Export = &apos;X&apos;.
+      read table objectTable into objectLine with key object = plugin.
+      if sy-subrc &lt;&gt; 0.
+        write: / &apos;Plugin for object type &apos;, plugin,
+          &apos; is not installed on this system&apos;.
+        exit.
+      endif.
+      create object targetObject type (objectLine-classname)
+        exporting name = _objName.
+      try.
+        ixmlDocument = targetObject-&gt;CREATEIXMLDOCFROMOBJECT( ).
+        catch ZCX_SAPLINK into excClass.
+          errorMsg = excClass-&gt;get_text( ).
+          write errorMsg.
+      endtry.
+      if errorMsg is not initial.
+        exit.
+      endif.
+      xml = zsapLink=&gt;convertIxmlDoctoString( ixmlDocument ).
+
+      concatenate plugin &apos;_&apos; _objName &apos;.slnk&apos; into defFilename.
+      clear errorFlag.
+      perform downloadXMLtoLM using defFilename xml
+                              changing errorFlag.
+      if errorFlag is not initial.
+        message s208(00) with &apos;Action cancelled&apos;.
+        exit.
+      endif.
+      perform displayXMLOnScreen using xml.
+    elseif Import = &apos;X&apos;.
+      perform uploadXMLFromLM using filename xml.
+      ixmlDocument = zsapLink=&gt;convertStringToIxmlDoc( xml ).
+
+*     run some checks before install
+      perform checkObject using ixmlDocument
+                          changing _objType
+                                   _objName
+                                   _pluginExists
+                                   _objectExists.
+
+      if _pluginExists is initial.
+        concatenate
+          &apos;There is no installed SAPlink plugin for object type&apos;
+          _objType into errorMsg separated by space.
+        write / errorMsg.
+        exit.
+      elseif _objectExists = &apos;X&apos; and overWr is initial.
+        concatenate _objType _objName &apos;already exists. Use overwrite&apos;
+          &apos;orginals option to replace&apos; into errorMsg separated by space.
+        write / errorMsg.
+        exit.
+      elseif _objectExists = &apos;X&apos; and overWr = &apos;X&apos;.
+        concatenate _objType _objName into sTemp separated by space.
+        perform confirmOverwrite using sTemp
+                              changing _flag.
+        if _flag = &apos;A&apos;. &quot;cancel
+          write / &apos;Import cancelled by user&apos;.
+          exit.
+        endif.
+      endif.
+
+*     install object
+      perform installObject using ixmlDocument overWr
+                         changing errorFlag statusMsg.
+      write / statusMsg.
+      if errorFlag = &apos;X&apos;.
+        exit.
+      endif.
+    endif.
+    message s208(00) with &apos;Import successful&apos;.
+  else.
+    if nugC = &apos;X&apos;.
+      if nuggNam is initial.
+        write / &apos;Please enter the name of the new nugget to be created&apos;.
+        exit.
+      endif.
+      stemp = nuggNam.
+      ixmlDocument = zsaplink_nugget=&gt;createemptyXML(
+        nuggetName = sTemp ).
+      xml = zsapLink=&gt;convertIxmlDoctoString( ixmlDocument ).
+      concatenate &apos;NUGG_&apos; nuggNam &apos;.nugg&apos; into sTemp.
+      clear errorFlag.
+      perform downloadXMLtoLM using sTemp xml
+                              changing errorFlag.
+      if errorFlag is not initial.
+        exit.
+      endif.
+    elseif NugA = &apos;X&apos;.
+      read table objectTable into objectLine with key object = nplugin.
+      if sy-subrc &lt;&gt; 0.
+        write: / &apos;Plugin for object type &apos;, nplugin,
+          &apos; is not installed on this system&apos;.
+        exit.
+      endif.
+      sTemp = nuggNam.
+      perform uploadXMLFromLM using nugfile xml.
+      ixmlDocument = zsapLink=&gt;convertStringToIxmlDoc( xml ).
+      create object nugg exporting ixmlDocument = ixmlDocument.
+      _objName = nobjNam.
+      sTemp = nplugin.
+      try.
+        nugg-&gt;ADDOBJECTTONUGGET( objName = _objName objType = sTemp ).
+        catch ZCX_SAPLINK into excClass.
+          errorMsg = excClass-&gt;get_text( ).
+          write / errorMsg.
+          exit.
+      endtry.
+      ixmlDocument = nugg-&gt;CREATEIXMLDOCFROMNUGGET( ).
+      xml = zsapLink=&gt;convertIxmlDoctoString( ixmlDocument ).
+      concatenate  nuggNam &apos;.nugg&apos; into sTemp.
+      sTemp = nugFile.
+      perform putOnMachine using sTemp xml.
+    elseif NugI = &apos;X&apos;.
+      perform uploadXMLFromLM using nugfile xml.
+      ixmlDocument = zsapLink=&gt;convertStringToIxmlDoc( xml ).
+      nuggetName = zsaplink_nugget=&gt;getnuggetinfo( ixmlDocument ).
+      write: / &apos;Starting import of nugget &apos;, nuggetName. skip.
+
+      create object nugg exporting ixmlDocument = ixmlDocument.
+
+*     check for installed plugins
+      clear errorFlag.
+      refresh it_nuggetObject.
+      anXMLDoc = nugg-&gt;getNextObject( ).
+      while anXMLDoc is not Initial.
+        clear: _objType, _objName, _pluginExists, _objectExists,
+               wa_nuggetObject.
+        perform checkObject using anXMLDoc
+                            changing _objType
+                                     _objName
+                                     _pluginExists
+                                     _objectExists.
+        if _pluginExists is initial.
+          concatenate
+            &apos;There is no installed SAPlink plugin for object type&apos;
+            _objType into errorMsg separated by space.
+          write / errorMsg.
+          errorFlag = &apos;X&apos;.
+        elseif _objectExists = &apos;X&apos; and nOvrWr is initial.
+          concatenate _objType _objName &apos;already exists. Use overwrite&apos;
+            &apos;orginals option to replace&apos;
+              into errorMsg separated by space.
+          write / errorMsg.
+          errorFlag = &apos;X&apos;.
+        endif.
+        wa_nuggetObject-objType = _objType.
+        wa_nuggetObject-objName = _objName.
+        wa_nuggetObject-exists = _objectExists.
+        append wa_nuggetObject to it_nuggetObject.
+
+        anXMLDoc = nugg-&gt;getNextObject( ).
+      endwhile.
+
+      if errorFlag = &apos;X&apos;.
+        exit.
+      endif.
+
+*     confirm overwrite
+      loop at it_nuggetObject into wa_nuggetObject where exists = &apos;X&apos;.
+        clear _flag.
+        concatenate wa_nuggetObject-objType wa_nuggetObject-objName
+          into sTemp separated by space.
+        perform confirmOverwrite using sTemp
+                              changing _flag.
+        if _flag = &apos;1&apos;. &quot;yes
+          continue.
+        elseif _flag = &apos;2&apos;. &quot;yes to all
+          clear errorFlag.
+          exit.
+        elseif _flag = &apos;A&apos;. &quot;cancel
+          write / &apos;Import cancelled by user&apos;.
+          errorFlag = &apos;X&apos;.
+          exit.
+        endif.
+      endloop.
+
+      if errorFlag = &apos;X&apos;.
+        exit.
+      endif.
+
+*     install nugget
+      nugg-&gt;reset( ). &quot;reset nugget iterator
+      anXMLDoc = nugg-&gt;getNextObject( ).
+      while anXMLDoc is not Initial.
+        clear statusMsg.
+        perform installObject using anXMLDoc nOvrWr
+                           changing errorFlag
+                                    statusMsg.
+        write / statusMsg.
+*       do not continue with nugget install if error occurrs
+        if errorFlag = &apos;X&apos;.
+          exit.
+        endif.
+        anXMLDoc = nugg-&gt;getNextObject( ).
+      endwhile.
+
+      if errorFlag = &apos;X&apos;.
+        exit.
+      endif.
+      message s208(00) with &apos;Import successful&apos;.
+    elseif NugD = &apos;X&apos;.
+      perform uploadXMLFromLM using nugfile xml.
+      ixmlDocument = zsapLink=&gt;convertStringToIxmlDoc( xml ).
+      nuggetName = zsaplink_nugget=&gt;getnuggetinfo( ixmlDocument ).
+      write: / &apos;Object list for nugget &apos;, nuggetName. skip.
+
+      create object nugg exporting ixmlDocument = ixmlDocument.
+      anXMLDoc = nugg-&gt;getNextObject( ).
+
+      if anXMLDoc is initial.
+        write / &apos;You have an empty Nugget&apos;.
+        exit.
+      endif.
+
+      while anXMLDoc is not Initial.
+        call method zsapLink=&gt;GETOBJECTInfoFROMIXMLDOC
+              exporting
+                ixmlDocument = anXMLDoc
+              importing
+                objtypename = _objType
+                objname     = _objName.
+        write: / _objtype, &apos; &apos;, _objName.
+        anXMLDoc = nugg-&gt;getNextObject( ).
+      endwhile.
+    endif.
+  endif.
+
+*\--------------------------------------------------------------------/
+
+*/----------------------displayXMLOnScreen----------------------------\
+form displayXMLOnScreen using xmlString type string.
+data printXMLDoc type ref to cl_xml_document.
+data rc type sysubrc.
+
+  create object printXMLDoc.
+  rc = printXMLDoc-&gt;parse_string( xmlString ).
+  call method printXMLDoc-&gt;display( ).
+
+endform.
+*\--------------------------------------------------------------------/
+
+*/----------------------downloadXMLToLM-------------------------------\
+form downloadXMLToLM using   defFilename type string
+                             xmlString type string
+                    changing _errorFlag type flag.
+
+data retFileName type string.
+data retPath type string.
+data retFullpath type string.
+data retUserAct type i.
+
+  clear _errorFlag.
+
+  call method CL_GUI_FRONTEND_SERVICES=&gt;FILE_SAVE_DIALOG
+        exporting
+          DEFAULT_FILE_NAME = defFilename
+        changing
+          FILENAME = retFileName
+          PATH = retPath
+          FULLPATH = retFullPath
+          USER_ACTION = retUserAct.
+
+  if retUserAct &lt;&gt; 0.
+   _errorFlag = &apos;X&apos;.
+  else.
+    perform putOnMachine using retFullPath xmlString.
+  endif.
+
+
+endform.
+*\--------------------------------------------------------------------/
+
+
+*/------------------------putOnMachine--------------------------------\
+form putOnMachine using fullpath type string xmlString type string.
+
+data tempTable type table_of_strings.
+data encoding type abap_encoding.
+data applEncoding type CPCODEPAGE.
+data tempString type string.
+data tempXString type xstring.
+data xLen type i.
+data totalxLen type i.
+
+types: xLin(65535) type x.
+
+data binLin type xLin.
+data tempTable_bin type table of xLin.
+
+    append xmlString to tempTable.
+
+    call function &apos;SCP_GET_CODEPAGE_NUMBER&apos;
+          importing
+            APPL_CODEPAGE = applEncoding.
+    encoding = applEncoding.
+
+
+   if retUserAct = 0.
+*   build binary table with file content
+    loop at tempTable into tempString.
+      clear tempXString.
+*     export tempString to data buffer tempXString.
+      CALL FUNCTION &apos;SCMS_STRING_TO_XSTRING&apos;
+        EXPORTING
+          text           = tempString
+          encoding       = encoding
+        IMPORTING
+          BUFFER         = tempXString
+        EXCEPTIONS
+         FAILED         = 1
+         OTHERS         = 2.
+
+      l_marker = 0. l_offset = 65535. l_total_offset = 0.
+      xLen = xstrlen( tempXString ).
+      totalxLen = totalxLen + xLen.
+
+      while l_marker &lt; xLen.
+        l_total_offset = l_marker + l_offset.
+        if l_total_offset &gt; xLen.
+          l_offset = xLen - l_marker.
+        endif.
+
+        binLin = tempXString+l_marker(l_offset).
+        append binLin to tempTable_bin.
+        l_marker = l_marker + l_offset.
+      endwhile.
+    endloop.
+
+    call method CL_GUI_FRONTEND_SERVICES=&gt;GUI_DOWNLOAD
+          exporting
+            FILENAME = fullpath
+            FILETYPE = &apos;BIN&apos;
+            BIN_FILESIZE = totalxLen
+          changing
+            DATA_TAB = tempTable_bin.
+   endif.
+
+
+endform.
+*\--------------------------------------------------------------------/
+
+
+*/----------------------uploadXMLFromLM-------------------------------\
+form uploadXMLFromLM using p_filename xmlString type string .
+data retFileTable type FILETABLE.
+data retRc type sysubrc.
+data retUserAction type i.
+data tempTable type table_of_strings.
+data tempTable_bin type table  of xstring.
+data l_fileName type string.
+
+  l_fileName = p_filename.
+  call method CL_GUI_FRONTEND_SERVICES=&gt;GUI_UPLOAD
+        exporting
+          FILENAME = l_fileName
+        changing
+          data_tab = tempTable.
+  perform createString using tempTable changing xmlString.
+
+endform.
+*\--------------------------------------------------------------------/
+
+*/----------------------createString----------------------------------\
+form createString
+      using
+        tempTable type table_of_strings
+      changing
+        bigString type string.
+
+data sTemp type string.
+  loop at tempTable into sTemp.
+    concatenate bigString sTemp CL_ABAP_CHAR_UTILITIES=&gt;NEWLINE
+      into bigString.
+  endloop.
+
+endform.
+*\--------------------------------------------------------------------/
+
+*/----------------------installObject---------------------------------\
+form installObject using l_ixmlDocument type ref to if_ixml_document
+                         l_overwriteFlag type flag
+                changing l_errorFlag type flag
+                         l_message type string.
+
+data l_objName type string.
+data l_objType type string.
+data l_objTable type table of t_objectTable.
+data l_objLine type t_objectTable.
+data l_targetObject type ref to zsaplink.
+data l_installObject type string.
+data l_excClass type ref to ZCX_SAPLINK.
+
+  clear l_errorFlag.
+  call method zsapLink=&gt;GETOBJECTInfoFROMIXMLDOC
+        exporting
+          ixmlDocument = l_ixmlDocument
+        importing
+          objtypename = l_objType
+          objname     = l_objName.
+
+  call method zsaplink=&gt;getplugins( changing objectTable = l_objTable ).
+
+  read table l_objTable into l_objLine with key object = l_objType.
+
+  if sy-subrc &lt;&gt; 0.
+    concatenate &apos;There is no installed SAPlink plugin for object type&apos;
+      l_objType into l_message separated by space.
+    l_errorFlag = &apos;X&apos;.
+  else.
+    create object l_targetObject type (l_objLine-classname)
+      exporting name = l_objName.
+
+    if l_targetObject is not initial.
+      try.
+        l_installObject = l_targetObject-&gt;createObjectfromiXMLDoc(
+                                        ixmlDocument = l_ixmlDocument
+                                        overwrite = l_overwriteFlag ).
+        catch ZCX_SAPLINK into l_excClass.
+          l_message = l_excClass-&gt;get_text( ).
+          l_errorFlag = &apos;X&apos;.
+      endtry.
+      if l_installObject is not initial.
+        concatenate l_objType l_installObject &apos;install successful,&apos;
+         &apos;you must activate object to use&apos;
+         into l_message separated by space.
+      endif.
+    else.
+      l_message = &apos;an undetermined error occured&apos;.
+      l_errorFlag = &apos;X&apos;.
+    endif.
+  endif.
+
+endform.
+*\--------------------------------------------------------------------/
+
+*/----------------------confirmOverwrite------------------------------\
+form confirmOverwrite using l_objInfo type string
+                   changing l_answer type flag.
+
+data l_message type string.
+data l_title type string.
+
+  clear l_answer.
+  l_title = &apos;Overwrite confirm. Proceed with CAUTION!&apos;.
+
+  concatenate &apos;You have selected to overwrite originals.&apos;
+    l_objinfo &apos;will be overwritten. Are you sure?&apos;
+    into l_message separated by space.
+
+  CALL FUNCTION &apos;POPUP_TO_CONFIRM&apos;
+    EXPORTING
+      TITLEBAR                    = l_title
+      text_question               = l_message
+      TEXT_BUTTON_1               = &apos;Yes&apos;
+      TEXT_BUTTON_2               = &apos;Yes to all&apos;
+      DEFAULT_BUTTON              = &apos;1&apos;
+      DISPLAY_CANCEL_BUTTON       = &apos;X&apos;
+    IMPORTING
+      ANSWER                      = l_answer
+            .
+endform.
+*\--------------------------------------------------------------------/
+
+*/----------------------checkObject-----------------------------------\
+form checkObject using l_ixmlDocument type ref to if_ixml_document
+              changing l_objType type string
+                       l_objName type string
+                       l_pluginExists type flag
+                       l_objectExists type flag.
+
+data l_objTable type table of t_objectTable.
+data l_objLine type t_objectTable.
+data l_targetObject type ref to zsaplink.
+
+  clear: l_objType, l_objName, l_pluginExists, l_objectExists.
+  call method zsapLink=&gt;GETOBJECTInfoFROMIXMLDOC
+        exporting
+          ixmlDocument = l_ixmlDocument
+        importing
+          objtypename = l_objType
+          objname     = l_objName.
+
+  call method zsaplink=&gt;getplugins( changing objectTable = l_objTable ).
+
+  read table l_objTable into l_objLine with key object = l_objType.
+
+  if sy-subrc = 0.
+    l_pluginExists = &apos;X&apos;.
+    create object l_targetObject type (l_objLine-classname)
+      exporting name = l_objName.
+
+    l_objectExists = l_targetObject-&gt;checkexists( ).
+  endif.
+
+endform.
+*\--------------------------------------------------------------------/</source>
+</PROG>
