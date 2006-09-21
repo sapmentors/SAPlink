@@ -124,8 +124,8 @@ method CREATEIXMLDOCFROMOBJECT .
 data rootNode type ref to if_ixml_element.
 data sourceNode type ref to if_ixml_element.
 data textPoolNode type ref to if_ixml_element.
-data dynproNode type ref to if_ixml_element.  &quot;Added by Rich
-data statusNode type ref to if_ixml_element.  &quot;Added by Rich
+data dynproNode type ref to if_ixml_element.
+data statusNode type ref to if_ixml_element.
 data rc type sysubrc.
 data progAttribs type trdir.
 data progSource type RSWSOURCET.
@@ -146,10 +146,10 @@ data _objType type string.
     rc = sourceNode-&gt;IF_IXML_NODE~SET_VALUE( sourceString ).
     textPoolNode = get_textPool( ).
     rc = rootNOde-&gt;append_child( textPoolNode ).
-    dynproNode = get_dynpro( ).                &quot;Added by Rich
-    rc = rootNode-&gt;append_child( dynproNode ). &quot;Added by Rich
-    statusNode = get_pfstatus( ).              &quot;Added by Rich
-    rc = rootNode-&gt;append_child( statusNode ). &quot;Added by Rich
+    dynproNode = get_dynpro( ).
+    rc = rootNode-&gt;append_child( dynproNode ).
+    statusNode = get_pfstatus( ).
+    rc = rootNode-&gt;append_child( statusNode ).
     rc = rootNode-&gt;append_child( sourceNode ).
     rc = xmldoc-&gt;append_child( rootNode ).
     ixmlDocument = xmlDoc.
@@ -191,8 +191,8 @@ method createobjectfromixmldoc .
   data progattribs type trdir.
   data sourcenode type ref to if_ixml_element.
   data textnode type ref to if_ixml_element.
-  data dynpnode type ref to if_ixml_element.     &quot;Added by Rich
-  data statnode type ref to if_ixml_element.     &quot;Added by Rich
+  data dynpnode type ref to if_ixml_element.
+  data statnode type ref to if_ixml_element.
   data source type string.
   data sourcetable type table_of_strings.
   data _objname(30) type c.
@@ -274,10 +274,10 @@ method createobjectfromixmldoc .
   create_source( source = sourcetable attribs = progattribs ).
   textnode = rootnode-&gt;find_from_name( &apos;textPool&apos; ).
   create_textpool( textnode ).
-  dynpnode = rootnode-&gt;find_from_name( &apos;dynpros&apos; ).   &quot;Added by Rich
-  create_dynpro( dynpnode ).                          &quot;Added by Rich
-  statnode = rootnode-&gt;find_from_name( &apos;pfstatus&apos; ).  &quot;Added by Rich
-  create_pfstatus( statnode ).                        &quot;Added by Rich
+  dynpnode = rootnode-&gt;find_from_name( &apos;dynpros&apos; ).
+  create_dynpro( dynpnode ).
+  statnode = rootnode-&gt;find_from_name( &apos;pfstatus&apos; ).
+  create_pfstatus( statnode ).
 
   dequeue_abap( ).
 *endif.

@@ -52,6 +52,203 @@
    <textElement ID="S" KEY="PLUGIN" ENTRY="        Object Type" LENGTH="19 "/>
   </language>
  </textPool>
+ <dynpros>
+  <dynpro PROG="ZSAPLINK" DNUM="0110" TYPE="J" FNUM="0110" BZMX="13 " BZBR="118 " MILI="200 " MICO="36 " MALI="0 " MACO="0 " NOLI="200 " NOCO="120 " VALP="0 " CUAN="G" SPRA="E" DGEN="20060917" TGEN="180522" DTEXT="SEL_SCREEN 0110 INFO:170000350000000000000000000031569885981">
+   <dynprofield FNAM="%B%_F001" DIDX="000C" FLG1="00" FLG2="02" FLG3="00" FILL="R" FMB1="30" FMB2="00" LENG="74" LINE="01" COLN="02" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" AUTH="103" GRP3="BLK" ITYP="0" AGLT="00" ADEZ="00"/>
+   <dynprofield FNAM="%BSLK002_BLOCK_0110" DIDX="0004" FLG1="80" FLG2="02" FLG3="80" FILL="R" FMB1="31" FMB2="00" LENG="70" LINE="02" COLN="04" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" AUTH="101" GRP3="BLK" ITYP="C" AGLT="00" ADEZ="00"/>
+   <dynprofield FNAM="%_IMPORT_%_APP_%-TEXT" DIDX="001E" FLG1="80" FLG2="02" FLG3="80" FMB1="31" FMB2="00" LENG="1E" LINE="03" COLN="06" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP3="TXT" GRP4="003" ITYP="C" AGLT="00" ADEZ="00" RES1="                                                                                                                                                                                                                                                        X"/>
+   <dynprofield FNAM="IMPORT" DIDX="0001" FLG1="80" FLG2="00" FLG3="80" FILL="A" FMB1="00" FMB2="00" LENG="01" LINE="03" COLN="24" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" AUTH="104" GRP3="PAR" GRP4="003" ITYP="C" AGLT="00" ADEZ="00" STXT="_" RES1="                                                                                                                                                                        UPDOWN"/>
+   <dynprofield FNAM="%_EXPORT_%_APP_%-TEXT" DIDX="001E" FLG1="80" FLG2="02" FLG3="80" FMB1="31" FMB2="00" LENG="1E" LINE="04" COLN="06" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP3="TXT" GRP4="004" ITYP="C" AGLT="00" ADEZ="00" RES1="                                                                                                                                                                                                                                                        X"/>
+   <dynprofield FNAM="EXPORT" DIDX="0001" FLG1="80" FLG2="00" FLG3="80" FILL="A" FMB1="00" FMB2="00" LENG="01" LINE="04" COLN="24" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" AUTH="104" GRP3="PAR" GRP4="004" ITYP="C" AGLT="00" ADEZ="00" STXT="_" RES1="                                                                                                                                                                        UPDOWN"/>
+   <dynprofield FNAM="%BOPT006_BLOCK_0110" DIDX="0006" FLG1="80" FLG2="02" FLG3="80" FILL="R" FMB1="31" FMB2="00" LENG="70" LINE="06" COLN="04" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" AUTH="105" GRP3="BLK" ITYP="C" AGLT="00" ADEZ="00"/>
+   <dynprofield FNAM="%_FILENAME_%_APP_%-TEXT" DIDX="001D" FLG1="80" FLG2="02" FLG3="80" FMB1="31" FMB2="00" LENG="1D" LINE="07" COLN="06" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP1="DID" GRP3="TXT" GRP4="007" ITYP="C" AGLT="00" ADEZ="00" RES1="                                                                                                                                                                                                                                                        X"/>
+   <dynprofield FNAM="FILENAME" DIDX="002D" FLG1="81" FLG2="00" FLG3="80" FMB1="00" FMB2="18" LENG="84" LINE="07" COLN="24" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP1="DID" GRP3="PAR" GRP4="007" ITYP="C" AGLT="00" ADEZ="00" STXT="_____________________________________________"/>
+   <dynprofield FNAM="OVERWR" DIDX="0001" FLG1="80" FLG2="00" FLG3="80" FILL="C" FMB1="00" FMB2="00" LENG="01" LINE="08" COLN="06" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" AUTH="106" GRP1="DID" GRP3="PAR" GRP4="008" ITYP="C" AGLT="00" ADEZ="00" STXT="_"/>
+   <dynprofield FNAM="%_OVERWR_%_APP_%-TEXT" DIDX="001E" FLG1="80" FLG2="02" FLG3="80" FMB1="31" FMB2="00" LENG="1E" LINE="08" COLN="08" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP1="DID" GRP3="TXT" GRP4="008" ITYP="C" AGLT="00" ADEZ="00" RES1="                                                                                                                                                                                                                                                         X"/>
+   <dynprofield FNAM="%_OBJNAME_%_APP_%-TEXT" DIDX="001D" FLG1="80" FLG2="02" FLG3="80" FMB1="31" FMB2="00" LENG="1D" LINE="09" COLN="06" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP1="UID" GRP3="TXT" GRP4="009" ITYP="C" AGLT="00" ADEZ="00" RES1="                                                                                                                                                                                                                                                        X"/>
+   <dynprofield FNAM="OBJNAME" DIDX="0028" FLG1="80" FLG2="00" FLG3="80" FMB1="00" FMB2="00" LENG="28" LINE="09" COLN="24" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP1="UID" GRP3="PAR" GRP4="009" ITYP="C" AGLT="00" ADEZ="00" STXT="________________________________________"/>
+   <dynprofield FNAM="%_PLUGIN_%_APP_%-TEXT" DIDX="001D" FLG1="80" FLG2="02" FLG3="80" FMB1="31" FMB2="00" LENG="1D" LINE="0A" COLN="06" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP1="UID" GRP3="TXT" GRP4="010" ITYP="C" AGLT="00" ADEZ="00" RES1="                                                                                                                                                                                                                                                        X"/>
+   <dynprofield FNAM="PLUGIN" DIDX="0004" FLG1="80" FLG2="00" FLG3="80" FMB1="00" FMB2="18" LENG="04" LINE="0A" COLN="24" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP1="UID" GRP3="PAR" GRP4="010" ITYP="C" AGLT="00" ADEZ="00" STXT="____"/>
+   <dynprofield FNAM="%_17NNJ0000195352_%_%_%_%_%_%_" DIDX="0000" FLG1="00" FLG2="00" FLG3="00" FMB1="00" FMB2="00" LENG="01" LINE="0D" COLN="02" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP4="SRI" ITYP="0" AGLT="00" ADEZ="00" STXT="-"/>
+   <dynprofield FNAM="SSCRFIELDS-UCOMM" DIDX="0046" FLG1="A0" FLG2="10" FLG3="00" FMB1="00" FMB2="00" LENG="14" LINE="FF" COLN="01" LTYP="O" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" ITYP="C" AGLT="46" ADEZ="00" STXT="______________________________________________________________________"/>
+   <dynproflowsource>PROCESS BEFORE OUTPUT.
+
+MODULE %_INIT_PBO_J.
+
+MODULE %_PBO_REPORT.
+
+MODULE %_PF_STATUS.
+
+MODULE %_END_OF_PBO.
+
+PROCESS AFTER INPUT.
+
+  MODULE %_INIT_PAI_J.
+
+CHAIN.
+  FIELD IMPORT  .
+  FIELD EXPORT  .
+    MODULE %_RADIOBUTTON_GROUP_2                             .
+ENDCHAIN.
+
+
+CHAIN.
+  FIELD IMPORT  .
+  FIELD EXPORT  .
+    MODULE %_BLOCK_0110002.
+ENDCHAIN.
+
+FIELD !FILENAME MODULE %_FILENAME .
+
+FIELD !OVERWR MODULE %_OVERWR .
+
+FIELD !OBJNAME MODULE %_OBJNAME .
+
+FIELD !PLUGIN MODULE %_PLUGIN .
+
+
+CHAIN.
+  FIELD FILENAME .
+  FIELD OVERWR .
+  FIELD OBJNAME .
+  FIELD PLUGIN .
+    MODULE %_BLOCK_0110006.
+ENDCHAIN.
+
+
+CHAIN.
+  FIELD IMPORT  .
+  FIELD EXPORT  .
+  FIELD FILENAME .
+  FIELD OVERWR .
+  FIELD OBJNAME .
+  FIELD PLUGIN .
+    MODULE %_BLOCK_0110001.
+ENDCHAIN.
+
+CHAIN.
+  FIELD IMPORT  .
+  FIELD EXPORT  .
+  FIELD FILENAME .
+  FIELD OVERWR .
+  FIELD OBJNAME .
+  FIELD PLUGIN .
+  MODULE %_END_OF_SCREEN.
+  MODULE %_OK_CODE_1000.
+ENDCHAIN.
+
+PROCESS ON VALUE-REQUEST.
+  FIELD FILENAME MODULE %_FILENAME_VAL .
+  FIELD PLUGIN MODULE %_PLUGIN_VAL .</dynproflowsource>
+  </dynpro>
+  <dynpro PROG="ZSAPLINK" DNUM="0120" TYPE="J" FNUM="0120" BZMX="16 " BZBR="118 " MILI="200 " MICO="36 " MALI="0 " MACO="0 " NOLI="200 " NOCO="120 " VALP="0 " CUAN="G" SPRA="E" DGEN="20060917" TGEN="180522" DTEXT="SEL_SCREEN 0120 INFO:170000350000000000000000000031569885981">
+   <dynprofield FNAM="%B%_F001" DIDX="000F" FLG1="00" FLG2="02" FLG3="00" FILL="R" FMB1="30" FMB2="00" LENG="74" LINE="01" COLN="02" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" AUTH="104" GRP3="BLK" ITYP="0" AGLT="00" ADEZ="00"/>
+   <dynprofield FNAM="%BSLK002_BLOCK_0120" DIDX="0006" FLG1="80" FLG2="02" FLG3="80" FILL="R" FMB1="31" FMB2="00" LENG="70" LINE="02" COLN="04" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" AUTH="101" GRP3="BLK" ITYP="C" AGLT="00" ADEZ="00"/>
+   <dynprofield FNAM="%_NUGI_%_APP_%-TEXT" DIDX="001E" FLG1="80" FLG2="02" FLG3="80" FMB1="31" FMB2="00" LENG="1E" LINE="03" COLN="06" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP3="TXT" GRP4="003" ITYP="C" AGLT="00" ADEZ="00" RES1="                                                                                                                                                                                                                                                        X"/>
+   <dynprofield FNAM="NUGI" DIDX="0001" FLG1="80" FLG2="00" FLG3="80" FILL="A" FMB1="00" FMB2="00" LENG="01" LINE="03" COLN="24" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" AUTH="106" GRP3="PAR" GRP4="003" ITYP="C" AGLT="00" ADEZ="00" STXT="_" RES1="                                                                                                                                                                        UPDOWN"/>
+   <dynprofield FNAM="%_NUGA_%_APP_%-TEXT" DIDX="001E" FLG1="80" FLG2="02" FLG3="80" FMB1="31" FMB2="00" LENG="1E" LINE="04" COLN="06" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP3="TXT" GRP4="004" ITYP="C" AGLT="00" ADEZ="00" RES1="                                                                                                                                                                                                                                                        X"/>
+   <dynprofield FNAM="NUGA" DIDX="0001" FLG1="80" FLG2="00" FLG3="80" FILL="A" FMB1="00" FMB2="00" LENG="01" LINE="04" COLN="24" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" AUTH="106" GRP3="PAR" GRP4="004" ITYP="C" AGLT="00" ADEZ="00" STXT="_" RES1="                                                                                                                                                                        UPDOWN"/>
+   <dynprofield FNAM="%_NUGD_%_APP_%-TEXT" DIDX="001E" FLG1="80" FLG2="02" FLG3="80" FMB1="31" FMB2="00" LENG="1E" LINE="05" COLN="06" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP3="TXT" GRP4="005" ITYP="C" AGLT="00" ADEZ="00" RES1="                                                                                                                                                                                                                                                        X"/>
+   <dynprofield FNAM="NUGD" DIDX="0001" FLG1="80" FLG2="00" FLG3="80" FILL="A" FMB1="00" FMB2="00" LENG="01" LINE="05" COLN="24" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" AUTH="106" GRP3="PAR" GRP4="005" ITYP="C" AGLT="00" ADEZ="00" STXT="_" RES1="                                                                                                                                                                        UPDOWN"/>
+   <dynprofield FNAM="%_NUGC_%_APP_%-TEXT" DIDX="001E" FLG1="80" FLG2="02" FLG3="80" FMB1="31" FMB2="00" LENG="1E" LINE="06" COLN="06" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP3="TXT" GRP4="006" ITYP="C" AGLT="00" ADEZ="00" RES1="                                                                                                                                                                                                                                                        X"/>
+   <dynprofield FNAM="NUGC" DIDX="0001" FLG1="80" FLG2="00" FLG3="80" FILL="A" FMB1="00" FMB2="00" LENG="01" LINE="06" COLN="24" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" AUTH="106" GRP3="PAR" GRP4="006" ITYP="C" AGLT="00" ADEZ="00" STXT="_" RES1="                                                                                                                                                                        UPDOWN"/>
+   <dynprofield FNAM="%BOPT008_BLOCK_0120" DIDX="0007" FLG1="80" FLG2="02" FLG3="80" FILL="R" FMB1="31" FMB2="00" LENG="70" LINE="08" COLN="04" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" AUTH="107" GRP3="BLK" ITYP="C" AGLT="00" ADEZ="00"/>
+   <dynprofield FNAM="%_NUGGNAM_%_APP_%-TEXT" DIDX="001D" FLG1="80" FLG2="02" FLG3="80" FMB1="31" FMB2="00" LENG="1D" LINE="09" COLN="06" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP1="NNM" GRP3="TXT" GRP4="009" ITYP="C" AGLT="00" ADEZ="00" RES1="                                                                                                                                                                                                                                                        X"/>
+   <dynprofield FNAM="NUGGNAM" DIDX="002D" FLG1="81" FLG2="00" FLG3="80" FMB1="00" FMB2="00" LENG="84" LINE="09" COLN="24" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP1="NNM" GRP3="PAR" GRP4="009" ITYP="C" AGLT="00" ADEZ="00" STXT="_____________________________________________"/>
+   <dynprofield FNAM="%_NOBJNAM_%_APP_%-TEXT" DIDX="001D" FLG1="80" FLG2="02" FLG3="80" FMB1="31" FMB2="00" LENG="1D" LINE="0A" COLN="06" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP1="NPG" GRP3="TXT" GRP4="010" ITYP="C" AGLT="00" ADEZ="00" RES1="                                                                                                                                                                                                                                                        X"/>
+   <dynprofield FNAM="NOBJNAM" DIDX="0028" FLG1="80" FLG2="00" FLG3="80" FMB1="00" FMB2="00" LENG="28" LINE="0A" COLN="24" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP1="NPG" GRP3="PAR" GRP4="010" ITYP="C" AGLT="00" ADEZ="00" STXT="________________________________________"/>
+   <dynprofield FNAM="%_NPLUGIN_%_APP_%-TEXT" DIDX="001D" FLG1="80" FLG2="02" FLG3="80" FMB1="31" FMB2="00" LENG="1D" LINE="0B" COLN="06" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP1="NPG" GRP3="TXT" GRP4="011" ITYP="C" AGLT="00" ADEZ="00" RES1="                                                                                                                                                                                                                                                        X"/>
+   <dynprofield FNAM="NPLUGIN" DIDX="0004" FLG1="80" FLG2="00" FLG3="80" FMB1="00" FMB2="18" LENG="04" LINE="0B" COLN="24" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP1="NPG" GRP3="PAR" GRP4="011" ITYP="C" AGLT="00" ADEZ="00" STXT="____"/>
+   <dynprofield FNAM="%_NUGFILE_%_APP_%-TEXT" DIDX="001D" FLG1="80" FLG2="02" FLG3="80" FMB1="31" FMB2="00" LENG="1D" LINE="0C" COLN="06" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP1="NFL" GRP3="TXT" GRP4="012" ITYP="C" AGLT="00" ADEZ="00" RES1="                                                                                                                                                                                                                                                        X"/>
+   <dynprofield FNAM="NUGFILE" DIDX="002D" FLG1="81" FLG2="00" FLG3="80" FMB1="00" FMB2="18" LENG="84" LINE="0C" COLN="24" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP1="NFL" GRP3="PAR" GRP4="012" ITYP="C" AGLT="00" ADEZ="00" STXT="_____________________________________________"/>
+   <dynprofield FNAM="NOVRWR" DIDX="0001" FLG1="80" FLG2="00" FLG3="80" FILL="C" FMB1="00" FMB2="00" LENG="01" LINE="0D" COLN="06" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" AUTH="108" GRP1="NOW" GRP3="PAR" GRP4="013" ITYP="C" AGLT="00" ADEZ="00" STXT="_"/>
+   <dynprofield FNAM="%_NOVRWR_%_APP_%-TEXT" DIDX="001E" FLG1="80" FLG2="02" FLG3="80" FMB1="31" FMB2="00" LENG="1E" LINE="0D" COLN="08" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP1="NOW" GRP3="TXT" GRP4="013" ITYP="C" AGLT="00" ADEZ="00" RES1="                                                                                                                                                                                                                                                         X"/>
+   <dynprofield FNAM="%_17NNJ0000195352_%_%_%_%_%_%_" DIDX="0000" FLG1="00" FLG2="00" FLG3="00" FMB1="00" FMB2="00" LENG="01" LINE="10" COLN="02" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP4="SRI" ITYP="0" AGLT="00" ADEZ="00" STXT="-"/>
+   <dynprofield FNAM="SSCRFIELDS-UCOMM" DIDX="0046" FLG1="A0" FLG2="10" FLG3="00" FMB1="00" FMB2="00" LENG="14" LINE="FF" COLN="01" LTYP="O" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" ITYP="C" AGLT="46" ADEZ="00" STXT="______________________________________________________________________"/>
+   <dynproflowsource>PROCESS BEFORE OUTPUT.
+
+MODULE %_INIT_PBO_J.
+
+MODULE %_PBO_REPORT.
+
+MODULE %_PF_STATUS.
+
+MODULE %_END_OF_PBO.
+
+PROCESS AFTER INPUT.
+
+  MODULE %_INIT_PAI_J.
+
+CHAIN.
+  FIELD NUGI    .
+  FIELD NUGA    .
+  FIELD NUGD    .
+  FIELD NUGC    .
+    MODULE %_RADIOBUTTON_GROUP_3                             .
+ENDCHAIN.
+
+
+CHAIN.
+  FIELD NUGI    .
+  FIELD NUGA    .
+  FIELD NUGD    .
+  FIELD NUGC    .
+    MODULE %_BLOCK_0120002.
+ENDCHAIN.
+
+FIELD !NUGGNAM MODULE %_NUGGNAM .
+
+FIELD !NOBJNAM MODULE %_NOBJNAM .
+
+FIELD !NPLUGIN MODULE %_NPLUGIN .
+
+FIELD !NUGFILE MODULE %_NUGFILE .
+
+FIELD !NOVRWR MODULE %_NOVRWR .
+
+
+CHAIN.
+  FIELD NUGGNAM .
+  FIELD NOBJNAM .
+  FIELD NPLUGIN .
+  FIELD NUGFILE .
+  FIELD NOVRWR .
+    MODULE %_BLOCK_0120008.
+ENDCHAIN.
+
+
+CHAIN.
+  FIELD NUGI    .
+  FIELD NUGA    .
+  FIELD NUGD    .
+  FIELD NUGC    .
+  FIELD NUGGNAM .
+  FIELD NOBJNAM .
+  FIELD NPLUGIN .
+  FIELD NUGFILE .
+  FIELD NOVRWR .
+    MODULE %_BLOCK_0120001.
+ENDCHAIN.
+
+CHAIN.
+  FIELD NUGI    .
+  FIELD NUGA    .
+  FIELD NUGD    .
+  FIELD NUGC    .
+  FIELD NUGGNAM .
+  FIELD NOBJNAM .
+  FIELD NPLUGIN .
+  FIELD NUGFILE .
+  FIELD NOVRWR .
+  MODULE %_END_OF_SCREEN.
+  MODULE %_OK_CODE_1000.
+ENDCHAIN.
+
+PROCESS ON VALUE-REQUEST.
+  FIELD NPLUGIN MODULE %_NPLUGIN_VAL .
+  FIELD NUGFILE MODULE %_NUGFILE_VAL .</dynproflowsource>
+  </dynpro>
+ </dynpros>
  <source>*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
