@@ -13,7 +13,7 @@
     <!--[if gte IE 6]><style type="text/css">@import "/mediawiki/skins/monobook/IE60Fixes.css";</style><![endif]-->
     <!--[if IE]><script type="text/javascript" src="/mediawiki/skins/common/IEFixes.js"></script>
     <meta http-equiv="imagetoolbar" content="no" /><![endif]-->
-    <script type="text/javascript" src="/mediawiki/index.php?title=User:Dan_Mcweeney/-&amp;action=raw&amp;gen=js&amp;maxage=18000"></script>    <script type="text/javascript" src="/mediawiki/skins/common/wikibits.js"></script>
+    <script type="text/javascript" src="/mediawiki/index.php?title=User:EHerrmann/-&amp;action=raw&amp;gen=js&amp;maxage=18000"></script>    <script type="text/javascript" src="/mediawiki/skins/common/wikibits.js"></script>
     <style type="text/css">/*<![CDATA[*/
 @import "/mediawiki/index.php?title=MediaWiki:Monobook.css&action=raw&ctype=text/css&smaxage=18000";
 @import "/mediawiki/index.php?title=-&action=raw&gen=css";
@@ -82,13 +82,13 @@
 </li><li>Newly installed objects need to be activated manually, as all objects are installed as local &amp; inactive 
 <ol><li>Run transaction code SE38
 </li><li>On initial screen of SE38, enter program name ZSAPLINK into selection parameter "Program" and hit activate command to show worklist
-</li><li>On worklist screen, select "Whole Worklist" button on bottom to show all inactive objects in your worklist
-</li><li>Select all newly installed SAPlink related objects (ZSAPLINK*) and activate
+</li><li>On worklist screen, select "Whole Worklist" button on bottom to show all inactive objects in your worklist<i > IMPORTANT NOTE: You must click the button labeled "Whole Worklist" to show and select all SAPlink related objects. There are multiple objects that are imported during the initial install and must all be activated for SAPlink to run properly</i > 
+</li><li>Select all newly installed SAPlink related objects (*ZSAPLINK*) and activate
 </li><li>Once activation for all objects is complete, SAPlink can be executed via program ZSAPLINK
 </li></ol>
 </li></ol>
 <div class="editsection" style="float:right;margin-left:5px;">[<a href="/mediawiki/index.php?title=SAPlink:Docs:UserDoc&amp;action=edit&amp;section=3" title="SAPlink:Docs:UserDoc">edit</a>]</div><a name="Plugins"></a><h2>Plugins</h2>
-<ul><li>To see a list of installed plugins, use the F4 value help in the selection parameter field for "Object Type" from ZSAPLINK->Object Tab->Export Object->Object Type.  Additional plugins can be downloaded from the <a href="http://code.google.com/p/saplink/" class='external' title="http://code.google.com/p/saplink/" rel="nofollow">SAPlink Project page</a><span class='urlexpansion'>&nbsp;(<i>http://code.google.com/p/saplink/</i>)</span> and imported/installed using SAPlink. A plugin can be delivered via a Slinkee or a Nugget.  Follow normal usage instructions below for the plugin file accordingly.
+<ul><li>To see a list of installed plugins, use the F4 value help in the selection parameter field for "Object Type" from ZSAPLINK-&gt;Object Tab-&gt;Export Object-&gt;Object Type.  Additional plugins can be downloaded from the <a href="http://code.google.com/p/saplink/" class='external' title="http://code.google.com/p/saplink/" rel="nofollow">SAPlink Project page</a><span class='urlexpansion'>&nbsp;(<i>http://code.google.com/p/saplink/</i>)</span> and imported/installed using SAPlink. A plugin can be delivered via a Slinkee or a Nugget.  Follow normal usage instructions below for the plugin file accordingly.
 </li><li>If no plugin is available for the object type needed, we need your help. If you are a gracious soul and willing to give back to the community as a plugin developer, go to the <a href="http://groups.google.com/group/saplink" class='external' title="http://groups.google.com/group/saplink" rel="nofollow">SAPlink Group</a><span class='urlexpansion'>&nbsp;(<i>http://groups.google.com/group/saplink</i>)</span> and let us know.  Developer documentation is available on the SAPlink documentation page.
 </li></ul>
 <div class="editsection" style="float:right;margin-left:5px;">[<a href="/mediawiki/index.php?title=SAPlink:Docs:UserDoc&amp;action=edit&amp;section=4" title="SAPlink:Docs:UserDoc">edit</a>]</div><a name="Upgrade"></a><h2>Upgrade</h2>
@@ -164,13 +164,26 @@
 *|                   dan mcweeney                                      |
 *|                        daniel.mcweeney+saplinkcred@gmail.com        |
 *|                                                                     |
-*| Fearless Alpha Testers: Matthew Ammons                              |
+*| Plugin Developers: Enhanced programs with dynpros - Rich Heilman    |
+*|                    Tables - Thomas Jung                             |
+*|                    Data Elements - Thomas Jung                      |
+*|                    Domains - Thomas Jung                            |
+*|                    Lock Objects - Thomas Jung                       |
+*|                    Index - Thomas Jung                              |
+*|                    Search Helps - Thomas Jung                       |
+*|                    Structures - Thomas Jung                         |
+*|                    Table Technical Settings - Thomas Jung           |
+*|                    Table Types - Thomas Jung                        |
+*|                    View Technical Settings - Thomas Jung            |
+*|                    Views - Thomas Jung                              |
+*|                    BSP Extensions - Phillip T Young                 |
+*|                                                                     |
+*| Fearless Alpha Testers: Matt Ammons                                 |
 *|                         Phillip T Young                             |
 *|                         Ryan Quackenboss                            |
-*|                         Todd Rowland                                |                     
+*|                         Sascha Kiefer                               |
+*|                         Todd Rowland                                |
 *\---------------------------------------------------------------------/</pre>
-
-<!-- Saved in parser cache with key wikidb:pcache:idhash:1063-1!1!0!1!0!1!!0!en and timestamp 20060906184722 -->
 <div class="printfooter">
 Retrieved from "<a href="http://167.228.52.177/mediawiki/index.php/SAPlink:Docs:UserDoc">http://167.228.52.177/mediawiki/index.php/SAPlink:Docs:UserDoc</a>"</div>
 	    	    <!-- end content -->
@@ -186,9 +199,7 @@ Retrieved from "<a href="http://167.228.52.177/mediawiki/index.php/SAPlink:Docs:
 	       class="selected"	       ><a href="/mediawiki/index.php/SAPlink:Docs:UserDoc">Article</a></li><li id="ca-talk"
 	       class="new"	       ><a href="/mediawiki/index.php?title=Talk:SAPlink:Docs:UserDoc&amp;action=edit">Discussion</a></li><li id="ca-edit"
 	       	       ><a href="/mediawiki/index.php?title=SAPlink:Docs:UserDoc&amp;action=edit">Edit</a></li><li id="ca-history"
-	       	       ><a href="/mediawiki/index.php?title=SAPlink:Docs:UserDoc&amp;action=history">History</a></li><li id="ca-protect"
-	       	       ><a href="/mediawiki/index.php?title=SAPlink:Docs:UserDoc&amp;action=protect">Protect</a></li><li id="ca-delete"
-	       	       ><a href="/mediawiki/index.php?title=SAPlink:Docs:UserDoc&amp;action=delete">Delete</a></li><li id="ca-move"
+	       	       ><a href="/mediawiki/index.php?title=SAPlink:Docs:UserDoc&amp;action=history">History</a></li><li id="ca-move"
 	       	       ><a href="/mediawiki/index.php?title=Special:Movepage&amp;target=SAPlink%3ADocs%3AUserDoc">Move</a></li><li id="ca-watch"
 	       	       ><a href="/mediawiki/index.php?title=SAPlink:Docs:UserDoc&amp;action=watch">Watch</a></li>	  </ul>
 	</div>
@@ -196,7 +207,7 @@ Retrieved from "<a href="http://167.228.52.177/mediawiki/index.php/SAPlink:Docs:
 	  <h5>Personal tools</h5>
 	  <div class="pBody">
 	    <ul>
-	    <li id="pt-userpage"><a href="/mediawiki/index.php/User:Dan_Mcweeney" class="new">Dan Mcweeney</a></li><li id="pt-mytalk"><a href="/mediawiki/index.php/User_talk:Dan_Mcweeney" class="new">My talk</a></li><li id="pt-preferences"><a href="/mediawiki/index.php/Special:Preferences">Preferences</a></li><li id="pt-watchlist"><a href="/mediawiki/index.php/Special:Watchlist">My watchlist</a></li><li id="pt-mycontris"><a href="/mediawiki/index.php?title=Special:Contributions&amp;target=Dan+Mcweeney">My contributions</a></li><li id="pt-logout"><a href="/mediawiki/index.php?title=Special:Userlogout&amp;returnto=SAPlink:Docs:UserDoc">Log out</a></li>	    </ul>
+	    <li id="pt-userpage"><a href="/mediawiki/index.php/User:EHerrmann" class="new">EHerrmann</a></li><li id="pt-mytalk"><a href="/mediawiki/index.php/User_talk:EHerrmann" class="new">My talk</a></li><li id="pt-preferences"><a href="/mediawiki/index.php/Special:Preferences">Preferences</a></li><li id="pt-watchlist"><a href="/mediawiki/index.php/Special:Watchlist">My watchlist</a></li><li id="pt-mycontris"><a href="/mediawiki/index.php?title=Special:Contributions&amp;target=EHerrmann">My contributions</a></li><li id="pt-logout"><a href="/mediawiki/index.php?title=Special:Userlogout&amp;returnto=SAPlink:Docs:UserDoc">Log out</a></li>	    </ul>
 	  </div>
 	</div>
 	<div class="portlet" id="p-logo">
@@ -239,9 +250,9 @@ Retrieved from "<a href="http://167.228.52.177/mediawiki/index.php/SAPlink:Docs:
       <div class="visualClear"></div>
       <div id="footer">
     <div id="f-poweredbyico"><a href="http://www.mediawiki.org/"><img src="/mediawiki/skins/common/images/poweredby_mediawiki_88x31.png" alt="MediaWiki" /></a></div>		<ul id="f-list">
-	  <li id="f-lastmod"> This page was last modified 14:47, 6 Sep 2006.</li>	  <li id="f-viewcount">This page has been accessed 36 times.</li>	  	  	  <li id="f-about"><a href="/mediawiki/index.php/Skunkwerkz:About" title="Skunkwerkz:About">About Skunkwerkz</a></li>	  <li id="f-disclaimer"><a href="/mediawiki/index.php/Skunkwerkz:General_disclaimer" title="Skunkwerkz:General disclaimer">Disclaimers</a></li>	</ul>
+	  <li id="f-lastmod"> This page was last modified 15:06, 20 Sep 2006.</li>	  <li id="f-viewcount">This page has been accessed 42 times.</li>	  	  	  <li id="f-about"><a href="/mediawiki/index.php/Skunkwerkz:About" title="Skunkwerkz:About">About Skunkwerkz</a></li>	  <li id="f-disclaimer"><a href="/mediawiki/index.php/Skunkwerkz:General_disclaimer" title="Skunkwerkz:General disclaimer">Disclaimers</a></li>	</ul>
       </div>
     </div>
-    <!-- Served by localhost.localdomain in 0.75 secs. -->
+    <!-- Served by localhost.localdomain in 0.94 secs. -->
   </body>
 </html>
