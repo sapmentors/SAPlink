@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<nugget name="SAPLINK-0.1.1">
+<nugget name="SAPLINK-0.1.2">
  <CLAS CLSNAME="ZCX_SAPLINK" VERSION="0" LANGU="E" DESCRIPT="SAPlink exception class" UUID="44BE650060AC082502000000A7E42BB6" CATEGORY="40" EXPOSURE="2" STATE="1" RELEASE="0" AUTHOR="USDWM01" CREATEDON="20060719" CHANGEDBY="USEWH90" CHANGEDON="00000000" CHGDANYON="00000000" CLSCCINCL="X" FIXPT="X" VARCL="X" UNICODE="X" RSTAT="S" R3RELEASE="620" CLSBCCAT="00" REFCLSNAME="CX_STATIC_CHECK">
   <publicSection>class ZCX_SAPLINK definition
   public
@@ -81,6 +81,7 @@ private section.</privateSection>
     <sotrText CONCEPT="44F5C1B55F5C09C200000000A7E42BB6" LANGU="E" OBJECT="44F5C1B65F5C09C200000000A7E42BB6" LFD_NUM="0001" FLAG_CNTXT="X" CREA_NAME="USEWH90" CREA_TSTUT="20060830222517" CHAN_NAME="USEWH90" CHAN_TSTUT="20060830224925" STATUS="R" VERSION="0" LENGTH="255" TEXT="ouch, your pants are on fire..better go get help"/>
    </sotr>
   </attribute>
+  <inheritance CLSNAME="ZCX_SAPLINK" REFCLSNAME="CX_STATIC_CHECK" VERSION="0" STATE="1" AUTHOR="USDWM01" CREATEDON="20060719" CHANGEDON="00000000"/>
   <method CLSNAME="ZCX_SAPLINK" CMPNAME="CONSTRUCTOR" VERSION="0" LANGU="E" DESCRIPT="CONSTRUCTOR" EXPOSURE="2" STATE="1" EDITORDER="1 " DISPID="0 " AUTHOR="USDWM01" CREATEDON="20060719" CHANGEDON="00000000" MTDTYPE="2" MTDDECLTYP="0" LOCKED="X" R3RELEASE="620" BCMTDCAT="00" BCMTDSYN="0">
    <parameter CLSNAME="ZCX_SAPLINK" CMPNAME="CONSTRUCTOR" SCONAME="TEXTID" VERSION="0" LANGU="E" CMPTYPE="1" MTDTYPE="2" EDITORDER="1 " DISPID="0 " AUTHOR="USDWM01" CREATEDON="20060719" CHANGEDBY="USEWH90" CHANGEDON="20060901" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="0" TYPE="TEXTID" PAROPTIONL="X"/>
    <parameter CLSNAME="ZCX_SAPLINK" CMPNAME="CONSTRUCTOR" SCONAME="PREVIOUS" VERSION="0" LANGU="E" CMPTYPE="1" MTDTYPE="2" EDITORDER="2 " DISPID="0 " AUTHOR="USDWM01" CREATEDON="20060719" CHANGEDBY="USEWH90" CHANGEDON="20060901" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="0" TYPE="PREVIOUS" PAROPTIONL="X"/>
@@ -1375,8 +1376,14 @@ private section.
 *&quot;* implementation or private method&apos;s signature</localTypes>
   <localMacros>*&quot;* use this source file for any macro definitions you need
 *&quot;* in the implementation part of the class</localMacros>
-  <method CLSNAME="ZSAPLINK" CMPNAME="CHECKEXISTS" VERSION="0" LANGU="E" DESCRIPT="Check if object exists" EXPOSURE="2" STATE="1" EDITORDER="9 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20060831" CHANGEDBY="USEWH90" CHANGEDON="20060831" MTDTYPE="0" MTDDECLTYP="0" MTDABSTRCT="X" R3RELEASE="620" BCMTDCAT="00" BCMTDSYN="0">
-   <parameter VERSION="0" CMPTYPE="0" MTDTYPE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="0"/>
+  <inheritance CLSNAME="ZSAPLINK_PROGRAM" REFCLSNAME="ZSAPLINK" VERSION="0" STATE="1" AUTHOR="USEWH90" CREATEDON="20060920" CHANGEDON="00000000">
+   <redefinition CLSNAME="ZSAPLINK_PROGRAM" REFCLSNAME="ZSAPLINK" VERSION="0" MTDNAME="CHECKEXISTS"/>
+   <redefinition CLSNAME="ZSAPLINK_PROGRAM" REFCLSNAME="ZSAPLINK" VERSION="0" MTDNAME="CREATEIXMLDOCFROMOBJECT"/>
+   <redefinition CLSNAME="ZSAPLINK_PROGRAM" REFCLSNAME="ZSAPLINK" VERSION="0" MTDNAME="CREATEOBJECTFROMIXMLDOC"/>
+   <redefinition CLSNAME="ZSAPLINK_PROGRAM" REFCLSNAME="ZSAPLINK" VERSION="0" MTDNAME="DELETEOBJECT"/>
+   <redefinition CLSNAME="ZSAPLINK_PROGRAM" REFCLSNAME="ZSAPLINK" VERSION="0" MTDNAME="GETOBJECTTYPE"/>
+  </inheritance>
+  <method CLSNAME="ZSAPLINK" CMPNAME="CHECKEXISTS" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
    <source>*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
@@ -1404,9 +1411,7 @@ method CHECKEXISTS .
 
 endmethod.</source>
   </method>
-  <method CLSNAME="ZSAPLINK" CMPNAME="CREATEIXMLDOCFROMOBJECT" VERSION="0" LANGU="E" DESCRIPT="Creates an IF_IXML_DOCUMENT from the OBJNAME Attribute" EXPOSURE="2" STATE="1" EDITORDER="5 " DISPID="0 " AUTHOR="USDWM01" CREATEDON="20060720" CHANGEDBY="USEWH90" CHANGEDON="20060830" MTDTYPE="0" MTDDECLTYP="0" MTDABSTRCT="X" MTDNEWEXC="X" R3RELEASE="620" BCMTDCAT="00" BCMTDSYN="0">
-   <parameter VERSION="0" CMPTYPE="0" MTDTYPE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="0"/>
-   <exception CLSNAME="ZSAPLINK" CMPNAME="CREATEIXMLDOCFROMOBJECT" SCONAME="ZCX_SAPLINK" VERSION="0" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 " AUTHOR="USEWH90" CREATEDON="20060830" CHANGEDON="00000000"/>
+  <method CLSNAME="ZSAPLINK" CMPNAME="CREATEIXMLDOCFROMOBJECT" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
    <source>*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
@@ -1465,12 +1470,7 @@ data _objType type string.
   endif.
 endmethod.</source>
   </method>
-  <method CLSNAME="ZSAPLINK" CMPNAME="CREATEOBJECTFROMIXMLDOC" VERSION="0" LANGU="E" DESCRIPT="Creates Object on System from IXMLDocument passed in" EXPOSURE="2" STATE="1" EDITORDER="4 " DISPID="0 " AUTHOR="USDWM01" CREATEDON="20060720" CHANGEDBY="USEWH90" CHANGEDON="20060830" MTDTYPE="0" MTDDECLTYP="0" MTDABSTRCT="X" MTDNEWEXC="X" R3RELEASE="620" BCMTDCAT="00" BCMTDSYN="0">
-   <parameter VERSION="0" CMPTYPE="0" MTDTYPE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="0"/>
-   <parameter VERSION="0" CMPTYPE="0" MTDTYPE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="0"/>
-   <parameter VERSION="0" CMPTYPE="0" MTDTYPE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="0"/>
-   <parameter VERSION="0" CMPTYPE="0" MTDTYPE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="0"/>
-   <exception CLSNAME="ZSAPLINK" CMPNAME="CREATEOBJECTFROMIXMLDOC" SCONAME="ZCX_SAPLINK" VERSION="0" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 " AUTHOR="USEWH90" CREATEDON="20060830" CHANGEDON="00000000"/>
+  <method CLSNAME="ZSAPLINK" CMPNAME="CREATEOBJECTFROMIXMLDOC" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
    <source>*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
@@ -2102,6 +2102,7 @@ data _objName type TROBJ_NAME.
 data lang type spras.
 data langNodeExists type flag.
 data logonLanguageExists type flag.
+data _state(1) type c.
 
   _objName = objName.
 
@@ -2136,22 +2137,21 @@ data logonLanguageExists type flag.
       lang = langNode-&gt;get_attribute( &apos;SPRAS&apos; ).
       if lang = sy-langu.
         logonLanguageExists = &apos;X&apos;.
+        _state = &apos;I&apos;.
+      else.
+*       seems that if a textpool is inserted as inactive for language
+*       other than the logon language, it is lost upon activation
+*       not sure inserting as active is best solution,but seems to work
+        _state = &apos;A&apos;.
       endif.
-      insert textpool _objName from textPooltable language lang state
-      &apos;I&apos;.
     endif.
+    insert textpool _objName from textPooltable language lang
+    state _state.
     langNode ?= langIterator-&gt;get_next( ).
   endwhile.
-
-* insert untranslated text pool in logon language if it doesnt exist
-  if langNodeExists = &apos;X&apos; and logonLanguageExists = &apos; &apos;.
-    insert textpool _objName from textPooltable language sy-langu state
-    &apos;I&apos;.
-  endif.
 endmethod.</source>
   </method>
-  <method CLSNAME="ZSAPLINK" CMPNAME="DELETEOBJECT" VERSION="0" LANGU="E" DESCRIPT="Delete object" EXPOSURE="1" STATE="1" EDITORDER="1 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20060831" CHANGEDBY="USEWH90" CHANGEDON="20060831" MTDTYPE="0" MTDDECLTYP="0" MTDABSTRCT="X" MTDNEWEXC="X" R3RELEASE="620" BCMTDCAT="00" BCMTDSYN="0">
-   <exception CLSNAME="ZSAPLINK" CMPNAME="DELETEOBJECT" SCONAME="ZCX_SAPLINK" VERSION="0" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 " AUTHOR="USEWH90" CREATEDON="20060831" CHANGEDON="00000000"/>
+  <method CLSNAME="ZSAPLINK" CMPNAME="DELETEOBJECT" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
    <source>*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
@@ -2333,8 +2333,7 @@ method ENQUEUE_ABAP .
 
 endmethod.</source>
   </method>
-  <method CLSNAME="ZSAPLINK" CMPNAME="GETOBJECTTYPE" VERSION="0" LANGU="E" DESCRIPT="Get object type of plugin" EXPOSURE="1" STATE="1" EDITORDER="8 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20060829" CHANGEDBY="USEWH90" CHANGEDON="20060831" MTDTYPE="0" MTDDECLTYP="0" MTDABSTRCT="X" BCMTDCAT="00" BCMTDSYN="0">
-   <parameter VERSION="0" CMPTYPE="0" MTDTYPE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="0"/>
+  <method CLSNAME="ZSAPLINK" CMPNAME="GETOBJECTTYPE" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
    <source>*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
@@ -2418,7 +2417,8 @@ method get_dynpro.
   select prog dnum into table idynp
                 from d020s
                    where prog = _objname
-                     and type &lt;&gt; &apos;S&apos;.    &quot; No Selection Screens
+                     and type &lt;&gt; &apos;S&apos;    &quot; No Selection Screens
+                     and type &lt;&gt; &apos;J&apos;.   &quot; No selection subscreens
   check sy-subrc  = 0 .
 
   dynp_node = xmldoc-&gt;create_element( &apos;dynpros&apos; ).
@@ -2871,8 +2871,14 @@ private section.
   <forwardDeclaration>SEOR</forwardDeclaration>
   <forwardDeclaration>SEOS</forwardDeclaration>
   <forwardDeclaration>SEOT</forwardDeclaration>
-  <method CLSNAME="ZSAPLINK" CMPNAME="CHECKEXISTS" VERSION="0" LANGU="E" DESCRIPT="Check if object exists" EXPOSURE="2" STATE="1" EDITORDER="9 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20060831" CHANGEDBY="USEWH90" CHANGEDON="20060831" MTDTYPE="0" MTDDECLTYP="0" MTDABSTRCT="X" R3RELEASE="620" BCMTDCAT="00" BCMTDSYN="0">
-   <parameter VERSION="0" CMPTYPE="0" MTDTYPE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="0"/>
+  <inheritance CLSNAME="ZSAPLINK_CLASS" REFCLSNAME="ZSAPLINK" VERSION="0" STATE="1" AUTHOR="USEWH90" CREATEDON="20060920" CHANGEDON="00000000">
+   <redefinition CLSNAME="ZSAPLINK_CLASS" REFCLSNAME="ZSAPLINK" VERSION="0" MTDNAME="CHECKEXISTS"/>
+   <redefinition CLSNAME="ZSAPLINK_CLASS" REFCLSNAME="ZSAPLINK" VERSION="0" MTDNAME="CREATEIXMLDOCFROMOBJECT"/>
+   <redefinition CLSNAME="ZSAPLINK_CLASS" REFCLSNAME="ZSAPLINK" VERSION="0" MTDNAME="CREATEOBJECTFROMIXMLDOC"/>
+   <redefinition CLSNAME="ZSAPLINK_CLASS" REFCLSNAME="ZSAPLINK" VERSION="0" MTDNAME="DELETEOBJECT"/>
+   <redefinition CLSNAME="ZSAPLINK_CLASS" REFCLSNAME="ZSAPLINK" VERSION="0" MTDNAME="GETOBJECTTYPE"/>
+  </inheritance>
+  <method CLSNAME="ZSAPLINK" CMPNAME="CHECKEXISTS" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
    <source>*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
@@ -2916,9 +2922,7 @@ data not_active TYPE  SEOX_BOOLEAN.
   endif.
 endmethod.</source>
   </method>
-  <method CLSNAME="ZSAPLINK" CMPNAME="CREATEIXMLDOCFROMOBJECT" VERSION="0" LANGU="E" DESCRIPT="Creates an IF_IXML_DOCUMENT from the OBJNAME Attribute" EXPOSURE="2" STATE="1" EDITORDER="5 " DISPID="0 " AUTHOR="USDWM01" CREATEDON="20060720" CHANGEDBY="USEWH90" CHANGEDON="20060830" MTDTYPE="0" MTDDECLTYP="0" MTDABSTRCT="X" MTDNEWEXC="X" R3RELEASE="620" BCMTDCAT="00" BCMTDSYN="0">
-   <parameter VERSION="0" CMPTYPE="0" MTDTYPE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="0"/>
-   <exception CLSNAME="ZSAPLINK" CMPNAME="CREATEIXMLDOCFROMOBJECT" SCONAME="ZCX_SAPLINK" VERSION="0" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 " AUTHOR="USEWH90" CREATEDON="20060830" CHANGEDON="00000000"/>
+  <method CLSNAME="ZSAPLINK" CMPNAME="CREATEIXMLDOCFROMOBJECT" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
    <source>*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
@@ -2961,6 +2965,8 @@ METHOD createixmldocfromobject .
   DATA exceptionnode TYPE REF TO if_ixml_element.
   DATA exceptionlist TYPE seos_exceptions_r.
   DATA anexception TYPE vseoexcep.
+  data inheritanceNode type ref to if_ixml_element.
+  data redefNode type ref to if_ixml_element.
 
   DATA tempstring TYPE string.
   DATA methodkey TYPE seocpdkey.
@@ -2982,8 +2988,9 @@ METHOD createixmldocfromobject .
   DATA inheritanceprops TYPE vseoextend.
   DATA redefines TYPE STANDARD TABLE OF seoredef
       WITH KEY clsname refclsname version mtdname.
-  DATA inheritance TYPE vseoextend.
+  DATA inheritance TYPE SEOR_INHERITANCE_R.
   DATA redefinitions TYPE seor_redefinitions_r.
+  data redefinition like line of redefinitions.
   DATA forwarddeclarationlist TYPE seot_typepusages_r.
   DATA forwarddeclaration TYPE REF TO if_ixml_element.
   DATA forwarddeclarationrow TYPE seot_typepusage_r.
@@ -3123,6 +3130,28 @@ METHOD createixmldocfromobject .
   ENDLOOP.
 */***TPJ - End of Added Logic for Friends  -------------------*/
 
+*/***ewH - Added Logic for Interfaces  -------------------*/
+  DATA: it_implementings type seor_implementings_r,
+        wa_implementings like line OF it_implementings,
+        implementingNode TYPE REF TO if_ixml_element.
+
+  CALL FUNCTION &apos;SEO_IMPLEMENTG_READ_ALL&apos;
+    EXPORTING
+      CLSKEY                   = classkey
+    IMPORTING
+      IMPLEMENTINGS            = it_implementings
+    EXCEPTIONS
+      CLASS_NOT_EXISTING       = 1
+      OTHERS                   = 2.
+
+  LOOP AT it_implementings INTO wa_implementings.
+    implementingNode = xmldoc-&gt;create_element( &apos;implementing&apos; ).
+    setattributesfromstructure( node = implementingNode structure =
+    wa_implementings ).
+    rc = rootnode-&gt;append_child( implementingNode ).
+  ENDLOOP.
+*/***ewH - End of Added Logic for Interfaces  -------------------*/
+
 */--------------------------------------------------------------------\
 *|                                                                    |
   includename = cl_oo_classname_service=&gt;get_pubsec_name( _classname ).
@@ -3215,64 +3244,126 @@ METHOD createixmldocfromobject .
     rc = rootnode-&gt;append_child( attribnode ).
   ENDLOOP.
 
+*// ewH: begin of logic for interface methods &amp; inheritance redesign--&gt;
+* inheritances &amp; redefinitions
+  CALL FUNCTION &apos;SEO_INHERITANC_READ&apos;
+    EXPORTING
+      CLSKEY                   = classKey
+    IMPORTING
+      INHERITANCE              = inheritance
+      REDEFINITIONS            = redefinitions
+    EXCEPTIONS
+      CLASS_NOT_EXISTING       = 1
+      OTHERS                   = 2.
 
-  LOOP AT classdescr-&gt;methods INTO methoddescr.
-    methodnode = xmldoc-&gt;create_element( &apos;method&apos; ).
-    tempstring = methoddescr-name.
-    clsmethkey-cmpname = methoddescr-name.
-    IF methoddescr-is_redefined = abap_true.
-      tempstring = methoddescr-name.
-      clsmethkey-clsname = findimplementingclass( methodname =
-      tempstring ).
-      paramkey-clsname = clsmethkey-clsname.
-*      paramKey-clsName = superClassName.
-*      clsMethkey-clsName = superClassName.
-    ELSE.
-      paramkey-clsname = clsmethkey-clsname.
-      clsmethkey-clsname = objname.
-    ENDIF.
-    CLEAR methodproperties.
-    CALL FUNCTION &apos;SEO_METHOD_GET&apos;
-      EXPORTING
-        mtdkey       = clsmethkey
-      IMPORTING
-        method       = methodproperties
-      EXCEPTIONS
-        not_existing = 1.
-    IF sy-subrc = 0.
-      setattributesfromstructure( node = methodnode structure =
-      methodproperties ).
-      LOOP AT methoddescr-parameters INTO paramdescr.
-        CLEAR paramproperties.
-        parameternode = xmldoc-&gt;create_element( &apos;parameter&apos; ).
-        paramkey-cmpname = clsmethkey-cmpname.
-        paramkey-sconame = paramdescr-name.
-        paramkey-clsname = objname.
-        CALL FUNCTION &apos;SEO_PARAMETER_GET&apos;
-          EXPORTING
-            parkey    = paramkey
-            version   = &apos;1&apos;
-          IMPORTING
-            parameter = paramproperties.
-        setattributesfromstructure( node = parameternode structure =
-        paramproperties ).
-        rc = methodnode-&gt;append_child( parameternode ).
-      ENDLOOP.
-      CALL FUNCTION &apos;SEO_METHOD_SIGNATURE_GET&apos;
+  if inheritance is not initial.
+    inheritanceNode = xmldoc-&gt;create_element( &apos;inheritance&apos; ).
+    setattributesfromstructure( node = inheritanceNode structure =
+    inheritance ).
+
+    loop at redefinitions into redefinition.
+      redefNode = xmldoc-&gt;create_element( &apos;redefinition&apos; ).
+      setattributesfromstructure( node = redefNode structure =
+      redefinition ).
+      rc = inheritanceNode-&gt;append_child( redefNode ).
+    endloop.
+    rc = rootnode-&gt;append_child( inheritanceNode ).
+  endif.
+
+* methods
+  LOOP AT classdescr-&gt;methods INTO methoddescr where
+  not ( is_inherited = &apos;X&apos; and is_redefined is initial ).
+    methodkey-clsname = _classname.
+    methodkey-cpdname = methoddescr-name.
+*   interface methods
+    if methoddescr-is_interface = &apos;X&apos;.
+      CALL METHOD cl_oo_classname_service=&gt;get_method_include
         EXPORTING
-          mtdkey  = clsmethkey
-          version = &apos;1&apos;
-        IMPORTING
-          exceps  = exceptionlist.
-      LOOP AT exceptionlist INTO anexception.
-        exceptionnode = xmldoc-&gt;create_element( &apos;exception&apos; ).
-        setattributesfromstructure( node = exceptionnode structure =
-        anexception ).
-        rc = methodnode-&gt;append_child( exceptionnode ).
-      ENDLOOP.
-*      if methodDescr-IS_REDEFINED = abap_false.
-      methodkey-clsname = _classname.
-      methodkey-cpdname = methoddescr-name.
+          mtdkey              = methodkey
+        RECEIVING
+          result              = includename
+        EXCEPTIONS
+          method_not_existing = 1.
+      IF sy-subrc = 0.
+        methodnode = xmldoc-&gt;create_element( &apos;interfaceMethod&apos; ).
+        setattributesfromstructure( node = methodnode structure =
+        methodkey ).
+        sourcenode = xmldoc-&gt;create_element( &apos;source&apos; ).
+*        tempString = includeName.
+*        rc = sourceNode-&gt;set_attribute(
+*          name = &apos;includeName&apos; value = tempString ).
+        READ REPORT includename INTO reportlist.
+        reportstring = buildsourcestring( sourcetable = reportlist ).
+        rc = sourcenode-&gt;if_ixml_node~set_value( reportstring ).
+        rc = methodnode-&gt;append_child( sourcenode ).
+        rc = rootnode-&gt;append_child( methodnode ).
+      ENDIF.
+*   other methods
+    else.
+      clsmethkey-clsname = _classname.
+      clsmethkey-cmpname = methoddescr-name.
+      CLEAR methodproperties.
+
+      if methoddescr-is_redefined = &apos;X&apos;.
+        methodnode = xmldoc-&gt;create_element( &apos;method&apos; ).
+        move-corresponding clsMethKey to methodProperties.
+*// ewh: begin of forward compatibility hack, can be removed for next
+*//      major release--&gt;
+        read table redefinitions into redefinition
+          with key mtdname = methoddescr-name.
+        if sy-subrc = 0.
+          methodProperties-clsname = redefinition-refclsname.
+        endif.
+*//&lt;--ewH: end of forward compatibility hace
+        setattributesfromstructure( node = methodnode structure =
+        methodproperties ).
+      else.
+        CALL FUNCTION &apos;SEO_METHOD_GET&apos;
+          EXPORTING
+            mtdkey       = clsmethkey
+          IMPORTING
+            method       = methodproperties
+          EXCEPTIONS
+            not_existing = 1.
+        IF sy-subrc = 0.
+          methodnode = xmldoc-&gt;create_element( &apos;method&apos; ).
+          setattributesfromstructure( node = methodnode structure =
+          methodproperties ).
+
+*         parameters
+          LOOP AT methoddescr-parameters INTO paramdescr.
+            CLEAR paramproperties.
+            parameternode = xmldoc-&gt;create_element( &apos;parameter&apos; ).
+            paramkey-cmpname = clsmethkey-cmpname.
+            paramkey-sconame = paramdescr-name.
+            paramkey-clsname = objname.
+            CALL FUNCTION &apos;SEO_PARAMETER_GET&apos;
+              EXPORTING
+                parkey    = paramkey
+                version   = &apos;1&apos;
+              IMPORTING
+                parameter = paramproperties.
+            setattributesfromstructure( node = parameternode
+            structure = paramproperties ).
+            rc = methodnode-&gt;append_child( parameternode ).
+          ENDLOOP.
+
+*         exceptions
+          CALL FUNCTION &apos;SEO_METHOD_SIGNATURE_GET&apos;
+            EXPORTING
+              mtdkey  = clsmethkey
+              version = &apos;1&apos;
+            IMPORTING
+              exceps  = exceptionlist.
+          LOOP AT exceptionlist INTO anexception.
+            exceptionnode = xmldoc-&gt;create_element( &apos;exception&apos; ).
+            setattributesfromstructure( node = exceptionnode
+            structure = anexception ).
+            rc = methodnode-&gt;append_child( exceptionnode ).
+          ENDLOOP.
+        endif. &quot;method found
+      endif. &quot;is_redefined?
+*     source
       CALL METHOD cl_oo_classname_service=&gt;get_method_include
         EXPORTING
           mtdkey              = methodkey
@@ -3286,37 +3377,117 @@ METHOD createixmldocfromobject .
         sourcenode = xmldoc-&gt;create_element( &apos;source&apos; ).
         rc = sourcenode-&gt;if_ixml_node~set_value( reportstring ).
         rc = methodnode-&gt;append_child( sourcenode ).
-      ENDIF.
-*      endif.
-
-*      methodKey-CLSNAME = _className.
-*      methodKey-CPDNAME = methodDescr-name.
-*if methodDescr-is_redefined = abap_true and methodDescr-is_abstract =
-*abap_false.
-**Don&apos;t think i need this..... why am i doing it?
-*        call function &apos;SEO_INHERITANC_READ&apos;
-*          exporting
-*            clsKey = classkey
-*            version = &apos;1&apos;
-*          importing
-*            INHERITANCE = INHERITANCE
-*            REDEFINITIONS = REDEFINITIONS.
-*
-*      else.
-*      endif.
+      endif.
       rc = rootnode-&gt;append_child( methodnode ).
-    ENDIF.
-  ENDLOOP.
+    endif. &quot;is_interface?
+  endloop.
+
+* append root node to xmldoc
   rc = xmldoc-&gt;append_child( rootnode ).
   ixmldocument = xmldoc.
-ENDMETHOD.</source>
+ENDMETHOD.
+*// &lt;--ewH: end of logic for interface methods &amp; inheritance redesign
+
+*// ewH: begin comment redesign inheritance--&gt;
+*  LOOP AT classdescr-&gt;methods INTO methoddescr.
+*      methodnode = xmldoc-&gt;create_element( &apos;method&apos; ).
+*      tempstring = methoddescr-name.
+*      clsmethkey-cmpname = methoddescr-name.
+*      IF methoddescr-is_redefined = abap_true.
+*        tempstring = methoddescr-name.
+*        clsmethkey-clsname = findimplementingclass( methodname =
+*        tempstring ).
+*        paramkey-clsname = clsmethkey-clsname.
+**        paramKey-clsName = superClassName.
+**        clsMethkey-clsName = superClassName.
+*      ELSE.
+*        paramkey-clsname = clsmethkey-clsname.
+*        clsmethkey-clsname = objname.
+*      ENDIF.
+**      paramkey-clsname = clsmethkey-clsname.
+**      clsmethkey-clsname = objname.
+*      CLEAR methodproperties.
+*      CALL FUNCTION &apos;SEO_METHOD_GET&apos;
+*        EXPORTING
+*          mtdkey       = clsmethkey
+*        IMPORTING
+*          method       = methodproperties
+*        EXCEPTIONS
+*          not_existing = 1.
+*      IF sy-subrc = 0.
+*        setattributesfromstructure( node = methodnode structure =
+*        methodproperties ).
+*        LOOP AT methoddescr-parameters INTO paramdescr.
+*          CLEAR paramproperties.
+*          parameternode = xmldoc-&gt;create_element( &apos;parameter&apos; ).
+*          paramkey-cmpname = clsmethkey-cmpname.
+*          paramkey-sconame = paramdescr-name.
+*          paramkey-clsname = objname.
+*          CALL FUNCTION &apos;SEO_PARAMETER_GET&apos;
+*            EXPORTING
+*              parkey    = paramkey
+*              version   = &apos;1&apos;
+*            IMPORTING
+*              parameter = paramproperties.
+*          setattributesfromstructure( node = parameternode structure =
+*          paramproperties ).
+*          rc = methodnode-&gt;append_child( parameternode ).
+*        ENDLOOP.
+*        CALL FUNCTION &apos;SEO_METHOD_SIGNATURE_GET&apos;
+*          EXPORTING
+*            mtdkey  = clsmethkey
+*            version = &apos;1&apos;
+*          IMPORTING
+*            exceps  = exceptionlist.
+*        LOOP AT exceptionlist INTO anexception.
+*          exceptionnode = xmldoc-&gt;create_element( &apos;exception&apos; ).
+*          setattributesfromstructure( node = exceptionnode structure =
+*          anexception ).
+*          rc = methodnode-&gt;append_child( exceptionnode ).
+*        ENDLOOP.
+**      if methodDescr-IS_REDEFINED = abap_false.
+*        methodkey-clsname = _classname.
+*        methodkey-cpdname = methoddescr-name.
+*        CALL METHOD cl_oo_classname_service=&gt;get_method_include
+*          EXPORTING
+*            mtdkey              = methodkey
+*          RECEIVING
+*            result              = includename
+*          EXCEPTIONS
+*            method_not_existing = 1.
+*        IF sy-subrc = 0.
+*          READ REPORT includename INTO reportlist.
+*          reportstring = buildsourcestring( sourcetable = reportlist ).
+*          sourcenode = xmldoc-&gt;create_element( &apos;source&apos; ).
+*          rc = sourcenode-&gt;if_ixml_node~set_value( reportstring ).
+*          rc = methodnode-&gt;append_child( sourcenode ).
+*        ENDIF.
+**        endif.
+*
+**        methodKey-CLSNAME = _className.
+**        methodKey-CPDNAME = methodDescr-name.
+**  if methodDescr-is_redefined = abap_true and
+**  methodDescr-is_abstract = abap_false.
+**  *Don&apos;t think i need this..... why am i doing it?
+**          call function &apos;SEO_INHERITANC_READ&apos;
+**            exporting
+**              clsKey = classkey
+**              version = &apos;1&apos;
+**            importing
+**              INHERITANCE = INHERITANCE
+**              REDEFINITIONS = REDEFINITIONS.
+**
+**        else.
+**        endif.
+*        rc = rootnode-&gt;append_child( methodnode ).
+*      ENDIF.
+*  ENDLOOP.
+*  rc = xmldoc-&gt;append_child( rootnode ).
+*  ixmldocument = xmldoc.
+*ENDMETHOD.
+*// &lt;--ewH: end of comment redesign inheritance</source>
   </method>
-  <method CLSNAME="ZSAPLINK" CMPNAME="CREATEOBJECTFROMIXMLDOC" VERSION="0" LANGU="E" DESCRIPT="Creates Object on System from IXMLDocument passed in" EXPOSURE="2" STATE="1" EDITORDER="4 " DISPID="0 " AUTHOR="USDWM01" CREATEDON="20060720" CHANGEDBY="USEWH90" CHANGEDON="20060830" MTDTYPE="0" MTDDECLTYP="0" MTDABSTRCT="X" MTDNEWEXC="X" R3RELEASE="620" BCMTDCAT="00" BCMTDSYN="0">
-   <parameter VERSION="0" CMPTYPE="0" MTDTYPE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="0"/>
-   <parameter VERSION="0" CMPTYPE="0" MTDTYPE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="0"/>
-   <parameter VERSION="0" CMPTYPE="0" MTDTYPE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="0"/>
-   <parameter VERSION="0" CMPTYPE="0" MTDTYPE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="0"/>
-   <exception CLSNAME="ZSAPLINK" CMPNAME="CREATEOBJECTFROMIXMLDOC" SCONAME="ZCX_SAPLINK" VERSION="0" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 " AUTHOR="USEWH90" CREATEDON="20060830" CHANGEDON="00000000"/>
+  <method CLSNAME="ZSAPLINK" CMPNAME="CREATEOBJECTFROMIXMLDOC" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
    <source>*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
@@ -3368,6 +3539,12 @@ METHOD createobjectfromixmldoc .
   DATA _devclass TYPE devclass.
   DATA _objtype TYPE string.
   DATA checkexists TYPE flag.
+
+  data inheritanceNode type ref to if_ixml_element.
+  data redefNode type ref to if_ixml_element.
+  DATA inheritance TYPE SEOR_INHERITANCE_R.
+  DATA redefinitions TYPE seor_redefinitions_r.
+  data redefinition like line of redefinitions.
 
   CALL FUNCTION &apos;SEO_BUFFER_INIT&apos;.
 
@@ -3538,7 +3715,88 @@ METHOD createobjectfromixmldoc .
   ENDWHILE.
 */***TPJ - End of Added Logic for Friends  -------------------*/
 
+*// ewH: Added Logic for Implementings(interfaces)--&gt;
+  DATA: it_implementings type seor_implementings_r,
+        wa_implementings like line OF it_implementings.
 
+  filter = xmldoc-&gt;create_filter_name( &apos;implementing&apos; ).
+  iterator = xmldoc-&gt;create_iterator_filtered( filter ).
+  node ?= iterator-&gt;get_next( ).
+  WHILE node IS NOT INITIAL.
+    CLEAR wa_implementings.
+    CALL METHOD getstructurefromattributes
+      EXPORTING
+        node      = node
+      CHANGING
+        structure = wa_implementings.
+
+    CALL FUNCTION &apos;SEO_IMPLEMENTG_CREATE_F_DATA&apos;
+      EXPORTING
+        SAVE                 = &apos; &apos;
+*        IMPL_DETAILS         =
+      CHANGING
+        implementing         = wa_implementings
+      EXCEPTIONS
+        EXISTING             = 1
+        IS_INHERITANCE       = 2
+        IS_COMPRISING        = 3
+        NOT_CREATED          = 4
+        DB_ERROR             = 5
+        OTHERS               = 6
+              .
+
+    if sy-subrc &lt;&gt; 0.
+      RAISE EXCEPTION TYPE zcx_saplink
+        EXPORTING textid = zcx_saplink=&gt;system_error.
+    endif.
+
+    node ?= iterator-&gt;get_next( ).
+  ENDWHILE.
+*//&lt;--ewH: End of Added Logic for Implementings(interfaces)
+
+*// ewH: start redesign method/inheritances--&gt;
+* inheritance
+  inheritanceNode = rootNode-&gt;find_from_name( &apos;inheritance&apos; ).
+  if inheritanceNode is bound.
+    CALL METHOD getstructurefromattributes
+      EXPORTING
+        node      = inheritanceNode
+      CHANGING
+        structure = inheritance.
+*   redefs
+    filter = inheritanceNode-&gt;create_filter_name( &apos;redefinition&apos; ).
+    iterator = inheritanceNode-&gt;create_iterator_filtered( filter ).
+    redefNode ?= iterator-&gt;get_next( ).
+    WHILE redefNode IS NOT INITIAL.
+      CALL METHOD getstructurefromattributes
+        EXPORTING
+          node      = redefNode
+        CHANGING
+          structure = redefinition.
+      append redefinition to redefinitions.
+      redefNode ?= iterator-&gt;get_next( ).
+    ENDWHILE.
+
+    CALL FUNCTION &apos;SEO_INHERITANC_CREATE_F_DATA&apos;
+      EXPORTING
+        SAVE                  = &apos; &apos;
+      CHANGING
+        inheritance           = inheritance
+        REDEFINITIONS         = redefinitions
+      EXCEPTIONS
+        EXISTING              = 1
+        IS_COMPRISING         = 2
+        IS_IMPLEMENTING       = 3
+        RECURSION             = 4
+        NOT_CREATED           = 5
+        DB_ERROR              = 6
+        OTHERS                = 7.
+
+    IF sy-subrc &lt;&gt; 0.
+      RAISE EXCEPTION TYPE zcx_saplink
+        EXPORTING textid = zcx_saplink=&gt;system_error.
+    ENDIF.
+  endif.
 
 *Add Methods to new class
   filter = xmldoc-&gt;create_filter_name( &apos;method&apos; ).
@@ -3551,75 +3809,79 @@ METHOD createobjectfromixmldoc .
         node      = node
       CHANGING
         structure = methodproperties.
-    methodproperties-version = &apos;0&apos;.
-    IF methodproperties-clsname = classheader-clsname.
-* method created in this class
-      CALL FUNCTION &apos;SEO_METHOD_CREATE_F_DATA&apos;
-        EXPORTING
-          save   = &apos; &apos;
-        CHANGING
-          method = methodproperties.
-      filter2 = node-&gt;create_filter_name( &apos;parameter&apos; ).
-      iterator2 = node-&gt;create_iterator_filtered( filter2 ).
-      node2 ?= iterator2-&gt;get_next( ).
-      WHILE node2 IS NOT INITIAL.
-*29a
-        CLEAR paraminfo.
-*/29a
-        CALL METHOD getstructurefromattributes
-          EXPORTING
-            node      = node2
-          CHANGING
-            structure = paraminfo.
-        CALL FUNCTION &apos;SEO_PARAMETER_CREATE_F_DATA&apos;
-          EXPORTING
-            save      = &apos; &apos;
-          CHANGING
-            parameter = paraminfo.
 
-        node2 ?= iterator2-&gt;get_next( ).
-      ENDWHILE.
-      filter2 = node-&gt;create_filter_name( &apos;exception&apos; ).
-      iterator2 = node-&gt;create_iterator_filtered( filter2 ).
-      node2 ?= iterator2-&gt;get_next( ).
-      WHILE node2 IS NOT INITIAL.
-        CALL METHOD getstructurefromattributes
-          EXPORTING
-            node      = node2
-          CHANGING
-            structure = exceptinfo.
-        CALL FUNCTION &apos;SEO_EXCEPTION_CREATE_F_DATA&apos;
-          EXPORTING
-            save  = &apos; &apos;
-          CHANGING
-            excep = exceptinfo.
+*   only create metadata if method is not a redefinition
+    read table redefinitions into redefinition
+    with key mtdname = methodProperties-cmpname.
+    IF sy-subrc = 0.
+      node ?= iterator-&gt;get_next( ).
+      continue.
+    endif.
 
-        node2 ?= iterator2-&gt;get_next( ).
-
-      ENDWHILE.
-    ELSE.
-* method redefined in this class
+*// ewh: begin of backward compatibility hack, can be removed for next
+*//      major release--&gt;
+    IF methodproperties-clsname &lt;&gt; classheader-clsname.
       MOVE-CORRESPONDING methodproperties TO methodredefinition.
       methodredefinition-clsname = classheader-clsname.
       methodredefinition-refclsname = methodproperties-clsname.
       methodredefinition-version = &apos;0&apos;.
-*29a -- will cause an issue if a subclass passes the inheritance down
-*stream... is this possible in abap?
       methodredefinition-mtdabstrct = &apos;&apos;.
-*/29a
       methodredefinition-mtdname = methodproperties-cmpname.
       APPEND methodredefinition TO methodredeftable.
-    ENDIF.
+
+      node ?= iterator-&gt;get_next( ).
+      continue.
+    endif.
+*// &lt;--ewH: break in backward compatibility hack - 2Bcontinued below
+
+    CALL FUNCTION &apos;SEO_METHOD_CREATE_F_DATA&apos;
+      EXPORTING
+        save   = &apos; &apos;
+      CHANGING
+        method = methodproperties.
+    filter2 = node-&gt;create_filter_name( &apos;parameter&apos; ).
+    iterator2 = node-&gt;create_iterator_filtered( filter2 ).
+    node2 ?= iterator2-&gt;get_next( ).
+    WHILE node2 IS NOT INITIAL.
+      CLEAR paraminfo.
+      CALL METHOD getstructurefromattributes
+        EXPORTING
+          node      = node2
+        CHANGING
+          structure = paraminfo.
+      CALL FUNCTION &apos;SEO_PARAMETER_CREATE_F_DATA&apos;
+        EXPORTING
+          save      = &apos; &apos;
+        CHANGING
+          parameter = paraminfo.
+
+      node2 ?= iterator2-&gt;get_next( ).
+    ENDWHILE.
+    filter2 = node-&gt;create_filter_name( &apos;exception&apos; ).
+    iterator2 = node-&gt;create_iterator_filtered( filter2 ).
+    node2 ?= iterator2-&gt;get_next( ).
+    WHILE node2 IS NOT INITIAL.
+      CALL METHOD getstructurefromattributes
+        EXPORTING
+          node      = node2
+        CHANGING
+          structure = exceptinfo.
+      CALL FUNCTION &apos;SEO_EXCEPTION_CREATE_F_DATA&apos;
+        EXPORTING
+          save  = &apos; &apos;
+        CHANGING
+          excep = exceptinfo.
+
+      node2 ?= iterator2-&gt;get_next( ).
+
+    ENDWHILE.
     node ?= iterator-&gt;get_next( ).
-
   ENDWHILE.
+*// &lt;--ewH: end redesign method/inheritances
 
-
-
-*29a
-  IF methodredeftable IS NOT INITIAL OR superclass-clsname IS NOT INITIAL
-  .
-*/29a
+*// ewh: continuation of backward compatibility hack--&gt;
+  IF ( methodredeftable IS NOT INITIAL OR superclass-clsname
+  IS NOT INITIAL ) and inheritance is initial.
     CALL FUNCTION &apos;SEO_INHERITANC_CREATE_F_DATA&apos;
       EXPORTING
         save          = &apos; &apos;
@@ -3627,6 +3889,98 @@ METHOD createobjectfromixmldoc .
         inheritance   = superclasskey
         redefinitions = methodredeftable.
   ENDIF.
+*// &lt;--ewH: end of backward compatibility hack
+
+*// ewH: begin comment of method code--&gt;
+**Add Methods to new class
+*  filter = xmldoc-&gt;create_filter_name( &apos;method&apos; ).
+*  iterator = xmldoc-&gt;create_iterator_filtered( filter ).
+*  node ?= iterator-&gt;get_next( ).
+*  WHILE node IS NOT INITIAL.
+*    CLEAR methodproperties.
+*    CALL METHOD getstructurefromattributes
+*      EXPORTING
+*        node      = node
+*      CHANGING
+*        structure = methodproperties.
+*    methodproperties-version = &apos;0&apos;.
+*    IF methodproperties-clsname = classheader-clsname.
+** method created in this class
+*      CALL FUNCTION &apos;SEO_METHOD_CREATE_F_DATA&apos;
+*        EXPORTING
+*          save   = &apos; &apos;
+*        CHANGING
+*          method = methodproperties.
+*      filter2 = node-&gt;create_filter_name( &apos;parameter&apos; ).
+*      iterator2 = node-&gt;create_iterator_filtered( filter2 ).
+*      node2 ?= iterator2-&gt;get_next( ).
+*      WHILE node2 IS NOT INITIAL.
+**29a
+*        CLEAR paraminfo.
+**/29a
+*        CALL METHOD getstructurefromattributes
+*          EXPORTING
+*            node      = node2
+*          CHANGING
+*            structure = paraminfo.
+*        CALL FUNCTION &apos;SEO_PARAMETER_CREATE_F_DATA&apos;
+*          EXPORTING
+*            save      = &apos; &apos;
+*          CHANGING
+*            parameter = paraminfo.
+*
+*        node2 ?= iterator2-&gt;get_next( ).
+*      ENDWHILE.
+*      filter2 = node-&gt;create_filter_name( &apos;exception&apos; ).
+*      iterator2 = node-&gt;create_iterator_filtered( filter2 ).
+*      node2 ?= iterator2-&gt;get_next( ).
+*      WHILE node2 IS NOT INITIAL.
+*        CALL METHOD getstructurefromattributes
+*          EXPORTING
+*            node      = node2
+*          CHANGING
+*            structure = exceptinfo.
+*        CALL FUNCTION &apos;SEO_EXCEPTION_CREATE_F_DATA&apos;
+*          EXPORTING
+*            save  = &apos; &apos;
+*          CHANGING
+*            excep = exceptinfo.
+*
+*        node2 ?= iterator2-&gt;get_next( ).
+*
+*      ENDWHILE.
+*    ELSE.
+** method redefined in this class
+*      MOVE-CORRESPONDING methodproperties TO methodredefinition.
+*      methodredefinition-clsname = classheader-clsname.
+*      methodredefinition-refclsname = methodproperties-clsname.
+*      methodredefinition-version = &apos;0&apos;.
+**29a -- will cause an issue if a subclass passes the inheritance down
+**stream... is this possible in abap?
+*      methodredefinition-mtdabstrct = &apos;&apos;.
+**/29a
+*      methodredefinition-mtdname = methodproperties-cmpname.
+*      APPEND methodredefinition TO methodredeftable.
+*    ENDIF.
+*    node ?= iterator-&gt;get_next( ).
+*
+*  ENDWHILE.
+*
+*
+*
+**29a
+*  IF methodredeftable IS NOT INITIAL OR superclass-clsname
+*  IS NOT INITIAL
+*  .
+**/29a
+*    CALL FUNCTION &apos;SEO_INHERITANC_CREATE_F_DATA&apos;
+*      EXPORTING
+*        save          = &apos; &apos;
+*      CHANGING
+*        inheritance   = superclasskey
+*        redefinitions = methodredeftable.
+*  ENDIF.
+*// &lt;--ewH: end comment method code
 
   DATA classtype TYPE seoclstype.
   DATA impkeys TYPE seor_implementing_keys.
@@ -3717,12 +4071,10 @@ METHOD createobjectfromixmldoc .
         obj_name          = aobjname
       EXCEPTIONS
         wrong_object_name = 1.
-*29a
     methodsourcenode = node-&gt;find_from_name( &apos;source&apos; ).
     IF methodsourcenode IS NOT INITIAL.
       includename = cl_oo_classname_service=&gt;get_method_include(
       methodkey ).
-*/29a
       source = methodsourcenode-&gt;get_value( ).
       sourcetable = buildtablefromstring( source ).
 *      insert report includeName from sourceTable state &apos;I&apos;.
@@ -3732,6 +4084,38 @@ METHOD createobjectfromixmldoc .
 
     node ?= iterator-&gt;get_next( ).
   ENDWHILE.
+
+*// ewH: create interface methods--&gt;
+  filter = xmldoc-&gt;create_filter_name( &apos;interfaceMethod&apos; ).
+  iterator = xmldoc-&gt;create_iterator_filtered( filter ).
+  node ?= iterator-&gt;get_next( ).
+
+  WHILE node IS NOT INITIAL.
+    CALL METHOD getstructurefromattributes
+      EXPORTING
+        node      = node
+      CHANGING
+        structure = methodKey.
+    aobjname = methodkey.
+    CALL FUNCTION &apos;RS_INSERT_INTO_WORKING_AREA&apos;
+      EXPORTING
+        object            = &apos;METH&apos;
+        obj_name          = aobjname
+      EXCEPTIONS
+        wrong_object_name = 1.
+    methodsourcenode = node-&gt;find_from_name( &apos;source&apos; ).
+    IF methodsourcenode IS NOT INITIAL.
+      includename = cl_oo_classname_service=&gt;get_method_include(
+      methodkey ).
+      source = methodsourcenode-&gt;get_value( ).
+      sourcetable = buildtablefromstring( source ).
+      INSERT REPORT includename FROM sourcetable EXTENSION TYPE
+      srext_ext_class_method STATE &apos;I&apos; PROGRAM TYPE &apos;I&apos;.
+    ENDIF.
+
+    node ?= iterator-&gt;get_next( ).
+  ENDWHILE.
+*// &lt;--ewH: end create interface methods
 
 *insert code for local implementation
   DATA _classname TYPE seoclsname.
@@ -3861,8 +4245,7 @@ METHOD createobjectfromixmldoc .
 
 ENDMETHOD.</source>
   </method>
-  <method CLSNAME="ZSAPLINK" CMPNAME="DELETEOBJECT" VERSION="0" LANGU="E" DESCRIPT="Delete object" EXPOSURE="1" STATE="1" EDITORDER="1 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20060831" CHANGEDBY="USEWH90" CHANGEDON="20060831" MTDTYPE="0" MTDDECLTYP="0" MTDABSTRCT="X" MTDNEWEXC="X" R3RELEASE="620" BCMTDCAT="00" BCMTDSYN="0">
-   <exception CLSNAME="ZSAPLINK" CMPNAME="DELETEOBJECT" SCONAME="ZCX_SAPLINK" VERSION="0" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 " AUTHOR="USEWH90" CREATEDON="20060831" CHANGEDON="00000000"/>
+  <method CLSNAME="ZSAPLINK" CMPNAME="DELETEOBJECT" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
    <source>*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
@@ -3978,8 +4361,7 @@ data superClassName type string.
   endif.
 endmethod.</source>
   </method>
-  <method CLSNAME="ZSAPLINK" CMPNAME="GETOBJECTTYPE" VERSION="0" LANGU="E" DESCRIPT="Get object type of plugin" EXPOSURE="1" STATE="1" EDITORDER="8 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20060829" CHANGEDBY="USEWH90" CHANGEDON="20060831" MTDTYPE="0" MTDDECLTYP="0" MTDABSTRCT="X" BCMTDCAT="00" BCMTDSYN="0">
-   <parameter VERSION="0" CMPTYPE="0" MTDTYPE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="0"/>
+  <method CLSNAME="ZSAPLINK" CMPNAME="GETOBJECTTYPE" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
    <source>*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
@@ -4005,32 +4387,32 @@ method GETOBJECTTYPE .
 endmethod.</source>
   </method>
  </CLAS>
- <PROG NAME="ZSAPLINK" VARCL="X" SUBC="1" CNAM="USDWM01" CDAT="20060903" UNAM="USEWH90" UDAT="20060920" VERN="000027" RMAND="321" RLOAD="D" FIXPT="X" SDATE="20060920" STIME="110658" IDATE="20060920" ITIME="110658" UCCHECK="X">
+ <PROG NAME="ZSAPLINK" VARCL="X" SUBC="1" CNAM="EWH" CDAT="20060903" UNAM="USEWH90" UDAT="20061008" VERN="000039" RMAND="321" RLOAD="E" FIXPT="X" SDATE="20061008" STIME="133132" IDATE="20061008" ITIME="133132" UCCHECK="X">
   <textPool>
    <language SPRAS="D">
-    <textElement ID="I" KEY="NGA" ENTRY="Add Object to Nugget" LENGTH="20 "/>
-    <textElement ID="I" KEY="NGC" ENTRY="Create Empty Nugget" LENGTH="19 "/>
-    <textElement ID="I" KEY="NGI" ENTRY="Import Nugget" LENGTH="13 "/>
-    <textElement ID="I" KEY="OPT" ENTRY="Options" LENGTH="7 "/>
+    <textElement ID="I" KEY="NGA" ENTRY="Objekt zum Nugget hinzufügen" LENGTH="28 "/>
+    <textElement ID="I" KEY="NGC" ENTRY="Neues Nugget anlegen" LENGTH="20 "/>
+    <textElement ID="I" KEY="NGI" ENTRY="Nugget importieren" LENGTH="18 "/>
+    <textElement ID="I" KEY="OPT" ENTRY="Optionen" LENGTH="8 "/>
     <textElement ID="I" KEY="SLK" ENTRY="SAPlink" LENGTH="7 "/>
-    <textElement ID="I" KEY="TB1" ENTRY="Object" LENGTH="6 "/>
+    <textElement ID="I" KEY="TB1" ENTRY="Objekt" LENGTH="6 "/>
     <textElement ID="I" KEY="TB2" ENTRY="Nugget" LENGTH="6 "/>
     <textElement ID="R" ENTRY="SAPlink" LENGTH="7 "/>
-    <textElement ID="S" KEY="EXPORT" ENTRY="        Export Object" LENGTH="21 "/>
-    <textElement ID="S" KEY="FILENAME" ENTRY="        SAPlink File Name" LENGTH="33 "/>
-    <textElement ID="S" KEY="IMPORT" ENTRY="        Import Object" LENGTH="21 "/>
-    <textElement ID="S" KEY="NOBJNAM" ENTRY="        Object Name" LENGTH="19 "/>
-    <textElement ID="S" KEY="NOVRWR" ENTRY="        Overwrite Originals" LENGTH="27 "/>
-    <textElement ID="S" KEY="NPLUGIN" ENTRY="        Object Type" LENGTH="19 "/>
-    <textElement ID="S" KEY="NUGA" ENTRY="        Add Object to Nugget" LENGTH="28 "/>
-    <textElement ID="S" KEY="NUGC" ENTRY="        Create Empty Nugget" LENGTH="27 "/>
-    <textElement ID="S" KEY="NUGD" ENTRY="        Display Objects in Nugget" LENGTH="33 "/>
-    <textElement ID="S" KEY="NUGFILE" ENTRY="        Nugget File Name" LENGTH="32 "/>
-    <textElement ID="S" KEY="NUGGNAM" ENTRY="        Nugget Name" LENGTH="19 "/>
-    <textElement ID="S" KEY="NUGI" ENTRY="        Import Nugget" LENGTH="21 "/>
-    <textElement ID="S" KEY="OBJNAME" ENTRY="        Object Name" LENGTH="19 "/>
-    <textElement ID="S" KEY="OVERWR" ENTRY="        Overwrite Originals" LENGTH="27 "/>
-    <textElement ID="S" KEY="PLUGIN" ENTRY="        Object Type" LENGTH="19 "/>
+    <textElement ID="S" KEY="EXPORT" ENTRY="        Objekt exportieren" LENGTH="26 "/>
+    <textElement ID="S" KEY="FILENAME" ENTRY="        SAPlink Dateiname" LENGTH="33 "/>
+    <textElement ID="S" KEY="IMPORT" ENTRY="        Objekt importieren" LENGTH="26 "/>
+    <textElement ID="S" KEY="NOBJNAM" ENTRY="        Objektname" LENGTH="19 "/>
+    <textElement ID="S" KEY="NOVRWR" ENTRY="        Originale überschreiben" LENGTH="31 "/>
+    <textElement ID="S" KEY="NPLUGIN" ENTRY="        Objekttyp" LENGTH="19 "/>
+    <textElement ID="S" KEY="NUGA" ENTRY="        Zum Nugget hinzufügen" LENGTH="29 "/>
+    <textElement ID="S" KEY="NUGC" ENTRY="        Neues Nugget anlegen" LENGTH="28 "/>
+    <textElement ID="S" KEY="NUGD" ENTRY="        Objekte des Nuggets anzeigen" LENGTH="36 "/>
+    <textElement ID="S" KEY="NUGFILE" ENTRY="        Nugget Dateiname" LENGTH="32 "/>
+    <textElement ID="S" KEY="NUGGNAM" ENTRY="        Nuggetname" LENGTH="19 "/>
+    <textElement ID="S" KEY="NUGI" ENTRY="        Nugget importieren" LENGTH="26 "/>
+    <textElement ID="S" KEY="OBJNAME" ENTRY="        Objektname" LENGTH="19 "/>
+    <textElement ID="S" KEY="OVERWR" ENTRY="        Originale Überschreiben" LENGTH="31 "/>
+    <textElement ID="S" KEY="PLUGIN" ENTRY="        Objekttyp" LENGTH="19 "/>
    </language>
    <language SPRAS="E">
     <textElement ID="I" KEY="NGA" ENTRY="Add Object to Nugget" LENGTH="20 "/>
@@ -4058,203 +4440,6 @@ endmethod.</source>
     <textElement ID="S" KEY="PLUGIN" ENTRY="        Object Type" LENGTH="19 "/>
    </language>
   </textPool>
-  <dynpros>
-   <dynpro PROG="ZSAPLINK" DNUM="0110" TYPE="J" FNUM="0110" BZMX="13 " BZBR="118 " MILI="200 " MICO="36 " MALI="0 " MACO="0 " NOLI="200 " NOCO="120 " VALP="0 " CUAN="G" SPRA="E" DGEN="20060917" TGEN="180522" DTEXT="SEL_SCREEN 0110 INFO:170000350000000000000000000031569885981">
-    <dynprofield FNAM="%B%_F001" DIDX="000C" FLG1="00" FLG2="02" FLG3="00" FILL="R" FMB1="30" FMB2="00" LENG="74" LINE="01" COLN="02" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" AUTH="103" GRP3="BLK" ITYP="0" AGLT="00" ADEZ="00"/>
-    <dynprofield FNAM="%BSLK002_BLOCK_0110" DIDX="0004" FLG1="80" FLG2="02" FLG3="80" FILL="R" FMB1="31" FMB2="00" LENG="70" LINE="02" COLN="04" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" AUTH="101" GRP3="BLK" ITYP="C" AGLT="00" ADEZ="00"/>
-    <dynprofield FNAM="%_IMPORT_%_APP_%-TEXT" DIDX="001E" FLG1="80" FLG2="02" FLG3="80" FMB1="31" FMB2="00" LENG="1E" LINE="03" COLN="06" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP3="TXT" GRP4="003" ITYP="C" AGLT="00" ADEZ="00" RES1="                                                                                                                                                                                                                                                        X"/>
-    <dynprofield FNAM="IMPORT" DIDX="0001" FLG1="80" FLG2="00" FLG3="80" FILL="A" FMB1="00" FMB2="00" LENG="01" LINE="03" COLN="24" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" AUTH="104" GRP3="PAR" GRP4="003" ITYP="C" AGLT="00" ADEZ="00" STXT="_" RES1="                                                                                                                                                                        UPDOWN"/>
-    <dynprofield FNAM="%_EXPORT_%_APP_%-TEXT" DIDX="001E" FLG1="80" FLG2="02" FLG3="80" FMB1="31" FMB2="00" LENG="1E" LINE="04" COLN="06" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP3="TXT" GRP4="004" ITYP="C" AGLT="00" ADEZ="00" RES1="                                                                                                                                                                                                                                                        X"/>
-    <dynprofield FNAM="EXPORT" DIDX="0001" FLG1="80" FLG2="00" FLG3="80" FILL="A" FMB1="00" FMB2="00" LENG="01" LINE="04" COLN="24" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" AUTH="104" GRP3="PAR" GRP4="004" ITYP="C" AGLT="00" ADEZ="00" STXT="_" RES1="                                                                                                                                                                        UPDOWN"/>
-    <dynprofield FNAM="%BOPT006_BLOCK_0110" DIDX="0006" FLG1="80" FLG2="02" FLG3="80" FILL="R" FMB1="31" FMB2="00" LENG="70" LINE="06" COLN="04" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" AUTH="105" GRP3="BLK" ITYP="C" AGLT="00" ADEZ="00"/>
-    <dynprofield FNAM="%_FILENAME_%_APP_%-TEXT" DIDX="001D" FLG1="80" FLG2="02" FLG3="80" FMB1="31" FMB2="00" LENG="1D" LINE="07" COLN="06" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP1="DID" GRP3="TXT" GRP4="007" ITYP="C" AGLT="00" ADEZ="00" RES1="                                                                                                                                                                                                                                                        X"/>
-    <dynprofield FNAM="FILENAME" DIDX="002D" FLG1="81" FLG2="00" FLG3="80" FMB1="00" FMB2="18" LENG="84" LINE="07" COLN="24" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP1="DID" GRP3="PAR" GRP4="007" ITYP="C" AGLT="00" ADEZ="00" STXT="_____________________________________________"/>
-    <dynprofield FNAM="OVERWR" DIDX="0001" FLG1="80" FLG2="00" FLG3="80" FILL="C" FMB1="00" FMB2="00" LENG="01" LINE="08" COLN="06" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" AUTH="106" GRP1="DID" GRP3="PAR" GRP4="008" ITYP="C" AGLT="00" ADEZ="00" STXT="_"/>
-    <dynprofield FNAM="%_OVERWR_%_APP_%-TEXT" DIDX="001E" FLG1="80" FLG2="02" FLG3="80" FMB1="31" FMB2="00" LENG="1E" LINE="08" COLN="08" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP1="DID" GRP3="TXT" GRP4="008" ITYP="C" AGLT="00" ADEZ="00" RES1="                                                                                                                                                                                                                                                         X"/>
-    <dynprofield FNAM="%_OBJNAME_%_APP_%-TEXT" DIDX="001D" FLG1="80" FLG2="02" FLG3="80" FMB1="31" FMB2="00" LENG="1D" LINE="09" COLN="06" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP1="UID" GRP3="TXT" GRP4="009" ITYP="C" AGLT="00" ADEZ="00" RES1="                                                                                                                                                                                                                                                        X"/>
-    <dynprofield FNAM="OBJNAME" DIDX="0028" FLG1="80" FLG2="00" FLG3="80" FMB1="00" FMB2="00" LENG="28" LINE="09" COLN="24" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP1="UID" GRP3="PAR" GRP4="009" ITYP="C" AGLT="00" ADEZ="00" STXT="________________________________________"/>
-    <dynprofield FNAM="%_PLUGIN_%_APP_%-TEXT" DIDX="001D" FLG1="80" FLG2="02" FLG3="80" FMB1="31" FMB2="00" LENG="1D" LINE="0A" COLN="06" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP1="UID" GRP3="TXT" GRP4="010" ITYP="C" AGLT="00" ADEZ="00" RES1="                                                                                                                                                                                                                                                        X"/>
-    <dynprofield FNAM="PLUGIN" DIDX="0004" FLG1="80" FLG2="00" FLG3="80" FMB1="00" FMB2="18" LENG="04" LINE="0A" COLN="24" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP1="UID" GRP3="PAR" GRP4="010" ITYP="C" AGLT="00" ADEZ="00" STXT="____"/>
-    <dynprofield FNAM="%_17NNJ0000195352_%_%_%_%_%_%_" DIDX="0000" FLG1="00" FLG2="00" FLG3="00" FMB1="00" FMB2="00" LENG="01" LINE="0D" COLN="02" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP4="SRI" ITYP="0" AGLT="00" ADEZ="00" STXT="-"/>
-    <dynprofield FNAM="SSCRFIELDS-UCOMM" DIDX="0046" FLG1="A0" FLG2="10" FLG3="00" FMB1="00" FMB2="00" LENG="14" LINE="FF" COLN="01" LTYP="O" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" ITYP="C" AGLT="46" ADEZ="00" STXT="______________________________________________________________________"/>
-    <dynproflowsource>PROCESS BEFORE OUTPUT.
-
-MODULE %_INIT_PBO_J.
-
-MODULE %_PBO_REPORT.
-
-MODULE %_PF_STATUS.
-
-MODULE %_END_OF_PBO.
-
-PROCESS AFTER INPUT.
-
-  MODULE %_INIT_PAI_J.
-
-CHAIN.
-  FIELD IMPORT  .
-  FIELD EXPORT  .
-    MODULE %_RADIOBUTTON_GROUP_2                             .
-ENDCHAIN.
-
-
-CHAIN.
-  FIELD IMPORT  .
-  FIELD EXPORT  .
-    MODULE %_BLOCK_0110002.
-ENDCHAIN.
-
-FIELD !FILENAME MODULE %_FILENAME .
-
-FIELD !OVERWR MODULE %_OVERWR .
-
-FIELD !OBJNAME MODULE %_OBJNAME .
-
-FIELD !PLUGIN MODULE %_PLUGIN .
-
-
-CHAIN.
-  FIELD FILENAME .
-  FIELD OVERWR .
-  FIELD OBJNAME .
-  FIELD PLUGIN .
-    MODULE %_BLOCK_0110006.
-ENDCHAIN.
-
-
-CHAIN.
-  FIELD IMPORT  .
-  FIELD EXPORT  .
-  FIELD FILENAME .
-  FIELD OVERWR .
-  FIELD OBJNAME .
-  FIELD PLUGIN .
-    MODULE %_BLOCK_0110001.
-ENDCHAIN.
-
-CHAIN.
-  FIELD IMPORT  .
-  FIELD EXPORT  .
-  FIELD FILENAME .
-  FIELD OVERWR .
-  FIELD OBJNAME .
-  FIELD PLUGIN .
-  MODULE %_END_OF_SCREEN.
-  MODULE %_OK_CODE_1000.
-ENDCHAIN.
-
-PROCESS ON VALUE-REQUEST.
-  FIELD FILENAME MODULE %_FILENAME_VAL .
-  FIELD PLUGIN MODULE %_PLUGIN_VAL .</dynproflowsource>
-   </dynpro>
-   <dynpro PROG="ZSAPLINK" DNUM="0120" TYPE="J" FNUM="0120" BZMX="16 " BZBR="118 " MILI="200 " MICO="36 " MALI="0 " MACO="0 " NOLI="200 " NOCO="120 " VALP="0 " CUAN="G" SPRA="E" DGEN="20060917" TGEN="180522" DTEXT="SEL_SCREEN 0120 INFO:170000350000000000000000000031569885981">
-    <dynprofield FNAM="%B%_F001" DIDX="000F" FLG1="00" FLG2="02" FLG3="00" FILL="R" FMB1="30" FMB2="00" LENG="74" LINE="01" COLN="02" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" AUTH="104" GRP3="BLK" ITYP="0" AGLT="00" ADEZ="00"/>
-    <dynprofield FNAM="%BSLK002_BLOCK_0120" DIDX="0006" FLG1="80" FLG2="02" FLG3="80" FILL="R" FMB1="31" FMB2="00" LENG="70" LINE="02" COLN="04" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" AUTH="101" GRP3="BLK" ITYP="C" AGLT="00" ADEZ="00"/>
-    <dynprofield FNAM="%_NUGI_%_APP_%-TEXT" DIDX="001E" FLG1="80" FLG2="02" FLG3="80" FMB1="31" FMB2="00" LENG="1E" LINE="03" COLN="06" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP3="TXT" GRP4="003" ITYP="C" AGLT="00" ADEZ="00" RES1="                                                                                                                                                                                                                                                        X"/>
-    <dynprofield FNAM="NUGI" DIDX="0001" FLG1="80" FLG2="00" FLG3="80" FILL="A" FMB1="00" FMB2="00" LENG="01" LINE="03" COLN="24" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" AUTH="106" GRP3="PAR" GRP4="003" ITYP="C" AGLT="00" ADEZ="00" STXT="_" RES1="                                                                                                                                                                        UPDOWN"/>
-    <dynprofield FNAM="%_NUGA_%_APP_%-TEXT" DIDX="001E" FLG1="80" FLG2="02" FLG3="80" FMB1="31" FMB2="00" LENG="1E" LINE="04" COLN="06" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP3="TXT" GRP4="004" ITYP="C" AGLT="00" ADEZ="00" RES1="                                                                                                                                                                                                                                                        X"/>
-    <dynprofield FNAM="NUGA" DIDX="0001" FLG1="80" FLG2="00" FLG3="80" FILL="A" FMB1="00" FMB2="00" LENG="01" LINE="04" COLN="24" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" AUTH="106" GRP3="PAR" GRP4="004" ITYP="C" AGLT="00" ADEZ="00" STXT="_" RES1="                                                                                                                                                                        UPDOWN"/>
-    <dynprofield FNAM="%_NUGD_%_APP_%-TEXT" DIDX="001E" FLG1="80" FLG2="02" FLG3="80" FMB1="31" FMB2="00" LENG="1E" LINE="05" COLN="06" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP3="TXT" GRP4="005" ITYP="C" AGLT="00" ADEZ="00" RES1="                                                                                                                                                                                                                                                        X"/>
-    <dynprofield FNAM="NUGD" DIDX="0001" FLG1="80" FLG2="00" FLG3="80" FILL="A" FMB1="00" FMB2="00" LENG="01" LINE="05" COLN="24" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" AUTH="106" GRP3="PAR" GRP4="005" ITYP="C" AGLT="00" ADEZ="00" STXT="_" RES1="                                                                                                                                                                        UPDOWN"/>
-    <dynprofield FNAM="%_NUGC_%_APP_%-TEXT" DIDX="001E" FLG1="80" FLG2="02" FLG3="80" FMB1="31" FMB2="00" LENG="1E" LINE="06" COLN="06" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP3="TXT" GRP4="006" ITYP="C" AGLT="00" ADEZ="00" RES1="                                                                                                                                                                                                                                                        X"/>
-    <dynprofield FNAM="NUGC" DIDX="0001" FLG1="80" FLG2="00" FLG3="80" FILL="A" FMB1="00" FMB2="00" LENG="01" LINE="06" COLN="24" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" AUTH="106" GRP3="PAR" GRP4="006" ITYP="C" AGLT="00" ADEZ="00" STXT="_" RES1="                                                                                                                                                                        UPDOWN"/>
-    <dynprofield FNAM="%BOPT008_BLOCK_0120" DIDX="0007" FLG1="80" FLG2="02" FLG3="80" FILL="R" FMB1="31" FMB2="00" LENG="70" LINE="08" COLN="04" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" AUTH="107" GRP3="BLK" ITYP="C" AGLT="00" ADEZ="00"/>
-    <dynprofield FNAM="%_NUGGNAM_%_APP_%-TEXT" DIDX="001D" FLG1="80" FLG2="02" FLG3="80" FMB1="31" FMB2="00" LENG="1D" LINE="09" COLN="06" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP1="NNM" GRP3="TXT" GRP4="009" ITYP="C" AGLT="00" ADEZ="00" RES1="                                                                                                                                                                                                                                                        X"/>
-    <dynprofield FNAM="NUGGNAM" DIDX="002D" FLG1="81" FLG2="00" FLG3="80" FMB1="00" FMB2="00" LENG="84" LINE="09" COLN="24" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP1="NNM" GRP3="PAR" GRP4="009" ITYP="C" AGLT="00" ADEZ="00" STXT="_____________________________________________"/>
-    <dynprofield FNAM="%_NOBJNAM_%_APP_%-TEXT" DIDX="001D" FLG1="80" FLG2="02" FLG3="80" FMB1="31" FMB2="00" LENG="1D" LINE="0A" COLN="06" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP1="NPG" GRP3="TXT" GRP4="010" ITYP="C" AGLT="00" ADEZ="00" RES1="                                                                                                                                                                                                                                                        X"/>
-    <dynprofield FNAM="NOBJNAM" DIDX="0028" FLG1="80" FLG2="00" FLG3="80" FMB1="00" FMB2="00" LENG="28" LINE="0A" COLN="24" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP1="NPG" GRP3="PAR" GRP4="010" ITYP="C" AGLT="00" ADEZ="00" STXT="________________________________________"/>
-    <dynprofield FNAM="%_NPLUGIN_%_APP_%-TEXT" DIDX="001D" FLG1="80" FLG2="02" FLG3="80" FMB1="31" FMB2="00" LENG="1D" LINE="0B" COLN="06" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP1="NPG" GRP3="TXT" GRP4="011" ITYP="C" AGLT="00" ADEZ="00" RES1="                                                                                                                                                                                                                                                        X"/>
-    <dynprofield FNAM="NPLUGIN" DIDX="0004" FLG1="80" FLG2="00" FLG3="80" FMB1="00" FMB2="18" LENG="04" LINE="0B" COLN="24" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP1="NPG" GRP3="PAR" GRP4="011" ITYP="C" AGLT="00" ADEZ="00" STXT="____"/>
-    <dynprofield FNAM="%_NUGFILE_%_APP_%-TEXT" DIDX="001D" FLG1="80" FLG2="02" FLG3="80" FMB1="31" FMB2="00" LENG="1D" LINE="0C" COLN="06" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP1="NFL" GRP3="TXT" GRP4="012" ITYP="C" AGLT="00" ADEZ="00" RES1="                                                                                                                                                                                                                                                        X"/>
-    <dynprofield FNAM="NUGFILE" DIDX="002D" FLG1="81" FLG2="00" FLG3="80" FMB1="00" FMB2="18" LENG="84" LINE="0C" COLN="24" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP1="NFL" GRP3="PAR" GRP4="012" ITYP="C" AGLT="00" ADEZ="00" STXT="_____________________________________________"/>
-    <dynprofield FNAM="NOVRWR" DIDX="0001" FLG1="80" FLG2="00" FLG3="80" FILL="C" FMB1="00" FMB2="00" LENG="01" LINE="0D" COLN="06" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" AUTH="108" GRP1="NOW" GRP3="PAR" GRP4="013" ITYP="C" AGLT="00" ADEZ="00" STXT="_"/>
-    <dynprofield FNAM="%_NOVRWR_%_APP_%-TEXT" DIDX="001E" FLG1="80" FLG2="02" FLG3="80" FMB1="31" FMB2="00" LENG="1E" LINE="0D" COLN="08" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP1="NOW" GRP3="TXT" GRP4="013" ITYP="C" AGLT="00" ADEZ="00" RES1="                                                                                                                                                                                                                                                         X"/>
-    <dynprofield FNAM="%_17NNJ0000195352_%_%_%_%_%_%_" DIDX="0000" FLG1="00" FLG2="00" FLG3="00" FMB1="00" FMB2="00" LENG="01" LINE="10" COLN="02" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP4="SRI" ITYP="0" AGLT="00" ADEZ="00" STXT="-"/>
-    <dynprofield FNAM="SSCRFIELDS-UCOMM" DIDX="0046" FLG1="A0" FLG2="10" FLG3="00" FMB1="00" FMB2="00" LENG="14" LINE="FF" COLN="01" LTYP="O" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" ITYP="C" AGLT="46" ADEZ="00" STXT="______________________________________________________________________"/>
-    <dynproflowsource>PROCESS BEFORE OUTPUT.
-
-MODULE %_INIT_PBO_J.
-
-MODULE %_PBO_REPORT.
-
-MODULE %_PF_STATUS.
-
-MODULE %_END_OF_PBO.
-
-PROCESS AFTER INPUT.
-
-  MODULE %_INIT_PAI_J.
-
-CHAIN.
-  FIELD NUGI    .
-  FIELD NUGA    .
-  FIELD NUGD    .
-  FIELD NUGC    .
-    MODULE %_RADIOBUTTON_GROUP_3                             .
-ENDCHAIN.
-
-
-CHAIN.
-  FIELD NUGI    .
-  FIELD NUGA    .
-  FIELD NUGD    .
-  FIELD NUGC    .
-    MODULE %_BLOCK_0120002.
-ENDCHAIN.
-
-FIELD !NUGGNAM MODULE %_NUGGNAM .
-
-FIELD !NOBJNAM MODULE %_NOBJNAM .
-
-FIELD !NPLUGIN MODULE %_NPLUGIN .
-
-FIELD !NUGFILE MODULE %_NUGFILE .
-
-FIELD !NOVRWR MODULE %_NOVRWR .
-
-
-CHAIN.
-  FIELD NUGGNAM .
-  FIELD NOBJNAM .
-  FIELD NPLUGIN .
-  FIELD NUGFILE .
-  FIELD NOVRWR .
-    MODULE %_BLOCK_0120008.
-ENDCHAIN.
-
-
-CHAIN.
-  FIELD NUGI    .
-  FIELD NUGA    .
-  FIELD NUGD    .
-  FIELD NUGC    .
-  FIELD NUGGNAM .
-  FIELD NOBJNAM .
-  FIELD NPLUGIN .
-  FIELD NUGFILE .
-  FIELD NOVRWR .
-    MODULE %_BLOCK_0120001.
-ENDCHAIN.
-
-CHAIN.
-  FIELD NUGI    .
-  FIELD NUGA    .
-  FIELD NUGD    .
-  FIELD NUGC    .
-  FIELD NUGGNAM .
-  FIELD NOBJNAM .
-  FIELD NPLUGIN .
-  FIELD NUGFILE .
-  FIELD NOVRWR .
-  MODULE %_END_OF_SCREEN.
-  MODULE %_OK_CODE_1000.
-ENDCHAIN.
-
-PROCESS ON VALUE-REQUEST.
-  FIELD NPLUGIN MODULE %_NPLUGIN_VAL .
-  FIELD NUGFILE MODULE %_NUGFILE_VAL .</dynproflowsource>
-   </dynpro>
-  </dynpros>
   <source>*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
@@ -4298,6 +4483,8 @@ PROCESS ON VALUE-REQUEST.
 *|                    View Technical Settings - Thomas Jung            |
 *|                    Views - Thomas Jung                              |
 *|                    BSP Extensions - Phillip T Young                 |
+*|                                                                     |
+*| Patch submissions: Michael Diehl                                    |
 *|                                                                     |
 *| Fearless Alpha Testers: Matt Ammons                                 |
 *|                         Phillip T Young                             |
@@ -4389,11 +4576,12 @@ SELECTION-SCREEN BEGIN OF SCREEN 110 AS SUBSCREEN.
     selection-screen end of block splk.
 
     selection-screen begin of block opt with frame title text-opt.
-      parameters filename(300) type c modif id did.
+      parameters filename(300) lower case type c modif id did.
       parameters OverWr type c as checkbox modif id did.
 
-      parameters objName(40) type c modif id uid.
       parameters plugin type KO100-object modif id uid.
+      parameters objName(40) type c modif id uid.
+*      parameters plugin type KO100-object modif id uid.
     selection-screen end of block opt.
   selection-screen end of block main.
 SELECTION-SCREEN END OF SCREEN 110.
@@ -4410,9 +4598,10 @@ SELECTION-SCREEN BEGIN OF SCREEN 120 AS SUBSCREEN.
 
     selection-screen begin of block opt2 with frame title text-opt.
       parameters NuggNam(300) type c modif id nnm.
-      parameters NObjNam(40) type c modif id npg.
       parameters nPlugIn type  KO100-object modif id npg.
-      parameter NugFile(300) type c modif id nfl.
+      parameters NObjNam(40) type c modif id npg.
+*      parameters nPlugIn type  KO100-object modif id npg.
+      parameter NugFile(300) lower case type c modif id nfl.
       parameters nOvrWr type c as checkbox modif id now.
     selection-screen end of block opt2.
   selection-screen end of block main2.
@@ -4572,6 +4761,56 @@ at selection-screen on value-request for NugFile.
         user_Action = retUserAction.
   read table retFileTable into NugFile index 1.
 
+* begin--&gt;search help on objname according to selected plugin
+* provided by Michael Diehl
+  AT SELECTION-SCREEN ON VALUE-REQUEST FOR objname.
+   DATA l_object_type LIKE  euobj-id.
+*   l_object_type = plugin.  &quot;commented ewH
+
+*  ewH--&gt;get most current value of plugin param
+   perform get_current_screen_value using &apos;PLUGIN&apos; &apos;0110&apos;
+                                 changing l_object_type.
+
+   IF  l_object_type IS NOT INITIAL.
+     CALL FUNCTION &apos;REPOSITORY_INFO_SYSTEM_F4&apos;
+       EXPORTING
+         object_type           = l_object_type
+         object_name           = objname
+         suppress_selection    = &apos;X&apos;
+         use_alv_grid          = &apos;&apos;
+         without_personal_list = &apos;&apos;
+       IMPORTING
+         object_name_selected  = objname
+       EXCEPTIONS
+         cancel                = 1.
+   ENDIF.
+
+
+  AT SELECTION-SCREEN ON VALUE-REQUEST FOR nobjnam.
+   DATA l_object_type LIKE  euobj-id.
+*   l_object_type = nplugin. &quot;commented ewH
+
+*  ewH--&gt;get most current value of plugin param
+   perform get_current_screen_value using &apos;NPLUGIN&apos; &apos;0120&apos;
+                                 changing l_object_type.
+
+   IF  l_object_type IS NOT INITIAL.
+
+     CALL FUNCTION &apos;REPOSITORY_INFO_SYSTEM_F4&apos;
+       EXPORTING
+         object_type           = l_object_type
+         object_name           = nobjnam
+         suppress_selection    = &apos;X&apos;
+         use_alv_grid          = &apos;&apos;
+         without_personal_list = &apos;&apos;
+       IMPORTING
+         object_name_selected  = nobjnam
+       EXCEPTIONS
+         cancel                = 1.
+   ENDIF.
+* &lt;--end of search help on objname according to selected plugin
+* provided by Michael Diehl
+
 *\--------------------------------------------------------------------/
 
 */----------------------main------------------------------------------\
@@ -4580,6 +4819,13 @@ start-of-selection.
   if isNugget is initial.
     _objName = objName.
     if Export = &apos;X&apos;.
+      if plugin is initial.
+        message s208(00) with &apos;object type required&apos;.
+        exit.
+      elseif _objName is initial.
+        message s208(00) with &apos;object name required&apos;.
+        exit.
+      endif.
       read table objectTable into objectLine with key object = plugin.
       if sy-subrc &lt;&gt; 0.
         write: / &apos;Plugin for object type &apos;, plugin,
@@ -4609,6 +4855,10 @@ start-of-selection.
       endif.
       perform displayXMLOnScreen using xml.
     elseif Import = &apos;X&apos;.
+      if filename is initial.
+        message s208(00) with &apos;slinkee filename required&apos;.
+        exit.
+      endif.
       perform uploadXMLFromLM using filename xml.
       ixmlDocument = zsapLink=&gt;convertStringToIxmlDoc( xml ).
 
@@ -4618,8 +4868,10 @@ start-of-selection.
                                    _objName
                                    _pluginExists
                                    _objectExists.
-
-      if _pluginExists is initial.
+      if _objtype = &apos;NUGG&apos;.
+        message s208(00) with &apos;use nugget tab for nugget import&apos;.
+        exit.
+      elseif _pluginExists is initial.
         concatenate
           &apos;There is no installed SAPlink plugin for object type&apos;
           _objType into errorMsg separated by space.
@@ -4647,12 +4899,12 @@ start-of-selection.
       if errorFlag = &apos;X&apos;.
         exit.
       endif.
+      message s208(00) with &apos;Import successful&apos;.
     endif.
-    message s208(00) with &apos;Import successful&apos;.
   else.
     if nugC = &apos;X&apos;.
       if nuggNam is initial.
-        write / &apos;Please enter the name of the new nugget to be created&apos;.
+        message s208(00) with &apos;enter name of new nugget to be created&apos;.
         exit.
       endif.
       stemp = nuggNam.
@@ -4667,6 +4919,16 @@ start-of-selection.
         exit.
       endif.
     elseif NugA = &apos;X&apos;.
+      if nplugin is initial.
+        message s208(00) with &apos;object type required&apos;.
+        exit.
+      elseif nobjNam is initial.
+        message s208(00) with &apos;object name required&apos;.
+        exit.
+      elseif nugfile is initial.
+        message s208(00) with &apos;nugget filename required&apos;.
+        exit.
+      endif.
       read table objectTable into objectLine with key object = nplugin.
       if sy-subrc &lt;&gt; 0.
         write: / &apos;Plugin for object type &apos;, nplugin,
@@ -4692,6 +4954,10 @@ start-of-selection.
       sTemp = nugFile.
       perform putOnMachine using sTemp xml.
     elseif NugI = &apos;X&apos;.
+      if nugfile is initial.
+        message s208(00) with &apos;nugget filename required&apos;.
+        exit.
+      endif.
       perform uploadXMLFromLM using nugfile xml.
       ixmlDocument = zsapLink=&gt;convertStringToIxmlDoc( xml ).
       nuggetName = zsaplink_nugget=&gt;getnuggetinfo( ixmlDocument ).
@@ -4780,6 +5046,10 @@ start-of-selection.
       endif.
       message s208(00) with &apos;Import successful&apos;.
     elseif NugD = &apos;X&apos;.
+      if nugfile is initial.
+        message s208(00) with &apos;nugget filename required&apos;.
+        exit.
+      endif.
       perform uploadXMLFromLM using nugfile xml.
       ixmlDocument = zsapLink=&gt;convertStringToIxmlDoc( xml ).
       nuggetName = zsaplink_nugget=&gt;getnuggetinfo( ixmlDocument ).
@@ -5074,6 +5344,58 @@ data l_targetObject type ref to zsaplink.
   endif.
 
 endform.
+*\--------------------------------------------------------------------/
+
+*/---------------------get_current_screen_value-----------------------\
+form get_current_screen_value  using    l_screen_field
+                                        l_screen_number
+                               changing l_screen_value.
+
+  DATA it_dynpfields TYPE STANDARD TABLE OF dynpread.
+  DATA wa_dynpfields TYPE dynpread.
+
+
+  wa_dynpfields-fieldname = l_screen_field.
+  APPEND wa_dynpfields TO it_dynpfields.
+
+
+  CALL FUNCTION &apos;DYNP_VALUES_READ&apos;
+    EXPORTING
+      dyname                         = sy-cprog
+      dynumb                         = l_screen_number
+      translate_to_upper             = &apos;X&apos;
+*     REQUEST                        = &apos; &apos;
+*     PERFORM_CONVERSION_EXITS       = &apos; &apos;
+*     PERFORM_INPUT_CONVERSION       = &apos; &apos;
+*     DETERMINE_LOOP_INDEX           = &apos; &apos;
+    TABLES
+      dynpfields                     = it_dynpfields
+    EXCEPTIONS
+      invalid_abapworkarea           = 1
+      invalid_dynprofield            = 2
+      invalid_dynproname             = 3
+      invalid_dynpronummer           = 4
+      invalid_request                = 5
+      no_fielddescription            = 6
+      invalid_parameter              = 7
+      undefind_error                 = 8
+      double_conversion              = 9
+      stepl_not_found                = 10
+      OTHERS                         = 11
+            .
+  IF sy-subrc &lt;&gt; 0.
+*  MESSAGE ID SY-MSGID TYPE SY-MSGTY NUMBER SY-MSGNO
+*  WITH SY-MSGV1 SY-MSGV2 SY-MSGV3 SY-MSGV4.
+  ELSE.
+    READ TABLE it_dynpfields into wa_dynpfields
+      WITH KEY fieldname = l_screen_field.
+    if sy-subrc = 0.
+      l_screen_value = wa_dynpfields-fieldvalue.
+    endif.
+  ENDIF.
+
+
+endform.                    &quot; get_current_screen_value
 *\--------------------------------------------------------------------/</source>
  </PROG>
 </nugget>

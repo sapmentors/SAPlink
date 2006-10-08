@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<PROG NAME="ZSAPLINK" VARCL="X" SUBC="1" CNAM="USDWM01" CDAT="20060903" UNAM="USEWH90" UDAT="20060920" VERN="000027" RMAND="321" RLOAD="D" FIXPT="X" SDATE="20060920" STIME="110658" IDATE="20060920" ITIME="110658" UCCHECK="X">
+<PROG NAME="ZSAPLINK" VARCL="X" SUBC="1" CNAM="EWH" CDAT="20060903" UNAM="USEWH90" UDAT="20061008" VERN="000039" RMAND="321" RLOAD="E" FIXPT="X" SDATE="20061008" STIME="133132" IDATE="20061008" ITIME="133132" UCCHECK="X">
  <textPool>
   <language SPRAS="D">
-   <textElement ID="I" KEY="NGA" ENTRY="Add Object to Nugget" LENGTH="20 "/>
-   <textElement ID="I" KEY="NGC" ENTRY="Create Empty Nugget" LENGTH="19 "/>
-   <textElement ID="I" KEY="NGI" ENTRY="Import Nugget" LENGTH="13 "/>
-   <textElement ID="I" KEY="OPT" ENTRY="Options" LENGTH="7 "/>
+   <textElement ID="I" KEY="NGA" ENTRY="Objekt zum Nugget hinzufügen" LENGTH="28 "/>
+   <textElement ID="I" KEY="NGC" ENTRY="Neues Nugget anlegen" LENGTH="20 "/>
+   <textElement ID="I" KEY="NGI" ENTRY="Nugget importieren" LENGTH="18 "/>
+   <textElement ID="I" KEY="OPT" ENTRY="Optionen" LENGTH="8 "/>
    <textElement ID="I" KEY="SLK" ENTRY="SAPlink" LENGTH="7 "/>
-   <textElement ID="I" KEY="TB1" ENTRY="Object" LENGTH="6 "/>
+   <textElement ID="I" KEY="TB1" ENTRY="Objekt" LENGTH="6 "/>
    <textElement ID="I" KEY="TB2" ENTRY="Nugget" LENGTH="6 "/>
    <textElement ID="R" ENTRY="SAPlink" LENGTH="7 "/>
-   <textElement ID="S" KEY="EXPORT" ENTRY="        Export Object" LENGTH="21 "/>
-   <textElement ID="S" KEY="FILENAME" ENTRY="        SAPlink File Name" LENGTH="33 "/>
-   <textElement ID="S" KEY="IMPORT" ENTRY="        Import Object" LENGTH="21 "/>
-   <textElement ID="S" KEY="NOBJNAM" ENTRY="        Object Name" LENGTH="19 "/>
-   <textElement ID="S" KEY="NOVRWR" ENTRY="        Overwrite Originals" LENGTH="27 "/>
-   <textElement ID="S" KEY="NPLUGIN" ENTRY="        Object Type" LENGTH="19 "/>
-   <textElement ID="S" KEY="NUGA" ENTRY="        Add Object to Nugget" LENGTH="28 "/>
-   <textElement ID="S" KEY="NUGC" ENTRY="        Create Empty Nugget" LENGTH="27 "/>
-   <textElement ID="S" KEY="NUGD" ENTRY="        Display Objects in Nugget" LENGTH="33 "/>
-   <textElement ID="S" KEY="NUGFILE" ENTRY="        Nugget File Name" LENGTH="32 "/>
-   <textElement ID="S" KEY="NUGGNAM" ENTRY="        Nugget Name" LENGTH="19 "/>
-   <textElement ID="S" KEY="NUGI" ENTRY="        Import Nugget" LENGTH="21 "/>
-   <textElement ID="S" KEY="OBJNAME" ENTRY="        Object Name" LENGTH="19 "/>
-   <textElement ID="S" KEY="OVERWR" ENTRY="        Overwrite Originals" LENGTH="27 "/>
-   <textElement ID="S" KEY="PLUGIN" ENTRY="        Object Type" LENGTH="19 "/>
+   <textElement ID="S" KEY="EXPORT" ENTRY="        Objekt exportieren" LENGTH="26 "/>
+   <textElement ID="S" KEY="FILENAME" ENTRY="        SAPlink Dateiname" LENGTH="33 "/>
+   <textElement ID="S" KEY="IMPORT" ENTRY="        Objekt importieren" LENGTH="26 "/>
+   <textElement ID="S" KEY="NOBJNAM" ENTRY="        Objektname" LENGTH="19 "/>
+   <textElement ID="S" KEY="NOVRWR" ENTRY="        Originale überschreiben" LENGTH="31 "/>
+   <textElement ID="S" KEY="NPLUGIN" ENTRY="        Objekttyp" LENGTH="19 "/>
+   <textElement ID="S" KEY="NUGA" ENTRY="        Zum Nugget hinzufügen" LENGTH="29 "/>
+   <textElement ID="S" KEY="NUGC" ENTRY="        Neues Nugget anlegen" LENGTH="28 "/>
+   <textElement ID="S" KEY="NUGD" ENTRY="        Objekte des Nuggets anzeigen" LENGTH="36 "/>
+   <textElement ID="S" KEY="NUGFILE" ENTRY="        Nugget Dateiname" LENGTH="32 "/>
+   <textElement ID="S" KEY="NUGGNAM" ENTRY="        Nuggetname" LENGTH="19 "/>
+   <textElement ID="S" KEY="NUGI" ENTRY="        Nugget importieren" LENGTH="26 "/>
+   <textElement ID="S" KEY="OBJNAME" ENTRY="        Objektname" LENGTH="19 "/>
+   <textElement ID="S" KEY="OVERWR" ENTRY="        Originale Überschreiben" LENGTH="31 "/>
+   <textElement ID="S" KEY="PLUGIN" ENTRY="        Objekttyp" LENGTH="19 "/>
   </language>
   <language SPRAS="E">
    <textElement ID="I" KEY="NGA" ENTRY="Add Object to Nugget" LENGTH="20 "/>
@@ -52,203 +52,6 @@
    <textElement ID="S" KEY="PLUGIN" ENTRY="        Object Type" LENGTH="19 "/>
   </language>
  </textPool>
- <dynpros>
-  <dynpro PROG="ZSAPLINK" DNUM="0110" TYPE="J" FNUM="0110" BZMX="13 " BZBR="118 " MILI="200 " MICO="36 " MALI="0 " MACO="0 " NOLI="200 " NOCO="120 " VALP="0 " CUAN="G" SPRA="E" DGEN="20060917" TGEN="180522" DTEXT="SEL_SCREEN 0110 INFO:170000350000000000000000000031569885981">
-   <dynprofield FNAM="%B%_F001" DIDX="000C" FLG1="00" FLG2="02" FLG3="00" FILL="R" FMB1="30" FMB2="00" LENG="74" LINE="01" COLN="02" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" AUTH="103" GRP3="BLK" ITYP="0" AGLT="00" ADEZ="00"/>
-   <dynprofield FNAM="%BSLK002_BLOCK_0110" DIDX="0004" FLG1="80" FLG2="02" FLG3="80" FILL="R" FMB1="31" FMB2="00" LENG="70" LINE="02" COLN="04" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" AUTH="101" GRP3="BLK" ITYP="C" AGLT="00" ADEZ="00"/>
-   <dynprofield FNAM="%_IMPORT_%_APP_%-TEXT" DIDX="001E" FLG1="80" FLG2="02" FLG3="80" FMB1="31" FMB2="00" LENG="1E" LINE="03" COLN="06" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP3="TXT" GRP4="003" ITYP="C" AGLT="00" ADEZ="00" RES1="                                                                                                                                                                                                                                                        X"/>
-   <dynprofield FNAM="IMPORT" DIDX="0001" FLG1="80" FLG2="00" FLG3="80" FILL="A" FMB1="00" FMB2="00" LENG="01" LINE="03" COLN="24" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" AUTH="104" GRP3="PAR" GRP4="003" ITYP="C" AGLT="00" ADEZ="00" STXT="_" RES1="                                                                                                                                                                        UPDOWN"/>
-   <dynprofield FNAM="%_EXPORT_%_APP_%-TEXT" DIDX="001E" FLG1="80" FLG2="02" FLG3="80" FMB1="31" FMB2="00" LENG="1E" LINE="04" COLN="06" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP3="TXT" GRP4="004" ITYP="C" AGLT="00" ADEZ="00" RES1="                                                                                                                                                                                                                                                        X"/>
-   <dynprofield FNAM="EXPORT" DIDX="0001" FLG1="80" FLG2="00" FLG3="80" FILL="A" FMB1="00" FMB2="00" LENG="01" LINE="04" COLN="24" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" AUTH="104" GRP3="PAR" GRP4="004" ITYP="C" AGLT="00" ADEZ="00" STXT="_" RES1="                                                                                                                                                                        UPDOWN"/>
-   <dynprofield FNAM="%BOPT006_BLOCK_0110" DIDX="0006" FLG1="80" FLG2="02" FLG3="80" FILL="R" FMB1="31" FMB2="00" LENG="70" LINE="06" COLN="04" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" AUTH="105" GRP3="BLK" ITYP="C" AGLT="00" ADEZ="00"/>
-   <dynprofield FNAM="%_FILENAME_%_APP_%-TEXT" DIDX="001D" FLG1="80" FLG2="02" FLG3="80" FMB1="31" FMB2="00" LENG="1D" LINE="07" COLN="06" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP1="DID" GRP3="TXT" GRP4="007" ITYP="C" AGLT="00" ADEZ="00" RES1="                                                                                                                                                                                                                                                        X"/>
-   <dynprofield FNAM="FILENAME" DIDX="002D" FLG1="81" FLG2="00" FLG3="80" FMB1="00" FMB2="18" LENG="84" LINE="07" COLN="24" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP1="DID" GRP3="PAR" GRP4="007" ITYP="C" AGLT="00" ADEZ="00" STXT="_____________________________________________"/>
-   <dynprofield FNAM="OVERWR" DIDX="0001" FLG1="80" FLG2="00" FLG3="80" FILL="C" FMB1="00" FMB2="00" LENG="01" LINE="08" COLN="06" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" AUTH="106" GRP1="DID" GRP3="PAR" GRP4="008" ITYP="C" AGLT="00" ADEZ="00" STXT="_"/>
-   <dynprofield FNAM="%_OVERWR_%_APP_%-TEXT" DIDX="001E" FLG1="80" FLG2="02" FLG3="80" FMB1="31" FMB2="00" LENG="1E" LINE="08" COLN="08" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP1="DID" GRP3="TXT" GRP4="008" ITYP="C" AGLT="00" ADEZ="00" RES1="                                                                                                                                                                                                                                                         X"/>
-   <dynprofield FNAM="%_OBJNAME_%_APP_%-TEXT" DIDX="001D" FLG1="80" FLG2="02" FLG3="80" FMB1="31" FMB2="00" LENG="1D" LINE="09" COLN="06" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP1="UID" GRP3="TXT" GRP4="009" ITYP="C" AGLT="00" ADEZ="00" RES1="                                                                                                                                                                                                                                                        X"/>
-   <dynprofield FNAM="OBJNAME" DIDX="0028" FLG1="80" FLG2="00" FLG3="80" FMB1="00" FMB2="00" LENG="28" LINE="09" COLN="24" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP1="UID" GRP3="PAR" GRP4="009" ITYP="C" AGLT="00" ADEZ="00" STXT="________________________________________"/>
-   <dynprofield FNAM="%_PLUGIN_%_APP_%-TEXT" DIDX="001D" FLG1="80" FLG2="02" FLG3="80" FMB1="31" FMB2="00" LENG="1D" LINE="0A" COLN="06" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP1="UID" GRP3="TXT" GRP4="010" ITYP="C" AGLT="00" ADEZ="00" RES1="                                                                                                                                                                                                                                                        X"/>
-   <dynprofield FNAM="PLUGIN" DIDX="0004" FLG1="80" FLG2="00" FLG3="80" FMB1="00" FMB2="18" LENG="04" LINE="0A" COLN="24" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP1="UID" GRP3="PAR" GRP4="010" ITYP="C" AGLT="00" ADEZ="00" STXT="____"/>
-   <dynprofield FNAM="%_17NNJ0000195352_%_%_%_%_%_%_" DIDX="0000" FLG1="00" FLG2="00" FLG3="00" FMB1="00" FMB2="00" LENG="01" LINE="0D" COLN="02" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP4="SRI" ITYP="0" AGLT="00" ADEZ="00" STXT="-"/>
-   <dynprofield FNAM="SSCRFIELDS-UCOMM" DIDX="0046" FLG1="A0" FLG2="10" FLG3="00" FMB1="00" FMB2="00" LENG="14" LINE="FF" COLN="01" LTYP="O" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" ITYP="C" AGLT="46" ADEZ="00" STXT="______________________________________________________________________"/>
-   <dynproflowsource>PROCESS BEFORE OUTPUT.
-
-MODULE %_INIT_PBO_J.
-
-MODULE %_PBO_REPORT.
-
-MODULE %_PF_STATUS.
-
-MODULE %_END_OF_PBO.
-
-PROCESS AFTER INPUT.
-
-  MODULE %_INIT_PAI_J.
-
-CHAIN.
-  FIELD IMPORT  .
-  FIELD EXPORT  .
-    MODULE %_RADIOBUTTON_GROUP_2                             .
-ENDCHAIN.
-
-
-CHAIN.
-  FIELD IMPORT  .
-  FIELD EXPORT  .
-    MODULE %_BLOCK_0110002.
-ENDCHAIN.
-
-FIELD !FILENAME MODULE %_FILENAME .
-
-FIELD !OVERWR MODULE %_OVERWR .
-
-FIELD !OBJNAME MODULE %_OBJNAME .
-
-FIELD !PLUGIN MODULE %_PLUGIN .
-
-
-CHAIN.
-  FIELD FILENAME .
-  FIELD OVERWR .
-  FIELD OBJNAME .
-  FIELD PLUGIN .
-    MODULE %_BLOCK_0110006.
-ENDCHAIN.
-
-
-CHAIN.
-  FIELD IMPORT  .
-  FIELD EXPORT  .
-  FIELD FILENAME .
-  FIELD OVERWR .
-  FIELD OBJNAME .
-  FIELD PLUGIN .
-    MODULE %_BLOCK_0110001.
-ENDCHAIN.
-
-CHAIN.
-  FIELD IMPORT  .
-  FIELD EXPORT  .
-  FIELD FILENAME .
-  FIELD OVERWR .
-  FIELD OBJNAME .
-  FIELD PLUGIN .
-  MODULE %_END_OF_SCREEN.
-  MODULE %_OK_CODE_1000.
-ENDCHAIN.
-
-PROCESS ON VALUE-REQUEST.
-  FIELD FILENAME MODULE %_FILENAME_VAL .
-  FIELD PLUGIN MODULE %_PLUGIN_VAL .</dynproflowsource>
-  </dynpro>
-  <dynpro PROG="ZSAPLINK" DNUM="0120" TYPE="J" FNUM="0120" BZMX="16 " BZBR="118 " MILI="200 " MICO="36 " MALI="0 " MACO="0 " NOLI="200 " NOCO="120 " VALP="0 " CUAN="G" SPRA="E" DGEN="20060917" TGEN="180522" DTEXT="SEL_SCREEN 0120 INFO:170000350000000000000000000031569885981">
-   <dynprofield FNAM="%B%_F001" DIDX="000F" FLG1="00" FLG2="02" FLG3="00" FILL="R" FMB1="30" FMB2="00" LENG="74" LINE="01" COLN="02" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" AUTH="104" GRP3="BLK" ITYP="0" AGLT="00" ADEZ="00"/>
-   <dynprofield FNAM="%BSLK002_BLOCK_0120" DIDX="0006" FLG1="80" FLG2="02" FLG3="80" FILL="R" FMB1="31" FMB2="00" LENG="70" LINE="02" COLN="04" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" AUTH="101" GRP3="BLK" ITYP="C" AGLT="00" ADEZ="00"/>
-   <dynprofield FNAM="%_NUGI_%_APP_%-TEXT" DIDX="001E" FLG1="80" FLG2="02" FLG3="80" FMB1="31" FMB2="00" LENG="1E" LINE="03" COLN="06" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP3="TXT" GRP4="003" ITYP="C" AGLT="00" ADEZ="00" RES1="                                                                                                                                                                                                                                                        X"/>
-   <dynprofield FNAM="NUGI" DIDX="0001" FLG1="80" FLG2="00" FLG3="80" FILL="A" FMB1="00" FMB2="00" LENG="01" LINE="03" COLN="24" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" AUTH="106" GRP3="PAR" GRP4="003" ITYP="C" AGLT="00" ADEZ="00" STXT="_" RES1="                                                                                                                                                                        UPDOWN"/>
-   <dynprofield FNAM="%_NUGA_%_APP_%-TEXT" DIDX="001E" FLG1="80" FLG2="02" FLG3="80" FMB1="31" FMB2="00" LENG="1E" LINE="04" COLN="06" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP3="TXT" GRP4="004" ITYP="C" AGLT="00" ADEZ="00" RES1="                                                                                                                                                                                                                                                        X"/>
-   <dynprofield FNAM="NUGA" DIDX="0001" FLG1="80" FLG2="00" FLG3="80" FILL="A" FMB1="00" FMB2="00" LENG="01" LINE="04" COLN="24" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" AUTH="106" GRP3="PAR" GRP4="004" ITYP="C" AGLT="00" ADEZ="00" STXT="_" RES1="                                                                                                                                                                        UPDOWN"/>
-   <dynprofield FNAM="%_NUGD_%_APP_%-TEXT" DIDX="001E" FLG1="80" FLG2="02" FLG3="80" FMB1="31" FMB2="00" LENG="1E" LINE="05" COLN="06" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP3="TXT" GRP4="005" ITYP="C" AGLT="00" ADEZ="00" RES1="                                                                                                                                                                                                                                                        X"/>
-   <dynprofield FNAM="NUGD" DIDX="0001" FLG1="80" FLG2="00" FLG3="80" FILL="A" FMB1="00" FMB2="00" LENG="01" LINE="05" COLN="24" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" AUTH="106" GRP3="PAR" GRP4="005" ITYP="C" AGLT="00" ADEZ="00" STXT="_" RES1="                                                                                                                                                                        UPDOWN"/>
-   <dynprofield FNAM="%_NUGC_%_APP_%-TEXT" DIDX="001E" FLG1="80" FLG2="02" FLG3="80" FMB1="31" FMB2="00" LENG="1E" LINE="06" COLN="06" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP3="TXT" GRP4="006" ITYP="C" AGLT="00" ADEZ="00" RES1="                                                                                                                                                                                                                                                        X"/>
-   <dynprofield FNAM="NUGC" DIDX="0001" FLG1="80" FLG2="00" FLG3="80" FILL="A" FMB1="00" FMB2="00" LENG="01" LINE="06" COLN="24" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" AUTH="106" GRP3="PAR" GRP4="006" ITYP="C" AGLT="00" ADEZ="00" STXT="_" RES1="                                                                                                                                                                        UPDOWN"/>
-   <dynprofield FNAM="%BOPT008_BLOCK_0120" DIDX="0007" FLG1="80" FLG2="02" FLG3="80" FILL="R" FMB1="31" FMB2="00" LENG="70" LINE="08" COLN="04" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" AUTH="107" GRP3="BLK" ITYP="C" AGLT="00" ADEZ="00"/>
-   <dynprofield FNAM="%_NUGGNAM_%_APP_%-TEXT" DIDX="001D" FLG1="80" FLG2="02" FLG3="80" FMB1="31" FMB2="00" LENG="1D" LINE="09" COLN="06" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP1="NNM" GRP3="TXT" GRP4="009" ITYP="C" AGLT="00" ADEZ="00" RES1="                                                                                                                                                                                                                                                        X"/>
-   <dynprofield FNAM="NUGGNAM" DIDX="002D" FLG1="81" FLG2="00" FLG3="80" FMB1="00" FMB2="00" LENG="84" LINE="09" COLN="24" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP1="NNM" GRP3="PAR" GRP4="009" ITYP="C" AGLT="00" ADEZ="00" STXT="_____________________________________________"/>
-   <dynprofield FNAM="%_NOBJNAM_%_APP_%-TEXT" DIDX="001D" FLG1="80" FLG2="02" FLG3="80" FMB1="31" FMB2="00" LENG="1D" LINE="0A" COLN="06" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP1="NPG" GRP3="TXT" GRP4="010" ITYP="C" AGLT="00" ADEZ="00" RES1="                                                                                                                                                                                                                                                        X"/>
-   <dynprofield FNAM="NOBJNAM" DIDX="0028" FLG1="80" FLG2="00" FLG3="80" FMB1="00" FMB2="00" LENG="28" LINE="0A" COLN="24" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP1="NPG" GRP3="PAR" GRP4="010" ITYP="C" AGLT="00" ADEZ="00" STXT="________________________________________"/>
-   <dynprofield FNAM="%_NPLUGIN_%_APP_%-TEXT" DIDX="001D" FLG1="80" FLG2="02" FLG3="80" FMB1="31" FMB2="00" LENG="1D" LINE="0B" COLN="06" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP1="NPG" GRP3="TXT" GRP4="011" ITYP="C" AGLT="00" ADEZ="00" RES1="                                                                                                                                                                                                                                                        X"/>
-   <dynprofield FNAM="NPLUGIN" DIDX="0004" FLG1="80" FLG2="00" FLG3="80" FMB1="00" FMB2="18" LENG="04" LINE="0B" COLN="24" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP1="NPG" GRP3="PAR" GRP4="011" ITYP="C" AGLT="00" ADEZ="00" STXT="____"/>
-   <dynprofield FNAM="%_NUGFILE_%_APP_%-TEXT" DIDX="001D" FLG1="80" FLG2="02" FLG3="80" FMB1="31" FMB2="00" LENG="1D" LINE="0C" COLN="06" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP1="NFL" GRP3="TXT" GRP4="012" ITYP="C" AGLT="00" ADEZ="00" RES1="                                                                                                                                                                                                                                                        X"/>
-   <dynprofield FNAM="NUGFILE" DIDX="002D" FLG1="81" FLG2="00" FLG3="80" FMB1="00" FMB2="18" LENG="84" LINE="0C" COLN="24" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP1="NFL" GRP3="PAR" GRP4="012" ITYP="C" AGLT="00" ADEZ="00" STXT="_____________________________________________"/>
-   <dynprofield FNAM="NOVRWR" DIDX="0001" FLG1="80" FLG2="00" FLG3="80" FILL="C" FMB1="00" FMB2="00" LENG="01" LINE="0D" COLN="06" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" AUTH="108" GRP1="NOW" GRP3="PAR" GRP4="013" ITYP="C" AGLT="00" ADEZ="00" STXT="_"/>
-   <dynprofield FNAM="%_NOVRWR_%_APP_%-TEXT" DIDX="001E" FLG1="80" FLG2="02" FLG3="80" FMB1="31" FMB2="00" LENG="1E" LINE="0D" COLN="08" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP1="NOW" GRP3="TXT" GRP4="013" ITYP="C" AGLT="00" ADEZ="00" RES1="                                                                                                                                                                                                                                                         X"/>
-   <dynprofield FNAM="%_17NNJ0000195352_%_%_%_%_%_%_" DIDX="0000" FLG1="00" FLG2="00" FLG3="00" FMB1="00" FMB2="00" LENG="01" LINE="10" COLN="02" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" GRP4="SRI" ITYP="0" AGLT="00" ADEZ="00" STXT="-"/>
-   <dynprofield FNAM="SSCRFIELDS-UCOMM" DIDX="0046" FLG1="A0" FLG2="10" FLG3="00" FMB1="00" FMB2="00" LENG="14" LINE="FF" COLN="01" LTYP="O" LANF="00" LBLK="00" LREP="00" TYPE="CHAR" ITYP="C" AGLT="46" ADEZ="00" STXT="______________________________________________________________________"/>
-   <dynproflowsource>PROCESS BEFORE OUTPUT.
-
-MODULE %_INIT_PBO_J.
-
-MODULE %_PBO_REPORT.
-
-MODULE %_PF_STATUS.
-
-MODULE %_END_OF_PBO.
-
-PROCESS AFTER INPUT.
-
-  MODULE %_INIT_PAI_J.
-
-CHAIN.
-  FIELD NUGI    .
-  FIELD NUGA    .
-  FIELD NUGD    .
-  FIELD NUGC    .
-    MODULE %_RADIOBUTTON_GROUP_3                             .
-ENDCHAIN.
-
-
-CHAIN.
-  FIELD NUGI    .
-  FIELD NUGA    .
-  FIELD NUGD    .
-  FIELD NUGC    .
-    MODULE %_BLOCK_0120002.
-ENDCHAIN.
-
-FIELD !NUGGNAM MODULE %_NUGGNAM .
-
-FIELD !NOBJNAM MODULE %_NOBJNAM .
-
-FIELD !NPLUGIN MODULE %_NPLUGIN .
-
-FIELD !NUGFILE MODULE %_NUGFILE .
-
-FIELD !NOVRWR MODULE %_NOVRWR .
-
-
-CHAIN.
-  FIELD NUGGNAM .
-  FIELD NOBJNAM .
-  FIELD NPLUGIN .
-  FIELD NUGFILE .
-  FIELD NOVRWR .
-    MODULE %_BLOCK_0120008.
-ENDCHAIN.
-
-
-CHAIN.
-  FIELD NUGI    .
-  FIELD NUGA    .
-  FIELD NUGD    .
-  FIELD NUGC    .
-  FIELD NUGGNAM .
-  FIELD NOBJNAM .
-  FIELD NPLUGIN .
-  FIELD NUGFILE .
-  FIELD NOVRWR .
-    MODULE %_BLOCK_0120001.
-ENDCHAIN.
-
-CHAIN.
-  FIELD NUGI    .
-  FIELD NUGA    .
-  FIELD NUGD    .
-  FIELD NUGC    .
-  FIELD NUGGNAM .
-  FIELD NOBJNAM .
-  FIELD NPLUGIN .
-  FIELD NUGFILE .
-  FIELD NOVRWR .
-  MODULE %_END_OF_SCREEN.
-  MODULE %_OK_CODE_1000.
-ENDCHAIN.
-
-PROCESS ON VALUE-REQUEST.
-  FIELD NPLUGIN MODULE %_NPLUGIN_VAL .
-  FIELD NUGFILE MODULE %_NUGFILE_VAL .</dynproflowsource>
-  </dynpro>
- </dynpros>
  <source>*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
@@ -292,6 +95,8 @@ PROCESS ON VALUE-REQUEST.
 *|                    View Technical Settings - Thomas Jung            |
 *|                    Views - Thomas Jung                              |
 *|                    BSP Extensions - Phillip T Young                 |
+*|                                                                     |
+*| Patch submissions: Michael Diehl                                    |
 *|                                                                     |
 *| Fearless Alpha Testers: Matt Ammons                                 |
 *|                         Phillip T Young                             |
@@ -383,11 +188,12 @@ SELECTION-SCREEN BEGIN OF SCREEN 110 AS SUBSCREEN.
     selection-screen end of block splk.
 
     selection-screen begin of block opt with frame title text-opt.
-      parameters filename(300) type c modif id did.
+      parameters filename(300) lower case type c modif id did.
       parameters OverWr type c as checkbox modif id did.
 
-      parameters objName(40) type c modif id uid.
       parameters plugin type KO100-object modif id uid.
+      parameters objName(40) type c modif id uid.
+*      parameters plugin type KO100-object modif id uid.
     selection-screen end of block opt.
   selection-screen end of block main.
 SELECTION-SCREEN END OF SCREEN 110.
@@ -404,9 +210,10 @@ SELECTION-SCREEN BEGIN OF SCREEN 120 AS SUBSCREEN.
 
     selection-screen begin of block opt2 with frame title text-opt.
       parameters NuggNam(300) type c modif id nnm.
-      parameters NObjNam(40) type c modif id npg.
       parameters nPlugIn type  KO100-object modif id npg.
-      parameter NugFile(300) type c modif id nfl.
+      parameters NObjNam(40) type c modif id npg.
+*      parameters nPlugIn type  KO100-object modif id npg.
+      parameter NugFile(300) lower case type c modif id nfl.
       parameters nOvrWr type c as checkbox modif id now.
     selection-screen end of block opt2.
   selection-screen end of block main2.
@@ -566,6 +373,56 @@ at selection-screen on value-request for NugFile.
         user_Action = retUserAction.
   read table retFileTable into NugFile index 1.
 
+* begin--&gt;search help on objname according to selected plugin
+* provided by Michael Diehl
+  AT SELECTION-SCREEN ON VALUE-REQUEST FOR objname.
+   DATA l_object_type LIKE  euobj-id.
+*   l_object_type = plugin.  &quot;commented ewH
+
+*  ewH--&gt;get most current value of plugin param
+   perform get_current_screen_value using &apos;PLUGIN&apos; &apos;0110&apos;
+                                 changing l_object_type.
+
+   IF  l_object_type IS NOT INITIAL.
+     CALL FUNCTION &apos;REPOSITORY_INFO_SYSTEM_F4&apos;
+       EXPORTING
+         object_type           = l_object_type
+         object_name           = objname
+         suppress_selection    = &apos;X&apos;
+         use_alv_grid          = &apos;&apos;
+         without_personal_list = &apos;&apos;
+       IMPORTING
+         object_name_selected  = objname
+       EXCEPTIONS
+         cancel                = 1.
+   ENDIF.
+
+
+  AT SELECTION-SCREEN ON VALUE-REQUEST FOR nobjnam.
+   DATA l_object_type LIKE  euobj-id.
+*   l_object_type = nplugin. &quot;commented ewH
+
+*  ewH--&gt;get most current value of plugin param
+   perform get_current_screen_value using &apos;NPLUGIN&apos; &apos;0120&apos;
+                                 changing l_object_type.
+
+   IF  l_object_type IS NOT INITIAL.
+
+     CALL FUNCTION &apos;REPOSITORY_INFO_SYSTEM_F4&apos;
+       EXPORTING
+         object_type           = l_object_type
+         object_name           = nobjnam
+         suppress_selection    = &apos;X&apos;
+         use_alv_grid          = &apos;&apos;
+         without_personal_list = &apos;&apos;
+       IMPORTING
+         object_name_selected  = nobjnam
+       EXCEPTIONS
+         cancel                = 1.
+   ENDIF.
+* &lt;--end of search help on objname according to selected plugin
+* provided by Michael Diehl
+
 *\--------------------------------------------------------------------/
 
 */----------------------main------------------------------------------\
@@ -574,6 +431,13 @@ start-of-selection.
   if isNugget is initial.
     _objName = objName.
     if Export = &apos;X&apos;.
+      if plugin is initial.
+        message s208(00) with &apos;object type required&apos;.
+        exit.
+      elseif _objName is initial.
+        message s208(00) with &apos;object name required&apos;.
+        exit.
+      endif.
       read table objectTable into objectLine with key object = plugin.
       if sy-subrc &lt;&gt; 0.
         write: / &apos;Plugin for object type &apos;, plugin,
@@ -603,6 +467,10 @@ start-of-selection.
       endif.
       perform displayXMLOnScreen using xml.
     elseif Import = &apos;X&apos;.
+      if filename is initial.
+        message s208(00) with &apos;slinkee filename required&apos;.
+        exit.
+      endif.
       perform uploadXMLFromLM using filename xml.
       ixmlDocument = zsapLink=&gt;convertStringToIxmlDoc( xml ).
 
@@ -612,8 +480,10 @@ start-of-selection.
                                    _objName
                                    _pluginExists
                                    _objectExists.
-
-      if _pluginExists is initial.
+      if _objtype = &apos;NUGG&apos;.
+        message s208(00) with &apos;use nugget tab for nugget import&apos;.
+        exit.
+      elseif _pluginExists is initial.
         concatenate
           &apos;There is no installed SAPlink plugin for object type&apos;
           _objType into errorMsg separated by space.
@@ -641,12 +511,12 @@ start-of-selection.
       if errorFlag = &apos;X&apos;.
         exit.
       endif.
+      message s208(00) with &apos;Import successful&apos;.
     endif.
-    message s208(00) with &apos;Import successful&apos;.
   else.
     if nugC = &apos;X&apos;.
       if nuggNam is initial.
-        write / &apos;Please enter the name of the new nugget to be created&apos;.
+        message s208(00) with &apos;enter name of new nugget to be created&apos;.
         exit.
       endif.
       stemp = nuggNam.
@@ -661,6 +531,16 @@ start-of-selection.
         exit.
       endif.
     elseif NugA = &apos;X&apos;.
+      if nplugin is initial.
+        message s208(00) with &apos;object type required&apos;.
+        exit.
+      elseif nobjNam is initial.
+        message s208(00) with &apos;object name required&apos;.
+        exit.
+      elseif nugfile is initial.
+        message s208(00) with &apos;nugget filename required&apos;.
+        exit.
+      endif.
       read table objectTable into objectLine with key object = nplugin.
       if sy-subrc &lt;&gt; 0.
         write: / &apos;Plugin for object type &apos;, nplugin,
@@ -686,6 +566,10 @@ start-of-selection.
       sTemp = nugFile.
       perform putOnMachine using sTemp xml.
     elseif NugI = &apos;X&apos;.
+      if nugfile is initial.
+        message s208(00) with &apos;nugget filename required&apos;.
+        exit.
+      endif.
       perform uploadXMLFromLM using nugfile xml.
       ixmlDocument = zsapLink=&gt;convertStringToIxmlDoc( xml ).
       nuggetName = zsaplink_nugget=&gt;getnuggetinfo( ixmlDocument ).
@@ -774,6 +658,10 @@ start-of-selection.
       endif.
       message s208(00) with &apos;Import successful&apos;.
     elseif NugD = &apos;X&apos;.
+      if nugfile is initial.
+        message s208(00) with &apos;nugget filename required&apos;.
+        exit.
+      endif.
       perform uploadXMLFromLM using nugfile xml.
       ixmlDocument = zsapLink=&gt;convertStringToIxmlDoc( xml ).
       nuggetName = zsaplink_nugget=&gt;getnuggetinfo( ixmlDocument ).
@@ -1068,5 +956,57 @@ data l_targetObject type ref to zsaplink.
   endif.
 
 endform.
+*\--------------------------------------------------------------------/
+
+*/---------------------get_current_screen_value-----------------------\
+form get_current_screen_value  using    l_screen_field
+                                        l_screen_number
+                               changing l_screen_value.
+
+  DATA it_dynpfields TYPE STANDARD TABLE OF dynpread.
+  DATA wa_dynpfields TYPE dynpread.
+
+
+  wa_dynpfields-fieldname = l_screen_field.
+  APPEND wa_dynpfields TO it_dynpfields.
+
+
+  CALL FUNCTION &apos;DYNP_VALUES_READ&apos;
+    EXPORTING
+      dyname                         = sy-cprog
+      dynumb                         = l_screen_number
+      translate_to_upper             = &apos;X&apos;
+*     REQUEST                        = &apos; &apos;
+*     PERFORM_CONVERSION_EXITS       = &apos; &apos;
+*     PERFORM_INPUT_CONVERSION       = &apos; &apos;
+*     DETERMINE_LOOP_INDEX           = &apos; &apos;
+    TABLES
+      dynpfields                     = it_dynpfields
+    EXCEPTIONS
+      invalid_abapworkarea           = 1
+      invalid_dynprofield            = 2
+      invalid_dynproname             = 3
+      invalid_dynpronummer           = 4
+      invalid_request                = 5
+      no_fielddescription            = 6
+      invalid_parameter              = 7
+      undefind_error                 = 8
+      double_conversion              = 9
+      stepl_not_found                = 10
+      OTHERS                         = 11
+            .
+  IF sy-subrc &lt;&gt; 0.
+*  MESSAGE ID SY-MSGID TYPE SY-MSGTY NUMBER SY-MSGNO
+*  WITH SY-MSGV1 SY-MSGV2 SY-MSGV3 SY-MSGV4.
+  ELSE.
+    READ TABLE it_dynpfields into wa_dynpfields
+      WITH KEY fieldname = l_screen_field.
+    if sy-subrc = 0.
+      l_screen_value = wa_dynpfields-fieldvalue.
+    endif.
+  ENDIF.
+
+
+endform.                    &quot; get_current_screen_value
 *\--------------------------------------------------------------------/</source>
 </PROG>
