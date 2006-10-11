@@ -1076,6 +1076,7 @@ data aTextNode type ref to if_ixml_element.
 data lang type spras.
 data langNodeExists type flag.
 data logonLanguageExists type flag.
+data _state(1) type c.
 
   filter = textNode->create_filter_name( 'language' ).
   langIterator = textNode->create_iterator_filtered( filter ).
@@ -1108,18 +1109,26 @@ data logonLanguageExists type flag.
       lang = langNode->get_attribute( 'SPRAS' ).
       if lang = sy-langu.
         logonLanguageExists = 'X'.
+        _state = 'I'.
+      else.
+*       seems that if a textpool is inserted as inactive for language
+*       other than the logon language, it is lost upon activation
+*       not sure inserting as active is best solution,but seems to work
+        _state = 'A'.
       endif.
       insert textpool objNameStrict from textPooltable language lang
-      state 'I'.
+      state _state.
     endif.
     langNode ?= langIterator->get_next( ).
   endwhile.
 
-* insert untranslated text pool in logon language if it doesnt exist
-  if langNodeExists = 'X' and logonLanguageExists = ' '.
-    insert textpool _objName from textPooltable language sy-langu state
-    'I'.
-  endif.
+*// comment ewH for 0.1.2 retreat:just didnt really work out well-->
+** insert untranslated text pool in logon language if it doesnt exist
+*  if langNodeExists = 'X' and logonLanguageExists = ' '.
+*    insert textpool _objName from textPooltable language sy-langu state
+*    'I'.
+*  endif.
+*// <--ewH: end comment
 
 *  dequeue_abap( ).
   call function 'RS_ACCESS_PERMISSION'
