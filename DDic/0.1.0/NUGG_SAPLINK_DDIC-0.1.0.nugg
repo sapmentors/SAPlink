@@ -3240,7 +3240,7 @@ METHOD CHECKEXISTS.
     EXPORTING
       name          = l_name
     IMPORTING
-      dd01v_wa      = dd40v_wa
+      dd40v_wa      = dd40v_wa
     EXCEPTIONS
       illegal_input = 1
       OTHERS        = 2.
