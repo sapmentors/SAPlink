@@ -1,0 +1,1567 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<CLAS CLSNAME="ZSAPLINK_CLASS" VERSION="0" LANGU="E" DESCRIPT="SapLink Class Installer" UUID="450F772E574D039002000000A7E42BB6" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" AUTHOR="USEWH90" CREATEDON="20060920" CHANGEDON="00000000" CHGDANYON="00000000" CLSCCINCL="X" FIXPT="X" UNICODE="X" R3RELEASE="620" CLSBCCAT="00" REFCLSNAME="ZSAPLINK">
+ <publicSection>class ZSAPLINK_CLASS definition
+  public
+  inheriting from ZSAPLINK
+  create public .
+
+*&quot;* public components of class ZSAPLINK_CLASS
+*&quot;* do not include other source files here!!!
+public section.
+  type-pools ABAP .
+  type-pools SEOR .
+  type-pools SEOS .
+  type-pools SEOT .
+
+  methods CHECKEXISTS
+    redefinition .
+  methods CREATEIXMLDOCFROMOBJECT
+    redefinition .
+  methods CREATEOBJECTFROMIXMLDOC
+    redefinition .</publicSection>
+ <protectedSection>*&quot;* protected components of class ZSAPLINK_CLASS
+*&quot;* do not include other source files here!!!
+protected section.
+
+  methods DELETEOBJECT
+    redefinition .
+  methods GETOBJECTTYPE
+    redefinition .</protectedSection>
+ <privateSection>*&quot;* private components of class ZSAPLINK_CLASS
+*&quot;* do not include other source files here!!!
+private section.
+
+  methods FINDIMPLEMENTINGCLASS
+    importing
+      !METHODNAME type STRING
+      !STARTCLASS type STRING optional
+    returning
+      value(CLASSNAME) type STRING .</privateSection>
+ <localImplementation>*&quot;* local class implementation for public class
+*&quot;* use this source file for the implementation part of
+*&quot;* local helper classes</localImplementation>
+ <localTypes>*&quot;* use this source file for any type declarations (class
+*&quot;* definitions, interfaces or data types) you need for method
+*&quot;* implementation or private method&apos;s signature</localTypes>
+ <localMacros>*&quot;* use this source file for any macro definitions you need
+*&quot;* in the implementation part of the class</localMacros>
+ <forwardDeclaration>ABAP</forwardDeclaration>
+ <forwardDeclaration>SEOR</forwardDeclaration>
+ <forwardDeclaration>SEOS</forwardDeclaration>
+ <forwardDeclaration>SEOT</forwardDeclaration>
+ <inheritance CLSNAME="ZSAPLINK_CLASS" REFCLSNAME="ZSAPLINK" VERSION="0" STATE="1" AUTHOR="USEWH90" CREATEDON="20060920" CHANGEDON="00000000">
+  <redefinition CLSNAME="ZSAPLINK_CLASS" REFCLSNAME="ZSAPLINK" VERSION="0" MTDNAME="CHECKEXISTS"/>
+  <redefinition CLSNAME="ZSAPLINK_CLASS" REFCLSNAME="ZSAPLINK" VERSION="0" MTDNAME="CREATEIXMLDOCFROMOBJECT"/>
+  <redefinition CLSNAME="ZSAPLINK_CLASS" REFCLSNAME="ZSAPLINK" VERSION="0" MTDNAME="CREATEOBJECTFROMIXMLDOC"/>
+  <redefinition CLSNAME="ZSAPLINK_CLASS" REFCLSNAME="ZSAPLINK" VERSION="0" MTDNAME="DELETEOBJECT"/>
+  <redefinition CLSNAME="ZSAPLINK_CLASS" REFCLSNAME="ZSAPLINK" VERSION="0" MTDNAME="GETOBJECTTYPE"/>
+ </inheritance>
+ <method CLSNAME="ZSAPLINK" CMPNAME="CHECKEXISTS" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+  <source>*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   SAPlink is free software; you can redistribute it and/or modify   |
+*|   it under the terms of the GNU General Public License as published |
+*|   by the Free Software Foundation; either version 2 of the License, |
+*|   or (at your option) any later version.                            |
+*|                                                                     |
+*|   SAPlink is distributed in the hope that it will be useful,        |
+*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
+*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
+*|   GNU General Public License for more details.                      |
+*|                                                                     |
+*|   You should have received a copy of the GNU General Public License |
+*|   along with SAPlink; if not, write to the                          |
+*|   Free Software Foundation, Inc.,                                   |
+*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*\---------------------------------------------------------------------/
+method CHECKEXISTS .
+
+data classkey type SEOCLSKEY.
+data not_active TYPE  SEOX_BOOLEAN.
+
+  classKey-clsName = objname.
+
+  call function &apos;SEO_CLASS_EXISTENCE_CHECK&apos;
+    EXPORTING
+      clskey        = classkey
+    IMPORTING
+      not_active    = not_active
+    EXCEPTIONS
+*      not_specified = 1
+      not_existing  = 2.
+*      is_interface  = 3
+*      no_text       = 4
+*      inconsistent  = 5
+*      others        = 6.
+
+  if sy-subrc &lt;&gt; 2.
+    exists = &apos;X&apos;.
+  endif.
+endmethod.</source>
+ </method>
+ <method CLSNAME="ZSAPLINK" CMPNAME="CREATEIXMLDOCFROMOBJECT" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+  <source>*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   SAPlink is free software; you can redistribute it and/or modify   |
+*|   it under the terms of the GNU General Public License as published |
+*|   by the Free Software Foundation; either version 2 of the License, |
+*|   or (at your option) any later version.                            |
+*|                                                                     |
+*|   SAPlink is distributed in the hope that it will be useful,        |
+*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
+*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
+*|   GNU General Public License for more details.                      |
+*|                                                                     |
+*|   You should have received a copy of the GNU General Public License |
+*|   along with SAPlink; if not, write to the                          |
+*|   Free Software Foundation, Inc.,                                   |
+*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*\---------------------------------------------------------------------/
+METHOD createixmldocfromobject .
+
+
+  DATA publicsection TYPE REF TO if_ixml_element.
+  DATA protectedsection TYPE REF TO if_ixml_element.
+  DATA privatesection TYPE REF TO if_ixml_element.
+  DATA localimplementation TYPE REF TO if_ixml_element.
+  DATA localtypes TYPE REF TO if_ixml_element.
+  DATA localmacros TYPE REF TO if_ixml_element.
+  DATA rootnode TYPE REF TO if_ixml_element.
+  DATA reportlist TYPE STANDARD TABLE OF string.
+  DATA includename TYPE program.
+  DATA _classname TYPE seoclsname.
+  DATA reportstring TYPE string.
+  DATA rc TYPE sysubrc.
+  DATA classdescr TYPE REF TO cl_abap_classdescr.
+  DATA typedescr TYPE REF TO cl_abap_typedescr.
+  DATA methoddescr TYPE abap_methdescr.
+  DATA methodnode TYPE REF TO if_ixml_element.
+  DATA parameternode TYPE REF TO if_ixml_element.
+  DATA sourcenode TYPE REF TO if_ixml_element.
+  DATA exceptionnode TYPE REF TO if_ixml_element.
+  DATA exceptionlist TYPE seos_exceptions_r.
+  DATA anexception TYPE vseoexcep.
+  data inheritanceNode type ref to if_ixml_element.
+  data redefNode type ref to if_ixml_element.
+
+  DATA tempstring TYPE string.
+  DATA methodkey TYPE seocpdkey.
+  DATA clsmethkey TYPE seocmpkey.
+  DATA methodproperties TYPE vseomethod.
+  DATA classkey TYPE seoclskey.
+  DATA classproperties TYPE vseoclass.
+  DATA paramdescr TYPE abap_parmdescr.
+  DATA paramkey TYPE seoscokey.
+  DATA paramproperties TYPE vseoparam.
+  DATA superclass TYPE REF TO cl_abap_typedescr.
+  DATA superclassname TYPE string.
+  DATA superclasskey TYPE seorelkey.
+
+  DATA attribdescr TYPE abap_attrdescr.
+  DATA attribkey TYPE seocmpkey.
+  DATA attribproperties TYPE vseoattrib.
+  DATA attribnode TYPE REF TO if_ixml_element.
+  DATA inheritanceprops TYPE vseoextend.
+  DATA redefines TYPE STANDARD TABLE OF seoredef
+      WITH KEY clsname refclsname version mtdname.
+  DATA inheritance TYPE SEOR_INHERITANCE_R.
+  DATA redefinitions TYPE seor_redefinitions_r.
+  data redefinition like line of redefinitions.
+  DATA forwarddeclarationlist TYPE seot_typepusages_r.
+  DATA forwarddeclaration TYPE REF TO if_ixml_element.
+  DATA forwarddeclarationrow TYPE seot_typepusage_r.
+
+  DATA otrnode TYPE REF TO if_ixml_element.
+  DATA _otrguid TYPE sotr_conc.
+
+  _classname = objname.
+  classkey-clsname = objname.
+
+*  setObjectType( ).
+
+  DATA _objtype TYPE string.
+*  _objType = objType.
+  _objtype = getobjecttype( ).
+  rootnode = xmldoc-&gt;create_element( _objtype ).
+  CALL FUNCTION &apos;SEO_CLASS_GET&apos;
+    EXPORTING
+      clskey       = classkey
+      version      = &apos;1&apos;
+    IMPORTING
+      class        = classproperties
+    EXCEPTIONS
+      not_existing = 1
+      deleted      = 2
+      is_interface = 3
+      model_only   = 4.
+
+  IF sy-subrc &lt;&gt; 0.
+    CASE sy-subrc.
+      WHEN 1.
+        RAISE EXCEPTION TYPE zcx_saplink
+          EXPORTING textid = zcx_saplink=&gt;not_found.
+      WHEN 2.
+        RAISE EXCEPTION TYPE zcx_saplink
+          EXPORTING
+            textid = zcx_saplink=&gt;error_message
+            msg = &apos;class deleted&apos;.
+      WHEN 3.
+        RAISE EXCEPTION TYPE zcx_saplink
+          EXPORTING
+            textid = zcx_saplink=&gt;error_message
+            msg = &apos;interfaces not supported&apos;.
+      WHEN 4.
+        RAISE EXCEPTION TYPE zcx_saplink
+          EXPORTING
+            textid = zcx_saplink=&gt;error_message
+            msg = &apos;class is modeled only&apos;.
+    ENDCASE.
+  ENDIF.
+
+  setattributesfromstructure( node = rootnode structure =
+  classproperties ).
+  TRY.
+      CALL METHOD cl_abap_classdescr=&gt;describe_by_name
+        EXPORTING
+          p_name         = objname
+        RECEIVING
+          p_descr_ref    = typedescr
+        EXCEPTIONS
+          type_not_found = 1.
+      IF sy-subrc = 0.
+        classdescr ?= typedescr.
+      ELSE.
+
+      ENDIF.
+    CATCH cx_root.
+      RAISE EXCEPTION TYPE zcx_saplink
+        EXPORTING textid = zcx_saplink=&gt;system_error.
+  ENDTRY.
+
+  CALL METHOD classdescr-&gt;get_super_class_type
+    RECEIVING
+      p_descr_ref           = superclass
+    EXCEPTIONS
+      super_class_not_found = 1.
+
+  IF sy-subrc = 0.
+    superclassname = superclass-&gt;get_relative_name( ).
+    IF NOT superclassname CS &apos;OBJECT&apos;.
+      superclasskey-clsname = objname.
+      superclasskey-refclsname = superclassname.
+      CALL FUNCTION &apos;SEO_INHERITANC_GET&apos;
+        EXPORTING
+          inhkey        = superclasskey
+        IMPORTING
+          inheritance   = inheritanceprops
+          redefinitions = redefines.
+      setattributesfromstructure( node = rootnode structure =
+      inheritanceprops ).
+    ENDIF.
+  ENDIF.
+
+*/***TPJ - Added Logic for TYPES  -------------------*/
+  DATA: types      TYPE seoo_types_r,
+        wa_type    LIKE LINE OF types,
+        types_node TYPE REF TO if_ixml_element.
+  CALL FUNCTION &apos;SEO_TYPE_READ_ALL&apos;
+    EXPORTING
+      cifkey            = classkey
+      version           = 1
+    IMPORTING
+      types             = types
+    EXCEPTIONS
+      clif_not_existing = 1
+      OTHERS            = 2.
+  IF sy-subrc &lt;&gt; 0.
+  ENDIF.
+  LOOP AT types INTO wa_type.
+    types_node = xmldoc-&gt;create_element( &apos;types&apos; ).
+    setattributesfromstructure( node = types_node structure =
+    wa_type ).
+    rc = rootnode-&gt;append_child( types_node ).
+  ENDLOOP.
+*/***TPJ - End of Added Logic for TYPES  -------------------*/
+
+*/***TPJ - Added Logic for Friends  -------------------*/
+  DATA: clif_keys     TYPE STANDARD TABLE OF seoclskey,
+        friends       TYPE STANDARD TABLE OF seofriends,
+        wa_friend     LIKE LINE OF friends,
+        friends_node  TYPE REF TO if_ixml_element.
+
+  APPEND classkey TO clif_keys.
+  CALL FUNCTION &apos;SEO_FRIENDS_SELECT&apos;
+    EXPORTING
+      WITH_EXTERNAL_REF = &apos;X&apos;
+    TABLES
+      clif_keys         = clif_keys
+      friends_relations = friends.
+  IF sy-subrc &lt;&gt; 0.
+  ENDIF.
+  LOOP AT friends INTO wa_friend.
+    friends_node = xmldoc-&gt;create_element( &apos;friends&apos; ).
+    setattributesfromstructure( node = friends_node structure =
+    wa_friend ).
+    rc = rootnode-&gt;append_child( friends_node ).
+  ENDLOOP.
+*/***TPJ - End of Added Logic for Friends  -------------------*/
+
+*/***ewH - Added Logic for Interfaces  -------------------*/
+  DATA: it_implementings type seor_implementings_r,
+        wa_implementings like line OF it_implementings,
+        implementingNode TYPE REF TO if_ixml_element.
+
+  CALL FUNCTION &apos;SEO_IMPLEMENTG_READ_ALL&apos;
+    EXPORTING
+      CLSKEY                   = classkey
+    IMPORTING
+      IMPLEMENTINGS            = it_implementings
+    EXCEPTIONS
+      CLASS_NOT_EXISTING       = 1
+      OTHERS                   = 2.
+
+  LOOP AT it_implementings INTO wa_implementings.
+    implementingNode = xmldoc-&gt;create_element( &apos;implementing&apos; ).
+    setattributesfromstructure( node = implementingNode structure =
+    wa_implementings ).
+    rc = rootnode-&gt;append_child( implementingNode ).
+  ENDLOOP.
+*/***ewH - End of Added Logic for Interfaces  -------------------*/
+
+*/--------------------------------------------------------------------\
+*|                                                                    |
+  includename = cl_oo_classname_service=&gt;get_pubsec_name( _classname ).
+  READ REPORT includename INTO reportlist.
+  publicsection = xmldoc-&gt;create_element( &apos;publicSection&apos; ).
+
+  reportstring = buildsourcestring( sourcetable = reportlist ).
+  rc = publicsection-&gt;if_ixml_node~set_value( reportstring ).
+  CLEAR reportstring.
+*|--------------------------------------------------------------------|
+  includename = cl_oo_classname_service=&gt;get_prosec_name( _classname ).
+  READ REPORT includename INTO reportlist.
+  protectedsection = xmldoc-&gt;create_element( &apos;protectedSection&apos; ).
+  reportstring = buildsourcestring( sourcetable = reportlist ).
+  rc = protectedsection-&gt;if_ixml_node~set_value( reportstring ).
+  CLEAR reportstring.
+*|--------------------------------------------------------------------|
+  includename = cl_oo_classname_service=&gt;get_prisec_name( _classname ).
+  READ REPORT includename INTO reportlist.
+  privatesection = xmldoc-&gt;create_element( &apos;privateSection&apos; ).
+  reportstring = buildsourcestring( sourcetable = reportlist ).
+  rc = privatesection-&gt;if_ixml_node~set_value( reportstring ).
+*|--------------------------------------------------------------------|
+  includename = cl_oo_classname_service=&gt;get_ccimp_name( _classname ).
+  READ REPORT includename INTO reportlist.
+  localimplementation = xmldoc-&gt;create_element( &apos;localImplementation&apos; ).
+  reportstring = buildsourcestring( sourcetable = reportlist ).
+  rc = localimplementation-&gt;if_ixml_node~set_value( reportstring ).
+*|--------------------------------------------------------------------|
+  includename = cl_oo_classname_service=&gt;get_ccdef_name( _classname ).
+  READ REPORT includename INTO reportlist.
+  localtypes = xmldoc-&gt;create_element( &apos;localTypes&apos; ).
+  reportstring = buildsourcestring( sourcetable = reportlist ).
+  rc = localtypes-&gt;if_ixml_node~set_value( reportstring ).
+*|--------------------------------------------------------------------|
+  includename = cl_oo_classname_service=&gt;get_ccmac_name( _classname ).
+  READ REPORT includename INTO reportlist.
+  localmacros = xmldoc-&gt;create_element( &apos;localMacros&apos; ).
+  reportstring = buildsourcestring( sourcetable = reportlist ).
+  rc = localmacros-&gt;if_ixml_node~set_value( reportstring ).
+*|                                                                    |
+*\--------------------------------------------------------------------/
+  rc = rootnode-&gt;append_child( publicsection ).
+  rc = rootnode-&gt;append_child( protectedsection ).
+  rc = rootnode-&gt;append_child( privatesection ).
+  rc = rootnode-&gt;append_child( localimplementation ).
+  rc = rootnode-&gt;append_child( localtypes ).
+  rc = rootnode-&gt;append_child( localmacros ).
+
+
+  CALL FUNCTION &apos;SEO_TYPEPUSAGE_READ_ALL&apos;
+    EXPORTING
+      cifkey      = classkey
+      version     = &apos;1&apos;
+    IMPORTING
+      typepusages = forwarddeclarationlist.
+
+  LOOP AT forwarddeclarationlist INTO forwarddeclarationrow.
+    forwarddeclaration = xmldoc-&gt;create_element( &apos;forwardDeclaration&apos; ).
+    tempstring = forwarddeclarationrow-typegroup.
+    rc = forwarddeclaration-&gt;if_ixml_node~set_value( tempstring ).
+    rc = rootnode-&gt;append_child( forwarddeclaration ).
+  ENDLOOP.
+
+*  classDescriptor ?= cl_abap_typedescr=&gt;describe_by_name( className ).
+  attribkey-clsname = objname.
+  LOOP AT classdescr-&gt;attributes INTO attribdescr WHERE is_inherited =
+  abap_false.
+    attribnode = xmldoc-&gt;create_element( &apos;attribute&apos; ).
+    attribkey-cmpname = attribdescr-name.
+    CALL FUNCTION &apos;SEO_ATTRIBUTE_GET&apos;
+      EXPORTING
+        attkey    = attribkey
+      IMPORTING
+        attribute = attribproperties.
+
+*   include OTR if necessary (for exception classes)
+    IF attribproperties-type = &apos;SOTR_CONC&apos; AND attribproperties-attvalue
+    IS NOT INITIAL.
+      _otrguid = attribproperties-attvalue+1(32).
+      otrnode = createnodefromotr( _otrguid ).
+      if otrnode is bound.
+        rc = attribnode-&gt;append_child( otrnode ).
+      endif.
+    ENDIF.
+
+*   append attribute node to parent node
+    setattributesfromstructure( node = attribnode structure =
+    attribproperties ).
+    rc = rootnode-&gt;append_child( attribnode ).
+  ENDLOOP.
+
+*// ewH: begin of logic for interface methods &amp; inheritance redesign--&gt;
+* inheritances &amp; redefinitions
+  CALL FUNCTION &apos;SEO_INHERITANC_READ&apos;
+    EXPORTING
+      CLSKEY                   = classKey
+    IMPORTING
+      INHERITANCE              = inheritance
+      REDEFINITIONS            = redefinitions
+    EXCEPTIONS
+      CLASS_NOT_EXISTING       = 1
+      OTHERS                   = 2.
+
+  if inheritance is not initial.
+    inheritanceNode = xmldoc-&gt;create_element( &apos;inheritance&apos; ).
+    setattributesfromstructure( node = inheritanceNode structure =
+    inheritance ).
+
+    loop at redefinitions into redefinition.
+      redefNode = xmldoc-&gt;create_element( &apos;redefinition&apos; ).
+      setattributesfromstructure( node = redefNode structure =
+      redefinition ).
+      rc = inheritanceNode-&gt;append_child( redefNode ).
+    endloop.
+    rc = rootnode-&gt;append_child( inheritanceNode ).
+  endif.
+
+* methods
+  LOOP AT classdescr-&gt;methods INTO methoddescr where
+  not ( is_inherited = &apos;X&apos; and is_redefined is initial ).
+    methodkey-clsname = _classname.
+    methodkey-cpdname = methoddescr-name.
+*   interface methods
+    if methoddescr-is_interface = &apos;X&apos;.
+      CALL METHOD cl_oo_classname_service=&gt;get_method_include
+        EXPORTING
+          mtdkey              = methodkey
+        RECEIVING
+          result              = includename
+        EXCEPTIONS
+          method_not_existing = 1.
+      IF sy-subrc = 0.
+        methodnode = xmldoc-&gt;create_element( &apos;interfaceMethod&apos; ).
+        setattributesfromstructure( node = methodnode structure =
+        methodkey ).
+        sourcenode = xmldoc-&gt;create_element( &apos;source&apos; ).
+*        tempString = includeName.
+*        rc = sourceNode-&gt;set_attribute(
+*          name = &apos;includeName&apos; value = tempString ).
+        READ REPORT includename INTO reportlist.
+        reportstring = buildsourcestring( sourcetable = reportlist ).
+        rc = sourcenode-&gt;if_ixml_node~set_value( reportstring ).
+        rc = methodnode-&gt;append_child( sourcenode ).
+        rc = rootnode-&gt;append_child( methodnode ).
+      ENDIF.
+*   other methods
+    else.
+      clsmethkey-clsname = _classname.
+      clsmethkey-cmpname = methoddescr-name.
+      CLEAR methodproperties.
+
+      if methoddescr-is_redefined = &apos;X&apos;.
+        methodnode = xmldoc-&gt;create_element( &apos;method&apos; ).
+        move-corresponding clsMethKey to methodProperties.
+*// ewh: begin of forward compatibility hack, can be removed for next
+*//      major release--&gt;
+        read table redefinitions into redefinition
+          with key mtdname = methoddescr-name.
+        if sy-subrc = 0.
+          methodProperties-clsname = redefinition-refclsname.
+        endif.
+*//&lt;--ewH: end of forward compatibility hace
+        setattributesfromstructure( node = methodnode structure =
+        methodproperties ).
+      else.
+        CALL FUNCTION &apos;SEO_METHOD_GET&apos;
+          EXPORTING
+            mtdkey       = clsmethkey
+          IMPORTING
+            method       = methodproperties
+          EXCEPTIONS
+            not_existing = 1.
+        IF sy-subrc = 0.
+          methodnode = xmldoc-&gt;create_element( &apos;method&apos; ).
+          setattributesfromstructure( node = methodnode structure =
+          methodproperties ).
+
+*         parameters
+          LOOP AT methoddescr-parameters INTO paramdescr.
+            CLEAR paramproperties.
+            parameternode = xmldoc-&gt;create_element( &apos;parameter&apos; ).
+            paramkey-cmpname = clsmethkey-cmpname.
+            paramkey-sconame = paramdescr-name.
+            paramkey-clsname = objname.
+            CALL FUNCTION &apos;SEO_PARAMETER_GET&apos;
+              EXPORTING
+                parkey    = paramkey
+                version   = &apos;1&apos;
+              IMPORTING
+                parameter = paramproperties.
+            setattributesfromstructure( node = parameternode
+            structure = paramproperties ).
+            rc = methodnode-&gt;append_child( parameternode ).
+          ENDLOOP.
+
+*         exceptions
+          CALL FUNCTION &apos;SEO_METHOD_SIGNATURE_GET&apos;
+            EXPORTING
+              mtdkey  = clsmethkey
+              version = &apos;1&apos;
+            IMPORTING
+              exceps  = exceptionlist.
+          LOOP AT exceptionlist INTO anexception.
+            exceptionnode = xmldoc-&gt;create_element( &apos;exception&apos; ).
+            setattributesfromstructure( node = exceptionnode
+            structure = anexception ).
+            rc = methodnode-&gt;append_child( exceptionnode ).
+          ENDLOOP.
+        endif. &quot;method found
+      endif. &quot;is_redefined?
+*     source
+      CALL METHOD cl_oo_classname_service=&gt;get_method_include
+        EXPORTING
+          mtdkey              = methodkey
+        RECEIVING
+          result              = includename
+        EXCEPTIONS
+          method_not_existing = 1.
+      IF sy-subrc = 0.
+        READ REPORT includename INTO reportlist.
+        reportstring = buildsourcestring( sourcetable = reportlist ).
+        sourcenode = xmldoc-&gt;create_element( &apos;source&apos; ).
+        rc = sourcenode-&gt;if_ixml_node~set_value( reportstring ).
+        rc = methodnode-&gt;append_child( sourcenode ).
+      endif.
+      rc = rootnode-&gt;append_child( methodnode ).
+    endif. &quot;is_interface?
+  endloop.
+
+* append root node to xmldoc
+  rc = xmldoc-&gt;append_child( rootnode ).
+  ixmldocument = xmldoc.
+ENDMETHOD.
+*// &lt;--ewH: end of logic for interface methods &amp; inheritance redesign
+
+*// ewH: begin comment redesign inheritance--&gt;
+*  LOOP AT classdescr-&gt;methods INTO methoddescr.
+*      methodnode = xmldoc-&gt;create_element( &apos;method&apos; ).
+*      tempstring = methoddescr-name.
+*      clsmethkey-cmpname = methoddescr-name.
+*      IF methoddescr-is_redefined = abap_true.
+*        tempstring = methoddescr-name.
+*        clsmethkey-clsname = findimplementingclass( methodname =
+*        tempstring ).
+*        paramkey-clsname = clsmethkey-clsname.
+**        paramKey-clsName = superClassName.
+**        clsMethkey-clsName = superClassName.
+*      ELSE.
+*        paramkey-clsname = clsmethkey-clsname.
+*        clsmethkey-clsname = objname.
+*      ENDIF.
+**      paramkey-clsname = clsmethkey-clsname.
+**      clsmethkey-clsname = objname.
+*      CLEAR methodproperties.
+*      CALL FUNCTION &apos;SEO_METHOD_GET&apos;
+*        EXPORTING
+*          mtdkey       = clsmethkey
+*        IMPORTING
+*          method       = methodproperties
+*        EXCEPTIONS
+*          not_existing = 1.
+*      IF sy-subrc = 0.
+*        setattributesfromstructure( node = methodnode structure =
+*        methodproperties ).
+*        LOOP AT methoddescr-parameters INTO paramdescr.
+*          CLEAR paramproperties.
+*          parameternode = xmldoc-&gt;create_element( &apos;parameter&apos; ).
+*          paramkey-cmpname = clsmethkey-cmpname.
+*          paramkey-sconame = paramdescr-name.
+*          paramkey-clsname = objname.
+*          CALL FUNCTION &apos;SEO_PARAMETER_GET&apos;
+*            EXPORTING
+*              parkey    = paramkey
+*              version   = &apos;1&apos;
+*            IMPORTING
+*              parameter = paramproperties.
+*          setattributesfromstructure( node = parameternode structure =
+*          paramproperties ).
+*          rc = methodnode-&gt;append_child( parameternode ).
+*        ENDLOOP.
+*        CALL FUNCTION &apos;SEO_METHOD_SIGNATURE_GET&apos;
+*          EXPORTING
+*            mtdkey  = clsmethkey
+*            version = &apos;1&apos;
+*          IMPORTING
+*            exceps  = exceptionlist.
+*        LOOP AT exceptionlist INTO anexception.
+*          exceptionnode = xmldoc-&gt;create_element( &apos;exception&apos; ).
+*          setattributesfromstructure( node = exceptionnode structure =
+*          anexception ).
+*          rc = methodnode-&gt;append_child( exceptionnode ).
+*        ENDLOOP.
+**      if methodDescr-IS_REDEFINED = abap_false.
+*        methodkey-clsname = _classname.
+*        methodkey-cpdname = methoddescr-name.
+*        CALL METHOD cl_oo_classname_service=&gt;get_method_include
+*          EXPORTING
+*            mtdkey              = methodkey
+*          RECEIVING
+*            result              = includename
+*          EXCEPTIONS
+*            method_not_existing = 1.
+*        IF sy-subrc = 0.
+*          READ REPORT includename INTO reportlist.
+*          reportstring = buildsourcestring( sourcetable = reportlist ).
+*          sourcenode = xmldoc-&gt;create_element( &apos;source&apos; ).
+*          rc = sourcenode-&gt;if_ixml_node~set_value( reportstring ).
+*          rc = methodnode-&gt;append_child( sourcenode ).
+*        ENDIF.
+**        endif.
+*
+**        methodKey-CLSNAME = _className.
+**        methodKey-CPDNAME = methodDescr-name.
+**  if methodDescr-is_redefined = abap_true and
+**  methodDescr-is_abstract = abap_false.
+**  *Don&apos;t think i need this..... why am i doing it?
+**          call function &apos;SEO_INHERITANC_READ&apos;
+**            exporting
+**              clsKey = classkey
+**              version = &apos;1&apos;
+**            importing
+**              INHERITANCE = INHERITANCE
+**              REDEFINITIONS = REDEFINITIONS.
+**
+**        else.
+**        endif.
+*        rc = rootnode-&gt;append_child( methodnode ).
+*      ENDIF.
+*  ENDLOOP.
+*  rc = xmldoc-&gt;append_child( rootnode ).
+*  ixmldocument = xmldoc.
+*ENDMETHOD.
+*// &lt;--ewH: end of comment redesign inheritance</source>
+ </method>
+ <method CLSNAME="ZSAPLINK" CMPNAME="CREATEOBJECTFROMIXMLDOC" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+  <source>*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   SAPlink is free software; you can redistribute it and/or modify   |
+*|   it under the terms of the GNU General Public License as published |
+*|   by the Free Software Foundation; either version 2 of the License, |
+*|   or (at your option) any later version.                            |
+*|                                                                     |
+*|   SAPlink is distributed in the hope that it will be useful,        |
+*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
+*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
+*|   GNU General Public License for more details.                      |
+*|                                                                     |
+*|   You should have received a copy of the GNU General Public License |
+*|   along with SAPlink; if not, write to the                          |
+*|   Free Software Foundation, Inc.,                                   |
+*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*\---------------------------------------------------------------------/
+METHOD createobjectfromixmldoc .
+
+  DATA rootnode TYPE REF TO if_ixml_element.
+  DATA classheader TYPE vseoclass.
+  DATA classkey TYPE seoclskey.
+  DATA not_active TYPE boolean.
+  DATA filter TYPE REF TO if_ixml_node_filter.
+  DATA iterator TYPE REF TO if_ixml_node_iterator.
+  DATA node TYPE REF TO if_ixml_element.
+  DATA otrnode TYPE REF TO if_ixml_element.
+  DATA filter2 TYPE REF TO if_ixml_node_filter.
+  DATA iterator2 TYPE REF TO if_ixml_node_iterator.
+  DATA attribproperties TYPE vseoattrib.
+  DATA methodproperties TYPE vseomethod.
+  DATA methodredefinition TYPE seoredef.
+  DATA methodredeftable TYPE STANDARD TABLE OF seoredef WITH KEY clsname
+  refclsname version mtdname.
+  DATA superclass TYPE vseoextend.
+  DATA superclasskey TYPE vseoextend.
+  DATA includename TYPE program.
+  DATA methodsourcenode TYPE REF TO if_ixml_node.
+  DATA sourcenode TYPE REF TO if_ixml_node.
+  DATA source TYPE string.
+  DATA sourcetable TYPE TABLE OF string.
+  DATA methodkey TYPE seocpdkey.
+  DATA forwarddeclarationrow TYPE vseotypep.
+  DATA forwarddeclarations TYPE STANDARD TABLE OF vseotypep.
+  DATA node2 TYPE REF TO if_ixml_element.
+  DATA paraminfo TYPE vseoparam.
+  DATA exceptinfo TYPE vseoexcep.
+  DATA _devclass TYPE devclass.
+  DATA _objtype TYPE string.
+  DATA checkexists TYPE flag.
+
+  data inheritanceNode type ref to if_ixml_element.
+  data redefNode type ref to if_ixml_element.
+  DATA inheritance TYPE SEOR_INHERITANCE_R.
+  DATA redefinitions TYPE seor_redefinitions_r.
+  data redefinition like line of redefinitions.
+
+  CALL FUNCTION &apos;SEO_BUFFER_INIT&apos;.
+
+  _devclass = devclass.
+  _objtype = getobjecttype( ).
+
+  xmldoc = ixmldocument.
+  rootnode = xmldoc-&gt;find_from_name( _objtype ).
+
+  CALL METHOD getstructurefromattributes
+    EXPORTING
+      node      = rootnode
+    CHANGING
+      structure = classheader.
+
+  classkey-clsname = classheader-clsname.
+  objname = classkey-clsname.
+*  call function &apos;SEO_CLASS_EXISTENCE_CHECK&apos;
+*    EXPORTING
+*      clskey        = classkey
+*    IMPORTING
+*      not_active    = not_active
+*    EXCEPTIONS
+*      not_specified = 1
+*      not_existing  = 2
+*      is_interface  = 3
+*      no_text       = 4
+*      inconsistent  = 5
+*      others        = 6.
+*
+*  if sy-subrc &lt;&gt; 2 and overwrite &lt;&gt; &apos;X&apos;.
+*    raise exception type zcx_saplink
+*      exporting textid = zcx_saplink=&gt;existing.
+*  endif.
+  checkexists = checkexists( ).
+  IF checkexists IS NOT INITIAL.
+    IF overwrite IS INITIAL.
+      RAISE EXCEPTION TYPE zcx_saplink
+        EXPORTING textid = zcx_saplink=&gt;existing.
+    ELSE.
+*     delete object for new install
+      deleteobject( ).
+    ENDIF.
+  ENDIF.
+
+  classheader-version = &apos;0&apos;.
+  superclass = rootnode-&gt;get_attribute( name = &apos;REFCLSNAME&apos; ).
+  IF superclass IS NOT INITIAL.
+* set something for inheritence
+    superclasskey-clsname = classkey-clsname.
+    superclasskey-refclsname = superclass.
+    superclasskey-version = &apos;0&apos;.
+    superclasskey-state = &apos;1&apos;.
+
+  ENDIF.
+
+  CALL FUNCTION &apos;SEO_CLASS_CREATE_F_DATA&apos;
+    EXPORTING
+      save          = &apos; &apos;
+    CHANGING
+      class         = classheader
+    EXCEPTIONS
+      error_message = 5
+      existing      = 1
+      is_interface  = 2
+      not_created   = 3
+      db_error      = 4
+      OTHERS        = 5.
+
+  IF sy-subrc &lt;&gt; 0.
+    CASE sy-subrc.
+      WHEN 1.
+        RAISE EXCEPTION TYPE zcx_saplink
+          EXPORTING textid = zcx_saplink=&gt;not_authorized.
+      WHEN OTHERS.
+        RAISE EXCEPTION TYPE zcx_saplink
+          EXPORTING textid = zcx_saplink=&gt;system_error.
+    ENDCASE.
+  ENDIF.
+
+
+  DATA aobjname TYPE trobj_name.
+
+
+
+*  system-call create class classKey-clsname.
+*  if sy-subrc = 8.
+**Raise error
+*    exit.
+*  endif.
+*TODO:  Add aliases
+
+*Add attributes to new class
+  filter = xmldoc-&gt;create_filter_name( &apos;attribute&apos; ).
+  iterator = xmldoc-&gt;create_iterator_filtered( filter ).
+  node ?= iterator-&gt;get_next( ).
+  WHILE node IS NOT INITIAL.
+*   create OTR texts if necessary (for exception classes)
+    otrnode = node-&gt;find_from_name( &apos;sotr&apos; ).
+    IF otrnode IS NOT INITIAL.
+      me-&gt;createotrfromnode( otrnode ).
+    ENDIF.
+
+*   create attribute
+    CALL METHOD getstructurefromattributes
+      EXPORTING
+        node      = node
+      CHANGING
+        structure = attribproperties.
+    attribproperties-version = &apos;0&apos;.
+    CALL FUNCTION &apos;SEO_ATTRIBUTE_CREATE_F_DATA&apos;
+      EXPORTING
+        save      = &apos; &apos;
+      CHANGING
+        attribute = attribproperties.
+    node ?= iterator-&gt;get_next( ).
+  ENDWHILE.
+
+
+*/***TPJ - Added Logic for TYPES  -------------------*/
+  DATA: types           TYPE seoo_types_r,
+        type_properties LIKE LINE OF types.
+
+  filter = xmldoc-&gt;create_filter_name( &apos;types&apos; ).
+  iterator = xmldoc-&gt;create_iterator_filtered( filter ).
+  node ?= iterator-&gt;get_next( ).
+  WHILE node IS NOT INITIAL.
+    CLEAR type_properties.
+    CALL METHOD getstructurefromattributes
+      EXPORTING
+        node      = node
+      CHANGING
+        structure = type_properties.
+    type_properties-version = &apos;0&apos;.
+    IF type_properties-clsname = classheader-clsname.
+      CALL FUNCTION &apos;SEO_TYPE_CREATE_F_DATA&apos;
+        EXPORTING
+          save = &apos; &apos;
+        CHANGING
+          type = type_properties.
+    ENDIF.
+    node ?= iterator-&gt;get_next( ).
+  ENDWHILE.
+*/***TPJ - End of Added Logic for TYPES  -------------------*/
+
+*/***TPJ - Added Logic for Friends  -------------------*/
+  DATA: wa_friend type seofriends.
+
+  filter = xmldoc-&gt;create_filter_name( &apos;friends&apos; ).
+  iterator = xmldoc-&gt;create_iterator_filtered( filter ).
+  node ?= iterator-&gt;get_next( ).
+  WHILE node IS NOT INITIAL.
+    CLEAR wa_friend.
+    CALL METHOD getstructurefromattributes
+      EXPORTING
+        node      = node
+      CHANGING
+        structure = wa_friend.
+    wa_friend-version = &apos;0&apos;.
+    IF wa_friend-clsname = classheader-clsname.
+      CALL FUNCTION &apos;SEO_FRIENDSHIP_CREATE_F_DATA&apos;
+        EXPORTING
+          save       = &apos; &apos;
+        CHANGING
+          friendship = wa_friend.
+    ENDIF.
+    node ?= iterator-&gt;get_next( ).
+  ENDWHILE.
+*/***TPJ - End of Added Logic for Friends  -------------------*/
+
+*// ewH: Added Logic for Implementings(interfaces)--&gt;
+  DATA: it_implementings type seor_implementings_r,
+        wa_implementings like line OF it_implementings.
+
+  filter = xmldoc-&gt;create_filter_name( &apos;implementing&apos; ).
+  iterator = xmldoc-&gt;create_iterator_filtered( filter ).
+  node ?= iterator-&gt;get_next( ).
+  WHILE node IS NOT INITIAL.
+    CLEAR wa_implementings.
+    CALL METHOD getstructurefromattributes
+      EXPORTING
+        node      = node
+      CHANGING
+        structure = wa_implementings.
+
+    CALL FUNCTION &apos;SEO_IMPLEMENTG_CREATE_F_DATA&apos;
+      EXPORTING
+        SAVE                 = &apos; &apos;
+*        IMPL_DETAILS         =
+      CHANGING
+        implementing         = wa_implementings
+      EXCEPTIONS
+        EXISTING             = 1
+        IS_INHERITANCE       = 2
+        IS_COMPRISING        = 3
+        NOT_CREATED          = 4
+        DB_ERROR             = 5
+        OTHERS               = 6
+              .
+
+    if sy-subrc &lt;&gt; 0.
+      RAISE EXCEPTION TYPE zcx_saplink
+        EXPORTING textid = zcx_saplink=&gt;system_error.
+    endif.
+
+    node ?= iterator-&gt;get_next( ).
+  ENDWHILE.
+*//&lt;--ewH: End of Added Logic for Implementings(interfaces)
+
+*// ewH: start redesign method/inheritances--&gt;
+* inheritance
+  inheritanceNode = rootNode-&gt;find_from_name( &apos;inheritance&apos; ).
+  if inheritanceNode is bound.
+    CALL METHOD getstructurefromattributes
+      EXPORTING
+        node      = inheritanceNode
+      CHANGING
+        structure = inheritance.
+*   redefs
+    filter = inheritanceNode-&gt;create_filter_name( &apos;redefinition&apos; ).
+    iterator = inheritanceNode-&gt;create_iterator_filtered( filter ).
+    redefNode ?= iterator-&gt;get_next( ).
+    WHILE redefNode IS NOT INITIAL.
+      CALL METHOD getstructurefromattributes
+        EXPORTING
+          node      = redefNode
+        CHANGING
+          structure = redefinition.
+      append redefinition to redefinitions.
+      redefNode ?= iterator-&gt;get_next( ).
+    ENDWHILE.
+
+    CALL FUNCTION &apos;SEO_INHERITANC_CREATE_F_DATA&apos;
+      EXPORTING
+        SAVE                  = &apos; &apos;
+      CHANGING
+        inheritance           = inheritance
+        REDEFINITIONS         = redefinitions
+      EXCEPTIONS
+        EXISTING              = 1
+        IS_COMPRISING         = 2
+        IS_IMPLEMENTING       = 3
+        RECURSION             = 4
+        NOT_CREATED           = 5
+        DB_ERROR              = 6
+        OTHERS                = 7.
+
+    IF sy-subrc &lt;&gt; 0.
+      RAISE EXCEPTION TYPE zcx_saplink
+        EXPORTING textid = zcx_saplink=&gt;system_error.
+    ENDIF.
+  endif.
+
+*Add Methods to new class
+  filter = xmldoc-&gt;create_filter_name( &apos;method&apos; ).
+  iterator = xmldoc-&gt;create_iterator_filtered( filter ).
+  node ?= iterator-&gt;get_next( ).
+  WHILE node IS NOT INITIAL.
+    CLEAR methodproperties.
+    CALL METHOD getstructurefromattributes
+      EXPORTING
+        node      = node
+      CHANGING
+        structure = methodproperties.
+
+*   only create metadata if method is not a redefinition
+    read table redefinitions into redefinition
+    with key mtdname = methodProperties-cmpname.
+    IF sy-subrc = 0.
+      node ?= iterator-&gt;get_next( ).
+      continue.
+    endif.
+
+*// ewh: begin of backward compatibility hack, can be removed for next
+*//      major release--&gt;
+    IF methodproperties-clsname &lt;&gt; classheader-clsname.
+      MOVE-CORRESPONDING methodproperties TO methodredefinition.
+      methodredefinition-clsname = classheader-clsname.
+      methodredefinition-refclsname = methodproperties-clsname.
+      methodredefinition-version = &apos;0&apos;.
+      methodredefinition-mtdabstrct = &apos;&apos;.
+      methodredefinition-mtdname = methodproperties-cmpname.
+      APPEND methodredefinition TO methodredeftable.
+
+      node ?= iterator-&gt;get_next( ).
+      continue.
+    endif.
+*// &lt;--ewH: break in backward compatibility hack - 2Bcontinued below
+
+    CALL FUNCTION &apos;SEO_METHOD_CREATE_F_DATA&apos;
+      EXPORTING
+        save   = &apos; &apos;
+      CHANGING
+        method = methodproperties.
+    filter2 = node-&gt;create_filter_name( &apos;parameter&apos; ).
+    iterator2 = node-&gt;create_iterator_filtered( filter2 ).
+    node2 ?= iterator2-&gt;get_next( ).
+    WHILE node2 IS NOT INITIAL.
+      CLEAR paraminfo.
+      CALL METHOD getstructurefromattributes
+        EXPORTING
+          node      = node2
+        CHANGING
+          structure = paraminfo.
+      CALL FUNCTION &apos;SEO_PARAMETER_CREATE_F_DATA&apos;
+        EXPORTING
+          save      = &apos; &apos;
+        CHANGING
+          parameter = paraminfo.
+
+      node2 ?= iterator2-&gt;get_next( ).
+    ENDWHILE.
+    filter2 = node-&gt;create_filter_name( &apos;exception&apos; ).
+    iterator2 = node-&gt;create_iterator_filtered( filter2 ).
+    node2 ?= iterator2-&gt;get_next( ).
+    WHILE node2 IS NOT INITIAL.
+      CALL METHOD getstructurefromattributes
+        EXPORTING
+          node      = node2
+        CHANGING
+          structure = exceptinfo.
+      CALL FUNCTION &apos;SEO_EXCEPTION_CREATE_F_DATA&apos;
+        EXPORTING
+          save  = &apos; &apos;
+        CHANGING
+          excep = exceptinfo.
+
+      node2 ?= iterator2-&gt;get_next( ).
+
+    ENDWHILE.
+    node ?= iterator-&gt;get_next( ).
+  ENDWHILE.
+*// &lt;--ewH: end redesign method/inheritances
+
+*// ewh: continuation of backward compatibility hack--&gt;
+  IF ( methodredeftable IS NOT INITIAL OR superclass-clsname
+  IS NOT INITIAL ) and inheritance is initial.
+    CALL FUNCTION &apos;SEO_INHERITANC_CREATE_F_DATA&apos;
+      EXPORTING
+        save          = &apos; &apos;
+      CHANGING
+        inheritance   = superclasskey
+        redefinitions = methodredeftable.
+  ENDIF.
+*// &lt;--ewH: end of backward compatibility hack
+
+*// ewH: begin comment of method code--&gt;
+**Add Methods to new class
+*  filter = xmldoc-&gt;create_filter_name( &apos;method&apos; ).
+*  iterator = xmldoc-&gt;create_iterator_filtered( filter ).
+*  node ?= iterator-&gt;get_next( ).
+*  WHILE node IS NOT INITIAL.
+*    CLEAR methodproperties.
+*    CALL METHOD getstructurefromattributes
+*      EXPORTING
+*        node      = node
+*      CHANGING
+*        structure = methodproperties.
+*    methodproperties-version = &apos;0&apos;.
+*    IF methodproperties-clsname = classheader-clsname.
+** method created in this class
+*      CALL FUNCTION &apos;SEO_METHOD_CREATE_F_DATA&apos;
+*        EXPORTING
+*          save   = &apos; &apos;
+*        CHANGING
+*          method = methodproperties.
+*      filter2 = node-&gt;create_filter_name( &apos;parameter&apos; ).
+*      iterator2 = node-&gt;create_iterator_filtered( filter2 ).
+*      node2 ?= iterator2-&gt;get_next( ).
+*      WHILE node2 IS NOT INITIAL.
+**29a
+*        CLEAR paraminfo.
+**/29a
+*        CALL METHOD getstructurefromattributes
+*          EXPORTING
+*            node      = node2
+*          CHANGING
+*            structure = paraminfo.
+*        CALL FUNCTION &apos;SEO_PARAMETER_CREATE_F_DATA&apos;
+*          EXPORTING
+*            save      = &apos; &apos;
+*          CHANGING
+*            parameter = paraminfo.
+*
+*        node2 ?= iterator2-&gt;get_next( ).
+*      ENDWHILE.
+*      filter2 = node-&gt;create_filter_name( &apos;exception&apos; ).
+*      iterator2 = node-&gt;create_iterator_filtered( filter2 ).
+*      node2 ?= iterator2-&gt;get_next( ).
+*      WHILE node2 IS NOT INITIAL.
+*        CALL METHOD getstructurefromattributes
+*          EXPORTING
+*            node      = node2
+*          CHANGING
+*            structure = exceptinfo.
+*        CALL FUNCTION &apos;SEO_EXCEPTION_CREATE_F_DATA&apos;
+*          EXPORTING
+*            save  = &apos; &apos;
+*          CHANGING
+*            excep = exceptinfo.
+*
+*        node2 ?= iterator2-&gt;get_next( ).
+*
+*      ENDWHILE.
+*    ELSE.
+** method redefined in this class
+*      MOVE-CORRESPONDING methodproperties TO methodredefinition.
+*      methodredefinition-clsname = classheader-clsname.
+*      methodredefinition-refclsname = methodproperties-clsname.
+*      methodredefinition-version = &apos;0&apos;.
+**29a -- will cause an issue if a subclass passes the inheritance down
+**stream... is this possible in abap?
+*      methodredefinition-mtdabstrct = &apos;&apos;.
+**/29a
+*      methodredefinition-mtdname = methodproperties-cmpname.
+*      APPEND methodredefinition TO methodredeftable.
+*    ENDIF.
+*    node ?= iterator-&gt;get_next( ).
+*
+*  ENDWHILE.
+*
+*
+*
+**29a
+*  IF methodredeftable IS NOT INITIAL OR superclass-clsname
+*  IS NOT INITIAL
+*  .
+**/29a
+*    CALL FUNCTION &apos;SEO_INHERITANC_CREATE_F_DATA&apos;
+*      EXPORTING
+*        save          = &apos; &apos;
+*      CHANGING
+*        inheritance   = superclasskey
+*        redefinitions = methodredeftable.
+*  ENDIF.
+*// &lt;--ewH: end comment method code
+
+  DATA classtype TYPE seoclstype.
+  DATA impkeys TYPE seor_implementing_keys.
+  DATA iserror TYPE boolean.
+*data devClass type devclass.
+*devClass = &apos;$TMP&apos;.
+
+
+*create forward declarations
+*bug 77
+  filter = xmldoc-&gt;create_filter_name( &apos;forwardDeclaration&apos; ).
+  iterator = xmldoc-&gt;create_iterator_filtered( filter ).
+  node ?= iterator-&gt;get_next( ).
+
+  forwarddeclarationrow-clsname = classkey-clsname.
+  forwarddeclarationrow-version = &apos;0&apos;.
+  forwarddeclarationrow-tputype = &apos;&apos;.
+*29a
+*  forwardDeclarationRow-TPUTYPE = &apos;0&apos;.
+*/29a
+  forwarddeclarationrow-explicit =  &apos;X&apos;.
+  forwarddeclarationrow-implicit = &apos;&apos;.
+
+  WHILE node IS NOT INITIAL.
+    source = node-&gt;get_value( ).
+    forwarddeclarationrow-typegroup = source.
+*29a
+    TYPE-POOLS seot.
+    DATA forwarddectable TYPE seot_typepusages_w.
+    DATA forwarddecrow LIKE LINE OF forwarddectable.
+    CLEAR forwarddecrow.
+    REFRESH forwarddectable.
+    forwarddecrow-clsname = classkey-clsname.
+    forwarddecrow-version = &apos;0&apos;.
+    forwarddecrow-tputype = &apos;0&apos;.
+    forwarddecrow-explicit =  &apos;X&apos;.
+    forwarddecrow-implicit = &apos;&apos;.
+    forwarddecrow-typegroup = source.
+    APPEND forwarddecrow TO forwarddectable.
+    CALL FUNCTION &apos;SEO_TYPEPUSAGE_CREATE&apos;
+      EXPORTING
+        typepusages = forwarddectable.
+
+*    call function &apos;SEO_TYPEPUSAGE_CHANGE_F_DATA&apos;
+*          exporting
+*            SAVE = ABAP_TRUE
+*          changing
+*            TYPEPUSAGE = forwardDeclarationRow.
+*/29a
+
+    node ?= iterator-&gt;get_next( ).
+  ENDWHILE.
+
+  _devclass = devclass.
+
+  CALL FUNCTION &apos;SEO_CLIF_SAVE_ALL&apos;
+    EXPORTING
+      cifkey         = classkey
+    IMPORTING
+      error_occurred = iserror
+    CHANGING
+      devclass       = _devclass.
+
+  IF iserror IS NOT INITIAL.
+    RAISE EXCEPTION TYPE zcx_saplink
+      EXPORTING
+        textid = zcx_saplink=&gt;error_message
+        msg = &apos;error during save&apos;.
+  ENDIF.
+
+*Insert source code into the methods
+  filter = xmldoc-&gt;create_filter_name( &apos;method&apos; ).
+  iterator = xmldoc-&gt;create_iterator_filtered( filter ).
+  node ?= iterator-&gt;get_next( ).
+
+  WHILE node IS NOT INITIAL.
+    CALL METHOD getstructurefromattributes
+      EXPORTING
+        node      = node
+      CHANGING
+        structure = methodproperties.
+    methodkey-clsname = objname.
+    methodkey-cpdname = methodproperties-cmpname.
+    aobjname = methodkey.
+    CALL FUNCTION &apos;RS_INSERT_INTO_WORKING_AREA&apos;
+      EXPORTING
+        object            = &apos;METH&apos;
+        obj_name          = aobjname
+      EXCEPTIONS
+        wrong_object_name = 1.
+    methodsourcenode = node-&gt;find_from_name( &apos;source&apos; ).
+    IF methodsourcenode IS NOT INITIAL.
+      includename = cl_oo_classname_service=&gt;get_method_include(
+      methodkey ).
+      source = methodsourcenode-&gt;get_value( ).
+      sourcetable = buildtablefromstring( source ).
+*      insert report includeName from sourceTable state &apos;I&apos;.
+      INSERT REPORT includename FROM sourcetable EXTENSION TYPE
+      srext_ext_class_method STATE &apos;I&apos; PROGRAM TYPE &apos;I&apos;.
+    ENDIF.
+
+    node ?= iterator-&gt;get_next( ).
+  ENDWHILE.
+
+*// ewH: create interface methods--&gt;
+  filter = xmldoc-&gt;create_filter_name( &apos;interfaceMethod&apos; ).
+  iterator = xmldoc-&gt;create_iterator_filtered( filter ).
+  node ?= iterator-&gt;get_next( ).
+
+  WHILE node IS NOT INITIAL.
+    CALL METHOD getstructurefromattributes
+      EXPORTING
+        node      = node
+      CHANGING
+        structure = methodKey.
+    aobjname = methodkey.
+    CALL FUNCTION &apos;RS_INSERT_INTO_WORKING_AREA&apos;
+      EXPORTING
+        object            = &apos;METH&apos;
+        obj_name          = aobjname
+      EXCEPTIONS
+        wrong_object_name = 1.
+    methodsourcenode = node-&gt;find_from_name( &apos;source&apos; ).
+    IF methodsourcenode IS NOT INITIAL.
+      includename = cl_oo_classname_service=&gt;get_method_include(
+      methodkey ).
+      source = methodsourcenode-&gt;get_value( ).
+      sourcetable = buildtablefromstring( source ).
+      INSERT REPORT includename FROM sourcetable EXTENSION TYPE
+      srext_ext_class_method STATE &apos;I&apos; PROGRAM TYPE &apos;I&apos;.
+    ENDIF.
+
+    node ?= iterator-&gt;get_next( ).
+  ENDWHILE.
+*// &lt;--ewH: end create interface methods
+
+*insert code for local implementation
+  DATA _classname TYPE seoclsname.
+  _classname = objname.
+  sourcenode = xmldoc-&gt;find_from_name( &apos;localImplementation&apos; ).
+  IF sourcenode IS NOT INITIAL.
+    includename = cl_oo_classname_service=&gt;get_ccimp_name( _classname ).
+    source = sourcenode-&gt;get_value( ).
+    sourcetable = buildtablefromstring( source ).
+    INSERT REPORT includename FROM sourcetable EXTENSION TYPE
+    srext_ext_class_class STATE &apos;I&apos; PROGRAM TYPE &apos;I&apos;.
+  ENDIF.
+
+*insert code for local types
+  sourcenode = xmldoc-&gt;find_from_name( &apos;localTypes&apos; ).
+  IF sourcenode IS NOT INITIAL.
+    includename = cl_oo_classname_service=&gt;get_ccdef_name( _classname ).
+    source = sourcenode-&gt;get_value( ).
+    sourcetable = buildtablefromstring( source ).
+    INSERT REPORT includename FROM sourcetable EXTENSION TYPE
+    srext_ext_class_class STATE &apos;I&apos; PROGRAM TYPE &apos;I&apos;.
+  ENDIF.
+
+*insert code for local macros
+  sourcenode = xmldoc-&gt;find_from_name( &apos;localMacros&apos; ).
+  IF sourcenode IS NOT INITIAL.
+    includename = cl_oo_classname_service=&gt;get_ccmac_name( _classname ).
+    source = sourcenode-&gt;get_value( ).
+    sourcetable = buildtablefromstring( source ).
+    INSERT REPORT includename FROM sourcetable EXTENSION TYPE
+    srext_ext_class_class STATE &apos;I&apos; PROGRAM TYPE &apos;I&apos;.
+  ENDIF.
+
+*insert all objects into worklist
+  aobjname = classkey-clsname.
+  CALL FUNCTION &apos;RS_INSERT_INTO_WORKING_AREA&apos;
+    EXPORTING
+      object            = &apos;CLSD&apos;
+      obj_name          = aobjname
+    EXCEPTIONS
+      wrong_object_name = 1.
+  IF sy-subrc NE 0.
+
+  ENDIF.
+
+  CALL FUNCTION &apos;RS_INSERT_INTO_WORKING_AREA&apos;
+    EXPORTING
+      object            = &apos;CPUB&apos;
+      obj_name          = aobjname
+    EXCEPTIONS
+      wrong_object_name = 1.
+  IF sy-subrc NE 0.
+
+  ENDIF.
+  CALL FUNCTION &apos;RS_INSERT_INTO_WORKING_AREA&apos;
+    EXPORTING
+      object            = &apos;CPRO&apos;
+      obj_name          = aobjname
+    EXCEPTIONS
+      wrong_object_name = 1.
+  IF sy-subrc NE 0.
+
+  ENDIF.
+  CALL FUNCTION &apos;RS_INSERT_INTO_WORKING_AREA&apos;
+    EXPORTING
+      object            = &apos;CPRI&apos;
+      obj_name          = aobjname
+    EXCEPTIONS
+      wrong_object_name = 1.
+  IF sy-subrc NE 0.
+
+  ENDIF.
+
+  DATA _tempname(35) TYPE c.
+  DATA length TYPE i.
+  _tempname = &apos;==================================&apos;.
+  length = NUMOFCHAR( aobjname ).
+  _tempname(length) = aobjname.
+  _tempname+30 = &apos;CCDEF&apos;.
+  aobjname = _tempname.
+  CALL FUNCTION &apos;RS_INSERT_INTO_WORKING_AREA&apos;
+    EXPORTING
+      object            = &apos;CINC&apos;
+      obj_name          = aobjname
+    EXCEPTIONS
+      wrong_object_name = 1.
+
+
+  _tempname+30 = &apos;CCIMP&apos;.
+  aobjname = _tempname.
+  CALL FUNCTION &apos;RS_INSERT_INTO_WORKING_AREA&apos;
+    EXPORTING
+      object            = &apos;CINC&apos;
+      obj_name          = aobjname
+    EXCEPTIONS
+      wrong_object_name = 1.
+
+  _tempname+30 = &apos;CCMAC&apos;.
+  aobjname = _tempname.
+  CALL FUNCTION &apos;RS_INSERT_INTO_WORKING_AREA&apos;
+    EXPORTING
+      object            = &apos;CINC&apos;
+      obj_name          = aobjname
+    EXCEPTIONS
+      wrong_object_name = 1.
+
+  _tempname+30 = &apos;CP  &apos;.
+  aobjname = _tempname.
+  CALL FUNCTION &apos;RS_INSERT_INTO_WORKING_AREA&apos;
+    EXPORTING
+      object            = &apos;REPT&apos;
+      obj_name          = aobjname
+    EXCEPTIONS
+      wrong_object_name = 1.
+
+  CALL FUNCTION &apos;SEO_CLIF_SAVE_ALL&apos;
+    EXPORTING
+      cifkey         = classkey
+    IMPORTING
+      error_occurred = iserror
+    CHANGING
+      devclass       = _devclass.
+
+* i guess if we made it this far, we will assume success
+* successful install
+  name = objname.
+
+ENDMETHOD.</source>
+ </method>
+ <method CLSNAME="ZSAPLINK" CMPNAME="DELETEOBJECT" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+  <source>*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   SAPlink is free software; you can redistribute it and/or modify   |
+*|   it under the terms of the GNU General Public License as published |
+*|   by the Free Software Foundation; either version 2 of the License, |
+*|   or (at your option) any later version.                            |
+*|                                                                     |
+*|   SAPlink is distributed in the hope that it will be useful,        |
+*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
+*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
+*|   GNU General Public License for more details.                      |
+*|                                                                     |
+*|   You should have received a copy of the GNU General Public License |
+*|   along with SAPlink; if not, write to the                          |
+*|   Free Software Foundation, Inc.,                                   |
+*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*\---------------------------------------------------------------------/
+method DELETEOBJECT .
+
+data clsKey type SEOCLSKEY.
+
+  clsKey-clsname = objname.
+  CALL FUNCTION &apos;SEO_CLASS_DELETE_W_DEPS&apos;
+    EXPORTING
+      clskey             = clsKey
+    EXCEPTIONS
+     NOT_EXISTING       = 1
+     IS_INTERFACE       = 2
+     NOT_DELETED        = 3
+     DB_ERROR           = 4
+     OTHERS             = 5
+            .
+  if sy-subrc &lt;&gt; 0.
+    case sy-subrc.
+      when 1.
+        raise exception type zcx_saplink
+          exporting textid = zcx_saplink=&gt;not_found.
+      when 2.
+        raise exception type zcx_saplink
+          exporting
+            textid = zcx_saplink=&gt;error_message
+            msg = &apos;interfaces not supported&apos;.
+      when 3.
+        raise exception type zcx_saplink
+          exporting
+            textid = zcx_saplink=&gt;error_message
+            msg = &apos;class not deleted&apos;.
+      when others.
+        raise exception type zcx_saplink
+          exporting textid = zcx_saplink=&gt;system_error.
+    endcase.
+  endif.
+endmethod.</source>
+ </method>
+ <method CLSNAME="ZSAPLINK_CLASS" CMPNAME="FINDIMPLEMENTINGCLASS" VERSION="0" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="1 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20060920" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="620" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="FINDIMPLEMENTINGCLASS" SCONAME="METHODNAME" VERSION="0" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20060920" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
+  <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="FINDIMPLEMENTINGCLASS" SCONAME="STARTCLASS" VERSION="0" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20060920" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING" PAROPTIONL="X"/>
+  <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="FINDIMPLEMENTINGCLASS" SCONAME="CLASSNAME" VERSION="0" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20060920" CHANGEDON="00000000" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="1" TYPE="STRING"/>
+  <source>*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   SAPlink is free software; you can redistribute it and/or modify   |
+*|   it under the terms of the GNU General Public License as published |
+*|   by the Free Software Foundation; either version 2 of the License, |
+*|   or (at your option) any later version.                            |
+*|                                                                     |
+*|   SAPlink is distributed in the hope that it will be useful,        |
+*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
+*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
+*|   GNU General Public License for more details.                      |
+*|                                                                     |
+*|   You should have received a copy of the GNU General Public License |
+*|   along with SAPlink; if not, write to the                          |
+*|   Free Software Foundation, Inc.,                                   |
+*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*\---------------------------------------------------------------------/
+method FINDIMPLEMENTINGCLASS .
+
+data methodKey type SEOCMPKEY.
+data methodProperties type VSEOMETHOD.
+data classDescr type ref to cl_abap_classdescr.
+data superClass type ref to cl_abap_typeDescr.
+data superClassName type string.
+
+  if startClass is initial.
+    methodKey-CLSNAME = objName.
+  else.
+    methodKey-clsName = startClass.
+  endif.
+  methodKey-CMPNAME = methodName.
+
+  call function &apos;SEO_METHOD_GET&apos;
+        exporting
+          MTDKEY = methodKey
+        importing
+          method = methodProperties
+        exceptions
+          NOT_EXISTING = 1.
+  if sy-subrc = 0.
+    className = methodProperties-clsname.
+  else.
+    classDescr ?= cl_abap_classDescr=&gt;describe_by_name(
+    methodKey-clsName ).
+    call method classDescr-&gt;GET_SUPER_CLASS_TYPE
+        receiving
+         P_DESCR_REF = superClass
+        exceptions
+          SUPER_CLASS_NOT_FOUND = 1.
+    superClassName = superClass-&gt;GET_RELATIVE_NAME( ).
+    className = FINDIMPLEMENTINGCLASS( methodName = methodName
+    startClass = superCLassName ).
+  endif.
+endmethod.</source>
+ </method>
+ <method CLSNAME="ZSAPLINK" CMPNAME="GETOBJECTTYPE" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+  <source>*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   SAPlink is free software; you can redistribute it and/or modify   |
+*|   it under the terms of the GNU General Public License as published |
+*|   by the Free Software Foundation; either version 2 of the License, |
+*|   or (at your option) any later version.                            |
+*|                                                                     |
+*|   SAPlink is distributed in the hope that it will be useful,        |
+*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
+*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
+*|   GNU General Public License for more details.                      |
+*|                                                                     |
+*|   You should have received a copy of the GNU General Public License |
+*|   along with SAPlink; if not, write to the                          |
+*|   Free Software Foundation, Inc.,                                   |
+*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*\---------------------------------------------------------------------/
+method GETOBJECTTYPE .
+
+  objecttype = &apos;CLAS&apos;.  &quot;Class
+
+endmethod.</source>
+ </method>
+</CLAS>

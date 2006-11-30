@@ -1,0 +1,1204 @@
+*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   SAPlink is free software; you can redistribute it and/or modify   |
+*|   it under the terms of the GNU General Public License as published |
+*|   by the Free Software Foundation; either version 2 of the License, |
+*|   or (at your option) any later version.                            |
+*|                                                                     |
+*|   SAPlink is distributed in the hope that it will be useful,        |
+*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
+*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
+*|   GNU General Public License for more details.                      |
+*|                                                                     |
+*|   You should have received a copy of the GNU General Public License |
+*|   along with SAPlink; if not, write to the                          |
+*|   Free Software Foundation, Inc.,                                   |
+*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*\---------------------------------------------------------------------/
+*&---------------------------------------------------------------------*
+*& Report  ZSAPLINK_INSTALLER
+*&
+*&---------------------------------------------------------------------*
+*&
+*&
+*&---------------------------------------------------------------------*
+
+REPORT  ZSAPLINK_INSTALLER.
+
+
+type-pools: seor, abap.
+data objName type STRING.
+data retUserAct type i.
+data retFileTable type FILETABLE.
+data retRc type sysubrc.
+data retUserAction type i.
+
+data tempXMLString type string.
+data ixmlNugget type ref to if_ixml_document.
+
+selection-screen begin of Line.
+  SELECTION-SCREEN COMMENT 1(20) fileCom FOR FIELD NUGGFIL.
+  parameters NUGGFIL(300) type c modif id did obligatory.
+selection-screen end of Line.
+
+selection-screen begin of Line.
+  SELECTION-SCREEN COMMENT 1(20) checkCom FOR FIELD NUGGFIL.
+  parameters overwrt type c as checkbox.
+selection-screen end of Line.
+
+
+clear tempXMLString.
+perform uploadXMLFromLM using NUGGFIL tempXMLString.
+perform CONVERTSTRINGTOIXMLDOC using tempXMLString changing ixmlNugget.
+perform installNugget using ixmlNugget overwrt.
+
+
+*/--------------------------------------------------------------------\
+*| Selection screen events                                            |
+initialization.
+  fileCom = 'Installation Nugget'.
+  checkCom = 'Overwrite Originals'.
+
+
+at selection-screen on value-request for NUGGFIL.
+  call method CL_GUI_FRONTEND_SERVICES=>FILE_OPEN_DIALOG
+      exporting
+        MULTISELECTION = abap_false
+        FILE_FILTER = '*.nugg'
+        DEFAULT_EXTENSION = 'nugg'
+      changing
+        FILE_TABLE = retFileTable
+        rc = retRc
+        user_Action = retUserAction.
+  read table retFileTable into NUGGFIL index 1.
+  refresh retFileTable.
+
+*\--------------------------------------------------------------------/
+
+
+*/--------------------------------------------------------------------\
+*| Forms from the SAPLink Installer                                   |
+form createString
+      using
+        tempTable type table_of_strings
+      changing
+        bigString type string.
+
+data sTemp type string.
+  loop at tempTable into sTemp.
+    concatenate bigString sTemp CL_ABAP_CHAR_UTILITIES=>NEWLINE into
+    bigString.
+  endloop.
+
+endform.
+
+*|                                                                     |
+*|                                                                     |
+
+form uploadXMLFromLM using p_filename xmlString type string .
+data retFileTable type FILETABLE.
+data retRc type sysubrc.
+data retUserAction type i.
+data tempTable type table_of_strings.
+data tempTable_bin type table  of xstring.
+data l_fileName type string.
+
+  l_fileName = p_filename.
+  call method CL_GUI_FRONTEND_SERVICES=>GUI_UPLOAD
+        exporting
+          FILENAME = l_fileName
+        changing
+          data_tab = tempTable.
+  perform createString using tempTable changing xmlString.
+endform.
+*\--------------------------------------------------------------------/
+
+
+*/--------------------------------------------------------------------\
+*| Forms from the SAPLink Root Class                                  |
+form CONVERTSTRINGTOIXMLDOC
+      using
+        xmlString type string
+      changing
+        ixmlDocument type ref to if_ixml_document.
+
+data ixml type ref to if_ixml.
+data streamFactory type ref to IF_IXML_STREAM_FACTORY.
+data iStream type ref to if_ixml_istream.
+data ixmlParser type ref to if_ixml_parser.
+data xmlDoc type ref to if_ixml_document.
+
+  ixml = cl_ixml=>create( ).
+  xmlDoc = ixml->create_document( ).
+  streamFactory = ixml->CREATE_STREAM_FACTORY( ).
+  iStream = streamFactory->CREATE_ISTREAM_STRING( xmlString ).
+  iXMLParser = iXML->create_parser(  stream_factory = streamFactory
+                                     istream        = iStream
+                                     document       = xmlDoc ).
+  iXMLParser->parse( ).
+  ixmlDocument = xmlDoc.
+
+endform.
+
+*|                                                                     |
+*|                                                                     |
+
+form BUILDTABLEFROMSTRING
+      using
+        SOURCE type string
+      changing
+        sourceTable type table_of_strings.
+
+  split source at CL_ABAP_CHAR_UTILITIES=>NEWLINE into table sourceTable
+  .
+endform.
+
+*|                                                                     |
+*|                                                                     |
+
+form GETSTRUCTUREFROMATTRIBUTES
+      using
+        NODE type ref to if_ixml_element
+      changing
+        structure type data.
+
+
+data attributeList type ref to IF_IXML_NAMED_NODE_MAP.
+data nodeIterator type ref to IF_IXML_NODE_ITERATOR.
+data attributeNode type ref to if_ixml_node.
+data value type string.
+data name type string.
+field-symbols <value> type any.
+
+  attributeList = node->GET_ATTRIBUTES( ).
+  nodeIterator = attributeList->create_iterator( ).
+  attributeNode = nodeIterator->get_next( ).
+  while attributeNode is not initial.
+    name = attributeNode->get_name( ).
+    if name = 'VERSION'.
+      value = '0'.
+    else.
+      value = attributeNode->get_value( ).
+    endif.
+    assign component name of structure structure to <value>.
+    if sy-subrc = 0.
+      <value> = value.
+    endif.
+    attributeNode = nodeIterator->get_next( ).
+  endwhile.
+
+endform.
+
+*|                                                                     |
+*|                                                                     |
+
+FORM GETOBJECTInfoFROMIXMLDOC
+      using ixmlDocument type ref to if_ixml_document
+      changing objTypeName type string objName type string.
+data rootNode type ref to IF_IXML_NODE.
+data rootAttr type ref to IF_IXML_NAMED_NODE_MAP.
+data AttrNode type ref to IF_IXML_NODE.
+data nodeName type string.
+
+  rootNode ?= ixmlDocument->GET_ROOT_ELEMENT( ).
+
+* get object type
+  objTypeName = rootNode->GET_NAME( ).
+  translate objTypeName to upper case.
+
+* get object name
+  rootAttr = rootNode->GET_ATTRIBUTES( ).
+  AttrNode = rootAttr->GET_ITEM( 0 ).
+  objName = AttrNode->GET_VALUE( ).
+
+ENDFORM.
+
+*|                                                                     |
+*|                                                                     |
+
+form CREATEOTRFROMNODE using node type ref to if_ixml_element.
+data txtNode type ref to if_ixml_element.
+data filter type ref to if_ixml_node_filter.
+data iterator type ref to if_ixml_node_iterator.
+
+data sotrHeader type SOTR_HEAD.
+data sotrTextLine type SOTR_TEXT.
+data sotrTextTable type table of SOTR_TEXT.
+data sotrPaket type SOTR_PACK.
+
+* get OTR header info
+  perform GETSTRUCTUREFROMATTRIBUTES
+        using
+          node
+        changing
+          sotrHeader.
+
+* get OTR text info
+  filter = node->create_filter_name( 'sotrText' ).
+  iterator = node->create_iterator_filtered( filter ).
+  txtNode ?= iterator->get_next( ).
+
+  while txtNode is not initial.
+    clear sotrTextLine.
+    perform GETSTRUCTUREFROMATTRIBUTES
+          using
+            txtNode
+          changing
+            sotrTextLine.
+    append sotrTextLine to sotrTextTable.
+    txtNode ?= iterator->get_next( ).
+  endwhile.
+
+CALL FUNCTION 'SOTR_GET_CONCEPT'
+      EXPORTING
+        concept = sotrHeader-concept
+*       IMPORTING
+*       HEADER =
+*       TABLES
+*       ENTRIES =
+       EXCEPTIONS
+      NO_ENTRY_FOUND = 1
+*   OTHERS = 2
+.
+  IF sy-subrc <> 1.
+*   delete OTR if exists already
+  CALL FUNCTION 'SOTR_DELETE_CONCEPT'
+        EXPORTING
+          concept = sotrHeader-concept
+          EXCEPTIONS
+          NO_AUTHORIZATION = 1
+          NO_ENTRY_FOUND = 2. "who cares
+*   CONCEPT_USED = 3
+*   NO_MASTER_LANGUAGE = 4
+*   NO_SOURCE_SYSTEM = 5
+*   NO_TADIR_ENTRY = 6
+*   ERROR_IN_CORRECTION = 7
+*   USER_CANCELLED = 8
+*   OTHERS = 9
+*   .
+*  if sy-subrc = 1.
+*  raise exception type zcx_saplink
+*  exporting textid = zcx_saplink=>not_authorized.
+*  endif.
+ENDIF.
+
+data objectTable type SOTR_OBJECTS.
+data objectType type line of SOTR_OBJECTS.
+* Retrieve object type of OTR
+  call function 'SOTR_OBJECT_GET_OBJECTS'
+    exporting
+      object_vector    = sotrHeader-objid_vec
+    importing
+      objects          = objectTable
+    exceptions
+      object_not_found = 1
+      others           = 2.
+
+  read table objectTable into objectType index 1.
+
+* create OTR
+  sotrPaket-paket = '$TMP'.
+  CALL FUNCTION 'SOTR_CREATE_CONCEPT'
+    EXPORTING
+      paket                               = sotrPaket
+      crea_lan                            = sotrHeader-crea_lan
+      ALIAS_NAME                          = sotrHeader-alias_name
+*      CATEGORY                            =
+      object                              = objectType
+      entries                             = sotrTextTable
+*     FLAG_CORRECTION_ENTRY               =
+*     IN_UPDATE_TASK                      =
+      CONCEPT_DEFAULT                     = sotrHeader-concept
+*   IMPORTING
+*     CONCEPT                             =
+*   EXCEPTIONS
+*     PACKAGE_MISSING                     = 1
+*     CREA_LAN_MISSING                    = 2
+*     OBJECT_MISSING                      = 3
+*     PAKET_DOES_NOT_EXIST                = 4
+*     ALIAS_ALREADY_EXIST                 = 5
+*     OBJECT_TYPE_NOT_FOUND               = 6
+*     LANGU_MISSING                       = 7
+*     IDENTICAL_CONTEXT_NOT_ALLOWED       = 8
+*     TEXT_TOO_LONG                       = 9
+*     ERROR_IN_UPDATE                     = 10
+*     NO_MASTER_LANGU                     = 11
+*     ERROR_IN_CONCEPT_ID                 = 12
+*     ALIAS_NOT_ALLOWED                   = 13
+*     TADIR_ENTRY_CREATION_FAILED         = 14
+*     INTERNAL_ERROR                      = 15
+*     ERROR_IN_CORRECTION                 = 16
+*     USER_CANCELLED                      = 17
+*     NO_ENTRY_FOUND                      = 18
+*     OTHERS                              = 19
+            .
+*  IF sy-subrc <> 0.
+*
+*  ENDIF.
+
+
+endform.
+*\--------------------------------------------------------------------/
+
+*/--------------------------------------------------------------------\
+*|  Nugget Class                                                      |
+form installNugget
+      using xmlDoc type ref to if_ixml_document overwrite type c.
+types: begin of t_objectTable,
+         classname type string,
+         object type ko100-object,
+         text type ko100-text,
+       end of t_objectTable.
+
+
+data iterator type ref to IF_IXML_NODE_ITERATOR.
+data ixml type ref to if_ixml.
+data Namefilter type ref to IF_IXML_NODE_FILTER.
+data parentFilter type ref to IF_IXML_NODE_FILTER.
+data currentNode type ref to if_ixml_node.
+data newNode type ref to if_ixml_node.
+data rval type i.
+data ixmlDocument type ref to if_ixml_document.
+data _objName type string.
+data objType type string.
+data objectTable type table of t_objectTable.
+data objectLine type t_objectTable.
+data exists type flag.
+data sTemp type string.
+data nameCollision type flag.
+
+  ixml = cl_ixml=>create( ).
+  nameFilter = xmlDoc->create_filter_name( name = 'nugget' ).
+  parentFilter = xmlDoc->create_filter_parent( nameFilter ).
+  iterator = xmlDoc->create_iterator_filtered( parentFilter ).
+
+* Check for existing classes
+  nameCollision = ''.
+*  if overwrt = ''.
+    currentNode ?= iterator->get_next( ).
+    while currentNode is not initial.
+      clear exists.
+      ixmlDocument = ixml->create_document( ).
+      newNode = currentNode->clone( ).
+      rval = ixmlDocument->append_child( newNode ).
+
+      perform GETOBJECTInfoFROMIXMLDOC
+            using
+              ixmlDocument
+            changing objType _objName.
+      case objType.
+        when 'CLAS'.
+          perform checkClassExists
+              using
+                 _objName
+              changing
+                 exists.
+        when 'PROG'.
+          perform checkProgExists
+              using
+                 _objName
+              changing
+                 exists.
+        when others.
+      endcase.
+      if exists = 'X' and overWrt = ''.
+        write :/  objType, _objName,
+' exists on this system , if you wish to install this Nugget please s' &
+'et the Overwrite Originals checkbox.'
+        .
+        nameCollision = 'X'.
+      elseif exists = 'X' and overWrt = 'X'.
+
+      endif.
+      currentNode ?= iterator->get_next( ).
+    endwhile.
+*  endif.
+
+
+  if nameCollision = 'X' and overWrt = ''.
+
+  else.
+    iterator->reset( ).
+    currentNode ?= iterator->get_next( ).
+    while currentNode is not initial.
+      clear exists.
+      ixmlDocument = ixml->create_document( ).
+      newNode = currentNode->clone( ).
+      rval = ixmlDocument->append_child( newNode ).
+
+*      call method zsapLink=>GETOBJECTInfoFROMIXMLDOC
+*            exporting
+*              ixmlDocument = ixmlDocument
+*            importing
+*              objtypename = objType
+*              objname     = _objName.
+      perform GETOBJECTInfoFROMIXMLDOC
+            using
+              ixmlDocument
+            changing objType _objName.
+
+
+
+      case objType.
+        when 'CLAS'.
+          perform checkClassExists
+              using
+                 _objName
+              changing
+                 exists.
+          if exists = 'X' and overwrite = 'X'.
+
+          endif.
+          if exists = 'X'.
+            perform deleteClass using _objName.
+          endif.
+          perform installClass using ixmlDocument.
+        when 'PROG'.
+          perform checkProgExists
+              using
+                 _objName
+              changing
+                 exists.
+          if exists = 'X' and overwrite = 'X'.
+
+          endif.
+          if exists = 'X'.
+            perform deleteProg using _objName.
+          endif.
+          perform installProgram using ixmlDocument.
+
+        when others.
+          write: 'Are you SURE this is a SAPlink install nugget?'.
+          exit.
+      endcase.
+      write :/ 'Installed: ', objType, _objName.
+      currentNode ?= iterator->get_next( ).
+    endwhile.
+    message s208(00) with 'Import successful'.
+  endif.
+
+*        create object targetObject type (objectLine-classname)
+*          exporting name = _objName.
+*
+*        if targetObject is not initial.
+*          try.
+*            _objName = targetObject->createObjectfromiXMLDoc(
+*              ixmlDocument = ixmlDocument
+*              overwrite = overWr ).
+*            catch ZCX_SAPLINK into excClass.
+*              errorMsg = excClass->get_text( ).
+*              write errorMsg.
+*          endtry.
+*          if errorMsg is not initial.
+*            exit.
+*          endif.
+*write /: objType, ' ', _objName, ' was successfully installed, you must
+*activate the object to use'.
+*        endif.
+*      endif.
+*      currentNode = iterator->get_next( ).
+*    endwhile.
+*    catch ZCX_SAPLINK into excClass.
+*      errorMsg = excClass->get_text( ).
+*      write errorMsg.
+*  endtry.
+
+endform.
+
+*\--------------------------------------------------------------------/
+
+*/--------------------------------------------------------------------\
+*|  Installation Plugin for Classes                                   |
+form installClass using ixmlDocument type ref to if_ixml_document.
+
+data rootNode type ref to if_ixml_element.
+data classHeader type vseoClass.
+data classKey type SEOCLSKEY.
+data not_active type boolean.
+data filter type ref to if_ixml_node_filter.
+data iterator type ref to if_ixml_node_iterator.
+data node type ref to if_ixml_element.
+data otrNode type ref to if_ixml_element.
+data filter2 type ref to if_ixml_node_filter.
+data iterator2 type ref to if_ixml_node_iterator.
+data attribProperties type vseoattrib.
+data methodProperties type vseomethod.
+data methodRedefinition type SEOREDEF.
+data methodRedefTable type standard table of SEOREDEF WITH KEY CLSNAME
+REFCLSNAME VERSION MTDNAME.
+data superClass type vseoextend.
+data superClassKey type vseoextend.
+data includeName type program.
+data methodSourceNode type ref to if_ixml_node.
+data source type string.
+data sourceTable type table of string.
+data methodKey TYPE SEOCPDKEY.
+data forwardDeclarationRow type VSEOTYPEP.
+data forwardDeclarations type standard table of VSEOTYPEP.
+data node2 type ref to if_ixml_element.
+data paramInfo type VSEOPARAM.
+data exceptInfo type VSEOEXCEP.
+data _devclass type devclass.
+data _objType type string.
+data checkExists type flag.
+data xmlDoc type ref to if_ixml_document.
+  call function 'SEO_BUFFER_INIT'.
+
+  _devclass = '$TMP'.
+  _objType = 'CLAS'.
+
+  xmlDoc = ixmlDocument.
+  rootNode = xmlDoc->find_from_name( _objType ).
+
+  perform GETSTRUCTUREFROMATTRIBUTES
+        using
+          rootnode
+        changing
+          classHeader.
+
+  classKey-clsName = classHeader-CLSNAME.
+  objName = classKey-clsName.
+
+  classHeader-version = '0'.
+  superClass = rootNode->get_attribute( name = 'REFCLSNAME' ).
+  if superClass is not initial.
+* set something for inheritence
+    superClassKey-clsName = classKey-clsName.
+    superClassKey-REFCLSNAME = superClass.
+    superClassKey-version = '0'.
+    superClassKey-state = '1'.
+
+  endif.
+
+  call function 'SEO_CLASS_CREATE_F_DATA'
+    EXPORTING
+      save          = ' '
+    CHANGING
+      class         = classHeader
+    EXCEPTIONS
+      error_message = 5
+      existing      = 1
+      is_interface  = 2
+      not_created   = 3
+      db_error      = 4
+      others        = 5.
+*
+*  if sy-subrc <> 0.
+*  endif.
+
+
+data aobjName type TROBJ_NAME.
+
+
+
+*  system-call create class classKey-clsname.
+*  if sy-subrc = 8.
+**Raise error
+*    exit.
+*  endif.
+*TODO:  Add aliases
+
+*Add attributes to new class
+  filter = xmlDoc->create_filter_name( 'attribute' ).
+  iterator = xmlDoc->create_iterator_filtered( filter ).
+  node ?= iterator->get_next( ).
+  while node is not initial.
+*   create OTR texts if necessary (for exception classes)
+    otrNode = node->find_from_name( 'sotr' ).
+    if otrNode is not initial.
+       perform createotrfromnode
+             using
+               otrNode.
+    endif.
+
+*   create attribute
+    perform GETSTRUCTUREFROMATTRIBUTES
+          using
+            node
+          changing
+            attribProperties.
+    attribProperties-version = '0'.
+    call function 'SEO_ATTRIBUTE_CREATE_F_DATA'
+          exporting
+            save = ' '
+          changing
+            attribute = attribProperties.
+    node ?= iterator->get_next( ).
+  endwhile.
+
+
+
+
+
+
+*Add Methods to new class
+  filter = xmlDoc->create_filter_name( 'method' ).
+  iterator = xmlDoc->create_iterator_filtered( filter ).
+  node ?= iterator->get_next( ).
+  while node is not initial.
+    clear methodProperties.
+    perform GETSTRUCTUREFROMATTRIBUTES
+          using
+            node
+          changing
+            methodProperties.
+    methodProperties-version = '0'.
+    if methodProperties-clsname = classHeader-clsname.
+* method created in this class
+      call function 'SEO_METHOD_CREATE_F_DATA'
+            exporting
+              save = ' '
+            changing
+              method = methodProperties.
+      filter2 = node->create_filter_name( 'parameter' ).
+      iterator2 = node->create_iterator_filtered( filter2 ).
+      node2 ?= iterator2->get_next( ).
+      while node2 is not initial.
+*29a
+        clear paramInfo.
+*/29a
+        perform GETSTRUCTUREFROMATTRIBUTES
+              using
+                node2
+              changing
+                paramInfo.
+        call function 'SEO_PARAMETER_CREATE_F_DATA'
+              exporting
+                save = ' '
+              changing
+                parameter = paramInfo.
+
+        node2 ?= iterator2->get_next( ).
+      endwhile.
+      filter2 = node->create_filter_name( 'exception' ).
+      iterator2 = node->create_iterator_filtered( filter2 ).
+      node2 ?= iterator2->get_next( ).
+      while node2 is not initial.
+        perform GETSTRUCTUREFROMATTRIBUTES
+              using
+                node2
+              changing
+                exceptInfo.
+        call function 'SEO_EXCEPTION_CREATE_F_DATA'
+              exporting
+                save = ' '
+              changing
+                excep = exceptInfo.
+
+        node2 ?= iterator2->get_next( ).
+
+      endwhile.
+    else.
+* method redefined in this class
+      move-corresponding methodProperties to methodRedefinition.
+      methodRedefinition-CLSNAME = classHeader-clsname.
+      methodRedefinition-REFCLSNAME = methodProperties-clsname.
+      methodRedefinition-VERSION = '0'.
+*29a -- will cause an issue if a subclass passes the inheritance down
+*stream... is this possible in abap?
+      methodRedefinition-MTDABSTRCT = ''.
+*/29a
+      methodRedefinition-MTDNAME = methodProperties-cmpName.
+      append methodRedefinition to methodRedefTable.
+    endif.
+    node ?= iterator->get_next( ).
+
+  endwhile.
+
+
+
+*29a
+ if methodRedefTable is not initial or superClass-clsName is not initial
+ .
+*/29a
+    call function 'SEO_INHERITANC_CREATE_F_DATA'
+          exporting
+            save = ' '
+          changing
+            INHERITANCE = superClassKey
+            REDEFINITIONS = methodredefTable.
+  endif.
+
+data classType type seoclstype.
+data impKeys type seor_implementing_keys.
+data isError type boolean.
+*data devClass type devclass.
+*devClass = '$TMP'.
+
+
+*create forward declarations
+*bug 77
+  filter = xmlDoc->create_filter_name( 'forwardDeclaration' ).
+  iterator = xmlDoc->create_iterator_filtered( filter ).
+  node ?= iterator->get_next( ).
+
+  forwardDeclarationRow-clsname = classKey-clsName.
+  forwardDeclarationRow-VERSION = '0'.
+  forwardDeclarationRow-TPUTYPE = ''.
+*29a
+*  forwardDeclarationRow-TPUTYPE = '0'.
+*/29a
+  forwardDeclarationRow-EXPLICIT =  'X'.
+  forwardDeclarationRow-IMPLICIT = ''.
+
+  while node is not initial.
+    source = node->get_value( ).
+    forwardDeclarationRow-typegroup = source.
+*29a
+type-pools seot.
+data forwardDecTable type seot_typepusages_w.
+data forwardDecRow like line of forwardDecTable.
+    clear forwardDecRow.
+    refresh forwardDecTable.
+    forwardDecRow-clsName = classKey-clsName.
+    forwardDecRow-VERSION = '0'.
+    forwardDecRow-TPUTYPE = '0'.
+    forwardDecRow-EXPLICIT =  'X'.
+    forwardDecRow-IMPLICIT = ''.
+    forwardDecRow-typeGroup = source.
+    append forwardDecRow to forwardDecTable.
+    call function 'SEO_TYPEPUSAGE_CREATE'
+        exporting
+          TYPEPUSAGES = forwardDecTable.
+
+*    call function 'SEO_TYPEPUSAGE_CHANGE_F_DATA'
+*          exporting
+*            SAVE = ABAP_TRUE
+*          changing
+*            TYPEPUSAGE = forwardDeclarationRow.
+*/29a
+
+    node ?= iterator->get_next( ).
+  endwhile.
+
+  _devclass = '$TMP'.
+
+  call function 'SEO_CLIF_SAVE_ALL'
+        exporting
+          CIFKEY = classKey
+        importing
+          error_occurred = isError
+        changing
+          devclass = _devclass.
+
+  if isError is not initial.
+*ERROR
+  endif.
+
+*Insert source code into the methods
+  filter = xmlDoc->create_filter_name( 'method' ).
+  iterator = xmlDoc->create_iterator_filtered( filter ).
+  node ?= iterator->get_next( ).
+
+  while node is not initial.
+    perform GETSTRUCTUREFROMATTRIBUTES
+          using
+            node
+          changing
+            methodProperties.
+    methodKey-clsName = objName.
+    methodKey-cpdname = methodProperties-cmpName.
+    aobjName = methodKey.
+    call function 'RS_INSERT_INTO_WORKING_AREA'
+      EXPORTING
+        object            = 'METH'
+        obj_name          = aobjName
+      EXCEPTIONS
+        wrong_object_name = 1.
+*29a
+    methodSourceNode = node->find_from_name( 'source' ).
+    if methodSourceNode is not initial.
+      includeName = CL_OO_CLASSNAME_SERVICE=>GET_METHOD_INCLUDE(
+      methodKey ).
+*/29a
+      source = methodSourceNode->get_value( ).
+      perform BUILDTABLEFROMSTRING using source changing sourceTable.
+*      insert report includeName from sourceTable state 'I'.
+      insert report includeName from sourceTable extension type
+      srext_ext_class_method
+      state 'I' program type 'I'.
+
+    endif.
+
+    node ?= iterator->get_next( ).
+  endwhile.
+
+  aobjName = classKey-CLSNAME.
+  call function 'RS_INSERT_INTO_WORKING_AREA'
+    EXPORTING
+      object            = 'CLSD'
+      obj_name          = aobjName
+    EXCEPTIONS
+      wrong_object_name = 1.
+*  if sy-subrc ne 0.
+*
+*  endif.
+
+  call function 'RS_INSERT_INTO_WORKING_AREA'
+    EXPORTING
+      object            = 'CPUB'
+      obj_name          = aobjName
+    EXCEPTIONS
+      wrong_object_name = 1.
+*  if sy-subrc ne 0.
+*
+*  endif.
+  call function 'RS_INSERT_INTO_WORKING_AREA'
+    EXPORTING
+      object            = 'CPRO'
+      obj_name          = aobjName
+    EXCEPTIONS
+      wrong_object_name = 1.
+*  if sy-subrc ne 0.
+*
+*  endif.
+    call function 'RS_INSERT_INTO_WORKING_AREA'
+    EXPORTING
+      object            = 'CPRI'
+      obj_name          = aobjName
+    EXCEPTIONS
+      wrong_object_name = 1.
+*  if sy-subrc ne 0.
+*
+*  endif.
+
+  data _tempName(35) type c.
+  data length type i.
+  _tempName = '=================================='.
+  length = numofchar( aobjName ).
+  _tempName(length) = aObjName.
+  _tempName+30 = 'CCDEF'.
+  aObjName = _tempName.
+    call function 'RS_INSERT_INTO_WORKING_AREA'
+    EXPORTING
+      object            = 'CINC'
+      obj_name          = aObjName
+    EXCEPTIONS
+      wrong_object_name = 1.
+
+
+   _tempName+30 = 'CCIMP'.
+   aObjName = _tempName.
+    call function 'RS_INSERT_INTO_WORKING_AREA'
+    EXPORTING
+      object            = 'CINC'
+      obj_name          = aObjName
+    EXCEPTIONS
+      wrong_object_name = 1.
+
+  _tempName+30 = 'CCMAC'.
+  aObjName = _tempName.
+    call function 'RS_INSERT_INTO_WORKING_AREA'
+    EXPORTING
+      object            = 'CINC'
+      obj_name          = aObjName
+    EXCEPTIONS
+      wrong_object_name = 1.
+
+  _tempName+30 = 'CP  '.
+  aObjName = _tempName.
+    call function 'RS_INSERT_INTO_WORKING_AREA'
+    EXPORTING
+      object            = 'REPT'
+      obj_name          = aObjName
+    EXCEPTIONS
+      wrong_object_name.
+
+
+endform.
+
+*|                                                                     |
+*|                                                                     |
+
+form deleteClass using name type string.
+data clsKey type SEOCLSKEY.
+
+  clsKey-clsname = name.
+  CALL FUNCTION 'SEO_CLASS_DELETE_W_DEPS'
+    EXPORTING
+      clskey             = clsKey
+    EXCEPTIONS
+     NOT_EXISTING       = 1
+     IS_INTERFACE       = 2
+     NOT_DELETED        = 3
+     DB_ERROR           = 4
+     OTHERS             = 5
+            .
+endform.
+
+*|                                                                     |
+*|                                                                     |
+
+form checkClassExists using name type string changing exists type flag.
+
+data classkey type SEOCLSKEY.
+data not_active TYPE  SEOX_BOOLEAN.
+
+  classKey-clsName = name.
+
+  call function 'SEO_CLASS_EXISTENCE_CHECK'
+    EXPORTING
+      clskey        = classkey
+    IMPORTING
+      not_active    = not_active
+    EXCEPTIONS
+*      not_specified = 1
+      not_existing  = 2.
+*      is_interface  = 3
+*      no_text       = 4
+*      inconsistent  = 5
+*      others        = 6.
+
+  if sy-subrc <> 2.
+    exists = 'X'.
+  endif.
+endform.
+*\--------------------------------------------------------------------/
+
+
+
+*/--------------------------------------------------------------------\
+*| Installation Plugin for Programs                                   |
+form installProgram using ixmlDocument type ref to if_ixml_document.
+
+data rootNode type ref to if_ixml_element.
+data progAttribs type trdir.
+data sourceNode type ref to if_ixml_element.
+data textNode type ref to if_ixml_element.
+data source type string.
+data sourceTable type table_of_strings.
+data _objName(30) type c.
+data aObjName type TROBJ_NAME.
+data _objType type string.
+data checkExists type flag.
+data xmlDoc type ref to if_ixml_document.
+
+  _objType = 'PROG'.
+  xmlDoc = ixmlDocument.
+  rootNode = xmlDoc->find_from_name( _objType ).
+  perform GETSTRUCTUREFROMATTRIBUTES
+        using
+          rootNode
+        changing
+          progAttribs.
+  objName = progAttribs-NAME.
+
+*  enqueue_abap( ).
+  call function 'RS_ACCESS_PERMISSION'
+       exporting
+*            authority_check          = authority_check
+            global_lock              = 'X'
+            mode                     = 'INSERT'
+*            master_language          = trdir-rload
+            object                   = objname
+            object_class             = 'ABAP'
+*       importing
+*            transport_key            = trkey_global
+*            new_master_language      = trdir-rload
+*            devclass                 = devclass_local
+       exceptions
+            canceled_in_corr         = 1
+            enqueued_by_user         = 3
+            enqueue_system_failure   = 4
+            locked_by_author         = 5
+            illegal_parameter_values = 6
+            no_modify_permission     = 7
+            no_show_permission       = 8
+            permission_failure       = 9.
+
+*  transport_copy( author = progAttribs-CNAM devclass = devclass ).
+
+    CALL FUNCTION 'RS_CORR_INSERT'
+       EXPORTING
+            AUTHOR              = progAttribs-CNAM
+            GLOBAL_LOCK         = 'X'
+            OBJECT              = progAttribs-name
+            OBJECT_CLASS        = 'ABAP'
+            DEVCLASS            = '$TMP'
+*            KORRNUM             = CORRNUMBER_LOCAL
+            MASTER_LANGUAGE     = sy-langu
+*            PROGRAM             = PROGRAM_LOCAL
+            MODE                = 'INSERT'
+*       IMPORTING
+*            AUTHOR              = UNAME
+*            KORRNUM             = CORRNUMBER_LOCAL
+*            DEVCLASS            = DEVCLASS_LOCAL
+       EXCEPTIONS
+            CANCELLED           = 1
+            PERMISSION_FAILURE  = 2
+            UNKNOWN_OBJECTCLASS = 3.
+
+  sourceNode = rootNode->find_from_name( 'source' ).
+  source = sourceNode->get_value( ).
+*  sourceTable = BUILDTABLEFROMSTRING( source ).
+  perform BUILDTABLEFROMSTRING
+        using
+          source
+        changing
+          sourceTable.
+*  create_source( SOURCE = sourceTable attribs = progAttribs ).
+data objNameStrict type TROBJ_NAME.
+data progLine type PROGDIR.
+data titleInfo type trdirti.
+data reportLine type string.
+data miniReport type table_of_strings.
+
+  objNameStrict = objName.
+  call function 'RS_INSERT_INTO_WORKING_AREA'
+        exporting
+             OBJECT   = 'REPS'
+             OBJ_NAME = objNameStrict
+        exceptions
+             WRONG_OBJECT_NAME = 1.
+   INSERT REPORT objNameStrict FROM sourceTable STATE 'I'.
+
+  move-corresponding progattribs to progline.
+  modify progdir from progline.
+* Are you kidding me?!?  No idea why you need to do this!!
+  CONCATENATE 'REPORT' objNameStrict '.' INTO reportLine SEPARATED BY
+  SPACE.
+  append reportline to miniReport.
+  INSERT REPORT objNameStrict FROM miniReport STATE 'A'.
+  MOVE 'A' TO progline-STATE.
+  modify progdir from progline.
+
+  textNode = rootNode->find_from_name( 'textPool' ).
+*  create_textPool( textNode ).
+data textPoolTable type standard table of textPool.
+data textPoolRow type textPool.
+data langIterator type ref to if_ixml_node_iterator.
+data filter type ref to if_ixml_node_filter.
+data textFilter type ref to if_ixml_node_filter.
+data textIterator type ref to if_ixml_node_iterator.
+data langNode type ref to if_ixml_element.
+data aTextNode type ref to if_ixml_element.
+data lang type spras.
+data langNodeExists type flag.
+data logonLanguageExists type flag.
+data _state(1) type c.
+
+  filter = textNode->create_filter_name( 'language' ).
+  langIterator = textNode->create_iterator_filtered( filter ).
+  langNode ?= langIterator->get_next( ).
+
+  while langNode is not initial.
+    langNodeExists = 'X'.
+    CALL FUNCTION 'RS_INSERT_INTO_WORKING_AREA'
+         EXPORTING
+              OBJECT   = 'REPT'
+              OBJ_NAME = objNameStrict
+         EXCEPTIONS
+              OTHERS   = 0.
+
+    refresh textPoolTable.
+    textIterator = langNode->create_iterator( ).
+    aTextNode ?= textIterator->get_next( ).
+*For some reason the 1st one is blank... not sure why.
+    aTextNode ?= textIterator->get_next( ).
+    while aTextNode is not initial.
+      perform GETSTRUCTUREFROMATTRIBUTES
+            using
+              aTextNode
+            changing
+              textPoolRow.
+      append textPoolRow to textPoolTable.
+      aTextNode ?= textIterator->get_next( ).
+    endwhile.
+    if textPoolTable is not initial.
+      lang = langNode->get_attribute( 'SPRAS' ).
+      if lang = sy-langu.
+        logonLanguageExists = 'X'.
+        _state = 'I'.
+      else.
+*       seems that if a textpool is inserted as inactive for language
+*       other than the logon language, it is lost upon activation
+*       not sure inserting as active is best solution,but seems to work
+        _state = 'A'.
+      endif.
+      insert textpool objNameStrict from textPooltable language lang
+      state _state.
+    endif.
+    langNode ?= langIterator->get_next( ).
+  endwhile.
+
+*// comment ewH for 0.1.2 retreat:just didnt really work out well-->
+** insert untranslated text pool in logon language if it doesnt exist
+*  if langNodeExists = 'X' and logonLanguageExists = ' '.
+*    insert textpool _objName from textPooltable language sy-langu state
+*    'I'.
+*  endif.
+*// <--ewH: end comment
+
+*  dequeue_abap( ).
+  call function 'RS_ACCESS_PERMISSION'
+       exporting
+            global_lock              = 'X'
+            mode                     = 'FREE'
+            object                   = objName
+            object_class             = 'ABAP'
+       exceptions
+            canceled_in_corr         = 1
+            enqueued_by_user         = 3
+            enqueue_system_failure   = 4
+            locked_by_author         = 5
+            illegal_parameter_values = 6
+            no_modify_permission     = 7
+            no_show_permission       = 8
+            permission_failure       = 9.
+
+endform.
+
+*|                                                                     |
+*|                                                                     |
+form deleteProg using name type string.
+data program type sy-repid.
+
+program = name.
+
+CALL FUNCTION 'RS_DELETE_PROGRAM'
+  EXPORTING
+*   CORRNUMBER                       =
+    program                          = program
+*   SUPPRESS_CHECKS                  = ' '
+*   SUPPRESS_COMMIT                  = ' '
+    SUPPRESS_POPUP                   = 'X'
+*   MASS_DELETE_CALL                 = ' '
+*   WITH_CUA                         = 'X'
+*   WITH_DOCUMENTATION               = 'X'
+*   WITH_DYNPRO                      = 'X'
+*   WITH_INCLUDES                    = ' '
+*   WITH_TEXTPOOL                    = 'X'
+*   WITH_VARIANTS                    = 'X'
+*   TADIR_DEVCLASS                   =
+*   SKIP_PROGRESS_IND                = ' '
+*   FORCE_DELETE_USED_INCLUDES       = ' '
+* IMPORTING
+*   CORRNUMBER                       =
+*   PROGRAM                          =
+* EXCEPTIONS
+*   ENQUEUE_LOCK                     = 1
+*   OBJECT_NOT_FOUND                 = 2
+*   PERMISSION_FAILURE               = 3
+*   REJECT_DELETION                  = 4
+*   OTHERS                           = 5
+          .
+IF sy-subrc <> 0.
+* MESSAGE ID SY-MSGID TYPE SY-MSGTY NUMBER SY-MSGNO
+*         WITH SY-MSGV1 SY-MSGV2 SY-MSGV3 SY-MSGV4.
+ENDIF.
+
+endform.
+
+*|                                                                     |
+*|                                                                     |
+
+form checkProgExists using name type string changing exists type flag.
+  select single name from trdir into objName where NAME = Name.
+  if sy-subrc = 0.
+    exists = 'X'.
+  endif.
+
+endform.
+
+*\--------------------------------------------------------------------/
