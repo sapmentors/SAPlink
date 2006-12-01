@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
-<CLAS CLSNAME="ZSAPLINK_FUNCTIONGROUP" VERSION="0" LANGU="E" DESCRIPT="SAPlink - Function Groups" UUID="2A6FC7E85D6DA74CB52048335D103163" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" AUTHOR="BCUSER" CREATEDON="20061013" CHANGEDON="00000000" CHGDANYON="00000000" CLSFINAL="X" CLSCCINCL="X" FIXPT="X" UNICODE="X" R3RELEASE="700" CLSBCCAT="00" DURATION_TYPE="0 " RISK_LEVEL="0 " REFCLSNAME="ZSAPLINK">
+<?xml version="1.0" encoding="utf-16"?>
+<CLAS CLSNAME="ZSAPLINK_FUNCTIONGROUP" VERSION="0" LANGU="E" DESCRIPT="SAPlink - Function Groups" UUID="45594ECCE93E07BF00000000A7E42BB2" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" AUTHOR="USEWH90" CREATEDON="20061114" CHANGEDON="00000000" CHGDANYON="00000000" CLSFINAL="X" CLSCCINCL="X" FIXPT="X" UNICODE="X" R3RELEASE="700" CLSBCCAT="00" DURATION_TYPE="0 " RISK_LEVEL="0 " REFCLSNAME="ZSAPLINK">
  <publicSection>class ZSAPLINK_FUNCTIONGROUP definition
   public
   inheriting from ZSAPLINK
@@ -92,15 +92,15 @@ private section.
 *&quot;* implementation or private method&apos;s signature</localTypes>
  <localMacros>*&quot;* use this source file for any macro definitions you need
 *&quot;* in the implementation part of the class</localMacros>
- <inheritance CLSNAME="ZSAPLINK_FUNCTIONGROUP" REFCLSNAME="ZSAPLINK" VERSION="0" STATE="1" AUTHOR="BCUSER" CREATEDON="20061013" CHANGEDON="00000000">
+ <inheritance CLSNAME="ZSAPLINK_FUNCTIONGROUP" REFCLSNAME="ZSAPLINK" VERSION="0" STATE="1" AUTHOR="USEWH90" CREATEDON="20061114" CHANGEDON="00000000">
   <redefinition CLSNAME="ZSAPLINK_FUNCTIONGROUP" REFCLSNAME="ZSAPLINK" VERSION="0" MTDNAME="CHECKEXISTS"/>
   <redefinition CLSNAME="ZSAPLINK_FUNCTIONGROUP" REFCLSNAME="ZSAPLINK" VERSION="0" MTDNAME="CREATEIXMLDOCFROMOBJECT"/>
   <redefinition CLSNAME="ZSAPLINK_FUNCTIONGROUP" REFCLSNAME="ZSAPLINK" VERSION="0" MTDNAME="CREATEOBJECTFROMIXMLDOC"/>
   <redefinition CLSNAME="ZSAPLINK_FUNCTIONGROUP" REFCLSNAME="ZSAPLINK" VERSION="0" MTDNAME="DELETEOBJECT"/>
   <redefinition CLSNAME="ZSAPLINK_FUNCTIONGROUP" REFCLSNAME="ZSAPLINK" VERSION="0" MTDNAME="GETOBJECTTYPE"/>
  </inheritance>
- <method CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="ACTUALIZE_OBJECT_TREE" VERSION="0" LANGU="E" DESCRIPT="Refresh Object Tree" EXPOSURE="0" STATE="1" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20061013" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="700" BCMTDCAT="00" BCMTDSYN="0">
-  <parameter CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="ACTUALIZE_OBJECT_TREE" SCONAME="REPID" VERSION="0" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20061013" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="SY-REPID"/>
+ <method CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="ACTUALIZE_OBJECT_TREE" VERSION="0" LANGU="E" DESCRIPT="Refresh Object Tree" EXPOSURE="0" STATE="1" EDITORDER="1 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20061114" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="700" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="ACTUALIZE_OBJECT_TREE" SCONAME="REPID" VERSION="0" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20061114" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="SY-REPID"/>
   <source>method actualize_object_tree.
 
   data: tree_string type string.
@@ -419,8 +419,8 @@ method createobjectfromixmldoc .
 
 endmethod.</source>
  </method>
- <method CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="CREATE_DYNPRO" VERSION="0" LANGU="E" DESCRIPT="Create Dynpro" EXPOSURE="0" STATE="1" EDITORDER="13 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20061013" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="700" BCMTDCAT="00" BCMTDSYN="0">
-  <parameter CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="CREATE_DYNPRO" SCONAME="DYNP_NODE" VERSION="0" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20061013" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
+ <method CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="CREATE_DYNPRO" VERSION="0" LANGU="E" DESCRIPT="Create Dynpro" EXPOSURE="0" STATE="1" EDITORDER="13 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20061114" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="700" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="CREATE_DYNPRO" SCONAME="DYNP_NODE" VERSION="0" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20061114" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
   <source>*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
@@ -582,9 +582,9 @@ method CREATE_DYNPRO.
 
 endmethod.</source>
  </method>
- <method CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="CREATE_FUNCTION_MODULES" VERSION="0" LANGU="E" DESCRIPT="Create Function Modules" EXPOSURE="0" STATE="1" EDITORDER="3 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20061013" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="700" BCMTDCAT="00" BCMTDSYN="0">
-  <parameter CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="CREATE_FUNCTION_MODULES" SCONAME="FM_NODE" VERSION="0" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20061013" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
-  <parameter CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="CREATE_FUNCTION_MODULES" SCONAME="FCT_GROUP" VERSION="0" LANGU="E" DESCRIPT="Function group, to which the function module belongs" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20061013" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="TLIBG-AREA"/>
+ <method CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="CREATE_FUNCTION_MODULES" VERSION="0" LANGU="E" DESCRIPT="Create Function Modules" EXPOSURE="0" STATE="1" EDITORDER="3 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20061114" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="700" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="CREATE_FUNCTION_MODULES" SCONAME="FM_NODE" VERSION="0" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20061114" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
+  <parameter CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="CREATE_FUNCTION_MODULES" SCONAME="FCT_GROUP" VERSION="0" LANGU="E" DESCRIPT="Function group, to which the function module belongs" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20061114" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="TLIBG-AREA"/>
   <source>*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
@@ -855,9 +855,9 @@ method create_function_modules.
 
 endmethod.</source>
  </method>
- <method CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="CREATE_INCLUDES" VERSION="0" LANGU="E" DESCRIPT="Create Include Programs" EXPOSURE="0" STATE="1" EDITORDER="5 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20061013" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="700" BCMTDCAT="00" BCMTDSYN="0">
-  <parameter CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="CREATE_INCLUDES" SCONAME="INCL_NODE" VERSION="0" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20061013" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
-  <parameter CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="CREATE_INCLUDES" SCONAME="DEVCLASS" VERSION="0" LANGU="E" DESCRIPT="Development class/package" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20061013" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="DEVCLASS" PARVALUE="&apos;$TMP&apos;"/>
+ <method CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="CREATE_INCLUDES" VERSION="0" LANGU="E" DESCRIPT="Create Include Programs" EXPOSURE="0" STATE="1" EDITORDER="5 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20061114" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="700" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="CREATE_INCLUDES" SCONAME="INCL_NODE" VERSION="0" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20061114" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
+  <parameter CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="CREATE_INCLUDES" SCONAME="DEVCLASS" VERSION="0" LANGU="E" DESCRIPT="Development class/package" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20061114" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="DEVCLASS" PARVALUE="&apos;$TMP&apos;"/>
   <source>*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
@@ -933,8 +933,8 @@ method create_includes.
 
 endmethod.</source>
  </method>
- <method CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="CREATE_PFSTATUS" VERSION="0" LANGU="E" DESCRIPT="Create Gui Status" EXPOSURE="0" STATE="1" EDITORDER="15 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20061013" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="700" BCMTDCAT="00" BCMTDSYN="0">
-  <parameter CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="CREATE_PFSTATUS" SCONAME="PFSTAT_NODE" VERSION="0" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20061013" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
+ <method CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="CREATE_PFSTATUS" VERSION="0" LANGU="E" DESCRIPT="Create Gui Status" EXPOSURE="0" STATE="1" EDITORDER="15 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20061114" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="700" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="CREATE_PFSTATUS" SCONAME="PFSTAT_NODE" VERSION="0" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20061114" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
   <source>*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
@@ -1197,9 +1197,9 @@ method CREATE_PFSTATUS.
 
 endmethod.</source>
  </method>
- <method CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="CREATE_SOURCE" VERSION="0" LANGU="E" DESCRIPT="Create Source" EXPOSURE="0" STATE="1" EDITORDER="8 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20061013" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="700" BCMTDCAT="00" BCMTDSYN="0">
-  <parameter CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="CREATE_SOURCE" SCONAME="SOURCE" VERSION="0" LANGU="E" DESCRIPT="Table of Strings" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20061013" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="TABLE_OF_STRINGS"/>
-  <parameter CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="CREATE_SOURCE" SCONAME="ATTRIBS" VERSION="0" LANGU="E" DESCRIPT="Generated Table for View TRDIR" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20061013" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="TRDIR"/>
+ <method CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="CREATE_SOURCE" VERSION="0" LANGU="E" DESCRIPT="Create Source" EXPOSURE="0" STATE="1" EDITORDER="8 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20061114" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="700" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="CREATE_SOURCE" SCONAME="SOURCE" VERSION="0" LANGU="E" DESCRIPT="Table of Strings" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20061114" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="TABLE_OF_STRINGS"/>
+  <parameter CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="CREATE_SOURCE" SCONAME="ATTRIBS" VERSION="0" LANGU="E" DESCRIPT="Generated Table for View TRDIR" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20061114" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="TRDIR"/>
   <source>*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
@@ -1247,8 +1247,8 @@ data miniReport type table_of_strings.
 
 endmethod.</source>
  </method>
- <method CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="CREATE_TEXTPOOL" VERSION="0" LANGU="E" DESCRIPT="Create Text Pool" EXPOSURE="0" STATE="1" EDITORDER="2 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20061013" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="700" BCMTDCAT="00" BCMTDSYN="0">
-  <parameter CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="CREATE_TEXTPOOL" SCONAME="TEXTPOOLNODE" VERSION="0" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20061013" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
+ <method CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="CREATE_TEXTPOOL" VERSION="0" LANGU="E" DESCRIPT="Create Text Pool" EXPOSURE="0" STATE="1" EDITORDER="2 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20061114" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="700" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="CREATE_TEXTPOOL" SCONAME="TEXTPOOLNODE" VERSION="0" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20061114" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
   <source>*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
@@ -1386,8 +1386,8 @@ endif.
 
 endmethod.</source>
  </method>
- <method CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="DEQUEUE_ABAP" VERSION="0" LANGU="E" DESCRIPT="Dequeue ABAP" EXPOSURE="0" STATE="1" EDITORDER="4 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20061013" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" R3RELEASE="700" BCMTDCAT="00" BCMTDSYN="0">
-  <exception CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="DEQUEUE_ABAP" SCONAME="ZCX_SAPLINK" VERSION="0" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 " AUTHOR="BCUSER" CREATEDON="20061013" CHANGEDON="00000000"/>
+ <method CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="DEQUEUE_ABAP" VERSION="0" LANGU="E" DESCRIPT="Dequeue ABAP" EXPOSURE="0" STATE="1" EDITORDER="4 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20061114" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" R3RELEASE="700" BCMTDCAT="00" BCMTDSYN="0">
+  <exception CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="DEQUEUE_ABAP" SCONAME="ZCX_SAPLINK" VERSION="0" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 " AUTHOR="USEWH90" CREATEDON="20061114" CHANGEDON="00000000"/>
   <source>*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
@@ -1444,8 +1444,8 @@ method DEQUEUE_ABAP .
 
 endmethod.</source>
  </method>
- <method CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="ENQUEUE_ABAP" VERSION="0" LANGU="E" DESCRIPT="Enqueue ABAP" EXPOSURE="0" STATE="1" EDITORDER="9 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20061013" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" R3RELEASE="700" BCMTDCAT="00" BCMTDSYN="0">
-  <exception CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="ENQUEUE_ABAP" SCONAME="ZCX_SAPLINK" VERSION="0" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 " AUTHOR="BCUSER" CREATEDON="20061013" CHANGEDON="00000000"/>
+ <method CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="ENQUEUE_ABAP" VERSION="0" LANGU="E" DESCRIPT="Enqueue ABAP" EXPOSURE="0" STATE="1" EDITORDER="9 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20061114" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" R3RELEASE="700" BCMTDCAT="00" BCMTDSYN="0">
+  <exception CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="ENQUEUE_ABAP" SCONAME="ZCX_SAPLINK" VERSION="0" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 " AUTHOR="USEWH90" CREATEDON="20061114" CHANGEDON="00000000"/>
   <source>*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
@@ -1515,7 +1515,8 @@ endmethod.</source>
 *|                                                                     |
 *|   SAPlink is free software; you can redistribute it and/or modify   |
 *|   it under the terms of the GNU General Public License as published |
-*|   by the Free Software Foundation; either version 2 of the License, |
+*|   by the Free Software Foundation; either version 2 of
+the License, |
 *|   or (at your option) any later version.                            |
 *|                                                                     |
 *|   SAPlink is distributed in the hope that it will be useful,        |
@@ -1532,8 +1533,8 @@ method GETOBJECTTYPE .
   objectType = &apos;FUGR&apos;. &quot; Function Group
 endmethod.</source>
  </method>
- <method CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="GET_DYNPRO" VERSION="0" LANGU="E" DESCRIPT="Get Dynpro" EXPOSURE="0" STATE="1" EDITORDER="12 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20061013" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="700" BCMTDCAT="00" BCMTDSYN="0">
-  <parameter CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="GET_DYNPRO" SCONAME="DYNP_NODE" VERSION="0" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20061013" CHANGEDON="00000000" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
+ <method CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="GET_DYNPRO" VERSION="0" LANGU="E" DESCRIPT="Get Dynpro" EXPOSURE="0" STATE="1" EDITORDER="12 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20061114" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="700" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="GET_DYNPRO" SCONAME="DYNP_NODE" VERSION="0" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20061114" CHANGEDON="00000000" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
   <source>*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
@@ -1678,9 +1679,9 @@ method GET_DYNPRO.
 
 endmethod.</source>
  </method>
- <method CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="GET_FUNCTION_MODULES" VERSION="0" LANGU="E" DESCRIPT="Get Function Modules" EXPOSURE="0" STATE="1" EDITORDER="10 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20061013" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="700" BCMTDCAT="00" BCMTDSYN="0">
-  <parameter CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="GET_FUNCTION_MODULES" SCONAME="FCT_GROUP" VERSION="0" LANGU="E" DESCRIPT="Function group, to which the function module belongs" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20061013" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="TLIBG-AREA"/>
-  <parameter CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="GET_FUNCTION_MODULES" SCONAME="FM_NODE" VERSION="0" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20061013" CHANGEDON="00000000" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
+ <method CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="GET_FUNCTION_MODULES" VERSION="0" LANGU="E" DESCRIPT="Get Function Modules" EXPOSURE="0" STATE="1" EDITORDER="10 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20061114" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="700" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="GET_FUNCTION_MODULES" SCONAME="FCT_GROUP" VERSION="0" LANGU="E" DESCRIPT="Function group, to which the function module belongs" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20061114" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="TLIBG-AREA"/>
+  <parameter CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="GET_FUNCTION_MODULES" SCONAME="FM_NODE" VERSION="0" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20061114" CHANGEDON="00000000" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
   <source>*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
@@ -1752,6 +1753,7 @@ method get_function_modules.
   data sourcestring type string.
   data function_deleted    type c.
   data endfunction_deleted type c.
+  data lines               type i.
 
   functiongroupname = fct_group.
 
@@ -1892,32 +1894,120 @@ method get_function_modules.
     endif.
 
 * Source code for function module
+*// rrq --&gt; begin comment out
+*Bug 28 fix
+*    if not isource[] is initial.
+** Get rid of the FUNCTION and ENDFUNCTION statements.
+** And the signature comments
+** All of this will be inserted automatically, when imported.
+*      clear: function_deleted, endfunction_deleted.
+*      loop at isource into xsource.
+*        if xsource+0(2) = &apos;*&quot;&apos;.
+*          delete isource index sy-tabix.
+*          continue.
+*        endif.
+*        search xsource for &apos;FUNCTION&apos;.
+*        &quot;Got it and not a comment?
+*        if sy-subrc  = 0 and xsource+0(1) &lt;&gt; &apos;*&apos;.
+*          delete isource index sy-tabix.
+*          function_deleted = &apos;X&apos;.
+*          continue.
+*        endif.
+*        search xsource for &apos;ENDFUNCTION&apos;.
+*        if sy-subrc  = 0.
+*          delete isource index sy-tabix.
+*          endfunction_deleted = &apos;X&apos;.
+*          continue.
+*        endif.
+*      endloop.
+*
+*      fmsrcenode = xmldoc-&gt;create_element( &apos;fm_source&apos; ).
+*      refresh progsource.
+*      loop at isource into xsource.
+*        append xsource to progsource.
+*      endloop.
+*      sourcestring = buildsourcestring( sourcetable = progsource ).
+*      rc = fmsrcenode-&gt;if_ixml_node~set_value( sourcestring ).
+*      rc = functionmodulenode-&gt;append_child( fmsrcenode ).
+*
+*    endif.
+*
+** Source code for function module
+*    if not isource_new[] is initial.
+*
+** Get rid of the FUNCTION and ENDFUNCTION statements.
+** And the signature comments
+** All of this will be inserted automatically, when imported.
+*      clear: function_deleted, endfunction_deleted.
+*      loop at isource_new into xsource_new.
+*        check xsource_new is not initial.
+*        if xsource_new+0(2) = &apos;*&quot;&apos;.
+*          delete isource_new index sy-tabix.
+*          continue.
+*        endif.
+*        search xsource_new for &apos;FUNCTION&apos;.
+*        &quot;Got it and not a comment?
+*        if sy-subrc  = 0 and xsource_new+0(1) &lt;&gt; &apos;*&apos;.
+*          delete isource_new index sy-tabix.
+*          function_deleted = &apos;X&apos;.
+*          continue.
+*        endif.
+*        search xsource_new for &apos;ENDFUNCTION&apos;.
+*        if sy-subrc  = 0.
+*          delete isource_new index sy-tabix.
+*          endfunction_deleted = &apos;X&apos;.
+*          continue.
+*        endif.
+*      endloop.
+*
+*      fmsrcenewnode = xmldoc-&gt;create_element( &apos;fm_source_new&apos; ).
+*      refresh progsource.
+*      loop at isource_new into xsource_new.
+*        append xsource_new to progsource.
+*      endloop.
+*      sourcestring = buildsourcestring( sourcetable = progsource ).
+*      rc = fmsrcenewnode-&gt;if_ixml_node~set_value( sourcestring ).
+*      rc = functionmodulenode-&gt;append_child( fmsrcenewnode ).
+*
+*    endif.
+*&lt;-- end comment out by rrq
+* Bug 28 fix rrq begin
     if not isource[] is initial.
-
 * Get rid of the FUNCTION and ENDFUNCTION statements.
 * And the signature comments
 * All of this will be inserted automatically, when imported.
       clear: function_deleted, endfunction_deleted.
       loop at isource into xsource.
+        check xsource is not initial.
         if xsource+0(2) = &apos;*&quot;&apos;.
           delete isource index sy-tabix.
           continue.
         endif.
-        search xsource for &apos;FUNCTION&apos;.
-        &quot;Got it and not a comment?
-        if sy-subrc  = 0 and xsource+0(1) &lt;&gt; &apos;*&apos;.
-          delete isource index sy-tabix.
-          function_deleted = &apos;X&apos;.
-          continue.
-        endif.
-        search xsource for &apos;ENDFUNCTION&apos;.
-        if sy-subrc  = 0.
-          delete isource index sy-tabix.
-          endfunction_deleted = &apos;X&apos;.
-          continue.
+      endloop.
+      loop at isource into xsource.
+        if xsource cp &apos;*FUNCTION*&apos;.
+          if sy-subrc  = 0 and xsource+0(1) &lt;&gt; &apos;*&apos;.
+*          Got it and not a comment?
+            delete isource index sy-tabix.
+            function_deleted = &apos;X&apos;.
+            exit.
+          endif.
         endif.
       endloop.
 
+      describe table isource lines lines.
+      while lines &gt; 0.
+        read table isource into xsource index lines.
+        if xsource cp &apos;ENDFUNCTION*&apos;.
+          if sy-subrc  = 0 and xsource+0(1) &lt;&gt; &apos;*&apos;.
+*          Got it and not a comment?
+            delete isource index lines.
+            endfunction_deleted = &apos;X&apos;.
+            exit.
+          endif.
+        endif.
+        subtract 1 from lines.
+      endwhile.
       fmsrcenode = xmldoc-&gt;create_element( &apos;fm_source&apos; ).
       refresh progsource.
       loop at isource into xsource.
@@ -1926,12 +2016,9 @@ method get_function_modules.
       sourcestring = buildsourcestring( sourcetable = progsource ).
       rc = fmsrcenode-&gt;if_ixml_node~set_value( sourcestring ).
       rc = functionmodulenode-&gt;append_child( fmsrcenode ).
-
     endif.
 
-* Source code for function module
     if not isource_new[] is initial.
-
 * Get rid of the FUNCTION and ENDFUNCTION statements.
 * And the signature comments
 * All of this will be inserted automatically, when imported.
@@ -1942,21 +2029,31 @@ method get_function_modules.
           delete isource_new index sy-tabix.
           continue.
         endif.
-        search xsource_new for &apos;FUNCTION&apos;.
-        &quot;Got it and not a comment?
-        if sy-subrc  = 0 and xsource_new+0(1) &lt;&gt; &apos;*&apos;.
-          delete isource_new index sy-tabix.
-          function_deleted = &apos;X&apos;.
-          continue.
-        endif.
-        search xsource_new for &apos;ENDFUNCTION&apos;.
-        if sy-subrc  = 0.
-          delete isource_new index sy-tabix.
-          endfunction_deleted = &apos;X&apos;.
-          continue.
+      endloop.
+      loop at isource_new into xsource_new.
+        if xsource_new cp &apos;*FUNCTION*&apos;.
+          if sy-subrc  = 0 and xsource_new+0(1) &lt;&gt; &apos;*&apos;.
+*          Got it and not a comment?
+            delete isource_new index sy-tabix.
+            function_deleted = &apos;X&apos;.
+            exit.
+          endif.
         endif.
       endloop.
 
+      describe table isource_new lines lines.
+      while lines &gt; 0.
+        read table isource_new into xsource_new index lines.
+        if xsource_new cp &apos;ENDFUNCTION*&apos;.
+          if sy-subrc  = 0 and xsource_new+0(1) &lt;&gt; &apos;*&apos;.
+*          Got it and not a comment?
+            delete isource_new index lines.
+            endfunction_deleted = &apos;X&apos;.
+            exit.
+          endif.
+        endif.
+        subtract 1 from lines.
+      endwhile.
       fmsrcenewnode = xmldoc-&gt;create_element( &apos;fm_source_new&apos; ).
       refresh progsource.
       loop at isource_new into xsource_new.
@@ -1965,9 +2062,8 @@ method get_function_modules.
       sourcestring = buildsourcestring( sourcetable = progsource ).
       rc = fmsrcenewnode-&gt;if_ixml_node~set_value( sourcestring ).
       rc = functionmodulenode-&gt;append_child( fmsrcenewnode ).
-
     endif.
-
+*bug 28 fix end rrq
     rc = functionmodulesnode-&gt;append_child( functionmodulenode ).
 
   endloop.
@@ -1976,10 +2072,10 @@ method get_function_modules.
 
 endmethod.</source>
  </method>
- <method CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="GET_INCLUDES" VERSION="0" LANGU="E" DESCRIPT="Get Include Programs" EXPOSURE="0" STATE="1" EDITORDER="7 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20061013" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="700" BCMTDCAT="00" BCMTDSYN="0">
-  <parameter CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="GET_INCLUDES" SCONAME="MAIN_PROG" VERSION="0" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20061013" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="SY-REPID"/>
-  <parameter CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="GET_INCLUDES" SCONAME="FCT_GROUP" VERSION="0" LANGU="E" DESCRIPT="Function group, to which the function module belongs" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20061013" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="TLIBT-AREA"/>
-  <parameter CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="GET_INCLUDES" SCONAME="INCL_NODE" VERSION="0" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20061013" CHANGEDON="00000000" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
+ <method CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="GET_INCLUDES" VERSION="0" LANGU="E" DESCRIPT="Get Include Programs" EXPOSURE="0" STATE="1" EDITORDER="7 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20061114" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="700" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="GET_INCLUDES" SCONAME="MAIN_PROG" VERSION="0" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20061114" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="SY-REPID"/>
+  <parameter CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="GET_INCLUDES" SCONAME="FCT_GROUP" VERSION="0" LANGU="E" DESCRIPT="Function group, to which the function module belongs" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20061114" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="TLIBT-AREA"/>
+  <parameter CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="GET_INCLUDES" SCONAME="INCL_NODE" VERSION="0" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20061114" CHANGEDON="00000000" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
   <source>*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
@@ -2082,8 +2178,8 @@ method get_includes.
 
 endmethod.</source>
  </method>
- <method CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="GET_PFSTATUS" VERSION="0" LANGU="E" DESCRIPT="Get Gui Status" EXPOSURE="0" STATE="1" EDITORDER="14 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20061013" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="700" BCMTDCAT="00" BCMTDSYN="0">
-  <parameter CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="GET_PFSTATUS" SCONAME="PFSTAT_NODE" VERSION="0" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20061013" CHANGEDON="00000000" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
+ <method CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="GET_PFSTATUS" VERSION="0" LANGU="E" DESCRIPT="Get Gui Status" EXPOSURE="0" STATE="1" EDITORDER="14 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20061114" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="700" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="GET_PFSTATUS" SCONAME="PFSTAT_NODE" VERSION="0" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20061114" CHANGEDON="00000000" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
   <source>*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
@@ -2281,8 +2377,8 @@ method GET_PFSTATUS.
 
 endmethod.</source>
  </method>
- <method CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="GET_TEXTPOOL" VERSION="0" LANGU="E" DESCRIPT="Get Text Pool" EXPOSURE="0" STATE="1" EDITORDER="6 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20061013" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="700" BCMTDCAT="00" BCMTDSYN="0">
-  <parameter CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="GET_TEXTPOOL" SCONAME="TEXTNODE" VERSION="0" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20061013" CHANGEDON="00000000" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
+ <method CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="GET_TEXTPOOL" VERSION="0" LANGU="E" DESCRIPT="Get Text Pool" EXPOSURE="0" STATE="1" EDITORDER="6 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20061114" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="700" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="GET_TEXTPOOL" SCONAME="TEXTNODE" VERSION="0" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20061114" CHANGEDON="00000000" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
   <source>*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
@@ -2340,10 +2436,10 @@ data languageNode type ref to if_ixml_element.
 
 endmethod.</source>
  </method>
- <method CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="TRANSPORT_COPY" VERSION="0" LANGU="E" DESCRIPT="Transport Copy" EXPOSURE="0" STATE="1" EDITORDER="11 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20061013" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" R3RELEASE="700" BCMTDCAT="00" BCMTDSYN="0">
-  <parameter CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="TRANSPORT_COPY" SCONAME="AUTHOR" VERSION="0" LANGU="E" DESCRIPT="SAP System, User Logon Name" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20061013" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="SYUNAME"/>
-  <parameter CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="TRANSPORT_COPY" SCONAME="DEVCLASS" VERSION="0" LANGU="E" DESCRIPT="Package" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20061013" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="DEVCLASS"/>
-  <exception CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="TRANSPORT_COPY" SCONAME="ZCX_SAPLINK" VERSION="0" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 " AUTHOR="BCUSER" CREATEDON="20061013" CHANGEDON="00000000"/>
+ <method CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="TRANSPORT_COPY" VERSION="0" LANGU="E" DESCRIPT="Transport Copy" EXPOSURE="0" STATE="1" EDITORDER="11 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20061114" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" R3RELEASE="700" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="TRANSPORT_COPY" SCONAME="AUTHOR" VERSION="0" LANGU="E" DESCRIPT="SAP System, User Logon Name" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20061114" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="SYUNAME"/>
+  <parameter CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="TRANSPORT_COPY" SCONAME="DEVCLASS" VERSION="0" LANGU="E" DESCRIPT="Package" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20061114" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="DEVCLASS"/>
+  <exception CLSNAME="ZSAPLINK_FUNCTIONGROUP" CMPNAME="TRANSPORT_COPY" SCONAME="ZCX_SAPLINK" VERSION="0" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 " AUTHOR="USEWH90" CREATEDON="20061114" CHANGEDON="00000000"/>
   <source>*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
@@ -2401,3 +2497,4 @@ method TRANSPORT_COPY .
 endmethod.</source>
  </method>
 </CLAS>
+
