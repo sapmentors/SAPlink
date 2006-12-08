@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-16"?>
-<CLAS CLSNAME="ZSAPLINK_CLASS" VERSION="0" LANGU="E" DESCRIPT="SapLink Class Installer" UUID="456A752CAA26045600000000A7E42BB2" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" AUTHOR="USRRQ00" CREATEDON="20061129" CHANGEDON="00000000" CHGDANYON="00000000" CLSCCINCL="X" FIXPT="X" UNICODE="X" R3RELEASE="700" CLSBCCAT="00" DURATION_TYPE="0 " RISK_LEVEL="0 " REFCLSNAME="ZSAPLINK">
+<?xml version="1.0" encoding="iso-8859-1"?>
+<CLAS CLSNAME="ZSAPLINK_CLASS" VERSION="0" LANGU="E" DESCRIPT="SapLink Class Installer" UUID="4558408635A702C600000000A7E42BB6" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDBY="USRRQ00" CHANGEDON="20061204" CHGDANYON="00000000" CLSCCINCL="X" FIXPT="X" UNICODE="X" R3RELEASE="620" CLSBCCAT="00" REFCLSNAME="ZSAPLINK">
  <publicSection>class ZSAPLINK_CLASS definition
   public
   inheriting from ZSAPLINK
@@ -46,12 +46,12 @@ private section.
 *&quot;* implementation or private method&apos;s signature</localTypes>
  <localMacros>*&quot;* use this source file for any macro definitions you need
 *&quot;* in the implementation part of the class</localMacros>
- <forwardDeclaration>ABAP</forwardDeclaration>
- <forwardDeclaration>SEOP</forwardDeclaration>
- <forwardDeclaration>SEOR</forwardDeclaration>
- <forwardDeclaration>SEOS</forwardDeclaration>
- <forwardDeclaration>SEOT</forwardDeclaration>
- <inheritance CLSNAME="ZSAPLINK_CLASS" REFCLSNAME="ZSAPLINK" VERSION="0" STATE="1" AUTHOR="USRRQ00" CREATEDON="20061129" CHANGEDON="00000000">
+ <typeUsage CLSNAME="ZSAPLINK_CLASS" TYPEGROUP="ABAP" VERSION="0" TPUTYPE="0" EXPLICIT="X"/>
+ <typeUsage CLSNAME="ZSAPLINK_CLASS" TYPEGROUP="SEOP" VERSION="0" TPUTYPE="0" EXPLICIT="X"/>
+ <typeUsage CLSNAME="ZSAPLINK_CLASS" TYPEGROUP="SEOR" VERSION="0" TPUTYPE="0" EXPLICIT="X"/>
+ <typeUsage CLSNAME="ZSAPLINK_CLASS" TYPEGROUP="SEOS" VERSION="0" TPUTYPE="0" EXPLICIT="X"/>
+ <typeUsage CLSNAME="ZSAPLINK_CLASS" TYPEGROUP="SEOT" VERSION="0" TPUTYPE="0" EXPLICIT="X"/>
+ <inheritance CLSNAME="ZSAPLINK_CLASS" REFCLSNAME="ZSAPLINK" VERSION="0" STATE="1" AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDBY="USRRQ00" CHANGEDON="20061204">
   <redefinition CLSNAME="ZSAPLINK_CLASS" REFCLSNAME="ZSAPLINK" VERSION="0" MTDNAME="CHECKEXISTS"/>
   <redefinition CLSNAME="ZSAPLINK_CLASS" REFCLSNAME="ZSAPLINK" VERSION="0" MTDNAME="CREATEIXMLDOCFROMOBJECT"/>
   <redefinition CLSNAME="ZSAPLINK_CLASS" REFCLSNAME="ZSAPLINK" VERSION="0" MTDNAME="CREATEOBJECTFROMIXMLDOC"/>
@@ -59,7 +59,8 @@ private section.
   <redefinition CLSNAME="ZSAPLINK_CLASS" REFCLSNAME="ZSAPLINK" VERSION="0" MTDNAME="GETOBJECTTYPE"/>
  </inheritance>
  <method CLSNAME="ZSAPLINK" CMPNAME="CHECKEXISTS" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
-  <source>*/---------------------------------------------------------------------\
+  <source>method CHECKEXISTS .
+*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
 *|   SAPlink is free software; you can redistribute it and/or modify   |
@@ -77,7 +78,6 @@ private section.
 *|   Free Software Foundation, Inc.,                                   |
 *|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
 *\---------------------------------------------------------------------/
-method CHECKEXISTS .
 
 data classkey type SEOCLSKEY.
 data not_active TYPE  SEOX_BOOLEAN.
@@ -103,7 +103,8 @@ data not_active TYPE  SEOX_BOOLEAN.
 endmethod.</source>
  </method>
  <method CLSNAME="ZSAPLINK" CMPNAME="CREATEIXMLDOCFROMOBJECT" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
-  <source>*/---------------------------------------------------------------------\
+  <source>method CREATEIXMLDOCFROMOBJECT .
+*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
 *|   SAPlink is free software; you can redistribute it and/or modify   |
@@ -121,7 +122,6 @@ endmethod.</source>
 *|   Free Software Foundation, Inc.,                                   |
 *|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
 *\---------------------------------------------------------------------/
-METHOD createixmldocfromobject .
 
 
   DATA publicsection TYPE REF TO if_ixml_element.
@@ -429,11 +429,20 @@ METHOD createixmldocfromobject .
       version     = &apos;1&apos;
     IMPORTING
       typepusages = forwarddeclarationlist.
-
+*comment rrq old way....forwardDeclarations the only attribute
+*set was the &quot;TypeGroup&quot;
+*  LOOP AT forwarddeclarationlist INTO forwarddeclarationrow.
+*    forwarddeclaration = xmldoc-&gt;create_element( &apos;forwardDeclaration&apos; ).
+*    tempstring = forwarddeclarationrow-typegroup.
+*    rc = forwarddeclaration-&gt;if_ixml_node~set_value( tempstring ).
+*    rc = rootnode-&gt;append_child( forwarddeclaration ).
+*  ENDLOOP.
+*comment rrq
+*the new way....the entire structure is passed as a node
   LOOP AT forwarddeclarationlist INTO forwarddeclarationrow.
-    forwarddeclaration = xmldoc-&gt;create_element( &apos;forwardDeclaration&apos; ).
-    tempstring = forwarddeclarationrow-typegroup.
-    rc = forwarddeclaration-&gt;if_ixml_node~set_value( tempstring ).
+    forwarddeclaration = xmldoc-&gt;create_element( &apos;typeUsage&apos; ).
+    setattributesfromstructure( node = forwarddeclaration structure =
+    forwarddeclarationrow ).
     rc = rootnode-&gt;append_child( forwarddeclaration ).
   ENDLOOP.
 
@@ -606,7 +615,6 @@ METHOD createixmldocfromobject .
 * append root node to xmldoc
   rc = xmldoc-&gt;append_child( rootnode ).
   ixmldocument = xmldoc.
-ENDMETHOD.
 *// &lt;--ewH: end of logic for interface methods &amp; inheritance redesign
 
 *// ewH: begin comment redesign inheritance--&gt;
@@ -706,10 +714,12 @@ ENDMETHOD.
 *  rc = xmldoc-&gt;append_child( rootnode ).
 *  ixmldocument = xmldoc.
 *ENDMETHOD.
-*// &lt;--ewH: end of comment redesign inheritance</source>
+*// &lt;--ewH: end of comment redesign inheritance
+endmethod.</source>
  </method>
  <method CLSNAME="ZSAPLINK" CMPNAME="CREATEOBJECTFROMIXMLDOC" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
-  <source>*/---------------------------------------------------------------------\
+  <source>method CREATEOBJECTFROMIXMLDOC .
+*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
 *|   SAPlink is free software; you can redistribute it and/or modify   |
@@ -727,7 +737,6 @@ ENDMETHOD.
 *|   Free Software Foundation, Inc.,                                   |
 *|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
 *\---------------------------------------------------------------------/
-METHOD createobjectfromixmldoc .
 
   DATA rootnode TYPE REF TO if_ixml_element.
   DATA classkey TYPE seoclskey.
@@ -750,6 +759,9 @@ METHOD createobjectfromixmldoc .
   data inheritanceNode type ref to if_ixml_element.
   data redefNode type ref to if_ixml_element.
 
+  data isDepricated type flag.
+*data excClass type ref to ZCX_SAPLINK.
+
 *// --&gt; begin of new data type rrq
 data:
 *exporting dataTypes
@@ -759,13 +771,13 @@ e_version                type SEOVERSION,
 e_genflag                type GENFLAG,
 e_authority_check        type SEOX_BOOLEAN,
 e_overwrite              type SEOX_BOOLEAN,
-e_suppress_meth_gen      type SEOX_BOOLEAN,
-e_suppress_refac_gen     type SEOX_BOOLEAN,
+*e_suppress_meth_gen      type SEOX_BOOLEAN,
+*e_suppress_refac_gen     type SEOX_BOOLEAN,
 e_method_sources         type SEO_METHOD_SOURCE_TABLE,
 e_locals_def             type RSWSOURCET,
 e_locals_imp             type RSWSOURCET,
 e_locals_mac             type RSWSOURCET,
-e_suppress_ind_update    type SEOX_BOOLEAN,
+*e_suppress_ind_update    type SEOX_BOOLEAN,
 *importing dataTypes
 i_korrnr                 type trkorr,
 *changing dataTypes
@@ -786,10 +798,10 @@ ch_typeusages            type SEOT_TYPEPUSAGES_R,
 ch_clsdeferreds          type SEOT_CLSDEFERRDS_R,
 ch_intdeferrds           type SEOT_INTDEFERRDS_R,
 ch_friendships           type SEO_FRIENDS,
-*table dataTypes
-tb_classDescription      type table of seoclasstx,
-tb_component_descr       type table of seocompotx,
-tb_subcomponent_descr    type table of seosubcotx,
+**table dataTypes
+*tb_classDescription      type table of seoclasstx,
+*tb_component_descr       type table of seocompotx,
+*tb_subcomponent_descr    type table of seosubcotx,
 * work areas for the tables
 wa_attributes            type SEOO_ATTRIBUTE_R,
 wa_types                 type SEOO_TYPE_R,
@@ -828,7 +840,9 @@ data: lines type i.
     superclasskey-refclsname = superclass.
     superclasskey-version = &apos;0&apos;.
     superclasskey-state = &apos;1&apos;.
-
+    MOVE-CORRESPONDING superclasskey to ch_inheritance.
+    ch_inheritance-author = &apos;BCUSER&apos;.
+    ch_inheritance-createdOn = sy-datum.
   ENDIF.
 
 *Add attributes to new class
@@ -980,6 +994,22 @@ data: lines type i.
       node ?= iterator-&gt;get_next( ).
       continue.
     endif.
+*// ewh: begin of backward compatibility hack, can be removed for next
+*//      major release--&gt;
+    IF wa_methods-clsname &lt;&gt; ch_class-clsname.
+      isDepricated = &apos;X&apos;.
+      MOVE-CORRESPONDING wa_methods TO wa_redefinitions.
+      wa_redefinitions-clsname = ch_class-clsname.
+      wa_redefinitions-refclsname = wa_methods-clsname.
+      wa_redefinitions-version = &apos;0&apos;.
+      wa_redefinitions-mtdabstrct = &apos;&apos;.
+      wa_redefinitions-mtdname = wa_methods-cmpname.
+      APPEND wa_redefinitions TO ch_redefinitions.
+
+      node ?= iterator-&gt;get_next( ).
+      continue.
+    endif.
+*// &lt;--ewH: break in backward compatibility hack - 2Bcontinued below
 
     filter2 = node-&gt;create_filter_name( &apos;parameter&apos; ).
     iterator2 = node-&gt;create_iterator_filtered( filter2 ).
@@ -1010,12 +1040,33 @@ data: lines type i.
     node ?= iterator-&gt;get_next( ).
   ENDWHILE.
 *// &lt;--ewH: end redesign method/inheritances
+*// ewh: continuation of backward compatibility hack--&gt;
+*  IF ( ch_redefinitions IS NOT INITIAL OR superclass-clsname
+*  IS NOT INITIAL ) and ch_inheritance is initial.
+*    CALL FUNCTION &apos;SEO_INHERITANC_CREATE_F_DATA&apos;
+*      EXPORTING
+*        save          = &apos; &apos;
+*      CHANGING
+*        inheritance   = superclasskey
+*        redefinitions = ch_redefinitions.
+*  ENDIF.
+*// &lt;--ewH: end of backward compatibility hack
+
+
   DATA classtype TYPE seoclstype.
   DATA impkeys TYPE seor_implementing_keys.
   DATA iserror TYPE boolean.
 
 *create forward declarations
 *bug 77
+*rrq comments Forward nodes are created in an old version of the
+*create XML from object.  In that node, the only attribute set
+*is the &quot;TypeGroup&quot;.  All other attributes are hard coded on the
+*create Object from XML .  To fix this and make it transparent to
+*users, &quot;forwaredDeclaration&quot; nodes will be supported, and a new
+*node will be added.  Only one node will actually exist.
+*if it is an old version XML document, forwardDeclarations nodes
+*if it is a new version XML document, typeUsages nodes
   filter = xmldoc-&gt;create_filter_name( &apos;forwardDeclaration&apos; ).
   iterator = xmldoc-&gt;create_iterator_filtered( filter ).
   node ?= iterator-&gt;get_next( ).
@@ -1033,7 +1084,20 @@ data: lines type i.
     APPEND wa_typeusages TO ch_typeusages.
     node ?= iterator-&gt;get_next( ).
   ENDWHILE.
+* new way....only one of these nodes should exist
+  filter = xmldoc-&gt;create_filter_name( &apos;typeUsage&apos; ).
+  iterator = xmldoc-&gt;create_iterator_filtered( filter ).
+  node ?= iterator-&gt;get_next( ).
 
+  WHILE node IS NOT INITIAL.
+      CALL METHOD getstructurefromattributes
+      EXPORTING
+        node      = node
+      CHANGING
+        structure = wa_typeUsages.
+    APPEND wa_typeusages TO ch_typeusages.
+    node ?= iterator-&gt;get_next( ).
+  ENDWHILE.
 *Insert source code into the methods
   filter = xmldoc-&gt;create_filter_name( &apos;method&apos; ).
   iterator = xmldoc-&gt;create_iterator_filtered( filter ).
@@ -1054,29 +1118,26 @@ data: lines type i.
       source = methodsourcenode-&gt;get_value( ).
       sourcetable = buildtablefromstring( source ).
       loop at sourceTable into source.
-        if source cp &apos;*method*&apos;.
-          if sy-subrc  = 0 and source+0(1) &lt;&gt; &apos;*&apos;.
-*          Got it and not a comment?
-            delete sourceTable index sy-tabix.
-            exit.
-          endif.
+        check source is not initial.
+        translate source to upper case.
+        shift source left deleting leading space.
+        search source for &apos;METHOD&apos;.
+        check sy-subrc = 0.
+        if source+0(8) = &apos;METHOD&apos;.
+          delete sourceTable index sy-tabix.
+          continue.
+        endif.
+        if source+0(11) = &apos;ENDMETHOD&apos;.
+          delete sourceTable index sy-tabix.
+          continue.
         endif.
       endloop.
-
-      describe table sourceTable lines lines.
-      while lines &gt; 0.
-        read table sourceTable into source index lines.
-        if source cp &apos;endmethod*&apos;.
-          if sy-subrc  = 0 and source+0(1) &lt;&gt; &apos;*&apos;.
-*          Got it and not a comment?
-            delete sourceTable index lines.
-            exit.
-          endif.
-        endif.
-        subtract 1 from lines.
-      endwhile.
+      read table ch_redefinitions into wa_redefinitions
+      with key mtdname = methodKey-cpdname.
+      IF sy-subrc = 0.
+        wa_method_sources-redefine = &apos;X&apos;.
+      endif.
       wa_method_sources-cpdname = methodkey-cpdname.
-      wa_method_sources-redefine = wa_methods-redefin.
       wa_method_sources-source = sourceTable.
       append wa_method_sources to e_method_sources.
     ENDIF.
@@ -1101,27 +1162,20 @@ data: lines type i.
       source = methodsourcenode-&gt;get_value( ).
       sourcetable = buildtablefromstring( source ).
       loop at sourceTable into source.
-        if source cp &apos;*method*&apos;.
-          if sy-subrc  = 0 and source+0(1) &lt;&gt; &apos;*&apos;.
-*          Got it and not a comment?
-            delete sourceTable index sy-tabix.
-            exit.
-          endif.
+        check source is not initial.
+        translate source to upper case.
+        shift source left deleting leading space.
+        search source for &apos;METHOD&apos;.
+        check sy-subrc = 0.
+        if source+0(8) = &apos;METHOD&apos;.
+          delete sourceTable index sy-tabix.
+          continue.
+        endif.
+        if source+0(11) = &apos;ENDMETHOD&apos;.
+          delete sourceTable index sy-tabix.
+          continue.
         endif.
       endloop.
-
-      describe table sourceTable lines lines.
-      while lines &gt; 0.
-        read table sourceTable into source index lines.
-        if source cp &apos;endmethod*&apos;.
-          if sy-subrc  = 0 and source+0(1) &lt;&gt; &apos;*&apos;.
-*          Got it and not a comment?
-            delete sourceTable index lines.
-            exit.
-          endif.
-        endif.
-        subtract 1 from lines.
-      endwhile.
       wa_method_sources-cpdname = methodkey-cpdname.
       wa_method_sources-redefine = wa_methods-redefin.
       wa_method_sources-source = sourceTable.
@@ -1166,19 +1220,19 @@ CALL FUNCTION &apos;SEO_CLASS_CREATE_COMPLETE&apos;
    GENFLAG                            = e_genflag
    AUTHORITY_CHECK                    = e_authority_check
    OVERWRITE                          = e_overwrite
-   SUPPRESS_METHOD_GENERATION         = e_suppress_meth_gen
-   SUPPRESS_REFACTORING_SUPPORT       = e_suppress_refac_gen
+*   SUPPRESS_METHOD_GENERATION         = e_suppress_meth_gen
+*   SUPPRESS_REFACTORING_SUPPORT       = e_suppress_refac_gen
    METHOD_SOURCES                     = e_method_sources
    LOCALS_DEF                         = e_locals_def
    LOCALS_IMP                         = e_locals_imp
    LOCALS_MAC                         = e_locals_mac
-   SUPPRESS_INDEX_UPDATE              = e_suppress_ind_update
+*   SUPPRESS_INDEX_UPDATE              = e_suppress_ind_update
  IMPORTING
    KORRNR                             = i_korrnr
- TABLES
-   CLASS_DESCRIPTIONS                 = tb_classDescription
-   COMPONENT_DESCRIPTIONS             = tb_component_descr
-   SUBCOMPONENT_DESCRIPTIONS          = tb_subcomponent_descr
+* TABLES
+*   CLASS_DESCRIPTIONS                 = tb_classDescription
+*   COMPONENT_DESCRIPTIONS             = tb_component_descr
+*   SUBCOMPONENT_DESCRIPTIONS          = tb_subcomponent_descr
   CHANGING
     CLASS                              = ch_class
    INHERITANCE                        = ch_inheritance
@@ -1216,8 +1270,10 @@ CALL FUNCTION &apos;SEO_CLASS_CREATE_COMPLETE&apos;
       raise exception type zcx_saplink
         exporting textid = zcx_saplink=&gt;system_error.
   endcase.
-
-ENDMETHOD.
+  if isDepricated = &apos;X&apos;.
+    RAISE EXCEPTION TYPE zcx_saplink
+    EXPORTING textid = zcx_saplink=&gt;DEPRICATED.
+  endif.
 
 
 ************************************************************************
@@ -1647,7 +1703,8 @@ ENDMETHOD.
 **            parameter = paraminfo.
 **
 **        node2 ?= iterator2-&gt;get_next( ).
-**      ENDWHILE.
+**
+**     ENDWHILE.
 **      filter2 = node-&gt;create_filter_name( &apos;exception&apos; ).
 **      iterator2 = node-&gt;create_iterator_filtered( filter2 ).
 **      node2 ?= iterator2-&gt;get_next( ).
@@ -1656,7 +1713,8 @@ ENDMETHOD.
 **          EXPORTING
 **            node      = node2
 **          CHANGING
-**            structure = exceptinfo.
+**            struc
+ture = exceptinfo.
 **        CALL FUNCTION &apos;SEO_EXCEPTION_CREATE_F_DATA&apos;
 **          EXPORTING
 **            save  = &apos; &apos;
@@ -1961,10 +2019,12 @@ ENDMETHOD.
 ** successful install
 *  name = objname.
 *
-*ENDMETHOD.</source>
+*ENDMETHOD.
+endmethod.</source>
  </method>
  <method CLSNAME="ZSAPLINK" CMPNAME="DELETEOBJECT" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
-  <source>*/---------------------------------------------------------------------\
+  <source>method DELETEOBJECT .
+*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
 *|   SAPlink is free software; you can redistribute it and/or modify   |
@@ -1982,7 +2042,6 @@ ENDMETHOD.
 *|   Free Software Foundation, Inc.,                                   |
 *|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
 *\---------------------------------------------------------------------/
-method DELETEOBJECT .
 
 data clsKey type SEOCLSKEY.
 
@@ -2019,11 +2078,12 @@ data clsKey type SEOCLSKEY.
   endif.
 endmethod.</source>
  </method>
- <method CLSNAME="ZSAPLINK_CLASS" CMPNAME="FINDIMPLEMENTINGCLASS" VERSION="0" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="1 " DISPID="0 " AUTHOR="USRRQ00" CREATEDON="20061129" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="700" BCMTDCAT="00" BCMTDSYN="0">
-  <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="FINDIMPLEMENTINGCLASS" SCONAME="METHODNAME" VERSION="0" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USRRQ00" CREATEDON="20061129" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
-  <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="FINDIMPLEMENTINGCLASS" SCONAME="STARTCLASS" VERSION="0" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="USRRQ00" CREATEDON="20061129" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING" PAROPTIONL="X"/>
-  <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="FINDIMPLEMENTINGCLASS" SCONAME="CLASSNAME" VERSION="0" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " AUTHOR="USRRQ00" CREATEDON="20061129" CHANGEDON="00000000" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="1" TYPE="STRING"/>
-  <source>*/---------------------------------------------------------------------\
+ <method CLSNAME="ZSAPLINK_CLASS" CMPNAME="FINDIMPLEMENTINGCLASS" VERSION="0" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="1 " DISPID="0 " AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDBY="USRRQ00" CHANGEDON="20061204" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="620" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="FINDIMPLEMENTINGCLASS" SCONAME="METHODNAME" VERSION="0" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDBY="USRRQ00" CHANGEDON="20061204" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
+  <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="FINDIMPLEMENTINGCLASS" SCONAME="STARTCLASS" VERSION="0" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDBY="USRRQ00" CHANGEDON="20061204" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING" PAROPTIONL="X"/>
+  <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="FINDIMPLEMENTINGCLASS" SCONAME="CLASSNAME" VERSION="0" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDBY="USRRQ00" CHANGEDON="20061204" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="1" TYPE="STRING"/>
+  <source>method FINDIMPLEMENTINGCLASS .
+*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
 *|   SAPlink is free software; you can redistribute it and/or modify   |
@@ -2041,7 +2101,6 @@ endmethod.</source>
 *|   Free Software Foundation, Inc.,                                   |
 *|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
 *\---------------------------------------------------------------------/
-method FINDIMPLEMENTINGCLASS .
 
 data methodKey type SEOCMPKEY.
 data methodProperties type VSEOMETHOD.
@@ -2080,7 +2139,8 @@ data superClassName type string.
 endmethod.</source>
  </method>
  <method CLSNAME="ZSAPLINK" CMPNAME="GETOBJECTTYPE" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
-  <source>*/---------------------------------------------------------------------\
+  <source>method GETOBJECTTYPE .
+*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
 *|   SAPlink is free software; you can redistribute it and/or modify   |
@@ -2098,7 +2158,6 @@ endmethod.</source>
 *|   Free Software Foundation, Inc.,                                   |
 *|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
 *\---------------------------------------------------------------------/
-method GETOBJECTTYPE .
 
   objecttype = &apos;CLAS&apos;.  &quot;Class
 
