@@ -448,8 +448,11 @@ endmethod.</source>
 
 *  classDescriptor ?= cl_abap_typedescr=&gt;describe_by_name( className ).
   attribkey-clsname = objname.
+*fix for redundant attributes...ommitting the ones that are inherface
   LOOP AT classdescr-&gt;attributes INTO attribdescr WHERE is_inherited =
-  abap_false.
+  abap_false and is_interface = abap_false.
+*  LOOP AT classdescr-&gt;attributes INTO attribdescr WHERE is_inherited =
+*  abap_false.
     attribnode = xmldoc-&gt;create_element( &apos;attribute&apos; ).
     attribkey-cmpname = attribdescr-name.
     CALL FUNCTION &apos;SEO_ATTRIBUTE_GET&apos;
@@ -1123,11 +1126,11 @@ data: lines type i.
         shift source left deleting leading space.
         search source for &apos;METHOD&apos;.
         check sy-subrc = 0.
-        if source+0(8) = &apos;METHOD&apos;.
+        if source+0(6) = &apos;METHOD&apos;.
           delete sourceTable index sy-tabix.
           continue.
         endif.
-        if source+0(11) = &apos;ENDMETHOD&apos;.
+        if source+0(9) = &apos;ENDMETHOD&apos;.
           delete sourceTable index sy-tabix.
           continue.
         endif.
@@ -1167,11 +1170,11 @@ data: lines type i.
         shift source left deleting leading space.
         search source for &apos;METHOD&apos;.
         check sy-subrc = 0.
-        if source+0(8) = &apos;METHOD&apos;.
+        if source+0(6) = &apos;METHOD&apos;.
           delete sourceTable index sy-tabix.
           continue.
         endif.
-        if source+0(11) = &apos;ENDMETHOD&apos;.
+        if source+0(9) = &apos;ENDMETHOD&apos;.
           delete sourceTable index sy-tabix.
           continue.
         endif.
@@ -1707,14 +1710,14 @@ CALL FUNCTION &apos;SEO_CLASS_CREATE_COMPLETE&apos;
 **     ENDWHILE.
 **      filter2 = node-&gt;create_filter_name( &apos;exception&apos; ).
 **      iterator2 = node-&gt;create_iterator_filtered( filter2 ).
-**      node2 ?= iterator2-&gt;get_next( ).
+**      node2 ?= iterator2-&gt;get_
+next( ).
 **      WHILE node2 IS NOT INITIAL.
 **        CALL METHOD getstructurefromattributes
 **          EXPORTING
 **            node      = node2
 **          CHANGING
-**            struc
-ture = exceptinfo.
+**            structure = exceptinfo.
 **        CALL FUNCTION &apos;SEO_EXCEPTION_CREATE_F_DATA&apos;
 **          EXPORTING
 **            save  = &apos; &apos;
