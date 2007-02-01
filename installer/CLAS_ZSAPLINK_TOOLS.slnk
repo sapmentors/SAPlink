@@ -1,0 +1,956 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<CLAS CLSNAME="ZSAPLINK_TOOLS" VERSION="1" LANGU="E" DESCRIPT="SAPlink tools and utilities" UUID="452B55C3F3D10B0500000000A7E42BB6" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" AUTHOR="USPTY90" CREATEDON="20061012" CHANGEDBY="USEWH90" CHANGEDON="20061013" CHGDANYON="00000000" CLSCCINCL="X" FIXPT="X" UNICODE="X" R3RELEASE="620" CLSBCCAT="00">
+ <publicSection>class ZSAPLINK_TOOLS definition
+  public
+  create public .
+
+*&quot;* public components of class ZSAPLINK_TOOLS
+*&quot;* do not include other source files here!!!
+public section.
+  type-pools SEOO .
+  type-pools SEOR .
+
+  class-methods GLOBALCLASSTOLOCALCLASS
+    importing
+      !GLOBAL_CLASS_XML type ref to IF_IXML_DOCUMENT
+    returning
+      value(LOCAL_CLASS_XML) type ref to IF_IXML_DOCUMENT .</publicSection>
+ <protectedSection>*&quot;* protected components of class ZSAPLINK_TOOLS
+*&quot;* do not include other source files here!!!
+protected section.
+
+  class-methods GETSTRUCTUREFROMATTRIBUTES
+    importing
+      !NODE type ref to IF_IXML_ELEMENT
+    changing
+      !STRUCTURE type DATA .
+  class-methods BUILDTABLEFROMSTRING
+    importing
+      !SOURCE type STRING
+    returning
+      value(SOURCETABLE) type TABLE_OF_STRINGS .
+  class-methods BUILDSOURCESTRING
+    importing
+      !SOURCETABLE type RSWSOURCET optional
+      !PAGETABLE type O2PAGELINE_TABLE optional
+    returning
+      value(SOURCESTRING) type STRING .</protectedSection>
+ <privateSection>*&quot;* private components of class ZSAPLINK_TOOLS
+*&quot;* do not include other source files here!!!
+private section.</privateSection>
+ <localImplementation>*&quot;* local class implementation for public class
+*&quot;* use this source file for the implementation part of
+*&quot;* local helper classes</localImplementation>
+ <localTypes>*&quot;* use this source file for any type declarations (class
+*&quot;* definitions, interfaces or data types) you need for method
+*&quot;* implementation or private method&apos;s signature</localTypes>
+ <localMacros>*&quot;* use this source file for any macro definitions you need
+*&quot;* in the implementation part of the class</localMacros>
+ <typeUsage CLSNAME="ZSAPLINK_TOOLS" TYPEGROUP="SEOO" VERSION="1" TPUTYPE="0" EXPLICIT="X"/>
+ <typeUsage CLSNAME="ZSAPLINK_TOOLS" TYPEGROUP="SEOR" VERSION="1" TPUTYPE="0" EXPLICIT="X"/>
+ <forwardDeclaration>SEOO</forwardDeclaration>
+ <forwardDeclaration>SEOR</forwardDeclaration>
+ <method CLSNAME="ZSAPLINK_TOOLS" CMPNAME="BUILDSOURCESTRING" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="4 " DISPID="0 " AUTHOR="USPTY90" CREATEDON="20061015" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="1" R3RELEASE="620" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_TOOLS" CMPNAME="BUILDSOURCESTRING" SCONAME="SOURCETABLE" VERSION="1" LANGU="E" DESCRIPT="Table of Strings" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USPTY90" CREATEDON="20061015" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="RSWSOURCET" PAROPTIONL="X"/>
+  <parameter CLSNAME="ZSAPLINK_TOOLS" CMPNAME="BUILDSOURCESTRING" SCONAME="PAGETABLE" VERSION="1" LANGU="E" DESCRIPT="O2: Oxygen Page Table" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="USPTY90" CREATEDON="20061015" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="O2PAGELINE_TABLE" PAROPTIONL="X"/>
+  <parameter CLSNAME="ZSAPLINK_TOOLS" CMPNAME="BUILDSOURCESTRING" SCONAME="SOURCESTRING" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " AUTHOR="USPTY90" CREATEDON="20061015" CHANGEDON="00000000" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="1" TYPE="STRING"/>
+  <source>*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   SAPlink is free software; you can redistribute it and/or modify   |
+*|   it under the terms of the GNU General Public License as published |
+*|   by the Free Software Foundation; either version 2 of the License, |
+*|   or (at your option) any later version.                            |
+*|                                                                     |
+*|   SAPlink is distributed in the hope that it will be useful,        |
+*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
+*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
+*|   GNU General Public License for more details.                      |
+*|                                                                     |
+*|   You should have received a copy of the GNU General Public License |
+*|   along with SAPlink; if not, write to the                          |
+*|   Free Software Foundation, Inc.,                                   |
+*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*\---------------------------------------------------------------------/
+method BUILDSOURCESTRING .
+data sTemp type string.
+data pageLine type O2PAGELINE.
+
+  if sourceTable is not initial.
+    loop at sourceTable into sTemp.
+      concatenate sourceString sTemp CL_ABAP_CHAR_UTILITIES=&gt;NEWLINE
+        into sourceString.
+    endloop.
+  elseif pageTable is not initial.
+    loop at pageTable into pageLine.
+      concatenate sourceString pageLine-line
+        CL_ABAP_CHAR_UTILITIES=&gt;NEWLINE
+        into sourceString.
+    endloop.
+  endif.
+
+* remove extra newline characters for conversion comparison consistency
+  shift sourceString left deleting leading
+    CL_ABAP_CHAR_UTILITIES=&gt;NEWLINE.
+  shift sourceString right deleting trailing
+    CL_ABAP_CHAR_UTILITIES=&gt;NEWLINE.
+  shift sourceString left deleting leading space.
+endmethod.</source>
+ </method>
+ <method CLSNAME="ZSAPLINK_TOOLS" CMPNAME="BUILDTABLEFROMSTRING" VERSION="1" LANGU="E" DESCRIPT="Build a table" EXPOSURE="1" STATE="1" EDITORDER="3 " DISPID="0 " AUTHOR="USPTY90" CREATEDON="20061012" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="1" R3RELEASE="620" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_TOOLS" CMPNAME="BUILDTABLEFROMSTRING" SCONAME="SOURCE" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USPTY90" CREATEDON="20061012" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
+  <parameter CLSNAME="ZSAPLINK_TOOLS" CMPNAME="BUILDTABLEFROMSTRING" SCONAME="SOURCETABLE" VERSION="1" LANGU="E" DESCRIPT="Table of Strings" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="USPTY90" CREATEDON="20061012" CHANGEDON="00000000" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="1" TYPE="TABLE_OF_STRINGS"/>
+  <source>*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   SAPlink is free software; you can redistribute it and/or modify   |
+*|   it under the terms of the GNU General Public License as published |
+*|   by the Free Software Foundation; either version 2 of the License, |
+*|   or (at your option) any later version.                            |
+*|                                                                     |
+*|   SAPlink is distributed in the hope that it will be useful,        |
+*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
+*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
+*|   GNU General Public License for more details.                      |
+*|                                                                     |
+*|   You should have received a copy of the GNU General Public License |
+*|   along with SAPlink; if not, write to the                          |
+*|   Free Software Foundation, Inc.,                                   |
+*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*\---------------------------------------------------------------------/
+method BUILDTABLEFROMSTRING .
+  split source at CL_ABAP_CHAR_UTILITIES=&gt;NEWLINE
+    into table sourceTable.
+endmethod.</source>
+ </method>
+ <method CLSNAME="ZSAPLINK_TOOLS" CMPNAME="GETSTRUCTUREFROMATTRIBUTES" VERSION="1" LANGU="E" DESCRIPT="Updates a structure with node attributes" EXPOSURE="1" STATE="1" EDITORDER="1 " DISPID="0 " AUTHOR="USPTY90" CREATEDON="20061012" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="1" R3RELEASE="620" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_TOOLS" CMPNAME="GETSTRUCTUREFROMATTRIBUTES" SCONAME="NODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USPTY90" CREATEDON="20061012" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
+  <parameter CLSNAME="ZSAPLINK_TOOLS" CMPNAME="GETSTRUCTUREFROMATTRIBUTES" SCONAME="STRUCTURE" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="USPTY90" CREATEDON="20061012" CHANGEDON="00000000" PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="DATA"/>
+  <source>*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   SAPlink is free software; you can redistribute it and/or modify   |
+*|   it under the terms of the GNU General Public License as published |
+*|   by the Free Software Foundation; either version 2 of the License, |
+*|   or (at your option) any later version.                            |
+*|                                                                     |
+*|   SAPlink is distributed in the hope that it will be useful,        |
+*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
+*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
+*|   GNU General Public License for more details.                      |
+*|                                                                     |
+*|   You should have received a copy of the GNU General Public License |
+*|   along with SAPlink; if not, write to the                          |
+*|   Free Software Foundation, Inc.,                                   |
+*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*\---------------------------------------------------------------------/
+method GETSTRUCTUREFROMATTRIBUTES .
+data attributeList type ref to IF_IXML_NAMED_NODE_MAP.
+data nodeIterator type ref to IF_IXML_NODE_ITERATOR.
+data attributeNode type ref to if_ixml_node.
+data value type string.
+data name type string.
+field-symbols &lt;value&gt; type any.
+
+  clear structure.
+  attributeList = node-&gt;GET_ATTRIBUTES( ).
+  nodeIterator = attributeList-&gt;create_iterator( ).
+  attributeNode = nodeIterator-&gt;get_next( ).
+  while attributeNode is not initial.
+    name = attributeNode-&gt;get_name( ).
+    if name = &apos;VERSION&apos;.
+      value = &apos;0&apos;.
+    else.
+      value = attributeNode-&gt;get_value( ).
+    endif.
+    assign component name of structure structure to &lt;value&gt;.
+    if sy-subrc = 0.
+      &lt;value&gt; = value.
+    endif.
+    attributeNode = nodeIterator-&gt;get_next( ).
+  endwhile.
+
+endmethod.
+
+
+
+
+
+*    .-&quot;-.
+*  .&apos;=^=^=&apos;.
+* /=^=^=^=^=\
+*:^=SAPLINK=^;
+*|^ EASTER  ^|
+*:^=^EGG^=^=^:
+* \=^=^=^=^=/
+*  `.=^=^=.&apos;
+*    `~~~`
+* Don&apos;t like the way we did something?
+* Help us fix it!  Tell us what you think!
+* http://saplink.sourceforge.net</source>
+ </method>
+ <method CLSNAME="ZSAPLINK_TOOLS" CMPNAME="GLOBALCLASSTOLOCALCLASS" VERSION="1" LANGU="E" DESCRIPT="saplink XML of global class to local class definition" EXPOSURE="2" STATE="1" EDITORDER="2 " DISPID="0 " AUTHOR="USPTY90" CREATEDON="20061013" CHANGEDBY="USPTY90" CHANGEDON="20061015" MTDTYPE="0" MTDDECLTYP="1" R3RELEASE="620" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_TOOLS" CMPNAME="GLOBALCLASSTOLOCALCLASS" SCONAME="GLOBAL_CLASS_XML" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_DOCUMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USPTY90" CREATEDON="20061013" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_DOCUMENT"/>
+  <parameter CLSNAME="ZSAPLINK_TOOLS" CMPNAME="GLOBALCLASSTOLOCALCLASS" SCONAME="LOCAL_CLASS_XML" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_DOCUMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="USPTY90" CREATEDON="20061013" CHANGEDON="00000000" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_DOCUMENT"/>
+  <source>method GLOBALCLASSTOLOCALCLASS .
+
+  data XMLDOC	Type Ref To IF_IXML_DOCUMENT.
+  data xmldocOut Type Ref To IF_IXML_DOCUMENT.
+  data IXML type ref to IF_IXML.
+  data OBJNAME Type STRING.
+  data defnodeOut TYPE REF TO if_ixml_element.
+  data impnodeOut TYPE REF TO if_ixml_element.
+  data dependnodeOut TYPE REF TO if_ixml_element.
+  data dependchildnodeOut TYPE REF TO if_ixml_element.
+  DATA rootnodeOut TYPE REF TO if_ixml_element.
+  DATA rc TYPE sysubrc.
+  data strParent type string.
+  data strTemp type string.
+
+  data it_flatClass type table of string.
+  data it_flatClassImp type table of string.
+  data it_flatClassDef type table of string.
+  data wa_flatclass type string.
+  data it_attrib type table of vseoattrib.
+  data it_types type table of SEOO_TYPE_R.
+  data it_interfaces type table of SEOR_IMPLEMENTING_R.
+  data it_methodprops type table of vseomethod.
+  data it_params type table of vseoparam.
+  data it_except type table of vseoexcep.
+
+  DATA reportstring TYPE string.
+
+  data useFL type C.
+  data wa_flatClass_tmp type string.
+  data off type int4.
+
+
+  DATA rootnode TYPE REF TO if_ixml_element.
+  DATA classheader TYPE vseoclass.
+  DATA classkey TYPE seoclskey.
+  DATA not_active TYPE boolean.
+  DATA filter TYPE REF TO if_ixml_node_filter.
+  DATA iterator TYPE REF TO if_ixml_node_iterator.
+  DATA node TYPE REF TO if_ixml_element.
+  DATA otrnode TYPE REF TO if_ixml_element.
+  DATA filter2 TYPE REF TO if_ixml_node_filter.
+  DATA iterator2 TYPE REF TO if_ixml_node_iterator.
+  DATA attribproperties TYPE vseoattrib.
+  DATA methodproperties TYPE vseomethod.
+  DATA methodredefinition TYPE seoredef.
+  DATA methodredeftable TYPE STANDARD TABLE OF seoredef WITH KEY clsname
+  refclsname version mtdname.
+  DATA superclass TYPE vseoextend.
+  DATA superclasskey TYPE vseoextend.
+  DATA includename TYPE program.
+  DATA methodsourcenode TYPE REF TO if_ixml_node.
+  DATA sourcenode TYPE REF TO if_ixml_node.
+  DATA source TYPE string.
+  DATA sourcetable TYPE TABLE OF string.
+  DATA methodkey TYPE seocpdkey.
+  DATA forwarddeclarationrow TYPE vseotypep.
+  DATA forwarddeclarations TYPE STANDARD TABLE OF vseotypep.
+  DATA node2 TYPE REF TO if_ixml_element.
+  DATA paraminfo TYPE vseoparam.
+  DATA exceptinfo TYPE vseoexcep.
+
+  DATA _objtype TYPE string.
+  DATA checkexists TYPE flag.
+
+  data inheritanceNode type ref to if_ixml_element.
+  data redefNode type ref to if_ixml_element.
+  DATA inheritance TYPE SEOR_INHERITANCE_R.
+  DATA redefinitions TYPE seor_redefinitions_r.
+  data redefinition like line of redefinitions.
+
+*  _devclass = devclass.
+  _objtype = &apos;CLAS&apos;.
+
+  xmldoc = global_class_xml.
+  rootnode = xmldoc-&gt;find_from_name( _objtype ).
+
+  CALL METHOD getstructurefromattributes
+    EXPORTING
+      node      = rootnode
+    CHANGING
+      structure = classheader.
+
+  classkey-clsname = classheader-clsname.
+  objname = classkey-clsname.
+
+**//
+  concatenate
+    &apos;CLASS&apos; objname &apos;DEFINITION&apos;
+  into wa_flatClass separated by space.
+  append wa_flatClass to it_flatClass.
+  clear wa_flatClass.
+
+*is it inheriting?
+* inheritance
+  inheritanceNode = rootNode-&gt;find_from_name( &apos;inheritance&apos; ).
+  if inheritanceNode is bound.
+    CALL METHOD getstructurefromattributes
+      EXPORTING
+        node      = inheritanceNode
+      CHANGING
+        structure = inheritance.
+    IF inheritance is not initial.
+      concatenate
+        SPACE space
+        &apos;INHERITING FROM&apos;
+        inheritance-REFCLSNAME
+      into wa_flatClass separated by space.
+      append wa_flatClass to it_flatClass.
+      clear wa_flatClass.
+      strParent = inheritance-REFCLSNAME.
+    endif.
+*   redefs
+*    filter = inheritanceNode-&gt;create_filter_name( &apos;redefinition&apos; ).
+*    iterator = inheritanceNode-&gt;create_iterator_filtered( filter ).
+*    redefNode ?= iterator-&gt;get_next( ).
+*    WHILE redefNode IS NOT INITIAL.
+*      CALL METHOD getstructurefromattributes
+*        EXPORTING
+*          node      = redefNode
+*        CHANGING
+*          structure = redefinition.
+*      append redefinition to redefinitions.
+*      redefNode ?= iterator-&gt;get_next( ).
+*    ENDWHILE.
+
+  endif.
+
+*is it final?
+  if classheader-CLSFINAL = &apos;X&apos;.
+    concatenate
+      SPACE space
+      &apos;FINAL&apos;
+    into wa_flatClass separated by space.
+    append wa_flatClass to it_flatClass.
+    clear wa_flatClass.
+  endif.
+
+
+
+  case classheader-EXPOSURE.
+    when &apos;0&apos;.
+*   private
+      concatenate
+        SPACE space
+        &apos;CREATE PRIVATE&apos;
+      into wa_flatClass separated by space.
+      append wa_flatClass to it_flatClass.
+      clear wa_flatClass.
+
+    when &apos;1&apos;.
+*   protected
+      concatenate
+        SPACE space
+        &apos;CREATE PROTECTED&apos;
+      into wa_flatClass separated by space.
+      append wa_flatClass to it_flatClass.
+      clear wa_flatClass.
+
+    when &apos;2&apos;.
+*   public
+      concatenate
+        SPACE space
+        &apos;CREATE PUBLIC&apos;
+      into wa_flatClass separated by space.
+      append wa_flatClass to it_flatClass.
+      clear wa_flatClass.
+
+*    when &apos;3&apos;.
+**   Abstract
+*      concatenate
+*        SPACE space
+*        &apos;ABSTRACT&apos;
+*      into wa_flatClass separated by space.
+*      append wa_flatClass to it_flatClass.
+*      clear wa_flatClass.
+
+  endcase.
+
+*is it abstract?
+  if classheader-CLSABSTRCT = &apos;X&apos;.
+    concatenate
+      SPACE space
+      &apos;ABSTRACT&apos;
+    into wa_flatClass separated by space.
+    append wa_flatClass to it_flatClass.
+    clear wa_flatClass.
+  endif.
+
+* has friends?
+  DATA: wa_friend type seofriends.
+
+  filter = xmldoc-&gt;create_filter_name( &apos;friends&apos; ).
+  iterator = xmldoc-&gt;create_iterator_filtered( filter ).
+  node ?= iterator-&gt;get_next( ).
+  if node is not initial.
+    concatenate
+      SPACE space
+      &apos;FRIENDS&apos;
+    into wa_flatClass separated by space.
+    append wa_flatClass to it_flatClass.
+    clear wa_flatClass.
+  endif.
+  WHILE node IS NOT INITIAL.
+    CLEAR wa_friend.
+    CALL METHOD getstructurefromattributes
+      EXPORTING
+        node      = node
+      CHANGING
+        structure = wa_friend.
+    wa_friend-version = &apos;0&apos;.
+    IF wa_friend-clsname = classheader-clsname.
+      concatenate
+        SPACE space space space
+        wa_friend-REFCLSNAME
+      into wa_flatClass separated by space.
+      append wa_flatClass to it_flatClass.
+      clear wa_flatClass.
+    ENDIF.
+    node ?= iterator-&gt;get_next( ).
+  ENDWHILE.
+
+
+
+
+  concatenate
+    SPACE space
+    &apos;.&apos;
+  into wa_flatClass separated by space.
+  append wa_flatClass to it_flatClass.
+  clear wa_flatClass.
+
+**\\
+
+  classheader-version = &apos;0&apos;.
+  superclass = rootnode-&gt;get_attribute( name = &apos;REFCLSNAME&apos; ).
+  IF superclass IS NOT INITIAL.
+* set something for inheritence
+    superclasskey-clsname = classkey-clsname.
+    superclasskey-refclsname = superclass.
+    superclasskey-version = &apos;0&apos;.
+    superclasskey-state = &apos;1&apos;.
+
+  ENDIF.
+
+  DATA aobjname TYPE trobj_name.
+
+
+*Add attributes to new class
+  filter = xmldoc-&gt;create_filter_name( &apos;attribute&apos; ).
+  iterator = xmldoc-&gt;create_iterator_filtered( filter ).
+  node ?= iterator-&gt;get_next( ).
+  WHILE node IS NOT INITIAL.
+*   create OTR texts if necessary (for exception classes)
+    otrnode = node-&gt;find_from_name( &apos;sotr&apos; ).
+    IF otrnode IS NOT INITIAL.
+*      me-&gt;createotrfromnode( otrnode ).
+    ENDIF.
+
+*   create attribute
+    CALL METHOD getstructurefromattributes
+      EXPORTING
+        node      = node
+      CHANGING
+        structure = attribproperties.
+    append attribproperties to it_attrib.
+    node ?= iterator-&gt;get_next( ).
+  ENDWHILE.
+*exit.
+
+*/***TPJ - Added Logic for TYPES  -------------------*/
+  DATA: types           TYPE seoo_types_r,
+        type_properties LIKE LINE OF types.
+
+  filter = xmldoc-&gt;create_filter_name( &apos;types&apos; ).
+  iterator = xmldoc-&gt;create_iterator_filtered( filter ).
+  node ?= iterator-&gt;get_next( ).
+  WHILE node IS NOT INITIAL.
+    CLEAR type_properties.
+    CALL METHOD getstructurefromattributes
+      EXPORTING
+        node      = node
+      CHANGING
+        structure = type_properties.
+    type_properties-version = &apos;0&apos;.
+    IF type_properties-clsname = classheader-clsname.
+      append type_properties to it_types.
+    ENDIF.
+    node ?= iterator-&gt;get_next( ).
+  ENDWHILE.
+*/***TPJ - End of Added Logic for TYPES  -------------------*/
+
+
+
+*// ewH: Added Logic for Implementings(interfaces)--&gt;
+  DATA: it_implementings type seor_implementings_r,
+        wa_implementings like line OF it_implementings.
+
+  filter = xmldoc-&gt;create_filter_name( &apos;implementing&apos; ).
+  iterator = xmldoc-&gt;create_iterator_filtered( filter ).
+  node ?= iterator-&gt;get_next( ).
+  WHILE node IS NOT INITIAL.
+    CLEAR wa_implementings.
+    CALL METHOD getstructurefromattributes
+      EXPORTING
+        node      = node
+      CHANGING
+        structure = wa_implementings.
+    append wa_implementings to it_interfaces.
+    node ?= iterator-&gt;get_next( ).
+  ENDWHILE.
+*//&lt;--ewH: End of Added Logic for Implementings(interfaces)
+
+
+
+*Add Methods to new class
+  filter = xmldoc-&gt;create_filter_name( &apos;method&apos; ).
+  iterator = xmldoc-&gt;create_iterator_filtered( filter ).
+  node ?= iterator-&gt;get_next( ).
+  WHILE node IS NOT INITIAL.
+    CLEAR methodproperties.
+    CALL METHOD getstructurefromattributes
+      EXPORTING
+        node      = node
+      CHANGING
+        structure = methodproperties.
+
+*   only create metadata if method is not a redefinition
+    read table redefinitions into redefinition
+    with key mtdname = methodProperties-cmpname.
+    IF sy-subrc = 0.
+      node ?= iterator-&gt;get_next( ).
+      continue.
+    endif.
+
+
+    IF methodproperties-clsname &lt;&gt; classheader-clsname.
+      MOVE-CORRESPONDING methodproperties TO methodredefinition.
+      methodredefinition-clsname = classheader-clsname.
+      methodredefinition-refclsname = methodproperties-clsname.
+      methodredefinition-version = &apos;0&apos;.
+      methodredefinition-mtdabstrct = &apos;&apos;.
+      methodredefinition-mtdname = methodproperties-cmpname.
+      APPEND methodredefinition TO methodredeftable.
+
+      node ?= iterator-&gt;get_next( ).
+      continue.
+    endif.
+
+    append methodproperties to it_methodprops.
+
+    filter2 = node-&gt;create_filter_name( &apos;parameter&apos; ).
+    iterator2 = node-&gt;create_iterator_filtered( filter2 ).
+    node2 ?= iterator2-&gt;get_next( ).
+    WHILE node2 IS NOT INITIAL.
+      CLEAR paraminfo.
+      CALL METHOD getstructurefromattributes
+        EXPORTING
+          node      = node2
+        CHANGING
+          structure = paraminfo.
+      if paraminfo is not initial.
+        append paraminfo to it_params.
+      endif.
+      node2 ?= iterator2-&gt;get_next( ).
+    ENDWHILE.
+    filter2 = node-&gt;create_filter_name( &apos;exception&apos; ).
+    iterator2 = node-&gt;create_iterator_filtered( filter2 ).
+    node2 ?= iterator2-&gt;get_next( ).
+    WHILE node2 IS NOT INITIAL.
+      CALL METHOD getstructurefromattributes
+        EXPORTING
+          node      = node2
+        CHANGING
+          structure = exceptinfo.
+      if exceptinfo is not initial.
+        append exceptinfo to it_except.
+      endif.
+      node2 ?= iterator2-&gt;get_next( ).
+
+    ENDWHILE.
+    node ?= iterator-&gt;get_next( ).
+  ENDWHILE.
+*// &lt;--ewH: end redesign method/inheritances
+
+*// ewh: continuation of backward compatibility hack--&gt;
+
+  DATA classtype TYPE seoclstype.
+  DATA impkeys TYPE seor_implementing_keys.
+  DATA iserror TYPE boolean.
+
+*create forward declarations
+
+  filter = xmldoc-&gt;create_filter_name( &apos;forwardDeclaration&apos; ).
+  iterator = xmldoc-&gt;create_iterator_filtered( filter ).
+  node ?= iterator-&gt;get_next( ).
+
+  forwarddeclarationrow-clsname = classkey-clsname.
+  forwarddeclarationrow-version = &apos;0&apos;.
+  forwarddeclarationrow-tputype = &apos;&apos;.
+  forwarddeclarationrow-explicit =  &apos;X&apos;.
+  forwarddeclarationrow-implicit = &apos;&apos;.
+
+  WHILE node IS NOT INITIAL.
+    source = node-&gt;get_value( ).
+    forwarddeclarationrow-typegroup = source.
+    TYPE-POOLS seot.
+    DATA forwarddectable TYPE seot_typepusages_w.
+    DATA forwarddecrow LIKE LINE OF forwarddectable.
+    CLEAR forwarddecrow.
+    REFRESH forwarddectable.
+    forwarddecrow-clsname = classkey-clsname.
+    forwarddecrow-version = &apos;0&apos;.
+    forwarddecrow-tputype = &apos;0&apos;.
+    forwarddecrow-explicit =  &apos;X&apos;.
+    forwarddecrow-implicit = &apos;&apos;.
+    forwarddecrow-typegroup = source.
+    APPEND forwarddecrow TO forwarddectable.
+
+    node ?= iterator-&gt;get_next( ).
+  ENDWHILE.
+
+**//
+* public section
+  wa_flatClass = &apos;public section.&apos;.
+  append wa_flatClass to it_flatClass.
+  clear wa_flatClass.
+
+*insert code for public section
+  sourcenode = xmldoc-&gt;find_from_name( &apos;publicSection&apos; ).
+  IF sourcenode IS NOT INITIAL.
+    source = sourcenode-&gt;get_value( ).
+    sourcetable = buildtablefromstring( source ).
+
+    clear useFL.
+    loop at sourcetable into wa_flatClass.
+      if useFL is initial.
+        wa_flatClass_tmp = wa_flatClass.
+        translate wa_flatClass_tmp to upper case.
+        condense wa_flatClass_tmp no-gaps.
+        shift wa_flatClass_tmp left deleting leading space.
+*   This is not a great way to do this...
+        find &apos;PUBLICSECTION.&apos; in wa_flatClass_tmp MATCH OFFSET off.
+        if sy-subrc = 0 and off = 0.
+          useFL = &apos;X&apos;.
+        endif.
+      else.
+        append wa_flatClass to it_flatClass.
+      endif.
+
+    endloop.
+    clear wa_flatClass.
+    clear useFL.
+  ENDIF.
+
+** interfaces
+*  loop at it_interfaces into wa_implementings
+*        where exposure = &apos;2&apos;.
+*    concatenate
+*      space space space space
+*      &apos;interfaces&apos;
+*      wa_implementings-REFCLSNAME
+*    into wa_flatClass separated by space.
+*    append wa_flatClass to it_flatClass.
+*    clear wa_flatClass.
+*
+*    if wa_implementings-IMPFINAL = &apos;X&apos;.
+*      concatenate
+*        space space space space space space
+*        &apos;all methods final&apos;
+*      into wa_flatClass separated by space.
+*      append wa_flatClass to it_flatClass.
+*      clear wa_flatClass.
+*    elseif wa_implementings-IMPABSTRCT = &apos;X&apos;.
+*      concatenate
+*        space space space space space space
+*        &apos;all methods abstract&apos;
+*      into wa_flatClass separated by space.
+*      append wa_flatClass to it_flatClass.
+*      clear wa_flatClass.
+*    endif.
+*
+*    concatenate
+*      space space space space space space
+*      &apos;.&apos;
+*    into wa_flatClass separated by space.
+*    append wa_flatClass to it_flatClass.
+*    clear wa_flatClass.
+*
+*  endloop.
+*
+*  break uspty90.
+
+** aliases
+
+** data / class-data / constants
+
+** events
+
+** methods / class-methods
+
+
+
+* protected section
+*  wa_flatClass = &apos;protected section.&apos;.
+*  append wa_flatClass to it_flatClass.
+*  clear wa_flatClass.
+
+*insert code for protected section
+  sourcenode = xmldoc-&gt;find_from_name( &apos;protectedSection&apos; ).
+  IF sourcenode IS NOT INITIAL.
+    source = sourcenode-&gt;get_value( ).
+    sourcetable = buildtablefromstring( source ).
+
+    loop at sourcetable into wa_flatClass.
+      append wa_flatClass to it_flatClass.
+    endloop.
+    clear wa_flatClass.
+
+  ENDIF.
+
+
+** interfaces
+
+** aliases
+
+** types
+
+** data / class-data / constants
+
+** events
+
+** methods / class-methods
+
+
+
+* private section
+*  wa_flatClass = &apos;private section.&apos;.
+*  append wa_flatClass to it_flatClass.
+*  clear wa_flatClass.
+
+*insert code for private section
+  sourcenode = xmldoc-&gt;find_from_name( &apos;privateSection&apos; ).
+  IF sourcenode IS NOT INITIAL.
+    source = sourcenode-&gt;get_value( ).
+    sourcetable = buildtablefromstring( source ).
+
+    loop at sourcetable into wa_flatClass.
+      append wa_flatClass to it_flatClass.
+    endloop.
+    clear wa_flatClass.
+
+  ENDIF.
+
+
+
+** interfaces
+
+** aliases
+
+** types
+
+** data / class-data / constants
+
+** events
+
+** methods / class-methods
+
+  wa_flatClass = &apos;ENDCLASS.&apos;.
+  append wa_flatClass to it_flatClass.
+  clear wa_flatClass.
+  append wa_flatClass to it_flatClass.
+
+  it_flatClassDef = it_flatClass.
+  clear it_flatClass.
+
+  concatenate
+    &apos;CLASS&apos;
+    objname
+    &apos;IMPLEMENTATION.&apos;
+  into wa_flatClass separated by space.
+  append wa_flatClass to it_flatClass.
+  clear wa_flatClass.
+
+
+
+
+*Insert source code into the methods
+  filter = xmldoc-&gt;create_filter_name( &apos;method&apos; ).
+  iterator = xmldoc-&gt;create_iterator_filtered( filter ).
+  node ?= iterator-&gt;get_next( ).
+
+  WHILE node IS NOT INITIAL.
+    CALL METHOD getstructurefromattributes
+      EXPORTING
+        node      = node
+      CHANGING
+        structure = methodproperties.
+*    methodkey-clsname = objname.
+*    methodkey-cpdname = methodproperties-cmpname.
+*    aobjname = methodkey.
+*    if methodproperties-CLSNAME = objname.
+
+      methodsourcenode = node-&gt;find_from_name( &apos;source&apos; ).
+      IF methodsourcenode IS NOT INITIAL.
+        source = methodsourcenode-&gt;get_value( ).
+        sourcetable = buildtablefromstring( source ).
+
+        loop at sourcetable into wa_flatClass.
+          if wa_flatClass is not initial.
+            if wa_flatClass(1) &lt;&gt; &apos;*&apos;.
+              concatenate
+                space space
+                wa_flatClass
+              into wa_flatClass separated by space.
+            endif.
+          endif.
+          append wa_flatClass to it_flatClass.
+        endloop.
+        clear wa_flatClass.
+      ELSEif classheader-CLSABSTRCT &lt;&gt; &apos;X&apos;.
+        concatenate
+          space space
+          &apos;method&apos;
+          methodproperties-cmpname
+          &apos;.&apos;
+        into wa_flatClass separated by space.
+        append wa_flatClass to it_flatClass.
+        clear wa_flatClass.
+        concatenate
+          space space
+          &apos;endmethod.&apos;
+        into wa_flatClass separated by space.
+        append wa_flatClass to it_flatClass.
+      ENDIF.
+*    endif.
+
+    node ?= iterator-&gt;get_next( ).
+  ENDWHILE.
+
+*// ewH: create interface methods--&gt;
+  filter = xmldoc-&gt;create_filter_name( &apos;interfaceMethod&apos; ).
+  iterator = xmldoc-&gt;create_iterator_filtered( filter ).
+  node ?= iterator-&gt;get_next( ).
+
+  WHILE node IS NOT INITIAL.
+    CALL METHOD getstructurefromattributes
+      EXPORTING
+        node      = node
+      CHANGING
+        structure = methodKey.
+*    aobjname = methodkey.
+
+    if methodKey-clsname = objname.
+
+      methodsourcenode = node-&gt;find_from_name( &apos;source&apos; ).
+      IF methodsourcenode IS NOT INITIAL.
+        source = methodsourcenode-&gt;get_value( ).
+        sourcetable = buildtablefromstring( source ).
+
+        loop at sourcetable into wa_flatClass.
+          if wa_flatClass is not initial.
+            if wa_flatClass(1) &lt;&gt; &apos;*&apos;.
+              concatenate
+                space space
+                wa_flatClass
+              into wa_flatClass separated by space.
+            endif.
+          endif.
+          append wa_flatClass to it_flatClass.
+        endloop.
+        clear wa_flatClass.
+
+      ENDIF.
+    endif.
+
+    node ?= iterator-&gt;get_next( ).
+  ENDWHILE.
+
+  wa_flatClass = &apos;ENDCLASS.&apos;.
+  append wa_flatClass to it_flatClass.
+  clear wa_flatClass.
+
+  it_flatClassImp = it_flatClass.
+  clear it_flatClass.
+
+**insert code for local implementation
+*  DATA _classname TYPE seoclsname.
+*  _classname = objname.
+*  sourcenode = xmldoc-&gt;find_from_name( &apos;localImplementation&apos; ).
+*  IF sourcenode IS NOT INITIAL.
+*    source = sourcenode-&gt;get_value( ).
+*    sourcetable = buildtablefromstring( source ).
+*  ENDIF.
+*
+**insert code for local types
+*  sourcenode = xmldoc-&gt;find_from_name( &apos;localTypes&apos; ).
+*  IF sourcenode IS NOT INITIAL.
+*    source = sourcenode-&gt;get_value( ).
+*    sourcetable = buildtablefromstring( source ).
+*  ENDIF.
+*
+**insert code for local macros
+*  sourcenode = xmldoc-&gt;find_from_name( &apos;localMacros&apos; ).
+*  IF sourcenode IS NOT INITIAL.
+*    source = sourcenode-&gt;get_value( ).
+*    sourcetable = buildtablefromstring( source ).
+*  ENDIF.
+
+  ixml = cl_ixml=&gt;create( ).
+  xmlDocOut = ixml-&gt;create_document( ).
+  rootnodeOut = xmldoc-&gt;create_element( &apos;localClass&apos; ).
+  rc = rootnodeOut-&gt;set_attribute( name = &apos;NAME&apos; value = objname ).
+
+  defnodeOut = xmldocOut-&gt;create_element( &apos;definition&apos; ).
+  reportstring = buildsourcestring( sourcetable = it_flatClassDef ).
+  rc = defnodeOut-&gt;if_ixml_node~set_value( reportstring ).
+  rc = rootnodeOut-&gt;append_child( defnodeOut ).
+
+  impnodeOut = xmldocOut-&gt;create_element( &apos;implementation&apos; ).
+  reportstring = buildsourcestring( sourcetable = it_flatClassImp ).
+  rc = impnodeOut-&gt;if_ixml_node~set_value( reportstring ).
+  rc = rootnodeOut-&gt;append_child( impnodeOut ).
+
+  dependnodeOut = xmldocOut-&gt;create_element( &apos;dependencies&apos; ).
+  rc = rootnodeOut-&gt;append_child( dependnodeOut ).
+
+  if strParent is not initial.
+    translate strParent to upper case.
+    if strParent(1) = &apos;Z&apos; or strParent(1) = &apos;Y&apos;.
+      dependchildnodeOut = xmldocOut-&gt;create_element( &apos;CLAS&apos; ).
+      rc = dependchildnodeOut-&gt;if_ixml_node~set_value( strParent ).
+      rc = dependnodeOut-&gt;append_child( dependchildnodeOut ).
+    endif.
+  endif.
+  loop at it_interfaces into wa_implementings.
+    strTemp = wa_implementings-REFCLSNAME.
+    translate strTemp to upper case.
+    if strTemp(1) = &apos;Z&apos; or strTemp(1) = &apos;Y&apos;.
+      dependchildnodeOut = xmldocOut-&gt;create_element( &apos;INTF&apos; ).
+      rc = dependchildnodeOut-&gt;if_ixml_node~set_value( strTemp ).
+      rc = dependnodeOut-&gt;append_child( dependchildnodeOut ).
+    endif.
+  endloop.
+  loop at it_attrib into attribproperties where typtype = &apos;3&apos;.
+    strTemp = attribproperties-type.
+    translate strTemp to upper case.
+    if strTemp(1) = &apos;Z&apos; or strTemp(1) = &apos;Y&apos;.
+
+    endif.
+  endloop.
+
+  rc = xmldocOut-&gt;append_child( rootnodeOut ).
+  local_class_xml = xmldocOut.
+
+
+
+
+
+endmethod.</source>
+ </method>
+</CLAS>

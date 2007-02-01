@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<PROG NAME="ZSAPLINK_STEAMROLLER" VARCL="X" SUBC="1" CNAM="USEWH90" CDAT="20061012" UNAM="USRRQ00" UDAT="20061016" VERN="000030" RMAND="321" RLOAD="E" FIXPT="X" SDATE="20070130" STIME="144031" IDATE="20061016" ITIME="123955" UCCHECK="X">
+ <textPool>
+  <language SPRAS="E">
+   <textElement ID="I" KEY="MAN" ENTRY="Flattener" LENGTH="9 "/>
+   <textElement ID="R" ENTRY="This program will convert global call to local into one flat program" LENGTH="68 "/>
+   <textElement ID="S" KEY="FLTPRG" ENTRY="        Target Program" LENGTH="22 "/>
+   <textElement ID="S" KEY="OVERWR" ENTRY="        Overwrite Existing Target" LENGTH="33 "/>
+   <textElement ID="S" KEY="PROG" ENTRY="        Original Program" LENGTH="24 "/>
+   <textElement ID="S" KEY="SO_CLAS" ENTRY="        Classes to steamroll" LENGTH="28 "/>
+  </language>
+ </textPool>
+ <source>*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   SAPlink is free software; you can redistribute it and/or modify   |
+*|   it under the terms of the GNU General Public License as published |
+*|   by the Free Software Foundation; either version 2 of the License, |
+*|   or (at your option) any later version.                            |
+*|                                                                     |
+*|   SAPlink is distributed in the hope that it will be useful,        |
+*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
+*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
+*|   GNU General Public License for more details.                      |
+*|                                                                     |
+*|   You should have received a copy of the GNU General Public License |
+*|   along with SAPlink; if not, write to the                          |
+*|   Free Software Foundation, Inc.,                                   |
+*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*\---------------------------------------------------------------------/
+REPORT  ZSAPLINK_STEAMROLLER.
+
+types: begin of t_class,
+         class type SEOCLSNAME,
+       end of t_class.
+
+data progObject type ref to zsaplink_program.
+data progObjectNew type ref to zsaplink_program.
+data progName type string.
+data progNameNew type string.
+data ixmlProg type ref to if_ixml_document.
+data ixmlProgNew type ref to if_ixml_document.
+data rootnode type ref to if_ixml_element.
+data sourcenode type ref to if_ixml_element.
+data definitionNode type ref to if_ixml_element.
+data implementationNode type ref to if_ixml_element.
+
+data reportFound type flag.
+data headFound type flag.
+data sourceString type string.
+data sourceTableOld type table_of_strings.
+data sourceTableTemp type table_of_strings.
+data definitionTableTemp type table_of_strings.
+data implementationTableTemp type table_of_strings.
+data sourceTableHead type table_of_strings.
+data sourceTableBody type table_of_strings.
+data sourceTableNew type table_of_strings.
+data sourceLine type string.
+data tempString type string.
+data excClass type ref to ZCX_SAPLINK.
+data errorMsg type string.
+
+data classTable type standard table of t_class.
+data classLine type t_class.
+data classObject type ref to zsaplink_class.
+data ixmlClass type ref to if_ixml_document.
+data ixmlClassLocal type ref to if_ixml_document.
+
+data installObject type string.
+data rc type sysubrc.
+data sourceStringNew type string.
+
+data: it_strings type table_of_strings,
+      wa_strings type string.
+
+
+
+selection-screen begin of block main with frame title text-man.
+parameters prog type PROGNAME.
+parameters fltprg type PROGNAME.
+parameters OverWr type c as checkbox.
+selection-screen end of block main.
+
+select-options: so_clas for classLine-class NO INTERVALS.
+
+data wa_class like line of so_clas.
+
+* get original program as XML
+  progName = prog.
+  progNameNew = fltprg.
+
+  try.
+    create object progObject exporting name = progName.
+    ixmlProg = progObject-&gt;CREATEIXMLDOCFROMOBJECT( ).
+    catch ZCX_SAPLINK into excClass.
+      errorMsg = excClass-&gt;get_text( ).
+      write errorMsg.
+      exit.
+  endtry.
+
+* extract source from xml
+  rootnode = ixmlProg-&gt;find_from_name( &apos;PROG&apos; ).
+  sourcenode = rootnode-&gt;find_from_name( &apos;source&apos; ).
+  sourceString = sourcenode-&gt;get_value( ).
+  split sourceString at CL_ABAP_CHAR_UTILITIES=&gt;NEWLINE
+  into table sourceTableOld.
+
+* split source at header and body of code to insert new code
+  loop at sourceTableOld into sourceLine.
+    if headFound = &apos;X&apos;.
+      append lines of sourceTableOld from sy-tabix to sourceTableBody.
+      exit.
+    elseif reportFound = &apos;X&apos;.
+      if sourceLine ca &apos;.&apos; and sourceLine(1) &lt;&gt; &apos;*&apos;.
+        headfound = &apos;X&apos;.
+      endif.
+      append sourceLine to sourceTableHead.
+    elseif sourceLine cp &apos;*REPORT*&apos; and sourceLine(1) &lt;&gt; &apos;*&apos;.
+      if sourceLine ca &apos;.&apos;.
+        headFound = &apos;X&apos;.
+      else.
+        reportFound = &apos;X&apos;.
+      endif.
+      append sourceLine to sourceTableHead.
+    else.
+      append sourceLine to sourceTableHead.
+    endif.
+  endloop.
+
+*  loop at sourceTablebody into sourceLine.
+**  build a table of global classes being called
+*    if sourceLine CP &apos;*ZCX*&apos;.
+*      split sourceline at space into table it_strings.
+*      loop at it_strings into wa_strings.
+*        if wa_strings cp &apos;ZCX*&apos;.
+*          shift wa_strings right deleting trailing &apos;.&apos;.
+*          condense wa_strings no-gaps.
+*          move wa_strings to classline-class.
+*          append classline to classtable.
+*        endif.
+*      endloop.
+*    endif.
+*    if sourceLine CP &apos;*ZCL*&apos;.
+*      split sourceline at space into table it_strings.
+*      loop at it_strings into wa_strings.
+*        if wa_strings cp &apos;ZCL*&apos;.
+*          shift wa_strings right deleting trailing &apos;.&apos;.
+*          condense wa_strings no-gaps.
+*          move wa_strings to classline-class.
+*          append classline to classtable.
+*        endif.
+*      endloop.
+*    endif.
+*    if sourceLine CP &apos;*ZSAPLINK*&apos;.
+*      split sourceline at space into table it_strings.
+*      loop at it_strings into wa_strings.
+*        if wa_strings cp &apos;*ZSAP*&apos;.
+*          shift wa_strings right deleting trailing &apos;.&apos;.
+*          shift wa_strings right deleting trailing &apos;&apos;&apos;&apos;.
+*          condense wa_strings no-gaps.
+*          shift wa_strings left deleting leading &apos;&apos;&apos;&apos;.
+*          move wa_strings to classline-class.
+*          append classline to classtable.
+*        endif.
+*      endloop.
+*    endif.
+*  endloop.
+*  refresh it_strings.
+*  loop at classtable into classline.
+*    if classline-class CP &apos;*=&gt;*&apos;.
+*      split classline-class at &apos;=&gt;&apos; into table it_strings.
+*      delete classTable index sy-tabix.
+*      loop at it_strings into wa_strings.
+*        if wa_strings cp &apos;ZSAP*&apos;.
+*          shift wa_strings right deleting trailing &apos;.&apos;.
+*          condense wa_strings no-gaps.
+*          move wa_strings to classline-class.
+*          append classline to classtable.
+*        endif.
+*      endloop.
+*    endif.
+*  endloop.
+*
+*  sort classTable by class.
+*  delete adjacent duplicates from classtable.
+
+
+* temp solution for getting classes to convert
+  loop at so_clas into wa_class where sign = &apos;I&apos; and option = &apos;EQ&apos;.
+    classLine-class = wa_class-low.
+    append classLine to classTable.
+  endloop.
+
+* add original header to new source
+  append lines of sourceTableHead to sourceTableNew.
+  clear sourceLine.
+  append sourceLine to sourceTableNew.
+
+* steamroll this bad boy
+  loop at classTable into classLine.
+    free: classObject, ixmlClass, ixmlClassLocal,
+          rootNode, sourceNode.
+    clear: tempString, sourceTableTemp[].
+    tempString = classLine-class.
+*   get definitions of global classes as XML
+    create object classObject exporting name = tempString.
+    ixmlClass = classObject-&gt;CREATEIXMLDOCFROMOBJECT( ).
+*   call class to convert global class XML to local source code XML
+    ixmlClassLocal = zsaplink_tools=&gt;globalclasstolocalclass( ixmlClass ).
+*   insert local class defs into new source
+    rootnode = ixmlClassLocal-&gt;find_from_name( &apos;localClass&apos; ).
+    definitionNode = rootnode-&gt;find_from_name( &apos;definition&apos; ).
+    clear tempString.
+    tempString = definitionNode-&gt;get_value( ).
+    split tempString at CL_ABAP_CHAR_UTILITIES=&gt;NEWLINE
+    into table definitionTableTemp.
+    append lines of definitionTableTemp to sourceTableNew.
+
+    implementationNode = rootnode-&gt;find_from_name( &apos;implementation&apos; ).
+    clear tempString.
+    tempString = implementationNode-&gt;get_value( ).
+    split tempString at CL_ABAP_CHAR_UTILITIES=&gt;NEWLINE
+    into table sourceTableTemp.
+    append lines of sourceTableTemp to implementationTableTemp.
+*    append lines of sourceTableTemp to sourceTableNew.
+  endloop.
+  append lines of implementationTableTemp to sourceTableNew.
+* add original code back to new code
+  append lines of sourceTableBody to sourceTableNew.
+* create string from new souce code
+  loop at sourceTableNew into sourceLine.
+    concatenate sourceStringNew sourceLine CL_ABAP_CHAR_UTILITIES=&gt;NEWLINE
+      into sourceStringNew.
+  endloop.
+
+* change progam name in attributes to new prog name
+  ixmlProgNew = ixmlProg.
+  rootnode = ixmlProgNew-&gt;find_from_name( &apos;PROG&apos; ).
+  rc = rootNode-&gt;set_attribute( name = &apos;NAME&apos; value = progNameNew ).
+* add new source
+  sourcenode = rootnode-&gt;find_from_name( &apos;source&apos; ).
+  rc = sourceNode-&gt;IF_IXML_NODE~SET_VALUE( sourceStringNew ).
+
+* use saplink to create new program
+  try.
+    create object progObjectNew exporting name = progNameNew.
+    installObject = progObjectNew-&gt;createObjectfromiXMLDoc(
+                                    ixmlDocument = ixmlProgNew
+                                    overwrite = overWr ).
+    catch ZCX_SAPLINK into excClass.
+      errorMsg = excClass-&gt;get_text( ).
+      write errorMsg.
+      exit.
+  endtry.
+
+  write: progName, &apos; has been steamrolled into &apos;, progNameNew.</source>
+</PROG>
