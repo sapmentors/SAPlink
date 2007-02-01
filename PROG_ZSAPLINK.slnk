@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<PROG NAME="ZSAPLINK" VARCL="X" SUBC="1" CNAM="EWH" CDAT="20060903" UNAM="USEWH90" UDAT="20061008" VERN="000039" RMAND="321" RLOAD="E" FIXPT="X" SDATE="20061008" STIME="133132" IDATE="20061008" ITIME="133132" UCCHECK="X">
+<PROG NAME="ZSAPLINK" VARCL="X" DBAPL="S" DBNA="D$" SUBC="1" APPL="S" CNAM="EWH" CDAT="20060903" UNAM="USEWH90" UDAT="20070130" VERN="000137" RMAND="321" RLOAD="E" FIXPT="X" SDATE="20070130" STIME="223052" IDATE="20070130" ITIME="223052" LDBNAME="D$S" UCCHECK="X">
  <textPool>
   <language SPRAS="D">
    <textElement ID="I" KEY="NGA" ENTRY="Objekt zum Nugget hinzufügen" LENGTH="28 "/>
@@ -22,8 +22,10 @@
    <textElement ID="S" KEY="NUGFILE" ENTRY="        Nugget Dateiname" LENGTH="32 "/>
    <textElement ID="S" KEY="NUGGNAM" ENTRY="        Nuggetname" LENGTH="19 "/>
    <textElement ID="S" KEY="NUGI" ENTRY="        Nugget importieren" LENGTH="26 "/>
+   <textElement ID="S" KEY="NUGP" ENTRY="        Fügen Sie Paket Nugget hinzu" LENGTH="36 "/>
    <textElement ID="S" KEY="OBJNAME" ENTRY="        Objektname" LENGTH="19 "/>
    <textElement ID="S" KEY="OVERWR" ENTRY="        Originale Überschreiben" LENGTH="31 "/>
+   <textElement ID="S" KEY="PACKAGE" ENTRY="        Packet Name" LENGTH="20 "/>
    <textElement ID="S" KEY="PLUGIN" ENTRY="        Objekttyp" LENGTH="19 "/>
   </language>
   <language SPRAS="E">
@@ -47,11 +49,269 @@
    <textElement ID="S" KEY="NUGFILE" ENTRY="        Nugget File Name" LENGTH="32 "/>
    <textElement ID="S" KEY="NUGGNAM" ENTRY="        Nugget Name" LENGTH="19 "/>
    <textElement ID="S" KEY="NUGI" ENTRY="        Import Nugget" LENGTH="21 "/>
+   <textElement ID="S" KEY="NUGP" ENTRY="        Add Objects from a Package" LENGTH="34 "/>
+   <textElement ID="S" KEY="NUGR" ENTRY="        Add Objects from a Transport" LENGTH="36 "/>
    <textElement ID="S" KEY="OBJNAME" ENTRY="        Object Name" LENGTH="19 "/>
    <textElement ID="S" KEY="OVERWR" ENTRY="        Overwrite Originals" LENGTH="27 "/>
+   <textElement ID="S" KEY="PACKAGE" ENTRY="        Package Name" LENGTH="20 "/>
    <textElement ID="S" KEY="PLUGIN" ENTRY="        Object Type" LENGTH="19 "/>
+   <textElement ID="S" KEY="REQNUGG" ENTRY="        Transport Number" LENGTH="24 "/>
   </language>
  </textPool>
+ <pfstatus>
+  <pfstatus_sta CODE="SELOBJ" MODAL="D" ACTCODE="000001" PFKCODE="000001" BUTCODE="0001" INT_NOTE="Standard für allgemeine Listausgabe"/>
+  <pfstatus_fun CODE="%PC" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_EXPORT" ICON_ID="@49@" FUN_TEXT="Download" PATH="D"/>
+  <pfstatus_fun CODE="%SC" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_SEARCH" ICON_ID="@13@" FUN_TEXT="Search" PATH="S"/>
+  <pfstatus_fun CODE="%SC+" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_SEARCH_NEXT" ICON_ID="@4E@" FUN_TEXT="Weiter suchen" PATH="E"/>
+  <pfstatus_fun CODE="%SL" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_MAIL" ICON_ID="@1S@" FUN_TEXT="Send..." PATH="S"/>
+  <pfstatus_fun CODE="&amp;ABC" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_CALCULATION" ICON_ID="@0M@" FUN_TEXT="ABC-Analyse" ICON_TEXT="ABC" PATH="A"/>
+  <pfstatus_fun CODE="&amp;ALL" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_SELECT_ALL" ICON_ID="@4B@" FUN_TEXT="Select All" PATH="A"/>
+  <pfstatus_fun CODE="&amp;AQW" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_CHANGE_TEXT" ICON_ID="@0Q@" FUN_TEXT="Word" PATH="W"/>
+  <pfstatus_fun CODE="&amp;AUF" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="Aufriß festlegen..." PATH="U"/>
+  <pfstatus_fun CODE="&amp;AVE" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="Sichern..." PATH="S"/>
+  <pfstatus_fun CODE="&amp;AVE" TEXTNO="002" TEXT_TYPE="S" TEXT_NAME="ICON_VARIANTS" ICON_ID="@0R@" FUN_TEXT="Save Variants" ICON_TEXT="Save"/>
+  <pfstatus_fun CODE="&amp;BS" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_OVERVIEW" ICON_ID="@3Q@" FUN_TEXT="J"/>
+  <pfstatus_fun CODE="&amp;BS+" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_PREVIOUS_VALUE" ICON_ID="@0H@" FUN_TEXT="Next"/>
+  <pfstatus_fun CODE="&amp;BS-" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_NEXT_VALUE" ICON_ID="@0I@" FUN_TEXT="Previous"/>
+  <pfstatus_fun CODE="&amp;CDF" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="Fixierung aufheben" PATH="I"/>
+  <pfstatus_fun CODE="&amp;CFI" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="Fixieren bis Spalte" PATH="F"/>
+  <pfstatus_fun CODE="&amp;CRB" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_TOTAL_LEFT" ICON_ID="@0B@" FUN_TEXT="First Position"/>
+  <pfstatus_fun CODE="&amp;CRE" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_TOTAL_RIGHT" ICON_ID="@0C@" FUN_TEXT="Last Postion"/>
+  <pfstatus_fun CODE="&amp;CRL" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_COLUMN_LEFT" ICON_ID="@0D@" FUN_TEXT="Left"/>
+  <pfstatus_fun CODE="&amp;CRR" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_COLUMN_RIGHT" ICON_ID="@0E@" FUN_TEXT="Right"/>
+  <pfstatus_fun CODE="&amp;EB3" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_TABLE_SETTINGS" ICON_ID="@36@" FUN_TEXT="Weitere Berichte"/>
+  <pfstatus_fun CODE="&amp;ELP" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_SYSTEM_HELP" ICON_ID="@35@" FUN_TEXT="Hilfe"/>
+  <pfstatus_fun CODE="&amp;ERW" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="Verwaltung..." PATH="V"/>
+  <pfstatus_fun CODE="&amp;ETA" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_SELECT_DETAIL" ICON_ID="@16@" FUN_TEXT="Details"/>
+  <pfstatus_fun CODE="&amp;F03" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="Back" PATH="B"/>
+  <pfstatus_fun CODE="&amp;F12" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_CANCEL" ICON_ID="@0W@" FUN_TEXT="Exit" PATH="X"/>
+  <pfstatus_fun CODE="&amp;F15" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="Cancel" PATH="A"/>
+  <pfstatus_fun CODE="&amp;ILD" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="Remove Filter" PATH="L"/>
+  <pfstatus_fun CODE="&amp;ILT" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_FILTER" ICON_ID="@4G@" FUN_TEXT="Filter" PATH="F"/>
+  <pfstatus_fun CODE="&amp;KOM" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_COLLAPSE" ICON_ID="@3T@" FUN_TEXT="Auswählen..." PATH="A"/>
+  <pfstatus_fun CODE="&amp;LFO" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="Listenstatus..." PATH="L"/>
+  <pfstatus_fun CODE="&amp;LFO" TEXTNO="002" TEXT_TYPE="S" TEXT_NAME="ICON_INFORMATION" ICON_ID="@0S@" FUN_TEXT="List Status"/>
+  <pfstatus_fun CODE="&amp;LIS" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="Grundliste" PATH="G"/>
+  <pfstatus_fun CODE="&amp;NFO" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_INFORMATION" ICON_ID="@0S@" FUN_TEXT="Information" ICON_TEXT="Selektionen" PATH="I"/>
+  <pfstatus_fun CODE="&amp;NTE" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="Auffrischen"/>
+  <pfstatus_fun CODE="&amp;OAD" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="Auswählen..." PATH="U"/>
+  <pfstatus_fun CODE="&amp;OAD" TEXTNO="002" TEXT_TYPE="S" TEXT_NAME="ICON_VARIANTS" ICON_ID="@0R@" FUN_TEXT="Search Variants" ICON_TEXT="Search"/>
+  <pfstatus_fun CODE="&amp;ODN" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_SORT_DOWN" ICON_ID="@3F@" FUN_TEXT="Sort Descending" PATH="O"/>
+  <pfstatus_fun CODE="&amp;OL0" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_VARIANTS" ICON_ID="@0R@" FUN_TEXT="Variant"/>
+  <pfstatus_fun CODE="&amp;OLX" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_VARIANTS" ICON_ID="@0R@" FUN_TEXT="Aktuelle..." PATH="K"/>
+  <pfstatus_fun CODE="&amp;OMP" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_COLLAPSE" ICON_ID="@3T@" FUN_TEXT="Collapse"/>
+  <pfstatus_fun CODE="&amp;OPT" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="Breite optimieren" PATH="P"/>
+  <pfstatus_fun CODE="&amp;OUP" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_SORT_UP" ICON_ID="@3E@" FUN_TEXT="Sort Asscending" PATH="I"/>
+  <pfstatus_fun CODE="&amp;RNT" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_PRINT" ICON_ID="@0X@" FUN_TEXT="Print" PATH="P"/>
+  <pfstatus_fun CODE="&amp;SAL" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_DESELECT_ALL" ICON_ID="@4D@" FUN_TEXT="Unselect All" PATH="N"/>
+  <pfstatus_fun CODE="&amp;SUM" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_INTERMEDIATE_SUM" ICON_ID="@5V@" FUN_TEXT="SubTotal" PATH="U"/>
+  <pfstatus_fun CODE="&amp;UMC" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_SUM" ICON_ID="@3Z@" FUN_TEXT="Summary" PATH="R"/>
+  <pfstatus_fun CODE="&amp;XPA" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_EXPAND" ICON_ID="@3S@" FUN_TEXT="Expand"/>
+  <pfstatus_fun CODE="&amp;XXL" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_XXL" ICON_ID="@DJ@" FUN_TEXT="Excel" PATH="X"/>
+  <pfstatus_fun CODE="AEND" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="Change Record" PATH="C"/>
+  <pfstatus_fun CODE="MARA" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_SELECT_ALL" ICON_ID="@4B@" FUN_TEXT="Select All" INFO_TEXT="Alle Benutzer markieren"/>
+  <pfstatus_fun CODE="MARD" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_DESELECT_ALL" ICON_ID="@4D@" FUN_TEXT="De-Select All"/>
+  <pfstatus_fun CODE="MYPICK" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_DETAIL" ICON_ID="@3R@" FUN_TEXT="Details anzeigen" PATH="D"/>
+  <pfstatus_fun CODE="P+" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="Next Entry"/>
+  <pfstatus_fun CODE="P++" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="Last Entry"/>
+  <pfstatus_fun CODE="P-" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="Previous Entry"/>
+  <pfstatus_fun CODE="P--" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="First Entry"/>
+  <pfstatus_fun CODE="TAKE" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_OKAY" ICON_ID="@0V@" FUN_TEXT="Execute" INFO_TEXT="Markierte Benutzer übernehmen"/>
+  <pfstatus_fun CODE="UAGR" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_LIST" ICON_ID="@3W@" FUN_TEXT="Liste mit Rollen" ICON_TEXT="Rollen" INFO_TEXT="Liste mit Rollen"/>
+  <pfstatus_fun CODE="UPROF" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_LIST" ICON_ID="@3W@" FUN_TEXT="Liste mit Profilen" ICON_TEXT="Profile" INFO_TEXT="Liste mit Profilen"/>
+  <pfstatus_men CODE="000001" NO="01" REF_TYPE="F" REF_CODE="&amp;RNT" REF_NO="001"/>
+  <pfstatus_men CODE="000001" NO="02" REF_TYPE="M" REF_CODE="000002"/>
+  <pfstatus_men CODE="000001" NO="03" REF_TYPE="F" REF_CODE="%SL" REF_NO="001"/>
+  <pfstatus_men CODE="000001" NO="04" REF_TYPE="S"/>
+  <pfstatus_men CODE="000001" NO="05" REF_TYPE="F" REF_CODE="&amp;F15" REF_NO="001"/>
+  <pfstatus_men CODE="000001" NO="06" REF_TYPE="F" REF_CODE="&amp;F03" REF_NO="001"/>
+  <pfstatus_men CODE="000002" NO="01" REF_TYPE="F" REF_CODE="&amp;AQW" REF_NO="001"/>
+  <pfstatus_men CODE="000002" NO="02" REF_TYPE="F" REF_CODE="&amp;XXL" REF_NO="001"/>
+  <pfstatus_men CODE="000002" NO="03" REF_TYPE="F" REF_CODE="%PC" REF_NO="001"/>
+  <pfstatus_men CODE="000003" NO="01" REF_TYPE="F" REF_CODE="&amp;ALL" REF_NO="001"/>
+  <pfstatus_men CODE="000003" NO="02" REF_TYPE="F" REF_CODE="&amp;SAL" REF_NO="001"/>
+  <pfstatus_men CODE="000003" NO="03" REF_TYPE="S"/>
+  <pfstatus_men CODE="000003" NO="04" REF_TYPE="F" REF_CODE="&amp;ILT" REF_NO="001"/>
+  <pfstatus_men CODE="000003" NO="06" REF_TYPE="S"/>
+  <pfstatus_men CODE="000003" NO="07" REF_TYPE="F" REF_CODE="&amp;OUP" REF_NO="001"/>
+  <pfstatus_men CODE="000003" NO="08" REF_TYPE="F" REF_CODE="&amp;ODN" REF_NO="001"/>
+  <pfstatus_men CODE="000003" NO="09" REF_TYPE="S"/>
+  <pfstatus_men CODE="000003" NO="12" REF_TYPE="S"/>
+  <pfstatus_men CODE="000003" NO="13" REF_TYPE="F" REF_CODE="%SC" REF_NO="001"/>
+  <pfstatus_men CODE="000003" NO="14" REF_TYPE="S"/>
+  <pfstatus_men CODE="000003" NO="15" REF_TYPE="F" REF_CODE="&amp;F12" REF_NO="001"/>
+  <pfstatus_men CODE="000004" NO="01" REF_TYPE="F" REF_CODE="&amp;ABC" REF_NO="001"/>
+  <pfstatus_men CODE="000004" NO="02" REF_TYPE="S"/>
+  <pfstatus_men CODE="000004" NO="03" REF_TYPE="F" REF_CODE="&amp;F03" REF_NO="001"/>
+  <pfstatus_men CODE="000005" NO="01" REF_TYPE="F" REF_CODE="AEND" REF_NO="001"/>
+  <pfstatus_men CODE="000006" NO="01" REF_TYPE="F" REF_CODE="&amp;LIS" REF_NO="001"/>
+  <pfstatus_men CODE="000006" NO="02" REF_TYPE="S"/>
+  <pfstatus_men CODE="000006" NO="03" REF_TYPE="M" REF_CODE="000007"/>
+  <pfstatus_men CODE="000006" NO="04" REF_TYPE="S"/>
+  <pfstatus_men CODE="000006" NO="05" REF_TYPE="M" REF_CODE="000008"/>
+  <pfstatus_men CODE="000006" NO="06" REF_TYPE="S"/>
+  <pfstatus_men CODE="000006" NO="07" REF_TYPE="M" REF_CODE="000009"/>
+  <pfstatus_men CODE="000006" NO="08" REF_TYPE="S"/>
+  <pfstatus_men CODE="000006" NO="09" REF_TYPE="F" REF_CODE="&amp;NFO" REF_NO="001"/>
+  <pfstatus_men CODE="000006" NO="10" REF_TYPE="F" REF_CODE="&amp;LFO" REF_NO="001"/>
+  <pfstatus_men CODE="000007" NO="01" REF_TYPE="F" REF_CODE="&amp;OLX" REF_NO="001"/>
+  <pfstatus_men CODE="000007" NO="02" REF_TYPE="F" REF_CODE="&amp;OAD" REF_NO="001"/>
+  <pfstatus_men CODE="000007" NO="03" REF_TYPE="S"/>
+  <pfstatus_men CODE="000007" NO="04" REF_TYPE="F" REF_CODE="&amp;AVE" REF_NO="001"/>
+  <pfstatus_men CODE="000007" NO="05" REF_TYPE="S"/>
+  <pfstatus_men CODE="000007" NO="06" REF_TYPE="F" REF_CODE="&amp;ERW" REF_NO="001"/>
+  <pfstatus_men CODE="000008" NO="01" REF_TYPE="F" REF_CODE="&amp;KOM" REF_NO="001"/>
+  <pfstatus_men CODE="000008" NO="02" REF_TYPE="F" REF_CODE="&amp;AUF" REF_NO="001"/>
+  <pfstatus_men CODE="000009" NO="01" REF_TYPE="F" REF_CODE="&amp;OPT" REF_NO="001"/>
+  <pfstatus_men CODE="000009" NO="02" REF_TYPE="S"/>
+  <pfstatus_men CODE="000009" NO="03" REF_TYPE="F" REF_CODE="&amp;CFI" REF_NO="001"/>
+  <pfstatus_men CODE="000009" NO="04" REF_TYPE="F" REF_CODE="&amp;CDF" REF_NO="001"/>
+  <pfstatus_mtx CODE="000001" TEXT_TYPE="S" TEXT="List" PATH="L"/>
+  <pfstatus_mtx CODE="000002" TEXT_TYPE="S" TEXT="Export" PATH="E"/>
+  <pfstatus_mtx CODE="000003" TEXT_TYPE="S" TEXT="Edit" PATH="E"/>
+  <pfstatus_mtx CODE="000004" TEXT_TYPE="S" TEXT="Jump" PATH="J"/>
+  <pfstatus_mtx CODE="000005" TEXT_TYPE="S" TEXT="User" PATH="U"/>
+  <pfstatus_mtx CODE="000006" TEXT_TYPE="S" TEXT="Attitudes" PATH="A"/>
+  <pfstatus_mtx CODE="000007" TEXT_TYPE="S" TEXT="Anzeigevariante" PATH="A"/>
+  <pfstatus_mtx CODE="000008" TEXT_TYPE="S" TEXT="Summenstufen" PATH="S"/>
+  <pfstatus_mtx CODE="000009" TEXT_TYPE="S" TEXT="Spalten" PATH="P"/>
+  <pfstatus_mtx CODE="000016" TEXT_TYPE="S" TEXT="Edit" PATH="E" INT_NOTE="Standard supplement"/>
+  <pfstatus_act CODE="000001" NO="01" MENUCODE="000001"/>
+  <pfstatus_act CODE="000001" NO="02" MENUCODE="000003"/>
+  <pfstatus_but PFK_CODE="000001" CODE="0001" NO="01" PFNO="14"/>
+  <pfstatus_but PFK_CODE="000001" CODE="0001" NO="02" PFNO="39"/>
+  <pfstatus_but PFK_CODE="000001" CODE="0001" NO="03" PFNO="41"/>
+  <pfstatus_but PFK_CODE="000001" CODE="0001" NO="04" PFNO="40"/>
+  <pfstatus_but PFK_CODE="000001" CODE="0001" NO="05" PFNO="05"/>
+  <pfstatus_but PFK_CODE="000001" CODE="0001" NO="06" PFNO="06"/>
+  <pfstatus_but PFK_CODE="000001" CODE="0001" NO="07" PFNO="38"/>
+  <pfstatus_but PFK_CODE="000001" CODE="0001" NO="08" PFNO="09"/>
+  <pfstatus_pfk CODE="000001" PFNO="01" FUNCODE="&amp;ELP" FUNNO="001"/>
+  <pfstatus_pfk CODE="000001" PFNO="02" FUNCODE="MYPICK" FUNNO="001"/>
+  <pfstatus_pfk CODE="000001" PFNO="03" FUNCODE="&amp;F03" FUNNO="001"/>
+  <pfstatus_pfk CODE="000001" PFNO="05" FUNCODE="&amp;ALL" FUNNO="001"/>
+  <pfstatus_pfk CODE="000001" PFNO="06" FUNCODE="&amp;SAL" FUNNO="001"/>
+  <pfstatus_pfk CODE="000001" PFNO="07" FUNCODE="&amp;NFO" FUNNO="001"/>
+  <pfstatus_pfk CODE="000001" PFNO="08" FUNCODE="&amp;NTE" FUNNO="001"/>
+  <pfstatus_pfk CODE="000001" PFNO="09" FUNCODE="%PC" FUNNO="001"/>
+  <pfstatus_pfk CODE="000001" PFNO="12" FUNCODE="&amp;F12" FUNNO="001"/>
+  <pfstatus_pfk CODE="000001" PFNO="13" FUNCODE="&amp;RNT" FUNNO="001"/>
+  <pfstatus_pfk CODE="000001" PFNO="14" FUNCODE="TAKE" FUNNO="001"/>
+  <pfstatus_pfk CODE="000001" PFNO="15" FUNCODE="&amp;F15" FUNNO="001"/>
+  <pfstatus_pfk CODE="000001" PFNO="16" FUNCODE="&amp;XXL" FUNNO="001"/>
+  <pfstatus_pfk CODE="000001" PFNO="17" FUNCODE="&amp;AQW" FUNNO="001"/>
+  <pfstatus_pfk CODE="000001" PFNO="18" FUNCODE="&amp;ABC" FUNNO="001"/>
+  <pfstatus_pfk CODE="000001" PFNO="19" FUNCODE="&amp;UMC" FUNNO="001"/>
+  <pfstatus_pfk CODE="000001" PFNO="20" FUNCODE="%SL" FUNNO="001"/>
+  <pfstatus_pfk CODE="000001" PFNO="38" FUNCODE="&amp;ILT" FUNNO="001"/>
+  <pfstatus_pfk CODE="000001" PFNO="39" FUNCODE="&amp;ETA" FUNNO="001"/>
+  <pfstatus_pfk CODE="000001" PFNO="40" FUNCODE="&amp;ODN" FUNNO="001"/>
+  <pfstatus_pfk CODE="000001" PFNO="41" FUNCODE="&amp;OUP" FUNNO="001"/>
+  <pfstatus_pfk CODE="000001" PFNO="44" FUNCODE="MARA" FUNNO="001"/>
+  <pfstatus_pfk CODE="000001" PFNO="45" FUNCODE="MARD" FUNNO="001"/>
+  <pfstatus_pfk CODE="000001" PFNO="71" FUNCODE="%SC" FUNNO="001"/>
+  <pfstatus_pfk CODE="000001" PFNO="80" FUNCODE="P--" FUNNO="001"/>
+  <pfstatus_pfk CODE="000001" PFNO="81" FUNCODE="P-" FUNNO="001"/>
+  <pfstatus_pfk CODE="000001" PFNO="82" FUNCODE="P+" FUNNO="001"/>
+  <pfstatus_pfk CODE="000001" PFNO="83" FUNCODE="P++" FUNNO="001"/>
+  <pfstatus_pfk CODE="000001" PFNO="86" FUNCODE="&amp;RNT" FUNNO="001"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="%CH"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="%EX"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="%PC"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="%SC"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="%SC+"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="%SL"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="%ST"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="&amp;ABC"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="&amp;ALL"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="&amp;AQW"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="&amp;AUF"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="&amp;CDF"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="&amp;CFI"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="&amp;ELP"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="&amp;ERW"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="&amp;ETA"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="&amp;F03"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="&amp;F12"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="&amp;F15"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="&amp;ILD"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="&amp;ILT"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="&amp;KOM"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="&amp;LIS"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="&amp;NFO"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="&amp;NTE"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="&amp;ODN"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="&amp;OL1"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="&amp;OL2"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="&amp;OL3"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="&amp;OL4"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="&amp;OL5"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="&amp;OLX"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="&amp;OPT"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="&amp;OUP"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="&amp;RNT"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="&amp;SAL"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="&amp;SUM"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="&amp;UMC"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="&amp;XXL"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="BAC1"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="BACK"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="BEB1"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="BEB2"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="BEB3"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="BEB9"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="BEBN"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="COL0"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="COLX"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="DETA"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="DRUK"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="DSAL"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="ENTE"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="EXIT"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="EXPA"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="FILD"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="FILT"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="GLIS"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="HELP"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="INFO"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="KOMP"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="LOAD"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="MARA"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="MARD"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="MYPICK"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="P+"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="P++"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="P-"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="P--"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="PF09"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="PF13"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="PIC1"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="PICK"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="PRI"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="PRIN"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="PRNT"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="RW"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="SALL"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="SAUF"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="SAVE"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="SCRB"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="SCRE"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="SCRL"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="SCRR"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="SKOM"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="SODN"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="SOUP"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="SUMC"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="TAKE"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="VERW"/>
+  <pfstatus_set STATUS="SELOBJ" FUNCTION="ZSUM"/>
+  <pfstatus_doc OBJ_TYPE="A" OBJ_CODE="000001" MODAL="D" INT_NOTE="STANDARD"/>
+  <pfstatus_doc OBJ_TYPE="P" OBJ_CODE="000001" MODAL="D" NORM="X" INT_NOTE="Standard Maximum Interation"/>
+  <pfstatus_doc OBJ_TYPE="B" OBJ_CODE="000001" SUB_CODE="0001" MODAL="D" INT_NOTE="Standard Maximum Interation"/>
+  <pfstatus_doc OBJ_TYPE="A" OBJ_CODE="000002" MODAL="D" INT_NOTE="Standard maximale Interaktion"/>
+  <pfstatus_doc OBJ_TYPE="P" OBJ_CODE="000002" MODAL="D" NORM="X" INT_NOTE="Standard maximale Interaktion"/>
+  <pfstatus_doc OBJ_TYPE="B" OBJ_CODE="000002" SUB_CODE="0001" MODAL="D" INT_NOTE="Standard maximale Interaktion"/>
+ </pfstatus>
  <source>*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
@@ -81,31 +341,19 @@
 *|                        ewherrmann+saplinkcred@gmail.com             |
 *|                   dan mcweeney                                      |
 *|                        daniel.mcweeney+saplinkcred@gmail.com        |
+*|---------------------------------------------------------------------|
+*| For a full list of contributors visit:                              |
 *|                                                                     |
-*| Plugin Developers: Enhanced programs with dynpros - Rich Heilman    |
-*|                    Tables - Thomas Jung                             |
-*|                    Data Elements - Thomas Jung                      |
-*|                    Domains - Thomas Jung                            |
-*|                    Lock Objects - Thomas Jung                       |
-*|                    Index - Thomas Jung                              |
-*|                    Search Helps - Thomas Jung                       |
-*|                    Structures - Thomas Jung                         |
-*|                    Table Technical Settings - Thomas Jung           |
-*|                    Table Types - Thomas Jung                        |
-*|                    View Technical Settings - Thomas Jung            |
-*|                    Views - Thomas Jung                              |
-*|                    BSP Extensions - Phillip T Young                 |
-*|                                                                     |
-*| Patch submissions: Michael Diehl                                    |
-*|                                                                     |
-*| Fearless Alpha Testers: Matt Ammons                                 |
-*|                         Phillip T Young                             |
-*|                         Ryan Quackenboss                            |
-*|                         Sascha Kiefer                               |
-*|                         Todd Rowland                                |
+*| project homepage: http://saplink.org                                |
+*| discussion group: http://groups.google.com/group/saplink            |
+*| project wiki:     https://wiki.sdn.sap.com/wiki/display/HOME/SAPlink|
 *\---------------------------------------------------------------------/
-REPORT  ZSAPLINK                                                    .
-TABLES SSCRFIELDS.
+REPORT  ZSAPLINK.
+
+*/------------------------DATA----------------------------\
+TABLES: SSCRFIELDS, E071, E07T.
+
+TYPE-POOLS: icon, slis, sabc, stms, trwbo.
 
 types: begin of t_plugin,
          object type KO100-object,
@@ -123,6 +371,44 @@ types: begin of t_nuggetObject,
           objName type string,
           exists type flag,
        end of t_nuggetObject.
+*addition of package data
+****   Read all objects of the package
+types: begin of t_objects_package,
+          select     type char1,
+          object     type tadir-object,
+          object_txt type string,
+          obj_name   type tadir-obj_name,
+          srcsystem  type tadir-srcsystem,
+          down_flag  type char1,
+          status     type char1,
+       end of t_objects_package.
+
+data objects_package type table of t_objects_package.
+data packageLine type t_objects_package.
+field-symbols: &lt;obj&gt; like line of objects_package.
+data tabletypeline type ko105.
+data tabletypesin type table of ko105.
+data tabletypesout type tr_object_texts.
+data tabletypeoutline type ko100.
+data lt_fieldcat  type          slis_t_fieldcat_alv.
+data ls_fieldcat  like line of  lt_fieldcat.
+data ls_layout    type          slis_layout_alv.
+data lv_count type i.
+data lv_pers  type i.
+
+*end of data addition for packages
+*addition of Transport data
+types: begin of t_requestObject,
+          object   type e071-object,
+          OBJ_NAME type e071-obj_name,
+       end of t_requestObject.
+
+types: tt_requestObject TYPE TABLE OF t_requestObject.
+
+data it_requestObject type table of t_requestObject.
+data wa_requestObject type t_requestObject.
+
+*end of data addition for transport
 
 data pluginLine type t_plugin.
 data pluginList type table of t_plugin.
@@ -168,8 +454,16 @@ data: l_marker type i,
       l_offset type i,
       l_total_offset type i.
 
-*/------------------------SELECTION SCREEN----------------------------\
+DATA:
+  es_selected_request TYPE trwbo_request_header,
+  es_selected_task TYPE trwbo_request_header,
+  iv_organizer_type TYPE trwbo_calling_organizer,
+  is_selection TYPE trwbo_selection.
 
+*\--------------------------------------------------------------------/
+
+
+*/------------------------SELECTION SCREEN----------------------------\
 
 SELECTION-SCREEN BEGIN OF TABBED BLOCK tabb FOR 20 LINES.
 SELECTION-SCREEN TAB (17) text-tb1 USER-COMMAND obj
@@ -190,10 +484,8 @@ SELECTION-SCREEN BEGIN OF SCREEN 110 AS SUBSCREEN.
     selection-screen begin of block opt with frame title text-opt.
       parameters filename(300) lower case type c modif id did.
       parameters OverWr type c as checkbox modif id did.
-
       parameters plugin type KO100-object modif id uid.
       parameters objName(40) type c modif id uid.
-*      parameters plugin type KO100-object modif id uid.
     selection-screen end of block opt.
   selection-screen end of block main.
 SELECTION-SCREEN END OF SCREEN 110.
@@ -204,6 +496,8 @@ SELECTION-SCREEN BEGIN OF SCREEN 120 AS SUBSCREEN.
         parameters NugI type c RADIOBUTTON GROUP 3 default &apos;X&apos;
           user-command updown.
         parameters NugA type c RADIOBUTTON GROUP 3.
+        parameters nugP type c radiobutton group 3.
+        parameters nugR type c radiobutton group 3.
         parameters nugD type c radiobutton group 3.
         parameters nugC type c radiobutton group 3.
     selection-screen end of block splk2.
@@ -213,7 +507,9 @@ SELECTION-SCREEN BEGIN OF SCREEN 120 AS SUBSCREEN.
       parameters nPlugIn type  KO100-object modif id npg.
       parameters NObjNam(40) type c modif id npg.
 *      parameters nPlugIn type  KO100-object modif id npg.
+      parameter package      type tadir-devclass modif id npc.
       parameter NugFile(300) lower case type c modif id nfl.
+      select-options  ReqNugg for E071-TRKORR NO INTERVALS NO-EXTENSION modif id rnm.
       parameters nOvrWr type c as checkbox modif id now.
     selection-screen end of block opt2.
   selection-screen end of block main2.
@@ -243,9 +539,10 @@ at selection-screen.
   EXPORT isNugget TO MEMORY ID &apos;ISNUGG&apos;.
 
 AT SELECTION-SCREEN OUTPUT.
+*** hide/show fields according to current selection
   if Import = &apos;X&apos;.
     hidID = &apos;UID&apos;.
-  else.
+  elseif Export = &apos;X&apos;.
     hidID = &apos;DID&apos;.
   endif.
 
@@ -257,7 +554,6 @@ AT SELECTION-SCREEN OUTPUT.
     endif.
   ENDLOOP.
 
-
   loop at screen.
     if NugC = &apos;X&apos;.
       if screen-group1 = &apos;NNM&apos;.
@@ -265,7 +561,7 @@ AT SELECTION-SCREEN OUTPUT.
         SCREEN-INVISIBLE = &apos;0&apos;.
         MODIFY SCREEN.
        elseif screen-group1 = &apos;NPG&apos; or screen-group1 = &apos;NFL&apos;
-         or screen-group1 = &apos;NOW&apos;.
+         or screen-group1 = &apos;NOW&apos; or screen-group1 = &apos;NPC&apos; or screen-group1 = &apos;RNM&apos;.
         SCREEN-ACTIVE = &apos;0&apos;.
         SCREEN-INVISIBLE = &apos;1&apos;.
         MODIFY SCREEN.
@@ -275,7 +571,8 @@ AT SELECTION-SCREEN OUTPUT.
         SCREEN-ACTIVE = &apos;1&apos;.
         SCREEN-INVISIBLE = &apos;0&apos;.
         MODIFY SCREEN.
-       elseif screen-group1 = &apos;NNM&apos; or screen-group1 =&apos;NPG&apos;.
+       elseif screen-group1 = &apos;NNM&apos; or screen-group1 =&apos;NPG&apos;
+          or screen-group1 = &apos;NPC&apos; or screen-group1 = &apos;RNM&apos;.
         SCREEN-ACTIVE = &apos;0&apos;.
         SCREEN-INVISIBLE = &apos;1&apos;.
         MODIFY SCREEN.
@@ -285,7 +582,19 @@ AT SELECTION-SCREEN OUTPUT.
         SCREEN-ACTIVE = &apos;1&apos;.
         SCREEN-INVISIBLE = &apos;0&apos;.
         MODIFY SCREEN.
-      elseif screen-group1 = &apos;NNM&apos; or screen-group1 = &apos;NOW&apos;.
+      elseif screen-group1 = &apos;NNM&apos; or screen-group1 = &apos;NOW&apos;
+         or screen-group1 = &apos;NPC&apos; or screen-group1 = &apos;RNM&apos;.
+        SCREEN-ACTIVE = &apos;0&apos;.
+        SCREEN-INVISIBLE = &apos;1&apos;.
+        MODIFY SCREEN.
+      endif.
+    elseif NugP = &apos;X&apos;.
+      if screen-group1 = &apos;NFL&apos; or screen-group1 = &apos;NPC&apos;.
+        SCREEN-ACTIVE = &apos;1&apos;.
+        SCREEN-INVISIBLE = &apos;0&apos;.
+        MODIFY SCREEN.
+      elseif screen-group1 = &apos;NNM&apos; or screen-group1 = &apos;NOW&apos;
+        or screen-group1 = &apos;NPG&apos; or screen-group1 = &apos;RNM&apos;.
         SCREEN-ACTIVE = &apos;0&apos;.
         SCREEN-INVISIBLE = &apos;1&apos;.
         MODIFY SCREEN.
@@ -296,14 +605,26 @@ AT SELECTION-SCREEN OUTPUT.
         SCREEN-INVISIBLE = &apos;0&apos;.
         MODIFY SCREEN.
        elseif screen-group1 = &apos;NNM&apos; or screen-group1 =&apos;NPG&apos;
-        or screen-group1 = &apos;NOW&apos;.
+        or screen-group1 = &apos;NOW&apos; or screen-group1 = &apos;NPC&apos; or screen-group1 = &apos;RNM&apos;.
         SCREEN-ACTIVE = &apos;0&apos;.
         SCREEN-INVISIBLE = &apos;1&apos;.
         MODIFY SCREEN.
        endif.
+    elseIf NugR = &apos;X&apos;.
+      if screen-group1 = &apos;NFL&apos; or screen-group1 = &apos;RNM&apos;.
+        SCREEN-ACTIVE = &apos;1&apos;.
+        SCREEN-INVISIBLE = &apos;0&apos;.
+        MODIFY SCREEN.
+      elseif screen-group1 = &apos;NNM&apos; or screen-group1 = &apos;NOW&apos;
+        or screen-group1 = &apos;NPG&apos; or screen-group1 = &apos;NPC&apos;.
+        SCREEN-ACTIVE = &apos;0&apos;.
+        SCREEN-INVISIBLE = &apos;1&apos;.
+        MODIFY SCREEN.
+      endif.
     endif.
   endloop.
 
+*** value request for input fields
 at selection-screen on value-request for plugin.
   refresh pluginList.
   loop at objectTable into objectLine.
@@ -375,61 +696,77 @@ at selection-screen on value-request for NugFile.
 
 * begin--&gt;search help on objname according to selected plugin
 * provided by Michael Diehl
-  AT SELECTION-SCREEN ON VALUE-REQUEST FOR objname.
-   DATA l_object_type LIKE  euobj-id.
-*   l_object_type = plugin.  &quot;commented ewH
+AT SELECTION-SCREEN ON VALUE-REQUEST FOR objname.
+ DATA l_object_type LIKE  euobj-id.
+* l_object_type = plugin.  &quot;commented ewH
 
-*  ewH--&gt;get most current value of plugin param
-   perform get_current_screen_value using &apos;PLUGIN&apos; &apos;0110&apos;
-                                 changing l_object_type.
+*ewH--&gt;get most current value of plugin param
+ perform get_current_screen_value using &apos;PLUGIN&apos; &apos;0110&apos;
+                               changing l_object_type.
 
-   IF  l_object_type IS NOT INITIAL.
-     CALL FUNCTION &apos;REPOSITORY_INFO_SYSTEM_F4&apos;
-       EXPORTING
-         object_type           = l_object_type
-         object_name           = objname
-         suppress_selection    = &apos;X&apos;
-         use_alv_grid          = &apos;&apos;
-         without_personal_list = &apos;&apos;
-       IMPORTING
-         object_name_selected  = objname
-       EXCEPTIONS
-         cancel                = 1.
-   ENDIF.
+ IF  l_object_type IS NOT INITIAL.
+   CALL FUNCTION &apos;REPOSITORY_INFO_SYSTEM_F4&apos;
+     EXPORTING
+       object_type           = l_object_type
+       object_name           = objname
+       suppress_selection    = &apos;X&apos;
+       use_alv_grid          = &apos;&apos;
+       without_personal_list = &apos;&apos;
+     IMPORTING
+       object_name_selected  = objname
+     EXCEPTIONS
+       cancel                = 1.
+ ENDIF.
 
 
-  AT SELECTION-SCREEN ON VALUE-REQUEST FOR nobjnam.
-   DATA l_object_type LIKE  euobj-id.
-*   l_object_type = nplugin. &quot;commented ewH
+AT SELECTION-SCREEN ON VALUE-REQUEST FOR nobjnam.
+ DATA l_object_type LIKE  euobj-id.
+* l_object_type = nplugin. &quot;commented ewH
 
-*  ewH--&gt;get most current value of plugin param
-   perform get_current_screen_value using &apos;NPLUGIN&apos; &apos;0120&apos;
-                                 changing l_object_type.
+*ewH--&gt;get most current value of plugin param
+ perform get_current_screen_value using &apos;NPLUGIN&apos; &apos;0120&apos;
+                               changing l_object_type.
 
-   IF  l_object_type IS NOT INITIAL.
+ IF  l_object_type IS NOT INITIAL.
 
-     CALL FUNCTION &apos;REPOSITORY_INFO_SYSTEM_F4&apos;
-       EXPORTING
-         object_type           = l_object_type
-         object_name           = nobjnam
-         suppress_selection    = &apos;X&apos;
-         use_alv_grid          = &apos;&apos;
-         without_personal_list = &apos;&apos;
-       IMPORTING
-         object_name_selected  = nobjnam
-       EXCEPTIONS
-         cancel                = 1.
-   ENDIF.
+   CALL FUNCTION &apos;REPOSITORY_INFO_SYSTEM_F4&apos;
+     EXPORTING
+       object_type           = l_object_type
+       object_name           = nobjnam
+       suppress_selection    = &apos;X&apos;
+       use_alv_grid          = &apos;&apos;
+       without_personal_list = &apos;&apos;
+     IMPORTING
+       object_name_selected  = nobjnam
+     EXCEPTIONS
+       cancel                = 1.
+ ENDIF.
 * &lt;--end of search help on objname according to selected plugin
 * provided by Michael Diehl
+
+
+at selection-screen on value-request for ReqNugg-low.
+  iv_organizer_type = &apos;W&apos;.
+*  is_selection-reqstatus = &apos;R&apos;.
+  CALL FUNCTION &apos;TR_PRESENT_REQUESTS_SEL_POPUP&apos;
+    EXPORTING
+      iv_organizer_type   = iv_organizer_type
+      is_selection        = is_selection
+    IMPORTING
+      es_selected_request = es_selected_request
+      es_selected_task    = es_selected_task.
+
+  ReqNugg-low = es_selected_request-trkorr.
 
 *\--------------------------------------------------------------------/
 
 */----------------------main------------------------------------------\
 start-of-selection.
   clear: errorMsg, statusMsg.
+************* S L I N K E E *************
   if isNugget is initial.
     _objName = objName.
+*   Export slinkee
     if Export = &apos;X&apos;.
       if plugin is initial.
         message s208(00) with &apos;object type required&apos;.
@@ -440,8 +777,9 @@ start-of-selection.
       endif.
       read table objectTable into objectLine with key object = plugin.
       if sy-subrc &lt;&gt; 0.
-        write: / &apos;Plugin for object type &apos;, plugin,
-          &apos; is not installed on this system&apos;.
+        concatenate &apos;Plugin for object type&apos; plugin
+          &apos;is not installed on this system&apos; into errorMsg separated by space.
+          perform writeMessage using &apos;E&apos; errorMsg.
         exit.
       endif.
       create object targetObject type (objectLine-classname)
@@ -450,7 +788,7 @@ start-of-selection.
         ixmlDocument = targetObject-&gt;CREATEIXMLDOCFROMOBJECT( ).
         catch ZCX_SAPLINK into excClass.
           errorMsg = excClass-&gt;get_text( ).
-          write errorMsg.
+          perform writeMessage using &apos;E&apos; errorMsg.
       endtry.
       if errorMsg is not initial.
         exit.
@@ -466,20 +804,26 @@ start-of-selection.
         exit.
       endif.
       perform displayXMLOnScreen using xml.
+*   Import slinkee
     elseif Import = &apos;X&apos;.
       if filename is initial.
         message s208(00) with &apos;slinkee filename required&apos;.
         exit.
       endif.
       perform uploadXMLFromLM using filename xml.
+      if sy-subrc &lt;&gt; 0.
+        exit.
+      endif.
       ixmlDocument = zsapLink=&gt;convertStringToIxmlDoc( xml ).
-
 *     run some checks before install
       perform checkObject using ixmlDocument
                           changing _objType
                                    _objName
                                    _pluginExists
                                    _objectExists.
+      move _objType to plugin.
+      read table objectTable into objectLine with key object = plugin.
+
       if _objtype = &apos;NUGG&apos;.
         message s208(00) with &apos;use nugget tab for nugget import&apos;.
         exit.
@@ -487,49 +831,46 @@ start-of-selection.
         concatenate
           &apos;There is no installed SAPlink plugin for object type&apos;
           _objType into errorMsg separated by space.
-        write / errorMsg.
+          perform writeMessage using &apos;E&apos; errorMsg.
         exit.
       elseif _objectExists = &apos;X&apos; and overWr is initial.
-        concatenate _objType _objName &apos;already exists. Use overwrite&apos;
+        concatenate _objType objectline-text _objName &apos;already exists. Use overwrite&apos;
           &apos;orginals option to replace&apos; into errorMsg separated by space.
-        write / errorMsg.
+        perform writeMessage using &apos;E&apos; errorMsg.
         exit.
       elseif _objectExists = &apos;X&apos; and overWr = &apos;X&apos;.
         concatenate _objType _objName into sTemp separated by space.
         perform confirmOverwrite using sTemp
                               changing _flag.
         if _flag = &apos;A&apos;. &quot;cancel
-          write / &apos;Import cancelled by user&apos;.
+          perform writeMessage using &apos;W&apos; &apos;Import cancelled by user&apos;.
           exit.
         endif.
       endif.
 
 *     install object
       perform installObject using ixmlDocument overWr
-                         changing errorFlag statusMsg.
-      write / statusMsg.
+                         changing errorFlag
+                                  statusMsg.
       if errorFlag = &apos;X&apos;.
+        perform writeMessage using &apos;E&apos; statusmsg.
         exit.
+      else.
+        perform writeMessage using &apos;S&apos; statusmsg.
       endif.
       message s208(00) with &apos;Import successful&apos;.
     endif.
   else.
+************* N U G G E T *************
+*   create empty nugget
     if nugC = &apos;X&apos;.
       if nuggNam is initial.
         message s208(00) with &apos;enter name of new nugget to be created&apos;.
         exit.
       endif.
       stemp = nuggNam.
-      ixmlDocument = zsaplink_nugget=&gt;createemptyXML(
-        nuggetName = sTemp ).
-      xml = zsapLink=&gt;convertIxmlDoctoString( ixmlDocument ).
-      concatenate &apos;NUGG_&apos; nuggNam &apos;.nugg&apos; into sTemp.
-      clear errorFlag.
-      perform downloadXMLtoLM using sTemp xml
-                              changing errorFlag.
-      if errorFlag is not initial.
-        exit.
-      endif.
+      perform CreateEmptyNugget using stemp.
+*   add object to nugget
     elseif NugA = &apos;X&apos;.
       if nplugin is initial.
         message s208(00) with &apos;object type required&apos;.
@@ -543,37 +884,52 @@ start-of-selection.
       endif.
       read table objectTable into objectLine with key object = nplugin.
       if sy-subrc &lt;&gt; 0.
-        write: / &apos;Plugin for object type &apos;, nplugin,
-          &apos; is not installed on this system&apos;.
+        concatenate &apos;Plugin for object type&apos; nplugin
+          &apos;is not installed on this system&apos; into errormsg
+            separated by space.
+          perform writeMessage using &apos;E&apos; errormsg.
         exit.
       endif.
       sTemp = nuggNam.
       perform uploadXMLFromLM using nugfile xml.
+      if sy-subrc &lt;&gt; 0.
+        exit.
+      endif.
       ixmlDocument = zsapLink=&gt;convertStringToIxmlDoc( xml ).
       create object nugg exporting ixmlDocument = ixmlDocument.
+
       _objName = nobjNam.
       sTemp = nplugin.
+
       try.
         nugg-&gt;ADDOBJECTTONUGGET( objName = _objName objType = sTemp ).
         catch ZCX_SAPLINK into excClass.
           errorMsg = excClass-&gt;get_text( ).
-          write / errorMsg.
+          perform writeMessage using &apos;E&apos; errorMsg.
           exit.
       endtry.
       ixmlDocument = nugg-&gt;CREATEIXMLDOCFROMNUGGET( ).
       xml = zsapLink=&gt;convertIxmlDoctoString( ixmlDocument ).
-      concatenate  nuggNam &apos;.nugg&apos; into sTemp.
+*      concatenate  nuggNam &apos;.nugg&apos; into sTemp.
       sTemp = nugFile.
       perform putOnMachine using sTemp xml.
+*   import nugget
     elseif NugI = &apos;X&apos;.
       if nugfile is initial.
         message s208(00) with &apos;nugget filename required&apos;.
         exit.
       endif.
       perform uploadXMLFromLM using nugfile xml.
+      if sy-subrc &lt;&gt; 0.
+        exit.
+      endif.
       ixmlDocument = zsapLink=&gt;convertStringToIxmlDoc( xml ).
       nuggetName = zsaplink_nugget=&gt;getnuggetinfo( ixmlDocument ).
-      write: / &apos;Starting import of nugget &apos;, nuggetName. skip.
+      concatenate &apos;Start import of nugget&apos; nuggetName into statusmsg
+        separated by space.
+
+      perform writeMessage using &apos;S&apos; statusmsg.
+      skip.
 
       create object nugg exporting ixmlDocument = ixmlDocument.
 
@@ -593,13 +949,13 @@ start-of-selection.
           concatenate
             &apos;There is no installed SAPlink plugin for object type&apos;
             _objType into errorMsg separated by space.
-          write / errorMsg.
+          perform writeMessage using &apos;E&apos; errormsg.
           errorFlag = &apos;X&apos;.
         elseif _objectExists = &apos;X&apos; and nOvrWr is initial.
           concatenate _objType _objName &apos;already exists. Use overwrite&apos;
             &apos;orginals option to replace&apos;
               into errorMsg separated by space.
-          write / errorMsg.
+          perform writeMessage using &apos;W&apos; errormsg.
           errorFlag = &apos;X&apos;.
         endif.
         wa_nuggetObject-objType = _objType.
@@ -627,7 +983,7 @@ start-of-selection.
           clear errorFlag.
           exit.
         elseif _flag = &apos;A&apos;. &quot;cancel
-          write / &apos;Import cancelled by user&apos;.
+          perform writeMessage using &apos;W&apos; &apos;Import cancelled by user&apos;.
           errorFlag = &apos;X&apos;.
           exit.
         endif.
@@ -637,7 +993,7 @@ start-of-selection.
         exit.
       endif.
 
-*     install nugget
+*     install
       nugg-&gt;reset( ). &quot;reset nugget iterator
       anXMLDoc = nugg-&gt;getNextObject( ).
       while anXMLDoc is not Initial.
@@ -645,24 +1001,28 @@ start-of-selection.
         perform installObject using anXMLDoc nOvrWr
                            changing errorFlag
                                     statusMsg.
-        write / statusMsg.
-*       do not continue with nugget install if error occurrs
         if errorFlag = &apos;X&apos;.
+          perform writeMessage using &apos;E&apos; statusmsg.
           exit.
+        else.
+          perform writeMessage using &apos;S&apos; statusmsg.
+          anXMLDoc = nugg-&gt;getNextObject( ).
         endif.
-        anXMLDoc = nugg-&gt;getNextObject( ).
       endwhile.
 
       if errorFlag = &apos;X&apos;.
         exit.
       endif.
-      message s208(00) with &apos;Import successful&apos;.
+*   display objects in a nugget
     elseif NugD = &apos;X&apos;.
       if nugfile is initial.
         message s208(00) with &apos;nugget filename required&apos;.
         exit.
       endif.
       perform uploadXMLFromLM using nugfile xml.
+      if sy-subrc &lt;&gt; 0.
+        exit.
+      endif.
       ixmlDocument = zsapLink=&gt;convertStringToIxmlDoc( xml ).
       nuggetName = zsaplink_nugget=&gt;getnuggetinfo( ixmlDocument ).
       write: / &apos;Object list for nugget &apos;, nuggetName. skip.
@@ -671,20 +1031,192 @@ start-of-selection.
       anXMLDoc = nugg-&gt;getNextObject( ).
 
       if anXMLDoc is initial.
-        write / &apos;You have an empty Nugget&apos;.
+        errorMsg = &apos;You have an empty Nugget&apos;.
+        perform writeMessage using &apos;W&apos; errormsg.
         exit.
       endif.
 
-      while anXMLDoc is not Initial.
+      while anXMLDoc is not initial.
         call method zsapLink=&gt;GETOBJECTInfoFROMIXMLDOC
               exporting
                 ixmlDocument = anXMLDoc
               importing
                 objtypename = _objType
                 objname     = _objName.
-        write: / _objtype, &apos; &apos;, _objName.
+
+        concatenate _objType _objName into statusMsg separated by space.
+        perform writeMessage using &apos;S&apos; statusMsg.
         anXMLDoc = nugg-&gt;getNextObject( ).
       endwhile.
+
+*   rrq: enhancement 3--&gt;
+*   add package to nugget
+    elseif NugP = &apos;X&apos;.
+      if package  is initial.
+        message s208(00) with &apos;package required&apos;.
+        exit.
+      endif.
+      if nugfile is initial.
+        message s208(00) with &apos;nugget filename required&apos;.
+        exit.
+      endif.
+      select object obj_name srcsystem
+          from tadir
+          into corresponding fields of table  objects_package
+          where devclass  eq package
+          and  pgmid      eq &apos;R3TR&apos;.
+      if sy-subrc &lt;&gt; 0.
+        message s001(00) with &apos;Package does not exist or empty&apos;.
+        return.
+      endif.
+
+      perform check_objects.
+
+      perform build_fieldCatalog.
+
+      perform ShowInitialGrid tables objects_package.
+
+      if sy-ucomm &lt;&gt; &apos;TAKE&apos;.
+        return.
+      endif .
+
+*     Downloading
+      call function &apos;SAPGUI_PROGRESS_INDICATOR&apos;
+        exporting
+          percentage = 1
+          text       = &apos;Upload file&apos;.
+
+      perform uploadxmlfromlm using nugfile xml.
+
+      ixmldocument = zsaplink=&gt;convertstringtoixmldoc( xml ).
+
+      create object nugg
+        exporting
+          ixmldocument = ixmldocument.
+
+      describe table objects_package lines lv_count.
+      loop at objects_package assigning &lt;obj&gt; where down_flag = &apos;X&apos;
+                              and select = &apos;X&apos;.
+        lv_pers = sy-tabix * 100 / lv_count .
+        call function &apos;SAPGUI_PROGRESS_INDICATOR&apos;
+          exporting
+            percentage = lv_pers
+            text       = &lt;obj&gt;-obj_name.
+
+        _objname = &lt;obj&gt;-obj_name. &quot;nobjNam.
+        stemp = &lt;obj&gt;-object.      &quot;nplugin.
+        try.
+            nugg-&gt;addobjecttonugget( objname = _objname objtype = stemp ).
+          catch zcx_saplink into excclass.
+            errormsg = excclass-&gt;get_text( ).
+            perform writeMessage using &apos;E&apos; errorMsg.
+            &lt;obj&gt;-status = 1.
+            continue.
+        endtry.
+        &lt;obj&gt;-status = 3.
+      endloop.
+
+      ixmldocument = nugg-&gt;createixmldocfromnugget( ).
+      xml = zsaplink=&gt;convertixmldoctostring( ixmldocument ).
+      stemp = nugfile.
+      perform putonmachine using stemp xml.
+
+      perform showResultsGrid tables objects_package.
+*   &lt;-- rrq: enhancement 3
+
+*   rrq: enhancement 42--&gt;
+*   add objects from a transport to a nugget
+    elseif nugr = &apos;X&apos;.
+      DATA: ReqName TYPE string.
+
+      Data: L_TRKORR type e07t-trkorr,
+            l_as4text type e07t-as4text.
+
+      if nugfile is initial.
+        message s208(00) with &apos;nugget filename required&apos;.
+        exit.
+      endif.
+
+      if ReqNugg[] is initial.
+        message s208(00) with &apos;Request number required&apos;.
+        exit.
+      endif.
+
+      SELECT Single TRKORR AS4TEXT
+      FROM  E07T
+      INTO (l_TRKORR, L_as4text)
+      WHERE  TRKORR   IN ReqNugg
+        AND  LANGU    EQ sy-langu.
+
+      SELECT object OBJ_NAME
+      FROM  E071
+      INTO TABLE it_requestobject
+      WHERE  TRKORR in ReqNugg.
+
+      if sy-subrc = 0.
+        ReqName = l_TRKORR.
+      else.
+        message s208(00) with &apos;No request found&apos;.
+        exit.
+      ENDIF.
+
+      loop at it_requestObject into wa_requestObject.
+        move-corresponding wa_requestObject to packageLine.
+        append packageLine to objects_package.
+      endloop.
+
+      perform check_objects.
+      perform build_fieldCatalog.
+
+      perform ShowInitialGrid tables objects_package.
+
+      if sy-ucomm &lt;&gt; &apos;TAKE&apos;.
+        return.
+      endif .
+
+*     Downloading
+      call function &apos;SAPGUI_PROGRESS_INDICATOR&apos;
+        exporting
+          percentage = 1
+          text       = &apos;Upload file&apos;.
+
+      perform uploadxmlfromlm using nugfile xml.
+
+      ixmldocument = zsaplink=&gt;convertstringtoixmldoc( xml ).
+
+      create object nugg
+        exporting
+          ixmldocument = ixmldocument.
+
+      describe table objects_package lines lv_count.
+      loop at objects_package assigning &lt;obj&gt; where down_flag = &apos;X&apos;
+                              and select = &apos;X&apos;.
+        lv_pers = sy-tabix * 100 / lv_count .
+        call function &apos;SAPGUI_PROGRESS_INDICATOR&apos;
+          exporting
+            percentage = lv_pers
+            text       = &lt;obj&gt;-obj_name.
+
+        _objname = &lt;obj&gt;-obj_name. &quot;nobjNam.
+        stemp = &lt;obj&gt;-object.      &quot;nplugin.
+        try.
+            nugg-&gt;addobjecttonugget( objname = _objname objtype = stemp ).
+          catch zcx_saplink into excclass.
+            errormsg = excclass-&gt;get_text( ).
+            perform writeMessage using &apos;E&apos; errorMsg.
+            &lt;obj&gt;-status = 1.
+            continue.
+        endtry.
+        &lt;obj&gt;-status = 3.
+      endloop.
+
+      ixmldocument = nugg-&gt;createixmldocfromnugget( ).
+      xml = zsaplink=&gt;convertixmldoctostring( ixmldocument ).
+      stemp = nugfile.
+      perform putonmachine using stemp xml.
+
+      perform showResultsGrid tables objects_package.
+*     &lt;--rrq: enhancement 42
     endif.
   endif.
 
@@ -724,7 +1256,7 @@ data retUserAct type i.
           USER_ACTION = retUserAct.
 
   if retUserAct &lt;&gt; 0.
-   _errorFlag = &apos;X&apos;.
+    _errorFlag = &apos;X&apos;.
   else.
     perform putOnMachine using retFullPath xmlString.
   endif.
@@ -737,68 +1269,26 @@ endform.
 */------------------------putOnMachine--------------------------------\
 form putOnMachine using fullpath type string xmlString type string.
 
-data tempTable type table_of_strings.
-data encoding type abap_encoding.
-data applEncoding type CPCODEPAGE.
-data tempString type string.
-data tempXString type xstring.
-data xLen type i.
-data totalxLen type i.
+*rrq: issue 43--&gt; replace binary with char table
+*old code removed, use subversion for recovery
+types: begin of t_char,
+        maxChar(65535) type C,
+       end of t_char.
 
-types: xLin(65535) type x.
+data: tempTable_char type table of t_char.
 
-data binLin type xLin.
-data tempTable_bin type table of xLin.
+  if retUserAct = 0.
 
-    append xmlString to tempTable.
-
-    call function &apos;SCP_GET_CODEPAGE_NUMBER&apos;
-          importing
-            APPL_CODEPAGE = applEncoding.
-    encoding = applEncoding.
-
-
-   if retUserAct = 0.
-*   build binary table with file content
-    loop at tempTable into tempString.
-      clear tempXString.
-*     export tempString to data buffer tempXString.
-      CALL FUNCTION &apos;SCMS_STRING_TO_XSTRING&apos;
-        EXPORTING
-          text           = tempString
-          encoding       = encoding
-        IMPORTING
-          BUFFER         = tempXString
-        EXCEPTIONS
-         FAILED         = 1
-         OTHERS         = 2.
-
-      l_marker = 0. l_offset = 65535. l_total_offset = 0.
-      xLen = xstrlen( tempXString ).
-      totalxLen = totalxLen + xLen.
-
-      while l_marker &lt; xLen.
-        l_total_offset = l_marker + l_offset.
-        if l_total_offset &gt; xLen.
-          l_offset = xLen - l_marker.
-        endif.
-
-        binLin = tempXString+l_marker(l_offset).
-        append binLin to tempTable_bin.
-        l_marker = l_marker + l_offset.
-      endwhile.
-    endloop.
+    split xmlString at CL_ABAP_CHAR_UTILITIES=&gt;NEWLINE into table tempTable_char.
 
     call method CL_GUI_FRONTEND_SERVICES=&gt;GUI_DOWNLOAD
           exporting
             FILENAME = fullpath
-            FILETYPE = &apos;BIN&apos;
-            BIN_FILESIZE = totalxLen
+            FILETYPE = &apos;DAT&apos;
           changing
-            DATA_TAB = tempTable_bin.
-   endif.
-
-
+            DATA_TAB = tempTable_char.
+  endif.
+*&lt;--rrq: issue 43
 endform.
 *\--------------------------------------------------------------------/
 
@@ -817,7 +1307,41 @@ data l_fileName type string.
         exporting
           FILENAME = l_fileName
         changing
-          data_tab = tempTable.
+          data_tab = tempTable
+        EXCEPTIONS
+          FILE_OPEN_ERROR         = 1
+          FILE_READ_ERROR         = 2
+          NO_BATCH                = 3
+          GUI_REFUSE_FILETRANSFER = 4
+          INVALID_TYPE            = 5
+          NO_AUTHORITY            = 6
+          UNKNOWN_ERROR           = 7
+          BAD_DATA_FORMAT         = 8
+          HEADER_NOT_ALLOWED      = 9
+          SEPARATOR_NOT_ALLOWED   = 10
+          HEADER_TOO_LONG         = 11
+          UNKNOWN_DP_ERROR        = 12
+          ACCESS_DENIED           = 13
+          DP_OUT_OF_MEMORY        = 14
+          DISK_FULL               = 15
+          DP_TIMEOUT              = 16
+          NOT_SUPPORTED_BY_GUI    = 17
+          ERROR_NO_GUI            = 18
+          others                  = 19.
+  IF SY-SUBRC &lt;&gt; 0.
+    case sy-subrc.
+      when &apos;1&apos;.
+        perform writeMessage using &apos;E&apos; &apos;File Open Error&apos;.
+      when others.
+        perform writeMessage using &apos;E&apos; &apos;Unknown Error occured&apos;.
+    endcase.
+  ENDIF.
+
+*  call method CL_GUI_FRONTEND_SERVICES=&gt;GUI_UPLOAD
+*        exporting
+*          FILENAME = l_fileName
+*        changing
+*          data_tab = tempTable.
   perform createString using tempTable changing xmlString.
 
 endform.
@@ -829,7 +1353,6 @@ form createString
         tempTable type table_of_strings
       changing
         bigString type string.
-
 data sTemp type string.
   loop at tempTable into sTemp.
     concatenate bigString sTemp CL_ABAP_CHAR_UTILITIES=&gt;NEWLINE
@@ -867,29 +1390,25 @@ data l_excClass type ref to ZCX_SAPLINK.
 
   if sy-subrc &lt;&gt; 0.
     concatenate &apos;There is no installed SAPlink plugin for object type&apos;
-      l_objType into l_message separated by space.
+      l_objType l_objLine-text into l_message separated by space.
     l_errorFlag = &apos;X&apos;.
   else.
     create object l_targetObject type (l_objLine-classname)
       exporting name = l_objName.
 
-    if l_targetObject is not initial.
-      try.
-        l_installObject = l_targetObject-&gt;createObjectfromiXMLDoc(
-                                        ixmlDocument = l_ixmlDocument
-                                        overwrite = l_overwriteFlag ).
-        catch ZCX_SAPLINK into l_excClass.
-          l_message = l_excClass-&gt;get_text( ).
-          l_errorFlag = &apos;X&apos;.
-      endtry.
-      if l_installObject is not initial.
-        concatenate l_objType l_installObject &apos;install successful,&apos;
-         &apos;you must activate object to use&apos;
-         into l_message separated by space.
-      endif.
-    else.
-      l_message = &apos;an undetermined error occured&apos;.
-      l_errorFlag = &apos;X&apos;.
+    try.
+      l_installObject = l_targetObject-&gt;createObjectfromiXMLDoc(
+                                      ixmlDocument = l_ixmlDocument
+                                      overwrite = l_overwriteFlag ).
+*    bad times
+      catch ZCX_SAPLINK into l_excClass.
+        l_message = l_excClass-&gt;get_text( ).
+        l_errorFlag = &apos;X&apos;.
+    endtry.
+*   good times
+    if l_installObject is not initial.
+      concatenate &apos;Installed: &apos; _objType &apos;-&apos; l_installObject
+       into l_message separated by space.
     endif.
   endif.
 
@@ -1008,5 +1527,156 @@ form get_current_screen_value  using    l_screen_field
 
 
 endform.                    &quot; get_current_screen_value
-*\--------------------------------------------------------------------/</source>
+*/---------------------writeMessage-----------------------\
+form WriteMessage USING VALUE(p_type) type sy-msgty
+                        VALUE(p_msg).
+  CASE p_type.
+    WHEN &apos;E&apos; OR &apos;A&apos; OR &apos;X&apos;.
+      WRITE / icon_led_red AS ICON.
+    WHEN &apos;W&apos;.
+      WRITE / icon_led_yellow AS ICON.
+    WHEN OTHERS.
+      WRITE / icon_led_green AS ICON.
+  ENDCASE.
+
+  WRITE p_msg.
+endform.                    &quot;WriteMessage
+
+*/-------------------------pf_status_set-------------------\
+form pf_status_set using rt_extab type slis_t_extab.
+
+  set pf-status &apos;SELOBJ&apos; excluding rt_extab.
+
+endform.                    &quot;pf_status_set
+*/-------------------------user_command_user-------------------\
+form user_command_user using r_ucomm like sy-ucomm
+                  rs_selfield type slis_selfield.
+  case r_ucomm.
+    when &apos;TAKE&apos;.
+      rs_selfield-exit = &apos;X&apos;.
+  endcase.
+endform.                    &quot;user_command_user
+
+*---------------build_fieldCatalog---------------------------------*
+FORM build_fieldCatalog .
+*** Display list to select the objects for downloading
+    ls_fieldcat-fieldname = &apos;OBJECT&apos;.
+    ls_fieldcat-seltext_l = &apos;Object/Plugin&apos;.
+    append ls_fieldcat to lt_fieldcat.
+
+    ls_fieldcat-fieldname = &apos;OBJECT_TXT&apos;.
+    ls_fieldcat-seltext_l = &apos;Object/Plugin&apos;.
+    append ls_fieldcat to lt_fieldcat.
+
+    ls_fieldcat-fieldname = &apos;OBJ_NAME&apos;.
+    ls_fieldcat-seltext_l = &apos;Object name&apos;.
+    append ls_fieldcat to lt_fieldcat.
+
+    ls_fieldcat-fieldname = &apos;DOWN_FLAG&apos;.
+    ls_fieldcat-seltext_s = &apos;Plugin&apos;.
+    ls_fieldcat-seltext_l =
+    &apos;Plugin available&apos;.
+    append ls_fieldcat to lt_fieldcat.
+
+    ls_layout-box_fieldname     = &apos;SELECT&apos;.
+    ls_layout-f2code            = &apos;MYPICK&apos; .
+    ls_layout-colwidth_optimize = &apos;X&apos;.
+    ls_layout-lights_fieldname  = &apos;STATUS&apos;.
+ENDFORM.                    &quot; build_fieldCatalog
+*&amp;---------------------------------------------------------------------*
+*&amp;      Form  ShowInitialGrid
+FORM ShowInitialGrid  TABLES   P_OBJECTS.
+
+      call function &apos;REUSE_ALV_GRID_DISPLAY&apos;
+        exporting
+          i_callback_program       = &apos;ZSAPLINK&apos;
+          i_callback_pf_status_set = &apos;PF_STATUS_SET&apos;
+          i_callback_user_command  = &apos;USER_COMMAND_USER&apos;
+          i_grid_title             = &apos;Select objects&apos;
+          it_fieldcat              = lt_fieldcat
+          is_layout                = ls_layout
+        tables
+          t_outtab                 = P_OBJECTS
+        exceptions
+          others                   = 0.
+
+ENDFORM.                    &quot; ShowInitialGrid
+*&amp;---------------------------------------------------------------------*
+*&amp;      Form  showResultsGrid
+FORM showResultsGrid  TABLES   P_OBJECTS.
+*    ** Display results
+      call function &apos;REUSE_ALV_GRID_DISPLAY&apos;
+        exporting
+          i_callback_program      = &apos;ZSAPLINK&apos;
+          i_callback_user_command = &apos;USER_COMMAND_USER&apos;
+          it_fieldcat             = lt_fieldcat
+          i_grid_title            = &apos;Download results&apos;
+          is_layout               = ls_layout
+        tables
+          t_outtab                = p_objects
+        exceptions
+          others                  = 0.
+
+ENDFORM.                    &quot; showResultsGrid
+*&amp;---------------------------------------------------------------------*
+*&amp;      Form  check_objects
+*&amp;---------------------------------------------------------------------*
+*       text
+*----------------------------------------------------------------------*
+*  --&gt;  p1        text
+*  &lt;--  p2        text
+*----------------------------------------------------------------------*
+FORM check_objects .
+      loop at objects_package assigning &lt;obj&gt;.
+*     Check what can be downloaded and what can not.
+        read table objecttable into objectline
+            with key object = &lt;obj&gt;-object.
+        if sy-subrc = 0.
+*        Plug-in exists... set flag and make selected by default
+          &lt;obj&gt;-down_flag = &apos;X&apos;.
+          &lt;obj&gt;-select = &apos;X&apos;.
+        else.
+          &lt;obj&gt;-down_flag = &apos; &apos;.
+        endif.
+*     get texts
+        refresh tabletypesin.
+        tabletypeline-object = &lt;obj&gt;-object.
+        append tabletypeline to tabletypesin.
+
+        call function &apos;TRINT_OBJECT_TABLE&apos;
+          tables
+            tt_types_in  = tabletypesin
+            tt_types_out = tabletypesout.
+
+        loop at tabletypesout into tabletypeoutline.
+          &lt;obj&gt;-object      = tabletypeoutline-object.
+          &lt;obj&gt;-object_txt = tabletypeoutline-text.
+        endloop.
+
+      endloop.
+      sort objects_package by down_flag descending object ascending.
+
+ENDFORM.                    &quot; check_objects
+*&amp;---------------------------------------------------------------------*
+*&amp;      Form  CreateEmptyNugget
+*&amp;---------------------------------------------------------------------*
+*       text
+*----------------------------------------------------------------------*
+*  --&gt;  p1        text
+*  &lt;--  p2        text
+*----------------------------------------------------------------------*
+FORM CreateEmptyNugget using p_NuggName.
+
+    ixmlDocument = zsaplink_nugget=&gt;createemptyXML(
+      nuggetName = p_NuggName ).
+    xml = zsapLink=&gt;convertIxmlDoctoString( ixmlDocument ).
+    concatenate &apos;NUGG_&apos; p_nuggName &apos;.nugg&apos; into sTemp.
+    clear errorFlag.
+    perform downloadXMLtoLM using sTemp xml
+                            changing errorFlag.
+    if errorFlag is not initial.
+      exit.
+    endif.
+
+ENDFORM.                    &quot; CreateEmptyNugget</source>
 </PROG>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<CLAS CLSNAME="ZSAPLINK_NUGGET" VERSION="0" LANGU="E" DESCRIPT="SAPlink Nugget" UUID="44F3BA07217B09C200000000A7E42BB6" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" AUTHOR="USDWM01" CREATEDON="20060829" CHANGEDON="00000000" CHGDANYON="00000000" CLSFINAL="X" CLSCCINCL="X" FIXPT="X" UNICODE="X" R3RELEASE="620" CLSBCCAT="00">
+<CLAS CLSNAME="ZSAPLINK_NUGGET" VERSION="1" LANGU="E" DESCRIPT="SAPlink Nugget" UUID="44F3BA07217B09C200000000A7E42BB6" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" AUTHOR="USDWM01" CREATEDON="20060829" CHANGEDBY="USRRQ00" CHANGEDON="20061130" CHGDANYON="00000000" CLSFINAL="X" CLSCCINCL="X" FIXPT="X" UNICODE="X" R3RELEASE="620" CLSBCCAT="00">
  <publicSection>class ZSAPLINK_NUGGET definition
   public
   final
@@ -15,17 +15,16 @@ public section.
       !OBJTYPE type STRING
     raising
       ZCX_SAPLINK .
+  methods CREATEIXMLDOCFROMNUGGET
+    returning
+      value(IXMLDOCUMENT) type ref to IF_IXML_DOCUMENT .
+  methods GETNEXTOBJECT
+    returning
+      value(IXMLDOCUMENT) type ref to IF_IXML_DOCUMENT .
+  methods RESET .
   class-methods CREATEEMPTYXML
     importing
       !NUGGETNAME type STRING
-    returning
-      value(IXMLDOCUMENT) type ref to IF_IXML_DOCUMENT .
-  methods CREATEIXMLDOCFROMNUGGET
-    returning
-      value(IXMLDOCUMENT) type ref to IF_IXML_DOCUMENT
-    raising
-      ZCX_SAPLINK .
-  methods GETNEXTOBJECT
     returning
       value(IXMLDOCUMENT) type ref to IF_IXML_DOCUMENT .
   class-methods GETNUGGETINFO
@@ -33,11 +32,22 @@ public section.
       !IXMLDOCUMENT type ref to IF_IXML_DOCUMENT
     returning
       value(NAME) type STRING .
-  methods RESET .
   methods CONSTRUCTOR
     importing
       !NAME type STRING optional
-      !IXMLDOCUMENT type ref to IF_IXML_DOCUMENT optional .</publicSection>
+      !IXMLDOCUMENT type ref to IF_IXML_DOCUMENT optional .
+  methods CHECKOBJECTEXISTS
+    importing
+      !OBJNAME type STRING
+      !OBJTYPE type STRING
+    returning
+      value(RETVAL) type SY-SUBRC .
+  methods DELETEOBJECTFROMNUGGET
+    importing
+      !OBJNAME type STRING
+      !OBJTYPE type STRING
+    returning
+      value(RETVAL) type SY-SUBRC .</publicSection>
  <protectedSection>*&quot;* protected components of class ZSAPLINK_NUGGET
 *&quot;* do not include other source files here!!!
 protected section.
@@ -60,17 +70,18 @@ private section.
 *&quot;* implementation or private method&apos;s signature</localTypes>
  <localMacros>*&quot;* use this source file for any macro definitions you need
 *&quot;* in the implementation part of the class</localMacros>
- <attribute CLSNAME="ZSAPLINK_NUGGET" CMPNAME="ITERATOR" VERSION="0" LANGU="E" DESCRIPT="IF_IXML_NODE_ITERATOR" EXPOSURE="0" STATE="1" EDITORDER="3 " AUTHOR="USDWM01" CREATEDON="20060831" CHANGEDBY="USDWM01" CHANGEDON="20060831" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="3" TYPE="IF_IXML_NODE_ITERATOR" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " R3RELEASE="620"/>
- <attribute CLSNAME="ZSAPLINK_NUGGET" CMPNAME="IXML" VERSION="0" LANGU="E" DESCRIPT="IF_IXML" EXPOSURE="1" STATE="1" EDITORDER="1 " AUTHOR="USDWM01" CREATEDON="20060829" CHANGEDON="00000000" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="3" TYPE="IF_IXML" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " R3RELEASE="620"/>
- <attribute CLSNAME="ZSAPLINK_NUGGET" CMPNAME="NUGGNAME" VERSION="0" LANGU="E" DESCRIPT="Nugget Name" EXPOSURE="0" STATE="1" EDITORDER="5 " AUTHOR="USDWM01" CREATEDON="20060829" CHANGEDBY="USDWM01" CHANGEDON="20060831" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 "/>
- <attribute CLSNAME="ZSAPLINK_NUGGET" CMPNAME="STREAMFACTORY" VERSION="0" LANGU="E" DESCRIPT="IF_IXML_STREAM_FACTORY" EXPOSURE="0" STATE="1" EDITORDER="6 " AUTHOR="USDWM01" CREATEDON="20060829" CHANGEDBY="USDWM01" CHANGEDON="20060831" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="3" TYPE="IF_IXML_STREAM_FACTORY" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 "/>
- <attribute CLSNAME="ZSAPLINK_NUGGET" CMPNAME="XMLDATA" VERSION="0" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="7 " AUTHOR="USDWM01" CREATEDON="20060829" CHANGEDBY="USDWM01" CHANGEDON="20060831" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 "/>
- <attribute CLSNAME="ZSAPLINK_NUGGET" CMPNAME="XMLDOC" VERSION="0" LANGU="E" DESCRIPT="IF_IXML_DOCUMENT" EXPOSURE="1" STATE="1" EDITORDER="2 " AUTHOR="USDWM01" CREATEDON="20060829" CHANGEDON="00000000" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="3" TYPE="IF_IXML_DOCUMENT" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " R3RELEASE="620"/>
- <method CLSNAME="ZSAPLINK_NUGGET" CMPNAME="ADDOBJECTTONUGGET" VERSION="0" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="0 " DISPID="0 " AUTHOR="USDWM01" CREATEDON="20060829" CHANGEDBY="USEWH90" CHANGEDON="20060903" MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" R3RELEASE="620" BCMTDCAT="00" BCMTDSYN="0">
-  <parameter CLSNAME="ZSAPLINK_NUGGET" CMPNAME="ADDOBJECTTONUGGET" SCONAME="OBJNAME" VERSION="0" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USDWM01" CREATEDON="20060829" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
-  <parameter CLSNAME="ZSAPLINK_NUGGET" CMPNAME="ADDOBJECTTONUGGET" SCONAME="OBJTYPE" VERSION="0" LANGU="E" DESCRIPT="Object Type" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="USDWM01" CREATEDON="20060829" CHANGEDBY="USDWM01" CHANGEDON="20060831" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
-  <exception CLSNAME="ZSAPLINK_NUGGET" CMPNAME="ADDOBJECTTONUGGET" SCONAME="ZCX_SAPLINK" VERSION="0" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 " AUTHOR="USEWH90" CREATEDON="20060903" CHANGEDON="00000000"/>
-  <source>*/---------------------------------------------------------------------\
+ <attribute CLSNAME="ZSAPLINK_NUGGET" CMPNAME="ITERATOR" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_NODE_ITERATOR" EXPOSURE="0" STATE="1" EDITORDER="3 " AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDBY="USRRQ00" CHANGEDON="20061227" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="3" TYPE="IF_IXML_NODE_ITERATOR" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 "/>
+ <attribute CLSNAME="ZSAPLINK_NUGGET" CMPNAME="IXML" VERSION="1" LANGU="E" DESCRIPT="IF_IXML" EXPOSURE="1" STATE="1" EDITORDER="1 " AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDBY="USRRQ00" CHANGEDON="20061227" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="3" TYPE="IF_IXML" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 "/>
+ <attribute CLSNAME="ZSAPLINK_NUGGET" CMPNAME="NUGGNAME" VERSION="1" LANGU="E" DESCRIPT="Nugget Name" EXPOSURE="0" STATE="1" EDITORDER="4 " AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDBY="USRRQ00" CHANGEDON="20061229" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 "/>
+ <attribute CLSNAME="ZSAPLINK_NUGGET" CMPNAME="STREAMFACTORY" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_STREAM_FACTORY" EXPOSURE="0" STATE="1" EDITORDER="5 " AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDBY="USRRQ00" CHANGEDON="20061229" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="3" TYPE="IF_IXML_STREAM_FACTORY" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 "/>
+ <attribute CLSNAME="ZSAPLINK_NUGGET" CMPNAME="XMLDATA" VERSION="1" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="6 " AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDBY="USRRQ00" CHANGEDON="20061229" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 "/>
+ <attribute CLSNAME="ZSAPLINK_NUGGET" CMPNAME="XMLDOC" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_DOCUMENT" EXPOSURE="1" STATE="1" EDITORDER="2 " AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDBY="USRRQ00" CHANGEDON="20061227" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="3" TYPE="IF_IXML_DOCUMENT" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 "/>
+ <method CLSNAME="ZSAPLINK_NUGGET" CMPNAME="ADDOBJECTTONUGGET" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="1 " DISPID="0 " AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDBY="USRRQ00" CHANGEDON="20061226" MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" R3RELEASE="620" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_NUGGET" CMPNAME="ADDOBJECTTONUGGET" SCONAME="OBJNAME" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDBY="USRRQ00" CHANGEDON="20061130" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
+  <parameter CLSNAME="ZSAPLINK_NUGGET" CMPNAME="ADDOBJECTTONUGGET" SCONAME="OBJTYPE" VERSION="1" LANGU="E" DESCRIPT="Object Type" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDBY="USRRQ00" CHANGEDON="20061130" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
+  <exception CLSNAME="ZSAPLINK_NUGGET" CMPNAME="ADDOBJECTTONUGGET" SCONAME="ZCX_SAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 " AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDBY="USRRQ00" CHANGEDON="20061130"/>
+  <source>method ADDOBJECTTONUGGET .
+*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
 *|   SAPlink is free software; you can redistribute it and/or modify   |
@@ -88,7 +99,6 @@ private section.
 *|   Free Software Foundation, Inc.,                                   |
 *|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
 *\---------------------------------------------------------------------/
-method ADDOBJECTTONUGGET .
 types: begin of t_objectTable,
          classname type string,
          object type ko100-object,
@@ -103,15 +113,9 @@ data ixmlDocument type ref to if_ixml_document.
 data rval type i.
 data objElement type ref to if_ixml_element.
 
-  call method zsaplink=&gt;getplugins( changing objectTable = objectTable )
-  .
+  call method zsaplink=&gt;getplugins( changing objectTable = objectTable ).
 
   rootNode = xmlDoc-&gt;GET_ROOT_ELEMENT( ).
-*  if rootNode is initial.
-*    rootNode = xmlDoc-&gt;create_element( &apos;nugget&apos; ).
-*    rval = rootNode-&gt;SET_ATTRIBUTE( name = &apos;name&apos; value = nuggName ).
-*    rval = xmlDoc-&gt;append_child( rootNode ).
-*  endif.
 
   read table objectTable into objectLine with key object = ObjType.
   if sy-subrc &lt;&gt; 0.
@@ -120,14 +124,17 @@ data objElement type ref to if_ixml_element.
   endif.
   create object saplink type (objectLine-classname) exporting name =
   objName.
-  ixmlDocument = saplink-&gt;CREATEIXMLDOCFROMOBJECT( ).
-  objElement = ixmlDocument-&gt;get_root_element( ).
-  rval = rootNode-&gt;append_Child( objElement ).
+
+    ixmlDocument = saplink-&gt;CREATEIXMLDOCFROMOBJECT( ).
+    objElement = ixmlDocument-&gt;get_root_element( ).
+    rval = rootNode-&gt;append_Child( objElement ).
+
 endmethod.</source>
  </method>
- <method CLSNAME="ZSAPLINK_NUGGET" CMPNAME="CONSTRUCTOR" VERSION="0" LANGU="E" DESCRIPT="CONSTRUCTOR" EXPOSURE="2" STATE="1" EDITORDER="1 " DISPID="0 " AUTHOR="USDWM01" CREATEDON="20060829" CHANGEDON="00000000" MTDTYPE="2" MTDDECLTYP="0" R3RELEASE="620" BCMTDCAT="00" BCMTDSYN="0">
-  <parameter CLSNAME="ZSAPLINK_NUGGET" CMPNAME="CONSTRUCTOR" SCONAME="NAME" VERSION="0" LANGU="E" CMPTYPE="1" MTDTYPE="2" EDITORDER="1 " DISPID="0 " AUTHOR="USDWM01" CREATEDON="20060829" CHANGEDBY="USDWM01" CHANGEDON="20060831" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING" PAROPTIONL="X"/>
-  <parameter CLSNAME="ZSAPLINK_NUGGET" CMPNAME="CONSTRUCTOR" SCONAME="IXMLDOCUMENT" VERSION="0" LANGU="E" DESCRIPT="IF_IXML_DOCUMENT" CMPTYPE="1" MTDTYPE="2" EDITORDER="2 " DISPID="0 " AUTHOR="USDWM01" CREATEDON="20060831" CHANGEDBY="USDWM01" CHANGEDON="20060831" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_DOCUMENT" PAROPTIONL="X"/>
+ <method CLSNAME="ZSAPLINK_NUGGET" CMPNAME="CHECKOBJECTEXISTS" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="8 " DISPID="0 " AUTHOR="USRRQ00" CREATEDON="20061229" CHANGEDBY="USRRQ00" CHANGEDON="20061229" MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" R3RELEASE="620" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_NUGGET" CMPNAME="CHECKOBJECTEXISTS" SCONAME="OBJNAME" VERSION="1" LANGU="E" DESCRIPT="object name to be deleted" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USRRQ00" CREATEDON="20061229" CHANGEDBY="USRRQ00" CHANGEDON="20061229" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
+  <parameter CLSNAME="ZSAPLINK_NUGGET" CMPNAME="CHECKOBJECTEXISTS" SCONAME="OBJTYPE" VERSION="1" LANGU="E" DESCRIPT="object type to be deleted" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="USRRQ00" CREATEDON="20061229" CHANGEDBY="USRRQ00" CHANGEDON="20061229" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
+  <parameter CLSNAME="ZSAPLINK_NUGGET" CMPNAME="CHECKOBJECTEXISTS" SCONAME="RETVAL" VERSION="1" LANGU="E" DESCRIPT="Return Value, Return Value After ABAP Statements" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " AUTHOR="USRRQ00" CREATEDON="20061229" CHANGEDON="00000000" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="1" TYPE="SY-SUBRC"/>
   <source>*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
@@ -146,12 +153,78 @@ endmethod.</source>
 *|   Free Software Foundation, Inc.,                                   |
 *|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
 *\---------------------------------------------------------------------/
-method CONSTRUCTOR .
+method CHECKOBJECTEXISTS .
+  data: docFilter   type ref to if_ixml_node_filter,
+        docIterator type ref to if_ixml_node_iterator,
+        currentNode type ref to if_ixml_node,
+        rootAttr    type ref to IF_IXML_NAMED_NODE_MAP,
+        AttrNode    type ref to IF_IXML_NODE,
+
+        nodeName    type string,
+        existsFlag  type flag.
+
+* create a filter to traverse the nugget by object type like CLAS or PROG
+  docFilter = xmlDoc-&gt;create_filter_name_ns( objType ).
+* apply the filter to the iterator
+  docIterator = xmlDoc-&gt;create_iterator_filtered( docFilter ).
+* get the first object of that type in the nugget
+  currentNode = docIterator-&gt;get_next( ).
+
+*  if this node is not blank proceed to check the attributes
+  while currentNode is not initial.
+* get object name
+    rootAttr = currentNode-&gt;GET_ATTRIBUTES( ).
+    AttrNode = rootAttr-&gt;GET_ITEM( 0 ).
+    nodeName = AttrNode-&gt;GET_VALUE( ).
+*   if the name of the node is the same as the passed parameter, set the flag
+    if nodeName = objname.
+      existsFlag = &apos;X&apos;.
+    endif.
+    currentNode = docIterator-&gt;get_next( ).
+  endwhile.
+  if existsFlag = &apos;X&apos;.
+    retval = 0.
+  else.
+    retval = 4.
+  endif.
+endmethod.</source>
+ </method>
+ <method CLSNAME="ZSAPLINK_NUGGET" CMPNAME="CONSTRUCTOR" VERSION="1" LANGU="E" DESCRIPT="CONSTRUCTOR" EXPOSURE="2" STATE="1" EDITORDER="7 " DISPID="0 " AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDBY="USRRQ00" CHANGEDON="20061226" MTDTYPE="2" MTDDECLTYP="0" R3RELEASE="620" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_NUGGET" CMPNAME="CONSTRUCTOR" SCONAME="NAME" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="2" EDITORDER="1 " DISPID="0 " AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDBY="USRRQ00" CHANGEDON="20061130" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING" PAROPTIONL="X"/>
+  <parameter CLSNAME="ZSAPLINK_NUGGET" CMPNAME="CONSTRUCTOR" SCONAME="IXMLDOCUMENT" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_DOCUMENT" CMPTYPE="1" MTDTYPE="2" EDITORDER="2 " DISPID="0 " AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDBY="USRRQ00" CHANGEDON="20061130" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_DOCUMENT" PAROPTIONL="X"/>
+  <source>method CONSTRUCTOR .
+*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   SAPlink is free software; you can redistribute it and/or modify   |
+*|   it under the terms of the GNU General Public License as published |
+*|   by the Free Software Foundation; either version 2 of the License, |
+*|   or (at your option) any later version.                            |
+*|                                                                     |
+*|   SAPlink is distributed in the hope that it will be useful,        |
+*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
+*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
+*|   GNU General Public License for more details.                      |
+*|                                                                     |
+*|   You should have received a copy of the GNU General Public License |
+*|   along with SAPlink; if not, write to the                          |
+*|   Free Software Foundation, Inc.,                                   |
+*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*\---------------------------------------------------------------------/
 data rootNode type ref to if_ixml_element.
+data rval type i.
+*data xmlDoc type ref to if_ixml_document.
+
   if name is not initial.
     NuggName = name.
     ixml = cl_ixml=&gt;create( ).
     xmlDoc = ixml-&gt;create_document( ).
+*may need this from create empty nugget
+*  rootNode = xmlDoc-&gt;create_element( &apos;nugget&apos; ).
+*  rval = rootNode-&gt;SET_ATTRIBUTE( name = &apos;name&apos; value = nuggetName ).
+*  rval = xmlDoc-&gt;append_child( rootNode ).
+*  ixmlDocument = xmlDoc.
+
     streamFactory = ixml-&gt;CREATE_STREAM_FACTORY( ).
   elseif ixmlDocument is not initial.
     ixml = cl_ixml=&gt;create( ).
@@ -165,10 +238,11 @@ data rootNode type ref to if_ixml_element.
   endif.
 endmethod.</source>
  </method>
- <method CLSNAME="ZSAPLINK_NUGGET" CMPNAME="CREATEEMPTYXML" VERSION="0" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="0 " DISPID="0 " AUTHOR="USDWM01" CREATEDON="20060831" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="1" R3RELEASE="620" BCMTDCAT="00" BCMTDSYN="0">
-  <parameter CLSNAME="ZSAPLINK_NUGGET" CMPNAME="CREATEEMPTYXML" SCONAME="NUGGETNAME" VERSION="0" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USDWM01" CREATEDON="20060831" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
-  <parameter CLSNAME="ZSAPLINK_NUGGET" CMPNAME="CREATEEMPTYXML" SCONAME="IXMLDOCUMENT" VERSION="0" LANGU="E" DESCRIPT="IF_IXML_DOCUMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="USDWM01" CREATEDON="20060831" CHANGEDON="00000000" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_DOCUMENT"/>
-  <source>*/---------------------------------------------------------------------\
+ <method CLSNAME="ZSAPLINK_NUGGET" CMPNAME="CREATEEMPTYXML" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="5 " DISPID="0 " AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDBY="USRRQ00" CHANGEDON="20061226" MTDTYPE="0" MTDDECLTYP="1" R3RELEASE="620" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_NUGGET" CMPNAME="CREATEEMPTYXML" SCONAME="NUGGETNAME" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDBY="USRRQ00" CHANGEDON="20061130" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
+  <parameter CLSNAME="ZSAPLINK_NUGGET" CMPNAME="CREATEEMPTYXML" SCONAME="IXMLDOCUMENT" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_DOCUMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDBY="USRRQ00" CHANGEDON="20061130" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_DOCUMENT"/>
+  <source>method CREATEEMPTYXML .
+*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
 *|   SAPlink is free software; you can redistribute it and/or modify   |
@@ -186,7 +260,6 @@ endmethod.</source>
 *|   Free Software Foundation, Inc.,                                   |
 *|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
 *\---------------------------------------------------------------------/
-method CREATEEMPTYXML .
 data ixml type ref to if_IXML.
 data rootNode type ref to if_ixml_element.
 data rval type i.
@@ -201,10 +274,10 @@ data xmlDoc type ref to if_ixml_document.
 
 endmethod.</source>
  </method>
- <method CLSNAME="ZSAPLINK_NUGGET" CMPNAME="CREATEIXMLDOCFROMNUGGET" VERSION="0" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="0 " DISPID="0 " AUTHOR="USDWM01" CREATEDON="20060829" CHANGEDBY="USEWH90" CHANGEDON="20060903" MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" R3RELEASE="620" BCMTDCAT="00" BCMTDSYN="0">
-  <parameter CLSNAME="ZSAPLINK_NUGGET" CMPNAME="CREATEIXMLDOCFROMNUGGET" SCONAME="IXMLDOCUMENT" VERSION="0" LANGU="E" DESCRIPT="IF_IXML_DOCUMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USDWM01" CREATEDON="20060829" CHANGEDON="00000000" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_DOCUMENT"/>
-  <exception CLSNAME="ZSAPLINK_NUGGET" CMPNAME="CREATEIXMLDOCFROMNUGGET" SCONAME="ZCX_SAPLINK" VERSION="0" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 " AUTHOR="USEWH90" CREATEDON="20060903" CHANGEDON="00000000"/>
-  <source>*/---------------------------------------------------------------------\
+ <method CLSNAME="ZSAPLINK_NUGGET" CMPNAME="CREATEIXMLDOCFROMNUGGET" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="2 " DISPID="0 " AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDBY="USRRQ00" CHANGEDON="20061226" MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" R3RELEASE="620" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_NUGGET" CMPNAME="CREATEIXMLDOCFROMNUGGET" SCONAME="IXMLDOCUMENT" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_DOCUMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDBY="USRRQ00" CHANGEDON="20061130" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_DOCUMENT"/>
+  <source>method CREATEIXMLDOCFROMNUGGET .
+*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
 *|   SAPlink is free software; you can redistribute it and/or modify   |
@@ -222,13 +295,15 @@ endmethod.</source>
 *|   Free Software Foundation, Inc.,                                   |
 *|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
 *\---------------------------------------------------------------------/
-method CREATEIXMLDOCFROMNUGGET .
   ixmlDocument = xmlDoc.
 endmethod.</source>
  </method>
- <method CLSNAME="ZSAPLINK_NUGGET" CMPNAME="GETNEXTOBJECT" VERSION="0" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="0 " DISPID="0 " AUTHOR="USDWM01" CREATEDON="20060901" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="620" BCMTDCAT="00" BCMTDSYN="0">
-  <parameter CLSNAME="ZSAPLINK_NUGGET" CMPNAME="GETNEXTOBJECT" SCONAME="IXMLDOCUMENT" VERSION="0" LANGU="E" DESCRIPT="IF_IXML_DOCUMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USDWM01" CREATEDON="20060901" CHANGEDON="00000000" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_DOCUMENT"/>
-  <source>*/---------------------------------------------------------------------\
+ <method CLSNAME="ZSAPLINK_NUGGET" CMPNAME="DELETEOBJECTFROMNUGGET" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="9 " DISPID="0 " AUTHOR="USRRQ00" CREATEDON="20061227" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="620" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_NUGGET" CMPNAME="DELETEOBJECTFROMNUGGET" SCONAME="OBJNAME" VERSION="1" LANGU="E" DESCRIPT="object name to be deleted" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USRRQ00" CREATEDON="20061227" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
+  <parameter CLSNAME="ZSAPLINK_NUGGET" CMPNAME="DELETEOBJECTFROMNUGGET" SCONAME="OBJTYPE" VERSION="1" LANGU="E" DESCRIPT="object type to be deleted" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="USRRQ00" CREATEDON="20061227" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
+  <parameter CLSNAME="ZSAPLINK_NUGGET" CMPNAME="DELETEOBJECTFROMNUGGET" SCONAME="RETVAL" VERSION="1" LANGU="E" DESCRIPT="Return Value, Return Value After ABAP Statements" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " AUTHOR="USRRQ00" CREATEDON="20061227" CHANGEDON="00000000" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="1" TYPE="SY-SUBRC"/>
+  <source>method DELETEOBJECTFROMNUGGET .
+*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
 *|   SAPlink is free software; you can redistribute it and/or modify   |
@@ -246,7 +321,58 @@ endmethod.</source>
 *|   Free Software Foundation, Inc.,                                   |
 *|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
 *\---------------------------------------------------------------------/
-method GETNEXTOBJECT .
+  data: docFilter   type ref to if_ixml_node_filter,
+        docIterator type ref to if_ixml_node_iterator,
+        currentNode type ref to if_ixml_node,
+        rootAttr    type ref to IF_IXML_NAMED_NODE_MAP,
+        AttrNode    type ref to IF_IXML_NODE,
+
+        nodeName    type string.
+
+* create a filter to traverse the nugget by object type like CLAS or PROG
+  docFilter = xmlDoc-&gt;create_filter_name_ns( objType ).
+* apply the filter to the iterator
+  docIterator = xmlDoc-&gt;create_iterator_filtered( docFilter ).
+* get the first object of that type in the nugget
+  currentNode = docIterator-&gt;get_next( ).
+
+*  if this node is not blank proceed to check the attributes
+  while currentNode is not initial.
+* get object name
+    rootAttr = currentNode-&gt;GET_ATTRIBUTES( ).
+    AttrNode = rootAttr-&gt;GET_ITEM( 0 ).
+    nodeName = AttrNode-&gt;GET_VALUE( ).
+*   if the name of the node is the same as the passed parameter, delete the node
+    if nodeName = objname.
+      currentNode-&gt;remove_node( ).
+      retVal = sy-subrc.
+      return.
+    endif.
+    currentNode = docIterator-&gt;get_next( ).
+  endwhile.
+endmethod.</source>
+ </method>
+ <method CLSNAME="ZSAPLINK_NUGGET" CMPNAME="GETNEXTOBJECT" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="3 " DISPID="0 " AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDBY="USRRQ00" CHANGEDON="20061226" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="620" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_NUGGET" CMPNAME="GETNEXTOBJECT" SCONAME="IXMLDOCUMENT" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_DOCUMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDBY="USRRQ00" CHANGEDON="20061130" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_DOCUMENT"/>
+  <source>method GETNEXTOBJECT .
+*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   SAPlink is free software; you can redistribute it and/or modify   |
+*|   it under the terms of the GNU General Public License as published |
+*|   by the Free Software Foundation; either version 2 of the License, |
+*|   or (at your option) any later version.                            |
+*|                                                                     |
+*|   SAPlink is distributed in the hope that it will be useful,        |
+*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
+*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
+*|   GNU General Public License for more details.                      |
+*|                                                                     |
+*|   You should have received a copy of the GNU General Public License |
+*|   along with SAPlink; if not, write to the                          |
+*|   Free Software Foundation, Inc.,                                   |
+*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*\---------------------------------------------------------------------/
 data aNode type ref to if_ixml_node.
 data sTemp type string.
 data rootNode type ref to if_ixml_node.
@@ -257,7 +383,7 @@ data newNode type ref to if_ixml_node.
 data rval type i.
 
   if iterator is initial.
-    nameFilter = xmlDoc-&gt;create_filter_name( name = &apos;nugget&apos; ).
+    nameFilter = xmlDoc-&gt;create_filter_name_ns( name = &apos;nugget&apos; ).
     parentFilter = xmlDoc-&gt;create_filter_parent( nameFilter ).
     iterator = xmlDoc-&gt;create_iterator_filtered( parentFilter ).
   endif.
@@ -279,10 +405,11 @@ data rval type i.
 
 endmethod.</source>
  </method>
- <method CLSNAME="ZSAPLINK_NUGGET" CMPNAME="GETNUGGETINFO" VERSION="0" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="0 " DISPID="0 " AUTHOR="USDWM01" CREATEDON="20060902" CHANGEDBY="USDWM01" CHANGEDON="20060902" MTDTYPE="0" MTDDECLTYP="1" R3RELEASE="620" BCMTDCAT="00" BCMTDSYN="0">
-  <parameter CLSNAME="ZSAPLINK_NUGGET" CMPNAME="GETNUGGETINFO" SCONAME="IXMLDOCUMENT" VERSION="0" LANGU="E" DESCRIPT="IF_IXML_DOCUMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USDWM01" CREATEDON="20060902" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_DOCUMENT"/>
-  <parameter CLSNAME="ZSAPLINK_NUGGET" CMPNAME="GETNUGGETINFO" SCONAME="NAME" VERSION="0" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="USDWM01" CREATEDON="20060902" CHANGEDON="00000000" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="1" TYPE="STRING"/>
-  <source>*/---------------------------------------------------------------------\
+ <method CLSNAME="ZSAPLINK_NUGGET" CMPNAME="GETNUGGETINFO" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="6 " DISPID="0 " AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDBY="USRRQ00" CHANGEDON="20061226" MTDTYPE="0" MTDDECLTYP="1" R3RELEASE="620" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_NUGGET" CMPNAME="GETNUGGETINFO" SCONAME="IXMLDOCUMENT" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_DOCUMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDBY="USRRQ00" CHANGEDON="20061130" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_DOCUMENT"/>
+  <parameter CLSNAME="ZSAPLINK_NUGGET" CMPNAME="GETNUGGETINFO" SCONAME="NAME" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDBY="USRRQ00" CHANGEDON="20061130" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="1" TYPE="STRING"/>
+  <source>method GETNUGGETINFO .
+*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
 *|   SAPlink is free software; you can redistribute it and/or modify   |
@@ -300,14 +427,14 @@ endmethod.</source>
 *|   Free Software Foundation, Inc.,                                   |
 *|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
 *\---------------------------------------------------------------------/
-method GETNUGGETINFO .
 data rootNode type ref to if_ixml_element.
     rootNode = ixmlDocument-&gt;get_root_element( ).
     name = rootNode-&gt;get_attribute( &apos;name&apos; ).
 endmethod.</source>
  </method>
- <method CLSNAME="ZSAPLINK_NUGGET" CMPNAME="RESET" VERSION="0" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="0 " DISPID="0 " AUTHOR="USDWM01" CREATEDON="20060901" CHANGEDBY="USDWM01" CHANGEDON="20060901" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="620" BCMTDCAT="00" BCMTDSYN="0">
-  <source>*/---------------------------------------------------------------------\
+ <method CLSNAME="ZSAPLINK_NUGGET" CMPNAME="RESET" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="4 " DISPID="0 " AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDBY="USRRQ00" CHANGEDON="20061226" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="620" BCMTDCAT="00" BCMTDSYN="0">
+  <source>method RESET .
+*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
 *|   SAPlink is free software; you can redistribute it and/or modify   |
@@ -325,7 +452,6 @@ endmethod.</source>
 *|   Free Software Foundation, Inc.,                                   |
 *|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
 *\---------------------------------------------------------------------/
-method RESET .
   if iterator is not initial.
     iterator-&gt;reset( ).
   endif.
