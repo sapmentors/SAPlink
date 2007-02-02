@@ -107,6 +107,8 @@ protected section.
     importing
       value(NODE) type ref to IF_IXML_ELEMENT
       !DEVCLASS type DEVCLASS default &apos;$TMP&apos;
+    exporting
+      !CONCEPT type SOTR_TEXT-CONCEPT
     raising
       ZCX_SAPLINK .</protectedSection>
  <privateSection>*&quot;* private components of class ZSAPLINK
@@ -402,11 +404,13 @@ data _XMLDOC type ref to IF_IXML_DOCUMENT.
 
 * Create parent node
   rootNode = _xmlDoc-&gt;create_element( &apos;sotr&apos; ). &quot;OTR object type
+  clear sotrHeader-concept. &quot;ewH:33
   setAttributesFromStructure( node = rootNode structure = sotrHeader ).
 
 * Create nodes for texts
   loop at sotrTextTable into sotrTextLine.
     txtNode = _xmlDoc-&gt;create_element( &apos;sotrText&apos; ).
+    clear: sotrTextLine-concept, sotrTextLine-object. &quot;ewH:33
     setAttributesFromStructure(
       node = txtNode structure = sotrTextLine ).
     rc = rootNode-&gt;append_child( txtNode ).
@@ -426,6 +430,7 @@ endmethod.</source>
  <method CLSNAME="ZSAPLINK" CMPNAME="CREATEOTRFROMNODE" VERSION="1" LANGU="E" DESCRIPT="Creates or updates an OTR object from XML node" EXPOSURE="1" STATE="1" EDITORDER="9 " DISPID="0 " AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" MTDFINAL="X" MTDNEWEXC="X" R3RELEASE="620" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZSAPLINK" CMPNAME="CREATEOTRFROMNODE" SCONAME="NODE" VERSION="1" LANGU="E" DESCRIPT="xml Element" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
   <parameter CLSNAME="ZSAPLINK" CMPNAME="CREATEOTRFROMNODE" SCONAME="DEVCLASS" VERSION="1" LANGU="E" DESCRIPT="Development class/package" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="DEVCLASS" PARVALUE="&apos;$TMP&apos;"/>
+  <parameter CLSNAME="ZSAPLINK" CMPNAME="CREATEOTRFROMNODE" SCONAME="CONCEPT" VERSION="1" LANGU="E" DESCRIPT="Key for Logical Object in the OTR" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20070202" CHANGEDON="00000000" PARDECLTYP="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SOTR_TEXT-CONCEPT"/>
   <exception CLSNAME="ZSAPLINK" CMPNAME="CREATEOTRFROMNODE" SCONAME="ZCX_SAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 " AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDON="00000000"/>
   <source>*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
@@ -475,42 +480,45 @@ data sotrPaket type SOTR_PACK.
             node = txtNode
           changing
             structure = sotrTextLine.
+    clear: sotrTextLine-concept, sotrTextLine-object. &quot;ewH:33
     append sotrTextLine to sotrTextTable.
     txtNode ?= iterator-&gt;get_next( ).
   endwhile.
 
-  CALL FUNCTION &apos;SOTR_GET_CONCEPT&apos;
-    EXPORTING
-      concept              = sotrHeader-concept
-*   IMPORTING
-*     HEADER               =
-*   TABLES
-*     ENTRIES              =
-   EXCEPTIONS
-     NO_ENTRY_FOUND       = 1
-     OTHERS               = 2
-            .
-  IF sy-subrc &lt;&gt; 1.
-*   delete OTR if exists already
-    CALL FUNCTION &apos;SOTR_DELETE_CONCEPT&apos;
-      EXPORTING
-        concept                     = sotrHeader-concept
-     EXCEPTIONS
-       NO_AUTHORIZATION            = 1
-       NO_ENTRY_FOUND              = 2. &quot;who cares
-*       CONCEPT_USED                = 3
-*       NO_MASTER_LANGUAGE          = 4
-*       NO_SOURCE_SYSTEM            = 5
-*       NO_TADIR_ENTRY              = 6
-*       ERROR_IN_CORRECTION         = 7
-*       USER_CANCELLED              = 8
-*       OTHERS                      = 9
-*              .
-    if sy-subrc = 1.
-      raise exception type zcx_saplink
-        exporting textid = zcx_saplink=&gt;not_authorized.
-    endif.
-  ENDIF.
+* ewH:issue 33--&gt; in 6.40 and above, you cannot pass a default concept
+*  (otr) guid, so we will always create new
+*  CALL FUNCTION &apos;SOTR_GET_CONCEPT&apos;
+*    EXPORTING
+*      concept              = sotrHeader-concept
+**   IMPORTING
+**     HEADER               =
+**   TABLES
+**     ENTRIES              =
+*   EXCEPTIONS
+*     NO_ENTRY_FOUND       = 1
+*     OTHERS               = 2
+*            .
+*  IF sy-subrc &lt;&gt; 1.
+**   delete OTR if exists already
+*    CALL FUNCTION &apos;SOTR_DELETE_CONCEPT&apos;
+*      EXPORTING
+*        concept                     = sotrHeader-concept
+*     EXCEPTIONS
+*       NO_AUTHORIZATION            = 1
+*       NO_ENTRY_FOUND              = 2. &quot;who cares
+**       CONCEPT_USED                = 3
+**       NO_MASTER_LANGUAGE          = 4
+**       NO_SOURCE_SYSTEM            = 5
+**       NO_TADIR_ENTRY              = 6
+**       ERROR_IN_CORRECTION         = 7
+**       USER_CANCELLED              = 8
+**       OTHERS                      = 9
+**              .
+*    if sy-subrc = 1.
+*      raise exception type zcx_saplink
+*        exporting textid = zcx_saplink=&gt;not_authorized.
+*    endif.
+*  ENDIF.
 
 
 data objectTable type SOTR_OBJECTS.
@@ -539,9 +547,9 @@ data objectType type line of SOTR_OBJECTS.
       entries                             = sotrTextTable
 *     FLAG_CORRECTION_ENTRY               =
 *     IN_UPDATE_TASK                      =
-      CONCEPT_DEFAULT                     = sotrHeader-concept
-*   IMPORTING
-*     CONCEPT                             =
+*      CONCEPT_DEFAULT                     = sotrHeader-concept &quot;ewH:33
+    IMPORTING
+      CONCEPT                             = concept &quot;ewH:33
 *   EXCEPTIONS
 *     PACKAGE_MISSING                     = 1
 *     CREA_LAN_MISSING                    = 2
@@ -567,8 +575,6 @@ data objectType type line of SOTR_OBJECTS.
 *   MESSAGE ID SY-MSGID TYPE SY-MSGTY NUMBER SY-MSGNO
 *           WITH SY-MSGV1 SY-MSGV2 SY-MSGV3 SY-MSGV4.
   ENDIF.
-
-
 
 endmethod.</source>
  </method>

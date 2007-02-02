@@ -758,14 +758,21 @@ data: lines type i.
   ENDIF.
 
 *Add attributes to new class
+  data otrConcept type SOTR_TEXT-CONCEPT.
   filter = xmldoc-&gt;create_filter_name( &apos;attribute&apos; ).
   iterator = xmldoc-&gt;create_iterator_filtered( filter ).
   node ?= iterator-&gt;get_next( ).
+
   WHILE node IS NOT INITIAL.
 *   create OTR texts if necessary (for exception classes)
+    clear otrConcept.
     otrnode = node-&gt;find_from_name( &apos;sotr&apos; ).
     IF otrnode IS NOT INITIAL.
-      me-&gt;createotrfromnode( otrnode ).
+*     ewH:33--&gt;create new concept with new guid
+*      me-&gt;createotrfromnode( otrnode ).
+      me-&gt;createotrfromnode(
+        exporting node = otrnode
+        importing concept = otrConcept ).
     ENDIF.
     clear wa_attributes.
 *   create attribute
@@ -775,6 +782,10 @@ data: lines type i.
       CHANGING
         structure = wa_attributes.
     wa_attributes-version = &apos;0&apos;.
+*   ewH:issue33--&gt;6.40 and above, must create new concept
+    if otrConcept is not initial.
+      concatenate `&apos;` otrConcept `&apos;` into wa_attributes-attvalue.
+    endif.
     append wa_attributes to ch_attributes.
     node ?= iterator-&gt;get_next( ).
   ENDWHILE.
