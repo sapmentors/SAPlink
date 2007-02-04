@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<PROG NAME="ZSAPLINK_EXCEPTION_TEST" VARCL="X" DBAPL="S" DBNA="D$" SUBC="1" APPL="S" CNAM="USEWH90" CDAT="20070204" UNAM="USEWH90" UDAT="20070204" VERN="000012" RMAND="321" FIXPT="X" SDATE="20070204" STIME="123638" IDATE="20070204" ITIME="123638" LDBNAME="D$S" UCCHECK="X">
+ <textPool>
+  <language SPRAS="E">
+   <textElement ID="I" KEY="BAR" ENTRY="homey" LENGTH="5 "/>
+   <textElement ID="I" KEY="FOO" ENTRY="what up" LENGTH="7 "/>
+   <textElement ID="R" ENTRY="testing exception classes" LENGTH="25 "/>
+  </language>
+ </textPool>
+ <source>*&amp;---------------------------------------------------------------------*
+*&amp; Report  ZEWH_EXCEPTION_TEST                                         *
+*&amp;                                                                     *
+*&amp;---------------------------------------------------------------------*
+*&amp;                                                                     *
+*&amp;                                                                     *
+*&amp;---------------------------------------------------------------------*
+
+REPORT  ZSAPLINK_EXCEPTION_TEST                     .
+
+*
+*data: myFoo type ref to ZEWH_TEST_EXCEPTIONS,
+**data: myFoo type ref to ZEWH_TEST_EXCEPTIONS_sub,
+*      excClass type ref to ZCX_EWH_TEST_CLASS,
+*      errorMsg type string.
+*
+*create object myFoo.
+*
+*try.
+**call method myFoo-&gt;bar exporting foo = &apos;X&apos;.
+*call method myFoo-&gt;foo.
+*catch ZCX_EWH_TEST_CLASS into excClass.
+*
+*errorMsg = excClass-&gt;get_text( ).
+*
+*endtry.
+*
+*write errorMsg.
+
+
+data: myFoo type ref to ZSAPLINK_TEST_EXCEPTIONS,
+      excClass type ref to ZCX_SAPLINK_EXCEPTION_TEST2,
+      errorMsg type string.
+
+create object myFoo.
+
+try.
+*call method myFoo-&gt;bar exporting foo = &apos;X&apos;.
+call method myFoo-&gt;foo.
+catch ZCX_SAPLINK_EXCEPTION_TEST2 into excClass.
+
+errorMsg = excClass-&gt;get_text( ).
+
+endtry.
+
+write errorMsg.</source>
+</PROG>

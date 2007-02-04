@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<CLAS CLSNAME="ZSAPLINK_TEST_CLASS_EXTENSIVE" VERSION="1" LANGU="E" DESCRIPT="extensive class test for saplink" UUID="45BE043E0E5A02F502000000A7E42BB6" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" AUTHOR="USEWH90" CREATEDON="20070204" CHANGEDBY="USEWH90" CHANGEDON="20070204" CHGDANYON="00000000" CLSCCINCL="X" FIXPT="X" UNICODE="X" R3RELEASE="620" CLSBCCAT="00">
+ <types CLSNAME="ZSAPLINK_TEST_CLASS_EXTENSIVE" CMPNAME="MYCOMPLEXTYPE_PRIV" VERSION="1" LANGU="E" DESCRIPT="direct type entry in private section" EXPOSURE="0" STATE="1" EDITORDER="1 " AUTHOR="USEWH90" CREATEDON="20070204" CHANGEDBY="USEWH90" CHANGEDON="20070204" TYPTYPE="4" SRCROW1="6 " SRCCOLUMN1="4 " SRCROW2="9 " SRCCOLUMN2="33 "/>
+ <types CLSNAME="ZSAPLINK_TEST_CLASS_EXTENSIVE" CMPNAME="MYTYPE" VERSION="1" LANGU="E" DESCRIPT="fdsa fsda" EXPOSURE="1" STATE="1" EDITORDER="1 " AUTHOR="USEWH90" CREATEDON="20070204" CHANGEDBY="USEWH90" CHANGEDON="20070204" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 "/>
+ <types CLSNAME="ZSAPLINK_TEST_CLASS_EXTENSIVE" CMPNAME="MYCOMPLEXTYPE" VERSION="1" LANGU="E" DESCRIPT="direct type entry in protected section" EXPOSURE="1" STATE="1" EDITORDER="2 " AUTHOR="USEWH90" CREATEDON="20070204" CHANGEDBY="USEWH90" CHANGEDON="20070204" TYPTYPE="4" SRCROW1="7 " SRCCOLUMN1="4 " SRCROW2="10 " SRCCOLUMN2="28 "/>
+ <friends CLSNAME="ZSAPLINK_TEST_CLASS_EXTENSIVE" REFCLSNAME="ZSAPLINK" FRIENDTYPE="0" VERSION="1" STATE="1" AUTHOR="USEWH90" CREATEDON="20070204" CHANGEDON="00000000"/>
+ <implementing CLSNAME="ZSAPLINK_TEST_CLASS_EXTENSIVE" REFCLSNAME="IF_BSP_BEE" VERSION="1" EXPOSURE="2" STATE="1" AUTHOR="USEWH90" CREATEDON="20070204" CHANGEDON="00000000" RELTYPE="1"/>
+ <events CLSNAME="ZSAPLINK_TEST_CLASS_EXTENSIVE" CMPNAME="MYEVENT" VERSION="1" LANGU="E" DESCRIPT="event test" EXPOSURE="1" STATE="1" EDITORDER="1 " AUTHOR="USEWH90" CREATEDON="20070204" CHANGEDBY="USEWH90" CHANGEDON="20070204" EVTDECLTYP="1" BCEVTCAT="00"/>
+ <publicSection>class ZSAPLINK_TEST_CLASS_EXTENSIVE definition
+  public
+  create public
+
+  global friends ZSAPLINK .
+
+*&quot;* public components of class ZSAPLINK_TEST_CLASS_EXTENSIVE
+*&quot;* do not include other source files here!!!
+public section.
+  type-pools ABAP .
+
+  interfaces IF_BSP_BEE .
+
+  class-data MYATTRIBUTE type STRING .
+
+  class-methods MYMETHOD
+    importing
+      value(FOOPARM1) type STRING
+      !FOOPARM2 type CHAR10 optional
+    exporting
+      !BAREXPORT type STRING
+      !BAREXPORT2 type DATUM
+    changing
+      !CHANGEPARAM type CHAR32
+    raising
+      ZCX_SAPLINK .
+  class-methods MYSECONDMETHOD
+    importing
+      !IMPORTONE type STRING
+    returning
+      value(LIFEUNIVERSEEVERYTHING) type I .</publicSection>
+ <protectedSection>*&quot;* protected components of class ZSAPLINK_TEST_CLASS_EXTENSIVE
+*&quot;* do not include other source files here!!!
+protected section.
+
+  types MYTYPE type STRING .
+  types:
+    begin of MYCOMPLEXTYPE,
+           myInt type i,
+           myChar(1) type c,
+         end of MYCOMPLEXTYPE .
+
+  data:
+    MYDIRECTATT_PROT(22) type c .
+
+  class-events MYEVENT .</protectedSection>
+ <privateSection>*&quot;* private components of class ZSAPLINK_TEST_CLASS_EXTENSIVE
+*&quot;* do not include other source files here!!!
+private section.
+
+  types:
+    begin of MYCOMPLEXTYPE_PRIV,
+           zoo(12) type c,
+           baz type ref to data,
+         end of MYCOMPLEXTYPE_PRIV .
+
+  data:
+    begin of MYDIRECTATT_PRIV,
+          foo(1) type c,
+          bar type i,
+        end of MYDIRECTATT_PRIV .</privateSection>
+ <localImplementation>*&quot;* local class implementation for public class
+*&quot;* use this source file for the implementation part of
+*&quot;* local helper classes
+
+* line inserted by quack local class implementations
+* test local imp
+* more test local imp
+****more</localImplementation>
+ <localTypes>*&quot;* use this source file for any type declarations (class
+*&quot;* definitions, interfaces or data types) you need for method
+*&quot;* implementation or private method&apos;s signature
+
+*inserted line by quack Local Types
+
+types: begin of mycomplexType,
+        mychar(1) type c,
+        mystring type string,
+       end of myComplexType.
+
+types myLocalType type string.</localTypes>
+ <localMacros>*&quot;* use this source file for any macro definitions you need
+*&quot;* in the implementation part of the class
+
+* line inserted by quack local macros
+* macro test
+* macro macro</localMacros>
+ <typeUsage CLSNAME="ZSAPLINK_TEST_CLASS_EXTENSIVE" TYPEGROUP="ABAP" VERSION="1" TPUTYPE="0" EXPLICIT="X"/>
+ <forwardDeclaration>ABAP</forwardDeclaration>
+ <attribute CLSNAME="ZSAPLINK_TEST_CLASS_EXTENSIVE" CMPNAME="MYATTRIBUTE" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="1 " AUTHOR="USEWH90" CREATEDON="20070204" CHANGEDON="00000000" ATTDECLTYP="1" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " R3RELEASE="620"/>
+ <attribute CLSNAME="ZSAPLINK_TEST_CLASS_EXTENSIVE" CMPNAME="MYDIRECTATT_PRIV" VERSION="1" LANGU="E" DESCRIPT="direct att - private" EXPOSURE="0" STATE="1" EDITORDER="1 " AUTHOR="USEWH90" CREATEDON="20070204" CHANGEDBY="USEWH90" CHANGEDON="20070204" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="12 " SRCCOLUMN1="4 " SRCROW2="15 " SRCCOLUMN2="30 "/>
+ <attribute CLSNAME="ZSAPLINK_TEST_CLASS_EXTENSIVE" CMPNAME="MYDIRECTATT_PROT" VERSION="1" LANGU="E" DESCRIPT="direct att - protected" EXPOSURE="1" STATE="1" EDITORDER="1 " AUTHOR="USEWH90" CREATEDON="20070204" CHANGEDBY="USEWH90" CHANGEDON="20070204" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="13 " SRCCOLUMN1="4 " SRCROW2="13 " SRCCOLUMN2="30 "/>
+ <inheritance CLSNAME="ZSAPLINK_TEST_CLASS_EXTENSIVE" VERSION="1" STATE="1" AUTHOR="USEWH90" CREATEDON="20070204" CHANGEDON="00000000"/>
+ <interfaceMethod CLSNAME="ZSAPLINK_TEST_CLASS_EXTENSIVE" CPDNAME="IF_BSP_BEE~RENDER_TO_STRING">
+  <source>method IF_BSP_BEE~RENDER_TO_STRING .
+
+* test code for interface method definition
+result = &apos;test code for interface method definition&apos;.
+* endtest
+
+endmethod.</source>
+ </interfaceMethod>
+ <method CLSNAME="ZSAPLINK_TEST_CLASS_EXTENSIVE" CMPNAME="MYMETHOD" VERSION="1" LANGU="E" DESCRIPT="who cares just a method" EXPOSURE="2" STATE="1" EDITORDER="1 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20070204" CHANGEDBY="USEWH90" CHANGEDON="20070204" MTDTYPE="0" MTDDECLTYP="1" MTDNEWEXC="X" R3RELEASE="620" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_TEST_CLASS_EXTENSIVE" CMPNAME="MYMETHOD" SCONAME="FOOPARM1" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20070204" CHANGEDBY="USEWH90" CHANGEDON="20070204" PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="STRING"/>
+  <parameter CLSNAME="ZSAPLINK_TEST_CLASS_EXTENSIVE" CMPNAME="MYMETHOD" SCONAME="FOOPARM2" VERSION="1" LANGU="E" DESCRIPT="Character Field Length = 10" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20070204" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="CHAR10" PAROPTIONL="X"/>
+  <parameter CLSNAME="ZSAPLINK_TEST_CLASS_EXTENSIVE" CMPNAME="MYMETHOD" SCONAME="BAREXPORT" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20070204" CHANGEDON="00000000" PARDECLTYP="1" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
+  <parameter CLSNAME="ZSAPLINK_TEST_CLASS_EXTENSIVE" CMPNAME="MYMETHOD" SCONAME="BAREXPORT2" VERSION="1" LANGU="E" DESCRIPT="Date" CMPTYPE="1" MTDTYPE="0" EDITORDER="4 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20070204" CHANGEDON="00000000" PARDECLTYP="1" PARPASSTYP="1" TYPTYPE="1" TYPE="DATUM"/>
+  <parameter CLSNAME="ZSAPLINK_TEST_CLASS_EXTENSIVE" CMPNAME="MYMETHOD" SCONAME="CHANGEPARAM" VERSION="1" LANGU="E" DESCRIPT="Character field, length 32" CMPTYPE="1" MTDTYPE="0" EDITORDER="5 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20070204" CHANGEDON="00000000" PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="CHAR32"/>
+  <exception CLSNAME="ZSAPLINK_TEST_CLASS_EXTENSIVE" CMPNAME="MYMETHOD" SCONAME="ZCX_SAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 " AUTHOR="USEWH90" CREATEDON="20070204" CHANGEDON="00000000"/>
+  <source>method MYMETHOD .
+
+*insert nonsense test code here
+if fooparm2 is initial.
+  barexport = fooparm1.
+else.
+  barexport2 = sy-datum.
+endif.
+
+changeparam = &apos;So how did your test go, bubby?&apos;.
+
+if changeparam is initial.
+  raise exception type zcx_saplink.
+endif.
+*end of insert test code
+endmethod.</source>
+ </method>
+ <method CLSNAME="ZSAPLINK_TEST_CLASS_EXTENSIVE" CMPNAME="MYSECONDMETHOD" VERSION="1" LANGU="E" DESCRIPT="just another method" EXPOSURE="2" STATE="1" EDITORDER="2 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20070204" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="1" R3RELEASE="620" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_TEST_CLASS_EXTENSIVE" CMPNAME="MYSECONDMETHOD" SCONAME="IMPORTONE" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20070204" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
+  <parameter CLSNAME="ZSAPLINK_TEST_CLASS_EXTENSIVE" CMPNAME="MYSECONDMETHOD" SCONAME="LIFEUNIVERSEEVERYTHING" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20070204" CHANGEDON="00000000" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="1" TYPE="I"/>
+  <source>method MYSECONDMETHOD .
+
+* insert more nonsense test code here
+data: helpme(1) type c.
+
+helpme = &apos;X&apos;.
+
+if helpme is initial.
+  helpme = importone(1).
+else.
+  lifeuniverseeverything = 42.
+endif.
+* stop the insanity
+endmethod.</source>
+ </method>
+</CLAS>

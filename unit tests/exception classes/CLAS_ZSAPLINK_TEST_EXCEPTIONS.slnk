@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<CLAS CLSNAME="ZSAPLINK_TEST_EXCEPTIONS" VERSION="1" LANGU="E" DESCRIPT="testing exceptions" UUID="45BE03EF0E5A02F502000000A7E42BB6" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" AUTHOR="USEWH90" CREATEDON="20070204" CHANGEDON="00000000" CHGDANYON="00000000" CLSCCINCL="X" FIXPT="X" UNICODE="X" R3RELEASE="620" CLSBCCAT="00">
+ <publicSection>class ZSAPLINK_TEST_EXCEPTIONS definition
+  public
+  create public .
+
+*&quot;* public components of class ZSAPLINK_TEST_EXCEPTIONS
+*&quot;* do not include other source files here!!!
+public section.
+
+  methods FOO
+    raising
+      ZCX_SAPLINK_EXCEPTION_TEST1
+      ZCX_SAPLINK_EXCEPTION_TEST2 .
+  methods BAR
+    importing
+      !FOO type CHAR1
+    raising
+      ZCX_SAPLINK_EXCEPTION_TEST1
+      ZCX_SAPLINK_EXCEPTION_TEST2 .</publicSection>
+ <protectedSection>*&quot;* protected components of class ZEWH_TEST_EXCEPTIONS
+*&quot;* do not include other source files here!!!
+protected section.</protectedSection>
+ <privateSection>*&quot;* private components of class ZEWH_TEST_EXCEPTIONS
+*&quot;* do not include other source files here!!!
+private section.
+
+  data FOOBAR type CHAR1 .</privateSection>
+ <localImplementation>*&quot;* local class implementation for public class
+*&quot;* use this source file for the implementation part of
+*&quot;* local helper classes</localImplementation>
+ <localTypes>*&quot;* use this source file for any type declarations (class
+*&quot;* definitions, interfaces or data types) you need for method
+*&quot;* implementation or private method&apos;s signature</localTypes>
+ <localMacros>*&quot;* use this source file for any macro definitions you need
+*&quot;* in the implementation part of the class</localMacros>
+ <attribute CLSNAME="ZSAPLINK_TEST_EXCEPTIONS" CMPNAME="FOOBAR" VERSION="1" LANGU="E" DESCRIPT="Single-character flag" EXPOSURE="0" STATE="1" EDITORDER="1 " AUTHOR="USEWH90" CREATEDON="20070204" CHANGEDON="00000000" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="CHAR1" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " R3RELEASE="620"/>
+ <method CLSNAME="ZSAPLINK_TEST_EXCEPTIONS" CMPNAME="BAR" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="2 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20070204" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" R3RELEASE="620" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_TEST_EXCEPTIONS" CMPNAME="BAR" SCONAME="FOO" VERSION="1" LANGU="E" DESCRIPT="Single-character flag" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20070204" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="CHAR1"/>
+  <exception CLSNAME="ZSAPLINK_TEST_EXCEPTIONS" CMPNAME="BAR" SCONAME="ZCX_SAPLINK_EXCEPTION_TEST1" VERSION="1" LANGU="E" DESCRIPT="test exception class" MTDTYPE="0" EDITORDER="1 " AUTHOR="USEWH90" CREATEDON="20070204" CHANGEDON="00000000"/>
+  <exception CLSNAME="ZSAPLINK_TEST_EXCEPTIONS" CMPNAME="BAR" SCONAME="ZCX_SAPLINK_EXCEPTION_TEST2" VERSION="1" LANGU="E" DESCRIPT="test exception class creation via saplink" MTDTYPE="0" EDITORDER="2 " AUTHOR="USEWH90" CREATEDON="20070204" CHANGEDON="00000000"/>
+  <source>method BAR .
+
+  if foo is initial.
+    raise exception type zcx_saplink_exception_test2
+        exporting textid = zcx_saplink_exception_test2=&gt;EWHSAPLINKTEST.
+*    raise exception type zcx_saplink_exception_test1
+*        exporting textid = zcx_saplink_exception_test1=&gt;existing.
+  else.
+*    raise exception type zcx_saplink_exception_test1
+*        exporting textid = zcx_saplink_exception_test1=&gt;foo.
+
+*    raise exception type zcx_saplink_exception_test1
+**        exporting textid = &apos;yo mama&apos;.
+*      exporting textid = zcx_saplink_exception_test1=&gt;existing.
+
+    raise exception type zcx_saplink_exception_test2
+        exporting textid = zcx_saplink_exception_test2=&gt;ANOTHERSAPLINKTEST.
+
+  endif.
+
+endmethod.</source>
+ </method>
+ <method CLSNAME="ZSAPLINK_TEST_EXCEPTIONS" CMPNAME="FOO" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="1 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20070204" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" R3RELEASE="620" BCMTDCAT="00" BCMTDSYN="0">
+  <exception CLSNAME="ZSAPLINK_TEST_EXCEPTIONS" CMPNAME="FOO" SCONAME="ZCX_SAPLINK_EXCEPTION_TEST1" VERSION="1" LANGU="E" DESCRIPT="testing exceptions" MTDTYPE="0" EDITORDER="1 " AUTHOR="USEWH90" CREATEDON="20070204" CHANGEDON="00000000"/>
+  <exception CLSNAME="ZSAPLINK_TEST_EXCEPTIONS" CMPNAME="FOO" SCONAME="ZCX_SAPLINK_EXCEPTION_TEST2" VERSION="1" LANGU="E" DESCRIPT="test exception class creation via saplink" MTDTYPE="0" EDITORDER="2 " AUTHOR="USEWH90" CREATEDON="20070204" CHANGEDON="00000000"/>
+  <source>method FOO .
+
+*  try.
+    bar( &apos;X&apos; ).
+*  catch zcx_saplink_exception_test1.
+*  endtry.
+
+endmethod.</source>
+ </method>
+</CLAS>
