@@ -13,6 +13,7 @@ public section.
   type-pools SEOR .
   type-pools SEOS .
   type-pools SEOT .
+  type-pools SEOX .
 
   methods CHECKEXISTS
     redefinition .
@@ -51,11 +52,13 @@ private section.
  <typeUsage CLSNAME="ZSAPLINK_CLASS" TYPEGROUP="SEOR" VERSION="1" TPUTYPE="0" EXPLICIT="X"/>
  <typeUsage CLSNAME="ZSAPLINK_CLASS" TYPEGROUP="SEOS" VERSION="1" TPUTYPE="0" EXPLICIT="X"/>
  <typeUsage CLSNAME="ZSAPLINK_CLASS" TYPEGROUP="SEOT" VERSION="1" TPUTYPE="0" EXPLICIT="X"/>
+ <typeUsage CLSNAME="ZSAPLINK_CLASS" TYPEGROUP="SEOX" VERSION="1" TPUTYPE="0" EXPLICIT="X"/>
  <forwardDeclaration>ABAP</forwardDeclaration>
  <forwardDeclaration>SEOP</forwardDeclaration>
  <forwardDeclaration>SEOR</forwardDeclaration>
  <forwardDeclaration>SEOS</forwardDeclaration>
  <forwardDeclaration>SEOT</forwardDeclaration>
+ <forwardDeclaration>SEOX</forwardDeclaration>
  <inheritance CLSNAME="ZSAPLINK_CLASS" REFCLSNAME="ZSAPLINK" VERSION="1" STATE="1" AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDBY="USRRQ00" CHANGEDON="20061204">
   <redefinition CLSNAME="ZSAPLINK_CLASS" REFCLSNAME="ZSAPLINK" VERSION="1" MTDNAME="CHECKEXISTS"/>
   <redefinition CLSNAME="ZSAPLINK_CLASS" REFCLSNAME="ZSAPLINK" VERSION="1" MTDNAME="CREATEIXMLDOCFROMOBJECT"/>
