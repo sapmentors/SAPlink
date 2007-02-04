@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<PROG NAME="ZSAPLINK" VARCL="X" DBAPL="S" DBNA="D$" SUBC="1" APPL="S" CNAM="EWH" CDAT="20060903" UNAM="USEWH90" UDAT="20070204" VERN="000144" RMAND="321" RLOAD="E" FIXPT="X" SDATE="20070204" STIME="140122" IDATE="20070204" ITIME="140122" LDBNAME="D$S" UCCHECK="X">
+<PROG NAME="ZSAPLINK" VARCL="X" DBAPL="S" DBNA="D$" SUBC="1" APPL="S" CNAM="EWH" CDAT="20060903" UNAM="USEWH90" UDAT="20070204" VERN="000161" RMAND="321" RLOAD="E" FIXPT="X" SDATE="20070204" STIME="162145" IDATE="20070204" ITIME="162145" LDBNAME="D$S" UCCHECK="X">
  <textPool>
   <language SPRAS="D">
    <textElement ID="I" KEY="NGA" ENTRY="Objekt zum Nugget hinzufügen" LENGTH="28 "/>
@@ -381,6 +381,7 @@ types: begin of t_objects_package,
           srcsystem  type tadir-srcsystem,
           down_flag  type char1,
           status     type char1,
+          msg        type string,
        end of t_objects_package.
 
 data objects_package type table of t_objects_package.
@@ -1068,67 +1069,15 @@ start-of-selection.
       endif.
       select object obj_name srcsystem
           from tadir
-          into corresponding fields of table  objects_package
+          into corresponding fields of table objects_package
           where devclass  eq package
           and  pgmid      eq &apos;R3TR&apos;.
       if sy-subrc &lt;&gt; 0.
-        message s001(00) with &apos;Package does not exist or empty&apos;.
+        message s208(00) with &apos;Package does not exist or empty&apos;.
         return.
       endif.
 
-      perform check_objects.
-
-      perform build_fieldCatalog.
-
-      perform ShowInitialGrid tables objects_package.
-
-      if sy-ucomm &lt;&gt; &apos;TAKE&apos;.
-        return.
-      endif .
-
-*     Downloading
-      call function &apos;SAPGUI_PROGRESS_INDICATOR&apos;
-        exporting
-          percentage = 1
-          text       = &apos;Upload file&apos;.
-
-      perform uploadxmlfromlm using nugfile xml.
-
-      ixmldocument = zsaplink=&gt;convertstringtoixmldoc( xml ).
-
-      create object nugg
-        exporting
-          ixmldocument = ixmldocument.
-
-      describe table objects_package lines lv_count.
-      loop at objects_package assigning &lt;obj&gt; where down_flag = &apos;X&apos;
-                              and select = &apos;X&apos;.
-        lv_pers = sy-tabix * 100 / lv_count .
-        call function &apos;SAPGUI_PROGRESS_INDICATOR&apos;
-          exporting
-            percentage = lv_pers
-            text       = &lt;obj&gt;-obj_name.
-
-        _objname = &lt;obj&gt;-obj_name. &quot;nobjNam.
-        stemp = &lt;obj&gt;-object.      &quot;nplugin.
-        try.
-            nugg-&gt;addobjecttonugget(
-              objname = _objname objtype = stemp ).
-          catch zcx_saplink into excclass.
-            errormsg = excclass-&gt;get_text( ).
-            perform writeMessage using &apos;E&apos; errorMsg.
-            &lt;obj&gt;-status = 1.
-            continue.
-        endtry.
-        &lt;obj&gt;-status = 3.
-      endloop.
-
-      ixmldocument = nugg-&gt;createixmldocfromnugget( ).
-      xml = zsaplink=&gt;convertixmldoctostring( ixmldocument ).
-      stemp = nugfile.
-      perform putonmachine using stemp xml.
-
-      perform showResultsGrid tables objects_package.
+      perform addObjectstoNugget.
 *   &lt;-- rrq: enhancement 3
 
 *   rrq: enhancement 42--&gt;
@@ -1149,21 +1098,50 @@ start-of-selection.
         exit.
       endif.
 
+      select single trkorr from e070 into l_trkorr
+        where trkorr in reqNugg.
+
+      if sy-subrc &lt;&gt; 0.
+        message s208(00) with &apos;Transport not found&apos;.
+        exit.
+      endif.
+
       SELECT Single TRKORR AS4TEXT
       FROM  E07T
       INTO (l_TRKORR, L_as4text)
       WHERE  TRKORR   IN ReqNugg
         AND  LANGU    EQ sy-langu.
 
+*     ewH--&gt;retrieve tasks as well as transports
+      ranges: ra_reqNugg for e070-trkorr.
+      data: wa_trkorr type e070-trkorr,
+            it_trkorr type table of e070-trkorr,
+            wa_reqNugg like line of ra_reqNugg.
+
+      select trkorr from e070 into table it_trkorr
+        where strkorr in reqNugg.
+
+      ra_reqNugg[] = reqNugg[].
+
+      loop at it_trkorr into wa_trkorr.
+        wa_reqNugg-sign = &apos;I&apos;.
+        wa_reqNugg-option = &apos;EQ&apos;.
+        wa_reqNugg-low = wa_trkorr.
+        append wa_reqNugg to ra_reqNugg.
+      endloop.
+*     &lt;--ewH
+
       SELECT object OBJ_NAME
       FROM  E071
       INTO TABLE it_requestobject
-      WHERE  TRKORR in ReqNugg.
+*      WHERE  TRKORR in ReqNugg.
+      WHERE  TRKORR in ra_ReqNugg &quot;ewH
+      and PGMID = &apos;R3TR&apos;. &quot;ewH: don&apos;t need subobjects
 
       if sy-subrc = 0.
         ReqName = l_TRKORR.
       else.
-        message s208(00) with &apos;No request found&apos;.
+        message s208(00) with &apos;No R3TR objects in request&apos;.
         exit.
       ENDIF.
 
@@ -1172,59 +1150,7 @@ start-of-selection.
         append packageLine to objects_package.
       endloop.
 
-      perform check_objects.
-      perform build_fieldCatalog.
-
-      perform ShowInitialGrid tables objects_package.
-
-      if sy-ucomm &lt;&gt; &apos;TAKE&apos;.
-        return.
-      endif .
-
-*     Downloading
-      call function &apos;SAPGUI_PROGRESS_INDICATOR&apos;
-        exporting
-          percentage = 1
-          text       = &apos;Upload file&apos;.
-
-      perform uploadxmlfromlm using nugfile xml.
-
-      ixmldocument = zsaplink=&gt;convertstringtoixmldoc( xml ).
-
-      create object nugg
-        exporting
-          ixmldocument = ixmldocument.
-
-      describe table objects_package lines lv_count.
-      loop at objects_package assigning &lt;obj&gt; where down_flag = &apos;X&apos;
-                              and select = &apos;X&apos;.
-        lv_pers = sy-tabix * 100 / lv_count .
-        call function &apos;SAPGUI_PROGRESS_INDICATOR&apos;
-          exporting
-            percentage = lv_pers
-            text       = &lt;obj&gt;-obj_name.
-
-        _objname = &lt;obj&gt;-obj_name. &quot;nobjNam.
-        stemp = &lt;obj&gt;-object.      &quot;nplugin.
-        try.
-            nugg-&gt;addobjecttonugget(
-            objname = _objname objtype = stemp ).
-          catch zcx_saplink into excclass.
-            errormsg = excclass-&gt;get_text( ).
-            perform writeMessage using &apos;E&apos; errorMsg.
-            &lt;obj&gt;-status = 1.
-            continue.
-        endtry.
-        &lt;obj&gt;-status = 3.
-      endloop.
-
-      ixmldocument = nugg-&gt;createixmldocfromnugget( ).
-      xml = zsaplink=&gt;convertixmldoctostring( ixmldocument ).
-      stemp = nugfile.
-      perform putonmachine using stemp xml.
-
-      perform showResultsGrid tables objects_package.
-*     &lt;--rrq: enhancement 42
+      perform addObjectstoNugget.
     endif.
   endif.
 
@@ -1587,6 +1513,12 @@ FORM build_fieldCatalog .
     &apos;Plugin available&apos;.
     append ls_fieldcat to lt_fieldcat.
 
+    ls_fieldcat-fieldname = &apos;MSG&apos;.
+    ls_fieldcat-seltext_s = &apos;Message&apos;.
+    ls_fieldcat-seltext_l =
+    &apos;Status Message&apos;.
+    append ls_fieldcat to lt_fieldcat.
+
     ls_layout-box_fieldname     = &apos;SELECT&apos;.
     ls_layout-f2code            = &apos;MYPICK&apos; .
     ls_layout-colwidth_optimize = &apos;X&apos;.
@@ -1645,6 +1577,7 @@ FORM check_objects .
           &lt;obj&gt;-down_flag = &apos;X&apos;.
           &lt;obj&gt;-select = &apos;X&apos;.
         else.
+          &lt;obj&gt;-msg = &apos;No Plugin Available&apos;.
           &lt;obj&gt;-down_flag = &apos; &apos;.
         endif.
 *     get texts
@@ -1687,5 +1620,74 @@ FORM CreateEmptyNugget using p_NuggName.
       exit.
     endif.
 
-ENDFORM.                    &quot; CreateEmptyNugget</source>
+ENDFORM.                    &quot; CreateEmptyNugget
+
+*rrq: enhancement 3 &amp; 42--&gt;
+*&amp;---------------------------------------------------------------------*
+*&amp;      Form  addObjectstoNugget
+*&amp;---------------------------------------------------------------------*
+form addObjectstoNugget .
+
+  perform check_objects.
+  perform build_fieldCatalog.
+
+  perform ShowInitialGrid tables objects_package.
+
+  if sy-ucomm &lt;&gt; &apos;TAKE&apos;.
+    return.
+  endif .
+
+*  Downloading
+  call function &apos;SAPGUI_PROGRESS_INDICATOR&apos;
+    exporting
+      percentage = 1
+      text       = &apos;Upload file&apos;.
+
+  perform uploadxmlfromlm using nugfile xml.
+
+  ixmldocument = zsaplink=&gt;convertstringtoixmldoc( xml ).
+
+  create object nugg
+    exporting
+      ixmldocument = ixmldocument.
+
+  describe table objects_package lines lv_count.
+  loop at objects_package assigning &lt;obj&gt;
+  where down_flag = &apos;X&apos; and select = &apos;X&apos;.
+    lv_pers = sy-tabix * 100 / lv_count .
+    call function &apos;SAPGUI_PROGRESS_INDICATOR&apos;
+      exporting
+        percentage = lv_pers
+        text       = &lt;obj&gt;-obj_name.
+
+    _objname = &lt;obj&gt;-obj_name. &quot;nobjNam.
+    stemp = &lt;obj&gt;-object.      &quot;nplugin.
+    try.
+        nugg-&gt;addobjecttonugget(
+        objname = _objname objtype = stemp ).
+      catch zcx_saplink into excclass.
+        errormsg = excclass-&gt;get_text( ).
+*        perform writeMessage using &apos;E&apos; errorMsg.
+        &lt;obj&gt;-msg = errorMsg.
+        &lt;obj&gt;-status = 1.
+        continue.
+    endtry.
+    &lt;obj&gt;-msg = &apos;Added to nugget&apos;.
+    &lt;obj&gt;-status = 3.
+  endloop.
+
+  read table objects_package into packageLine
+    with key status = 3. &quot;ewH:do not download if none added
+
+  if sy-subrc = 0.
+    ixmldocument = nugg-&gt;createixmldocfromnugget( ).
+    xml = zsaplink=&gt;convertixmldoctostring( ixmldocument ).
+    stemp = nugfile.
+    perform putonmachine using stemp xml.
+  endif.
+
+  perform showResultsGrid tables objects_package.
+
+endform.                    &quot; addObjectstoNugget
+*  &lt;--rrq: enhancement 3 &amp; 42</source>
 </PROG>
