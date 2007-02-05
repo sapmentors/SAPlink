@@ -1,11 +1,4 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
-<PROG NAME="ZSAPLINK_INSTALLER" VARCL="X" SUBC="1" CNAM="USEWH90" CDAT="20070201" UNAM="USEWH90" UDAT="20070205" VERN="000012" RMAND="321" RLOAD="E" FIXPT="X" SDATE="20070205" STIME="135515" IDATE="20070205" ITIME="135515" UCCHECK="X">
- <textPool>
-  <language SPRAS="E">
-   <textElement ID="R" ENTRY="Program ZSAPLINK_INSTALLER_BASE" LENGTH="31 "/>
-  </language>
- </textPool>
- <source>*/---------------------------------------------------------------------\
+*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
 *|   SAPlink is free software; you can redistribute it and/or modify   |
@@ -32,32 +25,32 @@ CLASS ZCX_SAPLINK DEFINITION
 public section.
 
   constants EXISTING type SOTR_CONC
- value &apos;44F5C1A35F5C09C200000000A7E42BB6&apos;. &quot;#EC NOTEXT
+ value '44F5C1A35F5C09C200000000A7E42BB6'. "#EC NOTEXT
   constants SYSTEM_ERROR type SOTR_CONC
- value &apos;44F5C1B55F5C09C200000000A7E42BB6&apos;. &quot;#EC NOTEXT
+ value '44F5C1B55F5C09C200000000A7E42BB6'. "#EC NOTEXT
   constants ERROR_MESSAGE type SOTR_CONC
- value &apos;44F5C21A5F5C09C200000000A7E42BB6&apos;. &quot;#EC NOTEXT
+ value '44F5C21A5F5C09C200000000A7E42BB6'. "#EC NOTEXT
   constants NOT_AUTHORIZED type SOTR_CONC
- value &apos;44F5C1A95F5C09C200000000A7E42BB6&apos;. &quot;#EC NOTEXT
+ value '44F5C1A95F5C09C200000000A7E42BB6'. "#EC NOTEXT
   constants NOT_FOUND type SOTR_CONC
- value &apos;44F5C1AF5F5C09C200000000A7E42BB6&apos;. &quot;#EC NOTEXT
-  data MSG type STRING value &apos;44F7518323DB08BC02000000A7E42BB6&apos; .
+ value '44F5C1AF5F5C09C200000000A7E42BB6'. "#EC NOTEXT
+  data MSG type STRING value '44F7518323DB08BC02000000A7E42BB6' .
   constants LOCKED type SOTR_CONC
- value &apos;44F7518323DB08BC02000000A7E42BB6&apos;. &quot;#EC NOTEXT
+ value '44F7518323DB08BC02000000A7E42BB6'. "#EC NOTEXT
   constants NO_PLUGIN type SOTR_CONC
- value &apos;44F7C18C68D709C200000000A7E42BB6&apos;. &quot;#EC NOTEXT
+ value '44F7C18C68D709C200000000A7E42BB6'. "#EC NOTEXT
 
   methods CONSTRUCTOR
     importing
       !TEXTID like TEXTID optional
       !PREVIOUS like PREVIOUS optional
-      value(MSG) type STRING default &apos;44F7518323DB08BC02000000A7E42BB6&apos;
+      value(MSG) type STRING default '44F7518323DB08BC02000000A7E42BB6'
 .
-*&quot;* protected components of class ZCX_SAPLINK
-*&quot;* do not include other source files here!!!
+*"* protected components of class ZCX_SAPLINK
+*"* do not include other source files here!!!
 protected section.
-*&quot;* private components of class ZCX_SAPLINK
-*&quot;* do not include other source files here!!!
+*"* private components of class ZCX_SAPLINK
+*"* do not include other source files here!!!
 private section.
 ENDCLASS.
 CLASS ZSAPLINK DEFINITION
@@ -86,7 +79,7 @@ public section.
   abstract
     importing
       !IXMLDOCUMENT type ref to IF_IXML_DOCUMENT
-      !DEVCLASS type DEVCLASS default &apos;$TMP&apos;
+      !DEVCLASS type DEVCLASS default '$TMP'
       !OVERWRITE type FLAG optional
     returning
       value(NAME) type STRING
@@ -112,8 +105,8 @@ public section.
   abstract
     returning
       value(EXISTS) type FLAG .
-*&quot;* protected components of class ZSAPLINK
-*&quot;* do not include other source files here!!!
+*"* protected components of class ZSAPLINK
+*"* do not include other source files here!!!
 protected section.
 
   data OBJNAME type STRING .
@@ -163,13 +156,13 @@ protected section.
   final
     importing
       value(NODE) type ref to IF_IXML_ELEMENT
-      !DEVCLASS type DEVCLASS default &apos;$TMP&apos;
+      !DEVCLASS type DEVCLASS default '$TMP'
     exporting
       !CONCEPT type SOTR_TEXT-CONCEPT
     raising
       ZCX_SAPLINK .
-*&quot;* private components of class ZSAPLINK
-*&quot;* do not include other source files here!!!
+*"* private components of class ZSAPLINK
+*"* do not include other source files here!!!
 private section.
 
   data STREAMFACTORY type ref to IF_IXML_STREAM_FACTORY .
@@ -188,16 +181,16 @@ public section.
     redefinition .
   methods CREATEOBJECTFROMIXMLDOC
     redefinition .
-*&quot;* protected components of class ZSAPLINK_PROGRAM
-*&quot;* do not include other source files here!!!
+*"* protected components of class ZSAPLINK_PROGRAM
+*"* do not include other source files here!!!
 protected section.
 
   methods DELETEOBJECT
     redefinition .
   methods GETOBJECTTYPE
     redefinition .
-*&quot;* private components of class ZSAPLINK_PROGRAM
-*&quot;* do not include other source files here!!!
+*"* private components of class ZSAPLINK_PROGRAM
+*"* do not include other source files here!!!
 private section.
 
   methods CREATE_TEXTPOOL
@@ -253,16 +246,16 @@ public section.
     redefinition .
   methods CREATEOBJECTFROMIXMLDOC
     redefinition .
-*&quot;* protected components of class ZSAPLINK_CLASS
-*&quot;* do not include other source files here!!!
+*"* protected components of class ZSAPLINK_CLASS
+*"* do not include other source files here!!!
 protected section.
 
   methods DELETEOBJECT
     redefinition .
   methods GETOBJECTTYPE
     redefinition .
-*&quot;* private components of class ZSAPLINK_CLASS
-*&quot;* do not include other source files here!!!
+*"* private components of class ZSAPLINK_CLASS
+*"* do not include other source files here!!!
 private section.
 
   methods FINDIMPLEMENTINGCLASS
@@ -274,12 +267,12 @@ private section.
 ENDCLASS.
 CLASS ZCX_SAPLINK IMPLEMENTATION.
   method CONSTRUCTOR .
-  CALL METHOD SUPER-&gt;CONSTRUCTOR
+  CALL METHOD SUPER->CONSTRUCTOR
   EXPORTING
   TEXTID = TEXTID
   PREVIOUS = PREVIOUS
   .
-  me-&gt;MSG = MSG .
+  me->MSG = MSG .
   endmethod.
 ENDCLASS.
 CLASS ZSAPLINK IMPLEMENTATION.
@@ -307,22 +300,22 @@ CLASS ZSAPLINK IMPLEMENTATION.
 
     if sourceTable is not initial.
       loop at sourceTable into sTemp.
-        concatenate sourceString sTemp CL_ABAP_CHAR_UTILITIES=&gt;NEWLINE
+        concatenate sourceString sTemp CL_ABAP_CHAR_UTILITIES=>NEWLINE
           into sourceString.
       endloop.
     elseif pageTable is not initial.
       loop at pageTable into pageLine.
         concatenate sourceString pageLine-line
-          CL_ABAP_CHAR_UTILITIES=&gt;NEWLINE
+          CL_ABAP_CHAR_UTILITIES=>NEWLINE
           into sourceString.
       endloop.
     endif.
 
 * remove extra newline characters for conversion comparison consistency
     shift sourceString left deleting leading
-      CL_ABAP_CHAR_UTILITIES=&gt;NEWLINE.
+      CL_ABAP_CHAR_UTILITIES=>NEWLINE.
     shift sourceString right deleting trailing
-      CL_ABAP_CHAR_UTILITIES=&gt;NEWLINE.
+      CL_ABAP_CHAR_UTILITIES=>NEWLINE.
     shift sourceString left deleting leading space.
   endmethod.
 */---------------------------------------------------------------------\
@@ -344,7 +337,7 @@ CLASS ZSAPLINK IMPLEMENTATION.
 *|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
 *\---------------------------------------------------------------------/
   method BUILDTABLEFROMSTRING .
-    split source at CL_ABAP_CHAR_UTILITIES=&gt;NEWLINE
+    split source at CL_ABAP_CHAR_UTILITIES=>NEWLINE
       into table sourceTable.
   endmethod.
 */---------------------------------------------------------------------\
@@ -371,15 +364,15 @@ CLASS ZSAPLINK IMPLEMENTATION.
 *  clear className.
 *
 *  objName = name.
-*  meTypeDescr = CL_ABAP_TYPEDESCR=&gt;DESCRIBE_BY_OBJECT_REF( me ).
-*  className = meTypeDescr-&gt;get_relative_name( ).
+*  meTypeDescr = CL_ABAP_TYPEDESCR=>DESCRIBE_BY_OBJECT_REF( me ).
+*  className = meTypeDescr->get_relative_name( ).
 
     objName = name.
     translate objName to upper case.
 
-    ixml = cl_ixml=&gt;create( ).
-    xmlDoc = ixml-&gt;create_document( ).
-    streamFactory = ixml-&gt;CREATE_STREAM_FACTORY( ).
+    ixml = cl_ixml=>create( ).
+    xmlDoc = ixml->create_document( ).
+    streamFactory = ixml->CREATE_STREAM_FACTORY( ).
   endmethod.
 */---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
@@ -407,17 +400,17 @@ CLASS ZSAPLINK IMPLEMENTATION.
   data _tempString type string.
   data _printXMLDoc type ref to cl_xml_document.
   data _rc type sysubrc.
-    _ixml = cl_ixml=&gt;create( ).
-    _streamFactory = _ixml-&gt;CREATE_STREAM_FACTORY( ).
-    _outputStream = _streamFactory-&gt;CREATE_OSTREAM_CSTRING( _tempString ).
-    _renderer = _ixml-&gt;CREATE_RENDERER(
+    _ixml = cl_ixml=>create( ).
+    _streamFactory = _ixml->CREATE_STREAM_FACTORY( ).
+    _outputStream = _streamFactory->CREATE_OSTREAM_CSTRING( _tempString ).
+    _renderer = _ixml->CREATE_RENDERER(
       DOCUMENT = ixmlDocument OSTREAM = _outputStream ).
-    _renderer-&gt;SET_NORMALIZING( ).
-    _rc = _renderer-&gt;render( ).
+    _renderer->SET_NORMALIZING( ).
+    _rc = _renderer->render( ).
     create object _printXMLDoc.
-    _rc = _printXMLDoc-&gt;parse_string( _tempString ).
+    _rc = _printXMLDoc->parse_string( _tempString ).
 
-    while _tempString(1) &lt;&gt; &apos;&lt;&apos;.
+    while _tempString(1) <> '<'.
       shift _tempString left by 1 places.
     endwhile.
 
@@ -448,14 +441,14 @@ CLASS ZSAPLINK IMPLEMENTATION.
   data ixmlParser type ref to if_ixml_parser.
   data xmlDoc type ref to if_ixml_document.
 
-    ixml = cl_ixml=&gt;create( ).
-    xmlDoc = ixml-&gt;create_document( ).
-    streamFactory = ixml-&gt;CREATE_STREAM_FACTORY( ).
-    iStream = streamFactory-&gt;CREATE_ISTREAM_STRING( xmlString ).
-    iXMLParser = iXML-&gt;create_parser(  stream_factory = streamFactory
+    ixml = cl_ixml=>create( ).
+    xmlDoc = ixml->create_document( ).
+    streamFactory = ixml->CREATE_STREAM_FACTORY( ).
+    iStream = streamFactory->CREATE_ISTREAM_STRING( xmlString ).
+    iXMLParser = iXML->create_parser(  stream_factory = streamFactory
                                        istream        = iStream
                                        document       = xmlDoc ).
-    iXMLParser-&gt;parse( ).
+    iXMLParser->parse( ).
     ixmlDocument = xmlDoc.
   endmethod.
 */---------------------------------------------------------------------\
@@ -489,7 +482,7 @@ CLASS ZSAPLINK IMPLEMENTATION.
   data _ixml type ref to IF_IXML.
   data _XMLDOC type ref to IF_IXML_DOCUMENT.
 
-    CALL FUNCTION &apos;SOTR_GET_CONCEPT&apos;
+    CALL FUNCTION 'SOTR_GET_CONCEPT'
       EXPORTING
         concept              = otrguid
       IMPORTING
@@ -500,29 +493,29 @@ CLASS ZSAPLINK IMPLEMENTATION.
        NO_ENTRY_FOUND       = 1
        OTHERS               = 2
               .
-    IF sy-subrc &lt;&gt; 0.
+    IF sy-subrc <> 0.
       exit.
     ENDIF.
 
-    sotrHeader-paket = &apos;$TMP&apos;. &quot;change devclass to $TMP for exports
+    sotrHeader-paket = '$TMP'. "change devclass to $TMP for exports
 
 * Create xml doc
-    _ixml = cl_ixml=&gt;create( ).
-    _xmlDoc = _ixml-&gt;create_document( ).
-    streamFactory = _ixml-&gt;CREATE_STREAM_FACTORY( ).
+    _ixml = cl_ixml=>create( ).
+    _xmlDoc = _ixml->create_document( ).
+    streamFactory = _ixml->CREATE_STREAM_FACTORY( ).
 
 * Create parent node
-    rootNode = _xmlDoc-&gt;create_element( &apos;sotr&apos; ). &quot;OTR object type
-    clear sotrHeader-concept. &quot;ewH:33
+    rootNode = _xmlDoc->create_element( 'sotr' ). "OTR object type
+    clear sotrHeader-concept. "ewH:33
     setAttributesFromStructure( node = rootNode structure = sotrHeader ).
 
 * Create nodes for texts
     loop at sotrTextTable into sotrTextLine.
-      txtNode = _xmlDoc-&gt;create_element( &apos;sotrText&apos; ).
-      clear: sotrTextLine-concept, sotrTextLine-object. &quot;ewH:33
+      txtNode = _xmlDoc->create_element( 'sotrText' ).
+      clear: sotrTextLine-concept, sotrTextLine-object. "ewH:33
       setAttributesFromStructure(
         node = txtNode structure = sotrTextLine ).
-      rc = rootNode-&gt;append_child( txtNode ).
+      rc = rootNode->append_child( txtNode ).
     endloop.
 
     node = rootNode.
@@ -565,9 +558,9 @@ CLASS ZSAPLINK IMPLEMENTATION.
             structure = sotrHeader.
 
 * get OTR text info
-    filter = node-&gt;create_filter_name( &apos;sotrText&apos; ).
-    iterator = node-&gt;create_iterator_filtered( filter ).
-    txtNode ?= iterator-&gt;get_next( ).
+    filter = node->create_filter_name( 'sotrText' ).
+    iterator = node->create_iterator_filtered( filter ).
+    txtNode ?= iterator->get_next( ).
 
     while txtNode is not initial.
       clear sotrTextLine.
@@ -576,14 +569,14 @@ CLASS ZSAPLINK IMPLEMENTATION.
               node = txtNode
             changing
               structure = sotrTextLine.
-      clear: sotrTextLine-concept, sotrTextLine-object. &quot;ewH:33
+      clear: sotrTextLine-concept, sotrTextLine-object. "ewH:33
       append sotrTextLine to sotrTextTable.
-      txtNode ?= iterator-&gt;get_next( ).
+      txtNode ?= iterator->get_next( ).
     endwhile.
 
-* ewH:issue 33--&gt; in 6.40 and above, you cannot pass a default concept
+* ewH:issue 33--> in 6.40 and above, you cannot pass a default concept
 *  (otr) guid, so we will always create new
-*  CALL FUNCTION &apos;SOTR_GET_CONCEPT&apos;
+*  CALL FUNCTION 'SOTR_GET_CONCEPT'
 *    EXPORTING
 *      concept              = sotrHeader-concept
 **   IMPORTING
@@ -594,14 +587,14 @@ CLASS ZSAPLINK IMPLEMENTATION.
 *     NO_ENTRY_FOUND       = 1
 *     OTHERS               = 2
 *            .
-*  IF sy-subrc &lt;&gt; 1.
+*  IF sy-subrc <> 1.
 **   delete OTR if exists already
-*    CALL FUNCTION &apos;SOTR_DELETE_CONCEPT&apos;
+*    CALL FUNCTION 'SOTR_DELETE_CONCEPT'
 *      EXPORTING
 *        concept                     = sotrHeader-concept
 *     EXCEPTIONS
 *       NO_AUTHORIZATION            = 1
-*       NO_ENTRY_FOUND              = 2. &quot;who cares
+*       NO_ENTRY_FOUND              = 2. "who cares
 **       CONCEPT_USED                = 3
 **       NO_MASTER_LANGUAGE          = 4
 **       NO_SOURCE_SYSTEM            = 5
@@ -612,7 +605,7 @@ CLASS ZSAPLINK IMPLEMENTATION.
 **              .
 *    if sy-subrc = 1.
 *      raise exception type zcx_saplink
-*        exporting textid = zcx_saplink=&gt;not_authorized.
+*        exporting textid = zcx_saplink=>not_authorized.
 *    endif.
 *  ENDIF.
 
@@ -620,7 +613,7 @@ CLASS ZSAPLINK IMPLEMENTATION.
   data objectTable type SOTR_OBJECTS.
   data objectType type line of SOTR_OBJECTS.
 * Retrieve object type of OTR
-    call function &apos;SOTR_OBJECT_GET_OBJECTS&apos;
+    call function 'SOTR_OBJECT_GET_OBJECTS'
       exporting
         object_vector    = sotrHeader-objid_vec
       importing
@@ -633,7 +626,7 @@ CLASS ZSAPLINK IMPLEMENTATION.
 
 * create OTR
     sotrPaket-paket = devclass.
-    CALL FUNCTION &apos;SOTR_CREATE_CONCEPT&apos;
+    CALL FUNCTION 'SOTR_CREATE_CONCEPT'
       EXPORTING
         paket                               = sotrPaket
         crea_lan                            = sotrHeader-crea_lan
@@ -643,9 +636,9 @@ CLASS ZSAPLINK IMPLEMENTATION.
         entries                             = sotrTextTable
 *     FLAG_CORRECTION_ENTRY               =
 *     IN_UPDATE_TASK                      =
-*      CONCEPT_DEFAULT                     = sotrHeader-concept &quot;ewH:33
+*      CONCEPT_DEFAULT                     = sotrHeader-concept "ewH:33
       IMPORTING
-        CONCEPT                             = concept &quot;ewH:33
+        CONCEPT                             = concept "ewH:33
 *   EXCEPTIONS
 *     PACKAGE_MISSING                     = 1
 *     CREA_LAN_MISSING                    = 2
@@ -667,7 +660,7 @@ CLASS ZSAPLINK IMPLEMENTATION.
 *     NO_ENTRY_FOUND                      = 18
 *     OTHERS                              = 19
               .
-    IF sy-subrc &lt;&gt; 0.
+    IF sy-subrc <> 0.
 *   MESSAGE ID SY-MSGID TYPE SY-MSGTY NUMBER SY-MSGNO
 *           WITH SY-MSGV1 SY-MSGV2 SY-MSGV3 SY-MSGV4.
     ENDIF.
@@ -699,13 +692,13 @@ CLASS ZSAPLINK IMPLEMENTATION.
   data printXMLDoc type ref to cl_xml_document.
   data rc type sysubrc.
 
-    streamFactory = ixml-&gt;CREATE_STREAM_FACTORY( ).
-    outputStream = streamFactory-&gt;CREATE_OSTREAM_CSTRING( tempString ).
-    renderer = ixml-&gt;CREATE_RENDERER(
+    streamFactory = ixml->CREATE_STREAM_FACTORY( ).
+    outputStream = streamFactory->CREATE_OSTREAM_CSTRING( tempString ).
+    renderer = ixml->CREATE_RENDERER(
       DOCUMENT = xmlDoc OSTREAM = outputStream ).
-    rc = renderer-&gt;render( ).
+    rc = renderer->render( ).
     create object printXMLDoc.
-    rc = printXMLDoc-&gt;parse_string( tempString ).
+    rc = printXMLDoc->parse_string( tempString ).
     xml = tempString.
   endmethod.
 */---------------------------------------------------------------------\
@@ -733,16 +726,16 @@ CLASS ZSAPLINK IMPLEMENTATION.
   data AttrNode type ref to IF_IXML_NODE.
   data nodeName type string.
 
-    rootNode ?= ixmlDocument-&gt;GET_ROOT_ELEMENT( ).
+    rootNode ?= ixmlDocument->GET_ROOT_ELEMENT( ).
 
 * get object type
-    objTypeName = rootNode-&gt;GET_NAME( ).
+    objTypeName = rootNode->GET_NAME( ).
     translate objTypeName to upper case.
 
 * get object name
-    rootAttr = rootNode-&gt;GET_ATTRIBUTES( ).
-    AttrNode = rootAttr-&gt;GET_ITEM( 0 ).
-    objName = AttrNode-&gt;GET_VALUE( ).
+    rootAttr = rootNode->GET_ATTRIBUTES( ).
+    AttrNode = rootAttr->GET_ITEM( 0 ).
+    objName = AttrNode->GET_VALUE( ).
   endmethod.
 */---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
@@ -783,21 +776,21 @@ CLASS ZSAPLINK IMPLEMENTATION.
     refresh objectTable.
 
     select * from VSEOEXTEND into table classList
-      where REFCLSNAME = &apos;ZSAPLINK&apos;
-      and version = &apos;1&apos;.
+      where REFCLSNAME = 'ZSAPLINK'
+      and version = '1'.
 
     loop at classList into classLine.
       clsName = classLine-clsName.
       create object classObject type (clsName)
-        exporting name = &apos;foo&apos;.
-      objtype = classObject-&gt;getObjectType( ).
+        exporting name = 'foo'.
+      objtype = classObject->getObjectType( ).
       clear tableTypeLine.
       refresh tableTypesIn.
 
       tableTypeLine-object = objtype.
       append tableTypeLine to tableTypesIn.
 
-      CALL FUNCTION &apos;TRINT_OBJECT_TABLE&apos;
+      CALL FUNCTION 'TRINT_OBJECT_TABLE'
         TABLES
           TT_TYPES_IN             = tableTypesIn
           tt_types_out            = tableTypesOut.
@@ -833,25 +826,25 @@ CLASS ZSAPLINK IMPLEMENTATION.
   data attributeNode type ref to if_ixml_node.
   data value type string.
   data name type string.
-  field-symbols &lt;value&gt; type any.
+  field-symbols <value> type any.
 
     clear structure.
-    attributeList = node-&gt;GET_ATTRIBUTES( ).
-    nodeIterator = attributeList-&gt;create_iterator( ).
-    attributeNode = nodeIterator-&gt;get_next( ).
+    attributeList = node->GET_ATTRIBUTES( ).
+    nodeIterator = attributeList->create_iterator( ).
+    attributeNode = nodeIterator->get_next( ).
     while attributeNode is not initial.
-      name = attributeNode-&gt;get_name( ).
-      if name = &apos;VERSION&apos; and preserveVersion is initial. &quot;ewh:issue 45
-*    if name = &apos;VERSION&apos;.
-        value = &apos;0&apos;.
+      name = attributeNode->get_name( ).
+      if name = 'VERSION' and preserveVersion is initial. "ewh:issue 45
+*    if name = 'VERSION'.
+        value = '0'.
       else.
-        value = attributeNode-&gt;get_value( ).
+        value = attributeNode->get_value( ).
       endif.
-      assign component name of structure structure to &lt;value&gt;.
+      assign component name of structure structure to <value>.
       if sy-subrc = 0.
-        &lt;value&gt; = value.
+        <value> = value.
       endif.
-      attributeNode = nodeIterator-&gt;get_next( ).
+      attributeNode = nodeIterator->get_next( ).
     endwhile.
 
   endmethod.
@@ -869,16 +862,16 @@ CLASS ZSAPLINK IMPLEMENTATION.
 
 
 
-*    .-&quot;-.
-*  .&apos;=^=^=&apos;.
+*    .-"-.
+*  .'=^=^='.
 * /=^=^=^=^=\
 *:^=SAPLINK=^;
 *|^ EASTER  ^|
 *:^=^EGG^=^=^:
 * \=^=^=^=^=/
-*  `.=^=^=.&apos;
+*  `.=^=^=.'
 *    `~~~`
-* Don&apos;t like the way we did something?
+* Don't like the way we did something?
 * Help us fix it!  Tell us what you think!
 * http://saplink.org
 */---------------------------------------------------------------------\
@@ -905,32 +898,32 @@ CLASS ZSAPLINK IMPLEMENTATION.
   int = int.
   data structDescr type ref to cl_abap_structDescr.
   data aComponent type abap_compdescr.
-  field-symbols &lt;fieldValue&gt; type any.
+  field-symbols <fieldValue> type any.
   data rc type sysubrc.
   data sName type string.
   data sValue type string.
 
-    structDescr ?= cl_abap_structDescr=&gt;describe_by_data( structure ).
-    loop at structDescr-&gt;components into aComponent.
+    structDescr ?= cl_abap_structDescr=>describe_by_data( structure ).
+    loop at structDescr->components into aComponent.
       assign component aComponent-name of structure
-        structure to &lt;fieldValue&gt;.
+        structure to <fieldValue>.
       if sy-subrc = 0.
         sName = aComponent-name.
-*      sValue = &lt;fieldValue&gt;.
+*      sValue = <fieldValue>.
 *     for certain attributes, set to a standard for exporting
         case sName.
-*        when &apos;VERSION&apos;. &quot;version should always export as inactive
-*          sValue = &apos;0&apos;. &quot;commented by ewH: issue 45
-          when &apos;DEVCLASS&apos;. &quot;development class should always be $TMP
-            sValue = &apos;$TMP&apos;.
+*        when 'VERSION'. "version should always export as inactive
+*          sValue = '0'. "commented by ewH: issue 45
+          when 'DEVCLASS'. "development class should always be $TMP
+            sValue = '$TMP'.
           when others.
-            sValue = &lt;fieldValue&gt;.
+            sValue = <fieldValue>.
         endcase.
         if sValue is not initial.
-          rc = Node-&gt;set_attribute( name = sName value = sValue ).
+          rc = Node->set_attribute( name = sName value = sValue ).
         endif.
       else.
-* WHAT?&gt;!??
+* WHAT?>!??
       endif.
     endloop.
   endmethod.
@@ -956,11 +949,11 @@ CLASS ZSAPLINK IMPLEMENTATION.
   data iStream type ref to if_ixml_istream.
   data ixmlParser type ref to if_ixml_parser.
 
-    iStream = streamFactory-&gt;CREATE_ISTREAM_STRING( xmlData ).
-    iXMLParser = iXML-&gt;create_parser(  stream_factory = streamFactory
+    iStream = streamFactory->CREATE_ISTREAM_STRING( xmlData ).
+    iXMLParser = iXML->create_parser(  stream_factory = streamFactory
                                        istream        = iStream
                                        document       = XMLdoc ).
-    iXMLParser-&gt;parse( ).
+    iXMLParser->parse( ).
 
   endmethod.
 ENDCLASS.
@@ -987,7 +980,7 @@ CLASS ZSAPLINK_PROGRAM IMPLEMENTATION.
 
     select single name from trdir into objName where NAME = objName.
     if sy-subrc = 0.
-      exists = &apos;X&apos;.
+      exists = 'X'.
     endif.
 
   endmethod.
@@ -1023,8 +1016,8 @@ CLASS ZSAPLINK_PROGRAM IMPLEMENTATION.
   data _objType type string.
 
     _objType = getObjectType( ).
-    rootNode = xmlDoc-&gt;create_element( _objType ).
-    sourceNode = xmlDoc-&gt;create_element( &apos;source&apos; ).
+    rootNode = xmlDoc->create_element( _objType ).
+    sourceNode = xmlDoc->create_element( 'source' ).
     select single * from trdir into progAttribs where NAME = objName.
     if sy-subrc = 0.
       setAttributesFromStructure( node = rootNode structure =  progAttribs
@@ -1032,20 +1025,20 @@ CLASS ZSAPLINK_PROGRAM IMPLEMENTATION.
       _objName = objName.
       read report _objName into progSource.
       sourceString = buildSourceString( sourceTable = progSource ).
-      rc = sourceNode-&gt;IF_IXML_NODE~SET_VALUE( sourceString ).
+      rc = sourceNode->IF_IXML_NODE~SET_VALUE( sourceString ).
       textPoolNode = get_textPool( ).
-      rc = rootNOde-&gt;append_child( textPoolNode ).
+      rc = rootNOde->append_child( textPoolNode ).
       dynproNode = get_dynpro( ).
-      rc = rootNode-&gt;append_child( dynproNode ).
+      rc = rootNode->append_child( dynproNode ).
       statusNode = get_pfstatus( ).
-      rc = rootNode-&gt;append_child( statusNode ).
-      rc = rootNode-&gt;append_child( sourceNode ).
-      rc = xmldoc-&gt;append_child( rootNode ).
+      rc = rootNode->append_child( statusNode ).
+      rc = rootNode->append_child( sourceNode ).
+      rc = xmldoc->append_child( rootNode ).
       ixmlDocument = xmlDoc.
     else.
       clear ixmlDocument.
       raise exception type zcx_saplink
-        exporting textid = zcx_saplink=&gt;not_found.
+        exporting textid = zcx_saplink=>not_found.
     endif.
   endmethod.
 */---------------------------------------------------------------------\
@@ -1082,10 +1075,10 @@ CLASS ZSAPLINK_PROGRAM IMPLEMENTATION.
     data _objtype type string.
     data checkexists type flag.
 
-*if sy-uname &lt;&gt; &apos;USDWM01&apos;.
+*if sy-uname <> 'USDWM01'.
 *    _objType = getObjectType( ).
 *    xmlDoc = ixmlDocument.
-*    rootNode = xmlDoc-&gt;find_from_name( _objType ).
+*    rootNode = xmlDoc->find_from_name( _objType ).
 *    call method GETSTRUCTUREFROMATTRIBUTES
 *          exporting
 *            node = rootNode
@@ -1097,23 +1090,23 @@ CLASS ZSAPLINK_PROGRAM IMPLEMENTATION.
 *    select single name from trdir into objName where NAME = objName.
 *    if sy-subrc = 0.
 *      raise exception type zcx_saplink
-*        exporting textid = zcx_saplink=&gt;existing.
+*        exporting textid = zcx_saplink=>existing.
 *    endif.
 *
-*    sourceNode = rootNode-&gt;find_from_name( &apos;source&apos; ).
-*    source = sourceNode-&gt;get_value( ).
+*    sourceNode = rootNode->find_from_name( 'source' ).
+*    source = sourceNode->get_value( ).
 *    sourceTable = BUILDTABLEFROMSTRING( source ).
 *    insert report progAttribs-NAME from sourceTable.
 *
 *    commit work.
 *
-*    call function &apos;RS_INSERT_INTO_WORKING_AREA&apos;
+*    call function 'RS_INSERT_INTO_WORKING_AREA'
 *      EXPORTING
-*        object            = &apos;REPS&apos;
+*        object            = 'REPS'
 *        obj_name          = aobjName
 *      EXCEPTIONS
 *        wrong_object_name = 1.
-*    if sy-subrc &lt;&gt; 0.
+*    if sy-subrc <> 0.
 *
 *    endif.
 *
@@ -1121,7 +1114,7 @@ CLASS ZSAPLINK_PROGRAM IMPLEMENTATION.
 
     _objtype = getobjecttype( ).
     xmldoc = ixmldocument.
-    rootnode = xmldoc-&gt;find_from_name( _objtype ).
+    rootnode = xmldoc->find_from_name( _objtype ).
     call method getstructurefromattributes
       exporting
         node      = rootnode
@@ -1131,16 +1124,16 @@ CLASS ZSAPLINK_PROGRAM IMPLEMENTATION.
 
 *  check if object exists
 *  select single name from trdir into objName where NAME = objName.
-*  if sy-subrc = 0 and overwrite &lt;&gt; &apos;X&apos;.
+*  if sy-subrc = 0 and overwrite <> 'X'.
 *    raise exception type zcx_saplink
-*      exporting textid = zcx_saplink=&gt;existing.
+*      exporting textid = zcx_saplink=>existing.
 *  endif.
 
     checkexists = checkexists( ).
     if checkexists is not initial.
       if overwrite is initial.
         raise exception type zcx_saplink
-          exporting textid = zcx_saplink=&gt;existing.
+          exporting textid = zcx_saplink=>existing.
       else.
 *     delete object for new install
         deleteobject( ).
@@ -1150,15 +1143,15 @@ CLASS ZSAPLINK_PROGRAM IMPLEMENTATION.
 
     enqueue_abap( ).
     transport_copy( author = progattribs-cnam devclass = devclass ).
-    sourcenode = rootnode-&gt;find_from_name( &apos;source&apos; ).
-    source = sourcenode-&gt;get_value( ).
+    sourcenode = rootnode->find_from_name( 'source' ).
+    source = sourcenode->get_value( ).
     sourcetable = buildtablefromstring( source ).
     create_source( source = sourcetable attribs = progattribs ).
-    textnode = rootnode-&gt;find_from_name( &apos;textPool&apos; ).
+    textnode = rootnode->find_from_name( 'textPool' ).
     create_textpool( textnode ).
-    dynpnode = rootnode-&gt;find_from_name( &apos;dynpros&apos; ).
+    dynpnode = rootnode->find_from_name( 'dynpros' ).
     create_dynpro( dynpnode ).
-    statnode = rootnode-&gt;find_from_name( &apos;pfstatus&apos; ).
+    statnode = rootnode->find_from_name( 'pfstatus' ).
     create_pfstatus( statnode ).
 
     dequeue_abap( ).
@@ -1235,10 +1228,10 @@ CLASS ZSAPLINK_PROGRAM IMPLEMENTATION.
     check dynpros_node is not initial.
 
     free: dynpro_filter, dynpro_iterator, dynpro_node.
-    dynpro_filter = dynpros_node-&gt;create_filter_name( &apos;dynpro&apos; ).
+    dynpro_filter = dynpros_node->create_filter_name( 'dynpro' ).
     dynpro_iterator =
-          dynpros_node-&gt;create_iterator_filtered( dynpro_filter ).
-    dynpro_node ?= dynpro_iterator-&gt;get_next( ).
+          dynpros_node->create_iterator_filtered( dynpro_filter ).
+    dynpro_node ?= dynpro_iterator->get_next( ).
 
     while dynpro_node is not initial.
 
@@ -1257,10 +1250,10 @@ CLASS ZSAPLINK_PROGRAM IMPLEMENTATION.
 
 * Retrieve field list
       free: dynfldl_filter, dynfldl_iterator, dynfldl_node.
-      dynfldl_filter = dynpro_node-&gt;create_filter_name( &apos;dynprofield&apos; ).
+      dynfldl_filter = dynpro_node->create_filter_name( 'dynprofield' ).
       dynfldl_iterator =
-          dynpro_node-&gt;create_iterator_filtered( dynfldl_filter ).
-      dynfldl_node ?= dynfldl_iterator-&gt;get_next( ).
+          dynpro_node->create_iterator_filtered( dynfldl_filter ).
+      dynfldl_node ?= dynfldl_iterator->get_next( ).
       while dynfldl_node is not initial.
         call method getstructurefromattributes
           exporting
@@ -1268,15 +1261,15 @@ CLASS ZSAPLINK_PROGRAM IMPLEMENTATION.
           changing
             structure = xdyn_fldl.
         append xdyn_fldl to idyn_fldl.
-        dynfldl_node ?= dynfldl_iterator-&gt;get_next( ).
+        dynfldl_node ?= dynfldl_iterator->get_next( ).
       endwhile.
 
 * Retrieve matchcode data.
       free: dynmcod_filter, dynmcod_iterator, dynmcod_node.
-      dynmcod_filter = dynpro_node-&gt;create_filter_name( &apos;dynprofield&apos; ).
+      dynmcod_filter = dynpro_node->create_filter_name( 'dynprofield' ).
       dynmcod_iterator =
-           dynpro_node-&gt;create_iterator_filtered( dynmcod_filter ).
-      dynmcod_node ?= dynmcod_iterator-&gt;get_next( ).
+           dynpro_node->create_iterator_filtered( dynmcod_filter ).
+      dynmcod_node ?= dynmcod_iterator->get_next( ).
       while dynmcod_node is not initial.
         call method getstructurefromattributes
           exporting
@@ -1284,30 +1277,30 @@ CLASS ZSAPLINK_PROGRAM IMPLEMENTATION.
           changing
             structure = xdyn_mcod.
         append xdyn_mcod to idyn_mcod.
-        dynmcod_node ?= dynmcod_iterator-&gt;get_next( ).
+        dynmcod_node ?= dynmcod_iterator->get_next( ).
       endwhile.
 
 * retieve flow logic source.
       clear xdynpro_flow_source.  refresh idynpro_flow_source.
       clear xdyn_flow.            refresh idyn_flow.
       free dynflow_node.
-      dynflow_node = dynpro_node-&gt;find_from_name( &apos;dynproflowsource&apos; ).
-      xdynpro_flow_source  = dynflow_node-&gt;get_value( ).
+      dynflow_node = dynpro_node->find_from_name( 'dynproflowsource' ).
+      xdynpro_flow_source  = dynflow_node->get_value( ).
       idynpro_flow_source = buildtablefromstring( xdynpro_flow_source ).
       loop at idynpro_flow_source into xdyn_flow.
         append xdyn_flow  to idyn_flow.
       endloop.
 
 * Build dynpro from data
-      call function &apos;RPY_DYNPRO_INSERT_NATIVE&apos;
+      call function 'RPY_DYNPRO_INSERT_NATIVE'
         exporting
-*       suppress_corr_checks           = &apos; &apos;
-*       CORRNUM                        = &apos; &apos;
+*       suppress_corr_checks           = ' '
+*       CORRNUM                        = ' '
           header                         = xdyn_head
           dynprotext                     = xdyn_text
-*       SUPPRESS_EXIST_CHECKS          = &apos; &apos;
-*       USE_CORRNUM_IMMEDIATEDLY       = &apos; &apos;
-*       SUPPRESS_COMMIT_WORK           = &apos; &apos;
+*       SUPPRESS_EXIST_CHECKS          = ' '
+*       USE_CORRNUM_IMMEDIATEDLY       = ' '
+*       SUPPRESS_COMMIT_WORK           = ' '
         tables
           fieldlist                      = idyn_fldl
           flowlogic                      = idyn_flow
@@ -1318,12 +1311,12 @@ CLASS ZSAPLINK_PROGRAM IMPLEMENTATION.
           program_not_exists             = 3
           not_executed                   = 4
           others                         = 5.
-      if sy-subrc &lt;&gt; 0.
+      if sy-subrc <> 0.
         raise exception type zcx_saplink
-          exporting textid = zcx_saplink=&gt;system_error.
+          exporting textid = zcx_saplink=>system_error.
       endif.
 
-      dynpro_node ?= dynpro_iterator-&gt;get_next( ).
+      dynpro_node ?= dynpro_iterator->get_next( ).
 
     endwhile.
 
@@ -1389,9 +1382,9 @@ CLASS ZSAPLINK_PROGRAM IMPLEMENTATION.
 
 * read pfstatus_sta node
     free: filter, iterator, node.
-    filter = stat_node-&gt;create_filter_name( &apos;pfstatus_sta&apos; ).
-    iterator = stat_node-&gt;create_iterator_filtered( filter ).
-    node ?= iterator-&gt;get_next( ).
+    filter = stat_node->create_filter_name( 'pfstatus_sta' ).
+    iterator = stat_node->create_iterator_filtered( filter ).
+    node ?= iterator->get_next( ).
     while node is not initial.
       call method getstructurefromattributes
         exporting
@@ -1399,14 +1392,14 @@ CLASS ZSAPLINK_PROGRAM IMPLEMENTATION.
         changing
           structure = xsta.
       append xsta to ista.
-      node ?= iterator-&gt;get_next( ).
+      node ?= iterator->get_next( ).
     endwhile.
 
 * read pfstatus_fun node
     free: filter, iterator, node.
-    filter = stat_node-&gt;create_filter_name( &apos;pfstatus_fun&apos; ).
-    iterator = stat_node-&gt;create_iterator_filtered( filter ).
-    node ?= iterator-&gt;get_next( ).
+    filter = stat_node->create_filter_name( 'pfstatus_fun' ).
+    iterator = stat_node->create_iterator_filtered( filter ).
+    node ?= iterator->get_next( ).
     while node is not initial.
       call method getstructurefromattributes
         exporting
@@ -1414,14 +1407,14 @@ CLASS ZSAPLINK_PROGRAM IMPLEMENTATION.
         changing
           structure = xfun.
       append xfun to ifun.
-      node ?= iterator-&gt;get_next( ).
+      node ?= iterator->get_next( ).
     endwhile.
 
 * read pfstatus_men node
     free: filter, iterator, node.
-    filter = stat_node-&gt;create_filter_name( &apos;pfstatus_men&apos; ).
-    iterator = stat_node-&gt;create_iterator_filtered( filter ).
-    node ?= iterator-&gt;get_next( ).
+    filter = stat_node->create_filter_name( 'pfstatus_men' ).
+    iterator = stat_node->create_iterator_filtered( filter ).
+    node ?= iterator->get_next( ).
     while node is not initial.
       call method getstructurefromattributes
         exporting
@@ -1429,14 +1422,14 @@ CLASS ZSAPLINK_PROGRAM IMPLEMENTATION.
         changing
           structure = xmen.
       append xmen to imen.
-      node ?= iterator-&gt;get_next( ).
+      node ?= iterator->get_next( ).
     endwhile.
 
 * read pfstatus_mtx node
     free: filter, iterator, node.
-    filter = stat_node-&gt;create_filter_name( &apos;pfstatus_mtx&apos; ).
-    iterator = stat_node-&gt;create_iterator_filtered( filter ).
-    node ?= iterator-&gt;get_next( ).
+    filter = stat_node->create_filter_name( 'pfstatus_mtx' ).
+    iterator = stat_node->create_iterator_filtered( filter ).
+    node ?= iterator->get_next( ).
     while node is not initial.
       call method getstructurefromattributes
         exporting
@@ -1444,14 +1437,14 @@ CLASS ZSAPLINK_PROGRAM IMPLEMENTATION.
         changing
           structure = xmtx.
       append xmtx to imtx.
-      node ?= iterator-&gt;get_next( ).
+      node ?= iterator->get_next( ).
     endwhile.
 
 * read pfstatus_act node
     free: filter, iterator, node.
-    filter = stat_node-&gt;create_filter_name( &apos;pfstatus_act&apos; ).
-    iterator = stat_node-&gt;create_iterator_filtered( filter ).
-    node ?= iterator-&gt;get_next( ).
+    filter = stat_node->create_filter_name( 'pfstatus_act' ).
+    iterator = stat_node->create_iterator_filtered( filter ).
+    node ?= iterator->get_next( ).
     while node is not initial.
       call method getstructurefromattributes
         exporting
@@ -1459,14 +1452,14 @@ CLASS ZSAPLINK_PROGRAM IMPLEMENTATION.
         changing
           structure = xact.
       append xact to iact.
-      node ?= iterator-&gt;get_next( ).
+      node ?= iterator->get_next( ).
     endwhile.
 
 * read pfstatus_but node
     free: filter, iterator, node.
-    filter = stat_node-&gt;create_filter_name( &apos;pfstatus_but&apos; ).
-    iterator = stat_node-&gt;create_iterator_filtered( filter ).
-    node ?= iterator-&gt;get_next( ).
+    filter = stat_node->create_filter_name( 'pfstatus_but' ).
+    iterator = stat_node->create_iterator_filtered( filter ).
+    node ?= iterator->get_next( ).
     while node is not initial.
       call method getstructurefromattributes
         exporting
@@ -1474,14 +1467,14 @@ CLASS ZSAPLINK_PROGRAM IMPLEMENTATION.
         changing
           structure = xbut.
       append xbut to ibut.
-      node ?= iterator-&gt;get_next( ).
+      node ?= iterator->get_next( ).
     endwhile.
 
 * read pfstatus_pfk node
     free: filter, iterator, node.
-    filter = stat_node-&gt;create_filter_name( &apos;pfstatus_pfk&apos; ).
-    iterator = stat_node-&gt;create_iterator_filtered( filter ).
-    node ?= iterator-&gt;get_next( ).
+    filter = stat_node->create_filter_name( 'pfstatus_pfk' ).
+    iterator = stat_node->create_iterator_filtered( filter ).
+    node ?= iterator->get_next( ).
     while node is not initial.
       call method getstructurefromattributes
         exporting
@@ -1489,14 +1482,14 @@ CLASS ZSAPLINK_PROGRAM IMPLEMENTATION.
         changing
           structure = xpfk.
       append xpfk to ipfk.
-      node ?= iterator-&gt;get_next( ).
+      node ?= iterator->get_next( ).
     endwhile.
 
 * read pfstatus_set node
     free: filter, iterator, node.
-    filter = stat_node-&gt;create_filter_name( &apos;pfstatus_set&apos; ).
-    iterator = stat_node-&gt;create_iterator_filtered( filter ).
-    node ?= iterator-&gt;get_next( ).
+    filter = stat_node->create_filter_name( 'pfstatus_set' ).
+    iterator = stat_node->create_iterator_filtered( filter ).
+    node ?= iterator->get_next( ).
     while node is not initial.
       call method getstructurefromattributes
         exporting
@@ -1504,14 +1497,14 @@ CLASS ZSAPLINK_PROGRAM IMPLEMENTATION.
         changing
           structure = xset.
       append xset to iset.
-      node ?= iterator-&gt;get_next( ).
+      node ?= iterator->get_next( ).
     endwhile.
 
 * read pfstatus_doc node
     free: filter, iterator, node.
-    filter = stat_node-&gt;create_filter_name( &apos;pfstatus_doc&apos; ).
-    iterator = stat_node-&gt;create_iterator_filtered( filter ).
-    node ?= iterator-&gt;get_next( ).
+    filter = stat_node->create_filter_name( 'pfstatus_doc' ).
+    iterator = stat_node->create_iterator_filtered( filter ).
+    node ?= iterator->get_next( ).
     while node is not initial.
       call method getstructurefromattributes
         exporting
@@ -1519,14 +1512,14 @@ CLASS ZSAPLINK_PROGRAM IMPLEMENTATION.
         changing
           structure = xdoc.
       append xdoc to idoc.
-      node ?= iterator-&gt;get_next( ).
+      node ?= iterator->get_next( ).
     endwhile.
 
 * read pfstatus_tit node
     free: filter, iterator, node.
-    filter = stat_node-&gt;create_filter_name( &apos;pfstatus_tit&apos; ).
-    iterator = stat_node-&gt;create_iterator_filtered( filter ).
-    node ?= iterator-&gt;get_next( ).
+    filter = stat_node->create_filter_name( 'pfstatus_tit' ).
+    iterator = stat_node->create_iterator_filtered( filter ).
+    node ?= iterator->get_next( ).
     while node is not initial.
       call method getstructurefromattributes
         exporting
@@ -1534,14 +1527,14 @@ CLASS ZSAPLINK_PROGRAM IMPLEMENTATION.
         changing
           structure = xtit.
       append xtit to itit.
-      node ?= iterator-&gt;get_next( ).
+      node ?= iterator->get_next( ).
     endwhile.
 
 * read pfstatus_biv node
     free: filter, iterator, node.
-    filter = stat_node-&gt;create_filter_name( &apos;pfstatus_biv&apos; ).
-    iterator = stat_node-&gt;create_iterator_filtered( filter ).
-    node ?= iterator-&gt;get_next( ).
+    filter = stat_node->create_filter_name( 'pfstatus_biv' ).
+    iterator = stat_node->create_iterator_filtered( filter ).
+    node ?= iterator->get_next( ).
     while node is not initial.
       call method getstructurefromattributes
         exporting
@@ -1549,24 +1542,24 @@ CLASS ZSAPLINK_PROGRAM IMPLEMENTATION.
         changing
           structure = xbiv.
       append xbiv to ibiv.
-      node ?= iterator-&gt;get_next( ).
+      node ?= iterator->get_next( ).
     endwhile.
 
 * Update the gui status
     _program = _objname.
 
-    xtrkey-obj_type = &apos;PROG&apos;.
+    xtrkey-obj_type = 'PROG'.
     xtrkey-obj_name = _program.
-    xtrkey-sub_type = &apos;CUAD&apos;.
+    xtrkey-sub_type = 'CUAD'.
     xtrkey-sub_name = _program.
 
-    call function &apos;RS_CUA_INTERNAL_WRITE&apos;
+    call function 'RS_CUA_INTERNAL_WRITE'
       exporting
         program   = _program
         language  = sy-langu
         tr_key    = xtrkey
         adm       = xadm
-        state     = &apos;I&apos;
+        state     = 'I'
       tables
         sta       = ista
         fun       = ifun
@@ -1583,9 +1576,9 @@ CLASS ZSAPLINK_PROGRAM IMPLEMENTATION.
         not_found = 1
         others    = 2.
 
-    if sy-subrc &lt;&gt; 0.
+    if sy-subrc <> 0.
       raise exception type zcx_saplink
-        exporting textid = zcx_saplink=&gt;system_error.
+        exporting textid = zcx_saplink=>system_error.
     endif.
 
   endmethod.
@@ -1615,23 +1608,23 @@ CLASS ZSAPLINK_PROGRAM IMPLEMENTATION.
   data miniReport type table_of_strings.
 
     _objName = objName.
-    call function &apos;RS_INSERT_INTO_WORKING_AREA&apos;
+    call function 'RS_INSERT_INTO_WORKING_AREA'
           exporting
-               OBJECT   = &apos;REPS&apos;
+               OBJECT   = 'REPS'
                OBJ_NAME = _objName
           exceptions
                WRONG_OBJECT_NAME = 1.
-     INSERT REPORT _objName FROM source STATE &apos;I&apos;
-       program type attribs-subc.  &quot;added to handle includes, etc.
-     MOVE &apos;I&apos; TO progline-STATE.
+     INSERT REPORT _objName FROM source STATE 'I'
+       program type attribs-subc.  "added to handle includes, etc.
+     MOVE 'I' TO progline-STATE.
      move-corresponding attribs to progline.
      modify progdir from progline.
 *  Are you kidding me?!?  No idea why you need to do this!!
-     CONCATENATE &apos;REPORT&apos; _objName &apos;.&apos; INTO reportLine SEPARATED BY SPACE.
+     CONCATENATE 'REPORT' _objName '.' INTO reportLine SEPARATED BY SPACE.
      append reportline to miniReport.
-     INSERT REPORT _objName FROM miniReport STATE &apos;A&apos;
-       program type attribs-subc. &quot;added to handle includes, etc.
-     MOVE &apos;A&apos; TO progline-STATE.
+     INSERT REPORT _objName FROM miniReport STATE 'A'
+       program type attribs-subc. "added to handle includes, etc.
+     MOVE 'A' TO progline-STATE.
      modify progdir from progline.
 
   endmethod.
@@ -1670,24 +1663,24 @@ CLASS ZSAPLINK_PROGRAM IMPLEMENTATION.
 
     _objName = objName.
 
-    filter = textPoolNode-&gt;create_filter_name( &apos;language&apos; ).
-    langIterator = textPoolNode-&gt;create_iterator_filtered( filter ).
-    langNode ?= langIterator-&gt;get_next( ).
+    filter = textPoolNode->create_filter_name( 'language' ).
+    langIterator = textPoolNode->create_iterator_filtered( filter ).
+    langNode ?= langIterator->get_next( ).
 
     while langNode is not initial.
-      langNodeExists = &apos;X&apos;.
-      CALL FUNCTION &apos;RS_INSERT_INTO_WORKING_AREA&apos;
+      langNodeExists = 'X'.
+      CALL FUNCTION 'RS_INSERT_INTO_WORKING_AREA'
            EXPORTING
-                OBJECT   = &apos;REPT&apos;
+                OBJECT   = 'REPT'
                 OBJ_NAME = _objName
            EXCEPTIONS
                 OTHERS   = 0.
 
       refresh textPoolTable.
-      textIterator = langNode-&gt;create_iterator( ).
-      aTextNode ?= textIterator-&gt;get_next( ).
+      textIterator = langNode->create_iterator( ).
+      aTextNode ?= textIterator->get_next( ).
 *For some reason the 1st one is blank... not sure why.
-      aTextNode ?= textIterator-&gt;get_next( ).
+      aTextNode ?= textIterator->get_next( ).
       while aTextNode is not initial.
         call method GETSTRUCTUREFROMATTRIBUTES
               exporting
@@ -1695,23 +1688,23 @@ CLASS ZSAPLINK_PROGRAM IMPLEMENTATION.
               changing
                 structure = textPoolRow.
         append textPoolRow to textPoolTable.
-        aTextNode ?= textIterator-&gt;get_next( ).
+        aTextNode ?= textIterator->get_next( ).
       endwhile.
       if textPoolTable is not initial.
-        lang = langNode-&gt;get_attribute( &apos;SPRAS&apos; ).
+        lang = langNode->get_attribute( 'SPRAS' ).
         if lang = sy-langu.
-          logonLanguageExists = &apos;X&apos;.
-          _state = &apos;I&apos;.
+          logonLanguageExists = 'X'.
+          _state = 'I'.
         else.
 *       seems that if a textpool is inserted as inactive for language
 *       other than the logon language, it is lost upon activation
 *       not sure inserting as active is best solution,but seems to work
-          _state = &apos;A&apos;.
+          _state = 'A'.
         endif.
       endif.
       insert textpool _objName from textPooltable language lang
       state _state.
-      langNode ?= langIterator-&gt;get_next( ).
+      langNode ?= langIterator->get_next( ).
     endwhile.
   endmethod.
 */---------------------------------------------------------------------\
@@ -1738,23 +1731,23 @@ CLASS ZSAPLINK_PROGRAM IMPLEMENTATION.
 
   program = objName.
 
-  CALL FUNCTION &apos;RS_DELETE_PROGRAM&apos;
+  CALL FUNCTION 'RS_DELETE_PROGRAM'
     EXPORTING
 *   CORRNUMBER                       =
       program                          = program
-*   SUPPRESS_CHECKS                  = &apos; &apos;
-*   SUPPRESS_COMMIT                  = &apos; &apos;
-      SUPPRESS_POPUP                   = &apos;X&apos;
-*   MASS_DELETE_CALL                 = &apos; &apos;
-*   WITH_CUA                         = &apos;X&apos;
-*   WITH_DOCUMENTATION               = &apos;X&apos;
-*   WITH_DYNPRO                      = &apos;X&apos;
-*   WITH_INCLUDES                    = &apos; &apos;
-*   WITH_TEXTPOOL                    = &apos;X&apos;
-*   WITH_VARIANTS                    = &apos;X&apos;
+*   SUPPRESS_CHECKS                  = ' '
+*   SUPPRESS_COMMIT                  = ' '
+      SUPPRESS_POPUP                   = 'X'
+*   MASS_DELETE_CALL                 = ' '
+*   WITH_CUA                         = 'X'
+*   WITH_DOCUMENTATION               = 'X'
+*   WITH_DYNPRO                      = 'X'
+*   WITH_INCLUDES                    = ' '
+*   WITH_TEXTPOOL                    = 'X'
+*   WITH_VARIANTS                    = 'X'
 *   TADIR_DEVCLASS                   =
-*   SKIP_PROGRESS_IND                = &apos; &apos;
-*   FORCE_DELETE_USED_INCLUDES       = &apos; &apos;
+*   SKIP_PROGRESS_IND                = ' '
+*   FORCE_DELETE_USED_INCLUDES       = ' '
 * IMPORTING
 *   CORRNUMBER                       =
 *   PROGRAM                          =
@@ -1765,7 +1758,7 @@ CLASS ZSAPLINK_PROGRAM IMPLEMENTATION.
 *   REJECT_DELETION                  = 4
 *   OTHERS                           = 5
             .
-  IF sy-subrc &lt;&gt; 0.
+  IF sy-subrc <> 0.
 * MESSAGE ID SY-MSGID TYPE SY-MSGTY NUMBER SY-MSGNO
 *         WITH SY-MSGV1 SY-MSGV2 SY-MSGV3 SY-MSGV4.
   ENDIF.
@@ -1791,12 +1784,12 @@ CLASS ZSAPLINK_PROGRAM IMPLEMENTATION.
 *\---------------------------------------------------------------------/
   method DEQUEUE_ABAP .
 
-    call function &apos;RS_ACCESS_PERMISSION&apos;
+    call function 'RS_ACCESS_PERMISSION'
          exporting
-              global_lock              = &apos;X&apos;
-              mode                     = &apos;FREE&apos;
+              global_lock              = 'X'
+              mode                     = 'FREE'
               object                   = objName
-              object_class             = &apos;ABAP&apos;
+              object_class             = 'ABAP'
          exceptions
               canceled_in_corr         = 1
               enqueued_by_user         = 3
@@ -1807,21 +1800,21 @@ CLASS ZSAPLINK_PROGRAM IMPLEMENTATION.
               no_show_permission       = 8
               permission_failure       = 9.
 
-    if sy-subrc &lt;&gt; 0.
+    if sy-subrc <> 0.
       case sy-subrc.
         when 7 or 8 or 9.
           raise exception type zcx_saplink
             exporting
-              textid = zcx_saplink=&gt;not_authorized.
+              textid = zcx_saplink=>not_authorized.
         when 5.
           raise exception type zcx_saplink
             exporting
-              textid = zcx_saplink=&gt;error_message
-              msg = &apos;object locked&apos;.
+              textid = zcx_saplink=>error_message
+              msg = 'object locked'.
         when others.
           raise exception type zcx_saplink
             exporting
-              textid = zcx_saplink=&gt;system_error.
+              textid = zcx_saplink=>system_error.
       endcase.
     endif.
 
@@ -1847,14 +1840,14 @@ CLASS ZSAPLINK_PROGRAM IMPLEMENTATION.
   method ENQUEUE_ABAP .
 
 
-    call function &apos;RS_ACCESS_PERMISSION&apos;
+    call function 'RS_ACCESS_PERMISSION'
          exporting
 *            authority_check          = authority_check
-              global_lock              = &apos;X&apos;
-              mode                     = &apos;INSERT&apos;
+              global_lock              = 'X'
+              mode                     = 'INSERT'
 *            master_language          = trdir-rload
               object                   = objName
-              object_class             = &apos;ABAP&apos;
+              object_class             = 'ABAP'
 *       importing
 *            transport_key            = trkey_global
 *            new_master_language      = trdir-rload
@@ -1869,21 +1862,21 @@ CLASS ZSAPLINK_PROGRAM IMPLEMENTATION.
               no_show_permission       = 8
               permission_failure       = 9.
 
-    if sy-subrc &lt;&gt; 0.
+    if sy-subrc <> 0.
       case sy-subrc.
         when 7 or 8 or 9.
           raise exception type zcx_saplink
             exporting
-              textid = zcx_saplink=&gt;not_authorized.
+              textid = zcx_saplink=>not_authorized.
         when 5.
           raise exception type zcx_saplink
             exporting
-              textid = zcx_saplink=&gt;error_message
-              msg = &apos;object locked&apos;.
+              textid = zcx_saplink=>error_message
+              msg = 'object locked'.
         when others.
           raise exception type zcx_saplink
             exporting
-              textid = zcx_saplink=&gt;system_error.
+              textid = zcx_saplink=>system_error.
       endcase.
     endif.
 
@@ -1907,7 +1900,7 @@ CLASS ZSAPLINK_PROGRAM IMPLEMENTATION.
 *|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
 *\---------------------------------------------------------------------/
   method GETOBJECTTYPE .
-    objectType = &apos;PROG&apos;. &quot;ABAP Program
+    objectType = 'PROG'. "ABAP Program
   endmethod.
 */---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
@@ -1968,26 +1961,26 @@ CLASS ZSAPLINK_PROGRAM IMPLEMENTATION.
     select prog dnum into table idynp
                   from d020s
                      where prog = _objname
-                       and type &lt;&gt; &apos;S&apos;    &quot; No Selection Screens
-                       and type &lt;&gt; &apos;J&apos;.   &quot; No selection subscreens
+                       and type <> 'S'    " No Selection Screens
+                       and type <> 'J'.   " No selection subscreens
     check sy-subrc  = 0 .
 
-    dynp_node = xmldoc-&gt;create_element( &apos;dynpros&apos; ).
+    dynp_node = xmldoc->create_element( 'dynpros' ).
 
     loop at idynp into xdynp.
 
 * Retrieve dynpro imformation
-      dynnr_node =  xmldoc-&gt;create_element( &apos;dynpro&apos; ).
+      dynnr_node =  xmldoc->create_element( 'dynpro' ).
 
       clear:    xdyn_head, xdyn_fldl, xdyn_flow, xdyn_mcod.
       refresh:  idyn_fldl, idyn_flow, idyn_mcod.
 
-      call function &apos;RPY_DYNPRO_READ_NATIVE&apos;
+      call function 'RPY_DYNPRO_READ_NATIVE'
         exporting
           progname                    = xdynp-prog
           dynnr                       = xdynp-dnum
-*       SUPPRESS_EXIST_CHECKS       = &apos; &apos;
-*       SUPPRESS_CORR_CHECKS        = &apos; &apos;
+*       SUPPRESS_EXIST_CHECKS       = ' '
+*       SUPPRESS_CORR_CHECKS        = ' '
       importing
           HEADER                      = xdyn_head
           dynprotext                  = xdyn_text
@@ -2009,17 +2002,17 @@ CLASS ZSAPLINK_PROGRAM IMPLEMENTATION.
                        node = dynnr_node structure =  xdyn_head  ).
 * Add the dynpro text also.
       xdyn_text_string =  xdyn_text.
-      rc = dynnr_node-&gt;set_attribute(
-                 name = &apos;DTEXT&apos;  value = xdyn_text_string ).
-      rc = dynp_node-&gt;append_child( dynnr_node ).
+      rc = dynnr_node->set_attribute(
+                 name = 'DTEXT'  value = xdyn_text_string ).
+      rc = dynp_node->append_child( dynnr_node ).
 
 * Add fields information for screen.
       if not idyn_fldl[] is initial.
         loop at idyn_fldl into xdyn_fldl.
-          dynprofieldsnode = xmldoc-&gt;create_element( &apos;dynprofield&apos; ).
+          dynprofieldsnode = xmldoc->create_element( 'dynprofield' ).
           setattributesfromstructure(
                    node = dynprofieldsnode structure =  xdyn_fldl ).
-          rc = dynnr_node-&gt;append_child( dynprofieldsnode ).
+          rc = dynnr_node->append_child( dynprofieldsnode ).
         endloop.
       endif.
 
@@ -2031,10 +2024,10 @@ CLASS ZSAPLINK_PROGRAM IMPLEMENTATION.
           append xflowsource to iflowsource.
         endloop.
 
-        dynproflownode = xmldoc-&gt;create_element( &apos;dynproflowsource&apos; ).
+        dynproflownode = xmldoc->create_element( 'dynproflowsource' ).
         flowsourcestring = buildsourcestring( sourcetable = iflowsource ).
-        rc = dynproflownode-&gt;if_ixml_node~set_value( flowsourcestring ).
-        rc = dynnr_node-&gt;append_child( dynproflownode  ).
+        rc = dynproflownode->if_ixml_node~set_value( flowsourcestring ).
+        rc = dynnr_node->append_child( dynproflownode  ).
       endif.
 
 * Add matchcode information for screen.
@@ -2042,10 +2035,10 @@ CLASS ZSAPLINK_PROGRAM IMPLEMENTATION.
         loop at idyn_mcod into xdyn_mcod.
           check not xdyn_mcod-type is initial
             and not xdyn_mcod-content is initial.
-          dynpromatchnode = xmldoc-&gt;create_element( &apos;dynpromatchcode&apos; ).
+          dynpromatchnode = xmldoc->create_element( 'dynpromatchcode' ).
           setattributesfromstructure(
                    node = dynpromatchnode structure =  xdyn_mcod ).
-          rc = dynnr_node-&gt;append_child( dynpromatchnode ).
+          rc = dynnr_node->append_child( dynpromatchnode ).
         endloop.
       endif.
 
@@ -2115,7 +2108,7 @@ CLASS ZSAPLINK_PROGRAM IMPLEMENTATION.
     _objname = objname.
     _program = objname.
 
-    call function &apos;RS_CUA_INTERNAL_FETCH&apos;
+    call function 'RS_CUA_INTERNAL_FETCH'
       exporting
         program         = _program
         language        = sy-langu
@@ -2142,7 +2135,7 @@ CLASS ZSAPLINK_PROGRAM IMPLEMENTATION.
 * create pfstatus node.
     if ista[] is not initial
        or itit[] is not initial.
-      pfstat_node = xmldoc-&gt;create_element( &apos;pfstatus&apos; ).
+      pfstat_node = xmldoc->create_element( 'pfstatus' ).
     endif.
 
 
@@ -2151,84 +2144,84 @@ CLASS ZSAPLINK_PROGRAM IMPLEMENTATION.
     if ista[] is not initial.
 
       loop at ista into xsta.
-        sta_node = xmldoc-&gt;create_element( &apos;pfstatus_sta&apos; ).
+        sta_node = xmldoc->create_element( 'pfstatus_sta' ).
         setattributesfromstructure(
                  node = sta_node
                  structure =  xsta ).
-        rc = pfstat_node-&gt;append_child( sta_node ).
+        rc = pfstat_node->append_child( sta_node ).
       endloop.
 
       loop at ifun into xfun.
-        fun_node = xmldoc-&gt;create_element( &apos;pfstatus_fun&apos; ).
+        fun_node = xmldoc->create_element( 'pfstatus_fun' ).
         setattributesfromstructure(
                  node = fun_node
                  structure =  xfun ).
-        rc = pfstat_node-&gt;append_child( fun_node ).
+        rc = pfstat_node->append_child( fun_node ).
       endloop.
 
       loop at imen into xmen.
-        men_node = xmldoc-&gt;create_element( &apos;pfstatus_men&apos; ).
+        men_node = xmldoc->create_element( 'pfstatus_men' ).
         setattributesfromstructure(
                  node = men_node
                  structure =  xmen ).
-        rc = pfstat_node-&gt;append_child( men_node ).
+        rc = pfstat_node->append_child( men_node ).
       endloop.
 
       loop at imtx into xmtx.
-        mtx_node = xmldoc-&gt;create_element( &apos;pfstatus_mtx&apos; ).
+        mtx_node = xmldoc->create_element( 'pfstatus_mtx' ).
         setattributesfromstructure(
                  node = mtx_node
                  structure =  xmtx ).
-        rc = pfstat_node-&gt;append_child( mtx_node ).
+        rc = pfstat_node->append_child( mtx_node ).
       endloop.
 
       loop at iact into xact.
-        act_node = xmldoc-&gt;create_element( &apos;pfstatus_act&apos; ).
+        act_node = xmldoc->create_element( 'pfstatus_act' ).
         setattributesfromstructure(
                  node = act_node
                  structure =  xact ).
-        rc = pfstat_node-&gt;append_child( act_node ).
+        rc = pfstat_node->append_child( act_node ).
       endloop.
 
       loop at ibut into xbut.
-        but_node = xmldoc-&gt;create_element( &apos;pfstatus_but&apos; ).
+        but_node = xmldoc->create_element( 'pfstatus_but' ).
         setattributesfromstructure(
                  node = but_node
                  structure =  xbut ).
-        rc = pfstat_node-&gt;append_child( but_node ).
+        rc = pfstat_node->append_child( but_node ).
       endloop.
 
       loop at ipfk into xpfk.
-        pfk_node = xmldoc-&gt;create_element( &apos;pfstatus_pfk&apos; ).
+        pfk_node = xmldoc->create_element( 'pfstatus_pfk' ).
         setattributesfromstructure(
                  node = pfk_node
                  structure =  xpfk ).
-        rc = pfstat_node-&gt;append_child( pfk_node ).
+        rc = pfstat_node->append_child( pfk_node ).
       endloop.
 
       loop at iset into xset.
-        set_node = xmldoc-&gt;create_element( &apos;pfstatus_set&apos; ).
+        set_node = xmldoc->create_element( 'pfstatus_set' ).
         setattributesfromstructure(
                  node = set_node
                  structure =  xset ).
-        rc = pfstat_node-&gt;append_child( set_node ).
+        rc = pfstat_node->append_child( set_node ).
       endloop.
 
       loop at idoc into xdoc.
-        doc_node = xmldoc-&gt;create_element( &apos;pfstatus_doc&apos; ).
+        doc_node = xmldoc->create_element( 'pfstatus_doc' ).
         setattributesfromstructure(
                  node = doc_node
                  structure =  xdoc ).
-        rc = pfstat_node-&gt;append_child( doc_node ).
+        rc = pfstat_node->append_child( doc_node ).
       endloop.
 
 
       loop at ibiv into xbiv.
-        biv_node = xmldoc-&gt;create_element( &apos;pfstatus_biv&apos; ).
+        biv_node = xmldoc->create_element( 'pfstatus_biv' ).
         setattributesfromstructure(
                  node = biv_node
                  structure =  xbiv ).
-        rc = pfstat_node-&gt;append_child( biv_node ).
+        rc = pfstat_node->append_child( biv_node ).
       endloop.
 
     endif.
@@ -2238,11 +2231,11 @@ CLASS ZSAPLINK_PROGRAM IMPLEMENTATION.
     if itit[] is not initial.
 
       loop at itit into xtit.
-        tit_node = xmldoc-&gt;create_element( &apos;pfstatus_tit&apos; ).
+        tit_node = xmldoc->create_element( 'pfstatus_tit' ).
         setattributesfromstructure(
                  node = tit_node
                  structure =  xtit ).
-        rc = pfstat_node-&gt;append_child( tit_node ).
+        rc = pfstat_node->append_child( tit_node ).
       endloop.
 
     endif.
@@ -2281,25 +2274,25 @@ CLASS ZSAPLINK_PROGRAM IMPLEMENTATION.
     _objName = objName.
 
 
-    textNode = xmlDoc-&gt;create_element( &apos;textPool&apos; ).
+    textNode = xmlDoc->create_element( 'textPool' ).
 
-    CALL FUNCTION &apos;RS_TEXTLOG_GET_PARAMETERS&apos;
+    CALL FUNCTION 'RS_TEXTLOG_GET_PARAMETERS'
           changing
             INSTALLED_LANGUAGES = languageList.
 
     loop at languageList into aLanguage.
       read textpool _objName into textPoolTable language aLanguage.
       if sy-subrc = 0.
-        languageNode = xmlDoc-&gt;create_Element( &apos;language&apos; ).
+        languageNode = xmlDoc->create_Element( 'language' ).
         sTemp = aLanguage.
-        rc = languageNode-&gt;set_attribute( name = &apos;SPRAS&apos; value = sTemp ).
+        rc = languageNode->set_attribute( name = 'SPRAS' value = sTemp ).
         loop at textPoolTable into textPoolRow.
-          aText = xmlDoc-&gt;create_element( &apos;textElement&apos; ).
+          aText = xmlDoc->create_element( 'textElement' ).
           setAttributesFromStructure( node = aText structure =
           textPoolRow ).
-          rc = languageNode-&gt;append_child( aText ).
+          rc = languageNode->append_child( aText ).
         endloop.
-        rc = textNode-&gt;append_child( languageNode ).
+        rc = textNode->append_child( languageNode ).
       endif.
     endloop.
 
@@ -2325,17 +2318,17 @@ CLASS ZSAPLINK_PROGRAM IMPLEMENTATION.
   method TRANSPORT_COPY .
 
 
-    CALL FUNCTION &apos;RS_CORR_INSERT&apos;
+    CALL FUNCTION 'RS_CORR_INSERT'
          EXPORTING
               AUTHOR              = author
-              GLOBAL_LOCK         = &apos;X&apos;
+              GLOBAL_LOCK         = 'X'
               OBJECT              = objName
-              OBJECT_CLASS        = &apos;ABAP&apos;
+              OBJECT_CLASS        = 'ABAP'
               DEVCLASS            = devClass
 *            KORRNUM             = CORRNUMBER_LOCAL
               MASTER_LANGUAGE     = sy-langu
 *            PROGRAM             = PROGRAM_LOCAL
-              MODE                = &apos;INSERT&apos;
+              MODE                = 'INSERT'
 *       IMPORTING
 *            AUTHOR              = UNAME
 *            KORRNUM             = CORRNUMBER_LOCAL
@@ -2345,16 +2338,16 @@ CLASS ZSAPLINK_PROGRAM IMPLEMENTATION.
               PERMISSION_FAILURE  = 2
               UNKNOWN_OBJECTCLASS = 3.
 
-    if sy-subrc &lt;&gt; 0.
+    if sy-subrc <> 0.
       case sy-subrc.
         when 2.
           raise exception type zcx_saplink
             exporting
-              textid = zcx_saplink=&gt;not_authorized.
+              textid = zcx_saplink=>not_authorized.
         when others.
           raise exception type zcx_saplink
             exporting
-              textid = zcx_saplink=&gt;system_error.
+              textid = zcx_saplink=>system_error.
       endcase.
     endif.
 
@@ -2386,7 +2379,7 @@ CLASS ZSAPLINK_CLASS IMPLEMENTATION.
 
     classKey-clsName = objname.
 
-    call function &apos;SEO_CLASS_EXISTENCE_CHECK&apos;
+    call function 'SEO_CLASS_EXISTENCE_CHECK'
       EXPORTING
         clskey        = classkey
       IMPORTING
@@ -2399,8 +2392,8 @@ CLASS ZSAPLINK_CLASS IMPLEMENTATION.
 *      inconsistent  = 5
 *      others        = 6.
 
-    if sy-subrc &lt;&gt; 2.
-      exists = &apos;X&apos;.
+    if sy-subrc <> 2.
+      exists = 'X'.
     endif.
   endmethod.
   method CREATEIXMLDOCFROMOBJECT .
@@ -2486,11 +2479,11 @@ CLASS ZSAPLINK_CLASS IMPLEMENTATION.
     DATA _objtype TYPE string.
 *  _objType = objType.
     _objtype = getobjecttype( ).
-    rootnode = xmldoc-&gt;create_element( _objtype ).
-    CALL FUNCTION &apos;SEO_CLASS_GET&apos;
+    rootnode = xmldoc->create_element( _objtype ).
+    CALL FUNCTION 'SEO_CLASS_GET'
       EXPORTING
         clskey       = classkey
-        version      = &apos;1&apos;
+        version      = '1'
       IMPORTING
         class        = classproperties
       EXCEPTIONS
@@ -2499,33 +2492,33 @@ CLASS ZSAPLINK_CLASS IMPLEMENTATION.
         is_interface = 3
         model_only   = 4.
 
-    IF sy-subrc &lt;&gt; 0.
+    IF sy-subrc <> 0.
       CASE sy-subrc.
         WHEN 1.
           RAISE EXCEPTION TYPE zcx_saplink
-            EXPORTING textid = zcx_saplink=&gt;not_found.
+            EXPORTING textid = zcx_saplink=>not_found.
         WHEN 2.
           RAISE EXCEPTION TYPE zcx_saplink
             EXPORTING
-              textid = zcx_saplink=&gt;error_message
-              msg = &apos;class deleted&apos;.
+              textid = zcx_saplink=>error_message
+              msg = 'class deleted'.
         WHEN 3.
           RAISE EXCEPTION TYPE zcx_saplink
             EXPORTING
-              textid = zcx_saplink=&gt;error_message
-              msg = &apos;interfaces not supported&apos;.
+              textid = zcx_saplink=>error_message
+              msg = 'interfaces not supported'.
         WHEN 4.
           RAISE EXCEPTION TYPE zcx_saplink
             EXPORTING
-              textid = zcx_saplink=&gt;error_message
-              msg = &apos;class is modeled only&apos;.
+              textid = zcx_saplink=>error_message
+              msg = 'class is modeled only'.
       ENDCASE.
     ENDIF.
 
     setattributesfromstructure( node = rootnode structure =
     classproperties ).
     TRY.
-        CALL METHOD cl_abap_classdescr=&gt;describe_by_name
+        CALL METHOD cl_abap_classdescr=>describe_by_name
           EXPORTING
             p_name         = objname
           RECEIVING
@@ -2539,21 +2532,21 @@ CLASS ZSAPLINK_CLASS IMPLEMENTATION.
         ENDIF.
       CATCH cx_root.
         RAISE EXCEPTION TYPE zcx_saplink
-          EXPORTING textid = zcx_saplink=&gt;system_error.
+          EXPORTING textid = zcx_saplink=>system_error.
     ENDTRY.
 
-    CALL METHOD classdescr-&gt;get_super_class_type
+    CALL METHOD classdescr->get_super_class_type
       RECEIVING
         p_descr_ref           = superclass
       EXCEPTIONS
         super_class_not_found = 1.
 
     IF sy-subrc = 0.
-      superclassname = superclass-&gt;get_relative_name( ).
-      IF NOT superclassname CS &apos;OBJECT&apos;.
+      superclassname = superclass->get_relative_name( ).
+      IF NOT superclassname CS 'OBJECT'.
         superclasskey-clsname = objname.
         superclasskey-refclsname = superclassname.
-        CALL FUNCTION &apos;SEO_INHERITANC_GET&apos;
+        CALL FUNCTION 'SEO_INHERITANC_GET'
           EXPORTING
             inhkey        = superclasskey
           IMPORTING
@@ -2568,7 +2561,7 @@ CLASS ZSAPLINK_CLASS IMPLEMENTATION.
     DATA: types      TYPE seoo_types_r,
           wa_type    LIKE LINE OF types,
           types_node TYPE REF TO if_ixml_element.
-    CALL FUNCTION &apos;SEO_TYPE_READ_ALL&apos;
+    CALL FUNCTION 'SEO_TYPE_READ_ALL'
       EXPORTING
         cifkey            = classkey
         version           = 1
@@ -2577,13 +2570,13 @@ CLASS ZSAPLINK_CLASS IMPLEMENTATION.
       EXCEPTIONS
         clif_not_existing = 1
         OTHERS            = 2.
-    IF sy-subrc &lt;&gt; 0.
+    IF sy-subrc <> 0.
     ENDIF.
     LOOP AT types INTO wa_type.
-      types_node = xmldoc-&gt;create_element( &apos;types&apos; ).
+      types_node = xmldoc->create_element( 'types' ).
       setattributesfromstructure( node = types_node structure =
       wa_type ).
-      rc = rootnode-&gt;append_child( types_node ).
+      rc = rootnode->append_child( types_node ).
     ENDLOOP.
 */***TPJ - End of Added Logic for TYPES  -------------------*/
 
@@ -2594,19 +2587,19 @@ CLASS ZSAPLINK_CLASS IMPLEMENTATION.
           friends_node  TYPE REF TO if_ixml_element.
 
     APPEND classkey TO clif_keys.
-    CALL FUNCTION &apos;SEO_FRIENDS_SELECT&apos;
+    CALL FUNCTION 'SEO_FRIENDS_SELECT'
       EXPORTING
-        WITH_EXTERNAL_REF = &apos;X&apos;
+        WITH_EXTERNAL_REF = 'X'
       TABLES
         clif_keys         = clif_keys
         friends_relations = friends.
-    IF sy-subrc &lt;&gt; 0.
+    IF sy-subrc <> 0.
     ENDIF.
     LOOP AT friends INTO wa_friend.
-      friends_node = xmldoc-&gt;create_element( &apos;friends&apos; ).
+      friends_node = xmldoc->create_element( 'friends' ).
       setattributesfromstructure( node = friends_node structure =
       wa_friend ).
-      rc = rootnode-&gt;append_child( friends_node ).
+      rc = rootnode->append_child( friends_node ).
     ENDLOOP.
 */***TPJ - End of Added Logic for Friends  -------------------*/
 
@@ -2615,7 +2608,7 @@ CLASS ZSAPLINK_CLASS IMPLEMENTATION.
           wa_implementings like line OF it_implementings,
           implementingNode TYPE REF TO if_ixml_element.
 
-    CALL FUNCTION &apos;SEO_IMPLEMENTG_READ_ALL&apos;
+    CALL FUNCTION 'SEO_IMPLEMENTG_READ_ALL'
       EXPORTING
         CLSKEY                   = classkey
       IMPORTING
@@ -2625,10 +2618,10 @@ CLASS ZSAPLINK_CLASS IMPLEMENTATION.
         OTHERS                   = 2.
 
     LOOP AT it_implementings INTO wa_implementings.
-      implementingNode = xmldoc-&gt;create_element( &apos;implementing&apos; ).
+      implementingNode = xmldoc->create_element( 'implementing' ).
       setattributesfromstructure( node = implementingNode structure =
       wa_implementings ).
-      rc = rootnode-&gt;append_child( implementingNode ).
+      rc = rootnode->append_child( implementingNode ).
     ENDLOOP.
 */***ewH - End of Added Logic for Interfaces  -------------------*/
 */***rrq - Added Logic for EVENTS  -------------------*/
@@ -2638,7 +2631,7 @@ CLASS ZSAPLINK_CLASS IMPLEMENTATION.
           eventkey    type SEOCMPKEY,
           eventparams type seos_parameters_r,
           wa_params   type seos_parameter_r.
-    CALL FUNCTION &apos;SEO_EVENT_READ_ALL&apos;
+    CALL FUNCTION 'SEO_EVENT_READ_ALL'
       EXPORTING
         cifkey            = classkey
         version           = 1
@@ -2647,15 +2640,15 @@ CLASS ZSAPLINK_CLASS IMPLEMENTATION.
       EXCEPTIONS
         clif_not_existing = 1
         OTHERS            = 2.
-    IF sy-subrc &lt;&gt; 0.
+    IF sy-subrc <> 0.
     ENDIF.
     LOOP AT events INTO wa_event.
       eventkey-clsname = wa_event-clsname.
       eventkey-cmpname = wa_event-CMPNAME.
-      event_node = xmldoc-&gt;create_element( &apos;events&apos; ).
+      event_node = xmldoc->create_element( 'events' ).
       setattributesfromstructure( node = event_node structure =
       wa_event ).
-      CALL FUNCTION &apos;SEO_EVENT_SIGNATURE_GET&apos;
+      CALL FUNCTION 'SEO_EVENT_SIGNATURE_GET'
         EXPORTING
           EVTKEY             = eventkey
         importing
@@ -2664,124 +2657,124 @@ CLASS ZSAPLINK_CLASS IMPLEMENTATION.
 *   parameters
       loop at eventParams into wa_params.
 
-        parameternode = xmldoc-&gt;create_element( &apos;parameter&apos; ).
+        parameternode = xmldoc->create_element( 'parameter' ).
         setattributesfromstructure( node = parameternode
         structure = wa_params ).
-        rc = event_node-&gt;append_child( parameternode ).
+        rc = event_node->append_child( parameternode ).
       ENDLOOP.
-      rc = rootnode-&gt;append_child( event_node ).
+      rc = rootnode->append_child( event_node ).
     ENDLOOP.
 */***rrq - End of Added Logic for EVENTS  -------------------*/
 
 */--------------------------------------------------------------------\
 *|                                                                    |
-    includename = cl_oo_classname_service=&gt;get_pubsec_name( _classname ).
+    includename = cl_oo_classname_service=>get_pubsec_name( _classname ).
     READ REPORT includename INTO reportlist.
-    publicsection = xmldoc-&gt;create_element( &apos;publicSection&apos; ).
+    publicsection = xmldoc->create_element( 'publicSection' ).
 
     reportstring = buildsourcestring( sourcetable = reportlist ).
-    rc = publicsection-&gt;if_ixml_node~set_value( reportstring ).
+    rc = publicsection->if_ixml_node~set_value( reportstring ).
     CLEAR reportstring.
 *|--------------------------------------------------------------------|
-    includename = cl_oo_classname_service=&gt;get_prosec_name( _classname ).
+    includename = cl_oo_classname_service=>get_prosec_name( _classname ).
     READ REPORT includename INTO reportlist.
-    protectedsection = xmldoc-&gt;create_element( &apos;protectedSection&apos; ).
+    protectedsection = xmldoc->create_element( 'protectedSection' ).
     reportstring = buildsourcestring( sourcetable = reportlist ).
-    rc = protectedsection-&gt;if_ixml_node~set_value( reportstring ).
+    rc = protectedsection->if_ixml_node~set_value( reportstring ).
     CLEAR reportstring.
 *|--------------------------------------------------------------------|
-    includename = cl_oo_classname_service=&gt;get_prisec_name( _classname ).
+    includename = cl_oo_classname_service=>get_prisec_name( _classname ).
     READ REPORT includename INTO reportlist.
-    privatesection = xmldoc-&gt;create_element( &apos;privateSection&apos; ).
+    privatesection = xmldoc->create_element( 'privateSection' ).
     reportstring = buildsourcestring( sourcetable = reportlist ).
-    rc = privatesection-&gt;if_ixml_node~set_value( reportstring ).
+    rc = privatesection->if_ixml_node~set_value( reportstring ).
 *|--------------------------------------------------------------------|
-    includename = cl_oo_classname_service=&gt;get_ccimp_name( _classname ).
+    includename = cl_oo_classname_service=>get_ccimp_name( _classname ).
     READ REPORT includename INTO reportlist.
-    localimplementation = xmldoc-&gt;create_element( &apos;localImplementation&apos; ).
+    localimplementation = xmldoc->create_element( 'localImplementation' ).
     reportstring = buildsourcestring( sourcetable = reportlist ).
-    rc = localimplementation-&gt;if_ixml_node~set_value( reportstring ).
+    rc = localimplementation->if_ixml_node~set_value( reportstring ).
 *|--------------------------------------------------------------------|
-    includename = cl_oo_classname_service=&gt;get_ccdef_name( _classname ).
+    includename = cl_oo_classname_service=>get_ccdef_name( _classname ).
     READ REPORT includename INTO reportlist.
-    localtypes = xmldoc-&gt;create_element( &apos;localTypes&apos; ).
+    localtypes = xmldoc->create_element( 'localTypes' ).
     reportstring = buildsourcestring( sourcetable = reportlist ).
-    rc = localtypes-&gt;if_ixml_node~set_value( reportstring ).
+    rc = localtypes->if_ixml_node~set_value( reportstring ).
 *|--------------------------------------------------------------------|
-    includename = cl_oo_classname_service=&gt;get_ccmac_name( _classname ).
+    includename = cl_oo_classname_service=>get_ccmac_name( _classname ).
     READ REPORT includename INTO reportlist.
-    localmacros = xmldoc-&gt;create_element( &apos;localMacros&apos; ).
+    localmacros = xmldoc->create_element( 'localMacros' ).
     reportstring = buildsourcestring( sourcetable = reportlist ).
-    rc = localmacros-&gt;if_ixml_node~set_value( reportstring ).
+    rc = localmacros->if_ixml_node~set_value( reportstring ).
 *|                                                                    |
 *\--------------------------------------------------------------------/
-    rc = rootnode-&gt;append_child( publicsection ).
-    rc = rootnode-&gt;append_child( protectedsection ).
-    rc = rootnode-&gt;append_child( privatesection ).
-    rc = rootnode-&gt;append_child( localimplementation ).
-    rc = rootnode-&gt;append_child( localtypes ).
-    rc = rootnode-&gt;append_child( localmacros ).
+    rc = rootnode->append_child( publicsection ).
+    rc = rootnode->append_child( protectedsection ).
+    rc = rootnode->append_child( privatesection ).
+    rc = rootnode->append_child( localimplementation ).
+    rc = rootnode->append_child( localtypes ).
+    rc = rootnode->append_child( localmacros ).
 
 
-    CALL FUNCTION &apos;SEO_TYPEPUSAGE_READ_ALL&apos;
+    CALL FUNCTION 'SEO_TYPEPUSAGE_READ_ALL'
       EXPORTING
         cifkey      = classkey
-        version     = &apos;1&apos;
+        version     = '1'
       IMPORTING
         typepusages = forwarddeclarationlist.
 *comment rrq old way....forwardDeclarations the only attribute
-*set was the &quot;TypeGroup&quot;
+*set was the "TypeGroup"
 *the new way....the entire structure is passed as in node typeUsage
     LOOP AT forwarddeclarationlist INTO forwarddeclarationrow.
-      forwarddeclaration = xmldoc-&gt;create_element( &apos;typeUsage&apos; ).
+      forwarddeclaration = xmldoc->create_element( 'typeUsage' ).
       setattributesfromstructure( node = forwarddeclaration structure =
       forwarddeclarationrow ).
-      rc = rootnode-&gt;append_child( forwarddeclaration ).
+      rc = rootnode->append_child( forwarddeclaration ).
     ENDLOOP.
 
 *ewH: for version 0.1.3, we will continue to generate both nodes
 * in order for upgradeability of saplink itself.  For version
 * 2.0, forwardDeclaration node generations will be deprecated.
     LOOP AT forwarddeclarationlist INTO forwarddeclarationrow.
-      forwarddeclaration = xmldoc-&gt;create_element( &apos;forwardDeclaration&apos; ).
+      forwarddeclaration = xmldoc->create_element( 'forwardDeclaration' ).
       tempstring = forwarddeclarationrow-typegroup.
-      rc = forwarddeclaration-&gt;if_ixml_node~set_value( tempstring ).
-      rc = rootnode-&gt;append_child( forwarddeclaration ).
+      rc = forwarddeclaration->if_ixml_node~set_value( tempstring ).
+      rc = rootnode->append_child( forwarddeclaration ).
     ENDLOOP.
 
-*  classDescriptor ?= cl_abap_typedescr=&gt;describe_by_name( className ).
+*  classDescriptor ?= cl_abap_typedescr=>describe_by_name( className ).
     attribkey-clsname = objname.
 
-    LOOP AT classdescr-&gt;attributes INTO attribdescr
+    LOOP AT classdescr->attributes INTO attribdescr
     WHERE is_inherited = abap_false
-    and is_interface = abap_false. &quot;rrq:issue 46
-      attribnode = xmldoc-&gt;create_element( &apos;attribute&apos; ).
+    and is_interface = abap_false. "rrq:issue 46
+      attribnode = xmldoc->create_element( 'attribute' ).
       attribkey-cmpname = attribdescr-name.
-      CALL FUNCTION &apos;SEO_ATTRIBUTE_GET&apos;
+      CALL FUNCTION 'SEO_ATTRIBUTE_GET'
         EXPORTING
           attkey    = attribkey
         IMPORTING
           attribute = attribproperties.
 
 *   include OTR if necessary (for exception classes)
-      IF attribproperties-type = &apos;SOTR_CONC&apos; AND attribproperties-attvalue
+      IF attribproperties-type = 'SOTR_CONC' AND attribproperties-attvalue
       IS NOT INITIAL.
         _otrguid = attribproperties-attvalue+1(32).
         otrnode = createnodefromotr( _otrguid ).
         if otrnode is bound.
-          rc = attribnode-&gt;append_child( otrnode ).
+          rc = attribnode->append_child( otrnode ).
         endif.
       ENDIF.
 
 *   append attribute node to parent node
       setattributesfromstructure( node = attribnode structure =
       attribproperties ).
-      rc = rootnode-&gt;append_child( attribnode ).
+      rc = rootnode->append_child( attribnode ).
     ENDLOOP.
 
-*// ewH: begin of logic for interface methods &amp; inheritance redesign--&gt;
-* inheritances &amp; redefinitions: old source removed-recover w/subversion
-    CALL FUNCTION &apos;SEO_INHERITANC_READ&apos;
+*// ewH: begin of logic for interface methods & inheritance redesign-->
+* inheritances & redefinitions: old source removed-recover w/subversion
+    CALL FUNCTION 'SEO_INHERITANC_READ'
       EXPORTING
         CLSKEY                   = classKey
       IMPORTING
@@ -2792,27 +2785,27 @@ CLASS ZSAPLINK_CLASS IMPLEMENTATION.
         OTHERS                   = 2.
 
     if inheritance is not initial.
-      inheritanceNode = xmldoc-&gt;create_element( &apos;inheritance&apos; ).
+      inheritanceNode = xmldoc->create_element( 'inheritance' ).
       setattributesfromstructure( node = inheritanceNode structure =
       inheritance ).
 
       loop at redefinitions into redefinition.
-        redefNode = xmldoc-&gt;create_element( &apos;redefinition&apos; ).
+        redefNode = xmldoc->create_element( 'redefinition' ).
         setattributesfromstructure( node = redefNode structure =
         redefinition ).
-        rc = inheritanceNode-&gt;append_child( redefNode ).
+        rc = inheritanceNode->append_child( redefNode ).
       endloop.
-      rc = rootnode-&gt;append_child( inheritanceNode ).
+      rc = rootnode->append_child( inheritanceNode ).
     endif.
 
 * methods
-    LOOP AT classdescr-&gt;methods INTO methoddescr where
-    not ( is_inherited = &apos;X&apos; and is_redefined is initial ).
+    LOOP AT classdescr->methods INTO methoddescr where
+    not ( is_inherited = 'X' and is_redefined is initial ).
       methodkey-clsname = _classname.
       methodkey-cpdname = methoddescr-name.
 *   interface methods
-      if methoddescr-is_interface = &apos;X&apos;.
-        CALL METHOD cl_oo_classname_service=&gt;get_method_include
+      if methoddescr-is_interface = 'X'.
+        CALL METHOD cl_oo_classname_service=>get_method_include
           EXPORTING
             mtdkey              = methodkey
           RECEIVING
@@ -2820,18 +2813,18 @@ CLASS ZSAPLINK_CLASS IMPLEMENTATION.
           EXCEPTIONS
             method_not_existing = 1.
         IF sy-subrc = 0.
-          methodnode = xmldoc-&gt;create_element( &apos;interfaceMethod&apos; ).
+          methodnode = xmldoc->create_element( 'interfaceMethod' ).
           setattributesfromstructure( node = methodnode structure =
           methodkey ).
-          sourcenode = xmldoc-&gt;create_element( &apos;source&apos; ).
+          sourcenode = xmldoc->create_element( 'source' ).
 *        tempString = includeName.
-*        rc = sourceNode-&gt;set_attribute(
-*          name = &apos;includeName&apos; value = tempString ).
+*        rc = sourceNode->set_attribute(
+*          name = 'includeName' value = tempString ).
           READ REPORT includename INTO reportlist.
           reportstring = buildsourcestring( sourcetable = reportlist ).
-          rc = sourcenode-&gt;if_ixml_node~set_value( reportstring ).
-          rc = methodnode-&gt;append_child( sourcenode ).
-          rc = rootnode-&gt;append_child( methodnode ).
+          rc = sourcenode->if_ixml_node~set_value( reportstring ).
+          rc = methodnode->append_child( sourcenode ).
+          rc = rootnode->append_child( methodnode ).
         ENDIF.
 *   other methods
       else.
@@ -2839,21 +2832,21 @@ CLASS ZSAPLINK_CLASS IMPLEMENTATION.
         clsmethkey-cmpname = methoddescr-name.
         CLEAR methodproperties.
 
-        if methoddescr-is_redefined = &apos;X&apos;.
-          methodnode = xmldoc-&gt;create_element( &apos;method&apos; ).
+        if methoddescr-is_redefined = 'X'.
+          methodnode = xmldoc->create_element( 'method' ).
           move-corresponding clsMethKey to methodProperties.
 *// ewh: begin of forward compatibility hack, can be removed for next
-*//      major release--&gt;
+*//      major release-->
           read table redefinitions into redefinition
             with key mtdname = methoddescr-name.
           if sy-subrc = 0.
             methodProperties-clsname = redefinition-refclsname.
           endif.
-*//&lt;--ewH: end of forward compatibility hack
+*//<--ewH: end of forward compatibility hack
           setattributesfromstructure( node = methodnode structure =
           methodproperties ).
         else.
-          CALL FUNCTION &apos;SEO_METHOD_GET&apos;
+          CALL FUNCTION 'SEO_METHOD_GET'
             EXPORTING
               mtdkey       = clsmethkey
             IMPORTING
@@ -2861,45 +2854,45 @@ CLASS ZSAPLINK_CLASS IMPLEMENTATION.
             EXCEPTIONS
               not_existing = 1.
           IF sy-subrc = 0.
-            methodnode = xmldoc-&gt;create_element( &apos;method&apos; ).
+            methodnode = xmldoc->create_element( 'method' ).
             setattributesfromstructure( node = methodnode structure =
             methodproperties ).
 
 *         parameters
             LOOP AT methoddescr-parameters INTO paramdescr.
               CLEAR paramproperties.
-              parameternode = xmldoc-&gt;create_element( &apos;parameter&apos; ).
+              parameternode = xmldoc->create_element( 'parameter' ).
               paramkey-cmpname = clsmethkey-cmpname.
               paramkey-sconame = paramdescr-name.
               paramkey-clsname = objname.
-              CALL FUNCTION &apos;SEO_PARAMETER_GET&apos;
+              CALL FUNCTION 'SEO_PARAMETER_GET'
                 EXPORTING
                   parkey    = paramkey
-                  version   = &apos;1&apos;
+                  version   = '1'
                 IMPORTING
                   parameter = paramproperties.
               setattributesfromstructure( node = parameternode
               structure = paramproperties ).
-              rc = methodnode-&gt;append_child( parameternode ).
+              rc = methodnode->append_child( parameternode ).
             ENDLOOP.
 
 *         exceptions
-            CALL FUNCTION &apos;SEO_METHOD_SIGNATURE_GET&apos;
+            CALL FUNCTION 'SEO_METHOD_SIGNATURE_GET'
               EXPORTING
                 mtdkey  = clsmethkey
-                version = &apos;1&apos;
+                version = '1'
               IMPORTING
                 exceps  = exceptionlist.
             LOOP AT exceptionlist INTO anexception.
-              exceptionnode = xmldoc-&gt;create_element( &apos;exception&apos; ).
+              exceptionnode = xmldoc->create_element( 'exception' ).
               setattributesfromstructure( node = exceptionnode
               structure = anexception ).
-              rc = methodnode-&gt;append_child( exceptionnode ).
+              rc = methodnode->append_child( exceptionnode ).
             ENDLOOP.
-          endif. &quot;method found
-        endif. &quot;is_redefined?
+          endif. "method found
+        endif. "is_redefined?
 *     source
-        CALL METHOD cl_oo_classname_service=&gt;get_method_include
+        CALL METHOD cl_oo_classname_service=>get_method_include
           EXPORTING
             mtdkey              = methodkey
           RECEIVING
@@ -2909,18 +2902,18 @@ CLASS ZSAPLINK_CLASS IMPLEMENTATION.
         IF sy-subrc = 0.
           READ REPORT includename INTO reportlist.
           reportstring = buildsourcestring( sourcetable = reportlist ).
-          sourcenode = xmldoc-&gt;create_element( &apos;source&apos; ).
-          rc = sourcenode-&gt;if_ixml_node~set_value( reportstring ).
-          rc = methodnode-&gt;append_child( sourcenode ).
+          sourcenode = xmldoc->create_element( 'source' ).
+          rc = sourcenode->if_ixml_node~set_value( reportstring ).
+          rc = methodnode->append_child( sourcenode ).
         endif.
-        rc = rootnode-&gt;append_child( methodnode ).
-      endif. &quot;is_interface?
+        rc = rootnode->append_child( methodnode ).
+      endif. "is_interface?
     endloop.
 
 * append root node to xmldoc
-    rc = xmldoc-&gt;append_child( rootnode ).
+    rc = xmldoc->append_child( rootnode ).
     ixmldocument = xmldoc.
-*// &lt;--ewH: end of logic for interface methods &amp; inheritance redesign
+*// <--ewH: end of logic for interface methods & inheritance redesign
   endmethod.
   method CREATEOBJECTFROMIXMLDOC .
 */---------------------------------------------------------------------\
@@ -2966,7 +2959,7 @@ CLASS ZSAPLINK_CLASS IMPLEMENTATION.
 
 *data excClass type ref to ZCX_SAPLINK.
 
-*// --&gt; begin of new data type rrq
+*// --> begin of new data type rrq
   data:
 *exporting dataTypes
   e_corrnr                 type TRKORR,
@@ -3016,19 +3009,19 @@ CLASS ZSAPLINK_CLASS IMPLEMENTATION.
   wa_methods               type SEOO_METHOD_R,
   wa_parameters            type seos_parameter_r,
   wa_exceps                type seos_exception_r,
-  wa_typeusages            type SEOT_TYPEPUSAGE_R, &quot;forward declarations
+  wa_typeusages            type SEOT_TYPEPUSAGE_R, "forward declarations
   wa_method_Sources        type SEO_METHOD_SOURCE,
   wa_events                type SEOO_EVENT_R.
   data: lines type i.
-*//&lt;-- end of new data types rrq
+*//<-- end of new data types rrq
 
-    CALL FUNCTION &apos;SEO_BUFFER_INIT&apos;.
+    CALL FUNCTION 'SEO_BUFFER_INIT'.
 
     e_devclass = devclass.
     _objtype = getobjecttype( ).
     e_overwrite = overwrite.
     xmldoc = ixmldocument.
-    rootnode = xmldoc-&gt;find_from_name( _objtype ).
+    rootnode = xmldoc->find_from_name( _objtype ).
 
     CALL METHOD getstructurefromattributes
       EXPORTING
@@ -3037,33 +3030,33 @@ CLASS ZSAPLINK_CLASS IMPLEMENTATION.
         structure = ch_class.
 
     objname = classkey-clsname = ch_class-clsname.
-    ch_class-version = &apos;0&apos;.
-    superclass = rootnode-&gt;get_attribute( name = &apos;REFCLSNAME&apos; ).
+    ch_class-version = '0'.
+    superclass = rootnode->get_attribute( name = 'REFCLSNAME' ).
     IF superclass IS NOT INITIAL.
 * set something for inheritence
       superclasskey-clsname = classkey-clsname.
       superclasskey-refclsname = superclass.
-      superclasskey-version = &apos;0&apos;.
-      superclasskey-state = &apos;1&apos;.
+      superclasskey-version = '0'.
+      superclasskey-state = '1'.
       MOVE-CORRESPONDING superclasskey to ch_inheritance.
-      ch_inheritance-author = &apos;BCUSER&apos;.
+      ch_inheritance-author = 'BCUSER'.
       ch_inheritance-createdOn = sy-datum.
     ENDIF.
 
 *Add attributes to new class
     data otrConcept type SOTR_TEXT-CONCEPT.
-    filter = xmldoc-&gt;create_filter_name( &apos;attribute&apos; ).
-    iterator = xmldoc-&gt;create_iterator_filtered( filter ).
-    node ?= iterator-&gt;get_next( ).
+    filter = xmldoc->create_filter_name( 'attribute' ).
+    iterator = xmldoc->create_iterator_filtered( filter ).
+    node ?= iterator->get_next( ).
 
     WHILE node IS NOT INITIAL.
 *   create OTR texts if necessary (for exception classes)
       clear otrConcept.
-      otrnode = node-&gt;find_from_name( &apos;sotr&apos; ).
+      otrnode = node->find_from_name( 'sotr' ).
       IF otrnode IS NOT INITIAL.
-*     ewH:33--&gt;create new concept with new guid
-*      me-&gt;createotrfromnode( otrnode ).
-        me-&gt;createotrfromnode(
+*     ewH:33-->create new concept with new guid
+*      me->createotrfromnode( otrnode ).
+        me->createotrfromnode(
           exporting node = otrnode
           importing concept = otrConcept ).
       ENDIF.
@@ -3074,22 +3067,22 @@ CLASS ZSAPLINK_CLASS IMPLEMENTATION.
           node      = node
         CHANGING
           structure = wa_attributes.
-      wa_attributes-version = &apos;0&apos;.
-*   ewH:issue33--&gt;6.40 and above, must create new concept
+      wa_attributes-version = '0'.
+*   ewH:issue33-->6.40 and above, must create new concept
       if otrConcept is not initial.
-        concatenate `&apos;` otrConcept `&apos;` into wa_attributes-attvalue.
+        concatenate `'` otrConcept `'` into wa_attributes-attvalue.
       endif.
       append wa_attributes to ch_attributes.
-      node ?= iterator-&gt;get_next( ).
+      node ?= iterator->get_next( ).
     ENDWHILE.
 
 */***TPJ - Added Logic for TYPES  -------------------*/
 *  DATA: types           TYPE seoo_types_r,
 *        type_properties LIKE LINE OF types.
 
-    filter = xmldoc-&gt;create_filter_name( &apos;types&apos; ).
-    iterator = xmldoc-&gt;create_iterator_filtered( filter ).
-    node ?= iterator-&gt;get_next( ).
+    filter = xmldoc->create_filter_name( 'types' ).
+    iterator = xmldoc->create_iterator_filtered( filter ).
+    node ?= iterator->get_next( ).
     WHILE node IS NOT INITIAL.
       CLEAR wa_types.
       CALL METHOD getstructurefromattributes
@@ -3097,18 +3090,18 @@ CLASS ZSAPLINK_CLASS IMPLEMENTATION.
           node      = node
         CHANGING
           structure = wa_types.
-      wa_types-version = &apos;0&apos;.
+      wa_types-version = '0'.
       append wa_types to ch_types.
-      node ?= iterator-&gt;get_next( ).
+      node ?= iterator->get_next( ).
     ENDWHILE.
 */***TPJ - End of Added Logic for TYPES  -------------------*/
 
 */***TPJ - Added Logic for Friends  -------------------*/
 *  DATA: wa_friends type seofriends.
 
-    filter = xmldoc-&gt;create_filter_name( &apos;friends&apos; ).
-    iterator = xmldoc-&gt;create_iterator_filtered( filter ).
-    node ?= iterator-&gt;get_next( ).
+    filter = xmldoc->create_filter_name( 'friends' ).
+    iterator = xmldoc->create_iterator_filtered( filter ).
+    node ?= iterator->get_next( ).
     WHILE node IS NOT INITIAL.
       CLEAR wa_friends.
       CALL METHOD getstructurefromattributes
@@ -3116,16 +3109,16 @@ CLASS ZSAPLINK_CLASS IMPLEMENTATION.
           node      = node
         CHANGING
           structure = wa_friends.
-      wa_friends-version = &apos;0&apos;.
+      wa_friends-version = '0'.
       append wa_friends to ch_FRIENDSHIPS.
-      node ?= iterator-&gt;get_next( ).
+      node ?= iterator->get_next( ).
     ENDWHILE.
 */***TPJ - End of Added Logic for Friends  -------------------*/
 
-*// ewH: Added Logic for Implementings(interfaces)--&gt;
-    filter = xmldoc-&gt;create_filter_name( &apos;implementing&apos; ).
-    iterator = xmldoc-&gt;create_iterator_filtered( filter ).
-    node ?= iterator-&gt;get_next( ).
+*// ewH: Added Logic for Implementings(interfaces)-->
+    filter = xmldoc->create_filter_name( 'implementing' ).
+    iterator = xmldoc->create_iterator_filtered( filter ).
+    node ?= iterator->get_next( ).
     WHILE node IS NOT INITIAL.
       CLEAR wa_implementings.
       CALL METHOD getstructurefromattributes
@@ -3134,14 +3127,14 @@ CLASS ZSAPLINK_CLASS IMPLEMENTATION.
         CHANGING
           structure = wa_implementings.
       append wa_implementings to ch_implementings.
-      node ?= iterator-&gt;get_next( ).
+      node ?= iterator->get_next( ).
     ENDWHILE.
-*//&lt;--ewH: End of Added Logic for Implementings(interfaces)
+*//<--ewH: End of Added Logic for Implementings(interfaces)
 
-*// rrq: Added Logic for events--&gt;
-    filter = xmldoc-&gt;create_filter_name( &apos;events&apos; ).
-    iterator = xmldoc-&gt;create_iterator_filtered( filter ).
-    node ?= iterator-&gt;get_next( ).
+*// rrq: Added Logic for events-->
+    filter = xmldoc->create_filter_name( 'events' ).
+    iterator = xmldoc->create_iterator_filtered( filter ).
+    node ?= iterator->get_next( ).
     WHILE node IS NOT INITIAL.
       CLEAR wa_events.
       CALL METHOD getstructurefromattributes
@@ -3150,9 +3143,9 @@ CLASS ZSAPLINK_CLASS IMPLEMENTATION.
         CHANGING
           structure = wa_events.
       append wa_events to ch_events.
-      filter2 = node-&gt;create_filter_name( &apos;parameter&apos; ).
-      iterator2 = node-&gt;create_iterator_filtered( filter2 ).
-      node2 ?= iterator2-&gt;get_next( ).
+      filter2 = node->create_filter_name( 'parameter' ).
+      iterator2 = node->create_iterator_filtered( filter2 ).
+      node2 ?= iterator2->get_next( ).
       WHILE node2 IS NOT INITIAL.
         CLEAR wa_parameters.
         CALL METHOD getstructurefromattributes
@@ -3161,15 +3154,15 @@ CLASS ZSAPLINK_CLASS IMPLEMENTATION.
           CHANGING
             structure = wa_parameters.
         append wa_parameters to ch_parameters.
-        node2 ?= iterator2-&gt;get_next( ).
+        node2 ?= iterator2->get_next( ).
       endwhile.
-      node ?= iterator-&gt;get_next( ).
+      node ?= iterator->get_next( ).
     ENDWHILE.
-*//&lt;--rrq: End of Added Logic for events
+*//<--rrq: End of Added Logic for events
 
-*// ewH: start redesign method/inheritances--&gt;
+*// ewH: start redesign method/inheritances-->
 * inheritance
-    inheritanceNode = rootNode-&gt;find_from_name( &apos;inheritance&apos; ).
+    inheritanceNode = rootNode->find_from_name( 'inheritance' ).
     if inheritanceNode is bound.
       CALL METHOD getstructurefromattributes
         EXPORTING
@@ -3177,9 +3170,9 @@ CLASS ZSAPLINK_CLASS IMPLEMENTATION.
         CHANGING
           structure = ch_inheritance.
 *   redefs
-      filter = inheritanceNode-&gt;create_filter_name( &apos;redefinition&apos; ).
-      iterator = inheritanceNode-&gt;create_iterator_filtered( filter ).
-      redefNode ?= iterator-&gt;get_next( ).
+      filter = inheritanceNode->create_filter_name( 'redefinition' ).
+      iterator = inheritanceNode->create_iterator_filtered( filter ).
+      redefNode ?= iterator->get_next( ).
       WHILE redefNode IS NOT INITIAL.
         CALL METHOD getstructurefromattributes
           EXPORTING
@@ -3187,14 +3180,14 @@ CLASS ZSAPLINK_CLASS IMPLEMENTATION.
           CHANGING
             structure = wa_redefinitions.
         append wa_redefinitions to ch_redefinitions.
-        redefNode ?= iterator-&gt;get_next( ).
+        redefNode ?= iterator->get_next( ).
       ENDWHILE.
     endif.
 
 *Add Methods to new class
-    filter = xmldoc-&gt;create_filter_name( &apos;method&apos; ).
-    iterator = xmldoc-&gt;create_iterator_filtered( filter ).
-    node ?= iterator-&gt;get_next( ).
+    filter = xmldoc->create_filter_name( 'method' ).
+    iterator = xmldoc->create_iterator_filtered( filter ).
+    node ?= iterator->get_next( ).
     WHILE node IS NOT INITIAL.
       CLEAR wa_methods.
       CALL METHOD getstructurefromattributes
@@ -3207,28 +3200,28 @@ CLASS ZSAPLINK_CLASS IMPLEMENTATION.
       read table ch_redefinitions into wa_redefinitions
       with key mtdname = wa_methods-cmpname.
       IF sy-subrc = 0.
-        node ?= iterator-&gt;get_next( ).
+        node ?= iterator->get_next( ).
         continue.
       endif.
 *// ewh: begin of backward compatibility hack, can be removed for next
-*//      major release--&gt;
-      IF wa_methods-clsname &lt;&gt; ch_class-clsname.
+*//      major release-->
+      IF wa_methods-clsname <> ch_class-clsname.
         MOVE-CORRESPONDING wa_methods TO wa_redefinitions.
         wa_redefinitions-clsname = ch_class-clsname.
         wa_redefinitions-refclsname = wa_methods-clsname.
-        wa_redefinitions-version = &apos;0&apos;.
-        wa_redefinitions-mtdabstrct = &apos;&apos;.
+        wa_redefinitions-version = '0'.
+        wa_redefinitions-mtdabstrct = ''.
         wa_redefinitions-mtdname = wa_methods-cmpname.
         APPEND wa_redefinitions TO ch_redefinitions.
 
-        node ?= iterator-&gt;get_next( ).
+        node ?= iterator->get_next( ).
         continue.
       endif.
-*// &lt;--ewH: break in backward compatibility hack - 2Bcontinued below
+*// <--ewH: break in backward compatibility hack - 2Bcontinued below
 
-      filter2 = node-&gt;create_filter_name( &apos;parameter&apos; ).
-      iterator2 = node-&gt;create_iterator_filtered( filter2 ).
-      node2 ?= iterator2-&gt;get_next( ).
+      filter2 = node->create_filter_name( 'parameter' ).
+      iterator2 = node->create_iterator_filtered( filter2 ).
+      node2 ?= iterator2->get_next( ).
       WHILE node2 IS NOT INITIAL.
         CLEAR wa_parameters.
         CALL METHOD getstructurefromattributes
@@ -3237,11 +3230,11 @@ CLASS ZSAPLINK_CLASS IMPLEMENTATION.
           CHANGING
             structure = wa_parameters.
         append wa_parameters to ch_parameters.
-        node2 ?= iterator2-&gt;get_next( ).
+        node2 ?= iterator2->get_next( ).
       ENDWHILE.
-      filter2 = node-&gt;create_filter_name( &apos;exception&apos; ).
-      iterator2 = node-&gt;create_iterator_filtered( filter2 ).
-      node2 ?= iterator2-&gt;get_next( ).
+      filter2 = node->create_filter_name( 'exception' ).
+      iterator2 = node->create_iterator_filtered( filter2 ).
+      node2 ?= iterator2->get_next( ).
       WHILE node2 IS NOT INITIAL.
         CALL METHOD getstructurefromattributes
           EXPORTING
@@ -3249,23 +3242,23 @@ CLASS ZSAPLINK_CLASS IMPLEMENTATION.
           CHANGING
             structure = wa_exceps.
         append wa_exceps to ch_exceps.
-        node2 ?= iterator2-&gt;get_next( ).
+        node2 ?= iterator2->get_next( ).
       ENDWHILE.
       append wa_methods to ch_methods.
-      node ?= iterator-&gt;get_next( ).
+      node ?= iterator->get_next( ).
     ENDWHILE.
-*// &lt;--ewH: end redesign method/inheritances
-*// ewh: continuation of backward compatibility hack--&gt;
+*// <--ewH: end redesign method/inheritances
+*// ewh: continuation of backward compatibility hack-->
 *  IF ( ch_redefinitions IS NOT INITIAL OR superclass-clsname
 *  IS NOT INITIAL ) and ch_inheritance is initial.
-*    CALL FUNCTION &apos;SEO_INHERITANC_CREATE_F_DATA&apos;
+*    CALL FUNCTION 'SEO_INHERITANC_CREATE_F_DATA'
 *      EXPORTING
-*        save          = &apos; &apos;
+*        save          = ' '
 *      CHANGING
 *        inheritance   = superclasskey
 *        redefinitions = ch_redefinitions.
 *  ENDIF.
-*// &lt;--ewH: end of backward compatibility hack
+*// <--ewH: end of backward compatibility hack
 
 
     DATA classtype TYPE seoclstype.
@@ -3274,9 +3267,9 @@ CLASS ZSAPLINK_CLASS IMPLEMENTATION.
 
 *rrq comments Forward nodes are created in an old version of the
 *create XML from object.  In that node, the only attribute set
-*is the &quot;TypeGroup&quot;.  All other attributes are hard coded on the
+*is the "TypeGroup".  All other attributes are hard coded on the
 *create Object from XML .  To fix this and make it transparent to
-*users, &quot;forwaredDeclaration&quot; nodes will be supported, and a new
+*users, "forwaredDeclaration" nodes will be supported, and a new
 *node will be added.
 *if it is an old version XML document, forwardDeclarations nodes
 *if it is a new version XML document, typeUsages nodes
@@ -3284,9 +3277,9 @@ CLASS ZSAPLINK_CLASS IMPLEMENTATION.
 *ewH: for version 0.1.3, we will continue to generate both nodes
 * in order for upgradeability of saplink itself.  For version
 * 2.0, forwardDeclaration node generations will be deprecated.
-    filter = xmldoc-&gt;create_filter_name( &apos;typeUsage&apos; ).
-    iterator = xmldoc-&gt;create_iterator_filtered( filter ).
-    node ?= iterator-&gt;get_next( ).
+    filter = xmldoc->create_filter_name( 'typeUsage' ).
+    iterator = xmldoc->create_iterator_filtered( filter ).
+    node ?= iterator->get_next( ).
 
     WHILE node IS NOT INITIAL.
         CALL METHOD getstructurefromattributes
@@ -3295,33 +3288,33 @@ CLASS ZSAPLINK_CLASS IMPLEMENTATION.
         CHANGING
           structure = wa_typeUsages.
       APPEND wa_typeusages TO ch_typeusages.
-      node ?= iterator-&gt;get_next( ).
+      node ?= iterator->get_next( ).
     ENDWHILE.
 
 * only check forwardDeclaration if typeUsages does not exist
     if ch_typeusages is initial.
-      filter = xmldoc-&gt;create_filter_name( &apos;forwardDeclaration&apos; ).
-      iterator = xmldoc-&gt;create_iterator_filtered( filter ).
-      node ?= iterator-&gt;get_next( ).
+      filter = xmldoc->create_filter_name( 'forwardDeclaration' ).
+      iterator = xmldoc->create_iterator_filtered( filter ).
+      node ?= iterator->get_next( ).
 
       WHILE node IS NOT INITIAL.
-        source = node-&gt;get_value( ).
+        source = node->get_value( ).
         wa_typeusages-typegroup = source.
         CLEAR wa_typeusages.
         wa_typeusages-clsname = classkey-clsname.
-        wa_typeusages-version = &apos;0&apos;.
-        wa_typeusages-tputype = &apos;0&apos;.
-        wa_typeusages-explicit =  &apos;X&apos;.
-        wa_typeusages-implicit = &apos;&apos;.
+        wa_typeusages-version = '0'.
+        wa_typeusages-tputype = '0'.
+        wa_typeusages-explicit =  'X'.
+        wa_typeusages-implicit = ''.
         wa_typeusages-typegroup = source.
         APPEND wa_typeusages TO ch_typeusages.
-        node ?= iterator-&gt;get_next( ).
+        node ?= iterator->get_next( ).
       ENDWHILE.
     endif.
 * new way....only one of these nodes should exist
-*  filter = xmldoc-&gt;create_filter_name( &apos;typeUsage&apos; ).
-*  iterator = xmldoc-&gt;create_iterator_filtered( filter ).
-*  node ?= iterator-&gt;get_next( ).
+*  filter = xmldoc->create_filter_name( 'typeUsage' ).
+*  iterator = xmldoc->create_iterator_filtered( filter ).
+*  node ?= iterator->get_next( ).
 *
 *  WHILE node IS NOT INITIAL.
 *      CALL METHOD getstructurefromattributes
@@ -3330,12 +3323,12 @@ CLASS ZSAPLINK_CLASS IMPLEMENTATION.
 *      CHANGING
 *        structure = wa_typeUsages.
 *    APPEND wa_typeusages TO ch_typeusages.
-*    node ?= iterator-&gt;get_next( ).
+*    node ?= iterator->get_next( ).
 *  ENDWHILE.
 *Insert source code into the methods
-    filter = xmldoc-&gt;create_filter_name( &apos;method&apos; ).
-    iterator = xmldoc-&gt;create_iterator_filtered( filter ).
-    node ?= iterator-&gt;get_next( ).
+    filter = xmldoc->create_filter_name( 'method' ).
+    iterator = xmldoc->create_iterator_filtered( filter ).
+    node ?= iterator->get_next( ).
 
     WHILE node IS NOT INITIAL.
       CALL METHOD getstructurefromattributes
@@ -3346,25 +3339,25 @@ CLASS ZSAPLINK_CLASS IMPLEMENTATION.
       methodkey-clsname = objname.
       methodkey-cpdname = wa_methods-cmpname.
       aobjname = methodkey.
-      methodsourcenode = node-&gt;find_from_name( &apos;source&apos; ).
+      methodsourcenode = node->find_from_name( 'source' ).
       IF methodsourcenode IS NOT INITIAL.
         clear wa_method_sources.
-        source = methodsourcenode-&gt;get_value( ).
+        source = methodsourcenode->get_value( ).
         sourcetable = buildtablefromstring( source ).
         loop at sourceTable into source.
           check source is not initial.
           translate source to upper case.
           shift source left deleting leading space.
-          if source+0(6) = &apos;METHOD&apos;.
+          if source+0(6) = 'METHOD'.
             delete sourceTable index sy-tabix.
             EXIT.
           endif.
         endloop.
         describe table sourceTable lines lines.
-        while lines &gt; 0.
+        while lines > 0.
           read table sourceTable into source index lines.
-          if source cp &apos;endmethod*&apos;.
-            if sy-subrc  = 0 and source+0(1) &lt;&gt; &apos;*&apos;.
+          if source cp 'endmethod*'.
+            if sy-subrc  = 0 and source+0(1) <> '*'.
 *          Got it and not a comment?
               delete sourceTable index lines.
               exit.
@@ -3375,19 +3368,19 @@ CLASS ZSAPLINK_CLASS IMPLEMENTATION.
         read table ch_redefinitions into wa_redefinitions
         with key mtdname = methodKey-cpdname.
         IF sy-subrc = 0.
-          wa_method_sources-redefine = &apos;X&apos;.
+          wa_method_sources-redefine = 'X'.
         endif.
         wa_method_sources-cpdname = methodkey-cpdname.
         wa_method_sources-source = sourceTable.
         append wa_method_sources to e_method_sources.
       ENDIF.
-      node ?= iterator-&gt;get_next( ).
+      node ?= iterator->get_next( ).
     ENDWHILE.
 *
-**// ewH: create interface methods--&gt;
-    filter = xmldoc-&gt;create_filter_name( &apos;interfaceMethod&apos; ).
-    iterator = xmldoc-&gt;create_iterator_filtered( filter ).
-    node ?= iterator-&gt;get_next( ).
+**// ewH: create interface methods-->
+    filter = xmldoc->create_filter_name( 'interfaceMethod' ).
+    iterator = xmldoc->create_iterator_filtered( filter ).
+    node ?= iterator->get_next( ).
 
     WHILE node IS NOT INITIAL.
       CALL METHOD getstructurefromattributes
@@ -3396,25 +3389,25 @@ CLASS ZSAPLINK_CLASS IMPLEMENTATION.
         CHANGING
           structure = methodKey.
       aobjname = methodkey.
-      methodsourcenode = node-&gt;find_from_name( &apos;source&apos; ).
+      methodsourcenode = node->find_from_name( 'source' ).
       IF methodsourcenode IS NOT INITIAL.
         clear wa_method_sources.
-        source = methodsourcenode-&gt;get_value( ).
+        source = methodsourcenode->get_value( ).
         sourcetable = buildtablefromstring( source ).
         loop at sourceTable into source.
           check source is not initial.
           translate source to upper case.
           shift source left deleting leading space.
-          if source+0(6) = &apos;METHOD&apos;.
+          if source+0(6) = 'METHOD'.
             delete sourceTable index sy-tabix.
             EXIT.
           endif.
         endloop.
         describe table sourceTable lines lines.
-        while lines &gt; 0.
+        while lines > 0.
           read table sourceTable into source index lines.
-          if source cp &apos;endmethod*&apos;.
-            if sy-subrc  = 0 and source+0(1) &lt;&gt; &apos;*&apos;.
+          if source cp 'endmethod*'.
+            if sy-subrc  = 0 and source+0(1) <> '*'.
 *          Got it and not a comment?
               delete sourceTable index lines.
               exit.
@@ -3429,69 +3422,69 @@ CLASS ZSAPLINK_CLASS IMPLEMENTATION.
         append wa_method_sources to e_method_sources.
       ENDIF.
 
-      node ?= iterator-&gt;get_next( ).
+      node ?= iterator->get_next( ).
     ENDWHILE.
-*// &lt;--ewH: end create interface methods
+*// <--ewH: end create interface methods
 
 * local implementation
     DATA _classname TYPE seoclsname.
     _classname = objname.
-    sourcenode = xmldoc-&gt;find_from_name( &apos;localImplementation&apos; ).
+    sourcenode = xmldoc->find_from_name( 'localImplementation' ).
     IF sourcenode IS NOT INITIAL.
-      source = sourcenode-&gt;get_value( ).
+      source = sourcenode->get_value( ).
       E_LOCALS_IMP = buildtablefromstring( source ).
     ENDIF.
 
 * local types
-    sourcenode = xmldoc-&gt;find_from_name( &apos;localTypes&apos; ).
+    sourcenode = xmldoc->find_from_name( 'localTypes' ).
     IF sourcenode IS NOT INITIAL.
-      source = sourcenode-&gt;get_value( ).
+      source = sourcenode->get_value( ).
       E_LOCALS_DEF = buildtablefromstring( source ).
     ENDIF.
 
 * local macros
-    sourcenode = xmldoc-&gt;find_from_name( &apos;localMacros&apos; ).
+    sourcenode = xmldoc->find_from_name( 'localMacros' ).
     IF sourcenode IS NOT INITIAL.
-      source = sourcenode-&gt;get_value( ).
+      source = sourcenode->get_value( ).
       E_LOCALS_MAC = buildtablefromstring( source ).
     ENDIF.
 
 *ewH-not sure how this type_source param works. type sources can come
 * from private or protected sections, but there is no way to pass
 * these separately into the class create FM. After debugging into
-* FM-&gt;clif_save_all-&gt;generate_classpool it treats the source table
+* FM->clif_save_all->generate_classpool it treats the source table
 * as one, so I am not sure how to get it to differentiate between
 * private and protected sections. If only one section has types
 * defined, the FM call works, otherwise all hell breaks loose. To
 * solve the problem for now, we will just do an insert report for
-* the sections after the class creation, since that&apos;s all the FM
+* the sections after the class creation, since that's all the FM
 * does in the end anyway. Wow, this is a really long comment, but
 * I dont want to have to try to remember what the hell was going
 * on here later...sorry.  :)
 *insert code for publicSection
-*  sourcenode = xmldoc-&gt;find_from_name( &apos;publicSection&apos; )
+*  sourcenode = xmldoc->find_from_name( 'publicSection' )
 *  IF sourcenode IS NOT INITIAL.
-*    source = sourcenode-&gt;get_value( ).
+*    source = sourcenode->get_value( ).
 *    ch_type_source = buildtablefromstring( source ).
 *  ENDIF.
 **insert code for pivateSection
-*  sourcenode = xmldoc-&gt;find_from_name( &apos;privateSection&apos; ).
+*  sourcenode = xmldoc->find_from_name( 'privateSection' ).
 *  IF sourcenode IS NOT INITIAL.
-*    source = sourcenode-&gt;get_value( ).
+*    source = sourcenode->get_value( ).
 *    ch_type_source_temp = buildtablefromstring( source ).
 *    append lines of ch_type_source_temp to ch_type_source.
 *  ENDIF.
 **insert code for ProtectedSection
-*  sourcenode = xmldoc-&gt;find_from_name( &apos;protectedSection&apos; ).
+*  sourcenode = xmldoc->find_from_name( 'protectedSection' ).
 *  IF sourcenode IS NOT INITIAL.
-*    source = sourcenode-&gt;get_value( ).
+*    source = sourcenode->get_value( ).
 *    ch_type_source_temp = buildtablefromstring( source ).
 *    append lines of ch_type_source_temp to ch_type_source.
 *  ENDIF.
 
     name = objname.
 
-  CALL FUNCTION &apos;SEO_CLASS_CREATE_COMPLETE&apos;
+  CALL FUNCTION 'SEO_CLASS_CREATE_COMPLETE'
    EXPORTING
      CORRNR                             = e_corrnr
      DEVCLASS                           = e_devclass
@@ -3522,7 +3515,7 @@ CLASS ZSAPLINK_CLASS IMPLEMENTATION.
      METHODS                            = ch_methods
      EVENTS                             = ch_events
      TYPES                              = ch_types
-*   TYPE_SOURCE                        = ch_type_source &quot;???
+*   TYPE_SOURCE                        = ch_type_source "???
      PARAMETERS                         = ch_parameters
      EXCEPS                             = ch_exceps
      ALIASES                            = ch_aliases
@@ -3539,76 +3532,76 @@ CLASS ZSAPLINK_CLASS IMPLEMENTATION.
      OTHER                              = 6
      OTHERS                             = 7.
     case sy-subrc.
-      when &apos;0&apos;.
+      when '0'.
 ** i guess if we made it this far, we will assume success
 ** successful install
-      when &apos;1&apos;.
+      when '1'.
         RAISE EXCEPTION TYPE zcx_saplink
-          EXPORTING textid = zcx_saplink=&gt;existing.
+          EXPORTING textid = zcx_saplink=>existing.
       when others.
         raise exception type zcx_saplink
-          exporting textid = zcx_saplink=&gt;system_error.
+          exporting textid = zcx_saplink=>system_error.
     endcase.
 
 *ewH:insert pub, prot, and priv sections manually to keep any direct
 * attribute/type definitions
     aobjname = classkey-clsname.
 **public
-    sourcenode = xmldoc-&gt;find_from_name( &apos;publicSection&apos; ).
+    sourcenode = xmldoc->find_from_name( 'publicSection' ).
     IF sourcenode IS NOT INITIAL.
-      includename = cl_oo_classname_service=&gt;get_pubsec_name( _classname ).
-      source = sourcenode-&gt;get_value( ).
+      includename = cl_oo_classname_service=>get_pubsec_name( _classname ).
+      source = sourcenode->get_value( ).
       sourcetable = buildtablefromstring( source ).
       INSERT REPORT includename FROM sourcetable EXTENSION TYPE
-      srext_ext_class_public STATE &apos;I&apos;.
+      srext_ext_class_public STATE 'I'.
     ENDIF.
 
 **protected
-    sourcenode = xmldoc-&gt;find_from_name( &apos;protectedSection&apos; ).
+    sourcenode = xmldoc->find_from_name( 'protectedSection' ).
     IF sourcenode IS NOT INITIAL.
-      includename = cl_oo_classname_service=&gt;get_prosec_name( _classname ).
-      source = sourcenode-&gt;get_value( ).
+      includename = cl_oo_classname_service=>get_prosec_name( _classname ).
+      source = sourcenode->get_value( ).
       sourcetable = buildtablefromstring( source ).
       INSERT REPORT includename FROM sourcetable EXTENSION TYPE
-      srext_ext_class_protected STATE &apos;I&apos;.
+      srext_ext_class_protected STATE 'I'.
     ENDIF.
 
 **private
-    sourcenode = xmldoc-&gt;find_from_name( &apos;privateSection&apos; ).
+    sourcenode = xmldoc->find_from_name( 'privateSection' ).
     IF sourcenode IS NOT INITIAL.
-      includename = cl_oo_classname_service=&gt;get_prisec_name( _classname ).
-      source = sourcenode-&gt;get_value( ).
+      includename = cl_oo_classname_service=>get_prisec_name( _classname ).
+      source = sourcenode->get_value( ).
       sourcetable = buildtablefromstring( source ).
       INSERT REPORT includename FROM sourcetable EXTENSION TYPE
-      srext_ext_class_private STATE &apos;I&apos;.
+      srext_ext_class_private STATE 'I'.
     ENDIF.
 
 * insert inactive sections into worklist
-    CALL FUNCTION &apos;RS_INSERT_INTO_WORKING_AREA&apos;
+    CALL FUNCTION 'RS_INSERT_INTO_WORKING_AREA'
       EXPORTING
-        object            = &apos;CPUB&apos;
+        object            = 'CPUB'
         obj_name          = aobjname
       EXCEPTIONS
         wrong_object_name = 1.
-    IF sy-subrc &lt;&gt; 0.
+    IF sy-subrc <> 0.
     ENDIF.
 
-    CALL FUNCTION &apos;RS_INSERT_INTO_WORKING_AREA&apos;
+    CALL FUNCTION 'RS_INSERT_INTO_WORKING_AREA'
       EXPORTING
-        object            = &apos;CPRO&apos;
+        object            = 'CPRO'
         obj_name          = aobjname
       EXCEPTIONS
         wrong_object_name = 1.
-    IF sy-subrc &lt;&gt; 0.
+    IF sy-subrc <> 0.
     ENDIF.
 
-    CALL FUNCTION &apos;RS_INSERT_INTO_WORKING_AREA&apos;
+    CALL FUNCTION 'RS_INSERT_INTO_WORKING_AREA'
       EXPORTING
-        object            = &apos;CPRI&apos;
+        object            = 'CPRI'
         obj_name          = aobjname
       EXCEPTIONS
         wrong_object_name = 1.
-    IF sy-subrc &lt;&gt; 0.
+    IF sy-subrc <> 0.
     ENDIF.
 
 
@@ -3636,7 +3629,7 @@ CLASS ZSAPLINK_CLASS IMPLEMENTATION.
   data clsKey type SEOCLSKEY.
 
     clsKey-clsname = objname.
-    CALL FUNCTION &apos;SEO_CLASS_DELETE_W_DEPS&apos;
+    CALL FUNCTION 'SEO_CLASS_DELETE_W_DEPS'
       EXPORTING
         clskey             = clsKey
       EXCEPTIONS
@@ -3646,24 +3639,24 @@ CLASS ZSAPLINK_CLASS IMPLEMENTATION.
        DB_ERROR           = 4
        OTHERS             = 5
               .
-    if sy-subrc &lt;&gt; 0.
+    if sy-subrc <> 0.
       case sy-subrc.
         when 1.
           raise exception type zcx_saplink
-            exporting textid = zcx_saplink=&gt;not_found.
+            exporting textid = zcx_saplink=>not_found.
         when 2.
           raise exception type zcx_saplink
             exporting
-              textid = zcx_saplink=&gt;error_message
-              msg = &apos;interfaces not supported&apos;.
+              textid = zcx_saplink=>error_message
+              msg = 'interfaces not supported'.
         when 3.
           raise exception type zcx_saplink
             exporting
-              textid = zcx_saplink=&gt;error_message
-              msg = &apos;class not deleted&apos;.
+              textid = zcx_saplink=>error_message
+              msg = 'class not deleted'.
         when others.
           raise exception type zcx_saplink
-            exporting textid = zcx_saplink=&gt;system_error.
+            exporting textid = zcx_saplink=>system_error.
       endcase.
     endif.
   endmethod.
@@ -3700,7 +3693,7 @@ CLASS ZSAPLINK_CLASS IMPLEMENTATION.
     endif.
     methodKey-CMPNAME = methodName.
 
-    call function &apos;SEO_METHOD_GET&apos;
+    call function 'SEO_METHOD_GET'
           exporting
             MTDKEY = methodKey
           importing
@@ -3710,14 +3703,14 @@ CLASS ZSAPLINK_CLASS IMPLEMENTATION.
     if sy-subrc = 0.
       className = methodProperties-clsname.
     else.
-      classDescr ?= cl_abap_classDescr=&gt;describe_by_name(
+      classDescr ?= cl_abap_classDescr=>describe_by_name(
       methodKey-clsName ).
-      call method classDescr-&gt;GET_SUPER_CLASS_TYPE
+      call method classDescr->GET_SUPER_CLASS_TYPE
           receiving
            P_DESCR_REF = superClass
           exceptions
             SUPER_CLASS_NOT_FOUND = 1.
-      superClassName = superClass-&gt;GET_RELATIVE_NAME( ).
+      superClassName = superClass->GET_RELATIVE_NAME( ).
       className = FINDIMPLEMENTINGCLASS( methodName = methodName
       startClass = superCLassName ).
     endif.
@@ -3742,7 +3735,7 @@ CLASS ZSAPLINK_CLASS IMPLEMENTATION.
 *|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
 *\---------------------------------------------------------------------/
 
-    objecttype = &apos;CLAS&apos;.  &quot;Class
+    objecttype = 'CLAS'.  "Class
 
   endmethod.
 ENDCLASS.
@@ -3767,7 +3760,7 @@ selection-screen end of Line.
 
 selection-screen begin of Line.
   SELECTION-SCREEN COMMENT 1(20) checkCom FOR FIELD NUGGFIL.
-  parameters overwrt type c as checkbox default &apos;X&apos;.
+  parameters overwrt type c as checkbox default 'X'.
 selection-screen end of Line.
 
 
@@ -3782,16 +3775,16 @@ perform installNugget using ixmlNugget overwrt.
 */--------------------------------------------------------------------\
 *| Selection screen events                                            |
 initialization.
-  fileCom = &apos;Installation Nugget&apos;.
-  checkCom = &apos;Overwrite Originals&apos;.
+  fileCom = 'Installation Nugget'.
+  checkCom = 'Overwrite Originals'.
 
 
 at selection-screen on value-request for NUGGFIL.
-  call method CL_GUI_FRONTEND_SERVICES=&gt;FILE_OPEN_DIALOG
+  call method CL_GUI_FRONTEND_SERVICES=>FILE_OPEN_DIALOG
       exporting
         MULTISELECTION = abap_false
-        FILE_FILTER = &apos;*.nugg&apos;
-        DEFAULT_EXTENSION = &apos;nugg&apos;
+        FILE_FILTER = '*.nugg'
+        DEFAULT_EXTENSION = 'nugg'
       changing
         FILE_TABLE = retFileTable
         rc = retRc
@@ -3810,7 +3803,7 @@ form uploadXMLFromLM using p_filename xmlString type string .
   data l_fileName type string.
 
     l_fileName = p_filename.
-    call method CL_GUI_FRONTEND_SERVICES=&gt;GUI_UPLOAD
+    call method CL_GUI_FRONTEND_SERVICES=>GUI_UPLOAD
           exporting
             FILENAME = l_fileName
           changing
@@ -3826,7 +3819,7 @@ form createString
 
 data sTemp type string.
   loop at tempTable into sTemp.
-    concatenate bigString sTemp CL_ABAP_CHAR_UTILITIES=&gt;NEWLINE into
+    concatenate bigString sTemp CL_ABAP_CHAR_UTILITIES=>NEWLINE into
     bigString.
   endloop.
 
@@ -3849,14 +3842,14 @@ data iStream type ref to if_ixml_istream.
 data ixmlParser type ref to if_ixml_parser.
 data xmlDoc type ref to if_ixml_document.
 
-  ixml = cl_ixml=&gt;create( ).
-  xmlDoc = ixml-&gt;create_document( ).
-  streamFactory = ixml-&gt;CREATE_STREAM_FACTORY( ).
-  iStream = streamFactory-&gt;CREATE_ISTREAM_STRING( xmlString ).
-  iXMLParser = iXML-&gt;create_parser(  stream_factory = streamFactory
+  ixml = cl_ixml=>create( ).
+  xmlDoc = ixml->create_document( ).
+  streamFactory = ixml->CREATE_STREAM_FACTORY( ).
+  iStream = streamFactory->CREATE_ISTREAM_STRING( xmlString ).
+  iXMLParser = iXML->create_parser(  stream_factory = streamFactory
                                      istream        = iStream
                                      document       = xmlDoc ).
-  iXMLParser-&gt;parse( ).
+  iXMLParser->parse( ).
   ixmlDocument = xmlDoc.
 
 endform.
@@ -3872,16 +3865,16 @@ data rootAttr type ref to IF_IXML_NAMED_NODE_MAP.
 data AttrNode type ref to IF_IXML_NODE.
 data nodeName type string.
 
-  rootNode ?= ixmlDocument-&gt;GET_ROOT_ELEMENT( ).
+  rootNode ?= ixmlDocument->GET_ROOT_ELEMENT( ).
 
 * get object type
-  objTypeName = rootNode-&gt;GET_NAME( ).
+  objTypeName = rootNode->GET_NAME( ).
   translate objTypeName to upper case.
 
 * get object name
-  rootAttr = rootNode-&gt;GET_ATTRIBUTES( ).
-  AttrNode = rootAttr-&gt;GET_ITEM( 0 ).
-  objName = AttrNode-&gt;GET_VALUE( ).
+  rootAttr = rootNode->GET_ATTRIBUTES( ).
+  AttrNode = rootAttr->GET_ITEM( 0 ).
+  objName = AttrNode->GET_VALUE( ).
 
 ENDFORM.
 
@@ -3916,26 +3909,26 @@ data l_installObject type string.
 data l_excClass type ref to ZCX_SAPLINK.
 data tempcname type string.
 
-  ixml = cl_ixml=&gt;create( ).
-  nameFilter = xmlDoc-&gt;create_filter_name( name = &apos;nugget&apos; ).
-  parentFilter = xmlDoc-&gt;create_filter_parent( nameFilter ).
-  iterator = xmlDoc-&gt;create_iterator_filtered( parentFilter ).
+  ixml = cl_ixml=>create( ).
+  nameFilter = xmlDoc->create_filter_name( name = 'nugget' ).
+  parentFilter = xmlDoc->create_filter_parent( nameFilter ).
+  iterator = xmlDoc->create_iterator_filtered( parentFilter ).
 
-  currentNode ?= iterator-&gt;get_next( ).
+  currentNode ?= iterator->get_next( ).
   while currentNode is not initial.
     clear exists.
-    ixmlDocument = ixml-&gt;create_document( ).
-    newNode = currentNode-&gt;clone( ).
-    rval = ixmlDocument-&gt;append_child( newNode ).
+    ixmlDocument = ixml->create_document( ).
+    newNode = currentNode->clone( ).
+    rval = ixmlDocument->append_child( newNode ).
 
-    call method zsaplink=&gt;GETOBJECTInfoFROMIXMLDOC
+    call method zsaplink=>GETOBJECTInfoFROMIXMLDOC
       exporting
         ixmlDocument = ixmlDocument
       importing
         objtypename = objType
         objname     = _objName.
 
-*  call method zsaplink=&gt;getplugins( changing objectTable = objectTable )
+*  call method zsaplink=>getplugins( changing objectTable = objectTable )
 *.
 *
 *  read table objectTable into objectLine with key object = objType.
@@ -3944,74 +3937,74 @@ data tempcname type string.
 
     translate objType to upper case.
     case objtype.
-      when &apos;CLAS&apos;.
-        tempcname = &apos;ZSAPLINK_CLASS&apos;.
-      when &apos;PROG&apos;.
-        tempcname = &apos;ZSAPLINK_PROGRAM&apos;.
+      when 'CLAS'.
+        tempcname = 'ZSAPLINK_CLASS'.
+      when 'PROG'.
+        tempcname = 'ZSAPLINK_PROGRAM'.
       when others.
     endcase.
 
     create object l_targetObject type (tempcname)
       exporting name = _objName.
 
-    objectExists = l_targetObject-&gt;checkexists( ).
+    objectExists = l_targetObject->checkexists( ).
 
-    if objectExists = &apos;X&apos; and overWrt = &apos;&apos;.
+    if objectExists = 'X' and overWrt = ''.
       write :/  objType, _objName,
-      &apos; exists on this system , if you wish to install this Nugget &apos;
-      &amp; &apos;please set the Overwrite Originals checkbox.&apos;
+      ' exists on this system , if you wish to install this Nugget '
+      & 'please set the Overwrite Originals checkbox.'
           .
-    elseif objectExists = &apos;X&apos; and overWrt = &apos;X&apos;.
+    elseif objectExists = 'X' and overWrt = 'X'.
 
       if l_targetObject is not initial.
 
-      if y2all &lt;&gt; &apos;X&apos;.
+      if y2all <> 'X'.
         concatenate objType _objName into sTemp separated by space.
         perform confirmOverwrite using sTemp
                               changing flag.
-        if flag = &apos;1&apos;. &quot;yes
-        elseif flag = &apos;2&apos;. &quot;yes to all
-          y2all = &apos;X&apos;.
-        elseif flag = &apos;A&apos;. &quot;cancel
-          write / &apos;Import cancelled by user&apos;.
-*          Flag = &apos;X&apos;.
+        if flag = '1'. "yes
+        elseif flag = '2'. "yes to all
+          y2all = 'X'.
+        elseif flag = 'A'. "cancel
+          write / 'Import cancelled by user'.
+*          Flag = 'X'.
           exit.
         endif.
        endif.
         try.
-          l_installObject = l_targetObject-&gt;createObjectfromiXMLDoc(
+          l_installObject = l_targetObject->createObjectfromiXMLDoc(
                                           ixmlDocument = ixmlDocument
                                           overwrite = overWrt ).
 
           catch ZCX_SAPLINK into l_excClass.
-            statusMsg = l_excClass-&gt;get_text( ).
-            Flag = &apos;X&apos;.
+            statusMsg = l_excClass->get_text( ).
+            Flag = 'X'.
         endtry.
         if l_installObject is not initial.
-          concatenate &apos;Installed: &apos; objType l_installObject
+          concatenate 'Installed: ' objType l_installObject
            into statusMsg separated by space.
         endif.
       else.
-        statusMsg = &apos;an undetermined error occured&apos;.
-        Flag = &apos;X&apos;.
+        statusMsg = 'an undetermined error occured'.
+        Flag = 'X'.
       endif.
 
     else.
         try.
-          l_installObject = l_targetObject-&gt;createObjectfromiXMLDoc(
+          l_installObject = l_targetObject->createObjectfromiXMLDoc(
                                           ixmlDocument = ixmlDocument
                                           overwrite = overWrt ).
 
           catch ZCX_SAPLINK into l_excClass.
-            statusMsg = l_excClass-&gt;get_text( ).
-            Flag = &apos;X&apos;.
+            statusMsg = l_excClass->get_text( ).
+            Flag = 'X'.
         endtry.
         if l_installObject is not initial.
-          concatenate &apos;Installed: &apos; objType l_installObject
+          concatenate 'Installed: ' objType l_installObject
            into statusMsg separated by space.
         endif.
     endif.
-  currentNode ?= iterator-&gt;get_next( ).
+  currentNode ?= iterator->get_next( ).
   write: / Statusmsg.
 endwhile.
 endform.
@@ -4024,23 +4017,22 @@ data l_message type string.
 data l_title type string.
 
   clear l_answer.
-  l_title = &apos;Overwrite confirm. Proceed with CAUTION!&apos;.
+  l_title = 'Overwrite confirm. Proceed with CAUTION!'.
 
-  concatenate &apos;You have selected to overwrite originals.&apos;
-    l_objinfo &apos;will be overwritten. Are you sure?&apos;
+  concatenate 'You have selected to overwrite originals.'
+    l_objinfo 'will be overwritten. Are you sure?'
     into l_message separated by space.
 
-  CALL FUNCTION &apos;POPUP_TO_CONFIRM&apos;
+  CALL FUNCTION 'POPUP_TO_CONFIRM'
     EXPORTING
       TITLEBAR                    = l_title
       text_question               = l_message
-      TEXT_BUTTON_1               = &apos;Yes&apos;
-      TEXT_BUTTON_2               = &apos;Yes to all&apos;
-      DEFAULT_BUTTON              = &apos;1&apos;
-      DISPLAY_CANCEL_BUTTON       = &apos;X&apos;
+      TEXT_BUTTON_1               = 'Yes'
+      TEXT_BUTTON_2               = 'Yes to all'
+      DEFAULT_BUTTON              = '1'
+      DISPLAY_CANCEL_BUTTON       = 'X'
     IMPORTING
       ANSWER                      = l_answer
             .
 endform.
-*\--------------------------------------------------------------------/</source>
-</PROG>
+*\--------------------------------------------------------------------/
