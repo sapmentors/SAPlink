@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="utf-16"?>
+<nugget name="Zake-0.0.1">
+ <CLAS CLSNAME="ZAKE" VERSION="1" LANGU="E" UUID="45BDD9C7D59508C000000000A7E42BB2" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" AUTHOR="USDWM01" CREATEDON="20070202" CHANGEDON="00000000" CHGDANYON="00000000" CLSCCINCL="X" FIXPT="X" UNICODE="X" R3RELEASE="700" CLSBCCAT="00" DURATION_TYPE="0 " RISK_LEVEL="0 ">
+  <publicSection>class ZAKE definition
+  public
+  create public .
+
+*&quot;* public components of class ZAKE
+*&quot;* do not include other source files here!!!
+public section.
+
+  methods ACTIVATE
+    importing
+      !OBJTYPE type STRING
+      !OBJNAME type STRING .
+  methods ADDOBJECTTONUGGET
+    importing
+      !NUGGETNAME type STRING
+      !XMLDOCUMENT type ref to IF_IXML_DOCUMENT .
+  methods BUILDNUGGETFROMFILES
+    importing
+      !NUGGETNAME type STRING .
+  methods SYNTAXCHECK
+    importing
+      !OBJNAME type STRING
+      !OBJTYPE type STRING .
+  methods CREATENUGGET
+    importing
+      !NUGGETNAME type STRING .
+  methods SAVENUGGET
+    importing
+      !NUGGETNAME type STRING
+      !TARGET type STRING .
+  methods GETALLFILES .
+  methods GETNUGGETSTRING
+    importing
+      !NUGGETNAME type STRING
+    returning
+      value(NUGGETSTRING) type STRING .
+  methods DELETE
+    importing
+      !XMLDOCUMENT type ref to IF_IXML_DOCUMENT .
+  methods GETFILE
+    importing
+      !FILENAME type STRING
+      !NEWCLIENT type ref to IF_HTTP_CLIENT optional
+    returning
+      value(XMLDOCUMENT) type ref to IF_IXML_DOCUMENT
+    raising
+      ZCX_SAPLINK .
+  methods CONSTRUCTOR
+    importing
+      !SVNPATH type STRING .
+  methods INSTALL
+    importing
+      !XMLDOCUMENT type ref to IF_IXML_DOCUMENT
+    exporting
+      !OBJECTTYPE type STRING
+      !OBJECTNAME type STRING .</publicSection>
+  <protectedSection>*&quot;* protected components of class ZAKE
+*&quot;* do not include other source files here!!!
+protected section.</protectedSection>
+  <privateSection>*&quot;* private components of class ZAKE
+*&quot;* do not include other source files here!!!
+private section.
+
+  data URL type STRING .
+  data HTTPCLIENT type ref to IF_HTTP_CLIENT .
+  data:
+    L_OBJTABLE type standard table of t_objectTable .
+  data:
+    CURRENTNUGGETS type standard table of nuggetRow .
+  data:
+    FILELIST type standard table of fileListRowType .</privateSection>
+  <localImplementation>*&quot;* local class implementation for public class
+*&quot;* use this source file for the implementation part of
+*&quot;* local helper classes</localImplementation>
+  <localTypes>*&quot;* use this source file for any type declarations (class
+*&quot;* definitions, interfaces or data types) you need for method
+*&quot;* implementation or private method&apos;s signature
+types: begin of t_objectTable,
+         classname type string,
+         object type ko100-object,
+         text type ko100-text,
+       end of t_objectTable.
+
+
+types: begin of nuggetRow,
+        name type string,
+        nuggetObject type ref to zsaplink_nugget,
+       end of nuggetRow.
+
+
+types: begin of fileListRowType,
+        name type string,
+        xmlDoc type ref to if_ixml_document,
+       end of fileListRowType.</localTypes>
+  <localMacros>*&quot;* use this source file for any macro definitions you need
+*&quot;* in the implementation part of the class</localMacros>
+  <attribute CLSNAME="ZAKE" CMPNAME="CURRENTNUGGETS" VERSION="1" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="3 " AUTHOR="USDWM01" CREATEDON="20070205" CHANGEDBY="USDWM01" CHANGEDON="20070205" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="10 " SRCCOLUMN1="4 " SRCROW2="10 " SRCCOLUMN2="50 " TYPESRC_LENG="49 " TYPESRC="CURRENTNUGGETS type standard table of nuggetRow
+"/>
+  <attribute CLSNAME="ZAKE" CMPNAME="FILELIST" VERSION="1" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="4 " AUTHOR="USDWM01" CREATEDON="20070205" CHANGEDBY="USDWM01" CHANGEDON="20070205" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="12 " SRCCOLUMN1="4 " SRCROW2="12 " SRCCOLUMN2="50 " TYPESRC_LENG="0 " TYPESRC="FILELIST type standard table of fileListRowType
+"/>
+  <attribute CLSNAME="ZAKE" CMPNAME="HTTPCLIENT" VERSION="1" LANGU="E" DESCRIPT="HTTP Client Abstraction" EXPOSURE="0" STATE="1" EDITORDER="1 " AUTHOR="USDWM01" CREATEDON="20070205" CHANGEDBY="USDWM01" CHANGEDON="20070205" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="3" TYPE="IF_HTTP_CLIENT" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZAKE" CMPNAME="L_OBJTABLE" VERSION="1" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="2 " AUTHOR="USDWM01" CREATEDON="20070205" CHANGEDBY="USDWM01" CHANGEDON="20070205" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="8 " SRCCOLUMN1="4 " SRCROW2="8 " SRCCOLUMN2="50 " TYPESRC_LENG="0 " TYPESRC="L_OBJTABLE type standard table of t_objectTable
+"/>
+  <attribute CLSNAME="ZAKE" CMPNAME="URL" VERSION="1" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="0 " AUTHOR="USDWM01" CREATEDON="20070205" CHANGEDON="00000000" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " R3RELEASE="700" TYPESRC_LENG="0 "/>
+  <method CLSNAME="ZAKE" CMPNAME="ACTIVATE" VERSION="1" LANGU="E" DESCRIPT="Activate --- JUST A STUB!" EXPOSURE="2" STATE="1" EDITORDER="0 " DISPID="0 " AUTHOR="USDWM01" CREATEDON="20070205" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="700" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZAKE" CMPNAME="ACTIVATE" SCONAME="OBJTYPE" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USDWM01" CREATEDON="20070205" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
+   <parameter CLSNAME="ZAKE" CMPNAME="ACTIVATE" SCONAME="OBJNAME" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="USDWM01" CREATEDON="20070205" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
+   <source>method ACTIVATE .
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZAKE" CMPNAME="ADDOBJECTTONUGGET" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="0 " DISPID="0 " AUTHOR="USDWM01" CREATEDON="20070205" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="700" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZAKE" CMPNAME="ADDOBJECTTONUGGET" SCONAME="NUGGETNAME" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USDWM01" CREATEDON="20070205" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
+   <parameter CLSNAME="ZAKE" CMPNAME="ADDOBJECTTONUGGET" SCONAME="XMLDOCUMENT" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_DOCUMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="USDWM01" CREATEDON="20070205" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_DOCUMENT"/>
+   <source>method ADDOBJECTTONUGGET .
+data name type string.
+data nugget type nuggetRow.
+data objName type string.
+data objType type string.
+
+  name = nuggetName.
+  translate name to upper case.
+  read table currentNuggets into nugget with key name = name.
+
+  if sy-subrc = 0.
+    nugget-nuggetObject-&gt;ADDOBJECTTONUGGET( xmldocument = xmlDocument ).
+  endif.
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZAKE" CMPNAME="BUILDNUGGETFROMFILES" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="0 " DISPID="0 " AUTHOR="USDWM01" CREATEDON="20070205" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="700" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZAKE" CMPNAME="BUILDNUGGETFROMFILES" SCONAME="NUGGETNAME" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USDWM01" CREATEDON="20070205" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
+   <source>method BUILDNUGGETFROMFILES.
+data aFile type fileListRowType.
+data sTemp type string.
+data newNugget type nuggetRow.
+
+  sTemp = nuggetName.
+  translate sTemp to upper case.
+  read table currentNuggets transporting no fields with key name = sTemp.
+  if sy-subrc = 0.
+    delete currentNuggets where name = sTemp.
+  endif.
+  createNugget( nuggetName ).
+
+  loop at fileList into aFile.
+    addObjectToNugget( nuggetName = nuggetName xmlDocument = aFile-xmldoc ).
+  endloop.
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZAKE" CMPNAME="CONSTRUCTOR" VERSION="1" LANGU="E" DESCRIPT="CONSTRUCTOR" EXPOSURE="2" STATE="1" EDITORDER="3 " DISPID="0 " AUTHOR="USDWM01" CREATEDON="20070205" CHANGEDON="00000000" MTDTYPE="2" MTDDECLTYP="0" R3RELEASE="700" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZAKE" CMPNAME="CONSTRUCTOR" SCONAME="SVNPATH" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="2" EDITORDER="1 " DISPID="0 " AUTHOR="USDWM01" CREATEDON="20070205" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
+   <source>method CONSTRUCTOR .
+  data pluginInfo type t_objectTable.
+
+  call method cl_http_client=&gt;create_by_url
+        exporting
+          url = svnPath
+        importing
+          client = httpClient.
+  url = svnPath.
+  try.
+    call method zsaplink=&gt;getplugins( changing objectTable = l_objTable ).
+  catch cx_root.
+    pluginInfo-className = &apos;ZSAPLINK_CLASS&apos;.
+    pluginInfo-object = &apos;CLAS&apos;.
+    append pluginInfo to l_objTable.
+    pluginInfo-className = &apos;ZSAPLINK_PROG&apos;.
+    pluginInfo-object = &apos;PROG&apos;.
+    append pluginInfo to l_objTable.
+  endtry.
+
+
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZAKE" CMPNAME="CREATENUGGET" VERSION="1" LANGU="E" DESCRIPT="Creates a  Nugget so you can add objects to it" EXPOSURE="2" STATE="1" EDITORDER="0 " DISPID="0 " AUTHOR="USDWM01" CREATEDON="20070205" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="700" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZAKE" CMPNAME="CREATENUGGET" SCONAME="NUGGETNAME" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USDWM01" CREATEDON="20070205" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
+   <source>method CREATENUGGET .
+  data newNugget type nuggetRow.
+  data xmlDoc type ref to if_ixml_document.
+
+  newNugget-name = nuggetName.
+  translate newNugget-name to upper case.
+  create object newNugget-nuggetObject
+        exporting
+          NAME = nuggetName.
+  xmlDoc = newNugget-nuggetObject-&gt;CREATEEMPTYXML( nuggetName ).
+
+  append newNugget to currentNuggets.
+
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZAKE" CMPNAME="DELETE" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="1 " DISPID="0 " AUTHOR="USDWM01" CREATEDON="20070205" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="700" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZAKE" CMPNAME="DELETE" SCONAME="XMLDOCUMENT" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_DOCUMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USDWM01" CREATEDON="20070205" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_DOCUMENT"/>
+   <source>method DELETE .
+
+data typeName type string.
+data objName type string.
+data l_objLine type t_objectTable.
+
+  call method ZSAPlink=&gt;GETOBJECTINFOFROMIXMLDOC
+        exporting
+          ixmlDocument = xmlDocument
+        importing
+          objTypeName = typeName
+          objName = objName.
+
+
+
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZAKE" CMPNAME="GETALLFILES" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="0 " DISPID="0 " AUTHOR="USDWM01" CREATEDON="20070205" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="700" BCMTDCAT="00" BCMTDSYN="0">
+   <source>method GETALLFILES .
+data xmlDocument type ref to if_ixml_document.
+data httpStatusCode type i.
+data httpStatusReason type string.
+data responseData type string.
+data iterator type ref to if_ixml_node_iterator.
+data lowercaseAnchors type ref to if_ixml_node_filter.
+data uppercaseAnchors type ref to if_ixml_node_filter.
+data anchorFilter type ref to if_ixml_node_filter.
+data element type ref to if_ixml_element.
+data fileName type string.
+
+  httpClient-&gt;send( ).
+  httpClient-&gt;receive( ).
+  httpClient-&gt;REFRESH_REQUEST( ).
+
+  httpClient-&gt;response-&gt;get_status( importing code = httpStatusCode reason = httpStatusReason ).
+  if httpStatusCode = 200.
+    responseData = httpClient-&gt;response-&gt;get_cdata( ).
+    xmlDocument = ZSAPlink=&gt;convertStringToIXMLDoc( responseData ).
+    lowercaseAnchors = xmldocument-&gt;create_filter_name( &apos;a&apos; ).
+    uppercaseAnchors = xmldocument-&gt;create_filter_name( &apos;A&apos; ).
+    anchorFilter = xmldocument-&gt;create_filter_or( filter1 = lowercaseAnchors filter2 = uppercaseAnchors ).
+    iterator = xmldocument-&gt;create_iterator_filtered( anchorFilter ).
+    element ?= iterator-&gt;get_next( ).
+    while element is not initial.
+      fileName = element-&gt;GET_ATTRIBUTE( &apos;href&apos; ).
+      if fileName is initial.
+        fileName = element-&gt;GET_ATTRIBUTE( &apos;HREF&apos; ).
+      endif.
+      if not fileName CO &apos;./&apos;.
+        concatenate url fileName into fileName.
+        getFile( fileName = fileName ).
+      endif.
+      element ?= iterator-&gt;get_next( ).
+    endwhile.
+    httpClient-&gt;REFRESH_REQUEST( ).
+  else.
+    raise exception type zcx_saplink.
+  endif.
+
+
+
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZAKE" CMPNAME="GETFILE" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="2 " DISPID="0 " AUTHOR="USDWM01" CREATEDON="20070205" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" R3RELEASE="700" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZAKE" CMPNAME="GETFILE" SCONAME="FILENAME" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USDWM01" CREATEDON="20070205" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
+   <parameter CLSNAME="ZAKE" CMPNAME="GETFILE" SCONAME="NEWCLIENT" VERSION="1" LANGU="E" DESCRIPT="HTTP Client Abstraction" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="USDWM01" CREATEDON="20070205" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_HTTP_CLIENT" PAROPTIONL="X"/>
+   <parameter CLSNAME="ZAKE" CMPNAME="GETFILE" SCONAME="XMLDOCUMENT" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " AUTHOR="USDWM01" CREATEDON="20070205" CHANGEDBY="USDWM01" CHANGEDON="20070205" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_DOCUMENT"/>
+   <exception CLSNAME="ZAKE" CMPNAME="GETFILE" SCONAME="ZCX_SAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 " AUTHOR="USDWM01" CREATEDON="20070205" CHANGEDON="00000000"/>
+   <source>method GETFILE .
+data httpStatusCode type i.
+data httpStatusReason type string.
+data responseData type string.
+data fileRow type fileListRowType.
+data tableOStrings type table_of_strings.
+data sTemp type string.
+
+  httpClient-&gt;request-&gt;set_header_field( name  = &apos;~request_uri&apos; value = fileName ).
+  httpClient-&gt;request-&gt;set_header_field( name  = &apos;Cache-Control&apos; value = &apos;no-cache&apos; ).	
+  httpClient-&gt;send( ).
+  httpClient-&gt;receive( ).
+
+  httpClient-&gt;response-&gt;get_status( importing code = httpStatusCode reason = httpStatusReason ).
+  if httpStatusCode = 200.
+    responseData = httpClient-&gt;response-&gt;get_cdata( ).
+    split responseData at cl_abap_char_utilities=&gt;cr_lf into table tableOStrings.
+    clear responseData.
+    loop at tableOStrings into sTemp.
+      concatenate responseData sTemp CL_ABAP_CHAR_UTILITIES=&gt;NEWLINE into responseData.
+    endloop.
+    xmlDocument = ZSAPlink=&gt;convertStringToIXMLDoc( responseData ).
+    fileRow-name = fileName.
+    fileRow-xmlDoc = xmlDocument.
+    append fileRow to fileList.
+    httpClient-&gt;REFRESH_REQUEST( ).
+  else.
+*    raise exception type zcx_saplink.
+  endif.
+
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZAKE" CMPNAME="GETNUGGETSTRING" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="0 " DISPID="0 " AUTHOR="USDWM01" CREATEDON="20070205" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="700" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZAKE" CMPNAME="GETNUGGETSTRING" SCONAME="NUGGETNAME" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USDWM01" CREATEDON="20070205" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
+   <parameter CLSNAME="ZAKE" CMPNAME="GETNUGGETSTRING" SCONAME="NUGGETSTRING" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="USDWM01" CREATEDON="20070205" CHANGEDON="00000000" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="1" TYPE="STRING"/>
+   <source>method GETNUGGETSTRING .
+data name type string.
+data nugget type nuggetRow.
+data xmlDoc type ref to if_ixml_document.
+
+  name = nuggetName.
+  translate name to upper case.
+  read table currentNuggets into nugget with key name = name.
+  if sy-subrc = 0.
+    xmlDoc = nugget-nuggetObject-&gt;CREATEIXMLDOCFROMNUGGET( ).
+    nuggetString = zsaplink=&gt;CONVERTIXMLDOCTOSTRING( xmlDoc ).
+  endif.
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZAKE" CMPNAME="INSTALL" VERSION="1" LANGU="E" DESCRIPT="Install a Slnk" EXPOSURE="2" STATE="1" EDITORDER="4 " DISPID="0 " AUTHOR="USDWM01" CREATEDON="20070205" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="700" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZAKE" CMPNAME="INSTALL" SCONAME="XMLDOCUMENT" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_DOCUMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USDWM01" CREATEDON="20070205" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_DOCUMENT"/>
+   <parameter CLSNAME="ZAKE" CMPNAME="INSTALL" SCONAME="OBJECTTYPE" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="USDWM01" CREATEDON="20070205" CHANGEDON="00000000" PARDECLTYP="1" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
+   <parameter CLSNAME="ZAKE" CMPNAME="INSTALL" SCONAME="OBJECTNAME" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " AUTHOR="USDWM01" CREATEDON="20070205" CHANGEDON="00000000" PARDECLTYP="1" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
+   <source>method INSTALL .
+
+
+data installer type ref to zsaplink.
+data l_objLine type t_objectTable.
+
+  call method ZSAPlink=&gt;GETOBJECTINFOFROMIXMLDOC
+        exporting
+          ixmlDocument = xmlDocument
+        importing
+          objTypeName = objectType
+          objName = objectName.
+
+* Grab the right plugin from the cache built durning the constructor
+  read table l_objTable into l_objLine with key object = objectType.
+  if sy-subrc = 0.
+    create object installer type (l_objLine-className)
+          exporting
+            name = objectName.
+  ELSE.
+* Seems that we don&apos;t have the plugin installed, but what if zake installed it previously.
+* Re-read the plugin hierarchy
+    call method zsaplink=&gt;getplugins( changing objectTable = l_objTable ).
+    read table l_objTable into l_objLine with key object = objectType.
+    if sy-subrc = 0.
+      create object installer type (l_objLine-className)
+            exporting
+              name = objectName.
+    endif.
+  endif.
+* Attempt to install
+* Must catch errors here, but for now dumping is okay. :-)
+  installer-&gt;CREATEOBJECTFROMIXMLDOC( IXMLDOCUMENT = xmlDocument overwrite = &apos;X&apos; ).
+
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZAKE" CMPNAME="SAVENUGGET" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="0 " DISPID="0 " AUTHOR="USDWM01" CREATEDON="20070205" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="700" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZAKE" CMPNAME="SAVENUGGET" SCONAME="NUGGETNAME" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USDWM01" CREATEDON="20070205" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
+   <parameter CLSNAME="ZAKE" CMPNAME="SAVENUGGET" SCONAME="TARGET" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="USDWM01" CREATEDON="20070205" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
+   <source>method SAVENUGGET .
+data sTemp type string.
+data nugget type nuggetRow.
+data name type string.
+data xmlString type string.
+
+
+types: begin of t_char,
+        maxChar(65535) type C,
+       end of t_char.
+
+data: tempTable_char type table of t_char.
+
+  name = nuggetName.
+  translate name to upper case.
+  read table currentNuggets into nugget with key name = name.
+
+  sTemp = target.
+  translate sTemp to upper case.
+
+  if sTemp(4) = &apos;HTTP&apos;.
+* Post to SVN
+  else.
+    xmlString = getNuggetString( name ).
+
+    split xmlString at CL_ABAP_CHAR_UTILITIES=&gt;NEWLINE
+    into table tempTable_char.
+
+    call method CL_GUI_FRONTEND_SERVICES=&gt;GUI_DOWNLOAD
+          exporting
+            FILENAME = target
+            FILETYPE = &apos;DAT&apos;
+          changing
+            DATA_TAB = tempTable_char.
+  endif.
+
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZAKE" CMPNAME="SYNTAXCHECK" VERSION="1" LANGU="E" DESCRIPT="JUST A STUB!" EXPOSURE="2" STATE="1" EDITORDER="0 " DISPID="0 " AUTHOR="USDWM01" CREATEDON="20070205" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="700" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZAKE" CMPNAME="SYNTAXCHECK" SCONAME="OBJNAME" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USDWM01" CREATEDON="20070205" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
+   <parameter CLSNAME="ZAKE" CMPNAME="SYNTAXCHECK" SCONAME="OBJTYPE" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="USDWM01" CREATEDON="20070205" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
+   <source>method SYNTAXCHECK .
+endmethod.</source>
+  </method>
+ </CLAS>
+</nugget>
