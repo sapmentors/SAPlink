@@ -242,10 +242,10 @@ data sTemp type string.
   httpClient-&gt;response-&gt;get_status( importing code = httpStatusCode reason = httpStatusReason ).
   if httpStatusCode = 200.
     responseData = httpClient-&gt;response-&gt;get_cdata( ).
-    split responseData at cl_abap_char_utilities=&gt;newline into table tableOStrings.
+    split responseData at cl_abap_char_utilities=&gt;cr_lf into table tableOStrings.
     clear responseData.
     loop at tableOStrings into sTemp.
-      concatenate responseData sTemp into responseData.
+      concatenate responseData sTemp CL_ABAP_CHAR_UTILITIES=&gt;NEWLINE into responseData.
     endloop.
     xmlDocument = ZSAPlink=&gt;convertStringToIXMLDoc( responseData ).
     fileRow-name = fileName.
