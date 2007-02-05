@@ -42,7 +42,6 @@ public section.
   methods GETFILE
     importing
       !FILENAME type STRING
-      !NEWCLIENT type ref to IF_HTTP_CLIENT optional
     returning
       value(XMLDOCUMENT) type ref to IF_IXML_DOCUMENT
     raising
@@ -241,7 +240,7 @@ data fileName type string.
         fileName = element-&gt;GET_ATTRIBUTE( &apos;HREF&apos; ).
       endif.
       if not fileName CO &apos;./&apos;.
-        concatenate url fileName into fileName.
+*        concatenate url fileName into fileName.
         getFile( fileName = fileName ).
       endif.
       element ?= iterator-&gt;get_next( ).
@@ -257,8 +256,7 @@ endmethod.</source>
  </method>
  <method CLSNAME="ZAKE" CMPNAME="GETFILE" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="2 " DISPID="0 " AUTHOR="USDWM01" CREATEDON="20070205" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" R3RELEASE="700" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZAKE" CMPNAME="GETFILE" SCONAME="FILENAME" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USDWM01" CREATEDON="20070205" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
-  <parameter CLSNAME="ZAKE" CMPNAME="GETFILE" SCONAME="NEWCLIENT" VERSION="1" LANGU="E" DESCRIPT="HTTP Client Abstraction" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="USDWM01" CREATEDON="20070205" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_HTTP_CLIENT" PAROPTIONL="X"/>
-  <parameter CLSNAME="ZAKE" CMPNAME="GETFILE" SCONAME="XMLDOCUMENT" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " AUTHOR="USDWM01" CREATEDON="20070205" CHANGEDBY="USDWM01" CHANGEDON="20070205" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_DOCUMENT"/>
+  <parameter CLSNAME="ZAKE" CMPNAME="GETFILE" SCONAME="XMLDOCUMENT" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="USDWM01" CREATEDON="20070205" CHANGEDBY="USDWM01" CHANGEDON="20070205" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_DOCUMENT"/>
   <exception CLSNAME="ZAKE" CMPNAME="GETFILE" SCONAME="ZCX_SAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 " AUTHOR="USDWM01" CREATEDON="20070205" CHANGEDON="00000000"/>
   <source>method GETFILE .
 data httpStatusCode type i.
@@ -267,8 +265,11 @@ data responseData type string.
 data fileRow type fileListRowType.
 data tableOStrings type table_of_strings.
 data sTemp type string.
+data location type string.
 
-  httpClient-&gt;request-&gt;set_header_field( name  = &apos;~request_uri&apos; value = fileName ).
+  concatenate url filename into location.
+
+  httpClient-&gt;request-&gt;set_header_field( name  = &apos;~request_uri&apos; value = location ).
   httpClient-&gt;request-&gt;set_header_field( name  = &apos;Cache-Control&apos; value = &apos;no-cache&apos; ).	
   httpClient-&gt;send( ).
   httpClient-&gt;receive( ).
