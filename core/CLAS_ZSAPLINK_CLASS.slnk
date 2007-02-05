@@ -1262,7 +1262,8 @@ CALL FUNCTION &apos;SEO_CLASS_CREATE_COMPLETE&apos;
 
 *ewH:insert pub, prot, and priv sections manually to keep any direct
 * attribute/type definitions
-* public
+  aobjname = classkey-clsname.
+**public
   sourcenode = xmldoc-&gt;find_from_name( &apos;publicSection&apos; ).
   IF sourcenode IS NOT INITIAL.
     includename = cl_oo_classname_service=&gt;get_pubsec_name( _classname ).
@@ -1272,7 +1273,7 @@ CALL FUNCTION &apos;SEO_CLASS_CREATE_COMPLETE&apos;
     srext_ext_class_public STATE &apos;I&apos;.
   ENDIF.
 
-* protected
+**protected
   sourcenode = xmldoc-&gt;find_from_name( &apos;protectedSection&apos; ).
   IF sourcenode IS NOT INITIAL.
     includename = cl_oo_classname_service=&gt;get_prosec_name( _classname ).
@@ -1282,7 +1283,7 @@ CALL FUNCTION &apos;SEO_CLASS_CREATE_COMPLETE&apos;
     srext_ext_class_protected STATE &apos;I&apos;.
   ENDIF.
 
-* private
+**private
   sourcenode = xmldoc-&gt;find_from_name( &apos;privateSection&apos; ).
   IF sourcenode IS NOT INITIAL.
     includename = cl_oo_classname_service=&gt;get_prisec_name( _classname ).
@@ -1291,6 +1292,35 @@ CALL FUNCTION &apos;SEO_CLASS_CREATE_COMPLETE&apos;
     INSERT REPORT includename FROM sourcetable EXTENSION TYPE
     srext_ext_class_private STATE &apos;I&apos;.
   ENDIF.
+
+* insert inactive sections into worklist
+  CALL FUNCTION &apos;RS_INSERT_INTO_WORKING_AREA&apos;
+    EXPORTING
+      object            = &apos;CPUB&apos;
+      obj_name          = aobjname
+    EXCEPTIONS
+      wrong_object_name = 1.
+  IF sy-subrc &lt;&gt; 0.
+  ENDIF.
+
+  CALL FUNCTION &apos;RS_INSERT_INTO_WORKING_AREA&apos;
+    EXPORTING
+      object            = &apos;CPRO&apos;
+      obj_name          = aobjname
+    EXCEPTIONS
+      wrong_object_name = 1.
+  IF sy-subrc &lt;&gt; 0.
+  ENDIF.
+
+  CALL FUNCTION &apos;RS_INSERT_INTO_WORKING_AREA&apos;
+    EXPORTING
+      object            = &apos;CPRI&apos;
+      obj_name          = aobjname
+    EXCEPTIONS
+      wrong_object_name = 1.
+  IF sy-subrc &lt;&gt; 0.
+  ENDIF.
+
 
 endmethod.</source>
  </method>
