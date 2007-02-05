@@ -1,0 +1,4038 @@
+*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   SAPlink is free software; you can redistribute it and/or modify   |
+*|   it under the terms of the GNU General Public License as published |
+*|   by the Free Software Foundation; either version 2 of the License, |
+*|   or (at your option) any later version.                            |
+*|                                                                     |
+*|   SAPlink is distributed in the hope that it will be useful,        |
+*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
+*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
+*|   GNU General Public License for more details.                      |
+*|                                                                     |
+*|   You should have received a copy of the GNU General Public License |
+*|   along with SAPlink; if not, write to the                          |
+*|   Free Software Foundation, Inc.,                                   |
+*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*\---------------------------------------------------------------------/
+REPORT  ZSAPLINK_INSTALLER_TEMPLATE.
+
+CLASS ZCX_SAPLINK DEFINITION
+  INHERITING FROM CX_STATIC_CHECK
+  CREATE PUBLIC
+  .
+public section.
+
+  constants EXISTING type SOTR_CONC
+ value '44F5C1A35F5C09C200000000A7E42BB6'. "#EC NOTEXT
+  constants SYSTEM_ERROR type SOTR_CONC
+ value '44F5C1B55F5C09C200000000A7E42BB6'. "#EC NOTEXT
+  constants ERROR_MESSAGE type SOTR_CONC
+ value '44F5C21A5F5C09C200000000A7E42BB6'. "#EC NOTEXT
+  constants NOT_AUTHORIZED type SOTR_CONC
+ value '44F5C1A95F5C09C200000000A7E42BB6'. "#EC NOTEXT
+  constants NOT_FOUND type SOTR_CONC
+ value '44F5C1AF5F5C09C200000000A7E42BB6'. "#EC NOTEXT
+  data MSG type STRING value '44F7518323DB08BC02000000A7E42BB6' .
+  constants LOCKED type SOTR_CONC
+ value '44F7518323DB08BC02000000A7E42BB6'. "#EC NOTEXT
+  constants NO_PLUGIN type SOTR_CONC
+ value '44F7C18C68D709C200000000A7E42BB6'. "#EC NOTEXT
+
+  methods CONSTRUCTOR
+    importing
+      !TEXTID like TEXTID optional
+      !PREVIOUS like PREVIOUS optional
+      value(MSG) type STRING default '44F7518323DB08BC02000000A7E42BB6'
+.
+*"* protected components of class ZCX_SAPLINK
+*"* do not include other source files here!!!
+protected section.
+*"* private components of class ZCX_SAPLINK
+*"* do not include other source files here!!!
+private section.
+ENDCLASS.
+CLASS ZSAPLINK DEFINITION
+  CREATE PUBLIC
+  ABSTRACT
+  .
+public section.
+
+  class-methods GETOBJECTINFOFROMIXMLDOC
+    importing
+      !IXMLDOCUMENT type ref to IF_IXML_DOCUMENT
+    exporting
+      !OBJTYPENAME type STRING
+      !OBJNAME type STRING .
+  class-methods CONVERTSTRINGTOIXMLDOC
+    importing
+      value(XMLSTRING) type STRING
+    returning
+      value(IXMLDOCUMENT) type ref to IF_IXML_DOCUMENT .
+  class-methods CONVERTIXMLDOCTOSTRING
+    importing
+      !IXMLDOCUMENT type ref to IF_IXML_DOCUMENT
+    returning
+      value(XMLSTRING) type STRING .
+  methods CREATEOBJECTFROMIXMLDOC
+  abstract
+    importing
+      !IXMLDOCUMENT type ref to IF_IXML_DOCUMENT
+      !DEVCLASS type DEVCLASS default '$TMP'
+      !OVERWRITE type FLAG optional
+    returning
+      value(NAME) type STRING
+    raising
+      ZCX_SAPLINK .
+  methods CREATEIXMLDOCFROMOBJECT
+  abstract
+    returning
+      value(IXMLDOCUMENT) type ref to IF_IXML_DOCUMENT
+    raising
+      ZCX_SAPLINK .
+  methods CONSTRUCTOR
+    importing
+      !NAME type STRING .
+  methods UPLOADXML
+  final
+    importing
+      !XMLDATA type STRING .
+  class-methods GETPLUGINS
+    changing
+      value(OBJECTTABLE) type TABLE .
+  methods CHECKEXISTS
+  abstract
+    returning
+      value(EXISTS) type FLAG .
+*"* protected components of class ZSAPLINK
+*"* do not include other source files here!!!
+protected section.
+
+  data OBJNAME type STRING .
+  data IXML type ref to IF_IXML .
+  data XMLDOC type ref to IF_IXML_DOCUMENT .
+
+  methods DELETEOBJECT
+  abstract
+    raising
+      ZCX_SAPLINK .
+  methods CREATENODEFROMOTR
+  final
+    importing
+      !OTRGUID type SOTR_CONC
+    returning
+      value(NODE) type ref to IF_IXML_ELEMENT .
+  class-methods SETATTRIBUTESFROMSTRUCTURE
+    importing
+      !NODE type ref to IF_IXML_ELEMENT
+      !STRUCTURE type DATA .
+  class-methods GETSTRUCTUREFROMATTRIBUTES
+    importing
+      !NODE type ref to IF_IXML_ELEMENT
+      !PRESERVEVERSION type FLAG optional
+    changing
+      !STRUCTURE type DATA .
+  methods CREATEXMLSTRING
+  final
+    returning
+      value(XML) type STRING .
+  class-methods BUILDTABLEFROMSTRING
+    importing
+      !SOURCE type STRING
+    returning
+      value(SOURCETABLE) type TABLE_OF_STRINGS .
+  class-methods BUILDSOURCESTRING
+    importing
+      !SOURCETABLE type RSWSOURCET optional
+      !PAGETABLE type O2PAGELINE_TABLE optional
+    returning
+      value(SOURCESTRING) type STRING .
+  methods GETOBJECTTYPE
+  abstract
+    returning
+      value(OBJECTTYPE) type STRING .
+  methods CREATEOTRFROMNODE
+  final
+    importing
+      value(NODE) type ref to IF_IXML_ELEMENT
+      !DEVCLASS type DEVCLASS default '$TMP'
+    exporting
+      !CONCEPT type SOTR_TEXT-CONCEPT
+    raising
+      ZCX_SAPLINK .
+*"* private components of class ZSAPLINK
+*"* do not include other source files here!!!
+private section.
+
+  data STREAMFACTORY type ref to IF_IXML_STREAM_FACTORY .
+  data XMLDATA type STRING .
+ENDCLASS.
+CLASS ZSAPLINK_PROGRAM DEFINITION
+  INHERITING FROM ZSAPLINK
+  FINAL
+  CREATE PUBLIC
+  .
+public section.
+
+  methods CHECKEXISTS
+    redefinition .
+  methods CREATEIXMLDOCFROMOBJECT
+    redefinition .
+  methods CREATEOBJECTFROMIXMLDOC
+    redefinition .
+*"* protected components of class ZSAPLINK_PROGRAM
+*"* do not include other source files here!!!
+protected section.
+
+  methods DELETEOBJECT
+    redefinition .
+  methods GETOBJECTTYPE
+    redefinition .
+*"* private components of class ZSAPLINK_PROGRAM
+*"* do not include other source files here!!!
+private section.
+
+  methods CREATE_TEXTPOOL
+    importing
+      !TEXTPOOLNODE type ref to IF_IXML_ELEMENT .
+  methods DEQUEUE_ABAP
+    raising
+      ZCX_SAPLINK .
+  methods GET_TEXTPOOL
+    returning
+      value(TEXTNODE) type ref to IF_IXML_ELEMENT .
+  methods CREATE_SOURCE
+    importing
+      !SOURCE type TABLE_OF_STRINGS
+      !ATTRIBS type TRDIR .
+  methods ENQUEUE_ABAP
+    raising
+      ZCX_SAPLINK .
+  methods TRANSPORT_COPY
+    importing
+      !AUTHOR type SYUNAME
+      !DEVCLASS type DEVCLASS
+    raising
+      ZCX_SAPLINK .
+  methods GET_DYNPRO
+    returning
+      value(DYNP_NODE) type ref to IF_IXML_ELEMENT .
+  methods CREATE_DYNPRO
+    importing
+      !DYNP_NODE type ref to IF_IXML_ELEMENT .
+  methods GET_PFSTATUS
+    returning
+      value(PFSTAT_NODE) type ref to IF_IXML_ELEMENT .
+  methods CREATE_PFSTATUS
+    importing
+      !PFSTAT_NODE type ref to IF_IXML_ELEMENT .
+ENDCLASS.
+CLASS ZSAPLINK_CLASS DEFINITION
+  INHERITING FROM ZSAPLINK
+  CREATE PUBLIC
+  .
+public section.
+  type-pools ABAP .
+  type-pools SEOP .
+  type-pools SEOR .
+  type-pools SEOS .
+  type-pools SEOT .
+  type-pools SEOX .
+
+  methods CHECKEXISTS
+    redefinition .
+  methods CREATEIXMLDOCFROMOBJECT
+    redefinition .
+  methods CREATEOBJECTFROMIXMLDOC
+    redefinition .
+*"* protected components of class ZSAPLINK_CLASS
+*"* do not include other source files here!!!
+protected section.
+
+  methods DELETEOBJECT
+    redefinition .
+  methods GETOBJECTTYPE
+    redefinition .
+*"* private components of class ZSAPLINK_CLASS
+*"* do not include other source files here!!!
+private section.
+
+  methods FINDIMPLEMENTINGCLASS
+    importing
+      !METHODNAME type STRING
+      !STARTCLASS type STRING optional
+    returning
+      value(CLASSNAME) type STRING .
+ENDCLASS.
+CLASS ZCX_SAPLINK IMPLEMENTATION.
+  method CONSTRUCTOR .
+  CALL METHOD SUPER->CONSTRUCTOR
+  EXPORTING
+  TEXTID = TEXTID
+  PREVIOUS = PREVIOUS
+  .
+  me->MSG = MSG .
+  endmethod.
+ENDCLASS.
+CLASS ZSAPLINK IMPLEMENTATION.
+*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   SAPlink is free software; you can redistribute it and/or modify   |
+*|   it under the terms of the GNU General Public License as published |
+*|   by the Free Software Foundation; either version 2 of the License, |
+*|   or (at your option) any later version.                            |
+*|                                                                     |
+*|   SAPlink is distributed in the hope that it will be useful,        |
+*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
+*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
+*|   GNU General Public License for more details.                      |
+*|                                                                     |
+*|   You should have received a copy of the GNU General Public License |
+*|   along with SAPlink; if not, write to the                          |
+*|   Free Software Foundation, Inc.,                                   |
+*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*\---------------------------------------------------------------------/
+  method BUILDSOURCESTRING .
+  data sTemp type string.
+  data pageLine type O2PAGELINE.
+
+    if sourceTable is not initial.
+      loop at sourceTable into sTemp.
+        concatenate sourceString sTemp CL_ABAP_CHAR_UTILITIES=>NEWLINE
+          into sourceString.
+      endloop.
+    elseif pageTable is not initial.
+      loop at pageTable into pageLine.
+        concatenate sourceString pageLine-line
+          CL_ABAP_CHAR_UTILITIES=>NEWLINE
+          into sourceString.
+      endloop.
+    endif.
+
+* remove extra newline characters for conversion comparison consistency
+    shift sourceString left deleting leading
+      CL_ABAP_CHAR_UTILITIES=>NEWLINE.
+    shift sourceString right deleting trailing
+      CL_ABAP_CHAR_UTILITIES=>NEWLINE.
+    shift sourceString left deleting leading space.
+  endmethod.
+*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   SAPlink is free software; you can redistribute it and/or modify   |
+*|   it under the terms of the GNU General Public License as published |
+*|   by the Free Software Foundation; either version 2 of the License, |
+*|   or (at your option) any later version.                            |
+*|                                                                     |
+*|   SAPlink is distributed in the hope that it will be useful,        |
+*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
+*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
+*|   GNU General Public License for more details.                      |
+*|                                                                     |
+*|   You should have received a copy of the GNU General Public License |
+*|   along with SAPlink; if not, write to the                          |
+*|   Free Software Foundation, Inc.,                                   |
+*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*\---------------------------------------------------------------------/
+  method BUILDTABLEFROMSTRING .
+    split source at CL_ABAP_CHAR_UTILITIES=>NEWLINE
+      into table sourceTable.
+  endmethod.
+*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   SAPlink is free software; you can redistribute it and/or modify   |
+*|   it under the terms of the GNU General Public License as published |
+*|   by the Free Software Foundation; either version 2 of the License, |
+*|   or (at your option) any later version.                            |
+*|                                                                     |
+*|   SAPlink is distributed in the hope that it will be useful,        |
+*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
+*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
+*|   GNU General Public License for more details.                      |
+*|                                                                     |
+*|   You should have received a copy of the GNU General Public License |
+*|   along with SAPlink; if not, write to the                          |
+*|   Free Software Foundation, Inc.,                                   |
+*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*\---------------------------------------------------------------------/
+  method CONSTRUCTOR .
+
+*  data meTypeDescr type ref to CL_ABAP_TYPEDESCR.
+*  clear className.
+*
+*  objName = name.
+*  meTypeDescr = CL_ABAP_TYPEDESCR=>DESCRIBE_BY_OBJECT_REF( me ).
+*  className = meTypeDescr->get_relative_name( ).
+
+    objName = name.
+    translate objName to upper case.
+
+    ixml = cl_ixml=>create( ).
+    xmlDoc = ixml->create_document( ).
+    streamFactory = ixml->CREATE_STREAM_FACTORY( ).
+  endmethod.
+*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   SAPlink is free software; you can redistribute it and/or modify   |
+*|   it under the terms of the GNU General Public License as published |
+*|   by the Free Software Foundation; either version 2 of the License, |
+*|   or (at your option) any later version.                            |
+*|                                                                     |
+*|   SAPlink is distributed in the hope that it will be useful,        |
+*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
+*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
+*|   GNU General Public License for more details.                      |
+*|                                                                     |
+*|   You should have received a copy of the GNU General Public License |
+*|   along with SAPlink; if not, write to the                          |
+*|   Free Software Foundation, Inc.,                                   |
+*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*\---------------------------------------------------------------------/
+  method CONVERTIXMLDOCTOSTRING .
+  data _ixml type ref to if_ixml.
+  data _streamFactory type ref to IF_IXML_STREAM_FACTORY.
+  data _outputStream type ref to IF_IXML_OSTREAM.
+  data _renderer type ref to IF_IXML_RENDERER.
+  data _tempString type string.
+  data _printXMLDoc type ref to cl_xml_document.
+  data _rc type sysubrc.
+    _ixml = cl_ixml=>create( ).
+    _streamFactory = _ixml->CREATE_STREAM_FACTORY( ).
+    _outputStream = _streamFactory->CREATE_OSTREAM_CSTRING( _tempString ).
+    _renderer = _ixml->CREATE_RENDERER(
+      DOCUMENT = ixmlDocument OSTREAM = _outputStream ).
+    _renderer->SET_NORMALIZING( ).
+    _rc = _renderer->render( ).
+    create object _printXMLDoc.
+    _rc = _printXMLDoc->parse_string( _tempString ).
+
+    while _tempString(1) <> '<'.
+      shift _tempString left by 1 places.
+    endwhile.
+
+    xmlString = _tempString.
+  endmethod.
+*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   SAPlink is free software; you can redistribute it and/or modify   |
+*|   it under the terms of the GNU General Public License as published |
+*|   by the Free Software Foundation; either version 2 of the License, |
+*|   or (at your option) any later version.                            |
+*|                                                                     |
+*|   SAPlink is distributed in the hope that it will be useful,        |
+*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
+*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
+*|   GNU General Public License for more details.                      |
+*|                                                                     |
+*|   You should have received a copy of the GNU General Public License |
+*|   along with SAPlink; if not, write to the                          |
+*|   Free Software Foundation, Inc.,                                   |
+*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*\---------------------------------------------------------------------/
+  method CONVERTSTRINGTOIXMLDOC .
+  data ixml type ref to if_ixml.
+  data streamFactory type ref to IF_IXML_STREAM_FACTORY.
+  data iStream type ref to if_ixml_istream.
+  data ixmlParser type ref to if_ixml_parser.
+  data xmlDoc type ref to if_ixml_document.
+
+    ixml = cl_ixml=>create( ).
+    xmlDoc = ixml->create_document( ).
+    streamFactory = ixml->CREATE_STREAM_FACTORY( ).
+    iStream = streamFactory->CREATE_ISTREAM_STRING( xmlString ).
+    iXMLParser = iXML->create_parser(  stream_factory = streamFactory
+                                       istream        = iStream
+                                       document       = xmlDoc ).
+    iXMLParser->parse( ).
+    ixmlDocument = xmlDoc.
+  endmethod.
+*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   SAPlink is free software; you can redistribute it and/or modify   |
+*|   it under the terms of the GNU General Public License as published |
+*|   by the Free Software Foundation; either version 2 of the License, |
+*|   or (at your option) any later version.                            |
+*|                                                                     |
+*|   SAPlink is distributed in the hope that it will be useful,        |
+*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
+*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
+*|   GNU General Public License for more details.                      |
+*|                                                                     |
+*|   You should have received a copy of the GNU General Public License |
+*|   along with SAPlink; if not, write to the                          |
+*|   Free Software Foundation, Inc.,                                   |
+*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*\---------------------------------------------------------------------/
+  method CREATENODEFROMOTR .
+
+  data rootNode type ref to if_ixml_element.
+  data txtNode type ref to if_ixml_element.
+  data rc type sysubrc.
+
+  data sotrHeader type SOTR_HEAD.
+  data sotrTextLine type SOTR_TEXT.
+  data sotrTextTable type table of SOTR_TEXT.
+
+  data _ixml type ref to IF_IXML.
+  data _XMLDOC type ref to IF_IXML_DOCUMENT.
+
+    CALL FUNCTION 'SOTR_GET_CONCEPT'
+      EXPORTING
+        concept              = otrguid
+      IMPORTING
+        HEADER               = sotrHeader
+      TABLES
+        ENTRIES              = sotrTextTable
+     EXCEPTIONS
+       NO_ENTRY_FOUND       = 1
+       OTHERS               = 2
+              .
+    IF sy-subrc <> 0.
+      exit.
+    ENDIF.
+
+    sotrHeader-paket = '$TMP'. "change devclass to $TMP for exports
+
+* Create xml doc
+    _ixml = cl_ixml=>create( ).
+    _xmlDoc = _ixml->create_document( ).
+    streamFactory = _ixml->CREATE_STREAM_FACTORY( ).
+
+* Create parent node
+    rootNode = _xmlDoc->create_element( 'sotr' ). "OTR object type
+    clear sotrHeader-concept. "ewH:33
+    setAttributesFromStructure( node = rootNode structure = sotrHeader ).
+
+* Create nodes for texts
+    loop at sotrTextTable into sotrTextLine.
+      txtNode = _xmlDoc->create_element( 'sotrText' ).
+      clear: sotrTextLine-concept, sotrTextLine-object. "ewH:33
+      setAttributesFromStructure(
+        node = txtNode structure = sotrTextLine ).
+      rc = rootNode->append_child( txtNode ).
+    endloop.
+
+    node = rootNode.
+
+  endmethod.
+*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   SAPlink is free software; you can redistribute it and/or modify   |
+*|   it under the terms of the GNU General Public License as published |
+*|   by the Free Software Foundation; either version 2 of the License, |
+*|   or (at your option) any later version.                            |
+*|                                                                     |
+*|   SAPlink is distributed in the hope that it will be useful,        |
+*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
+*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
+*|   GNU General Public License for more details.                      |
+*|                                                                     |
+*|   You should have received a copy of the GNU General Public License |
+*|   along with SAPlink; if not, write to the                          |
+*|   Free Software Foundation, Inc.,                                   |
+*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*\---------------------------------------------------------------------/
+  method CREATEOTRFROMNODE .
+
+  data txtNode type ref to if_ixml_element.
+  data filter type ref to if_ixml_node_filter.
+  data iterator type ref to if_ixml_node_iterator.
+
+  data sotrHeader type SOTR_HEAD.
+  data sotrTextLine type SOTR_TEXT.
+  data sotrTextTable type table of SOTR_TEXT.
+  data sotrPaket type SOTR_PACK.
+
+* get OTR header info
+    call method GETSTRUCTUREFROMATTRIBUTES
+          exporting
+            node = node
+          changing
+            structure = sotrHeader.
+
+* get OTR text info
+    filter = node->create_filter_name( 'sotrText' ).
+    iterator = node->create_iterator_filtered( filter ).
+    txtNode ?= iterator->get_next( ).
+
+    while txtNode is not initial.
+      clear sotrTextLine.
+      call method GETSTRUCTUREFROMATTRIBUTES
+            exporting
+              node = txtNode
+            changing
+              structure = sotrTextLine.
+      clear: sotrTextLine-concept, sotrTextLine-object. "ewH:33
+      append sotrTextLine to sotrTextTable.
+      txtNode ?= iterator->get_next( ).
+    endwhile.
+
+* ewH:issue 33--> in 6.40 and above, you cannot pass a default concept
+*  (otr) guid, so we will always create new
+*  CALL FUNCTION 'SOTR_GET_CONCEPT'
+*    EXPORTING
+*      concept              = sotrHeader-concept
+**   IMPORTING
+**     HEADER               =
+**   TABLES
+**     ENTRIES              =
+*   EXCEPTIONS
+*     NO_ENTRY_FOUND       = 1
+*     OTHERS               = 2
+*            .
+*  IF sy-subrc <> 1.
+**   delete OTR if exists already
+*    CALL FUNCTION 'SOTR_DELETE_CONCEPT'
+*      EXPORTING
+*        concept                     = sotrHeader-concept
+*     EXCEPTIONS
+*       NO_AUTHORIZATION            = 1
+*       NO_ENTRY_FOUND              = 2. "who cares
+**       CONCEPT_USED                = 3
+**       NO_MASTER_LANGUAGE          = 4
+**       NO_SOURCE_SYSTEM            = 5
+**       NO_TADIR_ENTRY              = 6
+**       ERROR_IN_CORRECTION         = 7
+**       USER_CANCELLED              = 8
+**       OTHERS                      = 9
+**              .
+*    if sy-subrc = 1.
+*      raise exception type zcx_saplink
+*        exporting textid = zcx_saplink=>not_authorized.
+*    endif.
+*  ENDIF.
+
+
+  data objectTable type SOTR_OBJECTS.
+  data objectType type line of SOTR_OBJECTS.
+* Retrieve object type of OTR
+    call function 'SOTR_OBJECT_GET_OBJECTS'
+      exporting
+        object_vector    = sotrHeader-objid_vec
+      importing
+        objects          = objectTable
+      exceptions
+        object_not_found = 1
+        others           = 2.
+
+    read table objectTable into objectType index 1.
+
+* create OTR
+    sotrPaket-paket = devclass.
+    CALL FUNCTION 'SOTR_CREATE_CONCEPT'
+      EXPORTING
+        paket                               = sotrPaket
+        crea_lan                            = sotrHeader-crea_lan
+        ALIAS_NAME                          = sotrHeader-alias_name
+*      CATEGORY                            =
+        object                              = objectType
+        entries                             = sotrTextTable
+*     FLAG_CORRECTION_ENTRY               =
+*     IN_UPDATE_TASK                      =
+*      CONCEPT_DEFAULT                     = sotrHeader-concept "ewH:33
+      IMPORTING
+        CONCEPT                             = concept "ewH:33
+*   EXCEPTIONS
+*     PACKAGE_MISSING                     = 1
+*     CREA_LAN_MISSING                    = 2
+*     OBJECT_MISSING                      = 3
+*     PAKET_DOES_NOT_EXIST                = 4
+*     ALIAS_ALREADY_EXIST                 = 5
+*     OBJECT_TYPE_NOT_FOUND               = 6
+*     LANGU_MISSING                       = 7
+*     IDENTICAL_CONTEXT_NOT_ALLOWED       = 8
+*     TEXT_TOO_LONG                       = 9
+*     ERROR_IN_UPDATE                     = 10
+*     NO_MASTER_LANGU                     = 11
+*     ERROR_IN_CONCEPT_ID                 = 12
+*     ALIAS_NOT_ALLOWED                   = 13
+*     TADIR_ENTRY_CREATION_FAILED         = 14
+*     INTERNAL_ERROR                      = 15
+*     ERROR_IN_CORRECTION                 = 16
+*     USER_CANCELLED                      = 17
+*     NO_ENTRY_FOUND                      = 18
+*     OTHERS                              = 19
+              .
+    IF sy-subrc <> 0.
+*   MESSAGE ID SY-MSGID TYPE SY-MSGTY NUMBER SY-MSGNO
+*           WITH SY-MSGV1 SY-MSGV2 SY-MSGV3 SY-MSGV4.
+    ENDIF.
+
+  endmethod.
+*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   SAPlink is free software; you can redistribute it and/or modify   |
+*|   it under the terms of the GNU General Public License as published |
+*|   by the Free Software Foundation; either version 2 of the License, |
+*|   or (at your option) any later version.                            |
+*|                                                                     |
+*|   SAPlink is distributed in the hope that it will be useful,        |
+*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
+*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
+*|   GNU General Public License for more details.                      |
+*|                                                                     |
+*|   You should have received a copy of the GNU General Public License |
+*|   along with SAPlink; if not, write to the                          |
+*|   Free Software Foundation, Inc.,                                   |
+*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*\---------------------------------------------------------------------/
+  method CREATEXMLSTRING .
+  data streamFactory type ref to IF_IXML_STREAM_FACTORY.
+  data outputStream type ref to IF_IXML_OSTREAM.
+  data renderer type ref to IF_IXML_RENDERER.
+  data tempString type string.
+  data printXMLDoc type ref to cl_xml_document.
+  data rc type sysubrc.
+
+    streamFactory = ixml->CREATE_STREAM_FACTORY( ).
+    outputStream = streamFactory->CREATE_OSTREAM_CSTRING( tempString ).
+    renderer = ixml->CREATE_RENDERER(
+      DOCUMENT = xmlDoc OSTREAM = outputStream ).
+    rc = renderer->render( ).
+    create object printXMLDoc.
+    rc = printXMLDoc->parse_string( tempString ).
+    xml = tempString.
+  endmethod.
+*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   SAPlink is free software; you can redistribute it and/or modify   |
+*|   it under the terms of the GNU General Public License as published |
+*|   by the Free Software Foundation; either version 2 of the License, |
+*|   or (at your option) any later version.                            |
+*|                                                                     |
+*|   SAPlink is distributed in the hope that it will be useful,        |
+*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
+*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
+*|   GNU General Public License for more details.                      |
+*|                                                                     |
+*|   You should have received a copy of the GNU General Public License |
+*|   along with SAPlink; if not, write to the                          |
+*|   Free Software Foundation, Inc.,                                   |
+*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*\---------------------------------------------------------------------/
+  method GETOBJECTINFOFROMIXMLDOC .
+
+  data rootNode type ref to IF_IXML_NODE.
+  data rootAttr type ref to IF_IXML_NAMED_NODE_MAP.
+  data AttrNode type ref to IF_IXML_NODE.
+  data nodeName type string.
+
+    rootNode ?= ixmlDocument->GET_ROOT_ELEMENT( ).
+
+* get object type
+    objTypeName = rootNode->GET_NAME( ).
+    translate objTypeName to upper case.
+
+* get object name
+    rootAttr = rootNode->GET_ATTRIBUTES( ).
+    AttrNode = rootAttr->GET_ITEM( 0 ).
+    objName = AttrNode->GET_VALUE( ).
+  endmethod.
+*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   SAPlink is free software; you can redistribute it and/or modify   |
+*|   it under the terms of the GNU General Public License as published |
+*|   by the Free Software Foundation; either version 2 of the License, |
+*|   or (at your option) any later version.                            |
+*|                                                                     |
+*|   SAPlink is distributed in the hope that it will be useful,        |
+*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
+*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
+*|   GNU General Public License for more details.                      |
+*|                                                                     |
+*|   You should have received a copy of the GNU General Public License |
+*|   along with SAPlink; if not, write to the                          |
+*|   Free Software Foundation, Inc.,                                   |
+*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*\---------------------------------------------------------------------/
+  method GETPLUGINS .
+    types: begin of t_objectTable,
+             classname type string,
+             object type ko100-object,
+             text type ko100-text,
+           end of t_objectTable.
+
+    data classList type SEO_INHERITANCES.
+    data classLine type VSEOEXTEND.
+    data classObject type ref to zsaplink.
+    data objectLine type t_objectTable.
+    data tableTypeLine type KO105.
+    data tableTypesIn type table of KO105.
+    data tableTypesOut type TR_OBJECT_TEXTS.
+    data tableTypeOutLine type KO100.
+    data clsName type string.
+    data objType type TROBJTYPE.
+
+    refresh objectTable.
+
+    select * from VSEOEXTEND into table classList
+      where REFCLSNAME = 'ZSAPLINK'
+      and version = '1'.
+
+    loop at classList into classLine.
+      clsName = classLine-clsName.
+      create object classObject type (clsName)
+        exporting name = 'foo'.
+      objtype = classObject->getObjectType( ).
+      clear tableTypeLine.
+      refresh tableTypesIn.
+
+      tableTypeLine-object = objtype.
+      append tableTypeLine to tableTypesIn.
+
+      CALL FUNCTION 'TRINT_OBJECT_TABLE'
+        TABLES
+          TT_TYPES_IN             = tableTypesIn
+          tt_types_out            = tableTypesOut.
+
+      loop at tableTypesOut into tableTypeOutLine.
+        objectLine-className = clsName.
+        move-corresponding tableTypeOutLine to objectLine.
+        append objectLine to objectTable.
+      endloop.
+    endloop.
+  endmethod.
+*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   SAPlink is free software; you can redistribute it and/or modify   |
+*|   it under the terms of the GNU General Public License as published |
+*|   by the Free Software Foundation; either version 2 of the License, |
+*|   or (at your option) any later version.                            |
+*|                                                                     |
+*|   SAPlink is distributed in the hope that it will be useful,        |
+*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
+*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
+*|   GNU General Public License for more details.                      |
+*|                                                                     |
+*|   You should have received a copy of the GNU General Public License |
+*|   along with SAPlink; if not, write to the                          |
+*|   Free Software Foundation, Inc.,                                   |
+*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*\---------------------------------------------------------------------/
+  method GETSTRUCTUREFROMATTRIBUTES .
+  data attributeList type ref to IF_IXML_NAMED_NODE_MAP.
+  data nodeIterator type ref to IF_IXML_NODE_ITERATOR.
+  data attributeNode type ref to if_ixml_node.
+  data value type string.
+  data name type string.
+  field-symbols <value> type any.
+
+    clear structure.
+    attributeList = node->GET_ATTRIBUTES( ).
+    nodeIterator = attributeList->create_iterator( ).
+    attributeNode = nodeIterator->get_next( ).
+    while attributeNode is not initial.
+      name = attributeNode->get_name( ).
+      if name = 'VERSION' and preserveVersion is initial. "ewh:issue 45
+*    if name = 'VERSION'.
+        value = '0'.
+      else.
+        value = attributeNode->get_value( ).
+      endif.
+      assign component name of structure structure to <value>.
+      if sy-subrc = 0.
+        <value> = value.
+      endif.
+      attributeNode = nodeIterator->get_next( ).
+    endwhile.
+
+  endmethod.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*    .-"-.
+*  .'=^=^='.
+* /=^=^=^=^=\
+*:^=SAPLINK=^;
+*|^ EASTER  ^|
+*:^=^EGG^=^=^:
+* \=^=^=^=^=/
+*  `.=^=^=.'
+*    `~~~`
+* Don't like the way we did something?
+* Help us fix it!  Tell us what you think!
+* http://saplink.org
+*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   SAPlink is free software; you can redistribute it and/or modify   |
+*|   it under the terms of the GNU General Public License as published |
+*|   by the Free Software Foundation; either version 2 of the License, |
+*|   or (at your option) any later version.                            |
+*|                                                                     |
+*|   SAPlink is distributed in the hope that it will be useful,        |
+*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
+*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
+*|   GNU General Public License for more details.                      |
+*|                                                                     |
+*|   You should have received a copy of the GNU General Public License |
+*|   along with SAPlink; if not, write to the                          |
+*|   Free Software Foundation, Inc.,                                   |
+*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*\---------------------------------------------------------------------/
+  method SETATTRIBUTESFROMSTRUCTURE .
+
+  data int type i.
+  int = int.
+  data structDescr type ref to cl_abap_structDescr.
+  data aComponent type abap_compdescr.
+  field-symbols <fieldValue> type any.
+  data rc type sysubrc.
+  data sName type string.
+  data sValue type string.
+
+    structDescr ?= cl_abap_structDescr=>describe_by_data( structure ).
+    loop at structDescr->components into aComponent.
+      assign component aComponent-name of structure
+        structure to <fieldValue>.
+      if sy-subrc = 0.
+        sName = aComponent-name.
+*      sValue = <fieldValue>.
+*     for certain attributes, set to a standard for exporting
+        case sName.
+*        when 'VERSION'. "version should always export as inactive
+*          sValue = '0'. "commented by ewH: issue 45
+          when 'DEVCLASS'. "development class should always be $TMP
+            sValue = '$TMP'.
+          when others.
+            sValue = <fieldValue>.
+        endcase.
+        if sValue is not initial.
+          rc = Node->set_attribute( name = sName value = sValue ).
+        endif.
+      else.
+* WHAT?>!??
+      endif.
+    endloop.
+  endmethod.
+*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   SAPlink is free software; you can redistribute it and/or modify   |
+*|   it under the terms of the GNU General Public License as published |
+*|   by the Free Software Foundation; either version 2 of the License, |
+*|   or (at your option) any later version.                            |
+*|                                                                     |
+*|   SAPlink is distributed in the hope that it will be useful,        |
+*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
+*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
+*|   GNU General Public License for more details.                      |
+*|                                                                     |
+*|   You should have received a copy of the GNU General Public License |
+*|   along with SAPlink; if not, write to the                          |
+*|   Free Software Foundation, Inc.,                                   |
+*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*\---------------------------------------------------------------------/
+  method UPLOADXML .
+  data iStream type ref to if_ixml_istream.
+  data ixmlParser type ref to if_ixml_parser.
+
+    iStream = streamFactory->CREATE_ISTREAM_STRING( xmlData ).
+    iXMLParser = iXML->create_parser(  stream_factory = streamFactory
+                                       istream        = iStream
+                                       document       = XMLdoc ).
+    iXMLParser->parse( ).
+
+  endmethod.
+ENDCLASS.
+CLASS ZSAPLINK_PROGRAM IMPLEMENTATION.
+*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   SAPlink is free software; you can redistribute it and/or modify   |
+*|   it under the terms of the GNU General Public License as published |
+*|   by the Free Software Foundation; either version 2 of the License, |
+*|   or (at your option) any later version.                            |
+*|                                                                     |
+*|   SAPlink is distributed in the hope that it will be useful,        |
+*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
+*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
+*|   GNU General Public License for more details.                      |
+*|                                                                     |
+*|   You should have received a copy of the GNU General Public License |
+*|   along with SAPlink; if not, write to the                          |
+*|   Free Software Foundation, Inc.,                                   |
+*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*\---------------------------------------------------------------------/
+  method CHECKEXISTS .
+
+    select single name from trdir into objName where NAME = objName.
+    if sy-subrc = 0.
+      exists = 'X'.
+    endif.
+
+  endmethod.
+*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   SAPlink is free software; you can redistribute it and/or modify   |
+*|   it under the terms of the GNU General Public License as published |
+*|   by the Free Software Foundation; either version 2 of the License, |
+*|   or (at your option) any later version.                            |
+*|                                                                     |
+*|   SAPlink is distributed in the hope that it will be useful,        |
+*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
+*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
+*|   GNU General Public License for more details.                      |
+*|                                                                     |
+*|   You should have received a copy of the GNU General Public License |
+*|   along with SAPlink; if not, write to the                          |
+*|   Free Software Foundation, Inc.,                                   |
+*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*\---------------------------------------------------------------------/
+  method CREATEIXMLDOCFROMOBJECT .
+  data rootNode type ref to if_ixml_element.
+  data sourceNode type ref to if_ixml_element.
+  data textPoolNode type ref to if_ixml_element.
+  data dynproNode type ref to if_ixml_element.
+  data statusNode type ref to if_ixml_element.
+  data rc type sysubrc.
+  data progAttribs type trdir.
+  data progSource type RSWSOURCET.
+  data _objName(30) type c.
+  data sourceString type string.
+  data _objType type string.
+
+    _objType = getObjectType( ).
+    rootNode = xmlDoc->create_element( _objType ).
+    sourceNode = xmlDoc->create_element( 'source' ).
+    select single * from trdir into progAttribs where NAME = objName.
+    if sy-subrc = 0.
+      setAttributesFromStructure( node = rootNode structure =  progAttribs
+      ).
+      _objName = objName.
+      read report _objName into progSource.
+      sourceString = buildSourceString( sourceTable = progSource ).
+      rc = sourceNode->IF_IXML_NODE~SET_VALUE( sourceString ).
+      textPoolNode = get_textPool( ).
+      rc = rootNOde->append_child( textPoolNode ).
+      dynproNode = get_dynpro( ).
+      rc = rootNode->append_child( dynproNode ).
+      statusNode = get_pfstatus( ).
+      rc = rootNode->append_child( statusNode ).
+      rc = rootNode->append_child( sourceNode ).
+      rc = xmldoc->append_child( rootNode ).
+      ixmlDocument = xmlDoc.
+    else.
+      clear ixmlDocument.
+      raise exception type zcx_saplink
+        exporting textid = zcx_saplink=>not_found.
+    endif.
+  endmethod.
+*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   SAPlink is free software; you can redistribute it and/or modify   |
+*|   it under the terms of the GNU General Public License as published |
+*|   by the Free Software Foundation; either version 2 of the License, |
+*|   or (at your option) any later version.                            |
+*|                                                                     |
+*|   SAPlink is distributed in the hope that it will be useful,        |
+*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
+*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
+*|   GNU General Public License for more details.                      |
+*|                                                                     |
+*|   You should have received a copy of the GNU General Public License |
+*|   along with SAPlink; if not, write to the                          |
+*|   Free Software Foundation, Inc.,                                   |
+*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*\---------------------------------------------------------------------/
+
+  method createobjectfromixmldoc .
+
+    data rootnode type ref to if_ixml_element.
+    data progattribs type trdir.
+    data sourcenode type ref to if_ixml_element.
+    data textnode type ref to if_ixml_element.
+    data dynpnode type ref to if_ixml_element.
+    data statnode type ref to if_ixml_element.
+    data source type string.
+    data sourcetable type table_of_strings.
+    data _objname(30) type c.
+    data aobjname type trobj_name.
+    data _objtype type string.
+    data checkexists type flag.
+
+*if sy-uname <> 'USDWM01'.
+*    _objType = getObjectType( ).
+*    xmlDoc = ixmlDocument.
+*    rootNode = xmlDoc->find_from_name( _objType ).
+*    call method GETSTRUCTUREFROMATTRIBUTES
+*          exporting
+*            node = rootNode
+*          changing
+*            structure = progAttribs.
+*    objName = progAttribs-NAME.
+*
+**   check existing
+*    select single name from trdir into objName where NAME = objName.
+*    if sy-subrc = 0.
+*      raise exception type zcx_saplink
+*        exporting textid = zcx_saplink=>existing.
+*    endif.
+*
+*    sourceNode = rootNode->find_from_name( 'source' ).
+*    source = sourceNode->get_value( ).
+*    sourceTable = BUILDTABLEFROMSTRING( source ).
+*    insert report progAttribs-NAME from sourceTable.
+*
+*    commit work.
+*
+*    call function 'RS_INSERT_INTO_WORKING_AREA'
+*      EXPORTING
+*        object            = 'REPS'
+*        obj_name          = aobjName
+*      EXCEPTIONS
+*        wrong_object_name = 1.
+*    if sy-subrc <> 0.
+*
+*    endif.
+*
+*else.
+
+    _objtype = getobjecttype( ).
+    xmldoc = ixmldocument.
+    rootnode = xmldoc->find_from_name( _objtype ).
+    call method getstructurefromattributes
+      exporting
+        node      = rootnode
+      changing
+        structure = progattribs.
+    objname = progattribs-name.
+
+*  check if object exists
+*  select single name from trdir into objName where NAME = objName.
+*  if sy-subrc = 0 and overwrite <> 'X'.
+*    raise exception type zcx_saplink
+*      exporting textid = zcx_saplink=>existing.
+*  endif.
+
+    checkexists = checkexists( ).
+    if checkexists is not initial.
+      if overwrite is initial.
+        raise exception type zcx_saplink
+          exporting textid = zcx_saplink=>existing.
+      else.
+*     delete object for new install
+        deleteobject( ).
+      endif.
+    endif.
+
+
+    enqueue_abap( ).
+    transport_copy( author = progattribs-cnam devclass = devclass ).
+    sourcenode = rootnode->find_from_name( 'source' ).
+    source = sourcenode->get_value( ).
+    sourcetable = buildtablefromstring( source ).
+    create_source( source = sourcetable attribs = progattribs ).
+    textnode = rootnode->find_from_name( 'textPool' ).
+    create_textpool( textnode ).
+    dynpnode = rootnode->find_from_name( 'dynpros' ).
+    create_dynpro( dynpnode ).
+    statnode = rootnode->find_from_name( 'pfstatus' ).
+    create_pfstatus( statnode ).
+
+    dequeue_abap( ).
+*endif.
+
+* successful install
+    name = objname.
+
+  endmethod.
+*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   SAPlink is free software; you can redistribute it and/or modify   |
+*|   it under the terms of the GNU General Public License as published |
+*|   by the Free Software Foundation; either version 2 of the License, |
+*|   or (at your option) any later version.                            |
+*|                                                                     |
+*|   SAPlink is distributed in the hope that it will be useful,        |
+*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
+*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
+*|   GNU General Public License for more details.                      |
+*|                                                                     |
+*|   You should have received a copy of the GNU General Public License |
+*|   along with SAPlink; if not, write to the                          |
+*|   Free Software Foundation, Inc.,                                   |
+*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*\---------------------------------------------------------------------/
+  method create_dynpro.
+
+    types: begin of tdyn_head_temp.
+           include type d020s.
+    types: dtext type d020t-dtxt.
+    types: end of tdyn_head_temp.
+
+    data: idyn_fldl type table of d021s,
+          idyn_flow type table of d022s,
+          idyn_mcod type table of d023s.
+
+    data: xdyn_head type  d020s,
+          xdyn_fldl type  d021s,
+          xdyn_flow type  d022s,
+          xdyn_mcod type  d023s.
+
+    data: xdyn_text_string type string.
+    data: xdyn_text        type d020t-dtxt .
+    data: xdyn_head_temp   type tdyn_head_temp.
+
+    data _objname type trobj_name.
+
+    data dynpros_node       type ref to if_ixml_element.
+    data dynpros_filter     type ref to if_ixml_node_filter.
+    data dynpros_iterator   type ref to if_ixml_node_iterator.
+
+    data dynpro_node        type ref to if_ixml_element.
+    data dynpro_filter      type ref to if_ixml_node_filter.
+    data dynpro_iterator    type ref to if_ixml_node_iterator.
+
+    data dynfldl_node       type ref to if_ixml_element.
+    data dynfldl_filter     type ref to if_ixml_node_filter.
+    data dynfldl_iterator   type ref to if_ixml_node_iterator.
+
+    data dynmcod_node       type ref to if_ixml_element.
+    data dynmcod_filter     type ref to if_ixml_node_filter.
+    data dynmcod_iterator   type ref to if_ixml_node_iterator.
+
+    data dynflow_node       type ref to if_ixml_element.
+
+    data xdynpro_flow_source type string.
+    data idynpro_flow_source type table_of_strings.
+
+    _objname = objname.
+
+    dynpros_node =  dynp_node.
+    check dynpros_node is not initial.
+
+    free: dynpro_filter, dynpro_iterator, dynpro_node.
+    dynpro_filter = dynpros_node->create_filter_name( 'dynpro' ).
+    dynpro_iterator =
+          dynpros_node->create_iterator_filtered( dynpro_filter ).
+    dynpro_node ?= dynpro_iterator->get_next( ).
+
+    while dynpro_node is not initial.
+
+      clear:    xdyn_head, xdyn_fldl, xdyn_flow, xdyn_mcod.
+      refresh:  idyn_fldl, idyn_flow, idyn_mcod.
+
+* Get the header data for the screen.
+      call method getstructurefromattributes
+        exporting
+          node      = dynpro_node
+        changing
+          structure = xdyn_head_temp.
+
+      xdyn_head    = xdyn_head_temp.
+      xdyn_text    = xdyn_head_temp-dtext.
+
+* Retrieve field list
+      free: dynfldl_filter, dynfldl_iterator, dynfldl_node.
+      dynfldl_filter = dynpro_node->create_filter_name( 'dynprofield' ).
+      dynfldl_iterator =
+          dynpro_node->create_iterator_filtered( dynfldl_filter ).
+      dynfldl_node ?= dynfldl_iterator->get_next( ).
+      while dynfldl_node is not initial.
+        call method getstructurefromattributes
+          exporting
+            node      = dynfldl_node
+          changing
+            structure = xdyn_fldl.
+        append xdyn_fldl to idyn_fldl.
+        dynfldl_node ?= dynfldl_iterator->get_next( ).
+      endwhile.
+
+* Retrieve matchcode data.
+      free: dynmcod_filter, dynmcod_iterator, dynmcod_node.
+      dynmcod_filter = dynpro_node->create_filter_name( 'dynprofield' ).
+      dynmcod_iterator =
+           dynpro_node->create_iterator_filtered( dynmcod_filter ).
+      dynmcod_node ?= dynmcod_iterator->get_next( ).
+      while dynmcod_node is not initial.
+        call method getstructurefromattributes
+          exporting
+            node      = dynmcod_node
+          changing
+            structure = xdyn_mcod.
+        append xdyn_mcod to idyn_mcod.
+        dynmcod_node ?= dynmcod_iterator->get_next( ).
+      endwhile.
+
+* retieve flow logic source.
+      clear xdynpro_flow_source.  refresh idynpro_flow_source.
+      clear xdyn_flow.            refresh idyn_flow.
+      free dynflow_node.
+      dynflow_node = dynpro_node->find_from_name( 'dynproflowsource' ).
+      xdynpro_flow_source  = dynflow_node->get_value( ).
+      idynpro_flow_source = buildtablefromstring( xdynpro_flow_source ).
+      loop at idynpro_flow_source into xdyn_flow.
+        append xdyn_flow  to idyn_flow.
+      endloop.
+
+* Build dynpro from data
+      call function 'RPY_DYNPRO_INSERT_NATIVE'
+        exporting
+*       suppress_corr_checks           = ' '
+*       CORRNUM                        = ' '
+          header                         = xdyn_head
+          dynprotext                     = xdyn_text
+*       SUPPRESS_EXIST_CHECKS          = ' '
+*       USE_CORRNUM_IMMEDIATEDLY       = ' '
+*       SUPPRESS_COMMIT_WORK           = ' '
+        tables
+          fieldlist                      = idyn_fldl
+          flowlogic                      = idyn_flow
+          params                         = idyn_mcod
+       exceptions
+          cancelled                      = 1
+          already_exists                 = 2
+          program_not_exists             = 3
+          not_executed                   = 4
+          others                         = 5.
+      if sy-subrc <> 0.
+        raise exception type zcx_saplink
+          exporting textid = zcx_saplink=>system_error.
+      endif.
+
+      dynpro_node ?= dynpro_iterator->get_next( ).
+
+    endwhile.
+
+  endmethod.
+*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   SAPlink is free software; you can redistribute it and/or modify   |
+*|   it under the terms of the GNU General Public License as published |
+*|   by the Free Software Foundation; either version 2 of the License, |
+*|   or (at your option) any later version.                            |
+*|                                                                     |
+*|   SAPlink is distributed in the hope that it will be useful,        |
+*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
+*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
+*|   GNU General Public License for more details.                      |
+*|                                                                     |
+*|   You should have received a copy of the GNU General Public License |
+*|   along with SAPlink; if not, write to the                          |
+*|   Free Software Foundation, Inc.,                                   |
+*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*\---------------------------------------------------------------------/
+  method create_pfstatus.
+
+    data: ista type table of rsmpe_stat,
+          ifun type table of rsmpe_funt,
+          imen type table of rsmpe_men,
+          imtx type table of rsmpe_mnlt,
+          iact type table of rsmpe_act,
+          ibut type table of rsmpe_but,
+          ipfk type table of rsmpe_pfk,
+          iset type table of rsmpe_staf,
+          idoc type table of rsmpe_atrt,
+          itit type table of rsmpe_titt,
+          ibiv type table of rsmpe_buts.
+
+    data: xsta type rsmpe_stat,
+          xfun type rsmpe_funt,
+          xmen type rsmpe_men,
+          xmtx type rsmpe_mnlt,
+          xact type rsmpe_act,
+          xbut type rsmpe_but,
+          xpfk type rsmpe_pfk,
+          xset type rsmpe_staf,
+          xdoc type rsmpe_atrt,
+          xtit type rsmpe_titt,
+          xbiv type rsmpe_buts.
+
+    data xtrkey type trkey.
+    data xadm   type rsmpe_adm.
+    data _program type  trdir-name.
+    data _objname type trobj_name.
+
+    data stat_node  type ref to if_ixml_element.
+    data node       type ref to if_ixml_element.
+    data filter     type ref to if_ixml_node_filter.
+    data iterator   type ref to if_ixml_node_iterator.
+
+    _objname = objname.
+
+    stat_node =  pfstat_node.
+    check stat_node is not initial.
+
+* read pfstatus_sta node
+    free: filter, iterator, node.
+    filter = stat_node->create_filter_name( 'pfstatus_sta' ).
+    iterator = stat_node->create_iterator_filtered( filter ).
+    node ?= iterator->get_next( ).
+    while node is not initial.
+      call method getstructurefromattributes
+        exporting
+          node      = node
+        changing
+          structure = xsta.
+      append xsta to ista.
+      node ?= iterator->get_next( ).
+    endwhile.
+
+* read pfstatus_fun node
+    free: filter, iterator, node.
+    filter = stat_node->create_filter_name( 'pfstatus_fun' ).
+    iterator = stat_node->create_iterator_filtered( filter ).
+    node ?= iterator->get_next( ).
+    while node is not initial.
+      call method getstructurefromattributes
+        exporting
+          node      = node
+        changing
+          structure = xfun.
+      append xfun to ifun.
+      node ?= iterator->get_next( ).
+    endwhile.
+
+* read pfstatus_men node
+    free: filter, iterator, node.
+    filter = stat_node->create_filter_name( 'pfstatus_men' ).
+    iterator = stat_node->create_iterator_filtered( filter ).
+    node ?= iterator->get_next( ).
+    while node is not initial.
+      call method getstructurefromattributes
+        exporting
+          node      = node
+        changing
+          structure = xmen.
+      append xmen to imen.
+      node ?= iterator->get_next( ).
+    endwhile.
+
+* read pfstatus_mtx node
+    free: filter, iterator, node.
+    filter = stat_node->create_filter_name( 'pfstatus_mtx' ).
+    iterator = stat_node->create_iterator_filtered( filter ).
+    node ?= iterator->get_next( ).
+    while node is not initial.
+      call method getstructurefromattributes
+        exporting
+          node      = node
+        changing
+          structure = xmtx.
+      append xmtx to imtx.
+      node ?= iterator->get_next( ).
+    endwhile.
+
+* read pfstatus_act node
+    free: filter, iterator, node.
+    filter = stat_node->create_filter_name( 'pfstatus_act' ).
+    iterator = stat_node->create_iterator_filtered( filter ).
+    node ?= iterator->get_next( ).
+    while node is not initial.
+      call method getstructurefromattributes
+        exporting
+          node      = node
+        changing
+          structure = xact.
+      append xact to iact.
+      node ?= iterator->get_next( ).
+    endwhile.
+
+* read pfstatus_but node
+    free: filter, iterator, node.
+    filter = stat_node->create_filter_name( 'pfstatus_but' ).
+    iterator = stat_node->create_iterator_filtered( filter ).
+    node ?= iterator->get_next( ).
+    while node is not initial.
+      call method getstructurefromattributes
+        exporting
+          node      = node
+        changing
+          structure = xbut.
+      append xbut to ibut.
+      node ?= iterator->get_next( ).
+    endwhile.
+
+* read pfstatus_pfk node
+    free: filter, iterator, node.
+    filter = stat_node->create_filter_name( 'pfstatus_pfk' ).
+    iterator = stat_node->create_iterator_filtered( filter ).
+    node ?= iterator->get_next( ).
+    while node is not initial.
+      call method getstructurefromattributes
+        exporting
+          node      = node
+        changing
+          structure = xpfk.
+      append xpfk to ipfk.
+      node ?= iterator->get_next( ).
+    endwhile.
+
+* read pfstatus_set node
+    free: filter, iterator, node.
+    filter = stat_node->create_filter_name( 'pfstatus_set' ).
+    iterator = stat_node->create_iterator_filtered( filter ).
+    node ?= iterator->get_next( ).
+    while node is not initial.
+      call method getstructurefromattributes
+        exporting
+          node      = node
+        changing
+          structure = xset.
+      append xset to iset.
+      node ?= iterator->get_next( ).
+    endwhile.
+
+* read pfstatus_doc node
+    free: filter, iterator, node.
+    filter = stat_node->create_filter_name( 'pfstatus_doc' ).
+    iterator = stat_node->create_iterator_filtered( filter ).
+    node ?= iterator->get_next( ).
+    while node is not initial.
+      call method getstructurefromattributes
+        exporting
+          node      = node
+        changing
+          structure = xdoc.
+      append xdoc to idoc.
+      node ?= iterator->get_next( ).
+    endwhile.
+
+* read pfstatus_tit node
+    free: filter, iterator, node.
+    filter = stat_node->create_filter_name( 'pfstatus_tit' ).
+    iterator = stat_node->create_iterator_filtered( filter ).
+    node ?= iterator->get_next( ).
+    while node is not initial.
+      call method getstructurefromattributes
+        exporting
+          node      = node
+        changing
+          structure = xtit.
+      append xtit to itit.
+      node ?= iterator->get_next( ).
+    endwhile.
+
+* read pfstatus_biv node
+    free: filter, iterator, node.
+    filter = stat_node->create_filter_name( 'pfstatus_biv' ).
+    iterator = stat_node->create_iterator_filtered( filter ).
+    node ?= iterator->get_next( ).
+    while node is not initial.
+      call method getstructurefromattributes
+        exporting
+          node      = node
+        changing
+          structure = xbiv.
+      append xbiv to ibiv.
+      node ?= iterator->get_next( ).
+    endwhile.
+
+* Update the gui status
+    _program = _objname.
+
+    xtrkey-obj_type = 'PROG'.
+    xtrkey-obj_name = _program.
+    xtrkey-sub_type = 'CUAD'.
+    xtrkey-sub_name = _program.
+
+    call function 'RS_CUA_INTERNAL_WRITE'
+      exporting
+        program   = _program
+        language  = sy-langu
+        tr_key    = xtrkey
+        adm       = xadm
+        state     = 'I'
+      tables
+        sta       = ista
+        fun       = ifun
+        men       = imen
+        mtx       = imtx
+        act       = iact
+        but       = ibut
+        pfk       = ipfk
+        set       = iset
+        doc       = idoc
+        tit       = itit
+        biv       = ibiv
+      exceptions
+        not_found = 1
+        others    = 2.
+
+    if sy-subrc <> 0.
+      raise exception type zcx_saplink
+        exporting textid = zcx_saplink=>system_error.
+    endif.
+
+  endmethod.
+*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   SAPlink is free software; you can redistribute it and/or modify   |
+*|   it under the terms of the GNU General Public License as published |
+*|   by the Free Software Foundation; either version 2 of the License, |
+*|   or (at your option) any later version.                            |
+*|                                                                     |
+*|   SAPlink is distributed in the hope that it will be useful,        |
+*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
+*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
+*|   GNU General Public License for more details.                      |
+*|                                                                     |
+*|   You should have received a copy of the GNU General Public License |
+*|   along with SAPlink; if not, write to the                          |
+*|   Free Software Foundation, Inc.,                                   |
+*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*\---------------------------------------------------------------------/
+  method CREATE_SOURCE .
+  data _objName type TROBJ_NAME.
+  data progLine type PROGDIR.
+  data titleInfo type trdirti.
+  data reportLine type string.
+  data miniReport type table_of_strings.
+
+    _objName = objName.
+    call function 'RS_INSERT_INTO_WORKING_AREA'
+          exporting
+               OBJECT   = 'REPS'
+               OBJ_NAME = _objName
+          exceptions
+               WRONG_OBJECT_NAME = 1.
+     INSERT REPORT _objName FROM source STATE 'I'
+       program type attribs-subc.  "added to handle includes, etc.
+     MOVE 'I' TO progline-STATE.
+     move-corresponding attribs to progline.
+     modify progdir from progline.
+*  Are you kidding me?!?  No idea why you need to do this!!
+     CONCATENATE 'REPORT' _objName '.' INTO reportLine SEPARATED BY SPACE.
+     append reportline to miniReport.
+     INSERT REPORT _objName FROM miniReport STATE 'A'
+       program type attribs-subc. "added to handle includes, etc.
+     MOVE 'A' TO progline-STATE.
+     modify progdir from progline.
+
+  endmethod.
+*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   SAPlink is free software; you can redistribute it and/or modify   |
+*|   it under the terms of the GNU General Public License as published |
+*|   by the Free Software Foundation; either version 2 of the License, |
+*|   or (at your option) any later version.                            |
+*|                                                                     |
+*|   SAPlink is distributed in the hope that it will be useful,        |
+*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
+*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
+*|   GNU General Public License for more details.                      |
+*|                                                                     |
+*|   You should have received a copy of the GNU General Public License |
+*|   along with SAPlink; if not, write to the                          |
+*|   Free Software Foundation, Inc.,                                   |
+*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*\---------------------------------------------------------------------/
+  method CREATE_TEXTPOOL .
+  data textPoolTable type standard table of textPool.
+  data textPoolRow type textPool.
+  data langIterator type ref to if_ixml_node_iterator.
+  data filter type ref to if_ixml_node_filter.
+  data textFilter type ref to if_ixml_node_filter.
+  data textIterator type ref to if_ixml_node_iterator.
+  data langNode type ref to if_ixml_element.
+  data aTextNode type ref to if_ixml_element.
+  data _objName type TROBJ_NAME.
+  data lang type spras.
+  data langNodeExists type flag.
+  data logonLanguageExists type flag.
+  data _state(1) type c.
+
+    _objName = objName.
+
+    filter = textPoolNode->create_filter_name( 'language' ).
+    langIterator = textPoolNode->create_iterator_filtered( filter ).
+    langNode ?= langIterator->get_next( ).
+
+    while langNode is not initial.
+      langNodeExists = 'X'.
+      CALL FUNCTION 'RS_INSERT_INTO_WORKING_AREA'
+           EXPORTING
+                OBJECT   = 'REPT'
+                OBJ_NAME = _objName
+           EXCEPTIONS
+                OTHERS   = 0.
+
+      refresh textPoolTable.
+      textIterator = langNode->create_iterator( ).
+      aTextNode ?= textIterator->get_next( ).
+*For some reason the 1st one is blank... not sure why.
+      aTextNode ?= textIterator->get_next( ).
+      while aTextNode is not initial.
+        call method GETSTRUCTUREFROMATTRIBUTES
+              exporting
+                node = aTextNode
+              changing
+                structure = textPoolRow.
+        append textPoolRow to textPoolTable.
+        aTextNode ?= textIterator->get_next( ).
+      endwhile.
+      if textPoolTable is not initial.
+        lang = langNode->get_attribute( 'SPRAS' ).
+        if lang = sy-langu.
+          logonLanguageExists = 'X'.
+          _state = 'I'.
+        else.
+*       seems that if a textpool is inserted as inactive for language
+*       other than the logon language, it is lost upon activation
+*       not sure inserting as active is best solution,but seems to work
+          _state = 'A'.
+        endif.
+      endif.
+      insert textpool _objName from textPooltable language lang
+      state _state.
+      langNode ?= langIterator->get_next( ).
+    endwhile.
+  endmethod.
+*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   SAPlink is free software; you can redistribute it and/or modify   |
+*|   it under the terms of the GNU General Public License as published |
+*|   by the Free Software Foundation; either version 2 of the License, |
+*|   or (at your option) any later version.                            |
+*|                                                                     |
+*|   SAPlink is distributed in the hope that it will be useful,        |
+*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
+*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
+*|   GNU General Public License for more details.                      |
+*|                                                                     |
+*|   You should have received a copy of the GNU General Public License |
+*|   along with SAPlink; if not, write to the                          |
+*|   Free Software Foundation, Inc.,                                   |
+*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*\---------------------------------------------------------------------/
+  method DELETEOBJECT .
+
+  data program type sy-repid.
+
+  program = objName.
+
+  CALL FUNCTION 'RS_DELETE_PROGRAM'
+    EXPORTING
+*   CORRNUMBER                       =
+      program                          = program
+*   SUPPRESS_CHECKS                  = ' '
+*   SUPPRESS_COMMIT                  = ' '
+      SUPPRESS_POPUP                   = 'X'
+*   MASS_DELETE_CALL                 = ' '
+*   WITH_CUA                         = 'X'
+*   WITH_DOCUMENTATION               = 'X'
+*   WITH_DYNPRO                      = 'X'
+*   WITH_INCLUDES                    = ' '
+*   WITH_TEXTPOOL                    = 'X'
+*   WITH_VARIANTS                    = 'X'
+*   TADIR_DEVCLASS                   =
+*   SKIP_PROGRESS_IND                = ' '
+*   FORCE_DELETE_USED_INCLUDES       = ' '
+* IMPORTING
+*   CORRNUMBER                       =
+*   PROGRAM                          =
+* EXCEPTIONS
+*   ENQUEUE_LOCK                     = 1
+*   OBJECT_NOT_FOUND                 = 2
+*   PERMISSION_FAILURE               = 3
+*   REJECT_DELETION                  = 4
+*   OTHERS                           = 5
+            .
+  IF sy-subrc <> 0.
+* MESSAGE ID SY-MSGID TYPE SY-MSGTY NUMBER SY-MSGNO
+*         WITH SY-MSGV1 SY-MSGV2 SY-MSGV3 SY-MSGV4.
+  ENDIF.
+
+  endmethod.
+*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   SAPlink is free software; you can redistribute it and/or modify   |
+*|   it under the terms of the GNU General Public License as published |
+*|   by the Free Software Foundation; either version 2 of the License, |
+*|   or (at your option) any later version.                            |
+*|                                                                     |
+*|   SAPlink is distributed in the hope that it will be useful,        |
+*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
+*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
+*|   GNU General Public License for more details.                      |
+*|                                                                     |
+*|   You should have received a copy of the GNU General Public License |
+*|   along with SAPlink; if not, write to the                          |
+*|   Free Software Foundation, Inc.,                                   |
+*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*\---------------------------------------------------------------------/
+  method DEQUEUE_ABAP .
+
+    call function 'RS_ACCESS_PERMISSION'
+         exporting
+              global_lock              = 'X'
+              mode                     = 'FREE'
+              object                   = objName
+              object_class             = 'ABAP'
+         exceptions
+              canceled_in_corr         = 1
+              enqueued_by_user         = 3
+              enqueue_system_failure   = 4
+              locked_by_author         = 5
+              illegal_parameter_values = 6
+              no_modify_permission     = 7
+              no_show_permission       = 8
+              permission_failure       = 9.
+
+    if sy-subrc <> 0.
+      case sy-subrc.
+        when 7 or 8 or 9.
+          raise exception type zcx_saplink
+            exporting
+              textid = zcx_saplink=>not_authorized.
+        when 5.
+          raise exception type zcx_saplink
+            exporting
+              textid = zcx_saplink=>error_message
+              msg = 'object locked'.
+        when others.
+          raise exception type zcx_saplink
+            exporting
+              textid = zcx_saplink=>system_error.
+      endcase.
+    endif.
+
+  endmethod.
+*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   SAPlink is free software; you can redistribute it and/or modify   |
+*|   it under the terms of the GNU General Public License as published |
+*|   by the Free Software Foundation; either version 2 of the License, |
+*|   or (at your option) any later version.                            |
+*|                                                                     |
+*|   SAPlink is distributed in the hope that it will be useful,        |
+*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
+*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
+*|   GNU General Public License for more details.                      |
+*|                                                                     |
+*|   You should have received a copy of the GNU General Public License |
+*|   along with SAPlink; if not, write to the                          |
+*|   Free Software Foundation, Inc.,                                   |
+*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*\---------------------------------------------------------------------/
+  method ENQUEUE_ABAP .
+
+
+    call function 'RS_ACCESS_PERMISSION'
+         exporting
+*            authority_check          = authority_check
+              global_lock              = 'X'
+              mode                     = 'INSERT'
+*            master_language          = trdir-rload
+              object                   = objName
+              object_class             = 'ABAP'
+*       importing
+*            transport_key            = trkey_global
+*            new_master_language      = trdir-rload
+*            devclass                 = devclass_local
+         exceptions
+              canceled_in_corr         = 1
+              enqueued_by_user         = 3
+              enqueue_system_failure   = 4
+              locked_by_author         = 5
+              illegal_parameter_values = 6
+              no_modify_permission     = 7
+              no_show_permission       = 8
+              permission_failure       = 9.
+
+    if sy-subrc <> 0.
+      case sy-subrc.
+        when 7 or 8 or 9.
+          raise exception type zcx_saplink
+            exporting
+              textid = zcx_saplink=>not_authorized.
+        when 5.
+          raise exception type zcx_saplink
+            exporting
+              textid = zcx_saplink=>error_message
+              msg = 'object locked'.
+        when others.
+          raise exception type zcx_saplink
+            exporting
+              textid = zcx_saplink=>system_error.
+      endcase.
+    endif.
+
+  endmethod.
+*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   SAPlink is free software; you can redistribute it and/or modify   |
+*|   it under the terms of the GNU General Public License as published |
+*|   by the Free Software Foundation; either version 2 of the License, |
+*|   or (at your option) any later version.                            |
+*|                                                                     |
+*|   SAPlink is distributed in the hope that it will be useful,        |
+*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
+*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
+*|   GNU General Public License for more details.                      |
+*|                                                                     |
+*|   You should have received a copy of the GNU General Public License |
+*|   along with SAPlink; if not, write to the                          |
+*|   Free Software Foundation, Inc.,                                   |
+*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*\---------------------------------------------------------------------/
+  method GETOBJECTTYPE .
+    objectType = 'PROG'. "ABAP Program
+  endmethod.
+*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   SAPlink is free software; you can redistribute it and/or modify   |
+*|   it under the terms of the GNU General Public License as published |
+*|   by the Free Software Foundation; either version 2 of the License, |
+*|   or (at your option) any later version.                            |
+*|                                                                     |
+*|   SAPlink is distributed in the hope that it will be useful,        |
+*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
+*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
+*|   GNU General Public License for more details.                      |
+*|                                                                     |
+*|   You should have received a copy of the GNU General Public License |
+*|   along with SAPlink; if not, write to the                          |
+*|   Free Software Foundation, Inc.,                                   |
+*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*\---------------------------------------------------------------------/
+  method get_dynpro.
+
+    types: begin of tdynp,
+           prog type d020s-prog,
+           dnum type d020s-dnum,
+           end of tdynp.
+
+    data: idyn_fldl type table of d021s,
+          idyn_flow type table of d022s,
+          idyn_mcod type table of d023s.
+
+    data: xdyn_head type  d020s,
+          xdyn_fldl type  d021s,
+          xdyn_flow type  d022s,
+          xdyn_mcod type  d023s.
+
+    data idynp type table of tdynp.
+    data xdynp type tdynp.
+
+    data xdyn_text type d020t-dtxt.
+    data xdyn_text_string type string.
+
+    data _objname type trobj_name.
+    data rc type sy-subrc .
+
+    data iflowsource type rswsourcet.
+    data xflowsource like line of iflowsource.
+    data flowsourcestring type string.
+
+    data dynnr_node type ref to if_ixml_element.
+    data dynpromatchnode type ref to if_ixml_element.
+    data dynprofieldsnode type ref to if_ixml_element.
+    data dynproflownode type ref to if_ixml_element.
+
+    _objname = objname.
+
+* Get all dynpros for program object
+    clear xdynp.  refresh idynp.
+    select prog dnum into table idynp
+                  from d020s
+                     where prog = _objname
+                       and type <> 'S'    " No Selection Screens
+                       and type <> 'J'.   " No selection subscreens
+    check sy-subrc  = 0 .
+
+    dynp_node = xmldoc->create_element( 'dynpros' ).
+
+    loop at idynp into xdynp.
+
+* Retrieve dynpro imformation
+      dynnr_node =  xmldoc->create_element( 'dynpro' ).
+
+      clear:    xdyn_head, xdyn_fldl, xdyn_flow, xdyn_mcod.
+      refresh:  idyn_fldl, idyn_flow, idyn_mcod.
+
+      call function 'RPY_DYNPRO_READ_NATIVE'
+        exporting
+          progname                    = xdynp-prog
+          dynnr                       = xdynp-dnum
+*       SUPPRESS_EXIST_CHECKS       = ' '
+*       SUPPRESS_CORR_CHECKS        = ' '
+      importing
+          HEADER                      = xdyn_head
+          dynprotext                  = xdyn_text
+       tables
+          fieldlist                   = idyn_fldl
+          flowlogic                   = idyn_flow
+          params                      = idyn_mcod
+*       FIELDTEXTS                  =
+       exceptions
+          cancelled                   = 1
+          not_found                   = 2
+          permission_error            = 3
+          others                      = 4.
+
+      check sy-subrc = 0.
+
+* Add heading information for screen.
+      setattributesfromstructure(
+                       node = dynnr_node structure =  xdyn_head  ).
+* Add the dynpro text also.
+      xdyn_text_string =  xdyn_text.
+      rc = dynnr_node->set_attribute(
+                 name = 'DTEXT'  value = xdyn_text_string ).
+      rc = dynp_node->append_child( dynnr_node ).
+
+* Add fields information for screen.
+      if not idyn_fldl[] is initial.
+        loop at idyn_fldl into xdyn_fldl.
+          dynprofieldsnode = xmldoc->create_element( 'dynprofield' ).
+          setattributesfromstructure(
+                   node = dynprofieldsnode structure =  xdyn_fldl ).
+          rc = dynnr_node->append_child( dynprofieldsnode ).
+        endloop.
+      endif.
+
+* Add flow logic of screen
+      if not idyn_flow[] is initial.
+        clear xflowsource. refresh  iflowsource.
+        loop at idyn_flow into xdyn_flow.
+          xflowsource  = xdyn_flow.
+          append xflowsource to iflowsource.
+        endloop.
+
+        dynproflownode = xmldoc->create_element( 'dynproflowsource' ).
+        flowsourcestring = buildsourcestring( sourcetable = iflowsource ).
+        rc = dynproflownode->if_ixml_node~set_value( flowsourcestring ).
+        rc = dynnr_node->append_child( dynproflownode  ).
+      endif.
+
+* Add matchcode information for screen.
+      if not idyn_mcod[] is initial.
+        loop at idyn_mcod into xdyn_mcod.
+          check not xdyn_mcod-type is initial
+            and not xdyn_mcod-content is initial.
+          dynpromatchnode = xmldoc->create_element( 'dynpromatchcode' ).
+          setattributesfromstructure(
+                   node = dynpromatchnode structure =  xdyn_mcod ).
+          rc = dynnr_node->append_child( dynpromatchnode ).
+        endloop.
+      endif.
+
+    endloop.
+
+  endmethod.
+*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   SAPlink is free software; you can redistribute it and/or modify   |
+*|   it under the terms of the GNU General Public License as published |
+*|   by the Free Software Foundation; either version 2 of the License, |
+*|   or (at your option) any later version.                            |
+*|                                                                     |
+*|   SAPlink is distributed in the hope that it will be useful,        |
+*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
+*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
+*|   GNU General Public License for more details.                      |
+*|                                                                     |
+*|   You should have received a copy of the GNU General Public License |
+*|   along with SAPlink; if not, write to the                          |
+*|   Free Software Foundation, Inc.,                                   |
+*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*\---------------------------------------------------------------------/
+  method get_pfstatus.
+
+    data: ista type table of rsmpe_stat,
+          ifun type table of rsmpe_funt,
+          imen type table of rsmpe_men,
+          imtx type table of rsmpe_mnlt,
+          iact type table of rsmpe_act,
+          ibut type table of rsmpe_but,
+          ipfk type table of rsmpe_pfk,
+          iset type table of rsmpe_staf,
+          idoc type table of rsmpe_atrt,
+          itit type table of rsmpe_titt,
+          ibiv type table of rsmpe_buts.
+
+    data: xsta type rsmpe_stat,
+          xfun type rsmpe_funt,
+          xmen type rsmpe_men,
+          xmtx type rsmpe_mnlt,
+          xact type rsmpe_act,
+          xbut type rsmpe_but,
+          xpfk type rsmpe_pfk,
+          xset type rsmpe_staf,
+          xdoc type rsmpe_atrt,
+          xtit type rsmpe_titt,
+          xbiv type rsmpe_buts.
+
+    data sta_node type ref to if_ixml_element.
+    data fun_node type ref to if_ixml_element.
+    data men_node type ref to if_ixml_element.
+    data mtx_node type ref to if_ixml_element.
+    data act_node type ref to if_ixml_element.
+    data but_node type ref to if_ixml_element.
+    data pfk_node type ref to if_ixml_element.
+    data set_node type ref to if_ixml_element.
+    data doc_node type ref to if_ixml_element.
+    data tit_node type ref to if_ixml_element.
+    data biv_node type ref to if_ixml_element.
+
+    data _objname type trobj_name.
+    data _program type  trdir-name.
+    data rc type sy-subrc.
+
+    _objname = objname.
+    _program = objname.
+
+    call function 'RS_CUA_INTERNAL_FETCH'
+      exporting
+        program         = _program
+        language        = sy-langu
+      tables
+        sta             = ista
+        fun             = ifun
+        men             = imen
+        mtx             = imtx
+        act             = iact
+        but             = ibut
+        pfk             = ipfk
+        set             = iset
+        doc             = idoc
+        tit             = itit
+        biv             = ibiv
+      exceptions
+        not_found       = 1
+        unknown_version = 2
+        others          = 3.
+
+    check sy-subrc = 0.
+
+* if there is a gui status or gui title present, then
+* create pfstatus node.
+    if ista[] is not initial
+       or itit[] is not initial.
+      pfstat_node = xmldoc->create_element( 'pfstatus' ).
+    endif.
+
+
+* if ista is filled, assume there are one or more
+* gui statuses
+    if ista[] is not initial.
+
+      loop at ista into xsta.
+        sta_node = xmldoc->create_element( 'pfstatus_sta' ).
+        setattributesfromstructure(
+                 node = sta_node
+                 structure =  xsta ).
+        rc = pfstat_node->append_child( sta_node ).
+      endloop.
+
+      loop at ifun into xfun.
+        fun_node = xmldoc->create_element( 'pfstatus_fun' ).
+        setattributesfromstructure(
+                 node = fun_node
+                 structure =  xfun ).
+        rc = pfstat_node->append_child( fun_node ).
+      endloop.
+
+      loop at imen into xmen.
+        men_node = xmldoc->create_element( 'pfstatus_men' ).
+        setattributesfromstructure(
+                 node = men_node
+                 structure =  xmen ).
+        rc = pfstat_node->append_child( men_node ).
+      endloop.
+
+      loop at imtx into xmtx.
+        mtx_node = xmldoc->create_element( 'pfstatus_mtx' ).
+        setattributesfromstructure(
+                 node = mtx_node
+                 structure =  xmtx ).
+        rc = pfstat_node->append_child( mtx_node ).
+      endloop.
+
+      loop at iact into xact.
+        act_node = xmldoc->create_element( 'pfstatus_act' ).
+        setattributesfromstructure(
+                 node = act_node
+                 structure =  xact ).
+        rc = pfstat_node->append_child( act_node ).
+      endloop.
+
+      loop at ibut into xbut.
+        but_node = xmldoc->create_element( 'pfstatus_but' ).
+        setattributesfromstructure(
+                 node = but_node
+                 structure =  xbut ).
+        rc = pfstat_node->append_child( but_node ).
+      endloop.
+
+      loop at ipfk into xpfk.
+        pfk_node = xmldoc->create_element( 'pfstatus_pfk' ).
+        setattributesfromstructure(
+                 node = pfk_node
+                 structure =  xpfk ).
+        rc = pfstat_node->append_child( pfk_node ).
+      endloop.
+
+      loop at iset into xset.
+        set_node = xmldoc->create_element( 'pfstatus_set' ).
+        setattributesfromstructure(
+                 node = set_node
+                 structure =  xset ).
+        rc = pfstat_node->append_child( set_node ).
+      endloop.
+
+      loop at idoc into xdoc.
+        doc_node = xmldoc->create_element( 'pfstatus_doc' ).
+        setattributesfromstructure(
+                 node = doc_node
+                 structure =  xdoc ).
+        rc = pfstat_node->append_child( doc_node ).
+      endloop.
+
+
+      loop at ibiv into xbiv.
+        biv_node = xmldoc->create_element( 'pfstatus_biv' ).
+        setattributesfromstructure(
+                 node = biv_node
+                 structure =  xbiv ).
+        rc = pfstat_node->append_child( biv_node ).
+      endloop.
+
+    endif.
+
+
+* It itit is filled, assume one or more titles
+    if itit[] is not initial.
+
+      loop at itit into xtit.
+        tit_node = xmldoc->create_element( 'pfstatus_tit' ).
+        setattributesfromstructure(
+                 node = tit_node
+                 structure =  xtit ).
+        rc = pfstat_node->append_child( tit_node ).
+      endloop.
+
+    endif.
+
+  endmethod.
+*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   SAPlink is free software; you can redistribute it and/or modify   |
+*|   it under the terms of the GNU General Public License as published |
+*|   by the Free Software Foundation; either version 2 of the License, |
+*|   or (at your option) any later version.                            |
+*|                                                                     |
+*|   SAPlink is distributed in the hope that it will be useful,        |
+*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
+*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
+*|   GNU General Public License for more details.                      |
+*|                                                                     |
+*|   You should have received a copy of the GNU General Public License |
+*|   along with SAPlink; if not, write to the                          |
+*|   Free Software Foundation, Inc.,                                   |
+*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*\---------------------------------------------------------------------/
+  method GET_TEXTPOOL .
+
+  data aText type ref to if_ixml_element.
+  data textPoolTable type standard table of TEXTPOOL.
+  data textPoolRow type textPool.
+  data languageList type instLang.
+  data aLanguage type SPRAS.
+  data _objName(30) type c.
+  data rc type i.
+  data sTemp type string.
+  data languageNode type ref to if_ixml_element.
+
+    _objName = objName.
+
+
+    textNode = xmlDoc->create_element( 'textPool' ).
+
+    CALL FUNCTION 'RS_TEXTLOG_GET_PARAMETERS'
+          changing
+            INSTALLED_LANGUAGES = languageList.
+
+    loop at languageList into aLanguage.
+      read textpool _objName into textPoolTable language aLanguage.
+      if sy-subrc = 0.
+        languageNode = xmlDoc->create_Element( 'language' ).
+        sTemp = aLanguage.
+        rc = languageNode->set_attribute( name = 'SPRAS' value = sTemp ).
+        loop at textPoolTable into textPoolRow.
+          aText = xmlDoc->create_element( 'textElement' ).
+          setAttributesFromStructure( node = aText structure =
+          textPoolRow ).
+          rc = languageNode->append_child( aText ).
+        endloop.
+        rc = textNode->append_child( languageNode ).
+      endif.
+    endloop.
+
+  endmethod.
+*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   SAPlink is free software; you can redistribute it and/or modify   |
+*|   it under the terms of the GNU General Public License as published |
+*|   by the Free Software Foundation; either version 2 of the License, |
+*|   or (at your option) any later version.                            |
+*|                                                                     |
+*|   SAPlink is distributed in the hope that it will be useful,        |
+*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
+*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
+*|   GNU General Public License for more details.                      |
+*|                                                                     |
+*|   You should have received a copy of the GNU General Public License |
+*|   along with SAPlink; if not, write to the                          |
+*|   Free Software Foundation, Inc.,                                   |
+*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*\---------------------------------------------------------------------/
+  method TRANSPORT_COPY .
+
+
+    CALL FUNCTION 'RS_CORR_INSERT'
+         EXPORTING
+              AUTHOR              = author
+              GLOBAL_LOCK         = 'X'
+              OBJECT              = objName
+              OBJECT_CLASS        = 'ABAP'
+              DEVCLASS            = devClass
+*            KORRNUM             = CORRNUMBER_LOCAL
+              MASTER_LANGUAGE     = sy-langu
+*            PROGRAM             = PROGRAM_LOCAL
+              MODE                = 'INSERT'
+*       IMPORTING
+*            AUTHOR              = UNAME
+*            KORRNUM             = CORRNUMBER_LOCAL
+*            DEVCLASS            = DEVCLASS_LOCAL
+         EXCEPTIONS
+              CANCELLED           = 1
+              PERMISSION_FAILURE  = 2
+              UNKNOWN_OBJECTCLASS = 3.
+
+    if sy-subrc <> 0.
+      case sy-subrc.
+        when 2.
+          raise exception type zcx_saplink
+            exporting
+              textid = zcx_saplink=>not_authorized.
+        when others.
+          raise exception type zcx_saplink
+            exporting
+              textid = zcx_saplink=>system_error.
+      endcase.
+    endif.
+
+  endmethod.
+ENDCLASS.
+CLASS ZSAPLINK_CLASS IMPLEMENTATION.
+  method CHECKEXISTS .
+*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   SAPlink is free software; you can redistribute it and/or modify   |
+*|   it under the terms of the GNU General Public License as published |
+*|   by the Free Software Foundation; either version 2 of the License, |
+*|   or (at your option) any later version.                            |
+*|                                                                     |
+*|   SAPlink is distributed in the hope that it will be useful,        |
+*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
+*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
+*|   GNU General Public License for more details.                      |
+*|                                                                     |
+*|   You should have received a copy of the GNU General Public License |
+*|   along with SAPlink; if not, write to the                          |
+*|   Free Software Foundation, Inc.,                                   |
+*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*\---------------------------------------------------------------------/
+
+  data classkey type SEOCLSKEY.
+  data not_active TYPE  SEOX_BOOLEAN.
+
+    classKey-clsName = objname.
+
+    call function 'SEO_CLASS_EXISTENCE_CHECK'
+      EXPORTING
+        clskey        = classkey
+      IMPORTING
+        not_active    = not_active
+      EXCEPTIONS
+*      not_specified = 1
+        not_existing  = 2.
+*      is_interface  = 3
+*      no_text       = 4
+*      inconsistent  = 5
+*      others        = 6.
+
+    if sy-subrc <> 2.
+      exists = 'X'.
+    endif.
+  endmethod.
+  method CREATEIXMLDOCFROMOBJECT .
+*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   SAPlink is free software; you can redistribute it and/or modify   |
+*|   it under the terms of the GNU General Public License as published |
+*|   by the Free Software Foundation; either version 2 of the License, |
+*|   or (at your option) any later version.                            |
+*|                                                                     |
+*|   SAPlink is distributed in the hope that it will be useful,        |
+*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
+*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
+*|   GNU General Public License for more details.                      |
+*|                                                                     |
+*|   You should have received a copy of the GNU General Public License |
+*|   along with SAPlink; if not, write to the                          |
+*|   Free Software Foundation, Inc.,                                   |
+*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*\---------------------------------------------------------------------/
+
+
+    DATA publicsection TYPE REF TO if_ixml_element.
+    DATA protectedsection TYPE REF TO if_ixml_element.
+    DATA privatesection TYPE REF TO if_ixml_element.
+    DATA localimplementation TYPE REF TO if_ixml_element.
+    DATA localtypes TYPE REF TO if_ixml_element.
+    DATA localmacros TYPE REF TO if_ixml_element.
+    DATA rootnode TYPE REF TO if_ixml_element.
+    DATA reportlist TYPE STANDARD TABLE OF string.
+    DATA includename TYPE program.
+    DATA _classname TYPE seoclsname.
+    DATA reportstring TYPE string.
+    DATA rc TYPE sysubrc.
+    DATA classdescr TYPE REF TO cl_abap_classdescr.
+    DATA typedescr TYPE REF TO cl_abap_typedescr.
+    DATA methoddescr TYPE abap_methdescr.
+    DATA methodnode TYPE REF TO if_ixml_element.
+    DATA parameternode TYPE REF TO if_ixml_element.
+    DATA sourcenode TYPE REF TO if_ixml_element.
+    DATA exceptionnode TYPE REF TO if_ixml_element.
+    DATA exceptionlist TYPE seos_exceptions_r.
+    DATA anexception TYPE vseoexcep.
+    data inheritanceNode type ref to if_ixml_element.
+    data redefNode type ref to if_ixml_element.
+
+    DATA tempstring TYPE string.
+    DATA methodkey TYPE seocpdkey.
+    DATA clsmethkey TYPE seocmpkey.
+    DATA methodproperties TYPE vseomethod.
+    DATA classkey TYPE seoclskey.
+    DATA classproperties TYPE vseoclass.
+    DATA paramdescr TYPE abap_parmdescr.
+    DATA paramkey TYPE seoscokey.
+    DATA paramproperties TYPE vseoparam.
+    DATA superclass TYPE REF TO cl_abap_typedescr.
+    DATA superclassname TYPE string.
+    DATA superclasskey TYPE seorelkey.
+
+    DATA attribdescr TYPE abap_attrdescr.
+    DATA attribkey TYPE seocmpkey.
+    DATA attribproperties TYPE vseoattrib.
+    DATA attribnode TYPE REF TO if_ixml_element.
+    DATA inheritanceprops TYPE vseoextend.
+    DATA redefines TYPE STANDARD TABLE OF seoredef
+        WITH KEY clsname refclsname version mtdname.
+    DATA inheritance TYPE SEOR_INHERITANCE_R.
+    DATA redefinitions TYPE seor_redefinitions_r.
+    data redefinition like line of redefinitions.
+    DATA forwarddeclarationlist TYPE seot_typepusages_r.
+    DATA forwarddeclaration TYPE REF TO if_ixml_element.
+    DATA forwarddeclarationrow TYPE seot_typepusage_r.
+
+    DATA otrnode TYPE REF TO if_ixml_element.
+    DATA _otrguid TYPE sotr_conc.
+
+    _classname = objname.
+    classkey-clsname = objname.
+
+*  setObjectType( ).
+
+    DATA _objtype TYPE string.
+*  _objType = objType.
+    _objtype = getobjecttype( ).
+    rootnode = xmldoc->create_element( _objtype ).
+    CALL FUNCTION 'SEO_CLASS_GET'
+      EXPORTING
+        clskey       = classkey
+        version      = '1'
+      IMPORTING
+        class        = classproperties
+      EXCEPTIONS
+        not_existing = 1
+        deleted      = 2
+        is_interface = 3
+        model_only   = 4.
+
+    IF sy-subrc <> 0.
+      CASE sy-subrc.
+        WHEN 1.
+          RAISE EXCEPTION TYPE zcx_saplink
+            EXPORTING textid = zcx_saplink=>not_found.
+        WHEN 2.
+          RAISE EXCEPTION TYPE zcx_saplink
+            EXPORTING
+              textid = zcx_saplink=>error_message
+              msg = 'class deleted'.
+        WHEN 3.
+          RAISE EXCEPTION TYPE zcx_saplink
+            EXPORTING
+              textid = zcx_saplink=>error_message
+              msg = 'interfaces not supported'.
+        WHEN 4.
+          RAISE EXCEPTION TYPE zcx_saplink
+            EXPORTING
+              textid = zcx_saplink=>error_message
+              msg = 'class is modeled only'.
+      ENDCASE.
+    ENDIF.
+
+    setattributesfromstructure( node = rootnode structure =
+    classproperties ).
+    TRY.
+        CALL METHOD cl_abap_classdescr=>describe_by_name
+          EXPORTING
+            p_name         = objname
+          RECEIVING
+            p_descr_ref    = typedescr
+          EXCEPTIONS
+            type_not_found = 1.
+        IF sy-subrc = 0.
+          classdescr ?= typedescr.
+        ELSE.
+
+        ENDIF.
+      CATCH cx_root.
+        RAISE EXCEPTION TYPE zcx_saplink
+          EXPORTING textid = zcx_saplink=>system_error.
+    ENDTRY.
+
+    CALL METHOD classdescr->get_super_class_type
+      RECEIVING
+        p_descr_ref           = superclass
+      EXCEPTIONS
+        super_class_not_found = 1.
+
+    IF sy-subrc = 0.
+      superclassname = superclass->get_relative_name( ).
+      IF NOT superclassname CS 'OBJECT'.
+        superclasskey-clsname = objname.
+        superclasskey-refclsname = superclassname.
+        CALL FUNCTION 'SEO_INHERITANC_GET'
+          EXPORTING
+            inhkey        = superclasskey
+          IMPORTING
+            inheritance   = inheritanceprops
+            redefinitions = redefines.
+        setattributesfromstructure( node = rootnode structure =
+        inheritanceprops ).
+      ENDIF.
+    ENDIF.
+
+*/***TPJ - Added Logic for TYPES  -------------------*/
+    DATA: types      TYPE seoo_types_r,
+          wa_type    LIKE LINE OF types,
+          types_node TYPE REF TO if_ixml_element.
+    CALL FUNCTION 'SEO_TYPE_READ_ALL'
+      EXPORTING
+        cifkey            = classkey
+        version           = 1
+      IMPORTING
+        types             = types
+      EXCEPTIONS
+        clif_not_existing = 1
+        OTHERS            = 2.
+    IF sy-subrc <> 0.
+    ENDIF.
+    LOOP AT types INTO wa_type.
+      types_node = xmldoc->create_element( 'types' ).
+      setattributesfromstructure( node = types_node structure =
+      wa_type ).
+      rc = rootnode->append_child( types_node ).
+    ENDLOOP.
+*/***TPJ - End of Added Logic for TYPES  -------------------*/
+
+*/***TPJ - Added Logic for Friends  -------------------*/
+    DATA: clif_keys     TYPE STANDARD TABLE OF seoclskey,
+          friends       TYPE STANDARD TABLE OF seofriends,
+          wa_friend     LIKE LINE OF friends,
+          friends_node  TYPE REF TO if_ixml_element.
+
+    APPEND classkey TO clif_keys.
+    CALL FUNCTION 'SEO_FRIENDS_SELECT'
+      EXPORTING
+        WITH_EXTERNAL_REF = 'X'
+      TABLES
+        clif_keys         = clif_keys
+        friends_relations = friends.
+    IF sy-subrc <> 0.
+    ENDIF.
+    LOOP AT friends INTO wa_friend.
+      friends_node = xmldoc->create_element( 'friends' ).
+      setattributesfromstructure( node = friends_node structure =
+      wa_friend ).
+      rc = rootnode->append_child( friends_node ).
+    ENDLOOP.
+*/***TPJ - End of Added Logic for Friends  -------------------*/
+
+*/***ewH - Added Logic for Interfaces  -------------------*/
+    DATA: it_implementings type seor_implementings_r,
+          wa_implementings like line OF it_implementings,
+          implementingNode TYPE REF TO if_ixml_element.
+
+    CALL FUNCTION 'SEO_IMPLEMENTG_READ_ALL'
+      EXPORTING
+        CLSKEY                   = classkey
+      IMPORTING
+        IMPLEMENTINGS            = it_implementings
+      EXCEPTIONS
+        CLASS_NOT_EXISTING       = 1
+        OTHERS                   = 2.
+
+    LOOP AT it_implementings INTO wa_implementings.
+      implementingNode = xmldoc->create_element( 'implementing' ).
+      setattributesfromstructure( node = implementingNode structure =
+      wa_implementings ).
+      rc = rootnode->append_child( implementingNode ).
+    ENDLOOP.
+*/***ewH - End of Added Logic for Interfaces  -------------------*/
+*/***rrq - Added Logic for EVENTS  -------------------*/
+    DATA: events      TYPE SEOO_EVENTS_R,
+          wa_event    LIKE LINE OF events,
+          event_node  TYPE REF TO if_ixml_element,
+          eventkey    type SEOCMPKEY,
+          eventparams type seos_parameters_r,
+          wa_params   type seos_parameter_r.
+    CALL FUNCTION 'SEO_EVENT_READ_ALL'
+      EXPORTING
+        cifkey            = classkey
+        version           = 1
+      IMPORTING
+        events             = events
+      EXCEPTIONS
+        clif_not_existing = 1
+        OTHERS            = 2.
+    IF sy-subrc <> 0.
+    ENDIF.
+    LOOP AT events INTO wa_event.
+      eventkey-clsname = wa_event-clsname.
+      eventkey-cmpname = wa_event-CMPNAME.
+      event_node = xmldoc->create_element( 'events' ).
+      setattributesfromstructure( node = event_node structure =
+      wa_event ).
+      CALL FUNCTION 'SEO_EVENT_SIGNATURE_GET'
+        EXPORTING
+          EVTKEY             = eventkey
+        importing
+         PARAMETERS         = eventparams.
+
+*   parameters
+      loop at eventParams into wa_params.
+
+        parameternode = xmldoc->create_element( 'parameter' ).
+        setattributesfromstructure( node = parameternode
+        structure = wa_params ).
+        rc = event_node->append_child( parameternode ).
+      ENDLOOP.
+      rc = rootnode->append_child( event_node ).
+    ENDLOOP.
+*/***rrq - End of Added Logic for EVENTS  -------------------*/
+
+*/--------------------------------------------------------------------\
+*|                                                                    |
+    includename = cl_oo_classname_service=>get_pubsec_name( _classname ).
+    READ REPORT includename INTO reportlist.
+    publicsection = xmldoc->create_element( 'publicSection' ).
+
+    reportstring = buildsourcestring( sourcetable = reportlist ).
+    rc = publicsection->if_ixml_node~set_value( reportstring ).
+    CLEAR reportstring.
+*|--------------------------------------------------------------------|
+    includename = cl_oo_classname_service=>get_prosec_name( _classname ).
+    READ REPORT includename INTO reportlist.
+    protectedsection = xmldoc->create_element( 'protectedSection' ).
+    reportstring = buildsourcestring( sourcetable = reportlist ).
+    rc = protectedsection->if_ixml_node~set_value( reportstring ).
+    CLEAR reportstring.
+*|--------------------------------------------------------------------|
+    includename = cl_oo_classname_service=>get_prisec_name( _classname ).
+    READ REPORT includename INTO reportlist.
+    privatesection = xmldoc->create_element( 'privateSection' ).
+    reportstring = buildsourcestring( sourcetable = reportlist ).
+    rc = privatesection->if_ixml_node~set_value( reportstring ).
+*|--------------------------------------------------------------------|
+    includename = cl_oo_classname_service=>get_ccimp_name( _classname ).
+    READ REPORT includename INTO reportlist.
+    localimplementation = xmldoc->create_element( 'localImplementation' ).
+    reportstring = buildsourcestring( sourcetable = reportlist ).
+    rc = localimplementation->if_ixml_node~set_value( reportstring ).
+*|--------------------------------------------------------------------|
+    includename = cl_oo_classname_service=>get_ccdef_name( _classname ).
+    READ REPORT includename INTO reportlist.
+    localtypes = xmldoc->create_element( 'localTypes' ).
+    reportstring = buildsourcestring( sourcetable = reportlist ).
+    rc = localtypes->if_ixml_node~set_value( reportstring ).
+*|--------------------------------------------------------------------|
+    includename = cl_oo_classname_service=>get_ccmac_name( _classname ).
+    READ REPORT includename INTO reportlist.
+    localmacros = xmldoc->create_element( 'localMacros' ).
+    reportstring = buildsourcestring( sourcetable = reportlist ).
+    rc = localmacros->if_ixml_node~set_value( reportstring ).
+*|                                                                    |
+*\--------------------------------------------------------------------/
+    rc = rootnode->append_child( publicsection ).
+    rc = rootnode->append_child( protectedsection ).
+    rc = rootnode->append_child( privatesection ).
+    rc = rootnode->append_child( localimplementation ).
+    rc = rootnode->append_child( localtypes ).
+    rc = rootnode->append_child( localmacros ).
+
+
+    CALL FUNCTION 'SEO_TYPEPUSAGE_READ_ALL'
+      EXPORTING
+        cifkey      = classkey
+        version     = '1'
+      IMPORTING
+        typepusages = forwarddeclarationlist.
+*comment rrq old way....forwardDeclarations the only attribute
+*set was the "TypeGroup"
+*the new way....the entire structure is passed as in node typeUsage
+    LOOP AT forwarddeclarationlist INTO forwarddeclarationrow.
+      forwarddeclaration = xmldoc->create_element( 'typeUsage' ).
+      setattributesfromstructure( node = forwarddeclaration structure =
+      forwarddeclarationrow ).
+      rc = rootnode->append_child( forwarddeclaration ).
+    ENDLOOP.
+
+*ewH: for version 0.1.3, we will continue to generate both nodes
+* in order for upgradeability of saplink itself.  For version
+* 2.0, forwardDeclaration node generations will be deprecated.
+    LOOP AT forwarddeclarationlist INTO forwarddeclarationrow.
+      forwarddeclaration = xmldoc->create_element( 'forwardDeclaration' ).
+      tempstring = forwarddeclarationrow-typegroup.
+      rc = forwarddeclaration->if_ixml_node~set_value( tempstring ).
+      rc = rootnode->append_child( forwarddeclaration ).
+    ENDLOOP.
+
+*  classDescriptor ?= cl_abap_typedescr=>describe_by_name( className ).
+    attribkey-clsname = objname.
+
+    LOOP AT classdescr->attributes INTO attribdescr
+    WHERE is_inherited = abap_false
+    and is_interface = abap_false. "rrq:issue 46
+      attribnode = xmldoc->create_element( 'attribute' ).
+      attribkey-cmpname = attribdescr-name.
+      CALL FUNCTION 'SEO_ATTRIBUTE_GET'
+        EXPORTING
+          attkey    = attribkey
+        IMPORTING
+          attribute = attribproperties.
+
+*   include OTR if necessary (for exception classes)
+      IF attribproperties-type = 'SOTR_CONC' AND attribproperties-attvalue
+      IS NOT INITIAL.
+        _otrguid = attribproperties-attvalue+1(32).
+        otrnode = createnodefromotr( _otrguid ).
+        if otrnode is bound.
+          rc = attribnode->append_child( otrnode ).
+        endif.
+      ENDIF.
+
+*   append attribute node to parent node
+      setattributesfromstructure( node = attribnode structure =
+      attribproperties ).
+      rc = rootnode->append_child( attribnode ).
+    ENDLOOP.
+
+*// ewH: begin of logic for interface methods & inheritance redesign-->
+* inheritances & redefinitions: old source removed-recover w/subversion
+    CALL FUNCTION 'SEO_INHERITANC_READ'
+      EXPORTING
+        CLSKEY                   = classKey
+      IMPORTING
+        INHERITANCE              = inheritance
+        REDEFINITIONS            = redefinitions
+      EXCEPTIONS
+        CLASS_NOT_EXISTING       = 1
+        OTHERS                   = 2.
+
+    if inheritance is not initial.
+      inheritanceNode = xmldoc->create_element( 'inheritance' ).
+      setattributesfromstructure( node = inheritanceNode structure =
+      inheritance ).
+
+      loop at redefinitions into redefinition.
+        redefNode = xmldoc->create_element( 'redefinition' ).
+        setattributesfromstructure( node = redefNode structure =
+        redefinition ).
+        rc = inheritanceNode->append_child( redefNode ).
+      endloop.
+      rc = rootnode->append_child( inheritanceNode ).
+    endif.
+
+* methods
+    LOOP AT classdescr->methods INTO methoddescr where
+    not ( is_inherited = 'X' and is_redefined is initial ).
+      methodkey-clsname = _classname.
+      methodkey-cpdname = methoddescr-name.
+*   interface methods
+      if methoddescr-is_interface = 'X'.
+        CALL METHOD cl_oo_classname_service=>get_method_include
+          EXPORTING
+            mtdkey              = methodkey
+          RECEIVING
+            result              = includename
+          EXCEPTIONS
+            method_not_existing = 1.
+        IF sy-subrc = 0.
+          methodnode = xmldoc->create_element( 'interfaceMethod' ).
+          setattributesfromstructure( node = methodnode structure =
+          methodkey ).
+          sourcenode = xmldoc->create_element( 'source' ).
+*        tempString = includeName.
+*        rc = sourceNode->set_attribute(
+*          name = 'includeName' value = tempString ).
+          READ REPORT includename INTO reportlist.
+          reportstring = buildsourcestring( sourcetable = reportlist ).
+          rc = sourcenode->if_ixml_node~set_value( reportstring ).
+          rc = methodnode->append_child( sourcenode ).
+          rc = rootnode->append_child( methodnode ).
+        ENDIF.
+*   other methods
+      else.
+        clsmethkey-clsname = _classname.
+        clsmethkey-cmpname = methoddescr-name.
+        CLEAR methodproperties.
+
+        if methoddescr-is_redefined = 'X'.
+          methodnode = xmldoc->create_element( 'method' ).
+          move-corresponding clsMethKey to methodProperties.
+*// ewh: begin of forward compatibility hack, can be removed for next
+*//      major release-->
+          read table redefinitions into redefinition
+            with key mtdname = methoddescr-name.
+          if sy-subrc = 0.
+            methodProperties-clsname = redefinition-refclsname.
+          endif.
+*//<--ewH: end of forward compatibility hack
+          setattributesfromstructure( node = methodnode structure =
+          methodproperties ).
+        else.
+          CALL FUNCTION 'SEO_METHOD_GET'
+            EXPORTING
+              mtdkey       = clsmethkey
+            IMPORTING
+              method       = methodproperties
+            EXCEPTIONS
+              not_existing = 1.
+          IF sy-subrc = 0.
+            methodnode = xmldoc->create_element( 'method' ).
+            setattributesfromstructure( node = methodnode structure =
+            methodproperties ).
+
+*         parameters
+            LOOP AT methoddescr-parameters INTO paramdescr.
+              CLEAR paramproperties.
+              parameternode = xmldoc->create_element( 'parameter' ).
+              paramkey-cmpname = clsmethkey-cmpname.
+              paramkey-sconame = paramdescr-name.
+              paramkey-clsname = objname.
+              CALL FUNCTION 'SEO_PARAMETER_GET'
+                EXPORTING
+                  parkey    = paramkey
+                  version   = '1'
+                IMPORTING
+                  parameter = paramproperties.
+              setattributesfromstructure( node = parameternode
+              structure = paramproperties ).
+              rc = methodnode->append_child( parameternode ).
+            ENDLOOP.
+
+*         exceptions
+            CALL FUNCTION 'SEO_METHOD_SIGNATURE_GET'
+              EXPORTING
+                mtdkey  = clsmethkey
+                version = '1'
+              IMPORTING
+                exceps  = exceptionlist.
+            LOOP AT exceptionlist INTO anexception.
+              exceptionnode = xmldoc->create_element( 'exception' ).
+              setattributesfromstructure( node = exceptionnode
+              structure = anexception ).
+              rc = methodnode->append_child( exceptionnode ).
+            ENDLOOP.
+          endif. "method found
+        endif. "is_redefined?
+*     source
+        CALL METHOD cl_oo_classname_service=>get_method_include
+          EXPORTING
+            mtdkey              = methodkey
+          RECEIVING
+            result              = includename
+          EXCEPTIONS
+            method_not_existing = 1.
+        IF sy-subrc = 0.
+          READ REPORT includename INTO reportlist.
+          reportstring = buildsourcestring( sourcetable = reportlist ).
+          sourcenode = xmldoc->create_element( 'source' ).
+          rc = sourcenode->if_ixml_node~set_value( reportstring ).
+          rc = methodnode->append_child( sourcenode ).
+        endif.
+        rc = rootnode->append_child( methodnode ).
+      endif. "is_interface?
+    endloop.
+
+* append root node to xmldoc
+    rc = xmldoc->append_child( rootnode ).
+    ixmldocument = xmldoc.
+*// <--ewH: end of logic for interface methods & inheritance redesign
+  endmethod.
+  method CREATEOBJECTFROMIXMLDOC .
+*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   SAPlink is free software; you can redistribute it and/or modify   |
+*|   it under the terms of the GNU General Public License as published |
+*|   by the Free Software Foundation; either version 2 of the License, |
+*|   or (at your option) any later version.                            |
+*|                                                                     |
+*|   SAPlink is distributed in the hope that it will be useful,        |
+*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
+*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
+*|   GNU General Public License for more details.                      |
+*|                                                                     |
+*|   You should have received a copy of the GNU General Public License |
+*|   along with SAPlink; if not, write to the                          |
+*|   Free Software Foundation, Inc.,                                   |
+*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*\---------------------------------------------------------------------/
+
+    DATA rootnode TYPE REF TO if_ixml_element.
+    DATA classkey TYPE seoclskey.
+    DATA filter TYPE REF TO if_ixml_node_filter.
+    DATA iterator TYPE REF TO if_ixml_node_iterator.
+    DATA node TYPE REF TO if_ixml_element.
+    DATA otrnode TYPE REF TO if_ixml_element.
+    DATA filter2 TYPE REF TO if_ixml_node_filter.
+    DATA iterator2 TYPE REF TO if_ixml_node_iterator.
+    DATA superClass TYPE vseoextend-clsname.
+    DATA superclasskey TYPE vseoextend.
+    DATA methodsourcenode TYPE REF TO if_ixml_node.
+    DATA sourcenode TYPE REF TO if_ixml_node.
+    DATA source TYPE string.
+    DATA sourcetable TYPE TABLE OF string.
+    DATA methodkey TYPE seocpdkey.
+    DATA node2 TYPE REF TO if_ixml_element.
+    DATA _objtype TYPE string.
+    data aobjname type e071-obj_name.
+    data inheritanceNode type ref to if_ixml_element.
+    data redefNode type ref to if_ixml_element.
+    DATA includename TYPE program.
+
+*data excClass type ref to ZCX_SAPLINK.
+
+*// --> begin of new data type rrq
+  data:
+*exporting dataTypes
+  e_corrnr                 type TRKORR,
+  e_devclass               type DEVCLASS,
+  e_version                type SEOVERSION,
+  e_genflag                type GENFLAG,
+  e_authority_check        type SEOX_BOOLEAN,
+  e_overwrite              type SEOX_BOOLEAN,
+*e_suppress_meth_gen      type SEOX_BOOLEAN,
+*e_suppress_refac_gen     type SEOX_BOOLEAN,
+  e_method_sources         type SEO_METHOD_SOURCE_TABLE,
+  e_locals_def             type RSWSOURCET,
+  e_locals_imp             type RSWSOURCET,
+  e_locals_mac             type RSWSOURCET,
+*e_suppress_ind_update    type SEOX_BOOLEAN,
+*importing dataTypes
+  i_korrnr                 type trkorr,
+*changing dataTypes
+  ch_class                 type VSEOCLASS,
+  ch_inheritance           type VSEOEXTEND,
+  ch_redefinitions         type SEOR_REDEFINITIONS_R,
+  ch_implementings         type SEOR_IMPLEMENTINGS_R,
+  ch_impl_details          type SEO_REDEFINITIONS,
+  ch_attributes            type SEOO_ATTRIBUTES_R,
+  ch_methods               type SEOO_METHODS_R,
+  ch_events                type SEOO_EVENTS_R,
+  ch_types                 type SEOO_TYPES_R,
+  ch_type_source           type SEOP_SOURCE,
+  ch_type_source_temp      type SEOP_SOURCE,
+  ch_parameters            type SEOS_PARAMETERS_R,
+  ch_exceps                type SEOS_EXCEPTIONS_R,
+  ch_aliases               type SEOO_ALIASES_R,
+  ch_typeusages            type SEOT_TYPEPUSAGES_R,
+  ch_clsdeferreds          type SEOT_CLSDEFERRDS_R,
+  ch_intdeferrds           type SEOT_INTDEFERRDS_R,
+  ch_friendships           type SEO_FRIENDS,
+**table dataTypes
+*tb_classDescription      type table of seoclasstx,
+*tb_component_descr       type table of seocompotx,
+*tb_subcomponent_descr    type table of seosubcotx,
+* work areas for the tables
+  wa_attributes            type SEOO_ATTRIBUTE_R,
+  wa_types                 type SEOO_TYPE_R,
+  wa_friends               type seofriends,
+  wa_implementings         type SEOR_IMPLEMENTING_R,
+  wa_redefinitions         type SEOREDEF,
+  wa_methods               type SEOO_METHOD_R,
+  wa_parameters            type seos_parameter_r,
+  wa_exceps                type seos_exception_r,
+  wa_typeusages            type SEOT_TYPEPUSAGE_R, "forward declarations
+  wa_method_Sources        type SEO_METHOD_SOURCE,
+  wa_events                type SEOO_EVENT_R.
+  data: lines type i.
+*//<-- end of new data types rrq
+
+    CALL FUNCTION 'SEO_BUFFER_INIT'.
+
+    e_devclass = devclass.
+    _objtype = getobjecttype( ).
+    e_overwrite = overwrite.
+    xmldoc = ixmldocument.
+    rootnode = xmldoc->find_from_name( _objtype ).
+
+    CALL METHOD getstructurefromattributes
+      EXPORTING
+        node      = rootnode
+      CHANGING
+        structure = ch_class.
+
+    objname = classkey-clsname = ch_class-clsname.
+    ch_class-version = '0'.
+    superclass = rootnode->get_attribute( name = 'REFCLSNAME' ).
+    IF superclass IS NOT INITIAL.
+* set something for inheritence
+      superclasskey-clsname = classkey-clsname.
+      superclasskey-refclsname = superclass.
+      superclasskey-version = '0'.
+      superclasskey-state = '1'.
+      MOVE-CORRESPONDING superclasskey to ch_inheritance.
+      ch_inheritance-author = 'BCUSER'.
+      ch_inheritance-createdOn = sy-datum.
+    ENDIF.
+
+*Add attributes to new class
+    data otrConcept type SOTR_TEXT-CONCEPT.
+    filter = xmldoc->create_filter_name( 'attribute' ).
+    iterator = xmldoc->create_iterator_filtered( filter ).
+    node ?= iterator->get_next( ).
+
+    WHILE node IS NOT INITIAL.
+*   create OTR texts if necessary (for exception classes)
+      clear otrConcept.
+      otrnode = node->find_from_name( 'sotr' ).
+      IF otrnode IS NOT INITIAL.
+*     ewH:33-->create new concept with new guid
+*      me->createotrfromnode( otrnode ).
+        me->createotrfromnode(
+          exporting node = otrnode
+          importing concept = otrConcept ).
+      ENDIF.
+      clear wa_attributes.
+*   create attribute
+      CALL METHOD getstructurefromattributes
+        EXPORTING
+          node      = node
+        CHANGING
+          structure = wa_attributes.
+      wa_attributes-version = '0'.
+*   ewH:issue33-->6.40 and above, must create new concept
+      if otrConcept is not initial.
+        concatenate `'` otrConcept `'` into wa_attributes-attvalue.
+      endif.
+      append wa_attributes to ch_attributes.
+      node ?= iterator->get_next( ).
+    ENDWHILE.
+
+*/***TPJ - Added Logic for TYPES  -------------------*/
+*  DATA: types           TYPE seoo_types_r,
+*        type_properties LIKE LINE OF types.
+
+    filter = xmldoc->create_filter_name( 'types' ).
+    iterator = xmldoc->create_iterator_filtered( filter ).
+    node ?= iterator->get_next( ).
+    WHILE node IS NOT INITIAL.
+      CLEAR wa_types.
+      CALL METHOD getstructurefromattributes
+        EXPORTING
+          node      = node
+        CHANGING
+          structure = wa_types.
+      wa_types-version = '0'.
+      append wa_types to ch_types.
+      node ?= iterator->get_next( ).
+    ENDWHILE.
+*/***TPJ - End of Added Logic for TYPES  -------------------*/
+
+*/***TPJ - Added Logic for Friends  -------------------*/
+*  DATA: wa_friends type seofriends.
+
+    filter = xmldoc->create_filter_name( 'friends' ).
+    iterator = xmldoc->create_iterator_filtered( filter ).
+    node ?= iterator->get_next( ).
+    WHILE node IS NOT INITIAL.
+      CLEAR wa_friends.
+      CALL METHOD getstructurefromattributes
+        EXPORTING
+          node      = node
+        CHANGING
+          structure = wa_friends.
+      wa_friends-version = '0'.
+      append wa_friends to ch_FRIENDSHIPS.
+      node ?= iterator->get_next( ).
+    ENDWHILE.
+*/***TPJ - End of Added Logic for Friends  -------------------*/
+
+*// ewH: Added Logic for Implementings(interfaces)-->
+    filter = xmldoc->create_filter_name( 'implementing' ).
+    iterator = xmldoc->create_iterator_filtered( filter ).
+    node ?= iterator->get_next( ).
+    WHILE node IS NOT INITIAL.
+      CLEAR wa_implementings.
+      CALL METHOD getstructurefromattributes
+        EXPORTING
+          node      = node
+        CHANGING
+          structure = wa_implementings.
+      append wa_implementings to ch_implementings.
+      node ?= iterator->get_next( ).
+    ENDWHILE.
+*//<--ewH: End of Added Logic for Implementings(interfaces)
+
+*// rrq: Added Logic for events-->
+    filter = xmldoc->create_filter_name( 'events' ).
+    iterator = xmldoc->create_iterator_filtered( filter ).
+    node ?= iterator->get_next( ).
+    WHILE node IS NOT INITIAL.
+      CLEAR wa_events.
+      CALL METHOD getstructurefromattributes
+        EXPORTING
+          node      = node
+        CHANGING
+          structure = wa_events.
+      append wa_events to ch_events.
+      filter2 = node->create_filter_name( 'parameter' ).
+      iterator2 = node->create_iterator_filtered( filter2 ).
+      node2 ?= iterator2->get_next( ).
+      WHILE node2 IS NOT INITIAL.
+        CLEAR wa_parameters.
+        CALL METHOD getstructurefromattributes
+          EXPORTING
+            node      = node2
+          CHANGING
+            structure = wa_parameters.
+        append wa_parameters to ch_parameters.
+        node2 ?= iterator2->get_next( ).
+      endwhile.
+      node ?= iterator->get_next( ).
+    ENDWHILE.
+*//<--rrq: End of Added Logic for events
+
+*// ewH: start redesign method/inheritances-->
+* inheritance
+    inheritanceNode = rootNode->find_from_name( 'inheritance' ).
+    if inheritanceNode is bound.
+      CALL METHOD getstructurefromattributes
+        EXPORTING
+          node      = inheritanceNode
+        CHANGING
+          structure = ch_inheritance.
+*   redefs
+      filter = inheritanceNode->create_filter_name( 'redefinition' ).
+      iterator = inheritanceNode->create_iterator_filtered( filter ).
+      redefNode ?= iterator->get_next( ).
+      WHILE redefNode IS NOT INITIAL.
+        CALL METHOD getstructurefromattributes
+          EXPORTING
+            node      = redefNode
+          CHANGING
+            structure = wa_redefinitions.
+        append wa_redefinitions to ch_redefinitions.
+        redefNode ?= iterator->get_next( ).
+      ENDWHILE.
+    endif.
+
+*Add Methods to new class
+    filter = xmldoc->create_filter_name( 'method' ).
+    iterator = xmldoc->create_iterator_filtered( filter ).
+    node ?= iterator->get_next( ).
+    WHILE node IS NOT INITIAL.
+      CLEAR wa_methods.
+      CALL METHOD getstructurefromattributes
+        EXPORTING
+          node      = node
+        CHANGING
+          structure = wa_methods.
+
+*   only create metadata if method is not a redefinition
+      read table ch_redefinitions into wa_redefinitions
+      with key mtdname = wa_methods-cmpname.
+      IF sy-subrc = 0.
+        node ?= iterator->get_next( ).
+        continue.
+      endif.
+*// ewh: begin of backward compatibility hack, can be removed for next
+*//      major release-->
+      IF wa_methods-clsname <> ch_class-clsname.
+        MOVE-CORRESPONDING wa_methods TO wa_redefinitions.
+        wa_redefinitions-clsname = ch_class-clsname.
+        wa_redefinitions-refclsname = wa_methods-clsname.
+        wa_redefinitions-version = '0'.
+        wa_redefinitions-mtdabstrct = ''.
+        wa_redefinitions-mtdname = wa_methods-cmpname.
+        APPEND wa_redefinitions TO ch_redefinitions.
+
+        node ?= iterator->get_next( ).
+        continue.
+      endif.
+*// <--ewH: break in backward compatibility hack - 2Bcontinued below
+
+      filter2 = node->create_filter_name( 'parameter' ).
+      iterator2 = node->create_iterator_filtered( filter2 ).
+      node2 ?= iterator2->get_next( ).
+      WHILE node2 IS NOT INITIAL.
+        CLEAR wa_parameters.
+        CALL METHOD getstructurefromattributes
+          EXPORTING
+            node      = node2
+          CHANGING
+            structure = wa_parameters.
+        append wa_parameters to ch_parameters.
+        node2 ?= iterator2->get_next( ).
+      ENDWHILE.
+      filter2 = node->create_filter_name( 'exception' ).
+      iterator2 = node->create_iterator_filtered( filter2 ).
+      node2 ?= iterator2->get_next( ).
+      WHILE node2 IS NOT INITIAL.
+        CALL METHOD getstructurefromattributes
+          EXPORTING
+            node      = node2
+          CHANGING
+            structure = wa_exceps.
+        append wa_exceps to ch_exceps.
+        node2 ?= iterator2->get_next( ).
+      ENDWHILE.
+      append wa_methods to ch_methods.
+      node ?= iterator->get_next( ).
+    ENDWHILE.
+*// <--ewH: end redesign method/inheritances
+*// ewh: continuation of backward compatibility hack-->
+*  IF ( ch_redefinitions IS NOT INITIAL OR superclass-clsname
+*  IS NOT INITIAL ) and ch_inheritance is initial.
+*    CALL FUNCTION 'SEO_INHERITANC_CREATE_F_DATA'
+*      EXPORTING
+*        save          = ' '
+*      CHANGING
+*        inheritance   = superclasskey
+*        redefinitions = ch_redefinitions.
+*  ENDIF.
+*// <--ewH: end of backward compatibility hack
+
+
+    DATA classtype TYPE seoclstype.
+    DATA impkeys TYPE seor_implementing_keys.
+    DATA iserror TYPE boolean.
+
+*rrq comments Forward nodes are created in an old version of the
+*create XML from object.  In that node, the only attribute set
+*is the "TypeGroup".  All other attributes are hard coded on the
+*create Object from XML .  To fix this and make it transparent to
+*users, "forwaredDeclaration" nodes will be supported, and a new
+*node will be added.
+*if it is an old version XML document, forwardDeclarations nodes
+*if it is a new version XML document, typeUsages nodes
+
+*ewH: for version 0.1.3, we will continue to generate both nodes
+* in order for upgradeability of saplink itself.  For version
+* 2.0, forwardDeclaration node generations will be deprecated.
+    filter = xmldoc->create_filter_name( 'typeUsage' ).
+    iterator = xmldoc->create_iterator_filtered( filter ).
+    node ?= iterator->get_next( ).
+
+    WHILE node IS NOT INITIAL.
+        CALL METHOD getstructurefromattributes
+        EXPORTING
+          node      = node
+        CHANGING
+          structure = wa_typeUsages.
+      APPEND wa_typeusages TO ch_typeusages.
+      node ?= iterator->get_next( ).
+    ENDWHILE.
+
+* only check forwardDeclaration if typeUsages does not exist
+    if ch_typeusages is initial.
+      filter = xmldoc->create_filter_name( 'forwardDeclaration' ).
+      iterator = xmldoc->create_iterator_filtered( filter ).
+      node ?= iterator->get_next( ).
+
+      WHILE node IS NOT INITIAL.
+        source = node->get_value( ).
+        wa_typeusages-typegroup = source.
+        CLEAR wa_typeusages.
+        wa_typeusages-clsname = classkey-clsname.
+        wa_typeusages-version = '0'.
+        wa_typeusages-tputype = '0'.
+        wa_typeusages-explicit =  'X'.
+        wa_typeusages-implicit = ''.
+        wa_typeusages-typegroup = source.
+        APPEND wa_typeusages TO ch_typeusages.
+        node ?= iterator->get_next( ).
+      ENDWHILE.
+    endif.
+* new way....only one of these nodes should exist
+*  filter = xmldoc->create_filter_name( 'typeUsage' ).
+*  iterator = xmldoc->create_iterator_filtered( filter ).
+*  node ?= iterator->get_next( ).
+*
+*  WHILE node IS NOT INITIAL.
+*      CALL METHOD getstructurefromattributes
+*      EXPORTING
+*        node      = node
+*      CHANGING
+*        structure = wa_typeUsages.
+*    APPEND wa_typeusages TO ch_typeusages.
+*    node ?= iterator->get_next( ).
+*  ENDWHILE.
+*Insert source code into the methods
+    filter = xmldoc->create_filter_name( 'method' ).
+    iterator = xmldoc->create_iterator_filtered( filter ).
+    node ?= iterator->get_next( ).
+
+    WHILE node IS NOT INITIAL.
+      CALL METHOD getstructurefromattributes
+        EXPORTING
+          node      = node
+        CHANGING
+          structure = wa_methods.
+      methodkey-clsname = objname.
+      methodkey-cpdname = wa_methods-cmpname.
+      aobjname = methodkey.
+      methodsourcenode = node->find_from_name( 'source' ).
+      IF methodsourcenode IS NOT INITIAL.
+        clear wa_method_sources.
+        source = methodsourcenode->get_value( ).
+        sourcetable = buildtablefromstring( source ).
+        loop at sourceTable into source.
+          check source is not initial.
+          translate source to upper case.
+          shift source left deleting leading space.
+          if source+0(6) = 'METHOD'.
+            delete sourceTable index sy-tabix.
+            EXIT.
+          endif.
+        endloop.
+        describe table sourceTable lines lines.
+        while lines > 0.
+          read table sourceTable into source index lines.
+          if source cp 'endmethod*'.
+            if sy-subrc  = 0 and source+0(1) <> '*'.
+*          Got it and not a comment?
+              delete sourceTable index lines.
+              exit.
+            endif.
+          endif.
+          subtract 1 from lines.
+        endwhile.
+        read table ch_redefinitions into wa_redefinitions
+        with key mtdname = methodKey-cpdname.
+        IF sy-subrc = 0.
+          wa_method_sources-redefine = 'X'.
+        endif.
+        wa_method_sources-cpdname = methodkey-cpdname.
+        wa_method_sources-source = sourceTable.
+        append wa_method_sources to e_method_sources.
+      ENDIF.
+      node ?= iterator->get_next( ).
+    ENDWHILE.
+*
+**// ewH: create interface methods-->
+    filter = xmldoc->create_filter_name( 'interfaceMethod' ).
+    iterator = xmldoc->create_iterator_filtered( filter ).
+    node ?= iterator->get_next( ).
+
+    WHILE node IS NOT INITIAL.
+      CALL METHOD getstructurefromattributes
+        EXPORTING
+          node      = node
+        CHANGING
+          structure = methodKey.
+      aobjname = methodkey.
+      methodsourcenode = node->find_from_name( 'source' ).
+      IF methodsourcenode IS NOT INITIAL.
+        clear wa_method_sources.
+        source = methodsourcenode->get_value( ).
+        sourcetable = buildtablefromstring( source ).
+        loop at sourceTable into source.
+          check source is not initial.
+          translate source to upper case.
+          shift source left deleting leading space.
+          if source+0(6) = 'METHOD'.
+            delete sourceTable index sy-tabix.
+            EXIT.
+          endif.
+        endloop.
+        describe table sourceTable lines lines.
+        while lines > 0.
+          read table sourceTable into source index lines.
+          if source cp 'endmethod*'.
+            if sy-subrc  = 0 and source+0(1) <> '*'.
+*          Got it and not a comment?
+              delete sourceTable index lines.
+              exit.
+            endif.
+          endif.
+          subtract 1 from lines.
+        endwhile.
+        wa_method_sources-cpdname = methodkey-cpdname.
+        wa_method_sources-redefine = wa_methods-redefin.
+        wa_method_sources-source = sourceTable.
+
+        append wa_method_sources to e_method_sources.
+      ENDIF.
+
+      node ?= iterator->get_next( ).
+    ENDWHILE.
+*// <--ewH: end create interface methods
+
+* local implementation
+    DATA _classname TYPE seoclsname.
+    _classname = objname.
+    sourcenode = xmldoc->find_from_name( 'localImplementation' ).
+    IF sourcenode IS NOT INITIAL.
+      source = sourcenode->get_value( ).
+      E_LOCALS_IMP = buildtablefromstring( source ).
+    ENDIF.
+
+* local types
+    sourcenode = xmldoc->find_from_name( 'localTypes' ).
+    IF sourcenode IS NOT INITIAL.
+      source = sourcenode->get_value( ).
+      E_LOCALS_DEF = buildtablefromstring( source ).
+    ENDIF.
+
+* local macros
+    sourcenode = xmldoc->find_from_name( 'localMacros' ).
+    IF sourcenode IS NOT INITIAL.
+      source = sourcenode->get_value( ).
+      E_LOCALS_MAC = buildtablefromstring( source ).
+    ENDIF.
+
+*ewH-not sure how this type_source param works. type sources can come
+* from private or protected sections, but there is no way to pass
+* these separately into the class create FM. After debugging into
+* FM->clif_save_all->generate_classpool it treats the source table
+* as one, so I am not sure how to get it to differentiate between
+* private and protected sections. If only one section has types
+* defined, the FM call works, otherwise all hell breaks loose. To
+* solve the problem for now, we will just do an insert report for
+* the sections after the class creation, since that's all the FM
+* does in the end anyway. Wow, this is a really long comment, but
+* I dont want to have to try to remember what the hell was going
+* on here later...sorry.  :)
+*insert code for publicSection
+*  sourcenode = xmldoc->find_from_name( 'publicSection' )
+*  IF sourcenode IS NOT INITIAL.
+*    source = sourcenode->get_value( ).
+*    ch_type_source = buildtablefromstring( source ).
+*  ENDIF.
+**insert code for pivateSection
+*  sourcenode = xmldoc->find_from_name( 'privateSection' ).
+*  IF sourcenode IS NOT INITIAL.
+*    source = sourcenode->get_value( ).
+*    ch_type_source_temp = buildtablefromstring( source ).
+*    append lines of ch_type_source_temp to ch_type_source.
+*  ENDIF.
+**insert code for ProtectedSection
+*  sourcenode = xmldoc->find_from_name( 'protectedSection' ).
+*  IF sourcenode IS NOT INITIAL.
+*    source = sourcenode->get_value( ).
+*    ch_type_source_temp = buildtablefromstring( source ).
+*    append lines of ch_type_source_temp to ch_type_source.
+*  ENDIF.
+
+    name = objname.
+
+  CALL FUNCTION 'SEO_CLASS_CREATE_COMPLETE'
+   EXPORTING
+     CORRNR                             = e_corrnr
+     DEVCLASS                           = e_devclass
+     VERSION                            = e_version
+     GENFLAG                            = e_genflag
+     AUTHORITY_CHECK                    = e_authority_check
+     OVERWRITE                          = e_overwrite
+*   SUPPRESS_METHOD_GENERATION         = e_suppress_meth_gen
+*   SUPPRESS_REFACTORING_SUPPORT       = e_suppress_refac_gen
+     METHOD_SOURCES                     = e_method_sources
+     LOCALS_DEF                         = e_locals_def
+     LOCALS_IMP                         = e_locals_imp
+     LOCALS_MAC                         = e_locals_mac
+*   SUPPRESS_INDEX_UPDATE              = e_suppress_ind_update
+   IMPORTING
+     KORRNR                             = i_korrnr
+* TABLES
+*   CLASS_DESCRIPTIONS                 = tb_classDescription
+*   COMPONENT_DESCRIPTIONS             = tb_component_descr
+*   SUBCOMPONENT_DESCRIPTIONS          = tb_subcomponent_descr
+    CHANGING
+      CLASS                              = ch_class
+     INHERITANCE                        = ch_inheritance
+     REDEFINITIONS                      = ch_redefinitions
+     IMPLEMENTINGS                      = ch_implementings
+     IMPL_DETAILS                       = ch_impl_details
+     ATTRIBUTES                         = ch_attributes
+     METHODS                            = ch_methods
+     EVENTS                             = ch_events
+     TYPES                              = ch_types
+*   TYPE_SOURCE                        = ch_type_source "???
+     PARAMETERS                         = ch_parameters
+     EXCEPS                             = ch_exceps
+     ALIASES                            = ch_aliases
+     TYPEPUSAGES                        = ch_typeusages
+     CLSDEFERRDS                        = ch_clsdeferreds
+     INTDEFERRDS                        = ch_intdeferrds
+     FRIENDSHIPS                        = ch_friendships
+   EXCEPTIONS
+     EXISTING                           = 1
+     IS_INTERFACE                       = 2
+     DB_ERROR                           = 3
+     COMPONENT_ERROR                    = 4
+     NO_ACCESS                          = 5
+     OTHER                              = 6
+     OTHERS                             = 7.
+    case sy-subrc.
+      when '0'.
+** i guess if we made it this far, we will assume success
+** successful install
+      when '1'.
+        RAISE EXCEPTION TYPE zcx_saplink
+          EXPORTING textid = zcx_saplink=>existing.
+      when others.
+        raise exception type zcx_saplink
+          exporting textid = zcx_saplink=>system_error.
+    endcase.
+
+*ewH:insert pub, prot, and priv sections manually to keep any direct
+* attribute/type definitions
+    aobjname = classkey-clsname.
+**public
+    sourcenode = xmldoc->find_from_name( 'publicSection' ).
+    IF sourcenode IS NOT INITIAL.
+      includename = cl_oo_classname_service=>get_pubsec_name( _classname ).
+      source = sourcenode->get_value( ).
+      sourcetable = buildtablefromstring( source ).
+      INSERT REPORT includename FROM sourcetable EXTENSION TYPE
+      srext_ext_class_public STATE 'I'.
+    ENDIF.
+
+**protected
+    sourcenode = xmldoc->find_from_name( 'protectedSection' ).
+    IF sourcenode IS NOT INITIAL.
+      includename = cl_oo_classname_service=>get_prosec_name( _classname ).
+      source = sourcenode->get_value( ).
+      sourcetable = buildtablefromstring( source ).
+      INSERT REPORT includename FROM sourcetable EXTENSION TYPE
+      srext_ext_class_protected STATE 'I'.
+    ENDIF.
+
+**private
+    sourcenode = xmldoc->find_from_name( 'privateSection' ).
+    IF sourcenode IS NOT INITIAL.
+      includename = cl_oo_classname_service=>get_prisec_name( _classname ).
+      source = sourcenode->get_value( ).
+      sourcetable = buildtablefromstring( source ).
+      INSERT REPORT includename FROM sourcetable EXTENSION TYPE
+      srext_ext_class_private STATE 'I'.
+    ENDIF.
+
+* insert inactive sections into worklist
+    CALL FUNCTION 'RS_INSERT_INTO_WORKING_AREA'
+      EXPORTING
+        object            = 'CPUB'
+        obj_name          = aobjname
+      EXCEPTIONS
+        wrong_object_name = 1.
+    IF sy-subrc <> 0.
+    ENDIF.
+
+    CALL FUNCTION 'RS_INSERT_INTO_WORKING_AREA'
+      EXPORTING
+        object            = 'CPRO'
+        obj_name          = aobjname
+      EXCEPTIONS
+        wrong_object_name = 1.
+    IF sy-subrc <> 0.
+    ENDIF.
+
+    CALL FUNCTION 'RS_INSERT_INTO_WORKING_AREA'
+      EXPORTING
+        object            = 'CPRI'
+        obj_name          = aobjname
+      EXCEPTIONS
+        wrong_object_name = 1.
+    IF sy-subrc <> 0.
+    ENDIF.
+
+
+  endmethod.
+  method DELETEOBJECT .
+*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   SAPlink is free software; you can redistribute it and/or modify   |
+*|   it under the terms of the GNU General Public License as published |
+*|   by the Free Software Foundation; either version 2 of the License, |
+*|   or (at your option) any later version.                            |
+*|                                                                     |
+*|   SAPlink is distributed in the hope that it will be useful,        |
+*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
+*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
+*|   GNU General Public License for more details.                      |
+*|                                                                     |
+*|   You should have received a copy of the GNU General Public License |
+*|   along with SAPlink; if not, write to the                          |
+*|   Free Software Foundation, Inc.,                                   |
+*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*\---------------------------------------------------------------------/
+
+  data clsKey type SEOCLSKEY.
+
+    clsKey-clsname = objname.
+    CALL FUNCTION 'SEO_CLASS_DELETE_W_DEPS'
+      EXPORTING
+        clskey             = clsKey
+      EXCEPTIONS
+       NOT_EXISTING       = 1
+       IS_INTERFACE       = 2
+       NOT_DELETED        = 3
+       DB_ERROR           = 4
+       OTHERS             = 5
+              .
+    if sy-subrc <> 0.
+      case sy-subrc.
+        when 1.
+          raise exception type zcx_saplink
+            exporting textid = zcx_saplink=>not_found.
+        when 2.
+          raise exception type zcx_saplink
+            exporting
+              textid = zcx_saplink=>error_message
+              msg = 'interfaces not supported'.
+        when 3.
+          raise exception type zcx_saplink
+            exporting
+              textid = zcx_saplink=>error_message
+              msg = 'class not deleted'.
+        when others.
+          raise exception type zcx_saplink
+            exporting textid = zcx_saplink=>system_error.
+      endcase.
+    endif.
+  endmethod.
+  method FINDIMPLEMENTINGCLASS .
+*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   SAPlink is free software; you can redistribute it and/or modify   |
+*|   it under the terms of the GNU General Public License as published |
+*|   by the Free Software Foundation; either version 2 of the License, |
+*|   or (at your option) any later version.                            |
+*|                                                                     |
+*|   SAPlink is distributed in the hope that it will be useful,        |
+*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
+*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
+*|   GNU General Public License for more details.                      |
+*|                                                                     |
+*|   You should have received a copy of the GNU General Public License |
+*|   along with SAPlink; if not, write to the                          |
+*|   Free Software Foundation, Inc.,                                   |
+*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*\---------------------------------------------------------------------/
+
+  data methodKey type SEOCMPKEY.
+  data methodProperties type VSEOMETHOD.
+  data classDescr type ref to cl_abap_classdescr.
+  data superClass type ref to cl_abap_typeDescr.
+  data superClassName type string.
+
+    if startClass is initial.
+      methodKey-CLSNAME = objName.
+    else.
+      methodKey-clsName = startClass.
+    endif.
+    methodKey-CMPNAME = methodName.
+
+    call function 'SEO_METHOD_GET'
+          exporting
+            MTDKEY = methodKey
+          importing
+            method = methodProperties
+          exceptions
+            NOT_EXISTING = 1.
+    if sy-subrc = 0.
+      className = methodProperties-clsname.
+    else.
+      classDescr ?= cl_abap_classDescr=>describe_by_name(
+      methodKey-clsName ).
+      call method classDescr->GET_SUPER_CLASS_TYPE
+          receiving
+           P_DESCR_REF = superClass
+          exceptions
+            SUPER_CLASS_NOT_FOUND = 1.
+      superClassName = superClass->GET_RELATIVE_NAME( ).
+      className = FINDIMPLEMENTINGCLASS( methodName = methodName
+      startClass = superCLassName ).
+    endif.
+  endmethod.
+  method GETOBJECTTYPE .
+*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   SAPlink is free software; you can redistribute it and/or modify   |
+*|   it under the terms of the GNU General Public License as published |
+*|   by the Free Software Foundation; either version 2 of the License, |
+*|   or (at your option) any later version.                            |
+*|                                                                     |
+*|   SAPlink is distributed in the hope that it will be useful,        |
+*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
+*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
+*|   GNU General Public License for more details.                      |
+*|                                                                     |
+*|   You should have received a copy of the GNU General Public License |
+*|   along with SAPlink; if not, write to the                          |
+*|   Free Software Foundation, Inc.,                                   |
+*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*\---------------------------------------------------------------------/
+
+    objecttype = 'CLAS'.  "Class
+
+  endmethod.
+ENDCLASS.
+
+type-pools: seor, abap.
+data retFileTable type FILETABLE.
+data retRc type sysubrc.
+data retUserAction type i.
+
+data tempXMLString type string.
+data ixmlNugget type ref to if_ixml_document.
+
+data pluginExists type flag.
+data objectExists type flag.
+data flag type flag.
+data statusMsg type string.
+DATA  y2all type flag.
+selection-screen begin of Line.
+  SELECTION-SCREEN COMMENT 1(20) fileCom FOR FIELD NUGGFIL.
+  parameters NUGGFIL(300) type c modif id did obligatory.
+selection-screen end of Line.
+
+selection-screen begin of Line.
+  SELECTION-SCREEN COMMENT 1(20) checkCom FOR FIELD NUGGFIL.
+  parameters overwrt type c as checkbox default 'X'.
+selection-screen end of Line.
+
+
+
+start-of-selection.
+clear tempXMLString.
+perform uploadXMLFromLM using NUGGFIL tempXMLString.
+perform CONVERTSTRINGTOIXMLDOC using tempXMLString changing ixmlNugget.
+perform installNugget using ixmlNugget overwrt.
+
+
+*/--------------------------------------------------------------------\
+*| Selection screen events                                            |
+initialization.
+  fileCom = 'Installation Nugget'.
+  checkCom = 'Overwrite Originals'.
+
+
+at selection-screen on value-request for NUGGFIL.
+  call method CL_GUI_FRONTEND_SERVICES=>FILE_OPEN_DIALOG
+      exporting
+        MULTISELECTION = abap_false
+        FILE_FILTER = '*.nugg'
+        DEFAULT_EXTENSION = 'nugg'
+      changing
+        FILE_TABLE = retFileTable
+        rc = retRc
+        user_Action = retUserAction.
+  read table retFileTable into NUGGFIL index 1.
+  refresh retFileTable.
+
+*\--------------------------------------------------------------------/
+
+
+*/--------------------------------------------------------------------\
+*| Forms from the SAPLink Installer                                   |
+*|                                                                     |
+form uploadXMLFromLM using p_filename xmlString type string .
+  data tempTable type table_of_strings.
+  data l_fileName type string.
+
+    l_fileName = p_filename.
+    call method CL_GUI_FRONTEND_SERVICES=>GUI_UPLOAD
+          exporting
+            FILENAME = l_fileName
+          changing
+            data_tab = tempTable.
+  perform createString using tempTable changing xmlString.
+endform.
+*\--------------------------------------------------------------------/
+form createString
+      using
+        tempTable type table_of_strings
+      changing
+        bigString type string.
+
+data sTemp type string.
+  loop at tempTable into sTemp.
+    concatenate bigString sTemp CL_ABAP_CHAR_UTILITIES=>NEWLINE into
+    bigString.
+  endloop.
+
+endform.
+*/----------------------------------------------------------------------
+
+
+
+*/--------------------------------------------------------------------\
+*| Forms from the SAPLink Root Class                                  |
+form CONVERTSTRINGTOIXMLDOC
+      using
+        xmlString type string
+      changing
+        ixmlDocument type ref to if_ixml_document.
+
+data ixml type ref to if_ixml.
+data streamFactory type ref to IF_IXML_STREAM_FACTORY.
+data iStream type ref to if_ixml_istream.
+data ixmlParser type ref to if_ixml_parser.
+data xmlDoc type ref to if_ixml_document.
+
+  ixml = cl_ixml=>create( ).
+  xmlDoc = ixml->create_document( ).
+  streamFactory = ixml->CREATE_STREAM_FACTORY( ).
+  iStream = streamFactory->CREATE_ISTREAM_STRING( xmlString ).
+  iXMLParser = iXML->create_parser(  stream_factory = streamFactory
+                                     istream        = iStream
+                                     document       = xmlDoc ).
+  iXMLParser->parse( ).
+  ixmlDocument = xmlDoc.
+
+endform.
+
+*|                                                                     |
+*|                                                                     |
+
+FORM GETOBJECTInfoFROMIXMLDOC
+      using ixmlDocument type ref to if_ixml_document
+      changing objTypeName type string objName type string.
+data rootNode type ref to IF_IXML_NODE.
+data rootAttr type ref to IF_IXML_NAMED_NODE_MAP.
+data AttrNode type ref to IF_IXML_NODE.
+data nodeName type string.
+
+  rootNode ?= ixmlDocument->GET_ROOT_ELEMENT( ).
+
+* get object type
+  objTypeName = rootNode->GET_NAME( ).
+  translate objTypeName to upper case.
+
+* get object name
+  rootAttr = rootNode->GET_ATTRIBUTES( ).
+  AttrNode = rootAttr->GET_ITEM( 0 ).
+  objName = AttrNode->GET_VALUE( ).
+
+ENDFORM.
+
+*/--------------------------------------------------------------------\
+*|  Nugget Class                                                      |
+form     installNugget
+      using xmlDoc type ref to if_ixml_document overwrite type c.
+types: begin of t_objectTable,
+         classname type string,
+         object type ko100-object,
+         text type ko100-text,
+       end of t_objectTable.
+
+
+data iterator type ref to IF_IXML_NODE_ITERATOR.
+data ixml type ref to if_ixml.
+data Namefilter type ref to IF_IXML_NODE_FILTER.
+data parentFilter type ref to IF_IXML_NODE_FILTER.
+data currentNode type ref to if_ixml_node.
+data newNode type ref to if_ixml_node.
+data rval type i.
+data ixmlDocument type ref to if_ixml_document.
+data _objName type string.
+data objType type string.
+data objectTable type table of t_objectTable.
+data objectLine type t_objectTable.
+data exists type flag.
+data sTemp type string.
+data nameCollision type flag.
+data l_targetObject type ref to zsaplink.
+data l_installObject type string.
+data l_excClass type ref to ZCX_SAPLINK.
+data tempcname type string.
+
+  ixml = cl_ixml=>create( ).
+  nameFilter = xmlDoc->create_filter_name( name = 'nugget' ).
+  parentFilter = xmlDoc->create_filter_parent( nameFilter ).
+  iterator = xmlDoc->create_iterator_filtered( parentFilter ).
+
+  currentNode ?= iterator->get_next( ).
+  while currentNode is not initial.
+    clear exists.
+    ixmlDocument = ixml->create_document( ).
+    newNode = currentNode->clone( ).
+    rval = ixmlDocument->append_child( newNode ).
+
+    call method zsaplink=>GETOBJECTInfoFROMIXMLDOC
+      exporting
+        ixmlDocument = ixmlDocument
+      importing
+        objtypename = objType
+        objname     = _objName.
+
+*  call method zsaplink=>getplugins( changing objectTable = objectTable )
+*.
+*
+*  read table objectTable into objectLine with key object = objType.
+*
+*  if sy-subrc = 0.
+
+    translate objType to upper case.
+    case objtype.
+      when 'CLAS'.
+        tempcname = 'ZSAPLINK_CLASS'.
+      when 'PROG'.
+        tempcname = 'ZSAPLINK_PROGRAM'.
+      when others.
+    endcase.
+
+    create object l_targetObject type (tempcname)
+      exporting name = _objName.
+
+    objectExists = l_targetObject->checkexists( ).
+
+    if objectExists = 'X' and overWrt = ''.
+      write :/  objType, _objName,
+      ' exists on this system , if you wish to install this Nugget '
+      & 'please set the Overwrite Originals checkbox.'
+          .
+    elseif objectExists = 'X' and overWrt = 'X'.
+
+      if l_targetObject is not initial.
+
+      if y2all <> 'X'.
+        concatenate objType _objName into sTemp separated by space.
+        perform confirmOverwrite using sTemp
+                              changing flag.
+        if flag = '1'. "yes
+        elseif flag = '2'. "yes to all
+          y2all = 'X'.
+        elseif flag = 'A'. "cancel
+          write / 'Import cancelled by user'.
+*          Flag = 'X'.
+          exit.
+        endif.
+       endif.
+        try.
+          l_installObject = l_targetObject->createObjectfromiXMLDoc(
+                                          ixmlDocument = ixmlDocument
+                                          overwrite = overWrt ).
+
+          catch ZCX_SAPLINK into l_excClass.
+            statusMsg = l_excClass->get_text( ).
+            Flag = 'X'.
+        endtry.
+        if l_installObject is not initial.
+          concatenate 'Installed: ' objType l_installObject
+           into statusMsg separated by space.
+        endif.
+      else.
+        statusMsg = 'an undetermined error occured'.
+        Flag = 'X'.
+      endif.
+
+    else.
+        try.
+          l_installObject = l_targetObject->createObjectfromiXMLDoc(
+                                          ixmlDocument = ixmlDocument
+                                          overwrite = overWrt ).
+
+          catch ZCX_SAPLINK into l_excClass.
+            statusMsg = l_excClass->get_text( ).
+            Flag = 'X'.
+        endtry.
+        if l_installObject is not initial.
+          concatenate 'Installed: ' objType l_installObject
+           into statusMsg separated by space.
+        endif.
+    endif.
+  currentNode ?= iterator->get_next( ).
+  write: / Statusmsg.
+endwhile.
+endform.
+
+*/----------------------confirmOverwrite------------------------------\
+form confirmOverwrite using l_objInfo type string
+                   changing l_answer type flag.
+
+data l_message type string.
+data l_title type string.
+
+  clear l_answer.
+  l_title = 'Overwrite confirm. Proceed with CAUTION!'.
+
+  concatenate 'You have selected to overwrite originals.'
+    l_objinfo 'will be overwritten. Are you sure?'
+    into l_message separated by space.
+
+  CALL FUNCTION 'POPUP_TO_CONFIRM'
+    EXPORTING
+      TITLEBAR                    = l_title
+      text_question               = l_message
+      TEXT_BUTTON_1               = 'Yes'
+      TEXT_BUTTON_2               = 'Yes to all'
+      DEFAULT_BUTTON              = '1'
+      DISPLAY_CANCEL_BUTTON       = 'X'
+    IMPORTING
+      ANSWER                      = l_answer
+            .
+endform.
+*\--------------------------------------------------------------------/
