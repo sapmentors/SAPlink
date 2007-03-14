@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<CLAS CLSNAME="ZANYCLASS_EXAMPLE" VERSION="0" LANGU="E" DESCRIPT="SAPlink Nugget Example" UUID="44F97E84EF4308C702000000A7E42BB6" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" AUTHOR="USEWH90" CREATEDON="20060912" CHANGEDON="00000000" CHGDANYON="00000000" CLSFINAL="X" CLSCCINCL="X" FIXPT="X" UNICODE="X" R3RELEASE="620" CLSBCCAT="00">
+ <publicSection>class ZANYCLASS_EXAMPLE definition
+  public
+  final
+  create public .
+
+*&quot;* public components of class ZANYCLASS_EXAMPLE
+*&quot;* do not include other source files here!!!
+public section.
+
+  methods ADDOBJECTTONUGGET
+    importing
+      !OBJNAME type STRING
+      !OBJTYPE type STRING
+    raising
+      ZCX_SAPLINK .
+  methods CREATEIXMLDOCFROMNUGGET
+    returning
+      value(IXMLDOCUMENT) type ref to IF_IXML_DOCUMENT
+    raising
+      ZCX_SAPLINK .
+  methods GETNEXTOBJECT
+    returning
+      value(IXMLDOCUMENT) type ref to IF_IXML_DOCUMENT .
+  methods RESET .
+  class-methods CREATEEMPTYXML
+    importing
+      !NUGGETNAME type STRING
+    returning
+      value(IXMLDOCUMENT) type ref to IF_IXML_DOCUMENT .
+  class-methods GETNUGGETINFO
+    importing
+      !IXMLDOCUMENT type ref to IF_IXML_DOCUMENT
+    returning
+      value(NAME) type STRING .
+  methods CONSTRUCTOR
+    importing
+      !NAME type STRING optional
+      !IXMLDOCUMENT type ref to IF_IXML_DOCUMENT optional .</publicSection>
+ <protectedSection>*&quot;* protected components of class ZSAPLINK_EXAMPLE
+*&quot;* do not include other source files here!!!
+protected section.
+
+  data IXML type ref to IF_IXML .
+  data XMLDOC type ref to IF_IXML_DOCUMENT .</protectedSection>
+ <privateSection>*&quot;* private components of class ZSAPLINK_EXAMPLE
+*&quot;* do not include other source files here!!!
+private section.
+
+  data ITERATOR type ref to IF_IXML_NODE_ITERATOR .
+  data NUGGNAME type STRING .
+  data STREAMFACTORY type ref to IF_IXML_STREAM_FACTORY .
+  data XMLDATA type STRING .</privateSection>
+ <attribute CLSNAME="ZANYCLASS_EXAMPLE" CMPNAME="ITERATOR" VERSION="0" LANGU="E" DESCRIPT="IF_IXML_NODE_ITERATOR" EXPOSURE="0" STATE="1" EDITORDER="3 " AUTHOR="USEWH90" CREATEDON="20060912" CHANGEDON="00000000" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="3" TYPE="IF_IXML_NODE_ITERATOR" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " R3RELEASE="620"/>
+ <attribute CLSNAME="ZANYCLASS_EXAMPLE" CMPNAME="IXML" VERSION="0" LANGU="E" DESCRIPT="IF_IXML" EXPOSURE="1" STATE="1" EDITORDER="1 " AUTHOR="USEWH90" CREATEDON="20060912" CHANGEDON="00000000" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="3" TYPE="IF_IXML" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " R3RELEASE="620"/>
+ <attribute CLSNAME="ZANYCLASS_EXAMPLE" CMPNAME="NUGGNAME" VERSION="0" LANGU="E" DESCRIPT="Nugget Name" EXPOSURE="0" STATE="1" EDITORDER="4 " AUTHOR="USEWH90" CREATEDON="20060912" CHANGEDON="00000000" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " R3RELEASE="620"/>
+ <attribute CLSNAME="ZANYCLASS_EXAMPLE" CMPNAME="STREAMFACTORY" VERSION="0" LANGU="E" DESCRIPT="IF_IXML_STREAM_FACTORY" EXPOSURE="0" STATE="1" EDITORDER="5 " AUTHOR="USEWH90" CREATEDON="20060912" CHANGEDON="00000000" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="3" TYPE="IF_IXML_STREAM_FACTORY" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " R3RELEASE="620"/>
+ <attribute CLSNAME="ZANYCLASS_EXAMPLE" CMPNAME="XMLDATA" VERSION="0" LANGU="E" DESCRIPT="XML Data" EXPOSURE="0" STATE="1" EDITORDER="6 " AUTHOR="USEWH90" CREATEDON="20060912" CHANGEDON="00000000" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " R3RELEASE="620"/>
+ <attribute CLSNAME="ZANYCLASS_EXAMPLE" CMPNAME="XMLDOC" VERSION="0" LANGU="E" DESCRIPT="IF_IXML_DOCUMENT" EXPOSURE="1" STATE="1" EDITORDER="2 " AUTHOR="USEWH90" CREATEDON="20060912" CHANGEDON="00000000" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="3" TYPE="IF_IXML_DOCUMENT" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " R3RELEASE="620"/>
+ <method CLSNAME="ZANYCLASS_EXAMPLE" CMPNAME="ADDOBJECTTONUGGET" VERSION="0" LANGU="E" DESCRIPT="Add an object to a nugget" EXPOSURE="2" STATE="1" EDITORDER="1 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20060912" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" R3RELEASE="620" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZANYCLASS_EXAMPLE" CMPNAME="ADDOBJECTTONUGGET" SCONAME="OBJNAME" VERSION="0" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20060912" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
+  <parameter CLSNAME="ZANYCLASS_EXAMPLE" CMPNAME="ADDOBJECTTONUGGET" SCONAME="OBJTYPE" VERSION="0" LANGU="E" DESCRIPT="Object Type" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20060912" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
+  <exception CLSNAME="ZANYCLASS_EXAMPLE" CMPNAME="ADDOBJECTTONUGGET" SCONAME="ZCX_SAPLINK" VERSION="0" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 " AUTHOR="USEWH90" CREATEDON="20060912" CHANGEDON="00000000"/>
+  <source>*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   SAPlink is free software; you can redistribute it and/or modify   |
+*|   it under the terms of the GNU General Public License as published |
+*|   by the Free Software Foundation; either version 2 of the License, |
+*|   or (at your option) any later version.                            |
+*|                                                                     |
+*|   SAPlink is distributed in the hope that it will be useful,        |
+*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
+*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
+*|   GNU General Public License for more details.                      |
+*|                                                                     |
+*|   You should have received a copy of the GNU General Public License |
+*|   along with SAPlink; if not, write to the                          |
+*|   Free Software Foundation, Inc.,                                   |
+*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*\---------------------------------------------------------------------/
+method ADDOBJECTTONUGGET .
+types: begin of t_objectTable,
+         classname type string,
+         object type ko100-object,
+         text type ko100-text,
+       end of t_objectTable.
+
+data rootNode type ref to if_ixml_element.
+data saplink type ref to zsaplink.
+data objectTable type table of t_objectTable.
+data objectLine type t_objectTable.
+data ixmlDocument type ref to if_ixml_document.
+data rval type i.
+data objElement type ref to if_ixml_element.
+
+  call method zsaplink=&gt;getplugins( changing objectTable = objectTable ).
+
+  rootNode = xmlDoc-&gt;GET_ROOT_ELEMENT( ).
+*  if rootNode is initial.
+*    rootNode = xmlDoc-&gt;create_element( &apos;nugget&apos; ).
+*    rval = rootNode-&gt;SET_ATTRIBUTE( name = &apos;name&apos; value = nuggName ).
+*    rval = xmlDoc-&gt;append_child( rootNode ).
+*  endif.
+
+  read table objectTable into objectLine with key object = ObjType.
+  if sy-subrc &lt;&gt; 0.
+    raise exception type zcx_saplink
+          exporting textid = zcx_saplink=&gt;no_plugin.
+  endif.
+  create object saplink type (objectLine-classname) exporting name = objName.
+  ixmlDocument = saplink-&gt;CREATEIXMLDOCFROMOBJECT( ).
+  objElement = ixmlDocument-&gt;get_root_element( ).
+  rval = rootNode-&gt;append_Child( objElement ).
+endmethod.</source>
+ </method>
+ <method CLSNAME="ZANYCLASS_EXAMPLE" CMPNAME="CONSTRUCTOR" VERSION="0" LANGU="E" DESCRIPT="CONSTRUCTOR" EXPOSURE="2" STATE="1" EDITORDER="7 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20060912" CHANGEDON="00000000" MTDTYPE="2" MTDDECLTYP="0" R3RELEASE="620" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZANYCLASS_EXAMPLE" CMPNAME="CONSTRUCTOR" SCONAME="NAME" VERSION="0" LANGU="E" CMPTYPE="1" MTDTYPE="2" EDITORDER="1 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20060912" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING" PAROPTIONL="X"/>
+  <parameter CLSNAME="ZANYCLASS_EXAMPLE" CMPNAME="CONSTRUCTOR" SCONAME="IXMLDOCUMENT" VERSION="0" LANGU="E" DESCRIPT="IF_IXML_DOCUMENT" CMPTYPE="1" MTDTYPE="2" EDITORDER="2 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20060912" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_DOCUMENT" PAROPTIONL="X"/>
+  <source>*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   SAPlink is free software; you can redistribute it and/or modify   |
+*|   it under the terms of the GNU General Public License as published |
+*|   by the Free Software Foundation; either version 2 of the License, |
+*|   or (at your option) any later version.                            |
+*|                                                                     |
+*|   SAPlink is distributed in the hope that it will be useful,        |
+*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
+*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
+*|   GNU General Public License for more details.                      |
+*|                                                                     |
+*|   You should have received a copy of the GNU General Public License |
+*|   along with SAPlink; if not, write to the                          |
+*|   Free Software Foundation, Inc.,                                   |
+*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*\---------------------------------------------------------------------/
+method CONSTRUCTOR .
+data rootNode type ref to if_ixml_element.
+  if name is not initial.
+    NuggName = name.
+    ixml = cl_ixml=&gt;create( ).
+    xmlDoc = ixml-&gt;create_document( ).
+    streamFactory = ixml-&gt;CREATE_STREAM_FACTORY( ).
+  elseif ixmlDocument is not initial.
+    ixml = cl_ixml=&gt;create( ).
+    xmlDoc = ixmlDocument.
+    rootNode = xmlDoc-&gt;get_root_element( ).
+    nuggName = rootNode-&gt;get_attribute( &apos;name&apos; ).
+    streamFactory = ixml-&gt;CREATE_STREAM_FACTORY( ).
+  else.
+    raise exception type zcx_saplink
+      exporting textid = zcx_saplink=&gt;system_error.
+  endif.
+endmethod.</source>
+ </method>
+ <method CLSNAME="ZANYCLASS_EXAMPLE" CMPNAME="CREATEEMPTYXML" VERSION="0" LANGU="E" DESCRIPT="Create empty" EXPOSURE="2" STATE="1" EDITORDER="5 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20060912" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="1" R3RELEASE="620" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZANYCLASS_EXAMPLE" CMPNAME="CREATEEMPTYXML" SCONAME="NUGGETNAME" VERSION="0" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20060912" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
+  <parameter CLSNAME="ZANYCLASS_EXAMPLE" CMPNAME="CREATEEMPTYXML" SCONAME="IXMLDOCUMENT" VERSION="0" LANGU="E" DESCRIPT="IF_IXML_DOCUMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20060912" CHANGEDON="00000000" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_DOCUMENT"/>
+  <source>*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   SAPlink is free software; you can redistribute it and/or modify   |
+*|   it under the terms of the GNU General Public License as published |
+*|   by the Free Software Foundation; either version 2 of the License, |
+*|   or (at your option) any later version.                            |
+*|                                                                     |
+*|   SAPlink is distributed in the hope that it will be useful,        |
+*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
+*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
+*|   GNU General Public License for more details.                      |
+*|                                                                     |
+*|   You should have received a copy of the GNU General Public License |
+*|   along with SAPlink; if not, write to the                          |
+*|   Free Software Foundation, Inc.,                                   |
+*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*\---------------------------------------------------------------------/
+method CREATEEMPTYXML .
+data ixml type ref to if_IXML.
+data rootNode type ref to if_ixml_element.
+data rval type i.
+data xmlDoc type ref to if_ixml_document.
+
+  ixml = cl_ixml=&gt;create( ).
+  xmlDoc = ixml-&gt;create_document( ).
+  rootNode = xmlDoc-&gt;create_element( &apos;nugget&apos; ).
+  rval = rootNode-&gt;SET_ATTRIBUTE( name = &apos;name&apos; value = nuggetName ).
+  rval = xmlDoc-&gt;append_child( rootNode ).
+  ixmlDocument = xmlDoc.
+
+endmethod.</source>
+ </method>
+ <method CLSNAME="ZANYCLASS_EXAMPLE" CMPNAME="CREATEIXMLDOCFROMNUGGET" VERSION="0" LANGU="E" DESCRIPT="Create an IXML Document from a nugget" EXPOSURE="2" STATE="1" EDITORDER="2 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20060912" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" R3RELEASE="620" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZANYCLASS_EXAMPLE" CMPNAME="CREATEIXMLDOCFROMNUGGET" SCONAME="IXMLDOCUMENT" VERSION="0" LANGU="E" DESCRIPT="IF_IXML_DOCUMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20060912" CHANGEDON="00000000" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_DOCUMENT"/>
+  <exception CLSNAME="ZANYCLASS_EXAMPLE" CMPNAME="CREATEIXMLDOCFROMNUGGET" SCONAME="ZCX_SAPLINK" VERSION="0" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 " AUTHOR="USEWH90" CREATEDON="20060912" CHANGEDON="00000000"/>
+  <source>*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   SAPlink is free software; you can redistribute it and/or modify   |
+*|   it under the terms of the GNU General Public License as published |
+*|   by the Free Software Foundation; either version 2 of the License, |
+*|   or (at your option) any later version.                            |
+*|                                                                     |
+*|   SAPlink is distributed in the hope that it will be useful,        |
+*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
+*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
+*|   GNU General Public License for more details.                      |
+*|                                                                     |
+*|   You should have received a copy of the GNU General Public License |
+*|   along with SAPlink; if not, write to the                          |
+*|   Free Software Foundation, Inc.,                                   |
+*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*\---------------------------------------------------------------------/
+method CREATEIXMLDOCFROMNUGGET .
+  ixmlDocument = xmlDoc.
+endmethod.</source>
+ </method>
+ <method CLSNAME="ZANYCLASS_EXAMPLE" CMPNAME="GETNEXTOBJECT" VERSION="0" LANGU="E" DESCRIPT="Get the next object of the nugget iterator" EXPOSURE="2" STATE="1" EDITORDER="3 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20060912" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="620" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZANYCLASS_EXAMPLE" CMPNAME="GETNEXTOBJECT" SCONAME="IXMLDOCUMENT" VERSION="0" LANGU="E" DESCRIPT="IF_IXML_DOCUMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20060912" CHANGEDON="00000000" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_DOCUMENT"/>
+  <source>*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   SAPlink is free software; you can redistribute it and/or modify   |
+*|   it under the terms of the GNU General Public License as published |
+*|   by the Free Software Foundation; either version 2 of the License, |
+*|   or (at your option) any later version.                            |
+*|                                                                     |
+*|   SAPlink is distributed in the hope that it will be useful,        |
+*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
+*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
+*|   GNU General Public License for more details.                      |
+*|                                                                     |
+*|   You should have received a copy of the GNU General Public License |
+*|   along with SAPlink; if not, write to the                          |
+*|   Free Software Foundation, Inc.,                                   |
+*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*\---------------------------------------------------------------------/
+method GETNEXTOBJECT .
+data aNode type ref to if_ixml_node.
+data sTemp type string.
+data rootNode type ref to if_ixml_node.
+data Namefilter type ref to IF_IXML_NODE_FILTER.
+data parentFilter type ref to IF_IXML_NODE_FILTER.
+data currentNode type ref to if_ixml_node.
+data newNode type ref to if_ixml_node.
+data rval type i.
+
+  if iterator is initial.
+    nameFilter = xmlDoc-&gt;create_filter_name( name = &apos;nugget&apos; ).
+    parentFilter = xmlDoc-&gt;create_filter_parent( nameFilter ).
+    iterator = xmlDoc-&gt;create_iterator_filtered( parentFilter ).
+  endif.
+
+  currentNode ?= iterator-&gt;get_next( ).
+  if currentNode is initial.
+    clear IXMLDOCUMENT.
+  else.
+    ixmlDocument = ixml-&gt;create_document( ).
+    newNode = currentNode-&gt;clone( ).
+    rval = ixmlDocument-&gt;append_child( newNode ).
+
+  endif.
+*  while aNode is not initial.
+*    sTemp = aNode-&gt;get_name( ).
+*    aNode ?= iterator-&gt;get_next( ).
+*  endwhile.
+*
+
+endmethod.</source>
+ </method>
+ <method CLSNAME="ZANYCLASS_EXAMPLE" CMPNAME="GETNUGGETINFO" VERSION="0" LANGU="E" DESCRIPT="Get nugget info" EXPOSURE="2" STATE="1" EDITORDER="6 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20060912" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="1" R3RELEASE="620" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZANYCLASS_EXAMPLE" CMPNAME="GETNUGGETINFO" SCONAME="IXMLDOCUMENT" VERSION="0" LANGU="E" DESCRIPT="IF_IXML_DOCUMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20060912" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_DOCUMENT"/>
+  <parameter CLSNAME="ZANYCLASS_EXAMPLE" CMPNAME="GETNUGGETINFO" SCONAME="NAME" VERSION="0" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20060912" CHANGEDON="00000000" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="1" TYPE="STRING"/>
+  <source>method GETNUGGETINFO .
+data rootNode type ref to if_ixml_element.
+    rootNode = ixmlDocument-&gt;get_root_element( ).
+    name = rootNode-&gt;get_attribute( &apos;name&apos; ).
+endmethod.</source>
+ </method>
+ <method CLSNAME="ZANYCLASS_EXAMPLE" CMPNAME="RESET" VERSION="0" LANGU="E" DESCRIPT="Reset nugget iterator" EXPOSURE="2" STATE="1" EDITORDER="4 " DISPID="0 " AUTHOR="USEWH90" CREATEDON="20060912" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="620" BCMTDCAT="00" BCMTDSYN="0">
+  <source>method RESET .
+  if iterator is not initial.
+    iterator-&gt;reset( ).
+  endif.
+endmethod.</source>
+ </method>
+</CLAS>
