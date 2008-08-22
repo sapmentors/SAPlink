@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<CLAS CLSNAME="ZSAPLINK_CLASS" VERSION="1" LANGU="E" DESCRIPT="SapLink Class Installer" UUID="4558408635A702C600000000A7E42BB6" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDBY="USRRQ00" CHANGEDON="20061204" CHGDANYON="00000000" CLSCCINCL="X" FIXPT="X" UNICODE="X" R3RELEASE="620" CLSBCCAT="00" REFCLSNAME="ZSAPLINK">
+<CLAS CLSNAME="ZSAPLINK_CLASS" VERSION="1" LANGU="E" DESCRIPT="SapLink Class Installer" UUID="4558408635A702C600000000A7E42BB6" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" AUTHOR="BCUSER" CREATEDON="20080615" CHANGEDBY="BCUSER" CHANGEDON="20080820" CHGDANYON="00000000" CLSCCINCL="X" FIXPT="X" UNICODE="X" R3RELEASE="700" CLSBCCAT="00" DURATION_TYPE="0 " RISK_LEVEL="0 " REFCLSNAME="ZSAPLINK">
  <publicSection>class ZSAPLINK_CLASS definition
   public
   inheriting from ZSAPLINK
@@ -59,7 +59,7 @@ private section.
  <forwardDeclaration>SEOS</forwardDeclaration>
  <forwardDeclaration>SEOT</forwardDeclaration>
  <forwardDeclaration>SEOX</forwardDeclaration>
- <inheritance CLSNAME="ZSAPLINK_CLASS" REFCLSNAME="ZSAPLINK" VERSION="1" STATE="1" AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDBY="USRRQ00" CHANGEDON="20061204">
+ <inheritance CLSNAME="ZSAPLINK_CLASS" REFCLSNAME="ZSAPLINK" VERSION="1" STATE="1" AUTHOR="BCUSER" CREATEDON="20080615" CHANGEDBY="BCUSER" CHANGEDON="20080820">
   <redefinition CLSNAME="ZSAPLINK_CLASS" REFCLSNAME="ZSAPLINK" VERSION="1" MTDNAME="CHECKEXISTS"/>
   <redefinition CLSNAME="ZSAPLINK_CLASS" REFCLSNAME="ZSAPLINK" VERSION="1" MTDNAME="CREATEIXMLDOCFROMOBJECT"/>
   <redefinition CLSNAME="ZSAPLINK_CLASS" REFCLSNAME="ZSAPLINK" VERSION="1" MTDNAME="CREATEOBJECTFROMIXMLDOC"/>
@@ -67,7 +67,7 @@ private section.
   <redefinition CLSNAME="ZSAPLINK_CLASS" REFCLSNAME="ZSAPLINK" VERSION="1" MTDNAME="GETOBJECTTYPE"/>
  </inheritance>
  <method CLSNAME="ZSAPLINK" CMPNAME="CHECKEXISTS" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
-  <source>method CHECKEXISTS .
+  <source>method CHECKEXISTS.
 */---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
@@ -111,7 +111,7 @@ data not_active TYPE  SEOX_BOOLEAN.
 endmethod.</source>
  </method>
  <method CLSNAME="ZSAPLINK" CMPNAME="CREATEIXMLDOCFROMOBJECT" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
-  <source>method CREATEIXMLDOCFROMOBJECT .
+  <source>method CREATEIXMLDOCFROMOBJECT.
 */---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
@@ -632,7 +632,7 @@ endmethod.</source>
 endmethod.</source>
  </method>
  <method CLSNAME="ZSAPLINK" CMPNAME="CREATEOBJECTFROMIXMLDOC" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
-  <source>method CREATEOBJECTFROMIXMLDOC .
+  <source>method CREATEOBJECTFROMIXMLDOC.
 */---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
@@ -870,7 +870,13 @@ data: lines type i.
           node      = node2
         CHANGING
           structure = wa_parameters.
-      append wa_parameters to ch_parameters.
+
+      &quot;//-&gt; Mar: Added logic for parameter/interface implementation - 08/20/2008
+      IF wa_parameters-clsname IS NOT INITIAL.
+        append wa_parameters to ch_parameters.
+      endif.
+      &quot;//&lt;- Mar: Added logic for parameter/interface implementation - 08/20/2008
+
       node2 ?= iterator2-&gt;get_next( ).
     endwhile.
     node ?= iterator-&gt;get_next( ).
@@ -946,7 +952,13 @@ data: lines type i.
           node      = node2
         CHANGING
           structure = wa_parameters.
-      append wa_parameters to ch_parameters.
+
+      &quot;//-&gt; Mar: Added logic for parameter/interface implementation - 08/20/2008
+      IF wa_parameters-clsname IS NOT INITIAL.
+        append wa_parameters to ch_parameters.
+      endif.
+     &quot;//&lt;- Mar: Added logic for parameter/interface implementation - 08/20/2008
+
       node2 ?= iterator2-&gt;get_next( ).
     ENDWHILE.
     filter2 = node-&gt;create_filter_name( &apos;exception&apos; ).
@@ -1062,7 +1074,10 @@ data: lines type i.
       source = methodsourcenode-&gt;get_value( ).
       sourcetable = buildtablefromstring( source ).
       loop at sourceTable into source.
-        check source is not initial.
+        check source is not initial
+              &quot;// Mar: -&gt; Added of logic for comments of methods 08/20/2008
+              and strlen( source ) gt 5.
+              &quot;// Mar: &lt;- Added of logic for comments of methods 08/20/2008
         translate source to upper case.
         shift source left deleting leading space.
         if source+0(6) = &apos;METHOD&apos;.
@@ -1112,7 +1127,10 @@ data: lines type i.
       source = methodsourcenode-&gt;get_value( ).
       sourcetable = buildtablefromstring( source ).
       loop at sourceTable into source.
-        check source is not initial.
+        check source is not initial
+              &quot;// Mar: -&gt; Added of logic for comments of methods- 08/20/2008
+              and strlen( source ) gt 5.
+              &quot;// Mar: &lt;- Added of logic for comments of methods - 08/20/2008
         translate source to upper case.
         shift source left deleting leading space.
         if source+0(6) = &apos;METHOD&apos;.
@@ -1325,7 +1343,7 @@ CALL FUNCTION &apos;SEO_CLASS_CREATE_COMPLETE&apos;
 endmethod.</source>
  </method>
  <method CLSNAME="ZSAPLINK" CMPNAME="DELETEOBJECT" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
-  <source>method DELETEOBJECT .
+  <source>method DELETEOBJECT.
 */---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
@@ -1380,11 +1398,11 @@ data clsKey type SEOCLSKEY.
   endif.
 endmethod.</source>
  </method>
- <method CLSNAME="ZSAPLINK_CLASS" CMPNAME="FINDIMPLEMENTINGCLASS" VERSION="1" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="1 " DISPID="0 " AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDBY="USRRQ00" CHANGEDON="20061204" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="620" BCMTDCAT="00" BCMTDSYN="0">
-  <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="FINDIMPLEMENTINGCLASS" SCONAME="METHODNAME" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDBY="USRRQ00" CHANGEDON="20061204" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
-  <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="FINDIMPLEMENTINGCLASS" SCONAME="STARTCLASS" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDBY="USRRQ00" CHANGEDON="20061204" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING" PAROPTIONL="X"/>
-  <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="FINDIMPLEMENTINGCLASS" SCONAME="CLASSNAME" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDBY="USRRQ00" CHANGEDON="20061204" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="1" TYPE="STRING"/>
-  <source>method FINDIMPLEMENTINGCLASS .
+ <method CLSNAME="ZSAPLINK_CLASS" CMPNAME="FINDIMPLEMENTINGCLASS" VERSION="1" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20080615" CHANGEDBY="BCUSER" CHANGEDON="20080820" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="700" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="FINDIMPLEMENTINGCLASS" SCONAME="METHODNAME" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20080615" CHANGEDBY="BCUSER" CHANGEDON="20080820" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
+  <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="FINDIMPLEMENTINGCLASS" SCONAME="STARTCLASS" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20080615" CHANGEDBY="BCUSER" CHANGEDON="20080820" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING" PAROPTIONL="X"/>
+  <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="FINDIMPLEMENTINGCLASS" SCONAME="CLASSNAME" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20080615" CHANGEDBY="BCUSER" CHANGEDON="20080820" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="1" TYPE="STRING"/>
+  <source>method FINDIMPLEMENTINGCLASS.
 */---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
@@ -1441,7 +1459,7 @@ data superClassName type string.
 endmethod.</source>
  </method>
  <method CLSNAME="ZSAPLINK" CMPNAME="GETOBJECTTYPE" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
-  <source>method GETOBJECTTYPE .
+  <source>method GETOBJECTTYPE.
 */---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |

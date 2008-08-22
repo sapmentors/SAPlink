@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<PROG NAME="ZSAPLINK" VARCL="X" DBAPL="S" DBNA="D$" SUBC="1" APPL="S" CNAM="EWH" CDAT="20060903" UNAM="USEWH90" UDAT="20070205" VERN="000167" RMAND="321" RLOAD="E" FIXPT="X" SDATE="20070205" STIME="140744" IDATE="20070205" ITIME="140744" LDBNAME="D$S" UCCHECK="X">
+<PROG NAME="ZSAPLINK" VARCL="X" DBAPL="S" DBNA="D$" SUBC="1" APPL="S" CNAM="EWH" CDAT="20060903" UNAM="BCUSER" UDAT="20080820" VERN="000169" RMAND="321" RLOAD="E" FIXPT="X" SDATE="20080820" STIME="152003" IDATE="20080820" ITIME="145050" LDBNAME="D$S" UCCHECK="X">
  <textPool>
   <language SPRAS="D">
    <textElement ID="I" KEY="NGA" ENTRY="Objekt zum Nugget hinzufügen" LENGTH="28 "/>
@@ -1075,7 +1075,10 @@ start-of-selection.
           from tadir
           into corresponding fields of table objects_package
           where devclass  eq package
-          and  pgmid      eq &apos;R3TR&apos;.
+          and  pgmid      eq &apos;R3TR&apos;
+          &quot;//-&gt; Mar: Added logic discard deleted objects from Package - 08/20/2008
+          and  delflag    ne &apos;X&apos;.
+          &quot;//&lt;- Mar: Added logic discard deleted objects from Package - 08/20/2008
       if sy-subrc &lt;&gt; 0.
         message s208(00) with &apos;Package does not exist or empty&apos;.
         return.
