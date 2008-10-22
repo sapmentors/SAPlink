@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<PROG NAME="ZSAPLINK" VARCL="X" DBAPL="S" DBNA="D$" SUBC="1" APPL="S" CNAM="EWH" CDAT="20060903" UNAM="BCUSER" UDAT="20080820" VERN="000169" RMAND="321" RLOAD="E" FIXPT="X" SDATE="20080820" STIME="152003" IDATE="20080820" ITIME="145050" LDBNAME="D$S" UCCHECK="X">
+<PROG NAME="ZSAPLINK" VARCL="X" DBAPL="S" DBNA="D$" SUBC="1" APPL="S" CNAM="EWH" CDAT="20060903" UNAM="QUACKENR" UDAT="20081022" VERN="000183" RMAND="321" RLOAD="E" FIXPT="X" SDATE="20081022" STIME="105904" IDATE="20081022" ITIME="105904" LDBNAME="D$S" UCCHECK="X">
  <textPool>
   <language SPRAS="D">
    <textElement ID="I" KEY="NGA" ENTRY="Objekt zum Nugget hinzufügen" LENGTH="28 "/>
@@ -678,7 +678,6 @@ at selection-screen on value-request for Nplugin.
      NO_VALUES_FOUND        = 2
      OTHERS                 = 3.
 
-
 at selection-screen on value-request for filename.
   call method CL_GUI_FRONTEND_SERVICES=&gt;FILE_OPEN_DIALOG
       exporting
@@ -714,17 +713,39 @@ AT SELECTION-SCREEN ON VALUE-REQUEST FOR objname.
                                changing l_object_type.
 
  IF  l_object_type IS NOT INITIAL.
-   CALL FUNCTION &apos;REPOSITORY_INFO_SYSTEM_F4&apos;
-     EXPORTING
-       object_type           = l_object_type
-       object_name           = objname
-       suppress_selection    = &apos;X&apos;
-       use_alv_grid          = &apos;&apos;
-       without_personal_list = &apos;&apos;
-     IMPORTING
-       object_name_selected  = objname
-     EXCEPTIONS
-       cancel                = 1.
+*  rrq --&gt; START of implementation for object specific value help
+
+   data: temp_object type ko100-object.
+*   move the object type to a field like the ObjectTable expects
+   temp_object = l_object_type.
+   read table objectTable into objectLine with key object = temp_object.
+    IF sy-subrc = 0.
+*    if it is found...intanciate it so you can call the right value help
+     create object targetObject type (objectLine-classname)
+        exporting name = _objName.
+      _objType = l_object_type.
+      CALL METHOD TARGETOBJECT-&gt;VALUEHELP
+        EXPORTING
+          I_OBJTYPE = _objType
+        RECEIVING
+          E_OBJNAME = _objName.
+        objName = _objName.
+     ENDIF.
+
+*commented out...moved logic to instance method of ZSAPLINK.  to be overwritten by
+*objects that don&apos;t use the repository Info_system f4 Function
+*   CALL FUNCTION &apos;REPOSITORY_INFO_SYSTEM_F4&apos;
+*     EXPORTING
+*       object_type           = l_object_type
+*       object_name           = objname
+*       suppress_selection    = &apos;X&apos;
+*       use_alv_grid          = &apos;&apos;
+*       without_personal_list = &apos;&apos;
+*     IMPORTING
+*       object_name_selected  = objname
+*     EXCEPTIONS
+*       cancel                = 1.
+*&lt;-- rrq end of implentation for object specific value help
  ENDIF.
 
 
@@ -737,22 +758,43 @@ AT SELECTION-SCREEN ON VALUE-REQUEST FOR nobjnam.
                                changing l_object_type.
 
  IF  l_object_type IS NOT INITIAL.
+*  rrq --&gt; START of implementation for object specific value help
 
-   CALL FUNCTION &apos;REPOSITORY_INFO_SYSTEM_F4&apos;
-     EXPORTING
-       object_type           = l_object_type
-       object_name           = nobjnam
-       suppress_selection    = &apos;X&apos;
-       use_alv_grid          = &apos;&apos;
-       without_personal_list = &apos;&apos;
-     IMPORTING
-       object_name_selected  = nobjnam
-     EXCEPTIONS
-       cancel                = 1.
+   data: temp_object type ko100-object.
+*   move the object type to a field like the ObjectTable expects
+   temp_object = l_object_type.
+   read table objectTable into objectLine with key object = temp_object.
+    IF sy-subrc = 0.
+*    if it is found...intanciate it so you can call the right value help
+     create object targetObject type (objectLine-classname)
+        exporting name = _objName.
+      _objType = l_object_type.
+      CALL METHOD TARGETOBJECT-&gt;VALUEHELP
+        EXPORTING
+          I_OBJTYPE = _objType
+        RECEIVING
+          E_OBJNAME = _objName.
+        nobjnam = _objName.
+
+
+     ENDIF.
+*commented out...moved logic to instance method of ZSAPLINK.  to be overwritten by
+*objects that don&apos;t use the repository Info_system f4 Function
+*   CALL FUNCTION &apos;REPOSITORY_INFO_SYSTEM_F4&apos;
+*     EXPORTING
+*       object_type           = l_object_type
+*       object_name           = objname
+*       suppress_selection    = &apos;X&apos;
+*       use_alv_grid          = &apos;&apos;
+*       without_personal_list = &apos;&apos;
+*     IMPORTING
+*       object_name_selected  = objname
+*     EXCEPTIONS
+*       cancel                = 1.
+*&lt;-- rrq end of implentation for object specific value help
  ENDIF.
 * &lt;--end of search help on objname according to selected plugin
 * provided by Michael Diehl
-
 
 at selection-screen on value-request for ReqNugg-low.
   iv_organizer_type = &apos;W&apos;.
@@ -1212,11 +1254,13 @@ form putOnMachine using fullpath type string xmlString type string.
 
 *rrq: issue 43--&gt; replace binary with char table
 *old code removed, use subversion for recovery
-types: begin of t_char,
-        maxChar(65535) type C,
-       end of t_char.
+*types: begin of t_char,
+*        maxChar(65535) type C,
+*       end of t_char.
 
-data: tempTable_char type table of t_char.
+*data: tempTable_char type table of t_char,
+data: tempTable_char type table_of_strings,
+      tempString type string.
 
   if retUserAct = 0.
 
