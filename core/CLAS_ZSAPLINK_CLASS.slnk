@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<CLAS CLSNAME="ZSAPLINK_CLASS" VERSION="1" LANGU="E" DESCRIPT="SapLink Class Installer" UUID="4558408635A702C600000000A7E42BB6" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" AUTHOR="BCUSER" CREATEDON="20080615" CHANGEDBY="BCUSER" CHANGEDON="20080820" CHGDANYON="00000000" CLSCCINCL="X" FIXPT="X" UNICODE="X" R3RELEASE="700" CLSBCCAT="00" DURATION_TYPE="0 " RISK_LEVEL="0 " REFCLSNAME="ZSAPLINK">
+<CLAS CLSNAME="ZSAPLINK_CLASS" VERSION="1" LANGU="E" DESCRIPT="SapLink Class Installer" UUID="4558408635A702C600000000A7E42BB6" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" AUTHOR="BCUSER" CREATEDON="20080615" CHANGEDBY="BCUSER" CHANGEDON="20081026" CHGDANYON="00000000" CLSCCINCL="X" FIXPT="X" UNICODE="X" R3RELEASE="700" CLSBCCAT="00" DURATION_TYPE="0 " RISK_LEVEL="0 " REFCLSNAME="ZSAPLINK">
  <publicSection>class ZSAPLINK_CLASS definition
   public
   inheriting from ZSAPLINK
@@ -59,7 +59,7 @@ private section.
  <forwardDeclaration>SEOS</forwardDeclaration>
  <forwardDeclaration>SEOT</forwardDeclaration>
  <forwardDeclaration>SEOX</forwardDeclaration>
- <inheritance CLSNAME="ZSAPLINK_CLASS" REFCLSNAME="ZSAPLINK" VERSION="1" STATE="1" AUTHOR="BCUSER" CREATEDON="20080615" CHANGEDBY="BCUSER" CHANGEDON="20080820">
+ <inheritance CLSNAME="ZSAPLINK_CLASS" REFCLSNAME="ZSAPLINK" VERSION="1" STATE="1" AUTHOR="BCUSER" CREATEDON="20080615" CHANGEDBY="BCUSER" CHANGEDON="20081026">
   <redefinition CLSNAME="ZSAPLINK_CLASS" REFCLSNAME="ZSAPLINK" VERSION="1" MTDNAME="CHECKEXISTS"/>
   <redefinition CLSNAME="ZSAPLINK_CLASS" REFCLSNAME="ZSAPLINK" VERSION="1" MTDNAME="CREATEIXMLDOCFROMOBJECT"/>
   <redefinition CLSNAME="ZSAPLINK_CLASS" REFCLSNAME="ZSAPLINK" VERSION="1" MTDNAME="CREATEOBJECTFROMIXMLDOC"/>
@@ -632,7 +632,7 @@ endmethod.</source>
 endmethod.</source>
  </method>
  <method CLSNAME="ZSAPLINK" CMPNAME="CREATEOBJECTFROMIXMLDOC" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
-  <source>method CREATEOBJECTFROMIXMLDOC.
+  <source>METHOD createobjectfromixmldoc.
 */---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
@@ -660,7 +660,7 @@ endmethod.</source>
   DATA otrnode TYPE REF TO if_ixml_element.
   DATA filter2 TYPE REF TO if_ixml_node_filter.
   DATA iterator2 TYPE REF TO if_ixml_node_iterator.
-  DATA superClass TYPE vseoextend-clsname.
+  DATA superclass TYPE vseoextend-clsname.
   DATA superclasskey TYPE vseoextend.
   DATA methodsourcenode TYPE REF TO if_ixml_node.
   DATA sourcenode TYPE REF TO if_ixml_node.
@@ -669,67 +669,67 @@ endmethod.</source>
   DATA methodkey TYPE seocpdkey.
   DATA node2 TYPE REF TO if_ixml_element.
   DATA _objtype TYPE string.
-  data aobjname type e071-obj_name.
-  data inheritanceNode type ref to if_ixml_element.
-  data redefNode type ref to if_ixml_element.
+  DATA aobjname TYPE e071-obj_name.
+  DATA inheritancenode TYPE REF TO if_ixml_element.
+  DATA redefnode TYPE REF TO if_ixml_element.
   DATA includename TYPE program.
 
 *data excClass type ref to ZCX_SAPLINK.
 
 *// --&gt; begin of new data type rrq
-data:
+  DATA:
 *exporting dataTypes
-e_corrnr                 type TRKORR,
-e_devclass               type DEVCLASS,
-e_version                type SEOVERSION,
-e_genflag                type GENFLAG,
-e_authority_check        type SEOX_BOOLEAN,
-e_overwrite              type SEOX_BOOLEAN,
+  e_corrnr                 TYPE trkorr,
+  e_devclass               TYPE devclass,
+  e_version                TYPE seoversion,
+  e_genflag                TYPE genflag,
+  e_authority_check        TYPE seox_boolean,
+  e_overwrite              TYPE seox_boolean,
 *e_suppress_meth_gen      type SEOX_BOOLEAN,
 *e_suppress_refac_gen     type SEOX_BOOLEAN,
-e_method_sources         type SEO_METHOD_SOURCE_TABLE,
-e_locals_def             type RSWSOURCET,
-e_locals_imp             type RSWSOURCET,
-e_locals_mac             type RSWSOURCET,
+  e_method_sources         TYPE seo_method_source_table,
+  e_locals_def             TYPE rswsourcet,
+  e_locals_imp             TYPE rswsourcet,
+  e_locals_mac             TYPE rswsourcet,
 *e_suppress_ind_update    type SEOX_BOOLEAN,
 *importing dataTypes
-i_korrnr                 type trkorr,
+  i_korrnr                 TYPE trkorr,
 *changing dataTypes
-ch_class                 type VSEOCLASS,
-ch_inheritance           type VSEOEXTEND,
-ch_redefinitions         type SEOR_REDEFINITIONS_R,
-ch_implementings         type SEOR_IMPLEMENTINGS_R,
-ch_impl_details          type SEO_REDEFINITIONS,
-ch_attributes            type SEOO_ATTRIBUTES_R,
-ch_methods               type SEOO_METHODS_R,
-ch_events                type SEOO_EVENTS_R,
-ch_types                 type SEOO_TYPES_R,
-ch_type_source           type SEOP_SOURCE,
-ch_type_source_temp      type SEOP_SOURCE,
-ch_parameters            type SEOS_PARAMETERS_R,
-ch_exceps                type SEOS_EXCEPTIONS_R,
-ch_aliases               type SEOO_ALIASES_R,
-ch_typeusages            type SEOT_TYPEPUSAGES_R,
-ch_clsdeferreds          type SEOT_CLSDEFERRDS_R,
-ch_intdeferrds           type SEOT_INTDEFERRDS_R,
-ch_friendships           type SEO_FRIENDS,
+  ch_class                 TYPE vseoclass,
+  ch_inheritance           TYPE vseoextend,
+  ch_redefinitions         TYPE seor_redefinitions_r,
+  ch_implementings         TYPE seor_implementings_r,
+  ch_impl_details          TYPE seo_redefinitions,
+  ch_attributes            TYPE seoo_attributes_r,
+  ch_methods               TYPE seoo_methods_r,
+  ch_events                TYPE seoo_events_r,
+  ch_types                 TYPE seoo_types_r,
+  ch_type_source           TYPE seop_source,
+  ch_type_source_temp      TYPE seop_source,
+  ch_parameters            TYPE seos_parameters_r,
+  ch_exceps                TYPE seos_exceptions_r,
+  ch_aliases               TYPE seoo_aliases_r,
+  ch_typeusages            TYPE seot_typepusages_r,
+  ch_clsdeferreds          TYPE seot_clsdeferrds_r,
+  ch_intdeferrds           TYPE seot_intdeferrds_r,
+  ch_friendships           TYPE seo_friends,
 **table dataTypes
 *tb_classDescription      type table of seoclasstx,
 *tb_component_descr       type table of seocompotx,
 *tb_subcomponent_descr    type table of seosubcotx,
 * work areas for the tables
-wa_attributes            type SEOO_ATTRIBUTE_R,
-wa_types                 type SEOO_TYPE_R,
-wa_friends               type seofriends,
-wa_implementings         type SEOR_IMPLEMENTING_R,
-wa_redefinitions         type SEOREDEF,
-wa_methods               type SEOO_METHOD_R,
-wa_parameters            type seos_parameter_r,
-wa_exceps                type seos_exception_r,
-wa_typeusages            type SEOT_TYPEPUSAGE_R, &quot;forward declarations
-wa_method_Sources        type SEO_METHOD_SOURCE,
-wa_events                type SEOO_EVENT_R.
-data: lines type i.
+  wa_attributes            TYPE seoo_attribute_r,
+  wa_types                 TYPE seoo_type_r,
+  wa_friends               TYPE seofriends,
+  wa_implementings         TYPE seor_implementing_r,
+  wa_redefinitions         TYPE seoredef,
+  wa_methods               TYPE seoo_method_r,
+  wa_parameters            TYPE seos_parameter_r,
+  wa_exceps                TYPE seos_exception_r,
+  wa_typeusages            TYPE seot_typepusage_r, &quot;forward declarations
+  wa_method_sources        TYPE seo_method_source,
+  wa_events                TYPE seoo_event_r.
+  DATA: lines TYPE i.
 *//&lt;-- end of new data types rrq
 
   CALL FUNCTION &apos;SEO_BUFFER_INIT&apos;.
@@ -755,29 +755,29 @@ data: lines type i.
     superclasskey-refclsname = superclass.
     superclasskey-version = &apos;0&apos;.
     superclasskey-state = &apos;1&apos;.
-    MOVE-CORRESPONDING superclasskey to ch_inheritance.
+    MOVE-CORRESPONDING superclasskey TO ch_inheritance.
     ch_inheritance-author = &apos;BCUSER&apos;.
-    ch_inheritance-createdOn = sy-datum.
+    ch_inheritance-createdon = sy-datum.
   ENDIF.
 
 *Add attributes to new class
-  data otrConcept type SOTR_TEXT-CONCEPT.
+  DATA otrconcept TYPE sotr_text-concept.
   filter = xmldoc-&gt;create_filter_name( &apos;attribute&apos; ).
   iterator = xmldoc-&gt;create_iterator_filtered( filter ).
   node ?= iterator-&gt;get_next( ).
 
   WHILE node IS NOT INITIAL.
 *   create OTR texts if necessary (for exception classes)
-    clear otrConcept.
+    CLEAR otrconcept.
     otrnode = node-&gt;find_from_name( &apos;sotr&apos; ).
     IF otrnode IS NOT INITIAL.
 *     ewH:33--&gt;create new concept with new guid
 *      me-&gt;createotrfromnode( otrnode ).
       me-&gt;createotrfromnode(
-        exporting node = otrnode
-        importing concept = otrConcept ).
+        EXPORTING node = otrnode
+        IMPORTING concept = otrconcept ).
     ENDIF.
-    clear wa_attributes.
+    CLEAR wa_attributes.
 *   create attribute
     CALL METHOD getstructurefromattributes
       EXPORTING
@@ -786,10 +786,10 @@ data: lines type i.
         structure = wa_attributes.
     wa_attributes-version = &apos;0&apos;.
 *   ewH:issue33--&gt;6.40 and above, must create new concept
-    if otrConcept is not initial.
-      concatenate `&apos;` otrConcept `&apos;` into wa_attributes-attvalue.
-    endif.
-    append wa_attributes to ch_attributes.
+    IF otrconcept IS NOT INITIAL.
+      CONCATENATE `&apos;` otrconcept `&apos;` INTO wa_attributes-attvalue.
+    ENDIF.
+    APPEND wa_attributes TO ch_attributes.
     node ?= iterator-&gt;get_next( ).
   ENDWHILE.
 
@@ -808,7 +808,7 @@ data: lines type i.
       CHANGING
         structure = wa_types.
     wa_types-version = &apos;0&apos;.
-    append wa_types to ch_types.
+    APPEND wa_types TO ch_types.
     node ?= iterator-&gt;get_next( ).
   ENDWHILE.
 */***TPJ - End of Added Logic for TYPES  -------------------*/
@@ -827,7 +827,7 @@ data: lines type i.
       CHANGING
         structure = wa_friends.
     wa_friends-version = &apos;0&apos;.
-    append wa_friends to ch_FRIENDSHIPS.
+    APPEND wa_friends TO ch_friendships.
     node ?= iterator-&gt;get_next( ).
   ENDWHILE.
 */***TPJ - End of Added Logic for Friends  -------------------*/
@@ -843,7 +843,7 @@ data: lines type i.
         node      = node
       CHANGING
         structure = wa_implementings.
-    append wa_implementings to ch_implementings.
+    APPEND wa_implementings TO ch_implementings.
     node ?= iterator-&gt;get_next( ).
   ENDWHILE.
 *//&lt;--ewH: End of Added Logic for Implementings(interfaces)
@@ -859,7 +859,7 @@ data: lines type i.
         node      = node
       CHANGING
         structure = wa_events.
-    append wa_events to ch_events.
+    APPEND wa_events TO ch_events.
     filter2 = node-&gt;create_filter_name( &apos;parameter&apos; ).
     iterator2 = node-&gt;create_iterator_filtered( filter2 ).
     node2 ?= iterator2-&gt;get_next( ).
@@ -872,40 +872,40 @@ data: lines type i.
           structure = wa_parameters.
 
       &quot;//-&gt; Mar: Added logic for parameter/interface implementation - 08/20/2008
-      IF wa_parameters-clsname IS NOT INITIAL.
-        append wa_parameters to ch_parameters.
-      endif.
+      IF NOT wa_parameters-clsname IS INITIAL.
+        APPEND wa_parameters TO ch_parameters.
+      ENDIF.
       &quot;//&lt;- Mar: Added logic for parameter/interface implementation - 08/20/2008
 
       node2 ?= iterator2-&gt;get_next( ).
-    endwhile.
+    ENDWHILE.
     node ?= iterator-&gt;get_next( ).
   ENDWHILE.
 *//&lt;--rrq: End of Added Logic for events
 
 *// ewH: start redesign method/inheritances--&gt;
 * inheritance
-  inheritanceNode = rootNode-&gt;find_from_name( &apos;inheritance&apos; ).
-  if inheritanceNode is bound.
+  inheritancenode = rootnode-&gt;find_from_name( &apos;inheritance&apos; ).
+  IF inheritancenode IS BOUND.
     CALL METHOD getstructurefromattributes
       EXPORTING
-        node      = inheritanceNode
+        node      = inheritancenode
       CHANGING
         structure = ch_inheritance.
 *   redefs
-    filter = inheritanceNode-&gt;create_filter_name( &apos;redefinition&apos; ).
-    iterator = inheritanceNode-&gt;create_iterator_filtered( filter ).
-    redefNode ?= iterator-&gt;get_next( ).
-    WHILE redefNode IS NOT INITIAL.
+    filter = inheritancenode-&gt;create_filter_name( &apos;redefinition&apos; ).
+    iterator = inheritancenode-&gt;create_iterator_filtered( filter ).
+    redefnode ?= iterator-&gt;get_next( ).
+    WHILE redefnode IS NOT INITIAL.
       CALL METHOD getstructurefromattributes
         EXPORTING
-          node      = redefNode
+          node      = redefnode
         CHANGING
           structure = wa_redefinitions.
-      append wa_redefinitions to ch_redefinitions.
-      redefNode ?= iterator-&gt;get_next( ).
+      APPEND wa_redefinitions TO ch_redefinitions.
+      redefnode ?= iterator-&gt;get_next( ).
     ENDWHILE.
-  endif.
+  ENDIF.
 
 *Add Methods to new class
   filter = xmldoc-&gt;create_filter_name( &apos;method&apos; ).
@@ -920,12 +920,12 @@ data: lines type i.
         structure = wa_methods.
 
 *   only create metadata if method is not a redefinition
-    read table ch_redefinitions into wa_redefinitions
-    with key mtdname = wa_methods-cmpname.
+    READ TABLE ch_redefinitions INTO wa_redefinitions
+    WITH KEY mtdname = wa_methods-cmpname.
     IF sy-subrc = 0.
       node ?= iterator-&gt;get_next( ).
-      continue.
-    endif.
+      CONTINUE.
+    ENDIF.
 *// ewh: begin of backward compatibility hack, can be removed for next
 *//      major release--&gt;
     IF wa_methods-clsname &lt;&gt; ch_class-clsname.
@@ -938,8 +938,8 @@ data: lines type i.
       APPEND wa_redefinitions TO ch_redefinitions.
 
       node ?= iterator-&gt;get_next( ).
-      continue.
-    endif.
+      CONTINUE.
+    ENDIF.
 *// &lt;--ewH: break in backward compatibility hack - 2Bcontinued below
 
     filter2 = node-&gt;create_filter_name( &apos;parameter&apos; ).
@@ -954,10 +954,10 @@ data: lines type i.
           structure = wa_parameters.
 
       &quot;//-&gt; Mar: Added logic for parameter/interface implementation - 08/20/2008
-      IF wa_parameters-clsname IS NOT INITIAL.
-        append wa_parameters to ch_parameters.
-      endif.
-     &quot;//&lt;- Mar: Added logic for parameter/interface implementation - 08/20/2008
+      IF NOT wa_parameters-clsname IS INITIAL.
+        APPEND wa_parameters TO ch_parameters.
+      ENDIF.
+      &quot;//&lt;- Mar: Added logic for parameter/interface implementation - 08/20/2008
 
       node2 ?= iterator2-&gt;get_next( ).
     ENDWHILE.
@@ -970,10 +970,10 @@ data: lines type i.
           node      = node2
         CHANGING
           structure = wa_exceps.
-      append wa_exceps to ch_exceps.
+      APPEND wa_exceps TO ch_exceps.
       node2 ?= iterator2-&gt;get_next( ).
     ENDWHILE.
-    append wa_methods to ch_methods.
+    APPEND wa_methods TO ch_methods.
     node ?= iterator-&gt;get_next( ).
   ENDWHILE.
 *// &lt;--ewH: end redesign method/inheritances
@@ -1011,17 +1011,17 @@ data: lines type i.
   node ?= iterator-&gt;get_next( ).
 
   WHILE node IS NOT INITIAL.
-      CALL METHOD getstructurefromattributes
+    CALL METHOD getstructurefromattributes
       EXPORTING
         node      = node
       CHANGING
-        structure = wa_typeUsages.
+        structure = wa_typeusages.
     APPEND wa_typeusages TO ch_typeusages.
     node ?= iterator-&gt;get_next( ).
   ENDWHILE.
 
 * only check forwardDeclaration if typeUsages does not exist
-  if ch_typeusages is initial.
+  IF ch_typeusages IS INITIAL.
     filter = xmldoc-&gt;create_filter_name( &apos;forwardDeclaration&apos; ).
     iterator = xmldoc-&gt;create_iterator_filtered( filter ).
     node ?= iterator-&gt;get_next( ).
@@ -1039,7 +1039,7 @@ data: lines type i.
       APPEND wa_typeusages TO ch_typeusages.
       node ?= iterator-&gt;get_next( ).
     ENDWHILE.
-  endif.
+  ENDIF.
 * new way....only one of these nodes should exist
 *  filter = xmldoc-&gt;create_filter_name( &apos;typeUsage&apos; ).
 *  iterator = xmldoc-&gt;create_iterator_filtered( filter ).
@@ -1070,41 +1070,41 @@ data: lines type i.
     aobjname = methodkey.
     methodsourcenode = node-&gt;find_from_name( &apos;source&apos; ).
     IF methodsourcenode IS NOT INITIAL.
-      clear wa_method_sources.
+      CLEAR wa_method_sources.
       source = methodsourcenode-&gt;get_value( ).
       sourcetable = buildtablefromstring( source ).
-      loop at sourceTable into source.
-        check source is not initial
+      LOOP AT sourcetable INTO source.
+        CHECK source IS NOT INITIAL
               &quot;// Mar: -&gt; Added of logic for comments of methods 08/20/2008
-              and strlen( source ) gt 5.
-              &quot;// Mar: &lt;- Added of logic for comments of methods 08/20/2008
-        translate source to upper case.
-        shift source left deleting leading space.
-        if source+0(6) = &apos;METHOD&apos;.
-          delete sourceTable index sy-tabix.
+              AND STRLEN( source ) GT 5.
+        &quot;// Mar: &lt;- Added of logic for comments of methods 08/20/2008
+        TRANSLATE source TO UPPER CASE.
+        SHIFT source LEFT DELETING LEADING space.
+        IF source+0(6) = &apos;METHOD&apos;.
+          DELETE sourcetable INDEX sy-tabix.
           EXIT.
-        endif.
-      endloop.
-      describe table sourceTable lines lines.
-      while lines &gt; 0.
-        read table sourceTable into source index lines.
-        if source cp &apos;endmethod*&apos;.
-          if sy-subrc  = 0 and source+0(1) &lt;&gt; &apos;*&apos;.
+        ENDIF.
+      ENDLOOP.
+      DESCRIBE TABLE sourcetable LINES lines.
+      WHILE lines &gt; 0.
+        READ TABLE sourcetable INTO source INDEX lines.
+        IF source CP &apos;endmethod*&apos;.
+          IF sy-subrc  = 0 AND source+0(1) &lt;&gt; &apos;*&apos;.
 *          Got it and not a comment?
-            delete sourceTable index lines.
-            exit.
-          endif.
-        endif.
-        subtract 1 from lines.
-      endwhile.
-      read table ch_redefinitions into wa_redefinitions
-      with key mtdname = methodKey-cpdname.
+            DELETE sourcetable INDEX lines.
+            EXIT.
+          ENDIF.
+        ENDIF.
+        SUBTRACT 1 FROM lines.
+      ENDWHILE.
+      READ TABLE ch_redefinitions INTO wa_redefinitions
+      WITH KEY mtdname = methodkey-cpdname.
       IF sy-subrc = 0.
         wa_method_sources-redefine = &apos;X&apos;.
-      endif.
+      ENDIF.
       wa_method_sources-cpdname = methodkey-cpdname.
-      wa_method_sources-source = sourceTable.
-      append wa_method_sources to e_method_sources.
+      wa_method_sources-source = sourcetable.
+      APPEND wa_method_sources TO e_method_sources.
     ENDIF.
     node ?= iterator-&gt;get_next( ).
   ENDWHILE.
@@ -1119,42 +1119,42 @@ data: lines type i.
       EXPORTING
         node      = node
       CHANGING
-        structure = methodKey.
+        structure = methodkey.
     aobjname = methodkey.
     methodsourcenode = node-&gt;find_from_name( &apos;source&apos; ).
     IF methodsourcenode IS NOT INITIAL.
-      clear wa_method_sources.
+      CLEAR wa_method_sources.
       source = methodsourcenode-&gt;get_value( ).
       sourcetable = buildtablefromstring( source ).
-      loop at sourceTable into source.
-        check source is not initial
+      LOOP AT sourcetable INTO source.
+        CHECK source IS NOT INITIAL
               &quot;// Mar: -&gt; Added of logic for comments of methods- 08/20/2008
-              and strlen( source ) gt 5.
-              &quot;// Mar: &lt;- Added of logic for comments of methods - 08/20/2008
-        translate source to upper case.
-        shift source left deleting leading space.
-        if source+0(6) = &apos;METHOD&apos;.
-          delete sourceTable index sy-tabix.
+              AND STRLEN( source ) GT 5.
+        &quot;// Mar: &lt;- Added of logic for comments of methods - 08/20/2008
+        TRANSLATE source TO UPPER CASE.
+        SHIFT source LEFT DELETING LEADING space.
+        IF source+0(6) = &apos;METHOD&apos;.
+          DELETE sourcetable INDEX sy-tabix.
           EXIT.
-        endif.
-      endloop.
-      describe table sourceTable lines lines.
-      while lines &gt; 0.
-        read table sourceTable into source index lines.
-        if source cp &apos;endmethod*&apos;.
-          if sy-subrc  = 0 and source+0(1) &lt;&gt; &apos;*&apos;.
+        ENDIF.
+      ENDLOOP.
+      DESCRIBE TABLE sourcetable LINES lines.
+      WHILE lines &gt; 0.
+        READ TABLE sourcetable INTO source INDEX lines.
+        IF source CP &apos;endmethod*&apos;.
+          IF sy-subrc  = 0 AND source+0(1) &lt;&gt; &apos;*&apos;.
 *          Got it and not a comment?
-            delete sourceTable index lines.
-            exit.
-          endif.
-        endif.
-        subtract 1 from lines.
-      endwhile.
+            DELETE sourcetable INDEX lines.
+            EXIT.
+          ENDIF.
+        ENDIF.
+        SUBTRACT 1 FROM lines.
+      ENDWHILE.
       wa_method_sources-cpdname = methodkey-cpdname.
       wa_method_sources-redefine = wa_methods-redefin.
-      wa_method_sources-source = sourceTable.
+      wa_method_sources-source = sourcetable.
 
-      append wa_method_sources to e_method_sources.
+      APPEND wa_method_sources TO e_method_sources.
     ENDIF.
 
     node ?= iterator-&gt;get_next( ).
@@ -1167,21 +1167,21 @@ data: lines type i.
   sourcenode = xmldoc-&gt;find_from_name( &apos;localImplementation&apos; ).
   IF sourcenode IS NOT INITIAL.
     source = sourcenode-&gt;get_value( ).
-    E_LOCALS_IMP = buildtablefromstring( source ).
+    e_locals_imp = buildtablefromstring( source ).
   ENDIF.
 
 * local types
   sourcenode = xmldoc-&gt;find_from_name( &apos;localTypes&apos; ).
   IF sourcenode IS NOT INITIAL.
     source = sourcenode-&gt;get_value( ).
-    E_LOCALS_DEF = buildtablefromstring( source ).
+    e_locals_def = buildtablefromstring( source ).
   ENDIF.
 
 * local macros
   sourcenode = xmldoc-&gt;find_from_name( &apos;localMacros&apos; ).
   IF sourcenode IS NOT INITIAL.
     source = sourcenode-&gt;get_value( ).
-    E_LOCALS_MAC = buildtablefromstring( source ).
+    e_locals_mac = buildtablefromstring( source ).
   ENDIF.
 
 *ewH-not sure how this type_source param works. type sources can come
@@ -1219,64 +1219,64 @@ data: lines type i.
 
   name = objname.
 
-CALL FUNCTION &apos;SEO_CLASS_CREATE_COMPLETE&apos;
- EXPORTING
-   CORRNR                             = e_corrnr
-   DEVCLASS                           = e_devclass
-   VERSION                            = e_version
-   GENFLAG                            = e_genflag
-   AUTHORITY_CHECK                    = e_authority_check
-   OVERWRITE                          = e_overwrite
+  CALL FUNCTION &apos;SEO_CLASS_CREATE_COMPLETE&apos;
+   EXPORTING
+     corrnr                             = e_corrnr
+     devclass                           = e_devclass
+     version                            = e_version
+     genflag                            = e_genflag
+     authority_check                    = e_authority_check
+     overwrite                          = e_overwrite
 *   SUPPRESS_METHOD_GENERATION         = e_suppress_meth_gen
 *   SUPPRESS_REFACTORING_SUPPORT       = e_suppress_refac_gen
-   METHOD_SOURCES                     = e_method_sources
-   LOCALS_DEF                         = e_locals_def
-   LOCALS_IMP                         = e_locals_imp
-   LOCALS_MAC                         = e_locals_mac
+     method_sources                     = e_method_sources
+     locals_def                         = e_locals_def
+     locals_imp                         = e_locals_imp
+     locals_mac                         = e_locals_mac
 *   SUPPRESS_INDEX_UPDATE              = e_suppress_ind_update
- IMPORTING
-   KORRNR                             = i_korrnr
+   IMPORTING
+     korrnr                             = i_korrnr
 * TABLES
 *   CLASS_DESCRIPTIONS                 = tb_classDescription
 *   COMPONENT_DESCRIPTIONS             = tb_component_descr
 *   SUBCOMPONENT_DESCRIPTIONS          = tb_subcomponent_descr
-  CHANGING
-    CLASS                              = ch_class
-   INHERITANCE                        = ch_inheritance
-   REDEFINITIONS                      = ch_redefinitions
-   IMPLEMENTINGS                      = ch_implementings
-   IMPL_DETAILS                       = ch_impl_details
-   ATTRIBUTES                         = ch_attributes
-   METHODS                            = ch_methods
-   EVENTS                             = ch_events
-   TYPES                              = ch_types
+    CHANGING
+      class                              = ch_class
+     inheritance                        = ch_inheritance
+     redefinitions                      = ch_redefinitions
+     implementings                      = ch_implementings
+     impl_details                       = ch_impl_details
+     attributes                         = ch_attributes
+     methods                            = ch_methods
+     events                             = ch_events
+     types                              = ch_types
 *   TYPE_SOURCE                        = ch_type_source &quot;???
-   PARAMETERS                         = ch_parameters
-   EXCEPS                             = ch_exceps
-   ALIASES                            = ch_aliases
-   TYPEPUSAGES                        = ch_typeusages
-   CLSDEFERRDS                        = ch_clsdeferreds
-   INTDEFERRDS                        = ch_intdeferrds
-   FRIENDSHIPS                        = ch_friendships
- EXCEPTIONS
-   EXISTING                           = 1
-   IS_INTERFACE                       = 2
-   DB_ERROR                           = 3
-   COMPONENT_ERROR                    = 4
-   NO_ACCESS                          = 5
-   OTHER                              = 6
-   OTHERS                             = 7.
-  case sy-subrc.
-    when &apos;0&apos;.
+     PARAMETERS                         = ch_parameters
+     exceps                             = ch_exceps
+     aliases                            = ch_aliases
+     typepusages                        = ch_typeusages
+     clsdeferrds                        = ch_clsdeferreds
+     intdeferrds                        = ch_intdeferrds
+     friendships                        = ch_friendships
+   EXCEPTIONS
+     existing                           = 1
+     is_interface                       = 2
+     db_error                           = 3
+     component_error                    = 4
+     no_access                          = 5
+     other                              = 6
+     OTHERS                             = 7.
+  CASE sy-subrc.
+    WHEN &apos;0&apos;.
 ** i guess if we made it this far, we will assume success
 ** successful install
-    when &apos;1&apos;.
+    WHEN &apos;1&apos;.
       RAISE EXCEPTION TYPE zcx_saplink
         EXPORTING textid = zcx_saplink=&gt;existing.
-    when others.
-      raise exception type zcx_saplink
-        exporting textid = zcx_saplink=&gt;system_error.
-  endcase.
+    WHEN OTHERS.
+      RAISE EXCEPTION TYPE zcx_saplink
+        EXPORTING textid = zcx_saplink=&gt;system_error.
+  ENDCASE.
 
 *ewH:insert pub, prot, and priv sections manually to keep any direct
 * attribute/type definitions
@@ -1340,7 +1340,7 @@ CALL FUNCTION &apos;SEO_CLASS_CREATE_COMPLETE&apos;
   ENDIF.
 
 
-endmethod.</source>
+ENDMETHOD.</source>
  </method>
  <method CLSNAME="ZSAPLINK" CMPNAME="DELETEOBJECT" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
   <source>method DELETEOBJECT.
@@ -1398,10 +1398,10 @@ data clsKey type SEOCLSKEY.
   endif.
 endmethod.</source>
  </method>
- <method CLSNAME="ZSAPLINK_CLASS" CMPNAME="FINDIMPLEMENTINGCLASS" VERSION="1" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20080615" CHANGEDBY="BCUSER" CHANGEDON="20080820" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="700" BCMTDCAT="00" BCMTDSYN="0">
-  <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="FINDIMPLEMENTINGCLASS" SCONAME="METHODNAME" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20080615" CHANGEDBY="BCUSER" CHANGEDON="20080820" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
-  <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="FINDIMPLEMENTINGCLASS" SCONAME="STARTCLASS" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20080615" CHANGEDBY="BCUSER" CHANGEDON="20080820" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING" PAROPTIONL="X"/>
-  <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="FINDIMPLEMENTINGCLASS" SCONAME="CLASSNAME" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20080615" CHANGEDBY="BCUSER" CHANGEDON="20080820" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="1" TYPE="STRING"/>
+ <method CLSNAME="ZSAPLINK_CLASS" CMPNAME="FINDIMPLEMENTINGCLASS" VERSION="1" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20080615" CHANGEDBY="BCUSER" CHANGEDON="20081026" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="700" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="FINDIMPLEMENTINGCLASS" SCONAME="METHODNAME" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20080615" CHANGEDBY="BCUSER" CHANGEDON="20081026" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
+  <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="FINDIMPLEMENTINGCLASS" SCONAME="STARTCLASS" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20080615" CHANGEDBY="BCUSER" CHANGEDON="20081026" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING" PAROPTIONL="X"/>
+  <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="FINDIMPLEMENTINGCLASS" SCONAME="CLASSNAME" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20080615" CHANGEDBY="BCUSER" CHANGEDON="20081026" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="1" TYPE="STRING"/>
   <source>method FINDIMPLEMENTINGCLASS.
 */---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
