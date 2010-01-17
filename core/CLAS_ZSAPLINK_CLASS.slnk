@@ -1401,6 +1401,10 @@ endmethod.</source>
   DATA lt_lines  TYPE TABLE OF tline.
   FIELD-SYMBOLS: &lt;ls_lines&gt; LIKE LINE OF lt_lines.
 
+  if docnode is not bound.
+    return.
+  endif.
+
   class_name = docNode-&gt;get_attribute( name = &apos;OBJECT&apos; ).
   obj_name = class_name.
 
@@ -1504,6 +1508,10 @@ endmethod.</source>
   data logonLanguageExists type flag.
   data _state(1) type c.
   data classpoolname type program.
+
+  if textpoolnode is not bound.
+    return.
+  endif.
 
   obj_name = objName.
   classpoolname = cl_oo_classname_service=&gt;GET_CLASSPOOL_NAME( obj_Name ).
