@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<CLAS CLSNAME="ZSAPLINK_PROGRAM" VERSION="1" LANGU="E" DESCRIPT="SAPlink - Programs" UUID="45583FC835A702C600000000A7E42BB6" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDON="00000000" CHGDANYON="00000000" CLSFINAL="X" CLSCCINCL="X" FIXPT="X" UNICODE="X" R3RELEASE="620" CLSBCCAT="00" REFCLSNAME="ZSAPLINK">
+<CLAS CLSNAME="ZSAPLINK_PROGRAM" VERSION="1" LANGU="E" DESCRIPT="SAPlink - Programs" UUID="45583FC835A702C600000000A7E42BB6" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" AUTHOR="ABAP_DEV" CREATEDON="20070313" CHANGEDBY="BCUSER" CHANGEDON="20090728" CHGDANYON="00000000" CLSFINAL="X" CLSCCINCL="X" FIXPT="X" UNICODE="X" R3RELEASE="702" CLSBCCAT="00" DURATION_TYPE="0 " RISK_LEVEL="0 " REFCLSNAME="ZSAPLINK">
  <publicSection>class ZSAPLINK_PROGRAM definition
   public
   inheriting from ZSAPLINK
@@ -24,9 +24,9 @@ protected section.
     redefinition .
   methods GETOBJECTTYPE
     redefinition .</protectedSection>
- <privateSection>*&quot;* private components of class ZSAPLINK_PROGRAM
+ <privateSection>private section.
+*&quot;* private components of class ZSAPLINK_PROGRAM
 *&quot;* do not include other source files here!!!
-private section.
 
   methods CREATE_TEXTPOOL
     importing
@@ -37,6 +37,9 @@ private section.
   methods GET_TEXTPOOL
     returning
       value(TEXTNODE) type ref to IF_IXML_ELEMENT .
+  methods CREATE_DOCUMENTATION
+    importing
+      !DOCNODE type ref to IF_IXML_ELEMENT .
   methods CREATE_SOURCE
     importing
       !SOURCE type TABLE_OF_STRINGS
@@ -44,6 +47,9 @@ private section.
   methods ENQUEUE_ABAP
     raising
       ZCX_SAPLINK .
+  methods GET_DOCUMENTATION
+    returning
+      value(DOCNODE) type ref to IF_IXML_ELEMENT .
   methods TRANSPORT_COPY
     importing
       !AUTHOR type SYUNAME
@@ -70,15 +76,18 @@ private section.
 *&quot;* implementation or private method&apos;s signature</localTypes>
  <localMacros>*&quot;* use this source file for any macro definitions you need
 *&quot;* in the implementation part of the class</localMacros>
- <inheritance CLSNAME="ZSAPLINK_PROGRAM" REFCLSNAME="ZSAPLINK" VERSION="1" STATE="1" AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDON="00000000">
-  <redefinition CLSNAME="ZSAPLINK_PROGRAM" REFCLSNAME="ZSAPLINK" VERSION="1" MTDNAME="CHECKEXISTS"/>
-  <redefinition CLSNAME="ZSAPLINK_PROGRAM" REFCLSNAME="ZSAPLINK" VERSION="1" MTDNAME="CREATEIXMLDOCFROMOBJECT"/>
-  <redefinition CLSNAME="ZSAPLINK_PROGRAM" REFCLSNAME="ZSAPLINK" VERSION="1" MTDNAME="CREATEOBJECTFROMIXMLDOC"/>
-  <redefinition CLSNAME="ZSAPLINK_PROGRAM" REFCLSNAME="ZSAPLINK" VERSION="1" MTDNAME="DELETEOBJECT"/>
-  <redefinition CLSNAME="ZSAPLINK_PROGRAM" REFCLSNAME="ZSAPLINK" VERSION="1" MTDNAME="GETOBJECTTYPE"/>
+ <textPool/>
+ <classDocumentation/>
+ <inheritance CLSNAME="ZSAPLINK_PROGRAM" REFCLSNAME="ZSAPLINK" VERSION="1" STATE="1" AUTHOR="ABAP_DEV" CREATEDON="20070313" CHANGEDBY="BCUSER" CHANGEDON="20090728">
+  <redefinition CLSNAME="ZSAPLINK_PROGRAM" REFCLSNAME="ZSAPLINK" VERSION="1" MTDNAME="CHECKEXISTS" EXPOSURE="2"/>
+  <redefinition CLSNAME="ZSAPLINK_PROGRAM" REFCLSNAME="ZSAPLINK" VERSION="1" MTDNAME="CREATEIXMLDOCFROMOBJECT" EXPOSURE="2"/>
+  <redefinition CLSNAME="ZSAPLINK_PROGRAM" REFCLSNAME="ZSAPLINK" VERSION="1" MTDNAME="CREATEOBJECTFROMIXMLDOC" EXPOSURE="2"/>
+  <redefinition CLSNAME="ZSAPLINK_PROGRAM" REFCLSNAME="ZSAPLINK" VERSION="1" MTDNAME="DELETEOBJECT" EXPOSURE="1"/>
+  <redefinition CLSNAME="ZSAPLINK_PROGRAM" REFCLSNAME="ZSAPLINK" VERSION="1" MTDNAME="GETOBJECTTYPE" EXPOSURE="1"/>
  </inheritance>
  <method CLSNAME="ZSAPLINK" CMPNAME="CHECKEXISTS" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
-  <source>*/---------------------------------------------------------------------\
+  <source>method CHECKEXISTS.
+*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
 *|   SAPlink is free software; you can redistribute it and/or modify   |
@@ -96,7 +105,6 @@ private section.
 *|   Free Software Foundation, Inc.,                                   |
 *|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
 *\---------------------------------------------------------------------/
-method CHECKEXISTS .
 
   select single name from trdir into objName where NAME = objName.
   if sy-subrc = 0.
@@ -106,7 +114,8 @@ method CHECKEXISTS .
 endmethod.</source>
  </method>
  <method CLSNAME="ZSAPLINK" CMPNAME="CREATEIXMLDOCFROMOBJECT" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
-  <source>*/---------------------------------------------------------------------\
+  <source>method CREATEIXMLDOCFROMOBJECT.
+*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
 *|   SAPlink is free software; you can redistribute it and/or modify   |
@@ -124,10 +133,10 @@ endmethod.</source>
 *|   Free Software Foundation, Inc.,                                   |
 *|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
 *\---------------------------------------------------------------------/
-method CREATEIXMLDOCFROMOBJECT .
 data rootNode type ref to if_ixml_element.
 data sourceNode type ref to if_ixml_element.
 data textPoolNode type ref to if_ixml_element.
+data docNode type ref to if_ixml_element.
 data dynproNode type ref to if_ixml_element.
 data statusNode type ref to if_ixml_element.
 data rc type sysubrc.
@@ -150,6 +159,8 @@ data _objType type string.
     rc = sourceNode-&gt;IF_IXML_NODE~SET_VALUE( sourceString ).
     textPoolNode = get_textPool( ).
     rc = rootNOde-&gt;append_child( textPoolNode ).
+    docNode = get_documentation( ).
+    rc = rootNOde-&gt;append_child( docNode ).
     dynproNode = get_dynpro( ).
     rc = rootNode-&gt;append_child( dynproNode ).
     statusNode = get_pfstatus( ).
@@ -165,7 +176,8 @@ data _objType type string.
 endmethod.</source>
  </method>
  <method CLSNAME="ZSAPLINK" CMPNAME="CREATEOBJECTFROMIXMLDOC" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
-  <source>*/---------------------------------------------------------------------\
+  <source>method CREATEOBJECTFROMIXMLDOC.
+*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
 *|   SAPlink is free software; you can redistribute it and/or modify   |
@@ -184,12 +196,12 @@ endmethod.</source>
 *|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
 *\---------------------------------------------------------------------/
 
-method createobjectfromixmldoc .
 
   data rootnode type ref to if_ixml_element.
   data progattribs type trdir.
   data sourcenode type ref to if_ixml_element.
   data textnode type ref to if_ixml_element.
+  data docnode type ref to if_ixml_element.
   data dynpnode type ref to if_ixml_element.
   data statnode type ref to if_ixml_element.
   data source type string.
@@ -273,6 +285,8 @@ method createobjectfromixmldoc .
   create_source( source = sourcetable attribs = progattribs ).
   textnode = rootnode-&gt;find_from_name( &apos;textPool&apos; ).
   create_textpool( textnode ).
+  docnode = rootnode-&gt;find_from_name( &apos;programDocumentation&apos; ).
+  create_documentation( docnode ).
   dynpnode = rootnode-&gt;find_from_name( &apos;dynpros&apos; ).
   create_dynpro( dynpnode ).
   statnode = rootnode-&gt;find_from_name( &apos;pfstatus&apos; ).
@@ -286,9 +300,103 @@ method createobjectfromixmldoc .
 
 endmethod.</source>
  </method>
- <method CLSNAME="ZSAPLINK_PROGRAM" CMPNAME="CREATE_DYNPRO" VERSION="1" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="8 " DISPID="0 " AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="620" BCMTDCAT="00" BCMTDSYN="0">
-  <parameter CLSNAME="ZSAPLINK_PROGRAM" CMPNAME="CREATE_DYNPRO" SCONAME="DYNP_NODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
-  <source>*/---------------------------------------------------------------------\
+ <method CLSNAME="ZSAPLINK_PROGRAM" CMPNAME="CREATE_DOCUMENTATION" VERSION="1" LANGU="E" DESCRIPT="Create Documentation" EXPOSURE="0" STATE="1" EDITORDER="4 " DISPID="0 " AUTHOR="HEILMANR" CREATEDON="20100118" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_PROGRAM" CMPNAME="CREATE_DOCUMENTATION" SCONAME="DOCNODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="HEILMANR" CREATEDON="20100118" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
+  <source>method CREATE_DOCUMENTATION.
+
+  DATA txtline_node     TYPE REF TO if_ixml_element.
+  DATA txtline_filter   TYPE REF TO if_ixml_node_filter.
+  DATA txtline_iterator TYPE REF TO if_ixml_node_iterator.
+
+  DATA lang_node     TYPE REF TO if_ixml_element.
+  DATA lang_filter   TYPE REF TO if_ixml_node_filter.
+  DATA lang_iterator TYPE REF TO if_ixml_node_iterator.
+
+  data obj_name type DOKHL-OBJECT.
+  data prog_name type string.
+  data language  type string.
+  data obj_langu type DOKHL-LANGU.
+  data lv_str type string.
+  data rc type sy-subrc.
+
+  DATA lt_lines  TYPE TABLE OF tline.
+  FIELD-SYMBOLS: &lt;ls_lines&gt; LIKE LINE OF lt_lines.
+
+  if docnode is not bound.
+    return.
+  endif.
+
+  prog_name = docNode-&gt;get_attribute( name = &apos;OBJECT&apos; ).
+  obj_name = prog_name.
+
+* If no prog name, then there was no program documenation, just return.
+  if prog_name is initial.
+    return.
+  endif.
+
+* Get languages from XML
+  FREE: lang_filter, lang_iterator, lang_node.
+  lang_filter = docNode-&gt;create_filter_name( `language` ).
+  lang_iterator = docNode-&gt;create_iterator_filtered( lang_filter ).
+  lang_node ?= lang_iterator-&gt;get_next( ).
+  WHILE lang_node IS NOT INITIAL.
+
+    refresh lt_lines.
+    language = lang_node-&gt;get_attribute( name = &apos;SPRAS&apos; ).
+    obj_langu = language.
+
+* Get TextLines from XML
+    FREE: txtline_filter, txtline_iterator, txtline_node.
+    txtline_filter = lang_node-&gt;create_filter_name( `textLine` ).
+    txtline_iterator = lang_node-&gt;create_iterator_filtered( txtline_filter ).
+    txtline_node ?= txtline_iterator-&gt;get_next( ).
+    WHILE txtline_node IS NOT INITIAL.
+      APPEND INITIAL LINE TO lt_lines ASSIGNING &lt;ls_lines&gt;.
+      me-&gt;getstructurefromattributes(
+              EXPORTING   node      = txtline_node
+              CHANGING    structure = &lt;ls_lines&gt; ).
+      txtline_node ?= txtline_iterator-&gt;get_next( ).
+    ENDWHILE.
+
+* Delete any documentation that may currently exist.
+    CALL FUNCTION &apos;DOCU_DEL&apos;
+      EXPORTING
+        id       = &apos;RE&apos;   &quot;&lt;-- Report/program documentation
+        langu    = obj_langu
+        object   = obj_name
+        typ      = &apos;E&apos;
+      EXCEPTIONS
+        ret_code = 1
+        OTHERS   = 2.
+
+* Now update with new documentation text
+    CALL FUNCTION &apos;DOCU_UPD&apos;
+      EXPORTING
+        id       = &apos;RE&apos;
+        langu    = obj_langu
+        object   = obj_name
+        typ      = &apos;E&apos;
+      TABLES
+        line     = lt_lines
+      EXCEPTIONS
+        ret_code = 1
+        OTHERS   = 2.
+    IF sy-subrc &lt;&gt; 0.
+      RAISE EXCEPTION TYPE zcx_saplink
+        EXPORTING
+          textid = zcx_saplink=&gt;error_message
+          msg    = `Program Documentation object import failed`.
+    ENDIF.
+
+    lang_node ?= txtline_iterator-&gt;get_next( ).
+  ENDWHILE.
+
+endmethod.</source>
+ </method>
+ <method CLSNAME="ZSAPLINK_PROGRAM" CMPNAME="CREATE_DYNPRO" VERSION="1" LANGU="E" DESCRIPT="Create Dynpro(Screen)" EXPOSURE="0" STATE="1" EDITORDER="10 " DISPID="0 " AUTHOR="ABAP_DEV" CREATEDON="20070313" CHANGEDBY="HEILMANR" CHANGEDON="20100118" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_PROGRAM" CMPNAME="CREATE_DYNPRO" SCONAME="DYNP_NODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="ABAP_DEV" CREATEDON="20070313" CHANGEDBY="BCUSER" CHANGEDON="20090728" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
+  <source>method CREATE_DYNPRO.
+*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
 *|   SAPlink is free software; you can redistribute it and/or modify   |
@@ -306,7 +414,6 @@ endmethod.</source>
 *|   Free Software Foundation, Inc.,                                   |
 *|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
 *\---------------------------------------------------------------------/
-method create_dynpro.
 
   types: begin of tdyn_head_temp.
          include type d020s.
@@ -449,9 +556,10 @@ method create_dynpro.
 
 endmethod.</source>
  </method>
- <method CLSNAME="ZSAPLINK_PROGRAM" CMPNAME="CREATE_PFSTATUS" VERSION="1" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="10 " DISPID="0 " AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="620" BCMTDCAT="00" BCMTDSYN="0">
-  <parameter CLSNAME="ZSAPLINK_PROGRAM" CMPNAME="CREATE_PFSTATUS" SCONAME="PFSTAT_NODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
-  <source>*/---------------------------------------------------------------------\
+ <method CLSNAME="ZSAPLINK_PROGRAM" CMPNAME="CREATE_PFSTATUS" VERSION="1" LANGU="E" DESCRIPT="Create Gui Status" EXPOSURE="0" STATE="1" EDITORDER="12 " DISPID="0 " AUTHOR="ABAP_DEV" CREATEDON="20070313" CHANGEDBY="HEILMANR" CHANGEDON="20100118" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_PROGRAM" CMPNAME="CREATE_PFSTATUS" SCONAME="PFSTAT_NODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="ABAP_DEV" CREATEDON="20070313" CHANGEDBY="BCUSER" CHANGEDON="20090728" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
+  <source>method CREATE_PFSTATUS.
+*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
 *|   SAPlink is free software; you can redistribute it and/or modify   |
@@ -469,7 +577,6 @@ endmethod.</source>
 *|   Free Software Foundation, Inc.,                                   |
 *|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
 *\---------------------------------------------------------------------/
-method create_pfstatus.
 
   data: ista type table of rsmpe_stat,
         ifun type table of rsmpe_funt,
@@ -713,10 +820,11 @@ method create_pfstatus.
 
 endmethod.</source>
  </method>
- <method CLSNAME="ZSAPLINK_PROGRAM" CMPNAME="CREATE_SOURCE" VERSION="1" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="4 " DISPID="0 " AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="620" BCMTDCAT="00" BCMTDSYN="0">
-  <parameter CLSNAME="ZSAPLINK_PROGRAM" CMPNAME="CREATE_SOURCE" SCONAME="SOURCE" VERSION="1" LANGU="E" DESCRIPT="Table of Strings" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="TABLE_OF_STRINGS"/>
-  <parameter CLSNAME="ZSAPLINK_PROGRAM" CMPNAME="CREATE_SOURCE" SCONAME="ATTRIBS" VERSION="1" LANGU="E" DESCRIPT="Generated Table for View TRDIR" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="TRDIR"/>
-  <source>*/---------------------------------------------------------------------\
+ <method CLSNAME="ZSAPLINK_PROGRAM" CMPNAME="CREATE_SOURCE" VERSION="1" LANGU="E" DESCRIPT="Create Source" EXPOSURE="0" STATE="1" EDITORDER="5 " DISPID="0 " AUTHOR="ABAP_DEV" CREATEDON="20070313" CHANGEDBY="HEILMANR" CHANGEDON="20100118" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_PROGRAM" CMPNAME="CREATE_SOURCE" SCONAME="SOURCE" VERSION="1" LANGU="E" DESCRIPT="Table of Strings" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="ABAP_DEV" CREATEDON="20070313" CHANGEDBY="BCUSER" CHANGEDON="20090728" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="TABLE_OF_STRINGS"/>
+  <parameter CLSNAME="ZSAPLINK_PROGRAM" CMPNAME="CREATE_SOURCE" SCONAME="ATTRIBS" VERSION="1" LANGU="E" DESCRIPT="Generated Table for View TRDIR" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="ABAP_DEV" CREATEDON="20070313" CHANGEDBY="BCUSER" CHANGEDON="20090728" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="TRDIR"/>
+  <source>method CREATE_SOURCE.
+*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
 *|   SAPlink is free software; you can redistribute it and/or modify   |
@@ -734,7 +842,6 @@ endmethod.</source>
 *|   Free Software Foundation, Inc.,                                   |
 *|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
 *\---------------------------------------------------------------------/
-method CREATE_SOURCE .
 data _objName type TROBJ_NAME.
 data progLine type PROGDIR.
 data titleInfo type trdirti.
@@ -763,9 +870,10 @@ data miniReport type table_of_strings.
 
 endmethod.</source>
  </method>
- <method CLSNAME="ZSAPLINK_PROGRAM" CMPNAME="CREATE_TEXTPOOL" VERSION="1" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="1 " DISPID="0 " AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="620" BCMTDCAT="00" BCMTDSYN="0">
-  <parameter CLSNAME="ZSAPLINK_PROGRAM" CMPNAME="CREATE_TEXTPOOL" SCONAME="TEXTPOOLNODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
-  <source>*/---------------------------------------------------------------------\
+ <method CLSNAME="ZSAPLINK_PROGRAM" CMPNAME="CREATE_TEXTPOOL" VERSION="1" LANGU="E" DESCRIPT="Create Text Pool" EXPOSURE="0" STATE="1" EDITORDER="1 " DISPID="0 " AUTHOR="ABAP_DEV" CREATEDON="20070313" CHANGEDBY="HEILMANR" CHANGEDON="20100118" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_PROGRAM" CMPNAME="CREATE_TEXTPOOL" SCONAME="TEXTPOOLNODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="ABAP_DEV" CREATEDON="20070313" CHANGEDBY="BCUSER" CHANGEDON="20090728" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
+  <source>method CREATE_TEXTPOOL.
+*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
 *|   SAPlink is free software; you can redistribute it and/or modify   |
@@ -783,7 +891,6 @@ endmethod.</source>
 *|   Free Software Foundation, Inc.,                                   |
 *|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
 *\---------------------------------------------------------------------/
-method CREATE_TEXTPOOL .
 data textPoolTable type standard table of textPool.
 data textPoolRow type textPool.
 data langIterator type ref to if_ixml_node_iterator.
@@ -846,7 +953,8 @@ data _state(1) type c.
 endmethod.</source>
  </method>
  <method CLSNAME="ZSAPLINK" CMPNAME="DELETEOBJECT" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
-  <source>*/---------------------------------------------------------------------\
+  <source>method DELETEOBJECT.
+*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
 *|   SAPlink is free software; you can redistribute it and/or modify   |
@@ -864,7 +972,6 @@ endmethod.</source>
 *|   Free Software Foundation, Inc.,                                   |
 *|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
 *\---------------------------------------------------------------------/
-method DELETEOBJECT .
 
 data program type sy-repid.
 
@@ -904,9 +1011,10 @@ ENDIF.
 
 endmethod.</source>
  </method>
- <method CLSNAME="ZSAPLINK_PROGRAM" CMPNAME="DEQUEUE_ABAP" VERSION="1" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="2 " DISPID="0 " AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" R3RELEASE="620" BCMTDCAT="00" BCMTDSYN="0">
-  <exception CLSNAME="ZSAPLINK_PROGRAM" CMPNAME="DEQUEUE_ABAP" SCONAME="ZCX_SAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 " AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDON="00000000"/>
-  <source>*/---------------------------------------------------------------------\
+ <method CLSNAME="ZSAPLINK_PROGRAM" CMPNAME="DEQUEUE_ABAP" VERSION="1" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="2 " DISPID="0 " AUTHOR="ABAP_DEV" CREATEDON="20070313" CHANGEDBY="BCUSER" CHANGEDON="20090728" MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
+  <exception CLSNAME="ZSAPLINK_PROGRAM" CMPNAME="DEQUEUE_ABAP" SCONAME="ZCX_SAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 " AUTHOR="ABAP_DEV" CREATEDON="20070313" CHANGEDBY="BCUSER" CHANGEDON="20090728"/>
+  <source>method DEQUEUE_ABAP.
+*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
 *|   SAPlink is free software; you can redistribute it and/or modify   |
@@ -924,7 +1032,6 @@ endmethod.</source>
 *|   Free Software Foundation, Inc.,                                   |
 *|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
 *\---------------------------------------------------------------------/
-method DEQUEUE_ABAP .
 
   call function &apos;RS_ACCESS_PERMISSION&apos;
        exporting
@@ -962,9 +1069,10 @@ method DEQUEUE_ABAP .
 
 endmethod.</source>
  </method>
- <method CLSNAME="ZSAPLINK_PROGRAM" CMPNAME="ENQUEUE_ABAP" VERSION="1" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="5 " DISPID="0 " AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" R3RELEASE="620" BCMTDCAT="00" BCMTDSYN="0">
-  <exception CLSNAME="ZSAPLINK_PROGRAM" CMPNAME="ENQUEUE_ABAP" SCONAME="ZCX_SAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 " AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDON="00000000"/>
-  <source>*/---------------------------------------------------------------------\
+ <method CLSNAME="ZSAPLINK_PROGRAM" CMPNAME="ENQUEUE_ABAP" VERSION="1" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="6 " DISPID="0 " AUTHOR="ABAP_DEV" CREATEDON="20070313" CHANGEDBY="HEILMANR" CHANGEDON="20100118" MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
+  <exception CLSNAME="ZSAPLINK_PROGRAM" CMPNAME="ENQUEUE_ABAP" SCONAME="ZCX_SAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 " AUTHOR="ABAP_DEV" CREATEDON="20070313" CHANGEDBY="BCUSER" CHANGEDON="20090728"/>
+  <source>method ENQUEUE_ABAP.
+*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
 *|   SAPlink is free software; you can redistribute it and/or modify   |
@@ -982,7 +1090,6 @@ endmethod.</source>
 *|   Free Software Foundation, Inc.,                                   |
 *|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
 *\---------------------------------------------------------------------/
-method ENQUEUE_ABAP .
 
 
   call function &apos;RS_ACCESS_PERMISSION&apos;
@@ -1028,7 +1135,8 @@ method ENQUEUE_ABAP .
 endmethod.</source>
  </method>
  <method CLSNAME="ZSAPLINK" CMPNAME="GETOBJECTTYPE" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
-  <source>*/---------------------------------------------------------------------\
+  <source>method GETOBJECTTYPE.
+*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
 *|   SAPlink is free software; you can redistribute it and/or modify   |
@@ -1046,13 +1154,94 @@ endmethod.</source>
 *|   Free Software Foundation, Inc.,                                   |
 *|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
 *\---------------------------------------------------------------------/
-method GETOBJECTTYPE .
   objectType = &apos;PROG&apos;. &quot;ABAP Program
 endmethod.</source>
  </method>
- <method CLSNAME="ZSAPLINK_PROGRAM" CMPNAME="GET_DYNPRO" VERSION="1" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="7 " DISPID="0 " AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="620" BCMTDCAT="00" BCMTDSYN="0">
-  <parameter CLSNAME="ZSAPLINK_PROGRAM" CMPNAME="GET_DYNPRO" SCONAME="DYNP_NODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDON="00000000" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
-  <source>*/---------------------------------------------------------------------\
+ <method CLSNAME="ZSAPLINK_PROGRAM" CMPNAME="GET_DOCUMENTATION" VERSION="1" LANGU="E" DESCRIPT="Get Documentation" EXPOSURE="0" STATE="1" EDITORDER="7 " DISPID="0 " AUTHOR="HEILMANR" CREATEDON="20100118" CHANGEDBY="HEILMANR" CHANGEDON="20100118" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_PROGRAM" CMPNAME="GET_DOCUMENTATION" SCONAME="DOCNODE" VERSION="1" LANGU="E" DESCRIPT="Documentation Node" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="HEILMANR" CREATEDON="20100118" CHANGEDON="00000000" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
+  <source>method GET_DOCUMENTATION.
+
+  data languageNode   type ref to if_ixml_element.
+  DATA txtlines_node TYPE REF TO if_ixml_element.
+  DATA rc            TYPE sysubrc.
+  DATA _objtype      TYPE string.
+
+  Types: BEGIN OF t_dokhl,
+          id          TYPE dokhl-id,
+          object      TYPE dokhl-object,
+          langu       type dokhl-langu,
+          typ         TYPE dokhl-typ,
+          dokversion  TYPE dokhl-dokversion,
+         END OF t_dokhl.
+
+  data lt_dokhl type table of t_dokhl.
+  data ls_dokhl like line of lt_dokhl.
+
+  DATA lt_lines TYPE TABLE OF tline.
+  DATA ls_lines LIKE LINE OF lt_lines.
+
+  data lv_str type string.
+  DATA _objname TYPE e071-obj_name.
+
+  _objname = objname.
+
+* Check against database
+  SELECT  id object langu typ dokversion
+        INTO corresponding fields of table lt_dokhl
+           FROM dokhl
+             WHERE id = &apos;RE&apos;
+                AND object = _objname.
+
+* Use only most recent version.
+  sort lt_dokhl by id object langu typ ascending dokversion descending.
+  delete adjacent duplicates from lt_dokhl comparing id object typ langu.
+
+  docNode = xmlDoc-&gt;create_element( &apos;programDocumentation&apos; ).
+
+* Make sure there is at least one record here.
+  clear ls_dokhl.
+  read table lt_dokhl into ls_dokhl index 1.
+  if sy-subrc &lt;&gt; 0.
+    return.
+  endif.
+
+* Set docNode object attribute
+  lv_str = ls_dokhl-object.
+  rc = docNode-&gt;set_attribute( name = &apos;OBJECT&apos; value = lv_Str ).
+
+  Loop at lt_dokhl into ls_dokhl.
+
+* Create language node, and set attribute
+    languageNode = xmlDoc-&gt;create_element( &apos;language&apos; ).
+    lv_str = ls_dokhl-langu.
+    rc = languageNode-&gt;set_attribute( name = &apos;SPRAS&apos; value = lv_Str ).
+
+* Read the documentation text
+    CALL FUNCTION &apos;DOCU_READ&apos;
+      EXPORTING
+        id      = ls_dokhl-id
+        langu   = ls_dokhl-langu
+        object  = ls_dokhl-object
+        typ     = ls_dokhl-typ
+        version = ls_dokhl-dokversion
+      TABLES
+        line    = lt_lines.
+
+* Write records to XML node
+    LOOP AT lt_lines INTO ls_lines.
+      txtlines_node = xmlDoc-&gt;create_element( `textLine` ).
+      me-&gt;setattributesfromstructure( node = txtlines_node structure = ls_lines ).
+      rc = languageNode-&gt;append_child( txtlines_node ).
+    ENDLOOP.
+    rc = docNode-&gt;append_child( languageNode ) .
+  Endloop.
+
+endmethod.</source>
+ </method>
+ <method CLSNAME="ZSAPLINK_PROGRAM" CMPNAME="GET_DYNPRO" VERSION="1" LANGU="E" DESCRIPT="Get Dynpro(Screen)" EXPOSURE="0" STATE="1" EDITORDER="9 " DISPID="0 " AUTHOR="ABAP_DEV" CREATEDON="20070313" CHANGEDBY="HEILMANR" CHANGEDON="20100118" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_PROGRAM" CMPNAME="GET_DYNPRO" SCONAME="DYNP_NODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="ABAP_DEV" CREATEDON="20070313" CHANGEDBY="BCUSER" CHANGEDON="20090728" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
+  <source>method GET_DYNPRO.
+*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
 *|   SAPlink is free software; you can redistribute it and/or modify   |
@@ -1070,7 +1259,6 @@ endmethod.</source>
 *|   Free Software Foundation, Inc.,                                   |
 *|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
 *\---------------------------------------------------------------------/
-method get_dynpro.
 
   types: begin of tdynp,
          prog type d020s-prog,
@@ -1196,9 +1384,10 @@ method get_dynpro.
 
 endmethod.</source>
  </method>
- <method CLSNAME="ZSAPLINK_PROGRAM" CMPNAME="GET_PFSTATUS" VERSION="1" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="9 " DISPID="0 " AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="620" BCMTDCAT="00" BCMTDSYN="0">
-  <parameter CLSNAME="ZSAPLINK_PROGRAM" CMPNAME="GET_PFSTATUS" SCONAME="PFSTAT_NODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDON="00000000" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
-  <source>*/---------------------------------------------------------------------\
+ <method CLSNAME="ZSAPLINK_PROGRAM" CMPNAME="GET_PFSTATUS" VERSION="1" LANGU="E" DESCRIPT="Get Gui Status" EXPOSURE="0" STATE="1" EDITORDER="11 " DISPID="0 " AUTHOR="ABAP_DEV" CREATEDON="20070313" CHANGEDBY="HEILMANR" CHANGEDON="20100118" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_PROGRAM" CMPNAME="GET_PFSTATUS" SCONAME="PFSTAT_NODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="ABAP_DEV" CREATEDON="20070313" CHANGEDBY="BCUSER" CHANGEDON="20090728" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
+  <source>method GET_PFSTATUS.
+*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
 *|   SAPlink is free software; you can redistribute it and/or modify   |
@@ -1216,7 +1405,6 @@ endmethod.</source>
 *|   Free Software Foundation, Inc.,                                   |
 *|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
 *\---------------------------------------------------------------------/
-method get_pfstatus.
 
   data: ista type table of rsmpe_stat,
         ifun type table of rsmpe_funt,
@@ -1395,9 +1583,10 @@ method get_pfstatus.
 
 endmethod.</source>
  </method>
- <method CLSNAME="ZSAPLINK_PROGRAM" CMPNAME="GET_TEXTPOOL" VERSION="1" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="3 " DISPID="0 " AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="620" BCMTDCAT="00" BCMTDSYN="0">
-  <parameter CLSNAME="ZSAPLINK_PROGRAM" CMPNAME="GET_TEXTPOOL" SCONAME="TEXTNODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDON="00000000" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
-  <source>*/---------------------------------------------------------------------\
+ <method CLSNAME="ZSAPLINK_PROGRAM" CMPNAME="GET_TEXTPOOL" VERSION="1" LANGU="E" DESCRIPT="Get Text Pool" EXPOSURE="0" STATE="1" EDITORDER="3 " DISPID="0 " AUTHOR="ABAP_DEV" CREATEDON="20070313" CHANGEDBY="HEILMANR" CHANGEDON="20100118" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_PROGRAM" CMPNAME="GET_TEXTPOOL" SCONAME="TEXTNODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="ABAP_DEV" CREATEDON="20070313" CHANGEDBY="BCUSER" CHANGEDON="20090728" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
+  <source>method GET_TEXTPOOL.
+*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
 *|   SAPlink is free software; you can redistribute it and/or modify   |
@@ -1415,7 +1604,6 @@ endmethod.</source>
 *|   Free Software Foundation, Inc.,                                   |
 *|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
 *\---------------------------------------------------------------------/
-method GET_TEXTPOOL .
 
 data aText type ref to if_ixml_element.
 data textPoolTable type standard table of TEXTPOOL.
@@ -1454,11 +1642,12 @@ data languageNode type ref to if_ixml_element.
 
 endmethod.</source>
  </method>
- <method CLSNAME="ZSAPLINK_PROGRAM" CMPNAME="TRANSPORT_COPY" VERSION="1" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="6 " DISPID="0 " AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" R3RELEASE="620" BCMTDCAT="00" BCMTDSYN="0">
-  <parameter CLSNAME="ZSAPLINK_PROGRAM" CMPNAME="TRANSPORT_COPY" SCONAME="AUTHOR" VERSION="1" LANGU="E" DESCRIPT="SAP System, User Logon Name" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="SYUNAME"/>
-  <parameter CLSNAME="ZSAPLINK_PROGRAM" CMPNAME="TRANSPORT_COPY" SCONAME="DEVCLASS" VERSION="1" LANGU="E" DESCRIPT="Package" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="DEVCLASS"/>
-  <exception CLSNAME="ZSAPLINK_PROGRAM" CMPNAME="TRANSPORT_COPY" SCONAME="ZCX_SAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 " AUTHOR="USRRQ00" CREATEDON="20061130" CHANGEDON="00000000"/>
-  <source>*/---------------------------------------------------------------------\
+ <method CLSNAME="ZSAPLINK_PROGRAM" CMPNAME="TRANSPORT_COPY" VERSION="1" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="8 " DISPID="0 " AUTHOR="ABAP_DEV" CREATEDON="20070313" CHANGEDBY="HEILMANR" CHANGEDON="20100118" MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_PROGRAM" CMPNAME="TRANSPORT_COPY" SCONAME="AUTHOR" VERSION="1" LANGU="E" DESCRIPT="SAP System, User Logon Name" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="ABAP_DEV" CREATEDON="20070313" CHANGEDBY="BCUSER" CHANGEDON="20090728" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="SYUNAME"/>
+  <parameter CLSNAME="ZSAPLINK_PROGRAM" CMPNAME="TRANSPORT_COPY" SCONAME="DEVCLASS" VERSION="1" LANGU="E" DESCRIPT="Package" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="ABAP_DEV" CREATEDON="20070313" CHANGEDBY="BCUSER" CHANGEDON="20090728" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="DEVCLASS"/>
+  <exception CLSNAME="ZSAPLINK_PROGRAM" CMPNAME="TRANSPORT_COPY" SCONAME="ZCX_SAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 " AUTHOR="ABAP_DEV" CREATEDON="20070313" CHANGEDBY="BCUSER" CHANGEDON="20090728"/>
+  <source>method TRANSPORT_COPY.
+*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
 *|   SAPlink is free software; you can redistribute it and/or modify   |
@@ -1476,7 +1665,6 @@ endmethod.</source>
 *|   Free Software Foundation, Inc.,                                   |
 *|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
 *\---------------------------------------------------------------------/
-method TRANSPORT_COPY .
 
 
   CALL FUNCTION &apos;RS_CORR_INSERT&apos;
