@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<PROG NAME="Z_ZAKE_SVN_TEST" VARCL="X" SUBC="1" CNAM="BCUSER" CDAT="20091214" UNAM="BCUSER" UDAT="20100130" VERN="000065" RSTAT="T" RMAND="000" RLOAD="E" FIXPT="X" SDATE="20100130" STIME="203846" IDATE="20100130" ITIME="203846" UCCHECK="X">
+ <textPool>
+  <language SPRAS="E">
+   <textElement ID="R" ENTRY="ZAKE SVN Test" LENGTH="13 "/>
+  </language>
+ </textPool>
+ <programDocumentation/>
+ <source>*&amp;---------------------------------------------------------------------*
+*&amp; Report  Z_ZAKE_SVN_TEST
+*&amp;
+*&amp;---------------------------------------------------------------------*
+*&amp;
+*&amp;
+*&amp;---------------------------------------------------------------------*
+
+REPORT  z_zake_svn_test.
+
+CONSTANTS cl_svn TYPE seoclsname VALUE &apos;ZCL_ZAKE_SVN&apos;.
+CONSTANTS cl_tortoise_svn TYPE seoclsname VALUE &apos;ZCL_ZAKE_TORTOISE_SVN&apos;.
+
+DATA package TYPE devclass.
+DATA lt_packages TYPE TABLE OF devclass.
+DATA zake    TYPE REF TO zake.
+DATA objects TYPE scts_tadir.
+DATA object  LIKE LINE OF objects.
+DATA objtype TYPE string.
+DATA objname TYPE string.
+DATA nuggetname TYPE string.
+DATA comment_str TYPE string.
+DATA loclpath_str TYPE string.
+DATA svnpath_str TYPE string.
+DATA username_str TYPE string.
+DATA password_str TYPE string.
+DATA class TYPE seoclsname.
+
+DATA: ex TYPE REF TO zcx_saplink,
+      message TYPE string.
+
+SELECTION-SCREEN BEGIN OF BLOCK a WITH FRAME TITLE a.
+PARAMETERS:
+  checkout TYPE flag RADIOBUTTON GROUP act,
+  update   TYPE flag RADIOBUTTON GROUP act DEFAULT &apos;X&apos;,
+  checkin  TYPE flag RADIOBUTTON GROUP act.
+SELECTION-SCREEN END OF BLOCK a.
+
+SELECTION-SCREEN BEGIN OF BLOCK b WITH FRAME TITLE b.
+PARAMETERS:
+  svn      TYPE flag RADIOBUTTON GROUP cl,
+  tortoise TYPE flag RADIOBUTTON GROUP cl.
+SELECTION-SCREEN END OF BLOCK b.
+
+SELECTION-SCREEN BEGIN OF BLOCK c WITH FRAME TITLE c.
+PARAMETERS:
+  loclpath TYPE char512 DEFAULT &apos;C:/Projects/test/&apos; LOWER CASE OBLIGATORY,
+*  loclpath TYPE char512 DEFAULT &apos;C:/Projects/testlocal&apos; LOWER CASE OBLIGATORY,
+  nuggetna TYPE char512 DEFAULT &apos;C:/Projects/zake_svn_test.nugg&apos; LOWER CASE OBLIGATORY,
+  svnpath  TYPE char512 DEFAULT &apos;svn://svn.computerservice-wolf.com/zakesvntest/&apos; LOWER CASE OBLIGATORY,
+  revision TYPE i,
+*  svnpath  TYPE char512 DEFAULT &apos;svn://localhost/test&apos; LOWER CASE OBLIGATORY,
+  comment  TYPE char512 DEFAULT &apos;&apos; LOWER CASE,
+** Instead of providing the Username &amp; Password in clear text here
+** you can insert an entry in the Table ZAKE_USERDATA
+*  username TYPE char512 DEFAULT &apos;sdn&apos; LOWER CASE,
+*  password TYPE char512 DEFAULT &apos;test&apos; LOWER CASE,
+  testrun  TYPE flag    DEFAULT &apos;X&apos;.
+SELECTION-SCREEN END OF BLOCK c.
+
+INITIALIZATION.
+  a = &apos;Action&apos;.
+  b = &apos;Version Controll Program&apos;.
+  c = &apos;Parameters&apos;.
+
+START-OF-SELECTION.
+* Loop around the Packages which are returned for the Select Options select
+  svnpath_str  = svnpath.
+  loclpath_str = loclpath.
+*  username_str = username.
+*  password_str = password.
+  TRY.
+      &quot; Classes
+      object-object   = &apos;CLAS&apos;.
+      object-obj_name = &apos;ZCL_SVNTEST&apos;.
+      APPEND object TO objects.
+      object-object   = &apos;CLAS&apos;.
+      object-obj_name = &apos;ZCL_SVNTEST2&apos;.
+      APPEND object TO objects.
+      &quot; Programms
+      object-object   = &apos;PROG&apos;.
+      object-obj_name = &apos;ZSVNTESTPROG&apos;.
+      APPEND object TO objects.
+      object-object   = &apos;PROG&apos;.
+      object-obj_name = &apos;ZSVNTESTPROG2&apos;.
+      APPEND object TO objects.
+      &quot; DDIC Objects
+      &quot; Domain
+      object-object   = &apos;DOMA&apos;.
+      object-obj_name = &apos;ZSVNTESTDOMAIN&apos;.
+      APPEND object TO objects.
+      &quot; Data Element
+      object-object   = &apos;DTEL&apos;.
+      object-obj_name = &apos;ZSVNTEST_DATA_ELEMENT&apos;.
+      APPEND object TO objects.
+      &quot; Structure
+      object-object   = &apos;TABL&apos;.
+      object-obj_name = &apos;ZSVNTESTSTRUCTURE&apos;.
+      APPEND object TO objects.
+      &quot; Table
+      object-object   = &apos;TTYP&apos;.
+      object-obj_name = &apos;ZSVNTESTTABLE&apos;.
+      APPEND object TO objects.
+      &quot; Database Table
+      object-object   = &apos;TABL&apos;.
+      object-obj_name = &apos;ZSVNTEST_DB_TAB&apos;.
+      APPEND object TO objects.
+      &quot; View
+      object-object   = &apos;VIEW&apos;.
+      object-obj_name = &apos;ZSVNTEST_VIEW&apos;.
+      APPEND object TO objects.
+
+      IF svn = &apos;X&apos;.
+        class = cl_svn.
+      ELSE.
+        class = cl_tortoise_svn.
+      ENDIF.
+
+      CREATE OBJECT zake
+        TYPE
+          (class)
+        EXPORTING
+          i_svnpath   = svnpath_str
+          i_localpath = loclpath_str
+*            i_username  = username_str
+*            i_password  = password_str
+          .
+      zake-&gt;set_package( &apos;ZSVNTEST&apos; ).
+      zake-&gt;set_checkin_objects( objects ).
+
+      IF checkin = &apos;X&apos;.
+
+        nuggetname = nuggetna.
+        zake-&gt;create_slinkees( nuggetname ).
+
+        IF testrun IS INITIAL.
+          comment_str = comment.
+          zake-&gt;checkin( comment_str ).
+        ENDIF.
+      ELSE.
+        IF update = &apos;X&apos;.
+          zake-&gt;update( ).
+        ELSE.
+          zake-&gt;checkout( revision ).
+        ENDIF.
+        zake-&gt;install_slinkees_from_lm( testrun ).
+        IF testrun IS INITIAL.
+          LOOP AT objects INTO object.
+            objtype = object-object.
+            objname = object-obj_name.
+            zake-&gt;activate(
+                i_objtype = objtype
+                i_objname = objname
+            ).
+          ENDLOOP.
+        ENDIF.
+      ENDIF.
+    CATCH zcx_saplink INTO ex.
+      message = ex-&gt;get_text( ).
+      WRITE: / &apos;An Error occured: &apos;, message.
+  ENDTRY.</source>
+</PROG>

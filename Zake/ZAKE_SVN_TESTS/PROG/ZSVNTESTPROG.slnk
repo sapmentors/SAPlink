@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<PROG NAME="ZSVNTESTPROG" VARCL="X" SUBC="1" CNAM="BCUSER" CDAT="20091219" UNAM="BCUSER" UDAT="20100130" VERN="000030" RSTAT="K" RMAND="000" RLOAD="E" FIXPT="X" SDATE="20100130" STIME="203846" IDATE="20100130" ITIME="203846" UCCHECK="X">
+ <textPool/>
+ <programDocumentation/>
+ <source>*&amp;---------------------------------------------------------------------*
+*&amp; Report  ZSVNTESTPROG
+*&amp;
+*&amp;---------------------------------------------------------------------*
+*&amp; 2009-12-19 Change on System B
+*&amp; 2009-12-19 21:18 CET Change on System A
+*&amp; 2009-12-21 16:45 CET Another Change
+*&amp; 2009-12-21 18:40 Demo for Ryan
+*&amp; 2009-12-21 20:50 Get it back from ABAP Versioning
+*&amp; 2010-01-09 10:53 CET Update to test authentication with username
+*&amp;                      and Password from table ZAKE_USERDATA
+*&amp;---------------------------------------------------------------------*
+
+REPORT  zsvntestprog.
+
+WRITE: / &apos;This is a Test Program for ZAKE Subversion.&apos;.
+WRITE: / &apos;This change was done on System B.&apos;.
+WRITE: / &apos;This change was done on System A.&apos;.
+WRITE: / &apos;Change at 2009-12-21 20:29 CET&apos;.
+WRITE: / &apos;Change on Revision 6&apos;.</source>
+</PROG>

@@ -1,0 +1,818 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<nugget name="C:/Projects/Zake/ZAKE_SVN/build/NUGG_ZAKE_SVN.nugg">
+ <CLAS CLSNAME="ZCL_ZAKE_SVN" VERSION="1" LANGU="E" DESCRIPT="Subversion extension of ZAKE" UUID="DF0DD6C13DBE6AF1B37C000C29B7D360" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" AUTHOR="BCUSER" CREATEDON="20100130" CHANGEDON="00000000" CHGDANYON="00000000" CLSCCINCL="X" FIXPT="X" UNICODE="X" R3RELEASE="702" CLSBCCAT="00" DURATION_TYPE="0 " RISK_LEVEL="0 " REFCLSNAME="ZAKE">
+  <publicSection>class ZCL_ZAKE_SVN definition
+  public
+  inheriting from ZAKE
+  create public .
+
+*&quot;* public components of class ZCL_ZAKE_SVN
+*&quot;* do not include other source files here!!!
+public section.
+
+  methods CHECKIN
+    redefinition .
+  methods CHECKOUT
+    redefinition .
+  methods UPDATE
+    redefinition .</publicSection>
+  <protectedSection>*&quot;* protected components of class ZCL_ZAKE_SVN
+*&quot;* do not include other source files here!!!
+protected section.
+
+  methods ADD_SLINKEE_TO_VERSIONCONTROL
+    redefinition .</protectedSection>
+  <privateSection>*&quot;* private components of class ZCL_ZAKE_SVN
+*&quot;* do not include other source files here!!!
+private section.
+
+  methods CHECK_SVN_STATUS_AND_ADD_TO_VC
+    raising
+      ZCX_SAPLINK .
+  methods EXECUTE_SVN_COMMAND
+    importing
+      !I_COMMAND type STRING
+    returning
+      value(E_COMMAND_OUTPUT) type STRING_TABLE
+    raising
+      ZCX_SAPLINK .</privateSection>
+  <localImplementation>*&quot;* local class implementation for public class*&quot;* use this source file for the implementation part of*&quot;* local helper classes</localImplementation>
+  <localTypes>*&quot;* use this source file for any type declarations (class*&quot;* definitions, interfaces or data types) you need for method*&quot;* implementation or private method&apos;s signature</localTypes>
+  <localMacros>*&quot;* use this source file for any macro definitions you need*&quot;* in the implementation part of the class</localMacros>
+  <textPool/>
+  <classDocumentation/>
+  <inheritance CLSNAME="ZCL_ZAKE_SVN" REFCLSNAME="ZAKE" VERSION="1" STATE="1" AUTHOR="BCUSER" CREATEDON="20100130" CHANGEDON="00000000">
+   <redefinition CLSNAME="ZCL_ZAKE_SVN" REFCLSNAME="ZAKE" VERSION="1" MTDNAME="ADD_SLINKEE_TO_VERSIONCONTROL"/>
+   <redefinition CLSNAME="ZCL_ZAKE_SVN" REFCLSNAME="ZAKE" VERSION="1" MTDNAME="CHECKIN"/>
+   <redefinition CLSNAME="ZCL_ZAKE_SVN" REFCLSNAME="ZAKE" VERSION="1" MTDNAME="CHECKOUT"/>
+   <redefinition CLSNAME="ZCL_ZAKE_SVN" REFCLSNAME="ZAKE" VERSION="1" MTDNAME="UPDATE"/>
+  </inheritance>
+  <method CLSNAME="ZAKE" CMPNAME="ADD_SLINKEE_TO_VERSIONCONTROL" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+   <source>method ADD_SLINKEE_TO_VERSIONCONTROL.
+  DATA command TYPE string.
+
+  IF NOT i_folderpath IS INITIAL.
+    CONCATENATE &apos;add&apos; i_folderpath INTO command SEPARATED BY space.
+    me-&gt;execute_svn_command( command ).
+  ENDIF.
+
+  CONCATENATE &apos;add&apos; i_fullpath INTO command SEPARATED BY space.
+  me-&gt;execute_svn_command( command ).
+
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZAKE" CMPNAME="CHECKIN" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+   <source>method CHECKIN.
+
+  DATA command TYPE string.
+  DATA message TYPE string.
+
+  &quot; Before everything can be checked in, we have to check
+  &quot; with the status command that all files and folders are
+  &quot; under version controll
+  me-&gt;check_svn_status_and_add_to_vc( ).
+
+  IF i_comment IS INITIAL.
+    message = &apos;No comment was provided&apos;.
+    RAISE EXCEPTION TYPE zcx_saplink
+      EXPORTING
+        textid = zcx_saplink=&gt;error_message
+        msg    = message.
+  ENDIF.
+
+  CONCATENATE &apos;commit&apos; path
+    INTO command SEPARATED BY space.
+
+  IF NOT i_comment IS INITIAL.
+    CONCATENATE command &apos;-m&apos; &apos;&quot;&apos; INTO command SEPARATED BY space.
+    CONCATENATE command i_comment &apos;&quot;&apos; INTO command.
+  ENDIF.
+
+  IF NOT me-&gt;username IS INITIAL.
+    CONCATENATE command &apos;--username&apos; me-&gt;username INTO command SEPARATED BY space.
+  ENDIF.
+
+  IF NOT me-&gt;password IS INITIAL.
+    CONCATENATE command &apos;--password&apos; me-&gt;password INTO command SEPARATED BY space.
+  ENDIF.
+
+  me-&gt;execute_svn_command( command ).
+
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZAKE" CMPNAME="CHECKOUT" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+   <source>method CHECKOUT.
+  DATA command TYPE string.
+  DATA rev_str type string.
+
+  CONCATENATE &apos;checkout&apos; url path
+    INTO command SEPARATED BY space.
+
+  IF NOT i_revision IS INITIAL.
+    rev_str = i_revision.
+    CONCATENATE command &apos;-r&apos; rev_str INTO command SEPARATED BY space.
+  ENDIF.
+
+  IF NOT username IS INITIAL.
+    CONCATENATE command &apos;--username&apos; username INTO command SEPARATED BY space.
+  ENDIF.
+
+  IF NOT password IS INITIAL.
+    CONCATENATE command &apos;--password&apos; password INTO command SEPARATED BY space.
+  ENDIF.
+
+  me-&gt;execute_svn_command( command ).
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZCL_ZAKE_SVN" CMPNAME="CHECK_SVN_STATUS_AND_ADD_TO_VC" VERSION="1" LANGU="E" DESCRIPT="Check SVN status and add to Version Control" EXPOSURE="0" STATE="1" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100130" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
+   <exception CLSNAME="ZCL_ZAKE_SVN" CMPNAME="CHECK_SVN_STATUS_AND_ADD_TO_VC" SCONAME="ZCX_SAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 " AUTHOR="BCUSER" CREATEDON="20100130" CHANGEDON="00000000"/>
+   <source>method CHECK_SVN_STATUS_AND_ADD_TO_VC.
+  DATA command TYPE string.
+  DATA command_output	TYPE string_table.
+  FIELD-SYMBOLS: &lt;line&gt; TYPE string.
+  DATA status TYPE string.
+  DATA path   TYPE string.
+
+  CONCATENATE &apos;status&apos; me-&gt;path
+    INTO command SEPARATED BY space.
+
+  command_output[] = me-&gt;execute_svn_command( command ).
+
+  LOOP AT command_output ASSIGNING &lt;line&gt;.
+    &quot; We read the output of the SVN status command
+    &quot; a ? indicates a file, that is not yet under Version Controll
+    &quot; this file we have to add to  Version Controll
+    SPLIT &lt;line&gt; AT &apos;       &apos; INTO status path.
+    IF status = &apos;?&apos;.
+      WRITE: / &apos;status:&apos;, status, &apos;path:&apos;, path.
+      me-&gt;add_slinkee_to_versioncontrol( path ).
+    ENDIF.
+  ENDLOOP.
+
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZCL_ZAKE_SVN" CMPNAME="EXECUTE_SVN_COMMAND" VERSION="1" LANGU="E" DESCRIPT="Excecute SVN Command" EXPOSURE="0" STATE="1" EDITORDER="2 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100130" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZCL_ZAKE_SVN" CMPNAME="EXECUTE_SVN_COMMAND" SCONAME="I_COMMAND" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100130" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
+   <parameter CLSNAME="ZCL_ZAKE_SVN" CMPNAME="EXECUTE_SVN_COMMAND" SCONAME="E_COMMAND_OUTPUT" VERSION="1" LANGU="E" DESCRIPT="Table of Strings" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100130" CHANGEDON="00000000" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="1" TYPE="STRING_TABLE"/>
+   <exception CLSNAME="ZCL_ZAKE_SVN" CMPNAME="EXECUTE_SVN_COMMAND" SCONAME="ZCX_SAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 " AUTHOR="BCUSER" CREATEDON="20100130" CHANGEDON="00000000"/>
+   <source>method EXECUTE_SVN_COMMAND.
+  DATA: temp_dir TYPE string.
+  DATA: std_out_file TYPE string.
+  DATA: parameter TYPE string.
+*  DATA: application TYPE string VALUE &apos;C:\Programme\Subversion\bin\svn.exe&apos;.
+* The svn-script contains this:
+*  @echo off
+*  rem echo %2 %3 %4 %5 %6 %7 %8 %9 %1
+*  C:\Programme\Subversion\bin\svn.exe %2 %3 %4 %5 %6 %7 %8 %9 &gt; %1 2&gt;&amp;1
+*  rem pause
+  DATA: application TYPE string VALUE &apos;C:\Projects\svn-script.cmd&apos;.
+  DATA: line        TYPE string.
+  DATA: rc          TYPE i.
+  DATA: result      TYPE abap_bool.
+
+  DATA: message TYPE string.
+
+  WRITE: / i_command.
+*
+* Run the Subversion Command via the cl_gui_frontend_services=&gt;execute Method
+*
+* cl_gui_frontend_services=&gt;execute does not return anything
+* so we have to write the output to a file in the temp-directory
+* and read that to display the output to the user
+*
+* So let&apos;s start finding the SAP GUI Workdir which we will
+* use as our temp-directory
+  cl_gui_frontend_services=&gt;get_sapgui_workdir(
+    CHANGING
+      sapworkdir            = temp_dir
+    EXCEPTIONS
+      get_sapworkdir_failed = 1
+      cntl_error            = 2
+      error_no_gui          = 3
+      not_supported_by_gui  = 4
+      others                = 5
+  ).
+  IF sy-subrc &lt;&gt; 0 OR temp_dir IS INITIAL.
+    IF temp_dir IS INITIAL.
+      message = &apos;temp_dir is initial&apos;.
+    ELSE.
+      message = sy-subrc.
+      CONCATENATE &apos;Error to get_temp_directory return code:&apos; message
+        INTO message SEPARATED BY space.
+    ENDIF.
+    RAISE EXCEPTION TYPE zcx_saplink
+      EXPORTING
+        textid = zcx_saplink=&gt;error_message
+        msg    = message.
+  ENDIF.
+
+  CONCATENATE temp_dir &apos;\svn-std-out.txt&apos; INTO std_out_file.
+** With svn.exe
+*  CONCATENATE command &apos;&gt; &quot;&apos; INTO parameter SEPARATED BY space.
+*  CONCATENATE parameter std_out_file &apos;&quot; 2&gt;&amp;1&apos; INTO parameter.
+* With svn-script.cmd
+  CONCATENATE &apos;&quot;&apos; std_out_file &apos;&quot;&apos; INTO parameter.
+  CONCATENATE parameter i_command INTO parameter SEPARATED BY space.
+
+  cl_gui_frontend_services=&gt;execute(
+    EXPORTING
+       application            = application    &quot; Path and Name of Application
+       parameter              = parameter   &quot; Parameter for Application
+       minimized              = &apos;X&apos;   &quot; Show Window Minimized
+       synchronous            = &apos;X&apos;    &quot; When &apos;X&apos;: Runs the Application in Synchronous Mode
+    EXCEPTIONS
+      cntl_error             = 1
+      error_no_gui           = 2
+      bad_parameter          = 3
+      file_not_found         = 4
+      path_not_found         = 5
+      file_extension_unknown = 6
+      error_execute_failed   = 7
+      synchronous_failed     = 8
+      not_supported_by_gui   = 9
+      OTHERS                 = 10
+  ).
+  IF sy-subrc &lt;&gt; 0.
+    message = sy-subrc.
+    CONCATENATE &apos;Error to execute command:&apos; message
+      INTO message SEPARATED BY space.
+    RAISE EXCEPTION TYPE zcx_saplink
+      EXPORTING
+        textid = zcx_saplink=&gt;error_message
+        msg    = message.
+  ENDIF.
+
+  cl_gui_frontend_services=&gt;file_exist(
+    EXPORTING
+      file                 = std_out_file    &quot; File to Check
+    RECEIVING
+       result               = result    &quot; Result
+  ).
+
+  IF result = &apos;X&apos;.
+    cl_gui_frontend_services=&gt;gui_upload(
+      EXPORTING
+        filename                = std_out_file    &quot; Name of file
+        filetype                = &apos;ASC&apos;    &quot; File Type (ASCII, Binary)
+      CHANGING
+        data_tab                = e_command_output    &quot; Transfer table for file contents
+    ).
+    LOOP AT e_command_output INTO line.
+      WRITE: / line.
+    ENDLOOP.
+
+    cl_gui_frontend_services=&gt;file_delete(
+      EXPORTING
+        filename             = std_out_file    &quot; Name of the file to be deleted
+      CHANGING
+        rc                   = rc    &quot; Return code
+      EXCEPTIONS
+        file_delete_failed   = 1
+        cntl_error           = 2
+        error_no_gui         = 3
+        file_not_found       = 4
+        access_denied        = 5
+        unknown_error        = 6
+        not_supported_by_gui = 7
+        wrong_parameter      = 8
+        OTHERS               = 9
+    ).
+    IF sy-subrc &lt;&gt; 0.
+      message = sy-subrc.
+      CONCATENATE &apos;Error to delete file:&apos; message
+        INTO message SEPARATED BY space.
+      RAISE EXCEPTION TYPE zcx_saplink
+        EXPORTING
+          textid = zcx_saplink=&gt;error_message
+          msg    = message.
+    ENDIF.
+  ENDIF.
+**
+** Alternatively we can run the command using a system command defined in SM69
+**
+*  DATA: params TYPE btcxpgpar.
+*  DATA: long_params TYPE  char1024.
+*  DATA: exec_protocol TYPE lca_tracefile_tab,
+*        ls_exec_protocol LIKE LINE OF exec_protocol.
+*
+*  params = command.
+*
+*  CALL FUNCTION &apos;SXPG_COMMAND_EXECUTE_LONG&apos;
+*    EXPORTING
+*      commandname                   = &apos;ZSVN&apos;
+*      additional_parameters         = params
+*    TABLES
+*      exec_protocol                 = exec_protocol
+*    EXCEPTIONS
+*      no_permission                 = 1
+*      command_not_found             = 2
+*      parameters_too_long           = 3
+*      security_risk                 = 4
+*      wrong_check_call_interface    = 5
+*      program_start_error           = 6
+*      program_termination_error     = 7
+*      x_error                       = 8
+*      parameter_expected            = 9
+*      too_many_parameters           = 10
+*      illegal_command               = 11
+*      wrong_asynchronous_parameters = 12
+*      cant_enq_tbtco_entry          = 13
+*      jobcount_generation_error     = 14
+*      OTHERS                        = 15.
+*
+*  IF sy-subrc &lt;&gt; 0.
+*    message = sy-subrc.
+*    RAISE EXCEPTION TYPE zcx_saplink
+*      EXPORTING
+*        textid = zcx_saplink=&gt;error_message
+*        msg    = message.
+*  ELSE.
+*    LOOP AT exec_protocol INTO ls_exec_protocol.
+*      WRITE: / ls_exec_protocol-message.
+*    ENDLOOP.
+*  ENDIF.
+
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZAKE" CMPNAME="UPDATE" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+   <source>method UPDATE.
+  DATA command TYPE string.
+  DATA rev_str TYPE string.
+
+  CONCATENATE &apos;update&apos; path
+    INTO command SEPARATED BY space.
+
+  IF NOT username IS INITIAL.
+    CONCATENATE command &apos;--username&apos; username INTO command SEPARATED BY space.
+  ENDIF.
+
+  IF NOT password IS INITIAL.
+    CONCATENATE command &apos;--password&apos; password INTO command SEPARATED BY space.
+  ENDIF.
+
+  me-&gt;execute_svn_command( command ).
+endmethod.</source>
+  </method>
+ </CLAS>
+ <CLAS CLSNAME="ZCL_ZAKE_TORTOISE_SVN" VERSION="1" LANGU="E" DESCRIPT="Tortoise SVN extension of ZAKE" UUID="DF0DD6C13DBE70F1B37C000C29B7D360" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" AUTHOR="BCUSER" CREATEDON="20100130" CHANGEDON="00000000" CHGDANYON="00000000" CLSCCINCL="X" FIXPT="X" UNICODE="X" R3RELEASE="702" CLSBCCAT="00" DURATION_TYPE="0 " RISK_LEVEL="0 " REFCLSNAME="ZAKE">
+  <publicSection>class ZCL_ZAKE_TORTOISE_SVN definition
+  public
+  inheriting from ZAKE
+  create public .
+
+*&quot;* public components of class ZCL_ZAKE_TORTOISE_SVN
+*&quot;* do not include other source files here!!!
+public section.
+
+  methods CHECKIN
+    redefinition .
+  methods CHECKOUT
+    redefinition .
+  methods UPDATE
+    redefinition .</publicSection>
+  <protectedSection>*&quot;* protected components of class ZCL_ZAKE_TORTOISE_SVN
+*&quot;* do not include other source files here!!!
+protected section.</protectedSection>
+  <privateSection>*&quot;* private components of class ZCL_ZAKE_TORTOISE_SVN
+*&quot;* do not include other source files here!!!
+private section.
+
+  methods CHECK_SVN_STATUS_AND_ADD_TO_VC
+    raising
+      ZCX_SAPLINK .
+  methods EXECUTE_SVN_COMMAND
+    importing
+      !I_COMMAND type STRING
+    returning
+      value(E_COMMAND_OUTPUT) type STRING_TABLE .</privateSection>
+  <localImplementation>*&quot;* local class implementation for public class
+*&quot;* use this source file for the implementation part of
+*&quot;* local helper classes</localImplementation>
+  <localTypes>*&quot;* use this source file for any type declarations (class
+*&quot;* definitions, interfaces or data types) you need for method
+*&quot;* implementation or private method&apos;s signature</localTypes>
+  <localMacros>*&quot;* use this source file for any macro definitions you need
+*&quot;* in the implementation part of the class</localMacros>
+  <textPool/>
+  <classDocumentation/>
+  <inheritance CLSNAME="ZCL_ZAKE_TORTOISE_SVN" REFCLSNAME="ZAKE" VERSION="1" STATE="1" AUTHOR="BCUSER" CREATEDON="20100130" CHANGEDON="00000000">
+   <redefinition CLSNAME="ZCL_ZAKE_TORTOISE_SVN" REFCLSNAME="ZAKE" VERSION="1" MTDNAME="CHECKIN"/>
+   <redefinition CLSNAME="ZCL_ZAKE_TORTOISE_SVN" REFCLSNAME="ZAKE" VERSION="1" MTDNAME="CHECKOUT"/>
+   <redefinition CLSNAME="ZCL_ZAKE_TORTOISE_SVN" REFCLSNAME="ZAKE" VERSION="1" MTDNAME="UPDATE"/>
+  </inheritance>
+  <method CLSNAME="ZAKE" CMPNAME="CHECKIN" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+   <source>method CHECKIN.
+  DATA command TYPE string.
+  DATA message TYPE string.
+
+  &quot; Before everything can be checked in, we have to check
+  &quot; with the status command that all files and folders are
+  &quot; under version controll
+  me-&gt;check_svn_status_and_add_to_vc( ).
+
+  IF i_comment IS INITIAL.
+    message = &apos;No comment was provided&apos;.
+    RAISE EXCEPTION TYPE zcx_saplink
+      EXPORTING
+        textid = zcx_saplink=&gt;error_message
+        msg    = message.
+  ENDIF.
+
+  CONCATENATE &apos;/command:commit /path:&apos; path INTO command.
+
+  IF NOT i_comment IS INITIAL.
+    CONCATENATE command &apos;/logmsg:&quot;&apos; INTO command SEPARATED BY space.
+    CONCATENATE command i_comment &apos;&quot;&apos; INTO command.
+  ENDIF.
+
+  CONCATENATE command &apos;/notempfile /closeonend:1&apos; INTO command SEPARATED BY space.
+
+  me-&gt;execute_svn_command( command ).
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZAKE" CMPNAME="CHECKOUT" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+   <source>method CHECKOUT.
+  DATA command TYPE string.
+  DATA rev_str TYPE string.
+
+  CONCATENATE &apos;/command:checkout /url:&apos; url &apos; /path:&apos; path
+    INTO command.
+
+  IF NOT i_revision IS INITIAL.
+    rev_str = i_revision.
+    CONCATENATE command &apos; /rev:&apos; rev_str INTO command.
+  ENDIF.
+
+  CONCATENATE command &apos;/notempfile /closeonend:1&apos; INTO command SEPARATED BY space.
+
+  me-&gt;execute_svn_command( command ).
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZCL_ZAKE_TORTOISE_SVN" CMPNAME="CHECK_SVN_STATUS_AND_ADD_TO_VC" VERSION="1" LANGU="E" DESCRIPT="Check SVN status and add to Version Control" EXPOSURE="0" STATE="1" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100130" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
+   <exception CLSNAME="ZCL_ZAKE_TORTOISE_SVN" CMPNAME="CHECK_SVN_STATUS_AND_ADD_TO_VC" SCONAME="ZCX_SAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 " AUTHOR="BCUSER" CREATEDON="20100130" CHANGEDON="00000000"/>
+   <source>method CHECK_SVN_STATUS_AND_ADD_TO_VC.
+  DATA command TYPE string.
+  DATA command_output	TYPE string_table.
+  FIELD-SYMBOLS: &lt;line&gt; TYPE string.
+  DATA status TYPE string.
+  DATA path   TYPE string.
+
+  CONCATENATE &apos;/command:repostatus /path:&apos; me-&gt;path
+    INTO command.
+  CONCATENATE command &apos;/notempfile /closeonend:1&apos;
+    INTO command SEPARATED BY space.
+
+  command_output[] = me-&gt;execute_svn_command( command ).
+
+*  LOOP AT command_output ASSIGNING &lt;line&gt;.
+*    &quot; We read the output of the SVN status command
+*    &quot; a ? indicates a file, that is not yet under Version Controll
+*    &quot; this file we have to add to  Version Controll
+*    SPLIT &lt;line&gt; AT &apos;       &apos; INTO status path.
+*    IF status = &apos;?&apos;.
+*      WRITE: / &apos;status:&apos;, status, &apos;path:&apos;, path.
+*      me-&gt;add_slinkee_to_versioncontrol( path ).
+*    ENDIF.
+*  ENDLOOP.
+
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZCL_ZAKE_TORTOISE_SVN" CMPNAME="EXECUTE_SVN_COMMAND" VERSION="1" LANGU="E" DESCRIPT="Excecute SVN Command" EXPOSURE="0" STATE="1" EDITORDER="2 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100130" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZCL_ZAKE_TORTOISE_SVN" CMPNAME="EXECUTE_SVN_COMMAND" SCONAME="I_COMMAND" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100130" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
+   <parameter CLSNAME="ZCL_ZAKE_TORTOISE_SVN" CMPNAME="EXECUTE_SVN_COMMAND" SCONAME="E_COMMAND_OUTPUT" VERSION="1" LANGU="E" DESCRIPT="Table of Strings" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100130" CHANGEDON="00000000" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="1" TYPE="STRING_TABLE"/>
+   <source>method EXECUTE_SVN_COMMAND.
+  DATA: temp_dir TYPE string.
+  DATA: std_out_file TYPE string.
+  DATA: parameter TYPE string.
+*  DATA: application TYPE string VALUE &apos;C:\Programme\TortoiseSVN\bin\TortoiseProc.exe&apos;.
+* The tortoise-svn-script.cmd contains this:
+*  @echo off
+*  rem echo %2 %3 %4 %5 %6 %7 %8 %9 %1
+*  C:\Programme\TortoiseSVN\bin\TortoiseProc.exe %2 %3 %4 %5 %6 %7 %8 %9 &gt; %1 2&gt;&amp;1
+*  rem pause
+  DATA: application TYPE string VALUE &apos;C:\Projects\tortoise-svn-script.cmd&apos;.
+  DATA: line        TYPE string.
+  DATA: rc          TYPE i.
+  DATA: result      TYPE abap_bool.
+
+  DATA: message TYPE string.
+
+  WRITE: / i_command.
+*
+* Run the Subversion Command via the cl_gui_frontend_services=&gt;execute Method
+*
+* cl_gui_frontend_services=&gt;execute does not return anything
+* so we have to write the output to a file in the temp-directory
+* and read that to display the output to the user
+*
+* So let&apos;s start finding the SAP GUI Workdir which we will
+* use as our temp-directory
+  cl_gui_frontend_services=&gt;get_sapgui_workdir(
+    CHANGING
+      sapworkdir            = temp_dir
+    EXCEPTIONS
+      get_sapworkdir_failed = 1
+      cntl_error            = 2
+      error_no_gui          = 3
+      not_supported_by_gui  = 4
+      OTHERS                = 5
+  ).
+  IF sy-subrc &lt;&gt; 0 OR temp_dir IS INITIAL.
+    IF temp_dir IS INITIAL.
+      message = &apos;temp_dir is initial&apos;.
+    ELSE.
+      message = sy-subrc.
+      CONCATENATE &apos;Error to get_temp_directory return code:&apos; message
+        INTO message SEPARATED BY space.
+    ENDIF.
+    RAISE EXCEPTION TYPE zcx_saplink
+      EXPORTING
+        textid = zcx_saplink=&gt;error_message
+        msg    = message.
+  ENDIF.
+
+  CONCATENATE temp_dir &apos;\svn-std-out.txt&apos; INTO std_out_file.
+** With svn.exe
+*  CONCATENATE command &apos;&gt; &quot;&apos; INTO parameter SEPARATED BY space.
+*  CONCATENATE parameter std_out_file &apos;&quot; 2&gt;&amp;1&apos; INTO parameter.
+* With svn-script.cmd
+  CONCATENATE &apos;&quot;&apos; std_out_file &apos;&quot;&apos; INTO parameter.
+  CONCATENATE parameter i_command INTO parameter SEPARATED BY space.
+
+  cl_gui_frontend_services=&gt;execute(
+    EXPORTING
+       application            = application    &quot; Path and Name of Application
+       parameter              = parameter   &quot; Parameter for Application
+       minimized              = &apos;X&apos;   &quot; Show Window Minimized
+       synchronous            = &apos;X&apos;    &quot; When &apos;X&apos;: Runs the Application in Synchronous Mode
+    EXCEPTIONS
+      cntl_error             = 1
+      error_no_gui           = 2
+      bad_parameter          = 3
+      file_not_found         = 4
+      path_not_found         = 5
+      file_extension_unknown = 6
+      error_execute_failed   = 7
+      synchronous_failed     = 8
+      not_supported_by_gui   = 9
+      OTHERS                 = 10
+  ).
+  IF sy-subrc &lt;&gt; 0.
+    message = sy-subrc.
+    CONCATENATE &apos;Error to execute command:&apos; message
+      INTO message SEPARATED BY space.
+    RAISE EXCEPTION TYPE zcx_saplink
+      EXPORTING
+        textid = zcx_saplink=&gt;error_message
+        msg    = message.
+  ENDIF.
+
+  cl_gui_frontend_services=&gt;file_exist(
+    EXPORTING
+      file                 = std_out_file    &quot; File to Check
+    RECEIVING
+       result               = result    &quot; Result
+  ).
+
+  IF result = &apos;X&apos;.
+    cl_gui_frontend_services=&gt;gui_upload(
+      EXPORTING
+        filename                = std_out_file    &quot; Name of file
+        filetype                = &apos;ASC&apos;    &quot; File Type (ASCII, Binary)
+      CHANGING
+        data_tab                = e_command_output    &quot; Transfer table for file contents
+    ).
+    LOOP AT e_command_output INTO line.
+      WRITE: / line.
+    ENDLOOP.
+
+    cl_gui_frontend_services=&gt;file_delete(
+      EXPORTING
+        filename             = std_out_file    &quot; Name of the file to be deleted
+      CHANGING
+        rc                   = rc    &quot; Return code
+      EXCEPTIONS
+        file_delete_failed   = 1
+        cntl_error           = 2
+        error_no_gui         = 3
+        file_not_found       = 4
+        access_denied        = 5
+        unknown_error        = 6
+        not_supported_by_gui = 7
+        wrong_parameter      = 8
+        OTHERS               = 9
+    ).
+    IF sy-subrc &lt;&gt; 0.
+      message = sy-subrc.
+      CONCATENATE &apos;Error to delete file:&apos; message
+        INTO message SEPARATED BY space.
+      RAISE EXCEPTION TYPE zcx_saplink
+        EXPORTING
+          textid = zcx_saplink=&gt;error_message
+          msg    = message.
+    ENDIF.
+  ENDIF.
+
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZAKE" CMPNAME="UPDATE" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+   <source>method UPDATE.
+  DATA command TYPE string.
+  DATA rev_str TYPE string.
+
+  CONCATENATE &apos;/command:update /path:&apos; path
+    INTO command.
+
+  CONCATENATE command &apos;/notempfile /closeonend:1&apos; INTO command SEPARATED BY space.
+
+  me-&gt;execute_svn_command( command ).
+endmethod.</source>
+  </method>
+ </CLAS>
+ <PROG NAME="Z_ZAKE_SVN" VARCL="X" SUBC="1" CNAM="BCUSER" CDAT="20100105" UNAM="BCUSER" UDAT="20100131" VERN="000052" RSTAT="T" RMAND="000" RLOAD="E" FIXPT="X" SDATE="20100131" STIME="174950" IDATE="20100131" ITIME="174950" UCCHECK="X">
+  <textPool>
+   <language SPRAS="E">
+    <textElement ID="R" ENTRY="Program Z_ZAKE_SVN" LENGTH="18 "/>
+   </language>
+  </textPool>
+  <programDocumentation/>
+  <source>*&amp;---------------------------------------------------------------------*
+*&amp; Report  Z_ZAKE_SVN
+*&amp;
+*&amp;---------------------------------------------------------------------*
+*&amp; Checkout / Checkin the ZAKE_SVN Project
+*&amp;
+*&amp;---------------------------------------------------------------------*
+
+REPORT  z_zake_svn.
+
+CONSTANTS cl_svn TYPE seoclsname VALUE &apos;ZCL_ZAKE_SVN&apos;.
+CONSTANTS cl_tortoise_svn TYPE seoclsname VALUE &apos;ZCL_ZAKE_TORTOISE_SVN&apos;.
+
+DATA package TYPE devclass.
+DATA zake    TYPE REF TO zake.
+DATA objects TYPE scts_tadir.
+DATA zake_objects TYPE scts_tadir.
+DATA test_objects TYPE scts_tadir.
+DATA object  LIKE LINE OF objects.
+DATA zake_nuggetname TYPE string.
+DATA zake_svn_nuggetname TYPE string.
+DATA zake_svn_tests_nuggetname TYPE string.
+DATA comment_str TYPE string.
+DATA loclpath_str TYPE string.
+DATA svnpath_str TYPE string.
+DATA username_str TYPE string.
+DATA password_str TYPE string.
+DATA class TYPE seoclsname.
+
+DATA: ex TYPE REF TO zcx_saplink,
+      message TYPE string.
+
+SELECTION-SCREEN BEGIN OF BLOCK a WITH FRAME TITLE a.
+PARAMETERS:
+  checkout TYPE flag RADIOBUTTON GROUP act,
+  update   TYPE flag RADIOBUTTON GROUP act DEFAULT &apos;X&apos;,
+  checkin  TYPE flag RADIOBUTTON GROUP act.
+SELECTION-SCREEN END OF BLOCK a.
+
+SELECTION-SCREEN BEGIN OF BLOCK b WITH FRAME TITLE b.
+PARAMETERS:
+  svn      TYPE flag RADIOBUTTON GROUP cl,
+  tortoise TYPE flag RADIOBUTTON GROUP cl.
+SELECTION-SCREEN END OF BLOCK b.
+
+SELECTION-SCREEN BEGIN OF BLOCK c WITH FRAME TITLE c.
+PARAMETERS:
+*  loclpath TYPE char512 DEFAULT &apos;C:/Projects/zakesvn&apos; LOWER CASE OBLIGATORY,
+  loclpath TYPE char512 DEFAULT &apos;C:/Projects/Zake&apos; LOWER CASE OBLIGATORY,
+*  loclpath TYPE char512 DEFAULT &apos;C:/Projects/Zake&apos; LOWER CASE OBLIGATORY,
+  zakenugg TYPE char512 DEFAULT &apos;C:/Projects/Zake/ZAKE/build/NUGG_ZAKE.nugg&apos; LOWER CASE OBLIGATORY,
+  zsvnnugg TYPE char512 DEFAULT &apos;C:/Projects/Zake/ZAKE_SVN/build/NUGG_ZAKE_SVN.nugg&apos; LOWER CASE OBLIGATORY,
+  zsvntnug TYPE char512 DEFAULT &apos;C:/Projects/Zake/ZAKE_SVN_TESTS/build/NUGG_ZAKE_SVN_TESTS.nugg&apos; LOWER CASE OBLIGATORY,
+*  svnpath  TYPE char512 DEFAULT &apos;svn://localhost/zake&apos; LOWER CASE OBLIGATORY,
+*  svnpath  TYPE char512 DEFAULT &apos;svn://svn.computerservice-wolf.com/Zake&apos; LOWER CASE OBLIGATORY,
+  svnpath  TYPE char512 DEFAULT &apos;https://saplink.googlecode.com/svn/trunk/Zake&apos; LOWER CASE OBLIGATORY,
+  comment  TYPE char512 DEFAULT &apos;&apos; LOWER CASE,
+*  username TYPE char512 LOWER CASE,
+*  password TYPE char512 LOWER CASE,
+  testrun  TYPE flag   DEFAULT &apos;X&apos;.
+SELECTION-SCREEN END OF BLOCK c.
+
+INITIALIZATION.
+  a = &apos;Action&apos;.
+  b = &apos;Version Controll Program&apos;.
+  c = &apos;Parameters&apos;.
+
+START-OF-SELECTION.
+
+  svnpath_str  = svnpath.
+  loclpath_str = loclpath.
+  zake_nuggetname     = zakenugg.
+  zake_svn_nuggetname = zsvnnugg.
+  zake_svn_tests_nuggetname = zsvntnug.
+  comment_str = comment.
+
+  &quot; Main Classes
+  object-object   = &apos;CLAS&apos;.
+  object-obj_name = &apos;ZAKE&apos;.
+  APPEND object TO zake_objects.
+  &quot; Database Table
+  object-object   = &apos;TABL&apos;.
+  object-obj_name = &apos;ZAKE_USERDATA&apos;.
+  APPEND object TO zake_objects.
+  &quot; ZAKE_SVN Classes
+  object-object   = &apos;CLAS&apos;.
+  object-obj_name = &apos;ZCL_ZAKE_SVN&apos;.
+  APPEND object TO objects.
+  object-object   = &apos;CLAS&apos;.
+  object-obj_name = &apos;ZCL_ZAKE_TORTOISE_SVN&apos;.
+  APPEND object TO objects.
+  &quot; Checkin / Checkout Program
+  object-object   = &apos;PROG&apos;.
+  object-obj_name = &apos;Z_ZAKE_SVN&apos;.
+  APPEND object TO objects.
+  &quot; Test Objects
+  object-object   = &apos;CLAS&apos;.
+  object-obj_name = &apos;ZCL_SVNTEST&apos;.
+  APPEND object TO test_objects.
+  object-object   = &apos;CLAS&apos;.
+  object-obj_name = &apos;ZCL_SVNTEST2&apos;.
+  APPEND object TO test_objects.
+  object-object   = &apos;PROG&apos;.
+  object-obj_name = &apos;ZSVNTESTPROG&apos;.
+  APPEND object TO test_objects.
+  object-object   = &apos;PROG&apos;.
+  object-obj_name = &apos;ZSVNTESTPROG2&apos;.
+  APPEND object TO test_objects.
+  &quot; Test Checkin / Checkout Program
+  object-object   = &apos;PROG&apos;.
+  object-obj_name = &apos;Z_ZAKE_SVN_TEST&apos;.
+  APPEND object TO test_objects.
+  &quot; DDIC Objects
+  &quot; Domain
+  object-object   = &apos;DOMA&apos;.
+  object-obj_name = &apos;ZSVNTESTDOMAIN&apos;.
+  APPEND object TO test_objects.
+  &quot; Data Element
+  object-object   = &apos;DTEL&apos;.
+  object-obj_name = &apos;ZSVNTEST_DATA_ELEMENT&apos;.
+  APPEND object TO test_objects.
+  &quot; Structure
+  object-object   = &apos;TABL&apos;.
+  object-obj_name = &apos;ZSVNTESTSTRUCTURE&apos;.
+  APPEND object TO test_objects.
+  &quot; Table
+  object-object   = &apos;TTYP&apos;.
+  object-obj_name = &apos;ZSVNTESTTABLE&apos;.
+  APPEND object TO test_objects.
+  &quot; Database Table
+  object-object   = &apos;TABL&apos;.
+  object-obj_name = &apos;ZSVNTEST_DB_TAB&apos;.
+  APPEND object TO test_objects.
+  &quot; View
+  object-object   = &apos;VIEW&apos;.
+  object-obj_name = &apos;ZSVNTEST_VIEW&apos;.
+  APPEND object TO test_objects.
+  TRY.
+      IF svn = &apos;X&apos;.
+        class = cl_svn.
+      ELSE.
+        class = cl_tortoise_svn.
+      ENDIF.
+
+      CREATE OBJECT zake
+        TYPE
+          (class)
+        EXPORTING
+          i_svnpath   = svnpath_str
+          i_localpath = loclpath_str.
+      zake-&gt;set_testrun( testrun ).
+
+      IF checkin = &apos;X&apos;.
+        zake-&gt;set_package( &apos;ZAKE&apos; ).
+        zake-&gt;set_checkin_objects( zake_objects ).
+        zake-&gt;create_slinkees( zake_nuggetname ).
+        zake-&gt;set_package( &apos;ZAKE_SVN&apos; ).
+        zake-&gt;set_checkin_objects( objects ).
+        zake-&gt;create_slinkees( zake_svn_nuggetname ).
+        zake-&gt;set_package( &apos;ZAKE_SVN_TESTS&apos; ).
+        zake-&gt;set_checkin_objects( test_objects ).
+        zake-&gt;create_slinkees( zake_svn_tests_nuggetname ).
+        IF testrun IS INITIAL.
+          zake-&gt;checkin( comment_str ).
+        ENDIF.
+      ELSE.
+        IF update = &apos;X&apos;.
+          zake-&gt;update( ).
+        ELSE.
+          zake-&gt;checkout( ).
+        ENDIF.
+        &quot; zake-&gt;install_slinkees_from_lm( testrun ).
+        zake-&gt;install_objects( objects ).
+      ENDIF.
+    CATCH zcx_saplink INTO ex.
+      message = ex-&gt;get_text( ).
+      WRITE: / &apos;An Error occured: &apos;, message.
+  ENDTRY.</source>
+ </PROG>
+</nugget>

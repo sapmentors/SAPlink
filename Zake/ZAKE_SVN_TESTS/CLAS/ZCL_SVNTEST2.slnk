@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<CLAS CLSNAME="ZCL_SVNTEST2" VERSION="1" LANGU="E" DESCRIPT="ZAKE Subversion Test Class" UUID="DEFA0E77E20DC1F1B37D00059A3C7800" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" AUTHOR="BCUSER" CREATEDON="20100105" CHANGEDBY="BCUSER" CHANGEDON="20100130" CHGDANYON="00000000" CLSCCINCL="X" FIXPT="X" UNICODE="X" R3RELEASE="702" CLSBCCAT="00" DURATION_TYPE="0 " RISK_LEVEL="0 ">
+ <publicSection>class ZCL_SVNTEST2 definition
+  public
+  create public .
+
+*&quot;* public components of class ZCL_SVNTEST2
+*&quot;* do not include other source files here!!!
+public section.
+
+  class-methods HELLO_WORLD .</publicSection>
+ <protectedSection>*&quot;* protected components of class ZCL_SVNTEST
+*&quot;* do not include other source files here!!!
+protected section.</protectedSection>
+ <privateSection>*&quot;* private components of class ZCL_SVNTEST
+*&quot;* do not include other source files here!!!
+private section.</privateSection>
+ <localImplementation>*&quot;* local class implementation for public class
+*&quot;* use this source file for the implementation part of
+*&quot;* local helper classes</localImplementation>
+ <localTypes>*&quot;* use this source file for any type declarations (class
+*&quot;* definitions, interfaces or data types) you need for method
+*&quot;* implementation or private method&apos;s signature</localTypes>
+ <localMacros>*&quot;* use this source file for any macro definitions you need
+*&quot;* in the implementation part of the class</localMacros>
+ <textPool/>
+ <classDocumentation OBJECT="ZCL_SVNTEST2">
+  <language SPRAS="E">
+   <textLine TDFORMAT="U1" TDLINE="&amp;FUNCTIONALITY&amp;"/>
+   <textLine TDFORMAT="AS" TDLINE="Test class for SAPLink Export via ZAKE (ABAP Make)."/>
+   <textLine TDFORMAT="U1" TDLINE="&amp;RELATIONS&amp;"/>
+   <textLine TDFORMAT="AS"/>
+   <textLine TDFORMAT="U1" TDLINE="&amp;EXAMPLE&amp;"/>
+   <textLine TDFORMAT="AS"/>
+   <textLine TDFORMAT="U1" TDLINE="&amp;HINTS&amp;"/>
+   <textLine TDFORMAT="AS"/>
+   <textLine TDFORMAT="U1" TDLINE="&amp;FURTHER_SOURCES_OF_INF&amp;"/>
+   <textLine TDFORMAT="AS"/>
+  </language>
+ </classDocumentation>
+ <method CLSNAME="ZCL_SVNTEST2" CMPNAME="HELLO_WORLD" VERSION="1" LANGU="E" DESCRIPT="Hello World" EXPOSURE="2" STATE="1" EDITORDER="0 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100108" CHANGEDBY="BCUSER" CHANGEDON="20100130" MTDTYPE="0" MTDDECLTYP="1" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
+  <source>method HELLO_WORLD.
+* 2010-01-05, Gregor Wolf: Initial Version
+  WRITE: / &apos;Check the checkin also with a Class&apos;.
+endmethod.</source>
+ </method>
+</CLAS>
