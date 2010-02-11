@@ -50,7 +50,15 @@ protected section.
       !DOCNODE type ref to IF_IXML_ELEMENT .
   methods GET_DOCUMENTATION
     returning
-      value(DOCNODE) type ref to IF_IXML_ELEMENT .</privateSection>
+      value(DOCNODE) type ref to IF_IXML_ELEMENT .
+  methods GET_METHOD_DOCUMENTATION
+    importing
+      !METHOD_KEY type SEOCPDKEY
+    returning
+      value(DOCNODE) type ref to IF_IXML_ELEMENT .
+  methods CREATE_METHOD_DOCUMENTATION
+    importing
+      !METHDOCNODE type ref to IF_IXML_ELEMENT .</privateSection>
  <localImplementation>*&quot;* local class implementation for public class
 *&quot;* use this source file for the implementation part of
 *&quot;* local helper classes</localImplementation>
@@ -123,6 +131,7 @@ data not_active TYPE  SEOX_BOOLEAN.
     exists = &apos;X&apos;.
   endif.
 endmethod.</source>
+  <methodDocumentation/>
  </method>
  <method CLSNAME="ZSAPLINK" CMPNAME="CREATEIXMLDOCFROMOBJECT" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
   <source>method CREATEIXMLDOCFROMOBJECT.
@@ -154,6 +163,7 @@ endmethod.</source>
   DATA localmacros TYPE REF TO if_ixml_element.
   data textPoolNode type ref to if_ixml_element.
   data docuNode type ref to if_ixml_element.
+  data methodDocuNode  type ref to if_ixml_element.
   DATA rootnode TYPE REF TO if_ixml_element.
   DATA reportlist TYPE STANDARD TABLE OF string.
   DATA includename TYPE program.
@@ -647,6 +657,10 @@ endmethod.</source>
         rc = sourcenode-&gt;if_ixml_node~set_value( reportstring ).
         rc = methodnode-&gt;append_child( sourcenode ).
       endif.
+** StartInsert Rich - Handle method documenation
+      methodDocuNode = get_method_documentation(  methodkey ).
+      rc = methodnode-&gt;append_child( methodDocuNode ).
+** EndInsert Rich - Handle method documenation
       rc = rootnode-&gt;append_child( methodnode ).
     endif. &quot;is_interface?
   endloop.
@@ -656,6 +670,7 @@ endmethod.</source>
   ixmldocument = xmldoc.
 *// &lt;--ewH: end of logic for interface methods &amp; inheritance redesign
 endmethod.</source>
+  <methodDocumentation/>
  </method>
  <method CLSNAME="ZSAPLINK" CMPNAME="CREATEOBJECTFROMIXMLDOC" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
   <source>method CREATEOBJECTFROMIXMLDOC.
@@ -698,8 +713,9 @@ endmethod.</source>
   DATA aobjname TYPE e071-obj_name.
   DATA inheritancenode TYPE REF TO if_ixml_element.
   DATA redefnode TYPE REF TO if_ixml_element.
-  data textnode  type ref to if_ixml_element.
-  data docnode type ref to if_ixml_element.
+  data textNode  type ref to if_ixml_element.
+  data docNode type ref to if_ixml_element.
+  data methDocNode type ref to if_ixml_element.
   DATA includename TYPE program.
 
 *data excClass type ref to ZCX_SAPLINK.
@@ -1002,6 +1018,12 @@ endmethod.</source>
       node2 ?= iterator2-&gt;get_next( ).
     ENDWHILE.
     APPEND wa_methods TO ch_methods.
+
+** StartInsert Rich - Handle method documenation
+    methdocnode = node-&gt;find_from_name( &apos;methodDocumentation&apos; ).
+    create_method_documentation( methdocnode ).
+** EndInsert Rich - Handle method documenation
+
     node ?= iterator-&gt;get_next( ).
   ENDWHILE.
 *// &lt;--ewH: end redesign method/inheritances
@@ -1300,10 +1322,12 @@ endmethod.</source>
 ** successful install
     WHEN &apos;1&apos;.
       RAISE EXCEPTION TYPE zcx_saplink
-        EXPORTING textid = zcx_saplink=&gt;existing.
+        EXPORTING
+          textid = zcx_saplink=&gt;existing.
     WHEN OTHERS.
       RAISE EXCEPTION TYPE zcx_saplink
-        EXPORTING textid = zcx_saplink=&gt;system_error.
+        EXPORTING
+          textid = zcx_saplink=&gt;system_error.
   ENDCASE.
 
 *ewH:insert pub, prot, and priv sections manually to keep any direct
@@ -1378,6 +1402,7 @@ endmethod.</source>
 
 
 endmethod.</source>
+  <methodDocumentation/>
  </method>
  <method CLSNAME="ZSAPLINK_CLASS" CMPNAME="CREATE_DOCUMENTATION" VERSION="1" LANGU="E" DESCRIPT="Create Documentation" EXPOSURE="0" STATE="1" EDITORDER="4 " DISPID="0 " AUTHOR="HEILMANR" CREATEDON="20100113" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="CREATE_DOCUMENTATION" SCONAME="DOCNODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="HEILMANR" CREATEDON="20100113" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
@@ -1471,6 +1496,101 @@ endmethod.</source>
   ENDWHILE.
 
 endmethod.</source>
+  <methodDocumentation/>
+ </method>
+ <method CLSNAME="ZSAPLINK_CLASS" CMPNAME="CREATE_METHOD_DOCUMENTATION" VERSION="1" LANGU="E" DESCRIPT="Create Method Documentation" EXPOSURE="0" STATE="1" EDITORDER="7 " DISPID="0 " AUTHOR="HEILMANR" CREATEDON="20100211" CHANGEDBY="HEILMANR" CHANGEDON="20100211" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="CREATE_METHOD_DOCUMENTATION" SCONAME="METHDOCNODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="HEILMANR" CREATEDON="20100211" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
+  <source>method CREATE_METHOD_DOCUMENTATION.
+
+  DATA txtline_node     TYPE REF TO if_ixml_element.
+  DATA txtline_filter   TYPE REF TO if_ixml_node_filter.
+  DATA txtline_iterator TYPE REF TO if_ixml_node_iterator.
+
+  DATA lang_node     TYPE REF TO if_ixml_element.
+  DATA lang_filter   TYPE REF TO if_ixml_node_filter.
+  DATA lang_iterator TYPE REF TO if_ixml_node_iterator.
+
+  data obj_name type DOKHL-OBJECT.
+  data classmeth_name type string.
+  data language  type string.
+  data obj_langu type DOKHL-LANGU.
+  data lv_str type string.
+  data rc type sy-subrc.
+
+  DATA lt_lines  TYPE TABLE OF tline.
+  FIELD-SYMBOLS: &lt;ls_lines&gt; LIKE LINE OF lt_lines.
+
+  if methdocnode is not bound.
+    return.
+  endif.
+
+  classmeth_name = methdocNode-&gt;get_attribute( name = &apos;OBJECT&apos; ).
+  obj_name = classmeth_name.
+
+* If no class method name, then there was no class method documenation, just return.
+  if classmeth_name is initial.
+    return.
+  endif.
+
+* Get languages from XML
+  FREE: lang_filter, lang_iterator, lang_node.
+  lang_filter = methdocNode-&gt;create_filter_name( `language` ).
+  lang_iterator = methdocNode-&gt;create_iterator_filtered( lang_filter ).
+  lang_node ?= lang_iterator-&gt;get_next( ).
+  WHILE lang_node IS NOT INITIAL.
+
+    refresh lt_lines.
+    language = lang_node-&gt;get_attribute( name = &apos;SPRAS&apos; ).
+    obj_langu = language.
+
+* Get TextLines from XML
+    FREE: txtline_filter, txtline_iterator, txtline_node.
+    txtline_filter = lang_node-&gt;create_filter_name( `textLine` ).
+    txtline_iterator = lang_node-&gt;create_iterator_filtered( txtline_filter ).
+    txtline_node ?= txtline_iterator-&gt;get_next( ).
+    WHILE txtline_node IS NOT INITIAL.
+      APPEND INITIAL LINE TO lt_lines ASSIGNING &lt;ls_lines&gt;.
+      me-&gt;getstructurefromattributes(
+              EXPORTING   node      = txtline_node
+              CHANGING    structure = &lt;ls_lines&gt; ).
+      txtline_node ?= txtline_iterator-&gt;get_next( ).
+    ENDWHILE.
+
+* Delete any documentation that may currently exist.
+    CALL FUNCTION &apos;DOCU_DEL&apos;
+      EXPORTING
+        id       = &apos;CO&apos;
+        langu    = obj_langu
+        object   = obj_name
+        typ      = &apos;E&apos;
+      EXCEPTIONS
+        ret_code = 1
+        OTHERS   = 2.
+
+* Now update with new documentation text
+    CALL FUNCTION &apos;DOCU_UPD&apos;
+      EXPORTING
+        id       = &apos;CO&apos;
+        langu    = obj_langu
+        object   = obj_name
+        typ      = &apos;E&apos;
+      TABLES
+        line     = lt_lines
+      EXCEPTIONS
+        ret_code = 1
+        OTHERS   = 2.
+    IF sy-subrc &lt;&gt; 0.
+      RAISE EXCEPTION TYPE zcx_saplink
+        EXPORTING
+          textid = zcx_saplink=&gt;error_message
+          msg    = `Class Method Documentation object import failed`.
+    ENDIF.
+
+    lang_node ?= txtline_iterator-&gt;get_next( ).
+  ENDWHILE.
+
+endmethod.</source>
+  <methodDocumentation/>
  </method>
  <method CLSNAME="ZSAPLINK_CLASS" CMPNAME="CREATE_TEXTPOOL" VERSION="1" LANGU="E" DESCRIPT="Create Class Text Pool" EXPOSURE="0" STATE="1" EDITORDER="1 " DISPID="0 " AUTHOR="HEILMANR" CREATEDON="20100113" CHANGEDBY="HEILMANR" CHANGEDON="20100113" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="CREATE_TEXTPOOL" SCONAME="TEXTPOOLNODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="HEILMANR" CREATEDON="20100113" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
@@ -1562,6 +1682,7 @@ endmethod.</source>
     langNode ?= langIterator-&gt;get_next( ).
   endwhile.
 endmethod.</source>
+  <methodDocumentation/>
  </method>
  <method CLSNAME="ZSAPLINK" CMPNAME="DELETEOBJECT" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
   <source>method DELETEOBJECT.
@@ -1618,6 +1739,7 @@ data clsKey type SEOCLSKEY.
     endcase.
   endif.
 endmethod.</source>
+  <methodDocumentation/>
  </method>
  <method CLSNAME="ZSAPLINK_CLASS" CMPNAME="FINDIMPLEMENTINGCLASS" VERSION="1" LANGU="E" DESCRIPT="Find Implementing Class" EXPOSURE="0" STATE="1" EDITORDER="2 " DISPID="0 " AUTHOR="ABAP_DEV" CREATEDON="20070313" CHANGEDBY="HEILMANR" CHANGEDON="20100114" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="FINDIMPLEMENTINGCLASS" SCONAME="METHODNAME" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="ABAP_DEV" CREATEDON="20070313" CHANGEDBY="BCUSER" CHANGEDON="20090728" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
@@ -1678,6 +1800,7 @@ data superClassName type string.
     startClass = superCLassName ).
   endif.
 endmethod.</source>
+  <methodDocumentation/>
  </method>
  <method CLSNAME="ZSAPLINK" CMPNAME="GETOBJECTTYPE" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
   <source>method GETOBJECTTYPE.
@@ -1703,6 +1826,7 @@ endmethod.</source>
   objecttype = &apos;CLAS&apos;.  &quot;Class
 
 endmethod.</source>
+  <methodDocumentation/>
  </method>
  <method CLSNAME="ZSAPLINK_CLASS" CMPNAME="GET_DOCUMENTATION" VERSION="1" LANGU="E" DESCRIPT="Get Documentation" EXPOSURE="0" STATE="1" EDITORDER="5 " DISPID="0 " AUTHOR="HEILMANR" CREATEDON="20100113" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="GET_DOCUMENTATION" SCONAME="DOCNODE" VERSION="1" LANGU="E" DESCRIPT="Documentation Node" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="HEILMANR" CREATEDON="20100113" CHANGEDON="00000000" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
@@ -1784,6 +1908,90 @@ endmethod.</source>
   Endloop.
 
 endmethod.</source>
+  <methodDocumentation/>
+ </method>
+ <method CLSNAME="ZSAPLINK_CLASS" CMPNAME="GET_METHOD_DOCUMENTATION" VERSION="1" LANGU="E" DESCRIPT="Get Method Documentation" EXPOSURE="0" STATE="1" EDITORDER="6 " DISPID="0 " AUTHOR="HEILMANR" CREATEDON="20100211" CHANGEDBY="HEILMANR" CHANGEDON="20100211" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="GET_METHOD_DOCUMENTATION" SCONAME="METHOD_KEY" VERSION="1" LANGU="E" DESCRIPT="Method Key" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="HEILMANR" CREATEDON="20100211" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="SEOCPDKEY"/>
+  <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="GET_METHOD_DOCUMENTATION" SCONAME="DOCNODE" VERSION="1" LANGU="E" DESCRIPT="Documentation Node" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="HEILMANR" CREATEDON="20100211" CHANGEDBY="HEILMANR" CHANGEDON="20100211" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
+  <source>method GET_METHOD_DOCUMENTATION.
+
+  data languageNode   type ref to if_ixml_element.
+  DATA txtlines_node TYPE REF TO if_ixml_element.
+  DATA rc            TYPE sysubrc.
+  DATA _objtype      TYPE string.
+
+  Types: BEGIN OF t_dokhl,
+          id          TYPE dokhl-id,
+          object      TYPE dokhl-object,
+          langu       type dokhl-langu,
+          typ         TYPE dokhl-typ,
+          dokversion  TYPE dokhl-dokversion,
+         END OF t_dokhl.
+
+  data lt_dokhl type table of t_dokhl.
+  data ls_dokhl like line of lt_dokhl.
+
+  DATA lt_lines TYPE TABLE OF tline.
+  DATA ls_lines LIKE LINE OF lt_lines.
+
+  data lv_str type string.
+  DATA _objname TYPE e071-obj_name.
+
+  _objname = method_key.
+
+* Check against database
+  SELECT  id object langu typ dokversion
+        INTO corresponding fields of table lt_dokhl
+           FROM dokhl
+             WHERE id = &apos;CO&apos;
+                AND object = _objname.
+
+* Use only most recent version.
+  sort lt_dokhl by id object langu typ ascending dokversion descending.
+  delete adjacent duplicates from lt_dokhl comparing id object typ langu.
+
+  docNode = xmlDoc-&gt;create_element( &apos;methodDocumentation&apos; ).
+
+* Make sure there is at least one record here.
+  clear ls_dokhl.
+  read table lt_dokhl into ls_dokhl index 1.
+  if sy-subrc &lt;&gt; 0.
+    return.
+  endif.
+
+* Set docNode object attribute
+  lv_str = ls_dokhl-object.
+  rc = docNode-&gt;set_attribute( name = &apos;OBJECT&apos; value = lv_Str ).
+
+  Loop at lt_dokhl into ls_dokhl.
+
+* Create language node, and set attribute
+    languageNode = xmlDoc-&gt;create_element( &apos;language&apos; ).
+    lv_str = ls_dokhl-langu.
+    rc = languageNode-&gt;set_attribute( name = &apos;SPRAS&apos; value = lv_Str ).
+
+* Read the documentation text
+    CALL FUNCTION &apos;DOCU_READ&apos;
+      EXPORTING
+        id      = ls_dokhl-id
+        langu   = ls_dokhl-langu
+        object  = ls_dokhl-object
+        typ     = ls_dokhl-typ
+        version = ls_dokhl-dokversion
+      TABLES
+        line    = lt_lines.
+
+* Write records to XML node
+    LOOP AT lt_lines INTO ls_lines.
+      txtlines_node = xmlDoc-&gt;create_element( `textLine` ).
+      me-&gt;setattributesfromstructure( node = txtlines_node structure = ls_lines ).
+      rc = languageNode-&gt;append_child( txtlines_node ).
+    ENDLOOP.
+    rc = docNode-&gt;append_child( languageNode ) .
+  Endloop.
+
+endmethod.</source>
+  <methodDocumentation/>
  </method>
  <method CLSNAME="ZSAPLINK_CLASS" CMPNAME="GET_TEXTPOOL" VERSION="1" LANGU="E" DESCRIPT="Get Class Text Pool" EXPOSURE="0" STATE="1" EDITORDER="3 " DISPID="0 " AUTHOR="HEILMANR" CREATEDON="20100113" CHANGEDBY="HEILMANR" CHANGEDON="20100113" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="GET_TEXTPOOL" SCONAME="TEXTNODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="HEILMANR" CREATEDON="20100113" CHANGEDON="00000000" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
@@ -1845,5 +2053,6 @@ endmethod.</source>
   endloop.
 
 endmethod.</source>
+  <methodDocumentation/>
  </method>
 </CLAS>
