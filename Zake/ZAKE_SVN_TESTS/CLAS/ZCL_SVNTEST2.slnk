@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<CLAS CLSNAME="ZCL_SVNTEST2" VERSION="1" LANGU="E" DESCRIPT="ZAKE Subversion Test Class" UUID="DEFA0E77E20DC1F1B37D00059A3C7800" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" AUTHOR="BCUSER" CREATEDON="20100105" CHANGEDBY="BCUSER" CHANGEDON="20100130" CHGDANYON="00000000" CLSCCINCL="X" FIXPT="X" UNICODE="X" R3RELEASE="702" CLSBCCAT="00" DURATION_TYPE="0 " RISK_LEVEL="0 ">
+<CLAS CLSNAME="ZCL_SVNTEST2" VERSION="1" LANGU="E" DESCRIPT="ZAKE Subversion Test Class" UUID="DEFA0E77E20DC1F1B37D00059A3C7800" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" AUTHOR="BCUSER" CREATEDON="20100105" CHANGEDBY="BCUSER" CHANGEDON="20100307" CHGDANYON="00000000" CLSCCINCL="X" FIXPT="X" UNICODE="X" R3RELEASE="702" CLSBCCAT="00" DURATION_TYPE="0 " RISK_LEVEL="0 ">
  <publicSection>class ZCL_SVNTEST2 definition
   public
   create public .
@@ -23,7 +23,16 @@ private section.</privateSection>
 *&quot;* implementation or private method&apos;s signature</localTypes>
  <localMacros>*&quot;* use this source file for any macro definitions you need
 *&quot;* in the implementation part of the class</localMacros>
- <textPool/>
+ <textPool>
+  <language SPRAS="D">
+   <textElement ID="I" KEY="001" ENTRY="Prüfen des eincheckens mit einer Klasse" LENGTH="55 "/>
+   <textElement ID="I" KEY="002" ENTRY="Hallo Welt!" LENGTH="12 "/>
+  </language>
+  <language SPRAS="E">
+   <textElement ID="I" KEY="001" ENTRY="Check the checkin also with a Class" LENGTH="55 "/>
+   <textElement ID="I" KEY="002" ENTRY="Hello World!" LENGTH="12 "/>
+  </language>
+ </textPool>
  <classDocumentation OBJECT="ZCL_SVNTEST2">
   <language SPRAS="E">
    <textLine TDFORMAT="U1" TDLINE="&amp;FUNCTIONALITY&amp;"/>
@@ -38,10 +47,26 @@ private section.</privateSection>
    <textLine TDFORMAT="AS"/>
   </language>
  </classDocumentation>
- <method CLSNAME="ZCL_SVNTEST2" CMPNAME="HELLO_WORLD" VERSION="1" LANGU="E" DESCRIPT="Hello World" EXPOSURE="2" STATE="1" EDITORDER="0 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100108" CHANGEDBY="BCUSER" CHANGEDON="20100130" MTDTYPE="0" MTDDECLTYP="1" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
+ <method CLSNAME="ZCL_SVNTEST2" CMPNAME="HELLO_WORLD" VERSION="1" LANGU="E" DESCRIPT="Hello World" EXPOSURE="2" STATE="1" EDITORDER="0 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100206" CHANGEDBY="BCUSER" CHANGEDON="20100307" MTDTYPE="0" MTDDECLTYP="1" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
   <source>method HELLO_WORLD.
 * 2010-01-05, Gregor Wolf: Initial Version
   WRITE: / &apos;Check the checkin also with a Class&apos;.
 endmethod.</source>
+  <methodDocumentation OBJECT="ZCL_SVNTEST2                  HELLO_WORLD">
+   <language SPRAS="E">
+    <textLine TDFORMAT="U1" TDLINE="&amp;FUNCTIONALITY&amp;"/>
+    <textLine TDFORMAT="AS" TDLINE='Output the &quot;Hello World!&quot; greeting.'/>
+    <textLine TDFORMAT="U1" TDLINE="&amp;PRECONDITION&amp;"/>
+    <textLine TDFORMAT="AS"/>
+    <textLine TDFORMAT="U1" TDLINE="&amp;RESULT&amp;"/>
+    <textLine TDFORMAT="AS"/>
+    <textLine TDFORMAT="U1" TDLINE="&amp;PARAMETERS&amp;"/>
+    <textLine TDFORMAT="AS"/>
+    <textLine TDFORMAT="U1" TDLINE="&amp;EXCEPTIONS&amp;"/>
+    <textLine TDFORMAT="AS"/>
+    <textLine TDFORMAT="U1" TDLINE="&amp;HINTS&amp;"/>
+    <textLine TDFORMAT="AS"/>
+   </language>
+  </methodDocumentation>
  </method>
 </CLAS>
