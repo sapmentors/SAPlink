@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<PROG NAME="Z_ZAKE_SVN" VARCL="X" SUBC="1" CNAM="BCUSER" CDAT="20100105" UNAM="BCUSER" UDAT="20100307" VERN="000053" RSTAT="T" RMAND="000" RLOAD="E" FIXPT="X" SDATE="20100307" STIME="112043" IDATE="20100307" ITIME="102050" UCCHECK="X">
+<PROG NAME="Z_ZAKE_SVN" VARCL="X" SUBC="1" CNAM="BCUSER" CDAT="20100105" UNAM="BCUSER" UDAT="20100401" VERN="000059" RSTAT="T" RMAND="000" RLOAD="E" FIXPT="X" SDATE="20100401" STIME="225354" IDATE="20100401" ITIME="225354" UCCHECK="X">
  <textPool>
   <language SPRAS="E">
    <textElement ID="R" ENTRY="Program Z_ZAKE_SVN" LENGTH="18 "/>
@@ -21,19 +21,26 @@ CONSTANTS cl_tortoise_svn TYPE seoclsname VALUE &apos;ZCL_ZAKE_TORTOISE_SVN&apos
 
 DATA package TYPE devclass.
 DATA zake    TYPE REF TO zake.
-DATA objects TYPE scts_tadir.
+
+DATA objects      TYPE scts_tadir.
 DATA zake_objects TYPE scts_tadir.
 DATA test_objects TYPE scts_tadir.
 DATA object  LIKE LINE OF objects.
-DATA zake_nuggetname TYPE string.
-DATA zake_svn_nuggetname TYPE string.
+
+DATA files TYPE string_table.
+DATA file  LIKE LINE OF files.
+
+DATA zake_build                TYPE string.
+DATA zake_nuggetname           TYPE string.
+DATA zake_svn_nuggetname       TYPE string.
 DATA zake_svn_tests_nuggetname TYPE string.
-DATA comment_str TYPE string.
-DATA loclpath_str TYPE string.
-DATA svnpath_str TYPE string.
-DATA username_str TYPE string.
-DATA password_str TYPE string.
-DATA class TYPE seoclsname.
+
+DATA comment_str               TYPE string.
+DATA loclpath_str              TYPE string.
+DATA svnpath_str               TYPE string.
+DATA username_str              TYPE string.
+DATA password_str              TYPE string.
+DATA class                     TYPE seoclsname.
 
 DATA: ex TYPE REF TO zcx_saplink,
       message TYPE string.
@@ -54,8 +61,9 @@ SELECTION-SCREEN END OF BLOCK b.
 SELECTION-SCREEN BEGIN OF BLOCK c WITH FRAME TITLE c.
 PARAMETERS:
 *  loclpath TYPE char512 DEFAULT &apos;C:/Projects/zakesvn&apos; LOWER CASE OBLIGATORY,
-  loclpath TYPE char512 DEFAULT &apos;C:/Projects/Zake&apos; LOWER CASE OBLIGATORY,
+  loclpath TYPE char512 DEFAULT &apos;C:/Projects/Zake/&apos; LOWER CASE OBLIGATORY,
 *  loclpath TYPE char512 DEFAULT &apos;C:/Projects/Zake&apos; LOWER CASE OBLIGATORY,
+  zakebuil TYPE char512 DEFAULT &apos;C:/Projects/Zake/build/ZAKE.nugg&apos; LOWER CASE OBLIGATORY,
   zakenugg TYPE char512 DEFAULT &apos;C:/Projects/Zake/ZAKE/build/NUGG_ZAKE.nugg&apos; LOWER CASE OBLIGATORY,
   zsvnnugg TYPE char512 DEFAULT &apos;C:/Projects/Zake/ZAKE_SVN/build/NUGG_ZAKE_SVN.nugg&apos; LOWER CASE OBLIGATORY,
   zsvntnug TYPE char512 DEFAULT &apos;C:/Projects/Zake/ZAKE_SVN_TESTS/build/NUGG_ZAKE_SVN_TESTS.nugg&apos; LOWER CASE OBLIGATORY,
@@ -75,14 +83,16 @@ INITIALIZATION.
 
 START-OF-SELECTION.
 
-  svnpath_str  = svnpath.
-  loclpath_str = loclpath.
-  zake_nuggetname     = zakenugg.
-  zake_svn_nuggetname = zsvnnugg.
+  svnpath_str               = svnpath.
+  loclpath_str              = loclpath.
+  zake_build                = zakebuil.
+  zake_nuggetname           = zakenugg.
+  zake_svn_nuggetname       = zsvnnugg.
   zake_svn_tests_nuggetname = zsvntnug.
-  comment_str = comment.
-
-  &quot; Main Classes
+  comment_str               = comment.
+  &quot;
+  &quot; Main ZAKE Class
+  &quot;
   object-object   = &apos;CLAS&apos;.
   object-obj_name = &apos;ZAKE&apos;.
   APPEND object TO zake_objects.
@@ -90,7 +100,9 @@ START-OF-SELECTION.
   object-object   = &apos;TABL&apos;.
   object-obj_name = &apos;ZAKE_USERDATA&apos;.
   APPEND object TO zake_objects.
+  &quot;
   &quot; ZAKE_SVN Classes
+  &quot;
   object-object   = &apos;CLAS&apos;.
   object-obj_name = &apos;ZCL_ZAKE_SVN&apos;.
   APPEND object TO objects.
@@ -101,7 +113,9 @@ START-OF-SELECTION.
   object-object   = &apos;PROG&apos;.
   object-obj_name = &apos;Z_ZAKE_SVN&apos;.
   APPEND object TO objects.
+  &quot;
   &quot; Test Objects
+  &quot;
   object-object   = &apos;CLAS&apos;.
   object-obj_name = &apos;ZCL_SVNTEST&apos;.
   APPEND object TO test_objects.
@@ -168,6 +182,25 @@ START-OF-SELECTION.
         zake-&gt;set_package( &apos;ZAKE_SVN_TESTS&apos; ).
         zake-&gt;set_checkin_objects( test_objects ).
         zake-&gt;create_slinkees( zake_svn_tests_nuggetname ).
+        &quot; Build a complete package for download
+        zake-&gt;set_package( &apos;ZAKE&apos; ).
+        APPEND LINES OF objects TO zake_objects.
+        APPEND LINES OF test_objects TO zake_objects.
+        zake-&gt;set_checkin_objects( zake_objects ).
+        &quot; Let&apos;s add the CMD Scripts to the complete package
+        CONCATENATE loclpath &apos;ZAKE_SVN/bin/svn-script.cmd&apos; INTO file.
+        APPEND file TO files.
+        CONCATENATE loclpath &apos;ZAKE_SVN/bin/tortoise-svn-script.cmd&apos; INTO file.
+        APPEND file TO files.
+        &quot; Add ZAKE README.txt to the complete package
+        CONCATENATE loclpath &apos;README.txt&apos; INTO file.
+        APPEND file TO files.
+        zake-&gt;add_files_to_zip( files ).
+        &quot; We don&apos;t want that for the complete Package Slinkees are created
+        &quot; in the ZAKE folder
+        zake-&gt;download_slinkees_to_lm = space.
+        zake-&gt;download_nugget_to_lm   = space.
+        zake-&gt;create_slinkees( zake_build ).
         IF testrun IS INITIAL.
           zake-&gt;checkin( comment_str ).
         ENDIF.

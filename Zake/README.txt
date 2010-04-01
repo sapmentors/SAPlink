@@ -1,0 +1,1 @@
+Please find the latest installation and usage instructions in the Wave http://bit.ly/5RD6Ew. If you don't have an Google Wave account yet, drop me an mail at gregor dot wolf at gmail dot com.

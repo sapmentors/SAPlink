@@ -10,6 +10,9 @@
 *&quot;* do not include other source files here!!!
 public section.
 
+  data DOWNLOAD_NUGGET_TO_LM type FLAG value &apos;X&apos;. &quot;#EC NOTEXT .
+  data DOWNLOAD_SLINKEES_TO_LM type FLAG value &apos;X&apos;. &quot;#EC NOTEXT .
+
   methods ACTIVATE_SLINKEES
     importing
       !I_SLINKEES type IGS_CE_CU_TAB
@@ -247,6 +250,8 @@ types: tt_objects TYPE STANDARD TABLE OF t_objects.</localTypes>
   <classDocumentation/>
   <attribute CLSNAME="ZAKE" CMPNAME="CURRENTNUGGETS" VERSION="1" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="4 " AUTHOR="BCUSER" CREATEDON="20091219" CHANGEDBY="BCUSER" CHANGEDON="20100307" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="11 " SRCCOLUMN1="4 " SRCROW2="11 " SRCCOLUMN2="50 " R3RELEASE="702" TYPESRC_LENG="49 " TYPESRC="CURRENTNUGGETS type standard table of nuggetRow
 "/>
+  <attribute CLSNAME="ZAKE" CMPNAME="DOWNLOAD_NUGGET_TO_LM" VERSION="1" LANGU="E" DESCRIPT="General Flag" EXPOSURE="2" STATE="1" EDITORDER="0 " AUTHOR="BCUSER" CREATEDON="20100401" CHANGEDON="00000000" ATTDECLTYP="0" ATTVALUE="&apos;X&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="FLAG" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " R3RELEASE="702" TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZAKE" CMPNAME="DOWNLOAD_SLINKEES_TO_LM" VERSION="1" LANGU="E" DESCRIPT="General Flag" EXPOSURE="2" STATE="1" EDITORDER="0 " AUTHOR="BCUSER" CREATEDON="20100401" CHANGEDON="00000000" ATTDECLTYP="0" ATTVALUE="&apos;X&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="FLAG" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " R3RELEASE="702" TYPESRC_LENG="0 "/>
   <attribute CLSNAME="ZAKE" CMPNAME="FILELIST" VERSION="1" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="5 " AUTHOR="BCUSER" CREATEDON="20091219" CHANGEDBY="BCUSER" CHANGEDON="20100307" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="13 " SRCCOLUMN1="4 " SRCROW2="13 " SRCCOLUMN2="50 " R3RELEASE="702" TYPESRC_LENG="49 " TYPESRC="FILELIST type standard table of fileListRowType
 "/>
   <attribute CLSNAME="ZAKE" CMPNAME="FILELIST_ZIP" VERSION="1" LANGU="E" DESCRIPT="Files to add to the ZIP file" EXPOSURE="0" STATE="1" EDITORDER="0 " AUTHOR="BCUSER" CREATEDON="20100307" CHANGEDON="00000000" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING_TABLE" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " R3RELEASE="702" TYPESRC_LENG="0 "/>
@@ -495,7 +500,7 @@ endmethod.</source>
    <parameter CLSNAME="ZAKE" CMPNAME="CREATE_SLINKEE" SCONAME="I_NUGGET_NAME" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100307" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING" PAROPTIONL="X"/>
    <parameter CLSNAME="ZAKE" CMPNAME="CREATE_SLINKEE" SCONAME="I_PACKAGE_OBJECT" VERSION="1" LANGU="E" DESCRIPT="Object in a Package" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100307" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="T_PACKAGEOBJECTTABLE"/>
    <exception CLSNAME="ZAKE" CMPNAME="CREATE_SLINKEE" SCONAME="ZCX_SAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100307"/>
-   <source>method CREATE_SLINKEE.
+   <source>METHOD create_slinkee.
 
   DATA objectline LIKE LINE OF l_objtable.
   DATA targetobject TYPE REF TO zsaplink.
@@ -530,10 +535,12 @@ endmethod.</source>
     xml_document = targetobject-&gt;createixmldocfromobject( ).
     xml = zsaplink=&gt;convertixmldoctostring( xml_document ).
 
-    me-&gt;download_xml_to_lm(
-        i_fullpath   = fullpath
-        i_xml_string = xml
-    ).
+    IF me-&gt;download_slinkees_to_lm = &apos;X&apos;.
+      me-&gt;download_xml_to_lm(
+          i_fullpath   = fullpath
+          i_xml_string = xml
+      ).
+    ENDIF.
 
     IF NOT i_nugget_name IS INITIAL.
       me-&gt;add_object_to_nugget(
@@ -543,13 +550,13 @@ endmethod.</source>
     ENDIF.
   ENDIF.
 
-endmethod.</source>
+ENDMETHOD.</source>
    <methodDocumentation/>
   </method>
   <method CLSNAME="ZAKE" CMPNAME="CREATE_SLINKEES" VERSION="1" LANGU="E" DESCRIPT="Create Slinkees" EXPOSURE="2" STATE="1" EDITORDER="11 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100307" MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
    <parameter CLSNAME="ZAKE" CMPNAME="CREATE_SLINKEES" SCONAME="I_NUGGET_NAME" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100307" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING" PAROPTIONL="X"/>
    <exception CLSNAME="ZAKE" CMPNAME="CREATE_SLINKEES" SCONAME="ZCX_SAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100307"/>
-   <source>method CREATE_SLINKEES.
+   <source>METHOD create_slinkees.
 
   DATA objectline LIKE LINE OF l_objtable.
   DATA msg TYPE string.
@@ -558,7 +565,7 @@ endmethod.</source>
 
   FIELD-SYMBOLS: &lt;package_object&gt; LIKE LINE OF package_objects.
 
-* Check if all the plugins we need are installed
+  &quot; Check if all the plugins we need are installed
   LOOP AT package_objects ASSIGNING &lt;package_object&gt;.
     READ TABLE l_objtable INTO objectline WITH KEY object = &lt;package_object&gt;-object.
     IF sy-subrc &lt;&gt; 0.
@@ -572,7 +579,7 @@ endmethod.</source>
   IF NOT i_nugget_name IS INITIAL.
     me-&gt;create_nugget( i_nugget_name = i_nugget_name ).
   ENDIF.
-* now we can export all the objects
+  &quot; now we can export all the objects
   LOOP AT package_objects ASSIGNING &lt;package_object&gt;.
     me-&gt;create_slinkee(
       i_nugget_name = i_nugget_name
@@ -582,18 +589,20 @@ endmethod.</source>
   IF NOT i_nugget_name IS INITIAL.
     nugget_string = me-&gt;get_nugget_string( i_nugget_name   = i_nugget_name ).
 
-    me-&gt;download_xml_to_lm(
-      EXPORTING
-        i_fullpath   = i_nugget_name
-        i_xml_string = nugget_string
-    ).
+    IF me-&gt;download_nugget_to_lm = &apos;X&apos;.
+      me-&gt;download_xml_to_lm(
+        EXPORTING
+          i_fullpath   = i_nugget_name
+          i_xml_string = nugget_string
+      ).
+    ENDIF.
 
     me-&gt;download_zip_to_lm(
         i_fullpath    = i_nugget_name
         i_stringtozip = nugget_string
     ).
   ENDIF.
-endmethod.</source>
+ENDMETHOD.</source>
    <methodDocumentation/>
   </method>
   <method CLSNAME="ZAKE" CMPNAME="DELETE" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="18 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20091219" CHANGEDBY="BCUSER" CHANGEDON="20100307" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
