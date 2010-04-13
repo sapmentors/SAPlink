@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<PROG NAME="ZSVNTESTPROG" VARCL="X" SUBC="1" CNAM="BCUSER" CDAT="20091219" UNAM="BCUSER" UDAT="20100307" VERN="000031" RSTAT="K" RMAND="000" RLOAD="E" FIXPT="X" SDATE="20100307" STIME="102050" IDATE="20100307" ITIME="102050" UCCHECK="X">
- <textPool/>
+<PROG NAME="ZSVNTESTPROG" VARCL="X" SUBC="1" CNAM="BCUSER" CDAT="20091219" UNAM="BCUSER" UDAT="20100413" VERN="000033" RSTAT="K" RMAND="000" RLOAD="E" FIXPT="X" SDATE="20100413" STIME="224755" IDATE="20100413" ITIME="224755" UCCHECK="X">
+ <textPool>
+  <language SPRAS="D">
+   <textElement ID="I" KEY="001" ENTRY="Dies ist ein Test Programm für ZAKE_SVN." LENGTH="55 "/>
+  </language>
+  <language SPRAS="E">
+   <textElement ID="I" KEY="001" ENTRY="This is a Test Program for ZAKE_SVN" LENGTH="55 "/>
+  </language>
+ </textPool>
  <programDocumentation/>
  <source>*&amp;---------------------------------------------------------------------*
 *&amp; Report  ZSVNTESTPROG
@@ -17,7 +24,9 @@
 
 REPORT  zsvntestprog.
 
-WRITE: / &apos;This is a Test Program for ZAKE Subversion.&apos;.
+SET LANGUAGE &apos;DE&apos;.
+
+WRITE: / &apos;This is a Test Program for ZAKE_SVN&apos;(001).
 WRITE: / &apos;This change was done on System B.&apos;.
 WRITE: / &apos;This change was done on System A.&apos;.
 WRITE: / &apos;Change at 2009-12-21 20:29 CET&apos;.

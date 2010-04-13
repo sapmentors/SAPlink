@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<PROG NAME="Z_ZAKE_SVN_TEST" VARCL="X" SUBC="1" CNAM="BCUSER" CDAT="20091214" UNAM="BCUSER" UDAT="20100307" VERN="000066" RSTAT="T" RMAND="000" RLOAD="E" FIXPT="X" SDATE="20100401" STIME="225119" IDATE="20100307" ITIME="102050" UCCHECK="X">
+<PROG NAME="Z_ZAKE_SVN_TEST" VARCL="X" SUBC="1" CNAM="BCUSER" CDAT="20091214" UNAM="BCUSER" UDAT="20100413" VERN="000068" RSTAT="T" RMAND="000" RLOAD="E" FIXPT="X" SDATE="20100413" STIME="225603" IDATE="20100413" ITIME="225603" UCCHECK="X">
  <textPool>
   <language SPRAS="E">
    <textElement ID="R" ENTRY="ZAKE SVN Test" LENGTH="13 "/>
@@ -33,6 +33,8 @@ DATA svnpath_str TYPE string.
 DATA username_str TYPE string.
 DATA password_str TYPE string.
 DATA class TYPE seoclsname.
+DATA files TYPE string_table.
+DATA file LIKE LINE OF files.
 
 DATA: ex TYPE REF TO zcx_saplink,
       message TYPE string.
@@ -54,15 +56,15 @@ SELECTION-SCREEN BEGIN OF BLOCK c WITH FRAME TITLE c.
 PARAMETERS:
   loclpath TYPE char512 DEFAULT &apos;C:/Projects/test/&apos; LOWER CASE OBLIGATORY,
 *  loclpath TYPE char512 DEFAULT &apos;C:/Projects/testlocal&apos; LOWER CASE OBLIGATORY,
-  nuggetna TYPE char512 DEFAULT &apos;C:/Projects/zake_svn_test.nugg&apos; LOWER CASE OBLIGATORY,
+  nuggetna TYPE char512 DEFAULT &apos;C:/Projects/test/ZSVNTEST/build/zake_svn_test.nugg&apos; LOWER CASE OBLIGATORY,
   svnpath  TYPE char512 DEFAULT &apos;svn://svn.computerservice-wolf.com/zakesvntest/&apos; LOWER CASE OBLIGATORY,
   revision TYPE i,
 *  svnpath  TYPE char512 DEFAULT &apos;svn://localhost/test&apos; LOWER CASE OBLIGATORY,
   comment  TYPE char512 DEFAULT &apos;&apos; LOWER CASE,
 ** Instead of providing the Username &amp; Password in clear text here
 ** you can insert an entry in the Table ZAKE_USERDATA
-*  username TYPE char512 DEFAULT &apos;sdn&apos; LOWER CASE,
-*  password TYPE char512 DEFAULT &apos;test&apos; LOWER CASE,
+  username TYPE char512 DEFAULT &apos;sdn&apos; LOWER CASE,
+  password TYPE char512 DEFAULT &apos;test&apos; LOWER CASE,
   testrun  TYPE flag    DEFAULT &apos;X&apos;.
 SELECTION-SCREEN END OF BLOCK c.
 
@@ -75,8 +77,8 @@ START-OF-SELECTION.
 * Loop around the Packages which are returned for the Select Options select
   svnpath_str  = svnpath.
   loclpath_str = loclpath.
-*  username_str = username.
-*  password_str = password.
+  username_str = username.
+  password_str = password.
   TRY.
       &quot; Classes
       object-object   = &apos;CLAS&apos;.
@@ -117,6 +119,9 @@ START-OF-SELECTION.
       object-object   = &apos;VIEW&apos;.
       object-obj_name = &apos;ZSVNTEST_VIEW&apos;.
       APPEND object TO objects.
+      &quot; Let add the README to the build ZIP.
+      CONCATENATE loclpath &apos;ZSVNTEST/README.txt&apos; INTO file.
+      APPEND file TO files.
 
       IF svn = &apos;X&apos;.
         class = cl_svn.
@@ -130,11 +135,13 @@ START-OF-SELECTION.
         EXPORTING
           i_svnpath   = svnpath_str
           i_localpath = loclpath_str
-*            i_username  = username_str
-*            i_password  = password_str
-          .
+          i_username  = username_str
+          i_password  = password_str.
+
       zake-&gt;set_package( &apos;ZSVNTEST&apos; ).
       zake-&gt;set_checkin_objects( objects ).
+
+      zake-&gt;add_files_to_zip( files ).
 
       IF checkin = &apos;X&apos;.
 
