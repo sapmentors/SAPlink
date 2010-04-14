@@ -158,7 +158,7 @@ endmethod.</source>
   <parameter CLSNAME="ZCL_ZAKE_SVN" CMPNAME="EXECUTE_SVN_COMMAND" SCONAME="I_COMMAND" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100307" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
   <parameter CLSNAME="ZCL_ZAKE_SVN" CMPNAME="EXECUTE_SVN_COMMAND" SCONAME="E_COMMAND_OUTPUT" VERSION="1" LANGU="E" DESCRIPT="Table of Strings" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100307" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="1" TYPE="STRING_TABLE"/>
   <exception CLSNAME="ZCL_ZAKE_SVN" CMPNAME="EXECUTE_SVN_COMMAND" SCONAME="ZCX_SAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100307"/>
-  <source>method EXECUTE_SVN_COMMAND.
+  <source>METHOD execute_svn_command.
   DATA: temp_dir TYPE string.
   DATA: std_out_file TYPE string.
   DATA: parameter TYPE string.
@@ -168,12 +168,14 @@ endmethod.</source>
 *  rem echo %2 %3 %4 %5 %6 %7 %8 %9 %1
 *  C:\Programme\Subversion\bin\svn.exe %2 %3 %4 %5 %6 %7 %8 %9 &gt; %1 2&gt;&amp;1
 *  rem pause
-  DATA: application TYPE string VALUE &apos;C:\Projects\svn-script.cmd&apos;.
+  DATA: application TYPE string VALUE &apos;svn-script.cmd&apos;.
   DATA: line        TYPE string.
   DATA: rc          TYPE i.
   DATA: result      TYPE abap_bool.
 
   DATA: message TYPE string.
+
+  CONCATENATE me-&gt;zake_home application INTO application.
 
   WRITE: / i_command.
 *
@@ -193,7 +195,7 @@ endmethod.</source>
       cntl_error            = 2
       error_no_gui          = 3
       not_supported_by_gui  = 4
-      others                = 5
+      OTHERS                = 5
   ).
   IF sy-subrc &lt;&gt; 0 OR temp_dir IS INITIAL.
     IF temp_dir IS INITIAL.
@@ -335,7 +337,7 @@ endmethod.</source>
 *    ENDLOOP.
 *  ENDIF.
 
-endmethod.</source>
+ENDMETHOD.</source>
   <methodDocumentation/>
  </method>
  <method CLSNAME="ZAKE" CMPNAME="UPDATE" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">

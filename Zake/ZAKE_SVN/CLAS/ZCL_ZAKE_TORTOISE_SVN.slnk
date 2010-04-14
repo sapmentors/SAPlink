@@ -138,12 +138,14 @@ endmethod.</source>
 *  rem echo %2 %3 %4 %5 %6 %7 %8 %9 %1
 *  C:\Programme\TortoiseSVN\bin\TortoiseProc.exe %2 %3 %4 %5 %6 %7 %8 %9 &gt; %1 2&gt;&amp;1
 *  rem pause
-  DATA: application TYPE string VALUE &apos;C:\Projects\tortoise-svn-script.cmd&apos;.
+  DATA: application TYPE string VALUE &apos;tortoise-svn-script.cmd&apos;.
   DATA: line        TYPE string.
   DATA: rc          TYPE i.
   DATA: result      TYPE abap_bool.
 
   DATA: message TYPE string.
+
+  CONCATENATE me-&gt;zake_home application INTO application.
 
   WRITE: / i_command.
 *
