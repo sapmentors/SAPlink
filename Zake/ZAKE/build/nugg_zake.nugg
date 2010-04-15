@@ -463,6 +463,29 @@ endmethod.</source>
   ).
   cl_gui_cfw=&gt;flush( ).
   IF NOT zake_home_env IS INITIAL.
+    DATA len TYPE i.
+    DATA file_separator TYPE c LENGTH 1.
+
+    cl_gui_frontend_services=&gt;get_file_separator(
+      CHANGING
+        file_separator       = file_separator
+      EXCEPTIONS
+        cntl_error           = 1
+        error_no_gui         = 2
+        not_supported_by_gui = 3
+        OTHERS               = 4
+    ).
+    IF sy-subrc &lt;&gt; 0.
+      &quot; Default to Windows file separator
+      file_separator = &apos;\&apos;.
+    ENDIF.
+
+    len = STRLEN( zake_home_env ) - 1.
+
+    IF zake_home_env+len(1) &lt;&gt; file_separator.
+      CONCATENATE zake_home_env file_separator INTO zake_home_env.
+    ENDIF.
+
     me-&gt;zake_home = zake_home_env.
   ENDIF.
 
