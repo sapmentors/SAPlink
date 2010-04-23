@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <nugget name="C:/Projects/Zake/ZAKE_SVN_TESTS/build/NUGG_ZAKE_SVN_TESTS.nugg">
- <CLAS CLSNAME="ZCL_SVNTEST" VERSION="1" LANGU="E" DESCRIPT="ZAKE Subversion Test Class" UUID="DEECCA18014C58F1B379000C29B7D360" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" AUTHOR="BCUSER" CREATEDON="20091219" CHANGEDBY="BCUSER" CHANGEDON="20100413" CHGDANYON="00000000" CLSCCINCL="X" FIXPT="X" UNICODE="X" R3RELEASE="702" CLSBCCAT="00" DURATION_TYPE="0 " RISK_LEVEL="0 ">
+ <CLAS CLSNAME="ZCL_SVNTEST" VERSION="1" LANGU="E" DESCRIPT="ZAKE Subversion Test Class" UUID="DEECCA18014C58F1B379000C29B7D360" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" AUTHOR="BCUSER" CREATEDON="20091219" CHANGEDBY="BCUSER" CHANGEDON="20100424" CHGDANYON="00000000" CLSCCINCL="X" FIXPT="X" UNICODE="X" R3RELEASE="702" CLSBCCAT="00" DURATION_TYPE="0 " RISK_LEVEL="0 ">
   <publicSection>class ZCL_SVNTEST definition
   public
   create public .
@@ -39,7 +39,7 @@ private section.</privateSection>
     <textLine TDFORMAT="AS"/>
    </language>
   </classDocumentation>
-  <method CLSNAME="ZCL_SVNTEST" CMPNAME="HELLO_WORLD" VERSION="1" LANGU="E" DESCRIPT="Hello World" EXPOSURE="2" STATE="1" EDITORDER="0 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20091219" CHANGEDBY="BCUSER" CHANGEDON="20100413" MTDTYPE="0" MTDDECLTYP="1" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
+  <method CLSNAME="ZCL_SVNTEST" CMPNAME="HELLO_WORLD" VERSION="1" LANGU="E" DESCRIPT="Hello World" EXPOSURE="2" STATE="1" EDITORDER="0 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20091219" CHANGEDBY="BCUSER" CHANGEDON="20100424" MTDTYPE="0" MTDDECLTYP="1" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
    <source>method HELLO_WORLD.
 * Change on System A
 * Another Change 2009-12-21, 16:46 CET
@@ -56,7 +56,7 @@ endmethod.</source>
    <methodDocumentation/>
   </method>
  </CLAS>
- <CLAS CLSNAME="ZCL_SVNTEST2" VERSION="1" LANGU="E" DESCRIPT="ZAKE Subversion Test Class" UUID="DEFA0E77E20DC1F1B37D00059A3C7800" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" AUTHOR="BCUSER" CREATEDON="20100105" CHANGEDBY="BCUSER" CHANGEDON="20100413" CHGDANYON="00000000" CLSCCINCL="X" FIXPT="X" UNICODE="X" R3RELEASE="702" CLSBCCAT="00" DURATION_TYPE="0 " RISK_LEVEL="0 ">
+ <CLAS CLSNAME="ZCL_SVNTEST2" VERSION="1" LANGU="E" DESCRIPT="ZAKE Subversion Test Class" UUID="DEFA0E77E20DC1F1B37D00059A3C7800" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" AUTHOR="BCUSER" CREATEDON="20100105" CHANGEDBY="BCUSER" CHANGEDON="20100424" CHGDANYON="00000000" CLSCCINCL="X" FIXPT="X" UNICODE="X" R3RELEASE="702" CLSBCCAT="00" DURATION_TYPE="0 " RISK_LEVEL="0 ">
   <publicSection>class ZCL_SVNTEST2 definition
   public
   create public .
@@ -66,10 +66,10 @@ endmethod.</source>
 public section.
 
   class-methods HELLO_WORLD .</publicSection>
-  <protectedSection>*&quot;* protected components of class ZCL_SVNTEST
+  <protectedSection>*&quot;* protected components of class ZCL_SVNTEST2
 *&quot;* do not include other source files here!!!
 protected section.</protectedSection>
-  <privateSection>*&quot;* private components of class ZCL_SVNTEST
+  <privateSection>*&quot;* private components of class ZCL_SVNTEST2
 *&quot;* do not include other source files here!!!
 private section.</privateSection>
   <localImplementation>*&quot;* local class implementation for public class
@@ -91,6 +91,9 @@ private section.</privateSection>
    </language>
   </textPool>
   <classDocumentation OBJECT="ZCL_SVNTEST2">
+   <language SPRAS="">
+    <textLine TDFORMAT="U1" TDLINE="&amp;HINTS&amp;"/>
+   </language>
    <language SPRAS="E">
     <textLine TDFORMAT="U1" TDLINE="&amp;FUNCTIONALITY&amp;"/>
     <textLine TDFORMAT="AS" TDLINE="Test class for SAPLink Export via ZAKE (ABAP Make)."/>
@@ -104,7 +107,7 @@ private section.</privateSection>
     <textLine TDFORMAT="AS"/>
    </language>
   </classDocumentation>
-  <method CLSNAME="ZCL_SVNTEST2" CMPNAME="HELLO_WORLD" VERSION="1" LANGU="E" DESCRIPT="Hello World" EXPOSURE="2" STATE="1" EDITORDER="0 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100206" CHANGEDBY="BCUSER" CHANGEDON="20100413" MTDTYPE="0" MTDDECLTYP="1" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
+  <method CLSNAME="ZCL_SVNTEST2" CMPNAME="HELLO_WORLD" VERSION="1" LANGU="E" DESCRIPT="Hello World" EXPOSURE="2" STATE="1" EDITORDER="0 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100206" CHANGEDBY="BCUSER" CHANGEDON="20100424" MTDTYPE="0" MTDDECLTYP="1" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
    <source>method HELLO_WORLD.
 * 2010-01-05, Gregor Wolf: Initial Version
   &quot; Normal Output
@@ -131,7 +134,7 @@ endmethod.</source>
    </methodDocumentation>
   </method>
  </CLAS>
- <PROG NAME="ZSVNTESTPROG" VARCL="X" SUBC="1" CNAM="BCUSER" CDAT="20091219" UNAM="BCUSER" UDAT="20100413" VERN="000033" RSTAT="K" RMAND="000" RLOAD="E" FIXPT="X" SDATE="20100413" STIME="224755" IDATE="20100413" ITIME="224755" UCCHECK="X">
+ <PROG NAME="ZSVNTESTPROG" VARCL="X" SUBC="1" CNAM="BCUSER" CDAT="20091219" UNAM="BCUSER" UDAT="20100424" VERN="000035" RSTAT="K" RMAND="000" RLOAD="E" FIXPT="X" SDATE="20100424" STIME="002855" IDATE="20100424" ITIME="002855" UCCHECK="X">
   <textPool>
    <language SPRAS="D">
     <textElement ID="I" KEY="001" ENTRY="Dies ist ein Test Programm für ZAKE_SVN." LENGTH="55 "/>
@@ -164,7 +167,7 @@ WRITE: / &apos;This change was done on System A.&apos;.
 WRITE: / &apos;Change at 2009-12-21 20:29 CET&apos;.
 WRITE: / &apos;Change on Revision 6&apos;.</source>
  </PROG>
- <PROG NAME="ZSVNTESTPROG2" VARCL="X" SUBC="1" CNAM="BCUSER" CDAT="20100105" UNAM="BCUSER" UDAT="20100413" VERN="000020" RSTAT="T" RMAND="000" RLOAD="E" FIXPT="X" SDATE="20100413" STIME="224756" IDATE="20100413" ITIME="224756" UCCHECK="X">
+ <PROG NAME="ZSVNTESTPROG2" VARCL="X" SUBC="1" CNAM="BCUSER" CDAT="20100105" UNAM="BCUSER" UDAT="20100424" VERN="000022" RSTAT="T" RMAND="000" RLOAD="E" FIXPT="X" SDATE="20100424" STIME="002857" IDATE="20100424" ITIME="002857" UCCHECK="X">
   <textPool/>
   <programDocumentation/>
   <source>*&amp;---------------------------------------------------------------------*
@@ -179,7 +182,7 @@ REPORT  ZSVNTESTPROG2.
 
 WRITE: / &apos;Another Test Program to check the checkin command&apos;.</source>
  </PROG>
- <PROG NAME="Z_ZAKE_SVN_TEST" VARCL="X" SUBC="1" CNAM="BCUSER" CDAT="20091214" UNAM="BCUSER" UDAT="20100413" VERN="000068" RSTAT="T" RMAND="000" RLOAD="E" FIXPT="X" SDATE="20100413" STIME="225603" IDATE="20100413" ITIME="225603" UCCHECK="X">
+ <PROG NAME="Z_ZAKE_SVN_TEST" VARCL="X" SUBC="1" CNAM="BCUSER" CDAT="20091214" UNAM="BCUSER" UDAT="20100424" VERN="000069" RSTAT="T" RMAND="000" RLOAD="E" FIXPT="X" SDATE="20100424" STIME="002740" IDATE="20100424" ITIME="002740" UCCHECK="X">
   <textPool>
    <language SPRAS="E">
     <textElement ID="R" ENTRY="ZAKE SVN Test" LENGTH="13 "/>
@@ -301,6 +304,8 @@ START-OF-SELECTION.
       APPEND object TO objects.
       &quot; Let add the README to the build ZIP.
       CONCATENATE loclpath &apos;ZSVNTEST/README.txt&apos; INTO file.
+      APPEND file TO files.
+      CONCATENATE loclpath &apos;ZSVNTEST/README1.txt&apos; INTO file.
       APPEND file TO files.
 
       IF svn = &apos;X&apos;.

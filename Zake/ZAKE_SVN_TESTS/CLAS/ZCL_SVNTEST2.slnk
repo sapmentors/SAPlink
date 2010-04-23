@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<CLAS CLSNAME="ZCL_SVNTEST2" VERSION="1" LANGU="E" DESCRIPT="ZAKE Subversion Test Class" UUID="DEFA0E77E20DC1F1B37D00059A3C7800" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" AUTHOR="BCUSER" CREATEDON="20100105" CHANGEDBY="BCUSER" CHANGEDON="20100413" CHGDANYON="00000000" CLSCCINCL="X" FIXPT="X" UNICODE="X" R3RELEASE="702" CLSBCCAT="00" DURATION_TYPE="0 " RISK_LEVEL="0 ">
+<CLAS CLSNAME="ZCL_SVNTEST2" VERSION="1" LANGU="E" DESCRIPT="ZAKE Subversion Test Class" UUID="DEFA0E77E20DC1F1B37D00059A3C7800" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" AUTHOR="BCUSER" CREATEDON="20100105" CHANGEDBY="BCUSER" CHANGEDON="20100424" CHGDANYON="00000000" CLSCCINCL="X" FIXPT="X" UNICODE="X" R3RELEASE="702" CLSBCCAT="00" DURATION_TYPE="0 " RISK_LEVEL="0 ">
  <publicSection>class ZCL_SVNTEST2 definition
   public
   create public .
@@ -9,10 +9,10 @@
 public section.
 
   class-methods HELLO_WORLD .</publicSection>
- <protectedSection>*&quot;* protected components of class ZCL_SVNTEST
+ <protectedSection>*&quot;* protected components of class ZCL_SVNTEST2
 *&quot;* do not include other source files here!!!
 protected section.</protectedSection>
- <privateSection>*&quot;* private components of class ZCL_SVNTEST
+ <privateSection>*&quot;* private components of class ZCL_SVNTEST2
 *&quot;* do not include other source files here!!!
 private section.</privateSection>
  <localImplementation>*&quot;* local class implementation for public class
@@ -34,6 +34,9 @@ private section.</privateSection>
   </language>
  </textPool>
  <classDocumentation OBJECT="ZCL_SVNTEST2">
+  <language SPRAS="">
+   <textLine TDFORMAT="U1" TDLINE="&amp;HINTS&amp;"/>
+  </language>
   <language SPRAS="E">
    <textLine TDFORMAT="U1" TDLINE="&amp;FUNCTIONALITY&amp;"/>
    <textLine TDFORMAT="AS" TDLINE="Test class for SAPLink Export via ZAKE (ABAP Make)."/>
@@ -47,7 +50,7 @@ private section.</privateSection>
    <textLine TDFORMAT="AS"/>
   </language>
  </classDocumentation>
- <method CLSNAME="ZCL_SVNTEST2" CMPNAME="HELLO_WORLD" VERSION="1" LANGU="E" DESCRIPT="Hello World" EXPOSURE="2" STATE="1" EDITORDER="0 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100206" CHANGEDBY="BCUSER" CHANGEDON="20100413" MTDTYPE="0" MTDDECLTYP="1" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
+ <method CLSNAME="ZCL_SVNTEST2" CMPNAME="HELLO_WORLD" VERSION="1" LANGU="E" DESCRIPT="Hello World" EXPOSURE="2" STATE="1" EDITORDER="0 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100206" CHANGEDBY="BCUSER" CHANGEDON="20100424" MTDTYPE="0" MTDDECLTYP="1" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
   <source>method HELLO_WORLD.
 * 2010-01-05, Gregor Wolf: Initial Version
   &quot; Normal Output

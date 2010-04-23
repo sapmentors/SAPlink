@@ -100,9 +100,6 @@ endmethod.</source>
   <source>method CHECK_SVN_STATUS_AND_ADD_TO_VC.
   DATA command TYPE string.
   DATA command_output	TYPE string_table.
-  FIELD-SYMBOLS: &lt;line&gt; TYPE string.
-  DATA status TYPE string.
-  DATA path   TYPE string.
 
   CONCATENATE &apos;/command:repostatus /path:&apos; me-&gt;path
     INTO command.
@@ -110,17 +107,6 @@ endmethod.</source>
     INTO command SEPARATED BY space.
 
   command_output[] = me-&gt;execute_svn_command( command ).
-
-*  LOOP AT command_output ASSIGNING &lt;line&gt;.
-*    &quot; We read the output of the SVN status command
-*    &quot; a ? indicates a file, that is not yet under Version Controll
-*    &quot; this file we have to add to  Version Controll
-*    SPLIT &lt;line&gt; AT &apos;       &apos; INTO status path.
-*    IF status = &apos;?&apos;.
-*      WRITE: / &apos;status:&apos;, status, &apos;path:&apos;, path.
-*      me-&gt;add_slinkee_to_versioncontrol( path ).
-*    ENDIF.
-*  ENDLOOP.
 
 endmethod.</source>
   <methodDocumentation/>

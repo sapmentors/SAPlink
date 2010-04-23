@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<PROG NAME="Z_ZAKE_SVN_TEST" VARCL="X" SUBC="1" CNAM="BCUSER" CDAT="20091214" UNAM="BCUSER" UDAT="20100413" VERN="000068" RSTAT="T" RMAND="000" RLOAD="E" FIXPT="X" SDATE="20100413" STIME="225603" IDATE="20100413" ITIME="225603" UCCHECK="X">
+<PROG NAME="Z_ZAKE_SVN_TEST" VARCL="X" SUBC="1" CNAM="BCUSER" CDAT="20091214" UNAM="BCUSER" UDAT="20100424" VERN="000069" RSTAT="T" RMAND="000" RLOAD="E" FIXPT="X" SDATE="20100424" STIME="002740" IDATE="20100424" ITIME="002740" UCCHECK="X">
  <textPool>
   <language SPRAS="E">
    <textElement ID="R" ENTRY="ZAKE SVN Test" LENGTH="13 "/>
@@ -121,6 +121,8 @@ START-OF-SELECTION.
       APPEND object TO objects.
       &quot; Let add the README to the build ZIP.
       CONCATENATE loclpath &apos;ZSVNTEST/README.txt&apos; INTO file.
+      APPEND file TO files.
+      CONCATENATE loclpath &apos;ZSVNTEST/README1.txt&apos; INTO file.
       APPEND file TO files.
 
       IF svn = &apos;X&apos;.

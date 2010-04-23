@@ -132,8 +132,6 @@ endmethod.</source>
   DATA command TYPE string.
   DATA command_output	TYPE string_table.
   FIELD-SYMBOLS: &lt;line&gt; TYPE string.
-  DATA status TYPE string.
-  DATA path   TYPE string.
 
   CONCATENATE &apos;status&apos; me-&gt;path
     INTO command SEPARATED BY space.
@@ -144,10 +142,13 @@ endmethod.</source>
     &quot; We read the output of the SVN status command
     &quot; a ? indicates a file, that is not yet under Version Controll
     &quot; this file we have to add to  Version Controll
-    SPLIT &lt;line&gt; AT &apos;       &apos; INTO status path.
-    IF status = &apos;?&apos;.
-      WRITE: / &apos;status:&apos;, status, &apos;path:&apos;, path.
-      me-&gt;add_slinkee_to_versioncontrol( path ).
+    IF &lt;line&gt;+0(1) = &apos;?&apos;.
+      &quot; According to &apos;svn status&apos; command help
+      &quot; http://svnbook.red-bean.com/nightly/en/svn.ref.svn.c.status.html
+      &quot; &apos;The first seven columns in the output are each one character wide, and each column
+      &quot; gives you information about a different aspect of each working copy item.&apos;
+      SHIFT &lt;line&gt; BY 8 PLACES LEFT.
+      me-&gt;add_slinkee_to_versioncontrol( &lt;line&gt; ).
     ENDIF.
   ENDLOOP.
 
