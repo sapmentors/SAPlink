@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <nugget name="C:/Projects/Zake/ZAKE_SVN/build/NUGG_ZAKE_SVN.nugg">
- <CLAS CLSNAME="ZCL_ZAKE_SVN" VERSION="1" LANGU="E" DESCRIPT="Subversion extension of ZAKE" UUID="DF0DD6C13DBE6AF1B37C000C29B7D360" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100307" CHGDANYON="00000000" CLSCCINCL="X" FIXPT="X" UNICODE="X" R3RELEASE="702" CLSBCCAT="00" DURATION_TYPE="0 " RISK_LEVEL="0 " REFCLSNAME="ZAKE">
+ <CLAS CLSNAME="ZCL_ZAKE_SVN" VERSION="1" LANGU="E" DESCRIPT="Subversion extension of ZAKE" UUID="DF0DD6C13DBE6AF1B37C000C29B7D360" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100428" CHGDANYON="00000000" CLSCCINCL="X" FIXPT="X" UNICODE="X" R3RELEASE="702" CLSBCCAT="00" WITH_UNIT_TESTS="X" DURATION_TYPE="0 " RISK_LEVEL="0 " REFCLSNAME="ZAKE">
   <publicSection>class ZCL_ZAKE_SVN definition
   public
   inheriting from ZAKE
@@ -29,19 +29,83 @@ private section.
   methods CHECK_SVN_STATUS_AND_ADD_TO_VC
     raising
       ZCX_SAPLINK .
+  type-pools ABAP .
   methods EXECUTE_SVN_COMMAND
     importing
       !I_COMMAND type STRING
+      !I_SILENT type ABAP_BOOL default ABAP_FALSE
     returning
       value(E_COMMAND_OUTPUT) type STRING_TABLE
     raising
       ZCX_SAPLINK .</privateSection>
-  <localImplementation>*&quot;* local class implementation for public class*&quot;* use this source file for the implementation part of*&quot;* local helper classes</localImplementation>
-  <localTypes>*&quot;* use this source file for any type declarations (class*&quot;* definitions, interfaces or data types) you need for method*&quot;* implementation or private method&apos;s signature</localTypes>
+  <localImplementation>*&quot;* local class implementation for public class
+*&quot;* use this source file for the implementation part of
+*&quot;* local helper classes
+
+CLASS lcl_svn_utils IMPLEMENTATION.
+  METHOD get_paths.
+    &quot; &apos;svn status --xml&apos; command returns an XML document
+    &quot; This XML document will be parsed here to get the paths and its statuses
+
+    DATA lo_xmldocument TYPE REF TO if_ixml_document.
+    DATA lv_xml_string TYPE string.
+    DATA lo_filter TYPE REF TO if_ixml_node_filter.
+    DATA lo_iterator TYPE REF TO if_ixml_node_iterator.
+    DATA lo_entry_elem TYPE REF TO if_ixml_element.
+    DATA lo_status_elem TYPE REF TO if_ixml_element.
+    DATA ls_path TYPE ts_path.
+    FIELD-SYMBOLS &lt;fs_status_output&gt; LIKE LINE OF it_status_output.
+
+    IF LINES( it_status_output ) = 0.
+      RETURN.
+    ENDIF.
+
+    LOOP AT it_status_output ASSIGNING &lt;fs_status_output&gt;.
+      CONCATENATE lv_xml_string &lt;fs_status_output&gt; INTO lv_xml_string.
+    ENDLOOP.
+    lo_xmldocument = zsaplink=&gt;convertstringtoixmldoc( lv_xml_string ).
+
+    lo_filter = lo_xmldocument-&gt;create_filter_name( &apos;entry&apos; ).
+    lo_iterator = lo_xmldocument-&gt;create_iterator_filtered( lo_filter ).
+    lo_entry_elem ?= lo_iterator-&gt;get_next( ).
+
+    WHILE lo_entry_elem IS BOUND.
+      lo_status_elem = lo_entry_elem-&gt;find_from_name( name = &apos;wc-status&apos; ).
+
+      CLEAR ls_path.
+      ls_path-path = lo_entry_elem-&gt;get_attribute( name = &apos;path&apos; ).
+      IF lo_status_elem IS BOUND.
+        ls_path-status = lo_status_elem-&gt;get_attribute( name = &apos;item&apos; ).
+      ENDIF.
+
+      APPEND ls_path TO rt_path.
+
+      lo_entry_elem ?= lo_iterator-&gt;get_next( ).
+    ENDWHILE.
+  ENDMETHOD.                    &quot;get_paths
+ENDCLASS.                    &quot;lcl_svn_utils IMPLEMENTATION</localImplementation>
+  <localTypes>*&quot;* use this source file for any type declarations (class*&quot;* definitions, interfaces or data types) you need for method*&quot;* implementation or private method&apos;s signature
+
+class lcl_svn_utils definition final.
+  public section.
+    types:
+      begin of ts_path,
+        path type string,
+        status type string,
+      end of  ts_path,
+
+      tt_path type standard table of ts_path with default key.
+
+    methods get_paths
+      importing it_status_output type string_table
+      returning value(rt_path) type tt_path.
+endclass.</localTypes>
   <localMacros>*&quot;* use this source file for any macro definitions you need*&quot;* in the implementation part of the class</localMacros>
   <textPool/>
   <classDocumentation/>
-  <inheritance CLSNAME="ZCL_ZAKE_SVN" REFCLSNAME="ZAKE" VERSION="1" STATE="1" AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100307">
+  <typeUsage CLSNAME="ZCL_ZAKE_SVN" TYPEGROUP="ABAP" VERSION="1" TPUTYPE="0" IMPLICIT="X"/>
+  <forwardDeclaration>ABAP</forwardDeclaration>
+  <inheritance CLSNAME="ZCL_ZAKE_SVN" REFCLSNAME="ZAKE" VERSION="1" STATE="1" AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100428">
    <redefinition CLSNAME="ZCL_ZAKE_SVN" REFCLSNAME="ZAKE" VERSION="1" MTDNAME="ADD_SLINKEE_TO_VERSIONCONTROL"/>
    <redefinition CLSNAME="ZCL_ZAKE_SVN" REFCLSNAME="ZAKE" VERSION="1" MTDNAME="CHECKIN"/>
    <redefinition CLSNAME="ZCL_ZAKE_SVN" REFCLSNAME="ZAKE" VERSION="1" MTDNAME="CHECKOUT"/>
@@ -127,40 +191,39 @@ endmethod.</source>
 endmethod.</source>
    <methodDocumentation/>
   </method>
-  <method CLSNAME="ZCL_ZAKE_SVN" CMPNAME="CHECK_SVN_STATUS_AND_ADD_TO_VC" VERSION="1" LANGU="E" DESCRIPT="Check SVN status and add to Version Control" EXPOSURE="0" STATE="1" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100307" MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
-   <exception CLSNAME="ZCL_ZAKE_SVN" CMPNAME="CHECK_SVN_STATUS_AND_ADD_TO_VC" SCONAME="ZCX_SAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100307"/>
+  <method CLSNAME="ZCL_ZAKE_SVN" CMPNAME="CHECK_SVN_STATUS_AND_ADD_TO_VC" VERSION="1" LANGU="E" DESCRIPT="Check SVN status and add to Version Control" EXPOSURE="0" STATE="1" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100428" MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
+   <exception CLSNAME="ZCL_ZAKE_SVN" CMPNAME="CHECK_SVN_STATUS_AND_ADD_TO_VC" SCONAME="ZCX_SAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100428"/>
    <source>method CHECK_SVN_STATUS_AND_ADD_TO_VC.
   DATA command TYPE string.
   DATA command_output	TYPE string_table.
-  FIELD-SYMBOLS: &lt;line&gt; TYPE string.
+  DATA lo_utils TYPE REF TO lcl_svn_utils.
+  DATA lt_path TYPE lcl_svn_utils=&gt;tt_path.
+  DATA ls_path TYPE lcl_svn_utils=&gt;ts_path.
 
   CONCATENATE &apos;status&apos; me-&gt;path
     INTO command SEPARATED BY space.
 
-  command_output[] = me-&gt;execute_svn_command( command ).
+  command_output = me-&gt;execute_svn_command( command ).
 
-  LOOP AT command_output ASSIGNING &lt;line&gt;.
-    &quot; We read the output of the SVN status command
-    &quot; a ? indicates a file, that is not yet under Version Controll
-    &quot; this file we have to add to  Version Controll
-    IF &lt;line&gt;+0(1) = &apos;?&apos;.
-      &quot; According to &apos;svn status&apos; command help
-      &quot; http://svnbook.red-bean.com/nightly/en/svn.ref.svn.c.status.html
-      &quot; &apos;The first seven columns in the output are each one character wide, and each column
-      &quot; gives you information about a different aspect of each working copy item.&apos;
-      SHIFT &lt;line&gt; BY 8 PLACES LEFT.
-      me-&gt;add_slinkee_to_versioncontrol( &lt;line&gt; ).
-    ENDIF.
+  CONCATENATE &apos;status --xml&apos; me-&gt;path
+    INTO command SEPARATED BY space.
+
+  command_output = me-&gt;execute_svn_command( i_command = command i_silent = ABAP_TRUE ).
+  create object lo_utils.
+  lt_path = lo_utils-&gt;get_paths( command_output ).
+
+  LOOP AT lt_path INTO ls_path WHERE status = &apos;unversioned&apos;.
+    me-&gt;add_slinkee_to_versioncontrol( ls_path-path ).
   ENDLOOP.
-
 endmethod.</source>
    <methodDocumentation/>
   </method>
-  <method CLSNAME="ZCL_ZAKE_SVN" CMPNAME="EXECUTE_SVN_COMMAND" VERSION="1" LANGU="E" DESCRIPT="Excecute SVN Command" EXPOSURE="0" STATE="1" EDITORDER="2 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100307" MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
-   <parameter CLSNAME="ZCL_ZAKE_SVN" CMPNAME="EXECUTE_SVN_COMMAND" SCONAME="I_COMMAND" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100307" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
-   <parameter CLSNAME="ZCL_ZAKE_SVN" CMPNAME="EXECUTE_SVN_COMMAND" SCONAME="E_COMMAND_OUTPUT" VERSION="1" LANGU="E" DESCRIPT="Table of Strings" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100307" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="1" TYPE="STRING_TABLE"/>
-   <exception CLSNAME="ZCL_ZAKE_SVN" CMPNAME="EXECUTE_SVN_COMMAND" SCONAME="ZCX_SAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100307"/>
-   <source>METHOD execute_svn_command.
+  <method CLSNAME="ZCL_ZAKE_SVN" CMPNAME="EXECUTE_SVN_COMMAND" VERSION="1" LANGU="E" DESCRIPT="Excecute SVN Command" EXPOSURE="0" STATE="1" EDITORDER="2 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100428" MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZCL_ZAKE_SVN" CMPNAME="EXECUTE_SVN_COMMAND" SCONAME="I_COMMAND" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100428" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
+   <parameter CLSNAME="ZCL_ZAKE_SVN" CMPNAME="EXECUTE_SVN_COMMAND" SCONAME="I_SILENT" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100428" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="ABAP_BOOL" PARVALUE="ABAP_FALSE"/>
+   <parameter CLSNAME="ZCL_ZAKE_SVN" CMPNAME="EXECUTE_SVN_COMMAND" SCONAME="E_COMMAND_OUTPUT" VERSION="1" LANGU="E" DESCRIPT="Table of Strings" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100428" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="1" TYPE="STRING_TABLE"/>
+   <exception CLSNAME="ZCL_ZAKE_SVN" CMPNAME="EXECUTE_SVN_COMMAND" SCONAME="ZCX_SAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100428"/>
+   <source>method EXECUTE_SVN_COMMAND.
   DATA: temp_dir TYPE string.
   DATA: std_out_file TYPE string.
   DATA: parameter TYPE string.
@@ -179,7 +242,9 @@ endmethod.</source>
 
   CONCATENATE me-&gt;zake_home application INTO application.
 
-  WRITE: / i_command.
+  IF i_silent = ABAP_FALSE.
+    WRITE: / i_command.
+  ENDIF.
 *
 * Run the Subversion Command via the cl_gui_frontend_services=&gt;execute Method
 *
@@ -265,7 +330,9 @@ endmethod.</source>
         data_tab                = e_command_output    &quot; Transfer table for file contents
     ).
     LOOP AT e_command_output INTO line.
-      WRITE: / line.
+      IF i_silent = ABAP_FALSE.
+        WRITE: / line.
+      ENDIF.
     ENDLOOP.
 
     cl_gui_frontend_services=&gt;file_delete(
@@ -339,7 +406,7 @@ endmethod.</source>
 *    ENDLOOP.
 *  ENDIF.
 
-ENDMETHOD.</source>
+endmethod.</source>
    <methodDocumentation/>
   </method>
   <method CLSNAME="ZAKE" CMPNAME="UPDATE" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
