@@ -1492,7 +1492,7 @@ endmethod.</source>
           msg    = `Class Documentation object import failed`.
     ENDIF.
 
-    lang_node ?= txtline_iterator-&gt;get_next( ).
+    lang_node ?= lang_iterator-&gt;get_next( ).
   ENDWHILE.
 
 endmethod.</source>
@@ -1586,7 +1586,7 @@ endmethod.</source>
           msg    = `Class Method Documentation object import failed`.
     ENDIF.
 
-    lang_node ?= txtline_iterator-&gt;get_next( ).
+    lang_node ?= lang_iterator-&gt;get_next( ).
   ENDWHILE.
 
 endmethod.</source>
