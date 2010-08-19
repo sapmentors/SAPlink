@@ -8,27 +8,28 @@
 *&quot;* public components of class ZAKE
 *&quot;* do not include other source files here!!!
 public section.
+  type-pools ABAP .
 
   data DOWNLOAD_NUGGET_TO_LM type FLAG value &apos;X&apos;. &quot;#EC NOTEXT .
   data DOWNLOAD_SLINKEES_TO_LM type FLAG value &apos;X&apos;. &quot;#EC NOTEXT .
 
-  methods ACTIVATE_SLINKEES
-    importing
-      !I_SLINKEES type IGS_CE_CU_TAB
-    raising
-      ZCX_SAPLINK .
-  methods ADD_FILES_TO_ZIP
-    importing
-      !I_FILES type STRING_TABLE .
-  methods UPDATE
-  abstract
-    raising
-      ZCX_SAPLINK .
   class-methods GET_FILENAME_FROM_FULLPATH
     importing
       !I_FULLPATH type STRING
     returning
       value(R_FILENAME) type STRING .
+  methods UPDATE
+  abstract
+    raising
+      ZCX_SAPLINK .
+  methods ADD_FILES_TO_ZIP
+    importing
+      !I_FILES type STRING_TABLE .
+  methods ACTIVATE_SLINKEES
+    importing
+      !I_SLINKEES type IGS_CE_CU_TAB
+    raising
+      ZCX_SAPLINK .
   methods SET_TESTRUN
     importing
       !I_TESTRUN type FLAG .
@@ -61,6 +62,9 @@ public section.
     importing
       !I_OBJTYPE type STRING
       !I_OBJNAME type STRING
+    raising
+      ZCX_SAPLINK .
+  methods ACTIVATE_PACKAGE_OBJECTS
     raising
       ZCX_SAPLINK .
   methods ADD_OBJECT_TO_NUGGET
@@ -180,7 +184,9 @@ private section.
     importing
       !I_FULLPATH type STRING
     returning
-      value(R_XML_STRING) type STRING .
+      value(R_XML_STRING) type STRING
+    raising
+      ZCX_SAPLINK .
   methods DELETE_FILE
     importing
       !I_FULLPATH type STRING .
@@ -247,19 +253,20 @@ types: tt_objects TYPE STANDARD TABLE OF t_objects.</localTypes>
  <localMacros>*&quot;* use this source file for any macro definitions you need
 *&quot;* in the implementation part of the class</localMacros>
  <textPool/>
- <classDocumentation/>
- <attribute CLSNAME="ZAKE" CMPNAME="CURRENTNUGGETS" VERSION="1" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="4 " AUTHOR="BCUSER" CREATEDON="20091219" CHANGEDBY="BCUSER" CHANGEDON="20100307" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="11 " SRCCOLUMN1="4 " SRCROW2="11 " SRCCOLUMN2="50 " R3RELEASE="702" TYPESRC_LENG="49 " TYPESRC="CURRENTNUGGETS type standard table of nuggetRow
+ <typeUsage CLSNAME="ZAKE" TYPEGROUP="ABAP" VERSION="1" TPUTYPE="0" EXPLICIT="X"/>
+ <forwardDeclaration>ABAP</forwardDeclaration>
+ <attribute CLSNAME="ZAKE" CMPNAME="CURRENTNUGGETS" VERSION="1" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="4 " AUTHOR="BCUSER" CREATEDON="20091219" CHANGEDBY="BCUSER" CHANGEDON="20100819" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="11 " SRCCOLUMN1="4 " SRCROW2="11 " SRCCOLUMN2="50 " R3RELEASE="702" TYPESRC_LENG="49 " TYPESRC="CURRENTNUGGETS type standard table of nuggetRow
 "/>
  <attribute CLSNAME="ZAKE" CMPNAME="DOWNLOAD_NUGGET_TO_LM" VERSION="1" LANGU="E" DESCRIPT="General Flag" EXPOSURE="2" STATE="1" EDITORDER="0 " AUTHOR="BCUSER" CREATEDON="20100401" CHANGEDON="00000000" ATTDECLTYP="0" ATTVALUE="&apos;X&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="FLAG" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " R3RELEASE="702" TYPESRC_LENG="0 "/>
  <attribute CLSNAME="ZAKE" CMPNAME="DOWNLOAD_SLINKEES_TO_LM" VERSION="1" LANGU="E" DESCRIPT="General Flag" EXPOSURE="2" STATE="1" EDITORDER="0 " AUTHOR="BCUSER" CREATEDON="20100401" CHANGEDON="00000000" ATTDECLTYP="0" ATTVALUE="&apos;X&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="FLAG" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " R3RELEASE="702" TYPESRC_LENG="0 "/>
- <attribute CLSNAME="ZAKE" CMPNAME="FILELIST" VERSION="1" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="5 " AUTHOR="BCUSER" CREATEDON="20091219" CHANGEDBY="BCUSER" CHANGEDON="20100307" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="13 " SRCCOLUMN1="4 " SRCROW2="13 " SRCCOLUMN2="50 " R3RELEASE="702" TYPESRC_LENG="49 " TYPESRC="FILELIST type standard table of fileListRowType
+ <attribute CLSNAME="ZAKE" CMPNAME="FILELIST" VERSION="1" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="5 " AUTHOR="BCUSER" CREATEDON="20091219" CHANGEDBY="BCUSER" CHANGEDON="20100819" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="13 " SRCCOLUMN1="4 " SRCROW2="13 " SRCCOLUMN2="50 " R3RELEASE="702" TYPESRC_LENG="49 " TYPESRC="FILELIST type standard table of fileListRowType
 "/>
  <attribute CLSNAME="ZAKE" CMPNAME="FILELIST_ZIP" VERSION="1" LANGU="E" DESCRIPT="Files to add to the ZIP file" EXPOSURE="0" STATE="1" EDITORDER="0 " AUTHOR="BCUSER" CREATEDON="20100307" CHANGEDON="00000000" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING_TABLE" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " R3RELEASE="702" TYPESRC_LENG="0 "/>
  <attribute CLSNAME="ZAKE" CMPNAME="HTTPCLIENT" VERSION="1" LANGU="E" DESCRIPT="HTTP Client Abstraction" EXPOSURE="0" STATE="1" EDITORDER="2 " AUTHOR="BCUSER" CREATEDON="20091219" CHANGEDBY="BCUSER" CHANGEDON="20100307" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="3" TYPE="IF_HTTP_CLIENT" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " R3RELEASE="702" TYPESRC_LENG="0 "/>
  <attribute CLSNAME="ZAKE" CMPNAME="IV_PACKAGE" VERSION="1" LANGU="E" DESCRIPT="Package" EXPOSURE="0" STATE="1" EDITORDER="1 " AUTHOR="BCUSER" CREATEDON="20091219" CHANGEDBY="BCUSER" CHANGEDON="20100307" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="DEVCLASS" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " R3RELEASE="702" TYPESRC_LENG="0 "/>
- <attribute CLSNAME="ZAKE" CMPNAME="L_OBJTABLE" VERSION="1" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="3 " AUTHOR="BCUSER" CREATEDON="20091219" CHANGEDBY="BCUSER" CHANGEDON="20100307" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="9 " SRCCOLUMN1="4 " SRCROW2="9 " SRCCOLUMN2="50 " R3RELEASE="702" TYPESRC_LENG="49 " TYPESRC="L_OBJTABLE type standard table of t_objectTable
+ <attribute CLSNAME="ZAKE" CMPNAME="L_OBJTABLE" VERSION="1" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="3 " AUTHOR="BCUSER" CREATEDON="20091219" CHANGEDBY="BCUSER" CHANGEDON="20100819" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="9 " SRCCOLUMN1="4 " SRCROW2="9 " SRCCOLUMN2="50 " R3RELEASE="702" TYPESRC_LENG="49 " TYPESRC="L_OBJTABLE type standard table of t_objectTable
 "/>
- <attribute CLSNAME="ZAKE" CMPNAME="PACKAGE_OBJECTS" VERSION="1" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="6 " AUTHOR="BCUSER" CREATEDON="20091219" CHANGEDBY="BCUSER" CHANGEDON="20100307" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="15 " SRCCOLUMN1="4 " SRCROW2="15 " SRCCOLUMN2="62 " R3RELEASE="702" TYPESRC_LENG="61 " TYPESRC="package_objects TYPE STANDARD TABLE OF t_packageObjectTable
+ <attribute CLSNAME="ZAKE" CMPNAME="PACKAGE_OBJECTS" VERSION="1" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="6 " AUTHOR="BCUSER" CREATEDON="20091219" CHANGEDBY="BCUSER" CHANGEDON="20100819" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="15 " SRCCOLUMN1="4 " SRCROW2="15 " SRCCOLUMN2="62 " R3RELEASE="702" TYPESRC_LENG="61 " TYPESRC="package_objects TYPE STANDARD TABLE OF t_packageObjectTable
 "/>
  <attribute CLSNAME="ZAKE" CMPNAME="PASSWORD" VERSION="1" LANGU="E" DESCRIPT="Password" EXPOSURE="1" STATE="1" EDITORDER="1 " AUTHOR="BCUSER" CREATEDON="20091219" CHANGEDBY="BCUSER" CHANGEDON="20100307" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " R3RELEASE="702" TYPESRC_LENG="0 "/>
  <attribute CLSNAME="ZAKE" CMPNAME="PATH" VERSION="1" LANGU="E" DESCRIPT="Local Path" EXPOSURE="1" STATE="1" EDITORDER="3 " AUTHOR="BCUSER" CREATEDON="20091219" CHANGEDBY="BCUSER" CHANGEDON="20100307" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " R3RELEASE="702" TYPESRC_LENG="0 "/>
@@ -304,7 +311,104 @@ types: tt_objects TYPE STANDARD TABLE OF t_objects.</localTypes>
   ENDIF.
 
 endmethod.</source>
-  <methodDocumentation/>
+ </method>
+ <method CLSNAME="ZAKE" CMPNAME="ACTIVATE_PACKAGE_OBJECTS" VERSION="1" LANGU="E" DESCRIPT="Activate Object" EXPOSURE="2" STATE="1" EDITORDER="7 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100819" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
+  <exception CLSNAME="ZAKE" CMPNAME="ACTIVATE_PACKAGE_OBJECTS" SCONAME="ZCX_SAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 " AUTHOR="BCUSER" CREATEDON="20100819" CHANGEDON="00000000"/>
+  <source>METHOD activate_package_objects.
+  DATA: object   TYPE trobjtype,
+        obj_name TYPE trobj_name.
+  DATA: objects TYPE dwinactiv_tab.
+  DATA: msg TYPE string.
+  FIELD-SYMBOLS: &lt;package_object&gt; LIKE LINE OF me-&gt;package_objects.
+
+  LOOP AT me-&gt;package_objects ASSIGNING &lt;package_object&gt;
+    WHERE object = &apos;DTEL&apos;
+       OR object = &apos;VIEW&apos;
+       OR object = &apos;DOMA&apos;
+       OR object = &apos;TTYP&apos;
+       OR object = &apos;INDX&apos;
+       OR object = &apos;XINX&apos;
+       OR object = &apos;SHLP&apos;
+       OR object = &apos;ENQU&apos;
+       OR object = &apos;MCOB&apos;
+       OR object = &apos;TABL&apos;
+       OR object = &apos;SQLT&apos;
+       OR object = &apos;STRU&apos;
+       OR object = &apos;SFBF&apos;
+       OR object = &apos;SFSW&apos;
+       OR object = &apos;SFBS&apos;
+       OR object = &apos;SF01&apos;
+       OR object = &apos;METH&apos;.
+    object   = &lt;package_object&gt;-object.
+    obj_name = &lt;package_object&gt;-obj_name.
+    CALL FUNCTION &apos;RS_WORKING_OBJECT_ACTIVATE&apos;
+      EXPORTING
+        object                     = object
+        obj_name                   = obj_name
+        activate_only_this_object  = &apos;X&apos;
+        dictionary_only            = &apos;X&apos;
+      TABLES
+        OBJECTS                    = OBJECTS
+      exceptions
+        object_not_in_working_area = 1
+        execution_error            = 2
+        cancelled                  = 3
+        insert_into_corr_error     = 4
+        OTHERS                     = 5.
+
+    IF sy-subrc &lt;&gt; 0.
+      msg = &apos;Error during activation&apos;.
+      RAISE EXCEPTION TYPE zcx_saplink
+        EXPORTING
+          textid = zcx_saplink=&gt;error_message
+          msg    = msg.
+    ENDIF.
+  ENDLOOP.
+  LOOP AT me-&gt;package_objects ASSIGNING &lt;package_object&gt;
+    WHERE object &lt;&gt; &apos;DTEL&apos;
+       AND object &lt;&gt; &apos;VIEW&apos;
+       AND object &lt;&gt; &apos;DOMA&apos;
+       AND object &lt;&gt; &apos;TTYP&apos;
+       AND object &lt;&gt; &apos;INDX&apos;
+       AND object &lt;&gt; &apos;XINX&apos;
+       AND object &lt;&gt; &apos;SHLP&apos;
+       AND object &lt;&gt; &apos;ENQU&apos;
+       AND object &lt;&gt; &apos;MCOB&apos;
+       AND object &lt;&gt; &apos;TABL&apos;
+       AND object &lt;&gt; &apos;SQLT&apos;
+       AND object &lt;&gt; &apos;STRU&apos;
+       AND object &lt;&gt; &apos;SFBF&apos;
+       AND object &lt;&gt; &apos;SFSW&apos;
+       AND object &lt;&gt; &apos;SFBS&apos;
+       AND object &lt;&gt; &apos;SF01&apos;
+       AND object &lt;&gt; &apos;METH&apos;.
+    object   = &lt;package_object&gt;-object.
+    obj_name = &lt;package_object&gt;-obj_name.
+    CALL FUNCTION &apos;RS_WORKING_OBJECT_ACTIVATE&apos;
+      EXPORTING
+        object                     = object
+        obj_name                   = obj_name
+        activate_only_this_object  = &apos;X&apos;
+        dictionary_only            = &apos; &apos;
+      TABLES
+        OBJECTS                    = OBJECTS
+      exceptions
+        object_not_in_working_area = 1
+        execution_error            = 2
+        cancelled                  = 3
+        insert_into_corr_error     = 4
+        OTHERS                     = 5.
+
+    IF sy-subrc &lt;&gt; 0.
+      msg = &apos;Error during activation&apos;.
+      RAISE EXCEPTION TYPE zcx_saplink
+        EXPORTING
+          textid = zcx_saplink=&gt;error_message
+          msg    = msg.
+    ENDIF.
+  ENDLOOP.
+
+ENDMETHOD.</source>
  </method>
  <method CLSNAME="ZAKE" CMPNAME="ACTIVATE_SLINKEES" VERSION="1" LANGU="E" DESCRIPT="Activate slinkees" EXPOSURE="2" STATE="1" EDITORDER="0 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100117" CHANGEDBY="BCUSER" CHANGEDON="20100307" MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZAKE" CMPNAME="ACTIVATE_SLINKEES" SCONAME="I_SLINKEES" VERSION="1" LANGU="E" DESCRIPT="Multiple Customizings for CE" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100117" CHANGEDBY="BCUSER" CHANGEDON="20100307" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="IGS_CE_CU_TAB"/>
@@ -326,14 +430,12 @@ endmethod.</source>
   ENDIF.
 
 endmethod.</source>
-  <methodDocumentation/>
  </method>
  <method CLSNAME="ZAKE" CMPNAME="ADD_FILES_TO_ZIP" VERSION="1" LANGU="E" DESCRIPT="Adds the provided files to the ZIP file" EXPOSURE="2" STATE="1" EDITORDER="0 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100307" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZAKE" CMPNAME="ADD_FILES_TO_ZIP" SCONAME="I_FILES" VERSION="1" LANGU="E" DESCRIPT="Table of Filenames" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100307" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING_TABLE"/>
   <source>METHOD add_files_to_zip.
   me-&gt;filelist_zip[] = i_files[].
 ENDMETHOD.</source>
-  <methodDocumentation/>
  </method>
  <method CLSNAME="ZAKE" CMPNAME="ADD_OBJECT_TO_NUGGET" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="8 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100307" MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZAKE" CMPNAME="ADD_OBJECT_TO_NUGGET" SCONAME="I_NUGGET_NAME" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100307" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
@@ -363,7 +465,6 @@ ENDMETHOD.</source>
   ENDIF.
 
 endmethod.</source>
-  <methodDocumentation/>
  </method>
  <method CLSNAME="ZAKE" CMPNAME="ADD_SLINKEE_TO_VERSIONCONTROL" VERSION="1" LANGU="E" DESCRIPT="Add Slinkee to the Version Control System" EXPOSURE="1" STATE="1" EDITORDER="3 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100307" MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZAKE" CMPNAME="ADD_SLINKEE_TO_VERSIONCONTROL" SCONAME="I_FULLPATH" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100307" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
@@ -371,7 +472,6 @@ endmethod.</source>
   <exception CLSNAME="ZAKE" CMPNAME="ADD_SLINKEE_TO_VERSIONCONTROL" SCONAME="ZCX_SAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100307"/>
   <source>method ADD_SLINKEE_TO_VERSIONCONTROL.
 endmethod.</source>
-  <methodDocumentation/>
  </method>
  <method CLSNAME="ZAKE" CMPNAME="BUILD_NUGGET_FROM_FILES" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="9 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100307" MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZAKE" CMPNAME="BUILD_NUGGET_FROM_FILES" SCONAME="I_NUGGET_NAME" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100307" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
@@ -398,17 +498,14 @@ endmethod.</source>
   ENDLOOP.
 
 endmethod.</source>
-  <methodDocumentation/>
  </method>
  <method CLSNAME="ZAKE" CMPNAME="CHECKIN" VERSION="1" LANGU="E" DESCRIPT="Checkin to version control system" EXPOSURE="2" STATE="1" EDITORDER="6 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20091219" CHANGEDBY="BCUSER" CHANGEDON="20100307" MTDTYPE="0" MTDDECLTYP="0" MTDABSTRCT="X" MTDNEWEXC="X" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZAKE" CMPNAME="CHECKIN" SCONAME="I_COMMENT" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100307" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING" PAROPTIONL="X"/>
   <exception CLSNAME="ZAKE" CMPNAME="CHECKIN" SCONAME="ZCX_SAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 " AUTHOR="BCUSER" CREATEDON="20100105" CHANGEDBY="BCUSER" CHANGEDON="20100307"/>
-  <methodDocumentation/>
  </method>
  <method CLSNAME="ZAKE" CMPNAME="CHECKOUT" VERSION="1" LANGU="E" DESCRIPT="Checkout from version control system" EXPOSURE="2" STATE="1" EDITORDER="5 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20091219" CHANGEDBY="BCUSER" CHANGEDON="20100307" MTDTYPE="0" MTDDECLTYP="0" MTDABSTRCT="X" MTDNEWEXC="X" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZAKE" CMPNAME="CHECKOUT" SCONAME="I_REVISION" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100307" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="I" PAROPTIONL="X"/>
   <exception CLSNAME="ZAKE" CMPNAME="CHECKOUT" SCONAME="ZCX_SAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 " AUTHOR="BCUSER" CREATEDON="20100105" CHANGEDBY="BCUSER" CHANGEDON="20100307"/>
-  <methodDocumentation/>
  </method>
  <method CLSNAME="ZAKE" CMPNAME="CONSTRUCTOR" VERSION="1" LANGU="E" DESCRIPT="CONSTRUCTOR" EXPOSURE="2" STATE="1" EDITORDER="20 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20091219" CHANGEDBY="BCUSER" CHANGEDON="20100307" MTDTYPE="2" MTDDECLTYP="0" MTDNEWEXC="X" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZAKE" CMPNAME="CONSTRUCTOR" SCONAME="I_SVNPATH" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="2" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100307" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
@@ -518,7 +615,6 @@ endmethod.</source>
   ENDTRY.
 
 ENDMETHOD.</source>
-  <methodDocumentation/>
  </method>
  <method CLSNAME="ZAKE" CMPNAME="CREATE_NUGGET" VERSION="1" LANGU="E" DESCRIPT="Creates a  Nugget so you can add objects to it" EXPOSURE="2" STATE="1" EDITORDER="10 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100307" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZAKE" CMPNAME="CREATE_NUGGET" SCONAME="I_NUGGET_NAME" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100307" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
@@ -536,7 +632,6 @@ ENDMETHOD.</source>
   APPEND newnugget TO currentnuggets.
 
 endmethod.</source>
-  <methodDocumentation/>
  </method>
  <method CLSNAME="ZAKE" CMPNAME="CREATE_SLINKEE" VERSION="1" LANGU="E" DESCRIPT="Create Slinkee" EXPOSURE="0" STATE="1" EDITORDER="3 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100307" MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZAKE" CMPNAME="CREATE_SLINKEE" SCONAME="I_NUGGET_NAME" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100307" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING" PAROPTIONL="X"/>
@@ -577,7 +672,7 @@ endmethod.</source>
     xml_document = targetobject-&gt;createixmldocfromobject( ).
     xml = zsaplink=&gt;convertixmldoctostring( xml_document ).
 
-    IF me-&gt;download_slinkees_to_lm = &apos;X&apos;.
+    IF me-&gt;download_slinkees_to_lm = abap_true.
       me-&gt;download_xml_to_lm(
           i_fullpath   = fullpath
           i_xml_string = xml
@@ -593,7 +688,6 @@ endmethod.</source>
   ENDIF.
 
 ENDMETHOD.</source>
-  <methodDocumentation/>
  </method>
  <method CLSNAME="ZAKE" CMPNAME="CREATE_SLINKEES" VERSION="1" LANGU="E" DESCRIPT="Create Slinkees" EXPOSURE="2" STATE="1" EDITORDER="11 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100307" MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZAKE" CMPNAME="CREATE_SLINKEES" SCONAME="I_NUGGET_NAME" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100307" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING" PAROPTIONL="X"/>
@@ -631,7 +725,7 @@ ENDMETHOD.</source>
   IF NOT i_nugget_name IS INITIAL.
     nugget_string = me-&gt;get_nugget_string( i_nugget_name   = i_nugget_name ).
 
-    IF me-&gt;download_nugget_to_lm = &apos;X&apos;.
+    IF me-&gt;download_nugget_to_lm = abap_true.
       me-&gt;download_xml_to_lm(
         EXPORTING
           i_fullpath   = i_nugget_name
@@ -645,7 +739,6 @@ ENDMETHOD.</source>
     ).
   ENDIF.
 ENDMETHOD.</source>
-  <methodDocumentation/>
  </method>
  <method CLSNAME="ZAKE" CMPNAME="DELETE" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="18 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20091219" CHANGEDBY="BCUSER" CHANGEDON="20100307" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZAKE" CMPNAME="DELETE" SCONAME="I_XML_DOCUMENT" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_DOCUMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100307" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_DOCUMENT"/>
@@ -663,7 +756,6 @@ ENDMETHOD.</source>
       objname      = objname.
 
 endmethod.</source>
-  <methodDocumentation/>
  </method>
  <method CLSNAME="ZAKE" CMPNAME="DELETE_FILE" VERSION="1" LANGU="E" DESCRIPT="Delete File" EXPOSURE="0" STATE="1" EDITORDER="2 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100307" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZAKE" CMPNAME="DELETE_FILE" SCONAME="I_FULLPATH" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100307" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
@@ -676,7 +768,6 @@ endmethod.</source>
       rc       = rc
   ).
 endmethod.</source>
-  <methodDocumentation/>
  </method>
  <method CLSNAME="ZAKE" CMPNAME="DOWNLOAD_XML_TO_LM" VERSION="1" LANGU="E" DESCRIPT="Download XML to local machine" EXPOSURE="0" STATE="1" EDITORDER="5 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100307" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZAKE" CMPNAME="DOWNLOAD_XML_TO_LM" SCONAME="I_FULLPATH" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100307" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
@@ -697,7 +788,6 @@ endmethod.</source>
       data_tab = temptable_char.
 
 endmethod.</source>
-  <methodDocumentation/>
  </method>
  <method CLSNAME="ZAKE" CMPNAME="DOWNLOAD_ZIP_TO_LM" VERSION="1" LANGU="E" DESCRIPT="Download XML to local machine" EXPOSURE="0" STATE="1" EDITORDER="4 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100307" MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZAKE" CMPNAME="DOWNLOAD_ZIP_TO_LM" SCONAME="I_FULLPATH" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100307" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
@@ -719,6 +809,11 @@ endmethod.</source>
   DATA filelength TYPE i.
   DATA tmpfullpath TYPE string.
   DATA slash TYPE string.
+  &quot; Background processing
+  DATA bin_data LIKE LINE OF bin_tab.
+  DATA len TYPE i.
+  DATA alen TYPE i.
+  DATA templine LIKE LINE OF temptable.
 
   filename = zake=&gt;get_filename_from_fullpath( i_fullpath ).
 
@@ -742,39 +837,52 @@ endmethod.</source>
       slash = &apos;/&apos;.
       REPLACE ALL OCCURRENCES OF slash IN tmpfullpath WITH &apos;\&apos;.
 
-      cl_gui_frontend_services=&gt;gui_upload(
-        EXPORTING
-          filename                = tmpfullpath    &quot; Name of file
-          filetype                = &apos;BIN&apos;    &quot; File Type (ASCII, Binary)
-        IMPORTING
-          filelength              = filelength
-        CHANGING
-          data_tab                = bin_tab
-        EXCEPTIONS
-          file_open_error         = 1
-          file_read_error         = 2
-          no_batch                = 3
-          gui_refuse_filetransfer = 4
-          invalid_type            = 5
-          no_authority            = 6
-          unknown_error           = 7
-          bad_data_format         = 8
-          header_not_allowed      = 9
-          separator_not_allowed   = 10
-          header_too_long         = 11
-          unknown_dp_error        = 12
-          access_denied           = 13
-          dp_out_of_memory        = 14
-          disk_full               = 15
-          dp_timeout              = 16
-          not_supported_by_gui    = 17
-          error_no_gui            = 18
-          OTHERS                  = 19
-      ).
-      IF sy-subrc &lt;&gt; 0.
-        RAISE EXCEPTION TYPE zcx_saplink
+      IF sy-batch = abap_true.
+
+        DESCRIBE FIELD bin_data LENGTH len IN BYTE MODE.
+        OPEN DATASET i_fullpath  FOR INPUT IN BINARY MODE.
+        WHILE sy-subrc = 0.
+          READ DATASET i_fullpath INTO bin_data MAXIMUM LENGTH len ACTUAL LENGTH alen.
+          APPEND bin_data TO bin_tab.
+          filelength = filelength + alen.
+        ENDWHILE.
+
+        CLOSE DATASET i_fullpath.
+      ELSE.
+        cl_gui_frontend_services=&gt;gui_upload(
           EXPORTING
-            textid = zcx_saplink=&gt;system_error.
+            filename                = tmpfullpath    &quot; Name of file
+            filetype                = &apos;BIN&apos;    &quot; File Type (ASCII, Binary)
+          IMPORTING
+            filelength              = filelength
+          CHANGING
+            data_tab                = bin_tab
+          EXCEPTIONS
+            file_open_error         = 1
+            file_read_error         = 2
+            no_batch                = 3
+            gui_refuse_filetransfer = 4
+            invalid_type            = 5
+            no_authority            = 6
+            unknown_error           = 7
+            bad_data_format         = 8
+            header_not_allowed      = 9
+            separator_not_allowed   = 10
+            header_too_long         = 11
+            unknown_dp_error        = 12
+            access_denied           = 13
+            dp_out_of_memory        = 14
+            disk_full               = 15
+            dp_timeout              = 16
+            not_supported_by_gui    = 17
+            error_no_gui            = 18
+            OTHERS                  = 19
+        ).
+        IF sy-subrc &lt;&gt; 0.
+          RAISE EXCEPTION TYPE zcx_saplink
+            EXPORTING
+              textid = zcx_saplink=&gt;system_error.
+        ENDIF.
       ENDIF.
       CALL FUNCTION &apos;SCMS_BINARY_TO_XSTRING&apos;
         EXPORTING
@@ -804,18 +912,24 @@ endmethod.</source>
       binary_tab    = temptable.
 
   CONCATENATE i_fullpath &apos;.zip&apos; INTO zipfilename.
-
-  cl_gui_frontend_services=&gt;gui_download(
-    EXPORTING
-      bin_filesize = bin_filesize
-      filename     = zipfilename
-      filetype     = &apos;BIN&apos;
-    CHANGING
-      data_tab     = temptable
-   ).
+  IF sy-batch = abap_true.
+    OPEN DATASET zipfilename FOR OUTPUT IN BINARY MODE.
+    LOOP AT temptable INTO templine.
+      TRANSFER templine TO zipfilename.
+    ENDLOOP.
+    CLOSE DATASET zipfilename.
+  ELSE.
+    cl_gui_frontend_services=&gt;gui_download(
+      EXPORTING
+        bin_filesize = bin_filesize
+        filename     = zipfilename
+        filetype     = &apos;BIN&apos;
+      CHANGING
+        data_tab     = temptable
+     ).
+  ENDIF.
 
 ENDMETHOD.</source>
-  <methodDocumentation/>
  </method>
  <method CLSNAME="ZAKE" CMPNAME="GET_ALL_FILES" VERSION="1" LANGU="E" DESCRIPT="Get all files from HTTP Server" EXPOSURE="2" STATE="1" EDITORDER="12 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100307" MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
   <exception CLSNAME="ZAKE" CMPNAME="GET_ALL_FILES" SCONAME="ZCX_SAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100307"/>
@@ -862,7 +976,6 @@ ENDMETHOD.</source>
   ENDIF.
 
 endmethod.</source>
-  <methodDocumentation/>
  </method>
  <method CLSNAME="ZAKE" CMPNAME="GET_FILE" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="19 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100307" MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZAKE" CMPNAME="GET_FILE" SCONAME="I_FILENAME" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100307" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
@@ -907,7 +1020,6 @@ endmethod.</source>
   ENDIF.
 
 endmethod.</source>
-  <methodDocumentation/>
  </method>
  <method CLSNAME="ZAKE" CMPNAME="GET_FILENAME_FROM_FULLPATH" VERSION="1" LANGU="E" DESCRIPT="Read filename from the full path" EXPOSURE="2" STATE="1" EDITORDER="0 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100307" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="1" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZAKE" CMPNAME="GET_FILENAME_FROM_FULLPATH" SCONAME="I_FULLPATH" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100307" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
@@ -920,7 +1032,6 @@ endmethod.</source>
   DESCRIBE TABLE pathcomponents LINES l.
   READ TABLE pathcomponents INTO r_filename INDEX l.
 ENDMETHOD.</source>
-  <methodDocumentation/>
  </method>
  <method CLSNAME="ZAKE" CMPNAME="GET_NUGGET_STRING" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="13 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100307" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZAKE" CMPNAME="GET_NUGGET_STRING" SCONAME="I_NUGGET_NAME" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100307" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
@@ -940,13 +1051,12 @@ ENDMETHOD.</source>
   ENDIF.
 
 endmethod.</source>
-  <methodDocumentation/>
  </method>
  <method CLSNAME="ZAKE" CMPNAME="GET_SLINKEES_FROM_LM" VERSION="1" LANGU="E" DESCRIPT="Get all Slinkee&apos;s from Version Control" EXPOSURE="1" STATE="1" EDITORDER="2 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100113" CHANGEDBY="BCUSER" CHANGEDON="20100307" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZAKE" CMPNAME="GET_SLINKEES_FROM_LM" SCONAME="I_FULLPATH" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100113" CHANGEDBY="BCUSER" CHANGEDON="20100307" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
   <parameter CLSNAME="ZAKE" CMPNAME="GET_SLINKEES_FROM_LM" SCONAME="C_SLINKEES" VERSION="1" LANGU="E" DESCRIPT="Business Content Table XML DOM" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100113" CHANGEDBY="BCUSER" CHANGEDON="20100307" PARDECLTYP="2" PARPASSTYP="0" TYPTYPE="1" TYPE="IGS_CE_CU_TAB"/>
   <exception CLSNAME="ZAKE" CMPNAME="GET_SLINKEES_FROM_LM" SCONAME="ZCX_SAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 " AUTHOR="BCUSER" CREATEDON="20100113" CHANGEDBY="BCUSER" CHANGEDON="20100307"/>
-  <source>method GET_SLINKEES_FROM_LM.
+  <source>METHOD get_slinkees_from_lm.
 
   DATA: result TYPE abap_bool.
 
@@ -958,27 +1068,58 @@ endmethod.</source>
   DATA: slash TYPE string.
   DATA: xmlstring TYPE string.
   DATA: slinkee LIKE LINE OF c_slinkees.
+  &quot; For Batch processing
+  DATA: name TYPE pfeflnamel,
+        file_tbl TYPE TABLE OF salfldir.
+  FIELD-SYMBOLS: &lt;file&gt; LIKE LINE OF file_tbl.
 
   tmpfullpath = i_fullpath.
   slash = &apos;/&apos;.
   REPLACE ALL OCCURRENCES OF slash IN tmpfullpath WITH &apos;\&apos;.
+  &quot; When running as a Batch Job we had to read from the server
+  IF sy-batch = abap_true.
+    name = i_fullpath.
+    CALL FUNCTION &apos;RZL_READ_DIR_LOCAL&apos;
+      EXPORTING
+        name           = name
+      TABLES
+        file_tbl       = file_tbl
+      EXCEPTIONS
+        argument_error = 1
+        not_found      = 2
+        OTHERS         = 3.
+    IF sy-subrc &lt;&gt; 0.
 
-  cl_gui_frontend_services=&gt;directory_list_files(
-    EXPORTING
-      directory                   = tmpfullpath   &quot; Directory To Search
-    CHANGING
-      file_table                  = file_table    &quot; Return Table for the Found Files
-      count                       = count    &quot; Number of Files/Dir Found
-    EXCEPTIONS
-      cntl_error                  = 1
-      directory_list_files_failed = 2
-      wrong_parameter             = 3
-      error_no_gui                = 4
-      not_supported_by_gui        = 5
-      OTHERS                      = 6
-  ).
-  IF sy-subrc &lt;&gt; 0.
+    ENDIF.
+    LOOP AT file_tbl ASSIGNING &lt;file&gt;
+      WHERE name &lt;&gt; &apos;.&apos; AND name &lt;&gt; &apos;..&apos;
+        AND NOT name CP &apos;.*&apos;.
+      CLEAR file.
+      &quot; When the size is initial, then we think it is a directory
+      IF &lt;file&gt;-size IS INITIAL.
+        file-isdir = &apos;1&apos;.
+      ENDIF.
+      file-filename = &lt;file&gt;-name.
+      APPEND file TO file_table.
+    ENDLOOP.
+  ELSE.
+    cl_gui_frontend_services=&gt;directory_list_files(
+      EXPORTING
+        directory                   = tmpfullpath   &quot; Directory To Search
+      CHANGING
+        file_table                  = file_table    &quot; Return Table for the Found Files
+        count                       = count    &quot; Number of Files/Dir Found
+      EXCEPTIONS
+        cntl_error                  = 1
+        directory_list_files_failed = 2
+        wrong_parameter             = 3
+        error_no_gui                = 4
+        not_supported_by_gui        = 5
+        OTHERS                      = 6
+    ).
+    IF sy-subrc &lt;&gt; 0.
 
+    ENDIF.
   ENDIF.
 
   DELETE file_table WHERE ishidden = &apos;1&apos;.
@@ -1001,8 +1142,7 @@ endmethod.</source>
     ENDIF.
   ENDLOOP.
 
-endmethod.</source>
-  <methodDocumentation/>
+ENDMETHOD.</source>
  </method>
  <method CLSNAME="ZAKE" CMPNAME="INSTALL" VERSION="1" LANGU="E" DESCRIPT="Install a Slinkee" EXPOSURE="2" STATE="1" EDITORDER="21 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20091219" CHANGEDBY="BCUSER" CHANGEDON="20100307" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZAKE" CMPNAME="INSTALL" SCONAME="I_XML_DOCUMENT" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_DOCUMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100307" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_DOCUMENT"/>
@@ -1057,7 +1197,6 @@ endmethod.</source>
   ENDTRY.
 
 endmethod.</source>
-  <methodDocumentation/>
  </method>
  <method CLSNAME="ZAKE" CMPNAME="INSTALL_OBJECTS" VERSION="1" LANGU="E" DESCRIPT="Install Objects" EXPOSURE="2" STATE="1" EDITORDER="2 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100113" CHANGEDBY="BCUSER" CHANGEDON="20100307" MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZAKE" CMPNAME="INSTALL_OBJECTS" SCONAME="I_OBJECTS" VERSION="1" LANGU="E" DESCRIPT="Object Directory" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100113" CHANGEDBY="BCUSER" CHANGEDON="20100307" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="SCTS_TADIR"/>
@@ -1098,19 +1237,20 @@ endmethod.</source>
   me-&gt;install_slinkees( slinkees_to_install ).
 
 endmethod.</source>
-  <methodDocumentation/>
  </method>
  <method CLSNAME="ZAKE" CMPNAME="INSTALL_SLINKEES" VERSION="1" LANGU="E" DESCRIPT="Install Slinkees" EXPOSURE="1" STATE="1" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100113" CHANGEDBY="BCUSER" CHANGEDON="20100307" MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZAKE" CMPNAME="INSTALL_SLINKEES" SCONAME="I_SLINKEES" VERSION="1" LANGU="E" DESCRIPT="Multiple Customizings for CE" CMPTYPE="1" MTDTYPE="0" EDITORDER="0 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100113" CHANGEDBY="BCUSER" CHANGEDON="20100307" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="IGS_CE_CU_TAB"/>
   <exception CLSNAME="ZAKE" CMPNAME="INSTALL_SLINKEES" SCONAME="ZCX_SAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 " AUTHOR="BCUSER" CREATEDON="20100113" CHANGEDBY="BCUSER" CHANGEDON="20100307"/>
-  <source>method INSTALL_SLINKEES.
+  <source>METHOD install_slinkees.
 
   DATA: slinkee LIKE LINE OF i_slinkees.
   DATA: objecttype TYPE string.
   DATA: objectname TYPE string.
-* Install and Activate all the Slinkee&apos;s
-  IF me-&gt;testrun IS INITIAL.
-    LOOP AT i_slinkees INTO slinkee.
+  FIELD-SYMBOLS: &lt;package_object&gt; LIKE LINE OF me-&gt;package_objects.
+
+  &quot; Install all the Slinkee&apos;s
+  LOOP AT i_slinkees INTO slinkee.
+    IF me-&gt;testrun = abap_false.
       me-&gt;install(
         EXPORTING
           i_xml_document = slinkee
@@ -1118,11 +1258,22 @@ endmethod.</source>
           e_objecttype  = objecttype
           e_objectname  = objectname
       ).
-    ENDLOOP.
-  ENDIF.
+    ELSE.
+      &quot; Even in the testrun we want to fill the Objectlist
+      CALL METHOD zsaplink=&gt;getobjectinfofromixmldoc
+        EXPORTING
+          ixmldocument = slinkee
+        IMPORTING
+          objtypename  = objecttype
+          objname      = objectname.
+    ENDIF.
 
-endmethod.</source>
-  <methodDocumentation/>
+    APPEND INITIAL LINE TO me-&gt;package_objects ASSIGNING &lt;package_object&gt;.
+    &lt;package_object&gt;-object   = objecttype.
+    &lt;package_object&gt;-obj_name = objectname.
+  ENDLOOP.
+
+ENDMETHOD.</source>
  </method>
  <method CLSNAME="ZAKE" CMPNAME="INSTALL_SLINKEES_FROM_LM" VERSION="1" LANGU="E" DESCRIPT="Install Slinkees from local machine" EXPOSURE="2" STATE="1" EDITORDER="4 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100113" CHANGEDBY="BCUSER" CHANGEDON="20100307" MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZAKE" CMPNAME="INSTALL_SLINKEES_FROM_LM" SCONAME="I_TESTRUN" VERSION="1" LANGU="E" DESCRIPT="General Flag" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100113" CHANGEDBY="BCUSER" CHANGEDON="20100307" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="FLAG" PARVALUE="&apos; &apos;"/>
@@ -1143,55 +1294,66 @@ endmethod.</source>
   me-&gt;install_slinkees( slinkees ).
 
 endmethod.</source>
-  <methodDocumentation/>
  </method>
- <method CLSNAME="ZAKE" CMPNAME="READ_XML_FROM_LM" VERSION="1" LANGU="E" DESCRIPT="Read XML from local machine" EXPOSURE="0" STATE="1" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100307" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
+ <method CLSNAME="ZAKE" CMPNAME="READ_XML_FROM_LM" VERSION="1" LANGU="E" DESCRIPT="Read XML from local machine" EXPOSURE="0" STATE="1" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100819" MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZAKE" CMPNAME="READ_XML_FROM_LM" SCONAME="I_FULLPATH" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100307" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
   <parameter CLSNAME="ZAKE" CMPNAME="READ_XML_FROM_LM" SCONAME="R_XML_STRING" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100307" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="1" TYPE="STRING"/>
-  <source>method READ_XML_FROM_LM.
+  <exception CLSNAME="ZAKE" CMPNAME="READ_XML_FROM_LM" SCONAME="ZCX_SAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 " AUTHOR="BCUSER" CREATEDON="20100819" CHANGEDON="00000000"/>
+  <source>METHOD read_xml_from_lm.
 
   DATA: temptable_char TYPE table_of_strings,
         tempstring TYPE string.
 
-  cl_gui_frontend_services=&gt;gui_upload(
-    EXPORTING
-       filename                = i_fullpath    &quot; Name of file
-      filetype                = &apos;ASC&apos;    &quot; File Type (ASCII, Binary)
-    CHANGING
-      data_tab                = temptable_char    &quot; Transfer table for file contents
-    EXCEPTIONS
-      file_open_error         = 1
-      file_read_error         = 2
-      no_batch                = 3
-      gui_refuse_filetransfer = 4
-      invalid_type            = 5
-      no_authority            = 6
-      unknown_error           = 7
-      bad_data_format         = 8
-      header_not_allowed      = 9
-      separator_not_allowed   = 10
-      header_too_long         = 11
-      unknown_dp_error        = 12
-      access_denied           = 13
-      dp_out_of_memory        = 14
-      disk_full               = 15
-      dp_timeout              = 16
-      not_supported_by_gui    = 17
-      error_no_gui            = 18
-      OTHERS                  = 19
-  ).
-  IF sy-subrc &lt;&gt; 0.
-*   MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
-*              WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
-  ENDIF.
+  IF sy-batch = abap_true.
+    OPEN DATASET i_fullpath  FOR INPUT IN TEXT MODE
+                             ENCODING DEFAULT
+                             WITH SMART LINEFEED.
+    WHILE sy-subrc = 0.
+      READ DATASET i_fullpath INTO tempstring.
+      APPEND tempstring TO temptable_char.
+    ENDWHILE.
 
+    CLOSE DATASET i_fullpath.
+  ELSE.
+    cl_gui_frontend_services=&gt;gui_upload(
+      EXPORTING
+         filename                = i_fullpath    &quot; Name of file
+        filetype                = &apos;ASC&apos;    &quot; File Type (ASCII, Binary)
+      CHANGING
+        data_tab                = temptable_char    &quot; Transfer table for file contents
+      EXCEPTIONS
+        file_open_error         = 1
+        file_read_error         = 2
+        no_batch                = 3
+        gui_refuse_filetransfer = 4
+        invalid_type            = 5
+        no_authority            = 6
+        unknown_error           = 7
+        bad_data_format         = 8
+        header_not_allowed      = 9
+        separator_not_allowed   = 10
+        header_too_long         = 11
+        unknown_dp_error        = 12
+        access_denied           = 13
+        dp_out_of_memory        = 14
+        disk_full               = 15
+        dp_timeout              = 16
+        not_supported_by_gui    = 17
+        error_no_gui            = 18
+        OTHERS                  = 19
+    ).
+    IF sy-subrc &lt;&gt; 0.
+      RAISE EXCEPTION TYPE zcx_saplink
+        EXPORTING
+          textid = zcx_saplink=&gt;system_error.
+    ENDIF.
+  ENDIF.
   LOOP AT temptable_char INTO tempstring.
     CONCATENATE r_xml_string tempstring cl_abap_char_utilities=&gt;newline
       INTO r_xml_string.
   ENDLOOP.
 
-endmethod.</source>
-  <methodDocumentation/>
+ENDMETHOD.</source>
  </method>
  <method CLSNAME="ZAKE" CMPNAME="SAVE_NUGGET" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="14 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100307" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZAKE" CMPNAME="SAVE_NUGGET" SCONAME="I_NUGGET_NAME" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100307" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
@@ -1234,7 +1396,6 @@ endmethod.</source>
   ENDIF.
 
 endmethod.</source>
-  <methodDocumentation/>
  </method>
  <method CLSNAME="ZAKE" CMPNAME="SET_CHECKIN_OBJECTS" VERSION="1" LANGU="E" DESCRIPT="Set the table of Objects to checkin" EXPOSURE="2" STATE="1" EDITORDER="3 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100307" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZAKE" CMPNAME="SET_CHECKIN_OBJECTS" SCONAME="I_OBJECTS" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100307" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="SCTS_TADIR"/>
@@ -1251,14 +1412,12 @@ endmethod.</source>
   ENDLOOP.
 
 endmethod.</source>
-  <methodDocumentation/>
  </method>
  <method CLSNAME="ZAKE" CMPNAME="SET_PACKAGE" VERSION="1" LANGU="E" DESCRIPT="Get the Objects of a Package" EXPOSURE="2" STATE="1" EDITORDER="16 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100307" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZAKE" CMPNAME="SET_PACKAGE" SCONAME="I_PACKAGE" VERSION="1" LANGU="E" DESCRIPT="Package" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100307" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="DEVCLASS"/>
   <source>method SET_PACKAGE.
   me-&gt;iv_package = i_package.
 endmethod.</source>
-  <methodDocumentation/>
  </method>
  <method CLSNAME="ZAKE" CMPNAME="SET_PACKAGE_OBJECTS" VERSION="1" LANGU="E" DESCRIPT="Get the Objects of a Package" EXPOSURE="2" STATE="1" EDITORDER="17 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100307" MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZAKE" CMPNAME="SET_PACKAGE_OBJECTS" SCONAME="I_PACKAGE" VERSION="1" LANGU="E" DESCRIPT="Package" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100307" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="DEVCLASS"/>
@@ -1284,24 +1443,20 @@ endmethod.</source>
         msg    = msg.
   ENDIF.
 endmethod.</source>
-  <methodDocumentation/>
  </method>
  <method CLSNAME="ZAKE" CMPNAME="SET_TESTRUN" VERSION="1" LANGU="E" DESCRIPT="Set the Testrun attribute" EXPOSURE="2" STATE="1" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100113" CHANGEDBY="BCUSER" CHANGEDON="20100307" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZAKE" CMPNAME="SET_TESTRUN" SCONAME="I_TESTRUN" VERSION="1" LANGU="E" DESCRIPT="General Flag" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100113" CHANGEDBY="BCUSER" CHANGEDON="20100307" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="FLAG"/>
   <source>method SET_TESTRUN.
   me-&gt;testrun = i_testrun.
 endmethod.</source>
-  <methodDocumentation/>
  </method>
  <method CLSNAME="ZAKE" CMPNAME="SYNTAXCHECK" VERSION="1" LANGU="E" DESCRIPT="JUST A STUB!" EXPOSURE="2" STATE="1" EDITORDER="15 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20091219" CHANGEDBY="BCUSER" CHANGEDON="20100307" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZAKE" CMPNAME="SYNTAXCHECK" SCONAME="I_OBJNAME" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100307" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
   <parameter CLSNAME="ZAKE" CMPNAME="SYNTAXCHECK" SCONAME="I_OBJTYPE" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100307" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
   <source>method SYNTAXCHECK.
 endmethod.</source>
-  <methodDocumentation/>
  </method>
  <method CLSNAME="ZAKE" CMPNAME="UPDATE" VERSION="1" LANGU="E" DESCRIPT="Update from Version Controll System" EXPOSURE="2" STATE="1" EDITORDER="0 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100130" CHANGEDBY="BCUSER" CHANGEDON="20100307" MTDTYPE="0" MTDDECLTYP="0" MTDABSTRCT="X" MTDNEWEXC="X" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
   <exception CLSNAME="ZAKE" CMPNAME="UPDATE" SCONAME="ZCX_SAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 " AUTHOR="BCUSER" CREATEDON="20100130" CHANGEDBY="BCUSER" CHANGEDON="20100307"/>
-  <methodDocumentation/>
  </method>
 </CLAS>
