@@ -841,14 +841,14 @@ endmethod.</source>
       IF sy-batch = abap_true.
 
         DESCRIBE FIELD bin_data LENGTH len IN BYTE MODE.
-        OPEN DATASET i_fullpath  FOR INPUT IN BINARY MODE.
+        OPEN DATASET tmpfullpath  FOR INPUT IN BINARY MODE.
         WHILE sy-subrc = 0.
-          READ DATASET i_fullpath INTO bin_data MAXIMUM LENGTH len ACTUAL LENGTH alen.
+          READ DATASET tmpfullpath INTO bin_data MAXIMUM LENGTH len ACTUAL LENGTH alen.
           APPEND bin_data TO bin_tab.
           filelength = filelength + alen.
         ENDWHILE.
 
-        CLOSE DATASET i_fullpath.
+        CLOSE DATASET tmpfullpath.
       ELSE.
         cl_gui_frontend_services=&gt;gui_upload(
           EXPORTING
