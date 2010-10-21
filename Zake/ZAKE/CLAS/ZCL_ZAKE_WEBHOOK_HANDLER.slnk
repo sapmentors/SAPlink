@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<CLAS CLSNAME="ZCL_ZAKE_WEBHOOK_HANDLER" VERSION="1" LANGU="E" DESCRIPT="ZAKE Webhook Handler" UUID="CC59BF4CCEFB8125E1000000C0A8FF6A" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" AUTHOR="G.WOLF" CREATEDON="20101021" CHANGEDON="00000000" CHGDANYON="00000000" CLSCCINCL="X" FIXPT="X" UNICODE="X" R3RELEASE="640" CLSBCCAT="00">
+ <implementing CLSNAME="ZCL_ZAKE_WEBHOOK_HANDLER" REFCLSNAME="IF_HTTP_EXTENSION" VERSION="1" EXPOSURE="2" STATE="1" AUTHOR="G.WOLF" CREATEDON="20101021" CHANGEDON="00000000" RELTYPE="1"/>
+ <publicSection>class ZCL_ZAKE_WEBHOOK_HANDLER definition
+  public
+  create public .
+
+*&quot;* public components of class ZCL_ZAKE_WEBHOOK_HANDLER
+*&quot;* do not include other source files here!!!
+public section.
+  type-pools ABAP .
+
+  interfaces IF_HTTP_EXTENSION .</publicSection>
+ <protectedSection>*&quot;* protected components of class ZCL_ZAKE_WEBHOOK_HANDLER
+*&quot;* do not include other source files here!!!
+protected section.
+
+  data REQUEST_XSTRING type XSTRING .
+  data PROJECT type STRING .
+  data ACTION type STRING .
+  data AUTHOR type STRING .
+
+  methods IS_VALID_PROJECT
+    returning
+      value(R_VALID) type BOOLEAN .
+  methods PARSE_REQUEST .</protectedSection>
+ <privateSection>*&quot;* private components of class ZCL_ZAKE_WEBHOOK_HANDLER
+*&quot;* do not include other source files here!!!
+private section.</privateSection>
+ <localImplementation>*&quot;* local class implementation for public class
+*&quot;* use this source file for the implementation part of
+*&quot;* local helper classes</localImplementation>
+ <localTypes>*&quot;* use this source file for any type declarations (class
+*&quot;* definitions, interfaces or data types) you need for method
+*&quot;* implementation or private method&apos;s signature</localTypes>
+ <localMacros>*&quot;* use this source file for any macro definitions you need
+*&quot;* in the implementation part of the class</localMacros>
+ <textPool/>
+ <classDocumentation/>
+ <typeUsage CLSNAME="ZCL_ZAKE_WEBHOOK_HANDLER" TYPEGROUP="ABAP" VERSION="1" TPUTYPE="0" EXPLICIT="X"/>
+ <forwardDeclaration>ABAP</forwardDeclaration>
+ <attribute CLSNAME="ZCL_ZAKE_WEBHOOK_HANDLER" CMPNAME="ACTION" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="3 " AUTHOR="G.WOLF" CREATEDON="20101021" CHANGEDON="00000000" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " R3RELEASE="640" TYPESRC_LENG="0 "/>
+ <attribute CLSNAME="ZCL_ZAKE_WEBHOOK_HANDLER" CMPNAME="AUTHOR" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="4 " AUTHOR="G.WOLF" CREATEDON="20101021" CHANGEDON="00000000" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " R3RELEASE="640" TYPESRC_LENG="0 "/>
+ <attribute CLSNAME="ZCL_ZAKE_WEBHOOK_HANDLER" CMPNAME="PROJECT" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="2 " AUTHOR="G.WOLF" CREATEDON="20101021" CHANGEDON="00000000" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " R3RELEASE="640" TYPESRC_LENG="0 "/>
+ <attribute CLSNAME="ZCL_ZAKE_WEBHOOK_HANDLER" CMPNAME="REQUEST_XSTRING" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="1 " AUTHOR="G.WOLF" CREATEDON="20101021" CHANGEDBY="G.WOLF" CHANGEDON="20101021" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="XSTRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " R3RELEASE="640" TYPESRC_LENG="0 "/>
+ <interfaceMethod CLSNAME="ZCL_ZAKE_WEBHOOK_HANDLER" CPDNAME="IF_HTTP_EXTENSION~HANDLE_REQUEST">
+  <source>METHOD if_http_extension~handle_request.
+
+  DATA: response_xstring   TYPE xstring,
+        valid_project      TYPE boolean.
+
+  TRY.
+      me-&gt;request_xstring = server-&gt;request-&gt;get_data( ).
+      me-&gt;parse_request( ).
+      IF me-&gt;project &lt;&gt; &apos;&apos;.
+        valid_project = me-&gt;is_valid_project( ).
+        IF valid_project = abap_true.
+          &quot; TODO Call Report to do the update, import, build, commit
+          &quot; as Background Job
+        ENDIF.
+      ENDIF.
+      server-&gt;response-&gt;set_data( data = response_xstring ).
+    CATCH cx_root.
+  ENDTRY.
+ENDMETHOD.</source>
+ </interfaceMethod>
+ <method CLSNAME="ZCL_ZAKE_WEBHOOK_HANDLER" CMPNAME="IS_VALID_PROJECT" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="0 " DISPID="0 " AUTHOR="G.WOLF" CREATEDON="20101021" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="640" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZCL_ZAKE_WEBHOOK_HANDLER" CMPNAME="IS_VALID_PROJECT" SCONAME="R_VALID" VERSION="1" LANGU="E" DESCRIPT="Boolean Variable (X=True, -=False, Space=Unknown)" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="G.WOLF" CREATEDON="20101021" CHANGEDON="00000000" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="1" TYPE="BOOLEAN"/>
+  <source>METHOD is_valid_project.
+  DATA: count TYPE i.
+  r_valid = abap_false.
+  SELECT COUNT(*) INTO count FROM zake_userdata WHERE project = me-&gt;project.
+  IF count = 1.
+    r_valid = abap_true.
+  ENDIF.
+ENDMETHOD.</source>
+  <methodDocumentation/>
+ </method>
+ <method CLSNAME="ZCL_ZAKE_WEBHOOK_HANDLER" CMPNAME="PARSE_REQUEST" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="0 " DISPID="0 " AUTHOR="G.WOLF" CREATEDON="20101021" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="640" BCMTDCAT="00" BCMTDSYN="0">
+  <source>METHOD parse_request.
+  &quot; Pharse HTML Document
+  TYPE-POOLS: ixml.
+
+  DATA: ixml          TYPE REF TO if_ixml,
+        ixml_doc      TYPE REF TO if_ixml_document,
+        streamfactory TYPE REF TO if_ixml_stream_factory,
+        istream       TYPE REF TO if_ixml_istream,
+        parser        TYPE REF TO if_ixml_parser,
+        errors        TYPE i,
+        error         TYPE i,
+        ixml_error    TYPE REF TO if_ixml_parse_error,
+        error_msg     TYPE string.
+
+  ixml     = cl_ixml=&gt;create( ).
+  streamfactory = ixml-&gt;create_stream_factory( ).
+  istream  = streamfactory-&gt;create_istream_xstring( me-&gt;request_xstring ).
+  ixml_doc = ixml-&gt;create_document( ).
+  parser   = ixml-&gt;create_parser( stream_factory = streamfactory
+                                 istream         = istream
+                                 document        = ixml_doc ).
+  parser-&gt;set_normalizing( ).
+  parser-&gt;set_validating( mode = if_ixml_parser=&gt;co_no_validation ).
+  &quot; parser-&gt;set_validating( mode = if_ixml_parser=&gt;co_validate ).
+  parser-&gt;parse( ).
+
+  DATA:
+        element       TYPE REF TO if_ixml_element,
+        nodes         TYPE REF TO if_ixml_node_list,
+        node_iterator TYPE REF TO if_ixml_node_iterator,
+        node          TYPE REF TO if_ixml_node.
+
+  DATA:
+        name TYPE string,
+        value TYPE string.
+
+  element = ixml_doc-&gt;get_root_element( ).
+  nodes = element-&gt;get_children( ).
+  &quot; nodes = ixml_doc-&gt;get_children( ).
+
+  node_iterator = nodes-&gt;create_iterator( ).
+
+  node = node_iterator-&gt;get_next( ).
+  WHILE node IS BOUND.
+    name = node-&gt;get_name( ).
+    value = node-&gt;get_value( ).
+    CASE name.
+      WHEN &apos;space&apos;.
+        me-&gt;project = value.
+      WHEN &apos;action&apos;.
+        me-&gt;action = value.
+      WHEN &apos;author&apos;.
+        me-&gt;author = value.
+    ENDCASE.
+    node = node_iterator-&gt;get_next( ).
+  ENDWHILE.
+ENDMETHOD.</source>
+  <methodDocumentation/>
+ </method>
+</CLAS>
