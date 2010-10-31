@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<PROG NAME="Z_ZAKE_SVN" VARCL="X" SUBC="1" CNAM="BCUSER" CDAT="20100105" UNAM="BCUSER" UDAT="20100401" VERN="000059" RSTAT="T" RMAND="000" RLOAD="E" FIXPT="X" SDATE="20100401" STIME="225354" IDATE="20100401" ITIME="225354" UCCHECK="X">
+<PROG NAME="Z_ZAKE_SVN" VARCL="X" SUBC="1" CNAM="BCUSER" CDAT="20100105" UNAM="BCUSER" UDAT="20101031" VERN="000070" RSTAT="T" RMAND="000" RLOAD="E" FIXPT="X" SDATE="20101031" STIME="162408" IDATE="20101031" ITIME="162408" UCCHECK="X">
  <textPool>
   <language SPRAS="E">
    <textElement ID="R" ENTRY="Program Z_ZAKE_SVN" LENGTH="18 "/>
   </language>
  </textPool>
- <programDocumentation/>
  <source>*&amp;---------------------------------------------------------------------*
 *&amp; Report  Z_ZAKE_SVN
 *&amp;
@@ -15,6 +14,8 @@
 *&amp;---------------------------------------------------------------------*
 
 REPORT  z_zake_svn.
+
+TYPE-POOLS: abap.
 
 CONSTANTS cl_svn TYPE seoclsname VALUE &apos;ZCL_ZAKE_SVN&apos;.
 CONSTANTS cl_tortoise_svn TYPE seoclsname VALUE &apos;ZCL_ZAKE_TORTOISE_SVN&apos;.
@@ -48,8 +49,10 @@ DATA: ex TYPE REF TO zcx_saplink,
 SELECTION-SCREEN BEGIN OF BLOCK a WITH FRAME TITLE a.
 PARAMETERS:
   checkout TYPE flag RADIOBUTTON GROUP act,
-  update   TYPE flag RADIOBUTTON GROUP act DEFAULT &apos;X&apos;,
-  checkin  TYPE flag RADIOBUTTON GROUP act.
+  update   TYPE flag RADIOBUTTON GROUP act,
+  checkin  TYPE flag RADIOBUTTON GROUP act DEFAULT &apos;X&apos;,
+  build    TYPE flag RADIOBUTTON GROUP act,
+install  TYPE flag RADIOBUTTON GROUP act.
 SELECTION-SCREEN END OF BLOCK a.
 
 SELECTION-SCREEN BEGIN OF BLOCK b WITH FRAME TITLE b.
@@ -96,67 +99,73 @@ START-OF-SELECTION.
   object-object   = &apos;CLAS&apos;.
   object-obj_name = &apos;ZAKE&apos;.
   APPEND object TO zake_objects.
+  object-object   = &apos;CLAS&apos;.
+  object-obj_name = &apos;ZCL_ZAKE_WEBHOOK_HANDLER&apos;.
+  APPEND object TO zake_objects.
+  object-object   = &apos;SICF&apos;.
+  object-obj_name = &apos;ZAKE_WEBHOOK   0000000000000000000000000&apos;.
+  APPEND object TO zake_objects.
   &quot; Database Table
   object-object   = &apos;TABL&apos;.
   object-obj_name = &apos;ZAKE_USERDATA&apos;.
   APPEND object TO zake_objects.
-  &quot;
-  &quot; ZAKE_SVN Classes
-  &quot;
-  object-object   = &apos;CLAS&apos;.
-  object-obj_name = &apos;ZCL_ZAKE_SVN&apos;.
-  APPEND object TO objects.
-  object-object   = &apos;CLAS&apos;.
-  object-obj_name = &apos;ZCL_ZAKE_TORTOISE_SVN&apos;.
-  APPEND object TO objects.
+*  &quot;
+*  &quot; ZAKE_SVN Classes
+*  &quot;
+*  object-object   = &apos;CLAS&apos;.
+*  object-obj_name = &apos;ZCL_ZAKE_SVN&apos;.
+*  APPEND object TO objects.
+*  object-object   = &apos;CLAS&apos;.
+*  object-obj_name = &apos;ZCL_ZAKE_TORTOISE_SVN&apos;.
+*  APPEND object TO objects.
   &quot; Checkin / Checkout Program
   object-object   = &apos;PROG&apos;.
   object-obj_name = &apos;Z_ZAKE_SVN&apos;.
   APPEND object TO objects.
-  &quot;
-  &quot; Test Objects
-  &quot;
-  object-object   = &apos;CLAS&apos;.
-  object-obj_name = &apos;ZCL_SVNTEST&apos;.
-  APPEND object TO test_objects.
-  object-object   = &apos;CLAS&apos;.
-  object-obj_name = &apos;ZCL_SVNTEST2&apos;.
-  APPEND object TO test_objects.
-  object-object   = &apos;PROG&apos;.
-  object-obj_name = &apos;ZSVNTESTPROG&apos;.
-  APPEND object TO test_objects.
-  object-object   = &apos;PROG&apos;.
-  object-obj_name = &apos;ZSVNTESTPROG2&apos;.
-  APPEND object TO test_objects.
-  &quot; Test Checkin / Checkout Program
-  object-object   = &apos;PROG&apos;.
-  object-obj_name = &apos;Z_ZAKE_SVN_TEST&apos;.
-  APPEND object TO test_objects.
-  &quot; DDIC Objects
-  &quot; Domain
-  object-object   = &apos;DOMA&apos;.
-  object-obj_name = &apos;ZSVNTESTDOMAIN&apos;.
-  APPEND object TO test_objects.
-  &quot; Data Element
-  object-object   = &apos;DTEL&apos;.
-  object-obj_name = &apos;ZSVNTEST_DATA_ELEMENT&apos;.
-  APPEND object TO test_objects.
-  &quot; Structure
-  object-object   = &apos;TABL&apos;.
-  object-obj_name = &apos;ZSVNTESTSTRUCTURE&apos;.
-  APPEND object TO test_objects.
-  &quot; Table
-  object-object   = &apos;TTYP&apos;.
-  object-obj_name = &apos;ZSVNTESTTABLE&apos;.
-  APPEND object TO test_objects.
-  &quot; Database Table
-  object-object   = &apos;TABL&apos;.
-  object-obj_name = &apos;ZSVNTEST_DB_TAB&apos;.
-  APPEND object TO test_objects.
-  &quot; View
-  object-object   = &apos;VIEW&apos;.
-  object-obj_name = &apos;ZSVNTEST_VIEW&apos;.
-  APPEND object TO test_objects.
+*  &quot;
+*  &quot; Test Objects
+*  &quot;
+*  object-object   = &apos;CLAS&apos;.
+*  object-obj_name = &apos;ZCL_SVNTEST&apos;.
+*  APPEND object TO test_objects.
+*  object-object   = &apos;CLAS&apos;.
+*  object-obj_name = &apos;ZCL_SVNTEST2&apos;.
+*  APPEND object TO test_objects.
+*  object-object   = &apos;PROG&apos;.
+*  object-obj_name = &apos;ZSVNTESTPROG&apos;.
+*  APPEND object TO test_objects.
+*  object-object   = &apos;PROG&apos;.
+*  object-obj_name = &apos;ZSVNTESTPROG2&apos;.
+*  APPEND object TO test_objects.
+*  &quot; Test Checkin / Checkout Program
+*  object-object   = &apos;PROG&apos;.
+*  object-obj_name = &apos;Z_ZAKE_SVN_TEST&apos;.
+*  APPEND object TO test_objects.
+*  &quot; DDIC Objects
+*  &quot; Domain
+*  object-object   = &apos;DOMA&apos;.
+*  object-obj_name = &apos;ZSVNTESTDOMAIN&apos;.
+*  APPEND object TO test_objects.
+*  &quot; Data Element
+*  object-object   = &apos;DTEL&apos;.
+*  object-obj_name = &apos;ZSVNTEST_DATA_ELEMENT&apos;.
+*  APPEND object TO test_objects.
+*  &quot; Structure
+*  object-object   = &apos;TABL&apos;.
+*  object-obj_name = &apos;ZSVNTESTSTRUCTURE&apos;.
+*  APPEND object TO test_objects.
+*  &quot; Table
+*  object-object   = &apos;TTYP&apos;.
+*  object-obj_name = &apos;ZSVNTESTTABLE&apos;.
+*  APPEND object TO test_objects.
+*  &quot; Database Table
+*  object-object   = &apos;TABL&apos;.
+*  object-obj_name = &apos;ZSVNTEST_DB_TAB&apos;.
+*  APPEND object TO test_objects.
+*  &quot; View
+*  object-object   = &apos;VIEW&apos;.
+*  object-obj_name = &apos;ZSVNTEST_VIEW&apos;.
+*  APPEND object TO test_objects.
   TRY.
       IF svn = &apos;X&apos;.
         class = cl_svn.
@@ -172,7 +181,11 @@ START-OF-SELECTION.
           i_localpath = loclpath_str.
       zake-&gt;set_testrun( testrun ).
 
-      IF checkin = &apos;X&apos;.
+      IF checkin = abap_true.
+        zake-&gt;download_slinkees_to_lm = abap_true.
+        zake-&gt;download_nugget_to_lm   = abap_false.
+        zake-&gt;download_zip_to_lm_flag = abap_false.
+        &quot; zake-&gt;
         zake-&gt;set_package( &apos;ZAKE&apos; ).
         zake-&gt;set_checkin_objects( zake_objects ).
         zake-&gt;create_slinkees( zake_nuggetname ).
@@ -182,6 +195,14 @@ START-OF-SELECTION.
         zake-&gt;set_package( &apos;ZAKE_SVN_TESTS&apos; ).
         zake-&gt;set_checkin_objects( test_objects ).
         zake-&gt;create_slinkees( zake_svn_tests_nuggetname ).
+        IF testrun IS INITIAL.
+          zake-&gt;checkin( comment_str ).
+        ENDIF.
+      ELSEIF update = abap_true.
+        zake-&gt;update( ).
+      ELSEIF checkout = abap_true.
+        zake-&gt;checkout( ).
+      ELSEIF build = abap_true.
         &quot; Build a complete package for download
         zake-&gt;set_package( &apos;ZAKE&apos; ).
         APPEND LINES OF objects TO zake_objects.
@@ -201,15 +222,7 @@ START-OF-SELECTION.
         zake-&gt;download_slinkees_to_lm = space.
         zake-&gt;download_nugget_to_lm   = space.
         zake-&gt;create_slinkees( zake_build ).
-        IF testrun IS INITIAL.
-          zake-&gt;checkin( comment_str ).
-        ENDIF.
-      ELSE.
-        IF update = &apos;X&apos;.
-          zake-&gt;update( ).
-        ELSE.
-          zake-&gt;checkout( ).
-        ENDIF.
+      ELSEIF install = abap_true.
         &quot; zake-&gt;install_slinkees_from_lm( testrun ).
         zake-&gt;install_objects( objects ).
       ENDIF.
