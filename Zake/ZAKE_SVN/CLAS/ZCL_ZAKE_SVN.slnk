@@ -101,7 +101,6 @@ class lcl_svn_utils definition final.
 endclass.</localTypes>
  <localMacros>*&quot;* use this source file for any macro definitions you need*&quot;* in the implementation part of the class</localMacros>
  <textPool/>
- <classDocumentation/>
  <typeUsage CLSNAME="ZCL_ZAKE_SVN" TYPEGROUP="ABAP" VERSION="1" TPUTYPE="0" IMPLICIT="X"/>
  <forwardDeclaration>ABAP</forwardDeclaration>
  <inheritance CLSNAME="ZCL_ZAKE_SVN" REFCLSNAME="ZAKE" VERSION="1" STATE="1" AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100428">
@@ -123,7 +122,6 @@ endclass.</localTypes>
   me-&gt;execute_svn_command( command ).
 
 endmethod.</source>
-  <methodDocumentation/>
  </method>
  <method CLSNAME="ZAKE" CMPNAME="CHECKIN" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
   <source>method CHECKIN.
@@ -163,12 +161,11 @@ endmethod.</source>
   me-&gt;execute_svn_command( command ).
 
 endmethod.</source>
-  <methodDocumentation/>
  </method>
  <method CLSNAME="ZAKE" CMPNAME="CHECKOUT" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
-  <source>method CHECKOUT.
+  <source>METHOD checkout.
   DATA command TYPE string.
-  DATA rev_str type string.
+  DATA rev_str TYPE string.
 
   CONCATENATE &apos;checkout&apos; url path
     INTO command SEPARATED BY space.
@@ -186,13 +183,18 @@ endmethod.</source>
     CONCATENATE command &apos;--password&apos; password INTO command SEPARATED BY space.
   ENDIF.
 
-  me-&gt;execute_svn_command( command ).
-endmethod.</source>
-  <methodDocumentation/>
+  me-&gt;execute_svn_command(
+    EXPORTING
+      i_command        = command
+      i_silent         = abap_true
+    RECEIVING
+      e_command_output = r_command_output    &quot; Table of Strings
+  ).
+ENDMETHOD.</source>
  </method>
  <method CLSNAME="ZCL_ZAKE_SVN" CMPNAME="CHECK_SVN_STATUS_AND_ADD_TO_VC" VERSION="1" LANGU="E" DESCRIPT="Check SVN status and add to Version Control" EXPOSURE="0" STATE="1" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100428" MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
   <exception CLSNAME="ZCL_ZAKE_SVN" CMPNAME="CHECK_SVN_STATUS_AND_ADD_TO_VC" SCONAME="ZCX_SAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100428"/>
-  <source>method CHECK_SVN_STATUS_AND_ADD_TO_VC.
+  <source>METHOD check_svn_status_and_add_to_vc.
   DATA command TYPE string.
   DATA command_output	TYPE string_table.
   DATA lo_utils TYPE REF TO lcl_svn_utils.
@@ -207,22 +209,21 @@ endmethod.</source>
   CONCATENATE &apos;status --xml&apos; me-&gt;path
     INTO command SEPARATED BY space.
 
-  command_output = me-&gt;execute_svn_command( i_command = command i_silent = ABAP_TRUE ).
-  create object lo_utils.
+  command_output = me-&gt;execute_svn_command( i_command = command i_silent = abap_true ).
+  CREATE OBJECT lo_utils.
   lt_path = lo_utils-&gt;get_paths( command_output ).
 
   LOOP AT lt_path INTO ls_path WHERE status = &apos;unversioned&apos;.
     me-&gt;add_slinkee_to_versioncontrol( ls_path-path ).
   ENDLOOP.
-endmethod.</source>
-  <methodDocumentation/>
+ENDMETHOD.</source>
  </method>
  <method CLSNAME="ZCL_ZAKE_SVN" CMPNAME="EXECUTE_SVN_COMMAND" VERSION="1" LANGU="E" DESCRIPT="Excecute SVN Command" EXPOSURE="0" STATE="1" EDITORDER="2 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100428" MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZCL_ZAKE_SVN" CMPNAME="EXECUTE_SVN_COMMAND" SCONAME="I_COMMAND" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100428" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
   <parameter CLSNAME="ZCL_ZAKE_SVN" CMPNAME="EXECUTE_SVN_COMMAND" SCONAME="I_SILENT" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100428" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="ABAP_BOOL" PARVALUE="ABAP_FALSE"/>
   <parameter CLSNAME="ZCL_ZAKE_SVN" CMPNAME="EXECUTE_SVN_COMMAND" SCONAME="E_COMMAND_OUTPUT" VERSION="1" LANGU="E" DESCRIPT="Table of Strings" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100428" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="1" TYPE="STRING_TABLE"/>
   <exception CLSNAME="ZCL_ZAKE_SVN" CMPNAME="EXECUTE_SVN_COMMAND" SCONAME="ZCX_SAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20100428"/>
-  <source>method EXECUTE_SVN_COMMAND.
+  <source>METHOD execute_svn_command.
   DATA: temp_dir TYPE string.
   DATA: std_out_file TYPE string.
   DATA: parameter TYPE string.
@@ -239,177 +240,185 @@ endmethod.</source>
 
   DATA: message TYPE string.
 
+  FIELD-SYMBOLS: &lt;command_output&gt; LIKE LINE OF e_command_output.
+
   CONCATENATE me-&gt;zake_home application INTO application.
 
-  IF i_silent = ABAP_FALSE.
+  IF i_silent = abap_false.
     WRITE: / i_command.
   ENDIF.
-*
-* Run the Subversion Command via the cl_gui_frontend_services=&gt;execute Method
-*
-* cl_gui_frontend_services=&gt;execute does not return anything
-* so we have to write the output to a file in the temp-directory
-* and read that to display the output to the user
-*
-* So let&apos;s start finding the SAP GUI Workdir which we will
-* use as our temp-directory
-  cl_gui_frontend_services=&gt;get_sapgui_workdir(
-    CHANGING
-      sapworkdir            = temp_dir
-    EXCEPTIONS
-      get_sapworkdir_failed = 1
-      cntl_error            = 2
-      error_no_gui          = 3
-      not_supported_by_gui  = 4
-      OTHERS                = 5
-  ).
-  IF sy-subrc &lt;&gt; 0 OR temp_dir IS INITIAL.
-    IF temp_dir IS INITIAL.
-      message = &apos;temp_dir is initial&apos;.
-    ELSE.
-      message = sy-subrc.
-      CONCATENATE &apos;Error to get_temp_directory return code:&apos; message
-        INTO message SEPARATED BY space.
-    ENDIF.
-    RAISE EXCEPTION TYPE zcx_saplink
-      EXPORTING
-        textid = zcx_saplink=&gt;error_message
-        msg    = message.
-  ENDIF.
 
-  CONCATENATE temp_dir &apos;\svn-std-out.txt&apos; INTO std_out_file.
+  IF sy-batch = abap_true.
+    &quot; In Batch mode we need to run the command
+    &quot; using a system command defined in SM69
+    DATA: params TYPE btcxpgpar.
+    DATA: long_params TYPE  char1024.
+    DATA: exec_protocol TYPE lca_tracefile_tab,
+          ls_exec_protocol LIKE LINE OF exec_protocol.
+
+    params = i_command.
+
+    CALL FUNCTION &apos;SXPG_COMMAND_EXECUTE_LONG&apos;
+      EXPORTING
+        commandname                   = &apos;ZSVN&apos;
+        additional_parameters         = params
+      TABLES
+        exec_protocol                 = exec_protocol
+      EXCEPTIONS
+        no_permission                 = 1
+        command_not_found             = 2
+        parameters_too_long           = 3
+        security_risk                 = 4
+        wrong_check_call_interface    = 5
+        program_start_error           = 6
+        program_termination_error     = 7
+        x_error                       = 8
+        parameter_expected            = 9
+        too_many_parameters           = 10
+        illegal_command               = 11
+        wrong_asynchronous_parameters = 12
+        cant_enq_tbtco_entry          = 13
+        jobcount_generation_error     = 14
+        OTHERS                        = 15.
+
+    IF sy-subrc &lt;&gt; 0.
+      message = sy-subrc.
+      RAISE EXCEPTION TYPE zcx_saplink
+        EXPORTING
+          textid = zcx_saplink=&gt;error_message
+          msg    = message.
+    ELSE.
+      LOOP AT exec_protocol INTO ls_exec_protocol.
+        IF i_silent = abap_false.
+          WRITE: / ls_exec_protocol-message.
+        ENDIF.
+        APPEND INITIAL LINE TO e_command_output ASSIGNING &lt;command_output&gt;.
+        &lt;command_output&gt; = ls_exec_protocol-message.
+      ENDLOOP.
+    ENDIF.
+  ELSE.
+    &quot; Run the Subversion Command via the
+    &quot; cl_gui_frontend_services=&gt;execute Method
+    &quot;
+    &quot; cl_gui_frontend_services=&gt;execute does not return anything
+    &quot;  so we have to write the output to a file in the temp-directory
+    &quot; and read that to display the output to the user
+    &quot;
+    &quot; So let&apos;s start finding the SAP GUI Workdir which we will
+    &quot; use as our temp-directory
+    cl_gui_frontend_services=&gt;get_sapgui_workdir(
+      CHANGING
+        sapworkdir            = temp_dir
+      EXCEPTIONS
+        get_sapworkdir_failed = 1
+        cntl_error            = 2
+        error_no_gui          = 3
+        not_supported_by_gui  = 4
+        OTHERS                = 5
+    ).
+    IF sy-subrc &lt;&gt; 0 OR temp_dir IS INITIAL.
+      IF temp_dir IS INITIAL.
+        message = &apos;temp_dir is initial&apos;.
+      ELSE.
+        message = sy-subrc.
+        CONCATENATE &apos;Error to get_temp_directory return code:&apos; message
+          INTO message SEPARATED BY space.
+      ENDIF.
+      RAISE EXCEPTION TYPE zcx_saplink
+        EXPORTING
+          textid = zcx_saplink=&gt;error_message
+          msg    = message.
+    ENDIF.
+
+    CONCATENATE temp_dir &apos;\svn-std-out.txt&apos; INTO std_out_file.
 ** With svn.exe
 *  CONCATENATE command &apos;&gt; &quot;&apos; INTO parameter SEPARATED BY space.
 *  CONCATENATE parameter std_out_file &apos;&quot; 2&gt;&amp;1&apos; INTO parameter.
 * With svn-script.cmd
-  CONCATENATE &apos;&quot;&apos; std_out_file &apos;&quot;&apos; INTO parameter.
-  CONCATENATE parameter i_command INTO parameter SEPARATED BY space.
+    CONCATENATE &apos;&quot;&apos; std_out_file &apos;&quot;&apos; INTO parameter.
+    CONCATENATE parameter i_command INTO parameter SEPARATED BY space.
 
-  cl_gui_frontend_services=&gt;execute(
-    EXPORTING
-       application            = application    &quot; Path and Name of Application
-       parameter              = parameter   &quot; Parameter for Application
-       minimized              = &apos;X&apos;   &quot; Show Window Minimized
-       synchronous            = &apos;X&apos;    &quot; When &apos;X&apos;: Runs the Application in Synchronous Mode
-    EXCEPTIONS
-      cntl_error             = 1
-      error_no_gui           = 2
-      bad_parameter          = 3
-      file_not_found         = 4
-      path_not_found         = 5
-      file_extension_unknown = 6
-      error_execute_failed   = 7
-      synchronous_failed     = 8
-      not_supported_by_gui   = 9
-      OTHERS                 = 10
-  ).
-  IF sy-subrc &lt;&gt; 0.
-    message = sy-subrc.
-    CONCATENATE &apos;Error to execute command:&apos; message
-      INTO message SEPARATED BY space.
-    RAISE EXCEPTION TYPE zcx_saplink
+    cl_gui_frontend_services=&gt;execute(
       EXPORTING
-        textid = zcx_saplink=&gt;error_message
-        msg    = message.
-  ENDIF.
-
-  cl_gui_frontend_services=&gt;file_exist(
-    EXPORTING
-      file                 = std_out_file    &quot; File to Check
-    RECEIVING
-       result               = result    &quot; Result
-  ).
-
-  IF result = &apos;X&apos;.
-    cl_gui_frontend_services=&gt;gui_upload(
-      EXPORTING
-        filename                = std_out_file    &quot; Name of file
-        filetype                = &apos;ASC&apos;    &quot; File Type (ASCII, Binary)
-      CHANGING
-        data_tab                = e_command_output    &quot; Transfer table for file contents
-    ).
-    LOOP AT e_command_output INTO line.
-      IF i_silent = ABAP_FALSE.
-        WRITE: / line.
-      ENDIF.
-    ENDLOOP.
-
-    cl_gui_frontend_services=&gt;file_delete(
-      EXPORTING
-        filename             = std_out_file    &quot; Name of the file to be deleted
-      CHANGING
-        rc                   = rc    &quot; Return code
+         application            = application    &quot; Path and Name of Application
+         parameter              = parameter   &quot; Parameter for Application
+         minimized              = &apos;X&apos;   &quot; Show Window Minimized
+         synchronous            = &apos;X&apos;    &quot; When &apos;X&apos;: Runs the Application in Synchronous Mode
       EXCEPTIONS
-        file_delete_failed   = 1
-        cntl_error           = 2
-        error_no_gui         = 3
-        file_not_found       = 4
-        access_denied        = 5
-        unknown_error        = 6
-        not_supported_by_gui = 7
-        wrong_parameter      = 8
-        OTHERS               = 9
+        cntl_error             = 1
+        error_no_gui           = 2
+        bad_parameter          = 3
+        file_not_found         = 4
+        path_not_found         = 5
+        file_extension_unknown = 6
+        error_execute_failed   = 7
+        synchronous_failed     = 8
+        not_supported_by_gui   = 9
+        OTHERS                 = 10
     ).
     IF sy-subrc &lt;&gt; 0.
       message = sy-subrc.
-      CONCATENATE &apos;Error to delete file:&apos; message
+      CONCATENATE &apos;Error to execute command:&apos; message
         INTO message SEPARATED BY space.
       RAISE EXCEPTION TYPE zcx_saplink
         EXPORTING
           textid = zcx_saplink=&gt;error_message
           msg    = message.
     ENDIF.
-  ENDIF.
-**
-** Alternatively we can run the command using a system command defined in SM69
-**
-*  DATA: params TYPE btcxpgpar.
-*  DATA: long_params TYPE  char1024.
-*  DATA: exec_protocol TYPE lca_tracefile_tab,
-*        ls_exec_protocol LIKE LINE OF exec_protocol.
-*
-*  params = command.
-*
-*  CALL FUNCTION &apos;SXPG_COMMAND_EXECUTE_LONG&apos;
-*    EXPORTING
-*      commandname                   = &apos;ZSVN&apos;
-*      additional_parameters         = params
-*    TABLES
-*      exec_protocol                 = exec_protocol
-*    EXCEPTIONS
-*      no_permission                 = 1
-*      command_not_found             = 2
-*      parameters_too_long           = 3
-*      security_risk                 = 4
-*      wrong_check_call_interface    = 5
-*      program_start_error           = 6
-*      program_termination_error     = 7
-*      x_error                       = 8
-*      parameter_expected            = 9
-*      too_many_parameters           = 10
-*      illegal_command               = 11
-*      wrong_asynchronous_parameters = 12
-*      cant_enq_tbtco_entry          = 13
-*      jobcount_generation_error     = 14
-*      OTHERS                        = 15.
-*
-*  IF sy-subrc &lt;&gt; 0.
-*    message = sy-subrc.
-*    RAISE EXCEPTION TYPE zcx_saplink
-*      EXPORTING
-*        textid = zcx_saplink=&gt;error_message
-*        msg    = message.
-*  ELSE.
-*    LOOP AT exec_protocol INTO ls_exec_protocol.
-*      WRITE: / ls_exec_protocol-message.
-*    ENDLOOP.
-*  ENDIF.
 
-endmethod.</source>
-  <methodDocumentation/>
+    cl_gui_frontend_services=&gt;file_exist(
+      EXPORTING
+        file                 = std_out_file    &quot; File to Check
+      RECEIVING
+         result               = result    &quot; Result
+    ).
+
+    IF result = &apos;X&apos;.
+      cl_gui_frontend_services=&gt;gui_upload(
+        EXPORTING
+          filename                = std_out_file    &quot; Name of file
+          filetype                = &apos;ASC&apos;    &quot; File Type (ASCII, Binary)
+        CHANGING
+          data_tab                = e_command_output    &quot; Transfer table for file contents
+      ).
+      LOOP AT e_command_output INTO line.
+        IF i_silent = abap_false.
+          WRITE: / line.
+        ENDIF.
+      ENDLOOP.
+
+      cl_gui_frontend_services=&gt;file_delete(
+        EXPORTING
+          filename             = std_out_file    &quot; Name of the file to be deleted
+        CHANGING
+          rc                   = rc    &quot; Return code
+        EXCEPTIONS
+          file_delete_failed   = 1
+          cntl_error           = 2
+          error_no_gui         = 3
+          file_not_found       = 4
+          access_denied        = 5
+          unknown_error        = 6
+          not_supported_by_gui = 7
+          wrong_parameter      = 8
+          OTHERS               = 9
+      ).
+      IF sy-subrc &lt;&gt; 0.
+        message = sy-subrc.
+        CONCATENATE &apos;Error to delete file:&apos; message
+          INTO message SEPARATED BY space.
+        RAISE EXCEPTION TYPE zcx_saplink
+          EXPORTING
+            textid = zcx_saplink=&gt;error_message
+            msg    = message.
+      ENDIF.
+    ENDIF.
+  ENDIF.
+
+ENDMETHOD.</source>
  </method>
  <method CLSNAME="ZAKE" CMPNAME="UPDATE" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
-  <source>method UPDATE.
+  <source>METHOD update.
   DATA command TYPE string.
   DATA rev_str TYPE string.
 
@@ -424,8 +433,13 @@ endmethod.</source>
     CONCATENATE command &apos;--password&apos; password INTO command SEPARATED BY space.
   ENDIF.
 
-  me-&gt;execute_svn_command( command ).
-endmethod.</source>
-  <methodDocumentation/>
+  me-&gt;execute_svn_command(
+    EXPORTING
+      i_command        = command
+      i_silent         = abap_true
+    RECEIVING
+      e_command_output = r_command_output    &quot; Table of Strings
+  ).
+ENDMETHOD.</source>
  </method>
 </CLAS>

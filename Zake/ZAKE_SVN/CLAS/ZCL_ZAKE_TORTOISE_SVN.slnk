@@ -39,7 +39,6 @@ private section.
  <localMacros>*&quot;* use this source file for any macro definitions you need
 *&quot;* in the implementation part of the class</localMacros>
  <textPool/>
- <classDocumentation/>
  <inheritance CLSNAME="ZCL_ZAKE_TORTOISE_SVN" REFCLSNAME="ZAKE" VERSION="1" STATE="1" AUTHOR="BCUSER" CREATEDON="20100130" CHANGEDBY="BCUSER" CHANGEDON="20100307">
   <redefinition CLSNAME="ZCL_ZAKE_TORTOISE_SVN" REFCLSNAME="ZAKE" VERSION="1" MTDNAME="CHECKIN"/>
   <redefinition CLSNAME="ZCL_ZAKE_TORTOISE_SVN" REFCLSNAME="ZAKE" VERSION="1" MTDNAME="CHECKOUT"/>
@@ -74,7 +73,6 @@ private section.
 
   me-&gt;execute_svn_command( command ).
 endmethod.</source>
-  <methodDocumentation/>
  </method>
  <method CLSNAME="ZAKE" CMPNAME="CHECKOUT" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
   <source>method CHECKOUT.
@@ -93,7 +91,6 @@ endmethod.</source>
 
   me-&gt;execute_svn_command( command ).
 endmethod.</source>
-  <methodDocumentation/>
  </method>
  <method CLSNAME="ZCL_ZAKE_TORTOISE_SVN" CMPNAME="CHECK_SVN_STATUS_AND_ADD_TO_VC" VERSION="1" LANGU="E" DESCRIPT="Check SVN status and add to Version Control" EXPOSURE="0" STATE="1" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100130" CHANGEDBY="BCUSER" CHANGEDON="20100307" MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
   <exception CLSNAME="ZCL_ZAKE_TORTOISE_SVN" CMPNAME="CHECK_SVN_STATUS_AND_ADD_TO_VC" SCONAME="ZCX_SAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 " AUTHOR="BCUSER" CREATEDON="20100130" CHANGEDBY="BCUSER" CHANGEDON="20100307"/>
@@ -109,7 +106,6 @@ endmethod.</source>
   command_output[] = me-&gt;execute_svn_command( command ).
 
 endmethod.</source>
-  <methodDocumentation/>
  </method>
  <method CLSNAME="ZCL_ZAKE_TORTOISE_SVN" CMPNAME="EXECUTE_SVN_COMMAND" VERSION="1" LANGU="E" DESCRIPT="Excecute SVN Command" EXPOSURE="0" STATE="1" EDITORDER="2 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100130" CHANGEDBY="BCUSER" CHANGEDON="20100307" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZCL_ZAKE_TORTOISE_SVN" CMPNAME="EXECUTE_SVN_COMMAND" SCONAME="I_COMMAND" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100130" CHANGEDBY="BCUSER" CHANGEDON="20100307" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
@@ -250,7 +246,6 @@ endmethod.</source>
   ENDIF.
 
 endmethod.</source>
-  <methodDocumentation/>
  </method>
  <method CLSNAME="ZAKE" CMPNAME="UPDATE" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
   <source>method UPDATE.
@@ -264,6 +259,5 @@ endmethod.</source>
 
   me-&gt;execute_svn_command( command ).
 endmethod.</source>
-  <methodDocumentation/>
  </method>
 </CLAS>

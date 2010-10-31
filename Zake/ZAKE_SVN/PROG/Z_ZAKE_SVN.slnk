@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<PROG NAME="Z_ZAKE_SVN" VARCL="X" SUBC="1" CNAM="BCUSER" CDAT="20100105" UNAM="BCUSER" UDAT="20101031" VERN="000071" RSTAT="T" RMAND="000" RLOAD="E" FIXPT="X" SDATE="20101031" STIME="165908" IDATE="20101031" ITIME="165908" UCCHECK="X">
+<PROG NAME="Z_ZAKE_SVN" VARCL="X" SUBC="1" CNAM="BCUSER" CDAT="20100105" UNAM="BCUSER" UDAT="20101031" VERN="000076" RSTAT="T" RMAND="000" RLOAD="E" FIXPT="X" SDATE="20101031" STIME="233550" IDATE="20101031" ITIME="233550" UCCHECK="X">
  <textPool>
   <language SPRAS="E">
    <textElement ID="R" ENTRY="Program Z_ZAKE_SVN" LENGTH="18 "/>
@@ -96,12 +96,12 @@ START-OF-SELECTION.
   &quot;
   &quot; Main ZAKE Class
   &quot;
-*  object-object   = &apos;CLAS&apos;.
-*  object-obj_name = &apos;ZAKE&apos;.
-*  APPEND object TO zake_objects.
-*  object-object   = &apos;CLAS&apos;.
-*  object-obj_name = &apos;ZCL_ZAKE_WEBHOOK_HANDLER&apos;.
-*  APPEND object TO zake_objects.
+  object-object   = &apos;CLAS&apos;.
+  object-obj_name = &apos;ZAKE&apos;.
+  APPEND object TO zake_objects.
+  object-object   = &apos;CLAS&apos;.
+  object-obj_name = &apos;ZCL_ZAKE_WEBHOOK_HANDLER&apos;.
+  APPEND object TO zake_objects.
 *  object-object   = &apos;SICF&apos;.
 *  object-obj_name = &apos;ZAKE_WEBHOOK   0000000000000000000000000&apos;.
 *  APPEND object TO zake_objects.
@@ -112,12 +112,24 @@ START-OF-SELECTION.
   object-object   = &apos;DOMA&apos;.
   object-obj_name = &apos;ZAKE_PROJECT_NAME&apos;.
   APPEND object TO zake_objects.
+  object-object   = &apos;DOMA&apos;.
+  object-obj_name = &apos;ZAKE_LOCALPATH&apos;.
+  APPEND object TO zake_objects.
+  object-object   = &apos;DOMA&apos;.
+  object-obj_name = &apos;ZAKE_EMAIL_ADDRESS&apos;.
+  APPEND object TO zake_objects.
   &quot; Data Elements
   object-object   = &apos;DTEL&apos;.
   object-obj_name = &apos;ZAKE_SVN_URL&apos;.
   APPEND object TO zake_objects.
   object-object   = &apos;DTEL&apos;.
   object-obj_name = &apos;ZAKE_PROJECT_NAME&apos;.
+  APPEND object TO zake_objects.
+  object-object   = &apos;DTEL&apos;.
+  object-obj_name = &apos;ZAKE_LOCALPATH&apos;.
+  APPEND object TO zake_objects.
+  object-object   = &apos;DTEL&apos;.
+  object-obj_name = &apos;ZAKE_EMAIL_BUILD_MANAGER&apos;.
   APPEND object TO zake_objects.
   &quot; Database Table
   object-object   = &apos;TABL&apos;.
@@ -126,15 +138,21 @@ START-OF-SELECTION.
 *  &quot;
 *  &quot; ZAKE_SVN Classes
 *  &quot;
-*  object-object   = &apos;CLAS&apos;.
-*  object-obj_name = &apos;ZCL_ZAKE_SVN&apos;.
-*  APPEND object TO objects.
-*  object-object   = &apos;CLAS&apos;.
-*  object-obj_name = &apos;ZCL_ZAKE_TORTOISE_SVN&apos;.
-*  APPEND object TO objects.
+  object-object   = &apos;CLAS&apos;.
+  object-obj_name = &apos;ZCL_ZAKE_SVN&apos;.
+  APPEND object TO objects.
+  object-object   = &apos;CLAS&apos;.
+  object-obj_name = &apos;ZCL_ZAKE_TORTOISE_SVN&apos;.
+  APPEND object TO objects.
   &quot; Checkin / Checkout Program
   object-object   = &apos;PROG&apos;.
   object-obj_name = &apos;Z_ZAKE_SVN&apos;.
+  APPEND object TO objects.
+  object-object   = &apos;PROG&apos;.
+  object-obj_name = &apos;ZAKE_SVN_WEBHOOK_CALL&apos;.
+  APPEND object TO objects.
+  object-object   = &apos;PROG&apos;.
+  object-obj_name = &apos;ZAKE_SVN_WEBHOOK_PROCESS&apos;.
   APPEND object TO objects.
 *  &quot;
 *  &quot; Test Objects
