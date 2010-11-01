@@ -382,6 +382,11 @@ endmethod.</source>
        OR object = &apos;METH&apos;.
     object   = &lt;package_object&gt;-object.
     obj_name = &lt;package_object&gt;-obj_name.
+    IF sy-batch = abap_true.
+      CONCATENATE &apos;Try to activate:&apos; &lt;package_object&gt;-object &lt;package_object&gt;-obj_name
+        INTO msg SEPARATED BY space.
+      MESSAGE msg TYPE &apos;I&apos;.
+    ENDIF.
     CALL FUNCTION &apos;RS_WORKING_OBJECT_ACTIVATE&apos;
       EXPORTING
         object                     = object
@@ -425,6 +430,11 @@ endmethod.</source>
        AND object &lt;&gt; &apos;METH&apos;.
     object   = &lt;package_object&gt;-object.
     obj_name = &lt;package_object&gt;-obj_name.
+    IF sy-batch = abap_true.
+      CONCATENATE &apos;Try to activate:&apos; &lt;package_object&gt;-object &lt;package_object&gt;-obj_name
+        INTO msg SEPARATED BY space.
+      MESSAGE msg TYPE &apos;I&apos;.
+    ENDIF.
     CALL FUNCTION &apos;RS_WORKING_OBJECT_ACTIVATE&apos;
       EXPORTING
         object                     = object
@@ -1296,7 +1306,7 @@ endmethod.</source>
   <parameter CLSNAME="ZAKE" CMPNAME="GET_SLINKEES_FROM_LM" SCONAME="I_FULLPATH" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100113" CHANGEDBY="BCUSER" CHANGEDON="20101031" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
   <parameter CLSNAME="ZAKE" CMPNAME="GET_SLINKEES_FROM_LM" SCONAME="C_SLINKEES" VERSION="1" LANGU="E" DESCRIPT="Business Content Table XML DOM" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100113" CHANGEDBY="BCUSER" CHANGEDON="20101031" PARDECLTYP="2" PARPASSTYP="0" TYPTYPE="1" TYPE="IGS_CE_CU_TAB"/>
   <exception CLSNAME="ZAKE" CMPNAME="GET_SLINKEES_FROM_LM" SCONAME="ZCX_SAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 " AUTHOR="BCUSER" CREATEDON="20100113" CHANGEDBY="BCUSER" CHANGEDON="20101031"/>
-  <source>method GET_SLINKEES_FROM_LM.
+  <source>METHOD get_slinkees_from_lm.
 
   DATA: result TYPE abap_bool.
 
@@ -1305,20 +1315,38 @@ endmethod.</source>
         count	TYPE i.
   DATA: tmpfullpath TYPE string.
   DATA: tmppath TYPE string.
-  DATA: slash TYPE string.
+  DATA: slash          TYPE string,
+        file_separator TYPE c.
   DATA: xmlstring TYPE string.
   DATA: slinkee LIKE LINE OF c_slinkees.
+  DATA: msg TYPE string.
   &quot; For Batch processing
-  DATA: name TYPE pfeflnamel,
-        file_tbl TYPE TABLE OF salfldir.
-  FIELD-SYMBOLS: &lt;file&gt; LIKE LINE OF file_tbl.
+  DATA: name     TYPE pfeflnamel,
+        dir_name TYPE epsdirnam,
+        file_tbl TYPE TABLE OF salfldir,
+        dir_list TYPE TABLE OF epsfili.
+
+  FIELD-SYMBOLS: &lt;file&gt; LIKE LINE OF file_tbl,
+                 &lt;dir_list&gt; LIKE LINE OF dir_list.
 
   tmpfullpath = i_fullpath.
   slash = &apos;/&apos;.
-  REPLACE ALL OCCURRENCES OF slash IN tmpfullpath WITH &apos;\&apos;.
+  IF sy-batch = abap_true.
+    IF sy-opsys = &apos;Linux&apos;.
+      file_separator = &apos;/&apos;.
+    ENDIF.
+  ELSE.
+    cl_gui_frontend_services=&gt;get_file_separator( CHANGING file_separator = file_separator ).
+  ENDIF.
+
+  REPLACE ALL OCCURRENCES OF slash IN tmpfullpath WITH file_separator.
   &quot; When running as a Batch Job we had to read from the server
   IF sy-batch = abap_true.
+    CONCATENATE &apos;Read content of directory:&apos; i_fullpath
+      INTO msg SEPARATED BY space.
+    MESSAGE msg TYPE &apos;I&apos;.
     name = i_fullpath.
+    &quot;
     CALL FUNCTION &apos;RZL_READ_DIR_LOCAL&apos;
       EXPORTING
         name           = name
@@ -1328,15 +1356,38 @@ endmethod.</source>
         argument_error = 1
         not_found      = 2
         OTHERS         = 3.
-    IF sy-subrc &lt;&gt; 0.
 
-    ENDIF.
+    dir_name = i_fullpath.
+
+    CALL FUNCTION &apos;EPS_GET_DIRECTORY_LISTING&apos;
+      EXPORTING
+        dir_name               = dir_name
+      TABLES
+        dir_list               = dir_list
+      EXCEPTIONS
+        invalid_eps_subdir     = 1
+        sapgparam_failed       = 2
+        build_directory_failed = 3
+        no_authorization       = 4
+        read_directory_failed  = 5
+        too_many_read_errors   = 6
+        empty_directory_list   = 7
+        OTHERS                 = 8.
+
     LOOP AT file_tbl ASSIGNING &lt;file&gt;
       WHERE name &lt;&gt; &apos;.&apos; AND name &lt;&gt; &apos;..&apos;
         AND NOT name CP &apos;.*&apos;.
       CLEAR file.
-      &quot; When the size is initial, then we think it is a directory
-      IF &lt;file&gt;-size IS INITIAL.
+      UNASSIGN &lt;dir_list&gt;.
+      &quot;&quot; When the size is initial, then we think it is a directory
+      &quot;&quot; Does not work on Linux systems where the size is also filled
+      &quot;&quot; for directories
+      &quot;IF &lt;file&gt;-size IS INITIAL.
+      &quot;  file-isdir = &apos;1&apos;.
+      &quot;ENDIF.
+      READ TABLE dir_list ASSIGNING &lt;dir_list&gt;
+        WITH KEY name = &lt;file&gt;-name.
+      IF NOT &lt;dir_list&gt; IS ASSIGNED.
         file-isdir = &apos;1&apos;.
       ENDIF.
       file-filename = &lt;file&gt;-name.
@@ -1365,7 +1416,7 @@ endmethod.</source>
   DELETE file_table WHERE ishidden = &apos;1&apos;.
 
   LOOP AT file_table INTO file.
-    CONCATENATE tmpfullpath &apos;\&apos; file-filename INTO tmppath.
+    CONCATENATE tmpfullpath file_separator file-filename INTO tmppath.
     IF file-isdir = &apos;1&apos;.
       me-&gt;get_slinkees_from_lm(
         EXPORTING
@@ -1382,7 +1433,7 @@ endmethod.</source>
     ENDIF.
   ENDLOOP.
 
-endmethod.</source>
+ENDMETHOD.</source>
  </method>
  <method CLSNAME="ZAKE" CMPNAME="INSTALL" VERSION="1" LANGU="E" DESCRIPT="Install a Slinkee" EXPOSURE="2" STATE="1" EDITORDER="26 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20091219" CHANGEDBY="BCUSER" CHANGEDON="20101031" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZAKE" CMPNAME="INSTALL" SCONAME="I_XML_DOCUMENT" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_DOCUMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20101031" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_DOCUMENT"/>
@@ -1553,28 +1604,45 @@ ENDMETHOD.</source>
   <parameter CLSNAME="ZAKE" CMPNAME="READ_XML_FROM_LM" SCONAME="I_FULLPATH" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20101031" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
   <parameter CLSNAME="ZAKE" CMPNAME="READ_XML_FROM_LM" SCONAME="R_XML_STRING" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20101031" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="1" TYPE="STRING"/>
   <exception CLSNAME="ZAKE" CMPNAME="READ_XML_FROM_LM" SCONAME="ZCX_SAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 " AUTHOR="BCUSER" CREATEDON="20100819" CHANGEDBY="BCUSER" CHANGEDON="20101031"/>
-  <source>method READ_XML_FROM_LM.
+  <source>METHOD read_xml_from_lm.
 
   DATA: temptable_char TYPE table_of_strings,
+        bin_tab TYPE TABLE OF x255,
         tempstring TYPE string.
+  DATA filelength TYPE i.
+  &quot; Background processing
+  DATA bin_data LIKE LINE OF bin_tab.
+  DATA len TYPE i.
+  DATA alen TYPE i.
 
   IF sy-batch = abap_true.
-    OPEN DATASET i_fullpath  FOR INPUT IN TEXT MODE
-                             ENCODING DEFAULT
-                             WITH SMART LINEFEED.
+    DESCRIBE FIELD bin_data LENGTH len IN BYTE MODE.
+    OPEN DATASET i_fullpath FOR INPUT IN BINARY MODE.
     WHILE sy-subrc = 0.
-      READ DATASET i_fullpath INTO tempstring.
-      APPEND tempstring TO temptable_char.
+      READ DATASET i_fullpath INTO bin_data MAXIMUM LENGTH len ACTUAL LENGTH alen.
+      APPEND bin_data TO bin_tab.
+      filelength = filelength + alen.
     ENDWHILE.
-
     CLOSE DATASET i_fullpath.
+*    &quot; Text Mode
+*    OPEN DATASET i_fullpath  FOR INPUT IN TEXT MODE
+*                             ENCODING DEFAULT
+*                             WITH SMART LINEFEED.
+*    WHILE sy-subrc = 0.
+*      READ DATASET i_fullpath INTO tempstring.
+*      APPEND tempstring TO temptable_char.
+*    ENDWHILE.
+*
+*    CLOSE DATASET i_fullpath.
   ELSE.
     cl_gui_frontend_services=&gt;gui_upload(
       EXPORTING
-         filename                = i_fullpath    &quot; Name of file
-        filetype                = &apos;ASC&apos;    &quot; File Type (ASCII, Binary)
+         filename               = i_fullpath  &quot; Name of file
+        filetype                = &apos;BIN&apos;       &quot; File Type (ASCII, Binary)
+      IMPORTING
+        filelength              = filelength
       CHANGING
-        data_tab                = temptable_char    &quot; Transfer table for file contents
+        data_tab                = bin_tab     &quot; Transfer table for file contents
       EXCEPTIONS
         file_open_error         = 1
         file_read_error         = 2
@@ -1602,12 +1670,23 @@ ENDMETHOD.</source>
           textid = zcx_saplink=&gt;system_error.
     ENDIF.
   ENDIF.
-  LOOP AT temptable_char INTO tempstring.
-    CONCATENATE r_xml_string tempstring cl_abap_char_utilities=&gt;newline
-      INTO r_xml_string.
-  ENDLOOP.
 
-endmethod.</source>
+  CALL FUNCTION &apos;SCMS_BINARY_TO_STRING&apos;
+    EXPORTING
+      input_length = filelength
+    IMPORTING
+      text_buffer  = r_xml_string
+    TABLES
+      binary_tab   = bin_tab.
+
+  REPLACE ALL OCCURRENCES OF cl_abap_char_utilities=&gt;cr_lf
+    IN r_xml_string WITH cl_abap_char_utilities=&gt;newline.
+*  LOOP AT temptable_char INTO tempstring.
+*    CONCATENATE r_xml_string tempstring cl_abap_char_utilities=&gt;newline
+*      INTO r_xml_string.
+*  ENDLOOP.
+
+ENDMETHOD.</source>
  </method>
  <method CLSNAME="ZAKE" CMPNAME="RELEASE_TRANSPORT_REQUEST" VERSION="1" LANGU="E" DESCRIPT="Release transport request" EXPOSURE="2" STATE="1" EDITORDER="30 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100823" CHANGEDBY="BCUSER" CHANGEDON="20101031" MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZAKE" CMPNAME="RELEASE_TRANSPORT_REQUEST" SCONAME="I_TRANSPORT" VERSION="1" LANGU="E" DESCRIPT="Request/Task" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100823" CHANGEDBY="BCUSER" CHANGEDON="20101031" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="TRKORR" PAROPTIONL="X"/>
