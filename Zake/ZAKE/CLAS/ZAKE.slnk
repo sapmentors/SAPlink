@@ -1729,18 +1729,24 @@ endmethod.</source>
  <method CLSNAME="ZAKE" CMPNAME="SET_PACKAGE_OBJECTS" VERSION="1" LANGU="E" DESCRIPT="Get the Objects of a Package" EXPOSURE="2" STATE="1" EDITORDER="22 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20101031" MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZAKE" CMPNAME="SET_PACKAGE_OBJECTS" SCONAME="I_PACKAGE" VERSION="1" LANGU="E" DESCRIPT="Package" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100112" CHANGEDBY="BCUSER" CHANGEDON="20101031" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="DEVCLASS"/>
   <exception CLSNAME="ZAKE" CMPNAME="SET_PACKAGE_OBJECTS" SCONAME="ZCX_SAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 " AUTHOR="BCUSER" CREATEDON="20100117" CHANGEDBY="BCUSER" CHANGEDON="20101031"/>
-  <source>method SET_PACKAGE_OBJECTS.
-  DATA: msg TYPE string.
+  <source>METHOD set_package_objects.
+  DATA: msg   TYPE string,
+        where TYPE string.
+
   me-&gt;iv_package = i_package.
+
+  IF sy-saprl &gt;= 700.
+    where = `devclass EQ me-&gt;iv_package AND pgmid EQ &apos;R3TR&apos; AND delflag NE &apos;X&apos;`.
+  ELSE.
+    &quot;//-&gt; Mar: Added logic discard deleted objects from Package - 08/20/2008
+    &quot; Comment this line when ABAP Release &lt;= 6.40
+    where = `devclass EQ me-&gt;iv_package AND pgmid EQ &apos;R3TR&apos;`.
+  ENDIF.
+
   SELECT object obj_name srcsystem
       FROM tadir
       INTO CORRESPONDING FIELDS OF TABLE package_objects
-      WHERE devclass  EQ me-&gt;iv_package
-      AND  pgmid      EQ &apos;R3TR&apos;
-      &quot;//-&gt; Mar: Added logic discard deleted objects from Package - 08/20/2008
-      &quot; Comment this line when ABAP Release &lt;= 6.20
-      AND  delflag    NE &apos;X&apos;
-      .
+      WHERE (where).
   &quot;//&lt;- Mar: Added logic discard deleted objects from Package - 08/20/2008
   IF sy-subrc &lt;&gt; 0.
     MESSAGE s208(00) WITH &apos;Package does not exist or is empty&apos; INTO msg.
@@ -1749,7 +1755,7 @@ endmethod.</source>
         textid = zcx_saplink=&gt;error_message
         msg    = msg.
   ENDIF.
-endmethod.</source>
+ENDMETHOD.</source>
  </method>
  <method CLSNAME="ZAKE" CMPNAME="SET_PACKAGE_OF_PACKAGE_OBJECTS" VERSION="1" LANGU="E" DESCRIPT="Set the development package of all package objects" EXPOSURE="2" STATE="1" EDITORDER="29 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20100823" CHANGEDBY="BCUSER" CHANGEDON="20101031" MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
   <exception CLSNAME="ZAKE" CMPNAME="SET_PACKAGE_OF_PACKAGE_OBJECTS" SCONAME="ZCX_SAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 " AUTHOR="BCUSER" CREATEDON="20100823" CHANGEDBY="BCUSER" CHANGEDON="20101031"/>

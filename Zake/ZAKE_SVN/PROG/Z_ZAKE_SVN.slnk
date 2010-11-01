@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<PROG NAME="Z_ZAKE_SVN" VARCL="X" SUBC="1" CNAM="BCUSER" CDAT="20100105" UNAM="BCUSER" UDAT="20101031" VERN="000076" RSTAT="T" RMAND="000" RLOAD="E" FIXPT="X" SDATE="20101031" STIME="233550" IDATE="20101031" ITIME="233550" UCCHECK="X">
+<PROG NAME="Z_ZAKE_SVN" VARCL="X" SUBC="1" CNAM="BCUSER" CDAT="20100105" UNAM="BCUSER" UDAT="20101101" VERN="000078" RSTAT="T" RMAND="000" RLOAD="E" FIXPT="X" SDATE="20101101" STIME="175343" IDATE="20101101" ITIME="175343" UCCHECK="X">
  <textPool>
   <language SPRAS="E">
    <textElement ID="R" ENTRY="Program Z_ZAKE_SVN" LENGTH="18 "/>
@@ -217,8 +217,11 @@ START-OF-SELECTION.
         zake-&gt;download_slinkees_to_lm = abap_true.
         zake-&gt;download_nugget_to_lm   = abap_false.
         zake-&gt;download_zip_to_lm_flag = abap_false.
-        &quot; zake-&gt;
+        &quot; You can add the complete content of a Package
+        &quot; zake-&gt;set_package_objects( &apos;ZAKE&apos; ).
+        &quot; Or you define the package
         zake-&gt;set_package( &apos;ZAKE&apos; ).
+        &quot; and add only objects of a defined internal table
         zake-&gt;set_checkin_objects( zake_objects ).
         zake-&gt;create_slinkees( zake_nuggetname ).
         zake-&gt;set_package( &apos;ZAKE_SVN&apos; ).

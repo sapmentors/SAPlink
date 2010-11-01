@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<PROG NAME="ZAKE_SVN_WEBHOOK_PROCESS" VARCL="X" SUBC="1" CNAM="BCUSER" CDAT="20101031" UNAM="BCUSER" UDAT="20101031" VERN="000032" RSTAT="K" RMAND="000" RLOAD="E" FIXPT="X" SDATE="20101031" STIME="232958" IDATE="20101031" ITIME="232958" UCCHECK="X">
+<PROG NAME="ZAKE_SVN_WEBHOOK_PROCESS" VARCL="X" SUBC="1" CNAM="BCUSER" CDAT="20101031" UNAM="BCUSER" UDAT="20101101" VERN="000033" RSTAT="K" RMAND="000" RLOAD="E" FIXPT="X" SDATE="20101101" STIME="175938" IDATE="20101101" ITIME="175938" UCCHECK="X">
  <textPool>
   <language SPRAS="E">
    <textElement ID="R" ENTRY="Process Webhook call: checkout and build using ZAKE" LENGTH="51 "/>
@@ -22,6 +22,7 @@ DATA: zake           TYPE REF TO zake,
       command_output TYPE string_table,
       filepath       TYPE string_table,
       fullpath       TYPE string,
+      new_slinkee    TYPE flag,
       nuggetname     TYPE string,
       lines          TYPE i.
 
@@ -40,10 +41,27 @@ DATA: jobrunning TYPE flag VALUE &apos;X&apos;,
       yesterday  TYPE sydatum,
       tomorrow   TYPE sydatum.
 
-PARAMETERS: project TYPE zake_project_name.
+PARAMETERS: project TYPE zake_project_name DEFAULT &apos;ZABAPHook&apos;.
 
 START-OF-SELECTION.
   MESSAGE &apos;ZAKE_SVN_WEBHOOK_PROCESS started&apos; TYPE &apos;I&apos;.
+  &quot; Get details of the project
+  SELECT SINGLE * FROM zake_userdata INTO userdata
+    WHERE project = project.
+
+  CHECK sy-subrc = 0.
+
+  MESSAGE &apos;Project Details loaded&apos; TYPE &apos;I&apos;.
+  IF userdata-url           IS INITIAL OR
+     userdata-username      IS INITIAL OR
+     userdata-password      IS INITIAL OR
+     userdata-localpath     IS INITIAL OR
+     userdata-build_manager IS INITIAL.
+    MESSAGE &apos;Not all project details are maintained in ZAKE_USERDATA.&apos; TYPE &apos;E&apos;.
+  ENDIF.
+  loclpath_str = userdata-localpath.
+  svnpath_str  = userdata-url.
+
   &quot; Check if another Build Job is already running
   WHILE jobrunning = abap_true.
     CLEAR: joblist.
@@ -76,17 +94,11 @@ START-OF-SELECTION.
       WAIT UP TO 5 SECONDS.
     ENDIF.
   ENDWHILE.
-  &quot; Get details of the project
-  SELECT SINGLE * FROM zake_userdata INTO userdata
-    WHERE project = project.
 
-  CHECK sy-subrc = 0.
-
-  MESSAGE &apos;Project Details loaded correctly&apos; TYPE &apos;I&apos;.
-  loclpath_str = userdata-localpath.
-  svnpath_str  = userdata-url.
-  &quot; Instanciate ZAKE with the command line client
   TRY.
+      CONCATENATE &apos;Instanciate ZAKE with the command line client using local path&apos; loclpath_str
+            &apos;and SVN URL&apos; svnpath_str INTO message SEPARATED BY space.
+      MESSAGE message TYPE &apos;I&apos;.
       CREATE OBJECT zake
         TYPE
           zcl_zake_svn
@@ -94,20 +106,23 @@ START-OF-SELECTION.
           i_svnpath    = svnpath_str
           i_localpath  = loclpath_str.
 
-      IF zake IS BOUND.
-        &quot; Checkout the latest Version
-        command_output = zake-&gt;checkout( ).
-        MESSAGE &apos;Objects that where checked out&apos; TYPE &apos;I&apos;.
-        LOOP AT command_output ASSIGNING &lt;command_output&gt;.
-          MESSAGE &lt;command_output&gt; TYPE &apos;I&apos;.
-          IF &lt;command_output&gt; CP &apos;*.slnk&apos;.
-            SPLIT &lt;command_output&gt; AT &apos;    &apos; INTO TABLE filepath.
-            DESCRIBE TABLE filepath LINES lines.
-            READ TABLE filepath INTO fullpath INDEX 2.
-            MESSAGE fullpath TYPE &apos;I&apos;.
-            zake-&gt;install_slinkee_from_lm( fullpath ).
-          ENDIF.
-        ENDLOOP.
+      CHECK zake IS BOUND.
+      MESSAGE &apos;ZAKE was instanciated&apos; TYPE &apos;I&apos;.
+      &quot; Checkout the latest Version
+      command_output = zake-&gt;checkout( ).
+      MESSAGE &apos;Objects that where checked out&apos; TYPE &apos;I&apos;.
+      LOOP AT command_output ASSIGNING &lt;command_output&gt;.
+        MESSAGE &lt;command_output&gt; TYPE &apos;I&apos;.
+        IF &lt;command_output&gt; CP &apos;*.slnk&apos;.
+          new_slinkee = abap_true.
+          SPLIT &lt;command_output&gt; AT &apos;    &apos; INTO TABLE filepath.
+          DESCRIBE TABLE filepath LINES lines.
+          READ TABLE filepath INTO fullpath INDEX 2.
+          MESSAGE fullpath TYPE &apos;I&apos;.
+          zake-&gt;install_slinkee_from_lm( fullpath ).
+        ENDIF.
+      ENDLOOP.
+      IF new_slinkee = abap_true.
         MESSAGE &apos;Install slinkees in test mode to fill objectlist&apos; TYPE &apos;I&apos;.
         zake-&gt;install_slinkees_from_lm( abap_true ).
         MESSAGE &apos;Activate objects&apos; TYPE &apos;I&apos;.
@@ -126,10 +141,10 @@ START-OF-SELECTION.
         zake-&gt;create_slinkees( nuggetname ).
         MESSAGE &apos;Checkin&apos; TYPE &apos;I&apos;.
         CONCATENATE &apos;New daily build of&apos; project
-          INTO nuggetname SEPARATED BY space.
-        zake-&gt;checkin( nuggetname ).
+          INTO message SEPARATED BY space.
+        zake-&gt;checkin( message ).
       ELSE.
-        MESSAGE &apos;ZAKE Object could not be initiated&apos; TYPE &apos;E&apos;.
+        MESSAGE &apos;No new slinkees found&apos; TYPE &apos;I&apos;.
       ENDIF.
     CATCH zcx_saplink INTO ex.
       message = ex-&gt;get_text( ).

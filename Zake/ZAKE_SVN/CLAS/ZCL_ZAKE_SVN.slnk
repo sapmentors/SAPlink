@@ -253,7 +253,7 @@ ENDMETHOD.</source>
     &quot; using a system command defined in SM69
     DATA: params TYPE btcxpgpar.
     DATA: long_params TYPE  char1024.
-    DATA: exec_protocol TYPE lca_tracefile_tab,
+    DATA: exec_protocol TYPE TABLE OF btcxpm,
           ls_exec_protocol LIKE LINE OF exec_protocol.
 
     params = i_command.
