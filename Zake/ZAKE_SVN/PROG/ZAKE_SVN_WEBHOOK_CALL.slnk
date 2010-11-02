@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<PROG NAME="ZAKE_SVN_WEBHOOK_CALL" VARCL="X" SUBC="1" CNAM="BCUSER" CDAT="20101031" UNAM="BCUSER" UDAT="20101031" VERN="000018" RSTAT="T" RMAND="000" RLOAD="E" FIXPT="X" SDATE="20101031" STIME="221931" IDATE="20101031" ITIME="221931" UCCHECK="X">
+<PROG NAME="ZAKE_SVN_WEBHOOK_CALL" VARCL="X" SUBC="1" CNAM="BCUSER" CDAT="20101031" UNAM="BCUSER" UDAT="20101102" VERN="000019" RSTAT="T" RMAND="000" RLOAD="E" FIXPT="X" SDATE="20101102" STIME="205405" IDATE="20101102" ITIME="205405" UCCHECK="X">
  <textPool>
   <language SPRAS="E">
    <textElement ID="R" ENTRY="Simulate ZAKE Webhook Call using HTTP Client" LENGTH="44 "/>
@@ -34,6 +34,7 @@ CONCATENATE
 &apos;&lt;space&gt;ZABAPHook&lt;/space&gt;&apos;
 &apos;&lt;action&gt;checkin&lt;/action&gt;&apos;
 &apos;&lt;author&gt;gregor.wolf&lt;/author&gt;&apos;
+&apos;&lt;title&gt;Changeset [36]: New daily build of ZABAPHook &lt;/title&gt;&apos;
 &apos;&lt;/status&gt;&apos;
 INTO call.
 

@@ -19,6 +19,7 @@ protected section.
   data PROJECT type ZAKE_PROJECT_NAME .
   data ACTION type STRING .
   data AUTHOR type STRING .
+  data TITLE type STRING .
 
   methods IS_VALID_PROJECT
     returning
@@ -38,10 +39,11 @@ private section.</privateSection>
  <textPool/>
  <typeUsage CLSNAME="ZCL_ZAKE_WEBHOOK_HANDLER" TYPEGROUP="ABAP" VERSION="1" TPUTYPE="0" EXPLICIT="X"/>
  <forwardDeclaration>ABAP</forwardDeclaration>
- <attribute CLSNAME="ZCL_ZAKE_WEBHOOK_HANDLER" CMPNAME="ACTION" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="3 " AUTHOR="BCUSER" CREATEDON="20101031" CHANGEDON="00000000" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " R3RELEASE="702" TYPESRC_LENG="0 "/>
- <attribute CLSNAME="ZCL_ZAKE_WEBHOOK_HANDLER" CMPNAME="AUTHOR" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="4 " AUTHOR="BCUSER" CREATEDON="20101031" CHANGEDON="00000000" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " R3RELEASE="702" TYPESRC_LENG="0 "/>
+ <attribute CLSNAME="ZCL_ZAKE_WEBHOOK_HANDLER" CMPNAME="ACTION" VERSION="1" LANGU="E" DESCRIPT="Action" EXPOSURE="1" STATE="1" EDITORDER="3 " AUTHOR="BCUSER" CREATEDON="20101031" CHANGEDBY="BCUSER" CHANGEDON="20101102" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " R3RELEASE="702" TYPESRC_LENG="0 "/>
+ <attribute CLSNAME="ZCL_ZAKE_WEBHOOK_HANDLER" CMPNAME="AUTHOR" VERSION="1" LANGU="E" DESCRIPT="Author" EXPOSURE="1" STATE="1" EDITORDER="4 " AUTHOR="BCUSER" CREATEDON="20101031" CHANGEDBY="BCUSER" CHANGEDON="20101102" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " R3RELEASE="702" TYPESRC_LENG="0 "/>
  <attribute CLSNAME="ZCL_ZAKE_WEBHOOK_HANDLER" CMPNAME="PROJECT" VERSION="1" LANGU="E" DESCRIPT="Project Name" EXPOSURE="1" STATE="1" EDITORDER="2 " AUTHOR="BCUSER" CREATEDON="20101031" CHANGEDBY="BCUSER" CHANGEDON="20101031" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="ZAKE_PROJECT_NAME" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " R3RELEASE="702" TYPESRC_LENG="0 "/>
  <attribute CLSNAME="ZCL_ZAKE_WEBHOOK_HANDLER" CMPNAME="REQUEST_XSTRING" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="1 " AUTHOR="BCUSER" CREATEDON="20101031" CHANGEDON="00000000" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="XSTRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " R3RELEASE="702" TYPESRC_LENG="0 "/>
+ <attribute CLSNAME="ZCL_ZAKE_WEBHOOK_HANDLER" CMPNAME="TITLE" VERSION="1" LANGU="E" DESCRIPT="Title" EXPOSURE="1" STATE="1" EDITORDER="5 " AUTHOR="BCUSER" CREATEDON="20101102" CHANGEDON="00000000" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " R3RELEASE="702" TYPESRC_LENG="0 "/>
  <interfaceMethod CLSNAME="ZCL_ZAKE_WEBHOOK_HANDLER" CPDNAME="IF_HTTP_EXTENSION~HANDLE_REQUEST">
   <source>METHOD if_http_extension~handle_request.
 
@@ -58,24 +60,28 @@ private section.</privateSection>
       IF me-&gt;project &lt;&gt; &apos;&apos;.
         valid_project = me-&gt;is_valid_project( ).
         IF valid_project = abap_true.
-          &quot; Create new background Job
-          CALL FUNCTION &apos;JOB_OPEN&apos;
-            EXPORTING
-              jobname  = jobname
-            IMPORTING
-              jobcount = jobcount.
-          &quot; Add Jobstep
-          SUBMIT zake_svn_webhook_process AND RETURN
-            VIA JOB jobname NUMBER jobcount
-            WITH project EQ me-&gt;project.
-          &quot; release Job
-          CALL FUNCTION &apos;JOB_CLOSE&apos;
-            EXPORTING
-              jobcount         = jobcount
-              jobname          = jobname
-              strtimmed        = &apos;X&apos;
-            IMPORTING
-              job_was_released = job_was_released.
+          IF me-&gt;title CP &apos;*New daily build of*&apos;.
+            &quot; We don&apos;t have to process this request as was our own commit
+          ELSE.
+            &quot; Create new background Job
+            CALL FUNCTION &apos;JOB_OPEN&apos;
+              EXPORTING
+                jobname  = jobname
+              IMPORTING
+                jobcount = jobcount.
+            &quot; Add Jobstep
+            SUBMIT zake_svn_webhook_process AND RETURN
+              VIA JOB jobname NUMBER jobcount
+              WITH project EQ me-&gt;project.
+            &quot; release Job
+            CALL FUNCTION &apos;JOB_CLOSE&apos;
+              EXPORTING
+                jobcount         = jobcount
+                jobname          = jobname
+                strtimmed        = &apos;X&apos;
+              IMPORTING
+                job_was_released = job_was_released.
+          ENDIF.
         ENDIF.
       ENDIF.
       server-&gt;response-&gt;set_data( data = response_xstring ).
@@ -83,7 +89,7 @@ private section.</privateSection>
   ENDTRY.
 ENDMETHOD.</source>
  </interfaceMethod>
- <method CLSNAME="ZCL_ZAKE_WEBHOOK_HANDLER" CMPNAME="IS_VALID_PROJECT" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="0 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20101031" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
+ <method CLSNAME="ZCL_ZAKE_WEBHOOK_HANDLER" CMPNAME="IS_VALID_PROJECT" VERSION="1" LANGU="E" DESCRIPT="Is valid project" EXPOSURE="1" STATE="1" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20101031" CHANGEDBY="BCUSER" CHANGEDON="20101102" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZCL_ZAKE_WEBHOOK_HANDLER" CMPNAME="IS_VALID_PROJECT" SCONAME="R_VALID" VERSION="1" LANGU="E" DESCRIPT="Boolean Variable (X=True, -=False, Space=Unknown)" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20101031" CHANGEDON="00000000" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="1" TYPE="BOOLEAN"/>
   <source>method IS_VALID_PROJECT.
   DATA: count TYPE i.
@@ -94,7 +100,7 @@ ENDMETHOD.</source>
   ENDIF.
 endmethod.</source>
  </method>
- <method CLSNAME="ZCL_ZAKE_WEBHOOK_HANDLER" CMPNAME="PARSE_REQUEST" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="0 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20101031" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
+ <method CLSNAME="ZCL_ZAKE_WEBHOOK_HANDLER" CMPNAME="PARSE_REQUEST" VERSION="1" LANGU="E" DESCRIPT="Pharse request" EXPOSURE="1" STATE="1" EDITORDER="2 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20101031" CHANGEDBY="BCUSER" CHANGEDON="20101102" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
   <source>method PARSE_REQUEST.
   &quot; Pharse HTML Document
   TYPE-POOLS: ixml.
@@ -148,6 +154,8 @@ endmethod.</source>
         me-&gt;action = value.
       WHEN &apos;author&apos;.
         me-&gt;author = value.
+      WHEN &apos;title&apos;.
+        me-&gt;title  = value.
     ENDCASE.
     node = node_iterator-&gt;get_next( ).
   ENDWHILE.
