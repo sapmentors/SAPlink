@@ -1332,7 +1332,9 @@ endmethod.</source>
   tmpfullpath = i_fullpath.
   slash = &apos;/&apos;.
   IF sy-batch = abap_true.
-    IF sy-opsys = &apos;Linux&apos;.
+    IF sy-opsys = &apos;Windows NT&apos;.
+      file_separator = &apos;\&apos;.
+    ELSE.
       file_separator = &apos;/&apos;.
     ENDIF.
   ELSE.
