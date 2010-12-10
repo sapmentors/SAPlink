@@ -451,6 +451,20 @@ endmethod.</source>
   reportstring = buildsourcestring( sourcetable = reportlist ).
   rc = localmacros-&gt;if_ixml_node~set_value( reportstring ).
 *|--------------------------------------------------------------------|
+*/***EVP - Added Logic for Local Test Classes  ----------------------*/
+  DATA localtestclasses type ref to if_ixml_element.
+  DATA localtestclassesExist type i.
+
+  includename = cl_oo_classname_service=&gt;get_local_testclasses_include( _classname ).
+  READ REPORT includename INTO reportlist.
+  &quot; If sy-subrc = 0 the local test classes do exist
+  localtestclassesExist = sy-subrc.
+  if localtestclassesExist = 0.
+    localtestclasses = xmldoc-&gt;create_element( &apos;localTestClasses&apos; ).
+    reportstring = buildsourcestring( sourcetable = reportlist ).
+    rc = localtestclasses-&gt;if_ixml_node~set_value( reportstring ).
+  endif.
+*/***EVP - End of Added Logic for Local Test Classes  ---------------*/
 **// Rich:  Start
   textPoolNode = get_textPool( ).
   docuNode = get_documentation( ).
@@ -463,6 +477,11 @@ endmethod.</source>
   rc = rootnode-&gt;append_child( localimplementation ).
   rc = rootnode-&gt;append_child( localtypes ).
   rc = rootnode-&gt;append_child( localmacros ).
+*/***EVP - Added Logic for Local Test Classes  -------------------*/
+  if localtestclassesExist = 0.
+    rc = rootnode-&gt;append_child( localtestclasses ).
+  endif.
+*/***EVP - End of Added Logic for Local Test Classes  ------------*/
 **// Rich:  Start
   rc = rootnode-&gt;append_child( textPoolNode ).
   rc = rootnode-&gt;append_child( docuNode ).
@@ -1363,6 +1382,30 @@ endmethod.</source>
     INSERT REPORT includename FROM sourcetable EXTENSION TYPE
     srext_ext_class_private STATE &apos;I&apos;.
   ENDIF.
+*/***EVP - Added Logic for Local Test Classes  -------------------*/
+**local test classes
+  sourcenode = xmldoc-&gt;find_from_name( &apos;localTestClasses&apos; ).
+  IF sourcenode IS NOT INITIAL.
+    data clskey type seoclskey.
+    source = sourcenode-&gt;get_value( ).
+    sourcetable = buildtablefromstring( source ).
+
+    clskey-clsname = _classname.
+    call function &apos;SEO_CLASS_GENERATE_LOCALS&apos;
+      exporting
+        clskey                 = clskey
+        force                  = overwrite
+        locals_testclasses     = sourcetable
+      exceptions
+        not_existing           = 1
+        model_only             = 2
+        locals_not_generated   = 3
+        locals_not_initialised = 4
+        others                 = 5.
+    if sy-subrc &lt;&gt; 0.
+    endif.
+  ENDIF.
+*/***EVP - End Of Added Logic for Local Test Classes  -------------------*/
 
 **// Rich:  Start
 * Create class textpool
@@ -1405,8 +1448,8 @@ endmethod.</source>
 endmethod.</source>
   <methodDocumentation/>
  </method>
- <method CLSNAME="ZSAPLINK_CLASS" CMPNAME="CREATE_DOCUMENTATION" VERSION="1" LANGU="E" DESCRIPT="Create Documentation" EXPOSURE="0" STATE="1" EDITORDER="4 " DISPID="0 " AUTHOR="DEVELOPER" CREATEDON="20101125" CHANGEDBY="DEVELOPER" CHANGEDON="20101127" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
-  <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="CREATE_DOCUMENTATION" SCONAME="DOCNODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="DEVELOPER" CREATEDON="20101125" CHANGEDBY="DEVELOPER" CHANGEDON="20101127" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
+ <method CLSNAME="ZSAPLINK_CLASS" CMPNAME="CREATE_DOCUMENTATION" VERSION="1" LANGU="E" DESCRIPT="Create Documentation" EXPOSURE="0" STATE="1" EDITORDER="4 " DISPID="0 " AUTHOR="DEVELOPER" CREATEDON="20101127" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="CREATE_DOCUMENTATION" SCONAME="DOCNODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="DEVELOPER" CREATEDON="20101127" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
   <source>method CREATE_DOCUMENTATION.
 
   DATA txtline_node     TYPE REF TO if_ixml_element.
@@ -1499,8 +1542,8 @@ endmethod.</source>
 endmethod.</source>
   <methodDocumentation/>
  </method>
- <method CLSNAME="ZSAPLINK_CLASS" CMPNAME="CREATE_METHOD_DOCUMENTATION" VERSION="1" LANGU="E" DESCRIPT="Create Method Documentation" EXPOSURE="0" STATE="1" EDITORDER="7 " DISPID="0 " AUTHOR="DEVELOPER" CREATEDON="20101125" CHANGEDBY="DEVELOPER" CHANGEDON="20101127" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
-  <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="CREATE_METHOD_DOCUMENTATION" SCONAME="METHDOCNODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="DEVELOPER" CREATEDON="20101125" CHANGEDBY="DEVELOPER" CHANGEDON="20101127" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
+ <method CLSNAME="ZSAPLINK_CLASS" CMPNAME="CREATE_METHOD_DOCUMENTATION" VERSION="1" LANGU="E" DESCRIPT="Create Method Documentation" EXPOSURE="0" STATE="1" EDITORDER="7 " DISPID="0 " AUTHOR="DEVELOPER" CREATEDON="20101127" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="CREATE_METHOD_DOCUMENTATION" SCONAME="METHDOCNODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="DEVELOPER" CREATEDON="20101127" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
   <source>method CREATE_METHOD_DOCUMENTATION.
 
   DATA txtline_node     TYPE REF TO if_ixml_element.
@@ -1593,8 +1636,8 @@ endmethod.</source>
 endmethod.</source>
   <methodDocumentation/>
  </method>
- <method CLSNAME="ZSAPLINK_CLASS" CMPNAME="CREATE_TEXTPOOL" VERSION="1" LANGU="E" DESCRIPT="Create Class Text Pool" EXPOSURE="0" STATE="1" EDITORDER="1 " DISPID="0 " AUTHOR="DEVELOPER" CREATEDON="20101125" CHANGEDBY="DEVELOPER" CHANGEDON="20101127" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
-  <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="CREATE_TEXTPOOL" SCONAME="TEXTPOOLNODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="DEVELOPER" CREATEDON="20101125" CHANGEDBY="DEVELOPER" CHANGEDON="20101127" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
+ <method CLSNAME="ZSAPLINK_CLASS" CMPNAME="CREATE_TEXTPOOL" VERSION="1" LANGU="E" DESCRIPT="Create Class Text Pool" EXPOSURE="0" STATE="1" EDITORDER="1 " DISPID="0 " AUTHOR="DEVELOPER" CREATEDON="20101127" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="CREATE_TEXTPOOL" SCONAME="TEXTPOOLNODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="DEVELOPER" CREATEDON="20101127" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
   <source>method CREATE_TEXTPOOL.
 */---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
@@ -1829,8 +1872,8 @@ endmethod.</source>
 endmethod.</source>
   <methodDocumentation/>
  </method>
- <method CLSNAME="ZSAPLINK_CLASS" CMPNAME="GET_DOCUMENTATION" VERSION="1" LANGU="E" DESCRIPT="Get Documentation" EXPOSURE="0" STATE="1" EDITORDER="5 " DISPID="0 " AUTHOR="DEVELOPER" CREATEDON="20101125" CHANGEDBY="DEVELOPER" CHANGEDON="20101127" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
-  <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="GET_DOCUMENTATION" SCONAME="DOCNODE" VERSION="1" LANGU="E" DESCRIPT="Documentation Node" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="DEVELOPER" CREATEDON="20101125" CHANGEDBY="DEVELOPER" CHANGEDON="20101127" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
+ <method CLSNAME="ZSAPLINK_CLASS" CMPNAME="GET_DOCUMENTATION" VERSION="1" LANGU="E" DESCRIPT="Get Documentation" EXPOSURE="0" STATE="1" EDITORDER="5 " DISPID="0 " AUTHOR="DEVELOPER" CREATEDON="20101127" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="GET_DOCUMENTATION" SCONAME="DOCNODE" VERSION="1" LANGU="E" DESCRIPT="Documentation Node" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="DEVELOPER" CREATEDON="20101127" CHANGEDON="00000000" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
   <source>method GET_DOCUMENTATION.
 
   data languageNode   type ref to if_ixml_element.
@@ -1911,9 +1954,9 @@ endmethod.</source>
 endmethod.</source>
   <methodDocumentation/>
  </method>
- <method CLSNAME="ZSAPLINK_CLASS" CMPNAME="GET_METHOD_DOCUMENTATION" VERSION="1" LANGU="E" DESCRIPT="Get Method Documentation" EXPOSURE="0" STATE="1" EDITORDER="6 " DISPID="0 " AUTHOR="DEVELOPER" CREATEDON="20101125" CHANGEDBY="DEVELOPER" CHANGEDON="20101127" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
-  <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="GET_METHOD_DOCUMENTATION" SCONAME="METHOD_KEY" VERSION="1" LANGU="E" DESCRIPT="Method Key" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="DEVELOPER" CREATEDON="20101125" CHANGEDBY="DEVELOPER" CHANGEDON="20101127" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="SEOCPDKEY"/>
-  <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="GET_METHOD_DOCUMENTATION" SCONAME="DOCNODE" VERSION="1" LANGU="E" DESCRIPT="Documentation Node" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="DEVELOPER" CREATEDON="20101125" CHANGEDBY="DEVELOPER" CHANGEDON="20101127" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
+ <method CLSNAME="ZSAPLINK_CLASS" CMPNAME="GET_METHOD_DOCUMENTATION" VERSION="1" LANGU="E" DESCRIPT="Get Method Documentation" EXPOSURE="0" STATE="1" EDITORDER="6 " DISPID="0 " AUTHOR="DEVELOPER" CREATEDON="20101127" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="GET_METHOD_DOCUMENTATION" SCONAME="METHOD_KEY" VERSION="1" LANGU="E" DESCRIPT="Method Key" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="DEVELOPER" CREATEDON="20101127" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="SEOCPDKEY"/>
+  <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="GET_METHOD_DOCUMENTATION" SCONAME="DOCNODE" VERSION="1" LANGU="E" DESCRIPT="Documentation Node" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="DEVELOPER" CREATEDON="20101127" CHANGEDON="00000000" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
   <source>method GET_METHOD_DOCUMENTATION.
 
   data languageNode   type ref to if_ixml_element.
@@ -1994,8 +2037,8 @@ endmethod.</source>
 endmethod.</source>
   <methodDocumentation/>
  </method>
- <method CLSNAME="ZSAPLINK_CLASS" CMPNAME="GET_TEXTPOOL" VERSION="1" LANGU="E" DESCRIPT="Get Class Text Pool" EXPOSURE="0" STATE="1" EDITORDER="3 " DISPID="0 " AUTHOR="DEVELOPER" CREATEDON="20101125" CHANGEDBY="DEVELOPER" CHANGEDON="20101127" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
-  <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="GET_TEXTPOOL" SCONAME="TEXTNODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="DEVELOPER" CREATEDON="20101125" CHANGEDBY="DEVELOPER" CHANGEDON="20101127" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
+ <method CLSNAME="ZSAPLINK_CLASS" CMPNAME="GET_TEXTPOOL" VERSION="1" LANGU="E" DESCRIPT="Get Class Text Pool" EXPOSURE="0" STATE="1" EDITORDER="3 " DISPID="0 " AUTHOR="DEVELOPER" CREATEDON="20101127" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="GET_TEXTPOOL" SCONAME="TEXTNODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="DEVELOPER" CREATEDON="20101127" CHANGEDON="00000000" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
   <source>method GET_TEXTPOOL.
 */---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
