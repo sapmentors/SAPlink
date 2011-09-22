@@ -86,20 +86,12 @@ private section.
 */---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
-*|   SAPlink is free software; you can redistribute it and/or modify   |
-*|   it under the terms of the GNU General Public License as published |
-*|   by the Free Software Foundation; either version 2 of the License, |
-*|   or (at your option) any later version.                            |
+*|   The code of this project is provided to you under the current     |
+*|   version of the SAP Code Exchange Terms of Use. You can find the   |
+*|   text on the SAP Code Exchange webpage at http://www.sdn.sap.com   |
 *|                                                                     |
-*|   SAPlink is distributed in the hope that it will be useful,        |
-*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
-*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
-*|   GNU General Public License for more details.                      |
-*|                                                                     |
-*|   You should have received a copy of the GNU General Public License |
-*|   along with SAPlink; if not, write to the                          |
-*|   Free Software Foundation, Inc.,                                   |
-*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
+*|   support.                                                          |
 *\---------------------------------------------------------------------/
 types: begin of t_objectTable,
          classname type string,
@@ -143,20 +135,12 @@ endmethod.</source>
 */---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
-*|   SAPlink is free software; you can redistribute it and/or modify   |
-*|   it under the terms of the GNU General Public License as published |
-*|   by the Free Software Foundation; either version 2 of the License, |
-*|   or (at your option) any later version.                            |
+*|   The code of this project is provided to you under the current     |
+*|   version of the SAP Code Exchange Terms of Use. You can find the   |
+*|   text on the SAP Code Exchange webpage at http://www.sdn.sap.com   |
 *|                                                                     |
-*|   SAPlink is distributed in the hope that it will be useful,        |
-*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
-*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
-*|   GNU General Public License for more details.                      |
-*|                                                                     |
-*|   You should have received a copy of the GNU General Public License |
-*|   along with SAPlink; if not, write to the                          |
-*|   Free Software Foundation, Inc.,                                   |
-*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
+*|   support.                                                          |
 *\---------------------------------------------------------------------/
   data: docFilter   type ref to if_ixml_node_filter,
         docIterator type ref to if_ixml_node_iterator,
@@ -200,20 +184,12 @@ endmethod.</source>
 */---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
-*|   SAPlink is free software; you can redistribute it and/or modify   |
-*|   it under the terms of the GNU General Public License as published |
-*|   by the Free Software Foundation; either version 2 of the License, |
-*|   or (at your option) any later version.                            |
+*|   The code of this project is provided to you under the current     |
+*|   version of the SAP Code Exchange Terms of Use. You can find the   |
+*|   text on the SAP Code Exchange webpage at http://www.sdn.sap.com   |
 *|                                                                     |
-*|   SAPlink is distributed in the hope that it will be useful,        |
-*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
-*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
-*|   GNU General Public License for more details.                      |
-*|                                                                     |
-*|   You should have received a copy of the GNU General Public License |
-*|   along with SAPlink; if not, write to the                          |
-*|   Free Software Foundation, Inc.,                                   |
-*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
+*|   support.                                                          |
 *\---------------------------------------------------------------------/
 data rootNode type ref to if_ixml_element.
 data rval type i.
@@ -249,20 +225,12 @@ endmethod.</source>
 */---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
-*|   SAPlink is free software; you can redistribute it and/or modify   |
-*|   it under the terms of the GNU General Public License as published |
-*|   by the Free Software Foundation; either version 2 of the License, |
-*|   or (at your option) any later version.                            |
+*|   The code of this project is provided to you under the current     |
+*|   version of the SAP Code Exchange Terms of Use. You can find the   |
+*|   text on the SAP Code Exchange webpage at http://www.sdn.sap.com   |
 *|                                                                     |
-*|   SAPlink is distributed in the hope that it will be useful,        |
-*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
-*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
-*|   GNU General Public License for more details.                      |
-*|                                                                     |
-*|   You should have received a copy of the GNU General Public License |
-*|   along with SAPlink; if not, write to the                          |
-*|   Free Software Foundation, Inc.,                                   |
-*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
+*|   support.                                                          |
 *\---------------------------------------------------------------------/
 data ixml type ref to if_IXML.
 data rootNode type ref to if_ixml_element.
@@ -284,20 +252,12 @@ endmethod.</source>
 */---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
-*|   SAPlink is free software; you can redistribute it and/or modify   |
-*|   it under the terms of the GNU General Public License as published |
-*|   by the Free Software Foundation; either version 2 of the License, |
-*|   or (at your option) any later version.                            |
+*|   The code of this project is provided to you under the current     |
+*|   version of the SAP Code Exchange Terms of Use. You can find the   |
+*|   text on the SAP Code Exchange webpage at http://www.sdn.sap.com   |
 *|                                                                     |
-*|   SAPlink is distributed in the hope that it will be useful,        |
-*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
-*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
-*|   GNU General Public License for more details.                      |
-*|                                                                     |
-*|   You should have received a copy of the GNU General Public License |
-*|   along with SAPlink; if not, write to the                          |
-*|   Free Software Foundation, Inc.,                                   |
-*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
+*|   support.                                                          |
 *\---------------------------------------------------------------------/
   ixmlDocument = xmlDoc.
 endmethod.</source>
@@ -310,20 +270,12 @@ endmethod.</source>
 */---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
-*|   SAPlink is free software; you can redistribute it and/or modify   |
-*|   it under the terms of the GNU General Public License as published |
-*|   by the Free Software Foundation; either version 2 of the License, |
-*|   or (at your option) any later version.                            |
+*|   The code of this project is provided to you under the current     |
+*|   version of the SAP Code Exchange Terms of Use. You can find the   |
+*|   text on the SAP Code Exchange webpage at http://www.sdn.sap.com   |
 *|                                                                     |
-*|   SAPlink is distributed in the hope that it will be useful,        |
-*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
-*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
-*|   GNU General Public License for more details.                      |
-*|                                                                     |
-*|   You should have received a copy of the GNU General Public License |
-*|   along with SAPlink; if not, write to the                          |
-*|   Free Software Foundation, Inc.,                                   |
-*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
+*|   support.                                                          |
 *\---------------------------------------------------------------------/
   data: docFilter   type ref to if_ixml_node_filter,
         docIterator type ref to if_ixml_node_iterator,
@@ -362,20 +314,12 @@ endmethod.</source>
 */---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
-*|   SAPlink is free software; you can redistribute it and/or modify   |
-*|   it under the terms of the GNU General Public License as published |
-*|   by the Free Software Foundation; either version 2 of the License, |
-*|   or (at your option) any later version.                            |
+*|   The code of this project is provided to you under the current     |
+*|   version of the SAP Code Exchange Terms of Use. You can find the   |
+*|   text on the SAP Code Exchange webpage at http://www.sdn.sap.com   |
 *|                                                                     |
-*|   SAPlink is distributed in the hope that it will be useful,        |
-*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
-*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
-*|   GNU General Public License for more details.                      |
-*|                                                                     |
-*|   You should have received a copy of the GNU General Public License |
-*|   along with SAPlink; if not, write to the                          |
-*|   Free Software Foundation, Inc.,                                   |
-*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
+*|   support.                                                          |
 *\---------------------------------------------------------------------/
 data aNode type ref to if_ixml_node.
 data sTemp type string.
@@ -416,20 +360,12 @@ endmethod.</source>
 */---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
-*|   SAPlink is free software; you can redistribute it and/or modify   |
-*|   it under the terms of the GNU General Public License as published |
-*|   by the Free Software Foundation; either version 2 of the License, |
-*|   or (at your option) any later version.                            |
+*|   The code of this project is provided to you under the current     |
+*|   version of the SAP Code Exchange Terms of Use. You can find the   |
+*|   text on the SAP Code Exchange webpage at http://www.sdn.sap.com   |
 *|                                                                     |
-*|   SAPlink is distributed in the hope that it will be useful,        |
-*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
-*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
-*|   GNU General Public License for more details.                      |
-*|                                                                     |
-*|   You should have received a copy of the GNU General Public License |
-*|   along with SAPlink; if not, write to the                          |
-*|   Free Software Foundation, Inc.,                                   |
-*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
+*|   support.                                                          |
 *\---------------------------------------------------------------------/
 data rootNode type ref to if_ixml_element.
     rootNode = ixmlDocument-&gt;get_root_element( ).
@@ -441,20 +377,12 @@ endmethod.</source>
 */---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
-*|   SAPlink is free software; you can redistribute it and/or modify   |
-*|   it under the terms of the GNU General Public License as published |
-*|   by the Free Software Foundation; either version 2 of the License, |
-*|   or (at your option) any later version.                            |
+*|   The code of this project is provided to you under the current     |
+*|   version of the SAP Code Exchange Terms of Use. You can find the   |
+*|   text on the SAP Code Exchange webpage at http://www.sdn.sap.com   |
 *|                                                                     |
-*|   SAPlink is distributed in the hope that it will be useful,        |
-*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
-*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
-*|   GNU General Public License for more details.                      |
-*|                                                                     |
-*|   You should have received a copy of the GNU General Public License |
-*|   along with SAPlink; if not, write to the                          |
-*|   Free Software Foundation, Inc.,                                   |
-*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
+*|   support.                                                          |
 *\---------------------------------------------------------------------/
   if iterator is not initial.
     iterator-&gt;reset( ).

@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
-<CLAS CLSNAME="ZSAPLINK_TOOLS" VERSION="1" LANGU="E" DESCRIPT="SAPlink tools and utilities" UUID="452B55C3F3D10B0500000000A7E42BB6" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" AUTHOR="USPTY90" CREATEDON="20061012" CHANGEDBY="USEWH90" CHANGEDON="20061013" CHGDANYON="00000000" CLSCCINCL="X" FIXPT="X" UNICODE="X" R3RELEASE="620" CLSBCCAT="00">
+<?xml version="1.0" encoding="utf-16"?>
+<CLAS CLSNAME="ZSAPLINK_TOOLS" VERSION="1" LANGU="E" DESCRIPT="SAPlink tools and utilities" UUID="452B55C3F3D10B0500000000A7E42BB6" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" AUTHOR="USPTY90" CREATEDON="20061012" CHANGEDBY="BCUSER" CHANGEDON="20110919" CHGDANYON="00000000" CLSCCINCL="X" FIXPT="X" UNICODE="X" R3RELEASE="702" CLSBCCAT="00" DURATION_TYPE="0 " RISK_LEVEL="0 ">
  <publicSection>class ZSAPLINK_TOOLS definition
   public
   create public .
@@ -50,29 +50,21 @@ private section.</privateSection>
  <typeUsage CLSNAME="ZSAPLINK_TOOLS" TYPEGROUP="SEOR" VERSION="1" TPUTYPE="0" EXPLICIT="X"/>
  <forwardDeclaration>SEOO</forwardDeclaration>
  <forwardDeclaration>SEOR</forwardDeclaration>
- <method CLSNAME="ZSAPLINK_TOOLS" CMPNAME="BUILDSOURCESTRING" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="4 " DISPID="0 " AUTHOR="USPTY90" CREATEDON="20061015" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="1" R3RELEASE="620" BCMTDCAT="00" BCMTDSYN="0">
-  <parameter CLSNAME="ZSAPLINK_TOOLS" CMPNAME="BUILDSOURCESTRING" SCONAME="SOURCETABLE" VERSION="1" LANGU="E" DESCRIPT="Table of Strings" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USPTY90" CREATEDON="20061015" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="RSWSOURCET" PAROPTIONL="X"/>
-  <parameter CLSNAME="ZSAPLINK_TOOLS" CMPNAME="BUILDSOURCESTRING" SCONAME="PAGETABLE" VERSION="1" LANGU="E" DESCRIPT="O2: Oxygen Page Table" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="USPTY90" CREATEDON="20061015" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="O2PAGELINE_TABLE" PAROPTIONL="X"/>
-  <parameter CLSNAME="ZSAPLINK_TOOLS" CMPNAME="BUILDSOURCESTRING" SCONAME="SOURCESTRING" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " AUTHOR="USPTY90" CREATEDON="20061015" CHANGEDON="00000000" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="1" TYPE="STRING"/>
-  <source>*/---------------------------------------------------------------------\
+ <method CLSNAME="ZSAPLINK_TOOLS" CMPNAME="BUILDSOURCESTRING" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="4 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20101211" CHANGEDBY="BCUSER" CHANGEDON="20110919" MTDTYPE="0" MTDDECLTYP="1" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_TOOLS" CMPNAME="BUILDSOURCESTRING" SCONAME="SOURCETABLE" VERSION="1" LANGU="E" DESCRIPT="Table of Strings" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20101211" CHANGEDBY="BCUSER" CHANGEDON="20110919" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="RSWSOURCET" PAROPTIONL="X"/>
+  <parameter CLSNAME="ZSAPLINK_TOOLS" CMPNAME="BUILDSOURCESTRING" SCONAME="PAGETABLE" VERSION="1" LANGU="E" DESCRIPT="O2: Oxygen Page Table" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20101211" CHANGEDBY="BCUSER" CHANGEDON="20110919" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="O2PAGELINE_TABLE" PAROPTIONL="X"/>
+  <parameter CLSNAME="ZSAPLINK_TOOLS" CMPNAME="BUILDSOURCESTRING" SCONAME="SOURCESTRING" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20101211" CHANGEDBY="BCUSER" CHANGEDON="20110919" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="1" TYPE="STRING"/>
+  <source>method BUILDSOURCESTRING.
+*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
-*|   SAPlink is free software; you can redistribute it and/or modify   |
-*|   it under the terms of the GNU General Public License as published |
-*|   by the Free Software Foundation; either version 2 of the License, |
-*|   or (at your option) any later version.                            |
+*|   The code of this project is provided to you under the current     |
+*|   version of the SAP Code Exchange Terms of Use. You can find the   |
+*|   text on the SAP Code Exchange webpage at http://www.sdn.sap.com   |
 *|                                                                     |
-*|   SAPlink is distributed in the hope that it will be useful,        |
-*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
-*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
-*|   GNU General Public License for more details.                      |
-*|                                                                     |
-*|   You should have received a copy of the GNU General Public License |
-*|   along with SAPlink; if not, write to the                          |
-*|   Free Software Foundation, Inc.,                                   |
-*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
+*|   support.                                                          |
 *\---------------------------------------------------------------------/
-method BUILDSOURCESTRING .
 data sTemp type string.
 data pageLine type O2PAGELINE.
 
@@ -97,54 +89,38 @@ data pageLine type O2PAGELINE.
   shift sourceString left deleting leading space.
 endmethod.</source>
  </method>
- <method CLSNAME="ZSAPLINK_TOOLS" CMPNAME="BUILDTABLEFROMSTRING" VERSION="1" LANGU="E" DESCRIPT="Build a table" EXPOSURE="1" STATE="1" EDITORDER="3 " DISPID="0 " AUTHOR="USPTY90" CREATEDON="20061012" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="1" R3RELEASE="620" BCMTDCAT="00" BCMTDSYN="0">
-  <parameter CLSNAME="ZSAPLINK_TOOLS" CMPNAME="BUILDTABLEFROMSTRING" SCONAME="SOURCE" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USPTY90" CREATEDON="20061012" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
-  <parameter CLSNAME="ZSAPLINK_TOOLS" CMPNAME="BUILDTABLEFROMSTRING" SCONAME="SOURCETABLE" VERSION="1" LANGU="E" DESCRIPT="Table of Strings" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="USPTY90" CREATEDON="20061012" CHANGEDON="00000000" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="1" TYPE="TABLE_OF_STRINGS"/>
-  <source>*/---------------------------------------------------------------------\
+ <method CLSNAME="ZSAPLINK_TOOLS" CMPNAME="BUILDTABLEFROMSTRING" VERSION="1" LANGU="E" DESCRIPT="Build a table" EXPOSURE="1" STATE="1" EDITORDER="3 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20101211" CHANGEDBY="BCUSER" CHANGEDON="20110919" MTDTYPE="0" MTDDECLTYP="1" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_TOOLS" CMPNAME="BUILDTABLEFROMSTRING" SCONAME="SOURCE" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20101211" CHANGEDBY="BCUSER" CHANGEDON="20110919" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
+  <parameter CLSNAME="ZSAPLINK_TOOLS" CMPNAME="BUILDTABLEFROMSTRING" SCONAME="SOURCETABLE" VERSION="1" LANGU="E" DESCRIPT="Table of Strings" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20101211" CHANGEDBY="BCUSER" CHANGEDON="20110919" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="1" TYPE="TABLE_OF_STRINGS"/>
+  <source>method BUILDTABLEFROMSTRING.
+*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
-*|   SAPlink is free software; you can redistribute it and/or modify   |
-*|   it under the terms of the GNU General Public License as published |
-*|   by the Free Software Foundation; either version 2 of the License, |
-*|   or (at your option) any later version.                            |
+*|   The code of this project is provided to you under the current     |
+*|   version of the SAP Code Exchange Terms of Use. You can find the   |
+*|   text on the SAP Code Exchange webpage at http://www.sdn.sap.com   |
 *|                                                                     |
-*|   SAPlink is distributed in the hope that it will be useful,        |
-*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
-*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
-*|   GNU General Public License for more details.                      |
-*|                                                                     |
-*|   You should have received a copy of the GNU General Public License |
-*|   along with SAPlink; if not, write to the                          |
-*|   Free Software Foundation, Inc.,                                   |
-*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
+*|   support.                                                          |
 *\---------------------------------------------------------------------/
-method BUILDTABLEFROMSTRING .
   split source at CL_ABAP_CHAR_UTILITIES=&gt;NEWLINE
     into table sourceTable.
 endmethod.</source>
  </method>
- <method CLSNAME="ZSAPLINK_TOOLS" CMPNAME="GETSTRUCTUREFROMATTRIBUTES" VERSION="1" LANGU="E" DESCRIPT="Updates a structure with node attributes" EXPOSURE="1" STATE="1" EDITORDER="1 " DISPID="0 " AUTHOR="USPTY90" CREATEDON="20061012" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="1" R3RELEASE="620" BCMTDCAT="00" BCMTDSYN="0">
-  <parameter CLSNAME="ZSAPLINK_TOOLS" CMPNAME="GETSTRUCTUREFROMATTRIBUTES" SCONAME="NODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USPTY90" CREATEDON="20061012" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
-  <parameter CLSNAME="ZSAPLINK_TOOLS" CMPNAME="GETSTRUCTUREFROMATTRIBUTES" SCONAME="STRUCTURE" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="USPTY90" CREATEDON="20061012" CHANGEDON="00000000" PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="DATA"/>
-  <source>*/---------------------------------------------------------------------\
+ <method CLSNAME="ZSAPLINK_TOOLS" CMPNAME="GETSTRUCTUREFROMATTRIBUTES" VERSION="1" LANGU="E" DESCRIPT="Updates a structure with node attributes" EXPOSURE="1" STATE="1" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20101211" CHANGEDBY="BCUSER" CHANGEDON="20110919" MTDTYPE="0" MTDDECLTYP="1" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_TOOLS" CMPNAME="GETSTRUCTUREFROMATTRIBUTES" SCONAME="NODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20101211" CHANGEDBY="BCUSER" CHANGEDON="20110919" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
+  <parameter CLSNAME="ZSAPLINK_TOOLS" CMPNAME="GETSTRUCTUREFROMATTRIBUTES" SCONAME="STRUCTURE" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20101211" CHANGEDBY="BCUSER" CHANGEDON="20110919" PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="DATA"/>
+  <source>method GETSTRUCTUREFROMATTRIBUTES.
+*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
-*|   SAPlink is free software; you can redistribute it and/or modify   |
-*|   it under the terms of the GNU General Public License as published |
-*|   by the Free Software Foundation; either version 2 of the License, |
-*|   or (at your option) any later version.                            |
+*|   The code of this project is provided to you under the current     |
+*|   version of the SAP Code Exchange Terms of Use. You can find the   |
+*|   text on the SAP Code Exchange webpage at http://www.sdn.sap.com   |
 *|                                                                     |
-*|   SAPlink is distributed in the hope that it will be useful,        |
-*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
-*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
-*|   GNU General Public License for more details.                      |
-*|                                                                     |
-*|   You should have received a copy of the GNU General Public License |
-*|   along with SAPlink; if not, write to the                          |
-*|   Free Software Foundation, Inc.,                                   |
-*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
+*|   support.                                                          |
 *\---------------------------------------------------------------------/
-method GETSTRUCTUREFROMATTRIBUTES .
 data attributeList type ref to IF_IXML_NAMED_NODE_MAP.
 data nodeIterator type ref to IF_IXML_NODE_ITERATOR.
 data attributeNode type ref to if_ixml_node.
@@ -170,7 +146,6 @@ field-symbols &lt;value&gt; type any.
     attributeNode = nodeIterator-&gt;get_next( ).
   endwhile.
 
-endmethod.
 
 
 
@@ -187,13 +162,23 @@ endmethod.
 *    `~~~`
 * Don&apos;t like the way we did something?
 * Help us fix it!  Tell us what you think!
-* http://saplink.sourceforge.net</source>
+* http://saplink.org
+endmethod.</source>
  </method>
- <method CLSNAME="ZSAPLINK_TOOLS" CMPNAME="GLOBALCLASSTOLOCALCLASS" VERSION="1" LANGU="E" DESCRIPT="saplink XML of global class to local class definition" EXPOSURE="2" STATE="1" EDITORDER="2 " DISPID="0 " AUTHOR="USPTY90" CREATEDON="20061013" CHANGEDBY="USPTY90" CHANGEDON="20061015" MTDTYPE="0" MTDDECLTYP="1" R3RELEASE="620" BCMTDCAT="00" BCMTDSYN="0">
-  <parameter CLSNAME="ZSAPLINK_TOOLS" CMPNAME="GLOBALCLASSTOLOCALCLASS" SCONAME="GLOBAL_CLASS_XML" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_DOCUMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="USPTY90" CREATEDON="20061013" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_DOCUMENT"/>
-  <parameter CLSNAME="ZSAPLINK_TOOLS" CMPNAME="GLOBALCLASSTOLOCALCLASS" SCONAME="LOCAL_CLASS_XML" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_DOCUMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="USPTY90" CREATEDON="20061013" CHANGEDON="00000000" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_DOCUMENT"/>
-  <source>method GLOBALCLASSTOLOCALCLASS .
-
+ <method CLSNAME="ZSAPLINK_TOOLS" CMPNAME="GLOBALCLASSTOLOCALCLASS" VERSION="1" LANGU="E" DESCRIPT="saplink XML of global class to local class definition" EXPOSURE="2" STATE="1" EDITORDER="2 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20101211" CHANGEDBY="BCUSER" CHANGEDON="20110919" MTDTYPE="0" MTDDECLTYP="1" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_TOOLS" CMPNAME="GLOBALCLASSTOLOCALCLASS" SCONAME="GLOBAL_CLASS_XML" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_DOCUMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20101211" CHANGEDBY="BCUSER" CHANGEDON="20110919" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_DOCUMENT"/>
+  <parameter CLSNAME="ZSAPLINK_TOOLS" CMPNAME="GLOBALCLASSTOLOCALCLASS" SCONAME="LOCAL_CLASS_XML" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_DOCUMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="BCUSER" CREATEDON="20101211" CHANGEDBY="BCUSER" CHANGEDON="20110919" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_DOCUMENT"/>
+  <source>method GLOBALCLASSTOLOCALCLASS.
+*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   The code of this project is provided to you under the current     |
+*|   version of the SAP Code Exchange Terms of Use. You can find the   |
+*|   text on the SAP Code Exchange webpage at http://www.sdn.sap.com   |
+*|                                                                     |
+*|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
+*|   support.                                                          |
+*\---------------------------------------------------------------------/
   data XMLDOC	Type Ref To IF_IXML_DOCUMENT.
   data xmldocOut Type Ref To IF_IXML_DOCUMENT.
   data IXML type ref to IF_IXML.

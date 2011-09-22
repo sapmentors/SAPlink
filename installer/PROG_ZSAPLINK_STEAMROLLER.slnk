@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
-<PROG NAME="ZSAPLINK_STEAMROLLER" VARCL="X" SUBC="1" CNAM="USEWH90" CDAT="20061012" UNAM="USRRQ00" UDAT="20061016" VERN="000030" RMAND="321" RLOAD="E" FIXPT="X" SDATE="20070130" STIME="144031" IDATE="20061016" ITIME="123955" UCCHECK="X">
+<?xml version="1.0" encoding="utf-16"?>
+<PROG NAME="ZSAPLINK_STEAMROLLER" VARCL="X" SUBC="1" CNAM="USEWH90" CDAT="20061012" UNAM="BCUSER" UDAT="20110922" VERN="000032" RMAND="321" RLOAD="E" FIXPT="X" SDATE="20110922" STIME="214308" IDATE="20110922" ITIME="214308" UCCHECK="X">
  <textPool>
   <language SPRAS="E">
    <textElement ID="I" KEY="MAN" ENTRY="Flattener" LENGTH="9 "/>
@@ -13,20 +13,12 @@
  <source>*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
-*|   SAPlink is free software; you can redistribute it and/or modify   |
-*|   it under the terms of the GNU General Public License as published |
-*|   by the Free Software Foundation; either version 2 of the License, |
-*|   or (at your option) any later version.                            |
+*|   The code of this project is provided to you under the current     |
+*|   version of the SAP Code Exchange Terms of Use. You can find the   |
+*|   text on the SAP Code Exchange webpage at http://www.sdn.sap.com   |
 *|                                                                     |
-*|   SAPlink is distributed in the hope that it will be useful,        |
-*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
-*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
-*|   GNU General Public License for more details.                      |
-*|                                                                     |
-*|   You should have received a copy of the GNU General Public License |
-*|   along with SAPlink; if not, write to the                          |
-*|   Free Software Foundation, Inc.,                                   |
-*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
+*|   support.                                                          |
 *\---------------------------------------------------------------------/
 REPORT  ZSAPLINK_STEAMROLLER.
 

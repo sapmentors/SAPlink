@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-16"?>
-<PROG NAME="ZSAPLINK" VARCL="X" DBAPL="S" DBNA="D$" SUBC="1" APPL="S" CNAM="EWH" CDAT="20060903" UNAM="BCUSER" UDAT="20110919" VERN="000190" RMAND="321" RLOAD="E" FIXPT="X" SDATE="20110919" STIME="231811" IDATE="20110919" ITIME="221452" LDBNAME="D$S" UCCHECK="X">
+<PROG NAME="ZSAPLINK" VARCL="X" DBAPL="S" DBNA="D$" SUBC="1" APPL="S" CNAM="EWH" CDAT="20060903" UNAM="BCUSER" UDAT="20110922" VERN="000191" RMAND="321" RLOAD="E" FIXPT="X" SDATE="20110922" STIME="214222" IDATE="20110922" ITIME="214222" LDBNAME="D$S" UCCHECK="X">
  <textPool>
   <language SPRAS="D">
-   <textElement ID="I" KEY="NGA" ENTRY="Objekt zum Nugget hinzufügen" LENGTH="28 "/>
+   <textElement ID="I" KEY="NGA" ENTRY="Objekt zum Nugget hinzufÃ¼gen" LENGTH="28 "/>
    <textElement ID="I" KEY="NGC" ENTRY="Neues Nugget anlegen" LENGTH="20 "/>
    <textElement ID="I" KEY="NGI" ENTRY="Nugget importieren" LENGTH="18 "/>
    <textElement ID="I" KEY="OPT" ENTRY="Optionen" LENGTH="8 "/>
@@ -14,17 +14,17 @@
    <textElement ID="S" KEY="FILENAME" ENTRY="        SAPlink Dateiname" LENGTH="33 "/>
    <textElement ID="S" KEY="IMPORT" ENTRY="        Objekt importieren" LENGTH="26 "/>
    <textElement ID="S" KEY="NOBJNAM" ENTRY="        Objektname" LENGTH="19 "/>
-   <textElement ID="S" KEY="NOVRWR" ENTRY="        Originale überschreiben" LENGTH="31 "/>
+   <textElement ID="S" KEY="NOVRWR" ENTRY="        Originale Ã¼berschreiben" LENGTH="31 "/>
    <textElement ID="S" KEY="NPLUGIN" ENTRY="        Objekttyp" LENGTH="19 "/>
-   <textElement ID="S" KEY="NUGA" ENTRY="        Zum Nugget hinzufügen" LENGTH="29 "/>
+   <textElement ID="S" KEY="NUGA" ENTRY="        Zum Nugget hinzufÃ¼gen" LENGTH="29 "/>
    <textElement ID="S" KEY="NUGC" ENTRY="        Neues Nugget anlegen" LENGTH="28 "/>
    <textElement ID="S" KEY="NUGD" ENTRY="        Objekte des Nuggets anzeigen" LENGTH="36 "/>
    <textElement ID="S" KEY="NUGFILE" ENTRY="        Nugget Dateiname" LENGTH="32 "/>
    <textElement ID="S" KEY="NUGGNAM" ENTRY="        Nuggetname" LENGTH="19 "/>
    <textElement ID="S" KEY="NUGI" ENTRY="        Nugget importieren" LENGTH="26 "/>
-   <textElement ID="S" KEY="NUGP" ENTRY="        Fügen Sie Paket Nugget hinzu" LENGTH="36 "/>
+   <textElement ID="S" KEY="NUGP" ENTRY="        FÃ¼gen Sie Paket Nugget hinzu" LENGTH="36 "/>
    <textElement ID="S" KEY="OBJNAME" ENTRY="        Objektname" LENGTH="19 "/>
-   <textElement ID="S" KEY="OVERWR" ENTRY="        Originale Überschreiben" LENGTH="31 "/>
+   <textElement ID="S" KEY="OVERWR" ENTRY="        Originale Ãœberschreiben" LENGTH="31 "/>
    <textElement ID="S" KEY="PACKAGE" ENTRY="        Packet Name" LENGTH="20 "/>
    <textElement ID="S" KEY="PLUGIN" ENTRY="        Objekttyp" LENGTH="19 "/>
   </language>
@@ -59,7 +59,7 @@
   </language>
  </textPool>
  <pfstatus>
-  <pfstatus_sta CODE="SELOBJ" MODAL="D" ACTCODE="000001" PFKCODE="000001" BUTCODE="0001" INT_NOTE="Standard für allgemeine Listausgabe"/>
+  <pfstatus_sta CODE="SELOBJ" MODAL="D" ACTCODE="000001" PFKCODE="000001" BUTCODE="0001" INT_NOTE="Standard fÃ¼r allgemeine Listausgabe"/>
   <pfstatus_fun CODE="%PC" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_EXPORT" ICON_ID="@49@" FUN_TEXT="Download" PATH="D"/>
   <pfstatus_fun CODE="%SC" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_SEARCH" ICON_ID="@13@" FUN_TEXT="Search" PATH="S"/>
   <pfstatus_fun CODE="%SC+" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_SEARCH_NEXT" ICON_ID="@4E@" FUN_TEXT="Weiter suchen" PATH="E"/>
@@ -67,7 +67,7 @@
   <pfstatus_fun CODE="&amp;ABC" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_CALCULATION" ICON_ID="@0M@" FUN_TEXT="ABC-Analyse" ICON_TEXT="ABC" PATH="A"/>
   <pfstatus_fun CODE="&amp;ALL" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_SELECT_ALL" ICON_ID="@4B@" FUN_TEXT="Select All" PATH="A"/>
   <pfstatus_fun CODE="&amp;AQW" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_CHANGE_TEXT" ICON_ID="@0Q@" FUN_TEXT="Word" PATH="W"/>
-  <pfstatus_fun CODE="&amp;AUF" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="Aufriß festlegen..." PATH="U"/>
+  <pfstatus_fun CODE="&amp;AUF" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="AufriÃŸ festlegen..." PATH="U"/>
   <pfstatus_fun CODE="&amp;AVE" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="Sichern..." PATH="S"/>
   <pfstatus_fun CODE="&amp;AVE" TEXTNO="002" TEXT_TYPE="S" TEXT_NAME="ICON_VARIANTS" ICON_ID="@0R@" FUN_TEXT="Save Variants" ICON_TEXT="Save"/>
   <pfstatus_fun CODE="&amp;BS" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_OVERVIEW" ICON_ID="@3Q@" FUN_TEXT="J"/>
@@ -88,13 +88,13 @@
   <pfstatus_fun CODE="&amp;F15" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="Cancel" PATH="A"/>
   <pfstatus_fun CODE="&amp;ILD" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="Remove Filter" PATH="L"/>
   <pfstatus_fun CODE="&amp;ILT" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_FILTER" ICON_ID="@4G@" FUN_TEXT="Filter" PATH="F"/>
-  <pfstatus_fun CODE="&amp;KOM" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_COLLAPSE" ICON_ID="@3T@" FUN_TEXT="Auswählen..." PATH="A"/>
+  <pfstatus_fun CODE="&amp;KOM" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_COLLAPSE" ICON_ID="@3T@" FUN_TEXT="AuswÃ¤hlen..." PATH="A"/>
   <pfstatus_fun CODE="&amp;LFO" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="Listenstatus..." PATH="L"/>
   <pfstatus_fun CODE="&amp;LFO" TEXTNO="002" TEXT_TYPE="S" TEXT_NAME="ICON_INFORMATION" ICON_ID="@0S@" FUN_TEXT="List Status"/>
   <pfstatus_fun CODE="&amp;LIS" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="Grundliste" PATH="G"/>
   <pfstatus_fun CODE="&amp;NFO" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_INFORMATION" ICON_ID="@0S@" FUN_TEXT="Information" ICON_TEXT="Selektionen" PATH="I"/>
   <pfstatus_fun CODE="&amp;NTE" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="Auffrischen"/>
-  <pfstatus_fun CODE="&amp;OAD" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="Auswählen..." PATH="U"/>
+  <pfstatus_fun CODE="&amp;OAD" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="AuswÃ¤hlen..." PATH="U"/>
   <pfstatus_fun CODE="&amp;OAD" TEXTNO="002" TEXT_TYPE="S" TEXT_NAME="ICON_VARIANTS" ICON_ID="@0R@" FUN_TEXT="Search Variants" ICON_TEXT="Search"/>
   <pfstatus_fun CODE="&amp;ODN" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_SORT_DOWN" ICON_ID="@3F@" FUN_TEXT="Sort Descending" PATH="O"/>
   <pfstatus_fun CODE="&amp;OL0" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_VARIANTS" ICON_ID="@0R@" FUN_TEXT="Variant"/>
@@ -116,7 +116,7 @@
   <pfstatus_fun CODE="P++" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="Last Entry"/>
   <pfstatus_fun CODE="P-" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="Previous Entry"/>
   <pfstatus_fun CODE="P--" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="First Entry"/>
-  <pfstatus_fun CODE="TAKE" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_OKAY" ICON_ID="@0V@" FUN_TEXT="Execute" INFO_TEXT="Markierte Benutzer übernehmen"/>
+  <pfstatus_fun CODE="TAKE" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_OKAY" ICON_ID="@0V@" FUN_TEXT="Execute" INFO_TEXT="Markierte Benutzer Ã¼bernehmen"/>
   <pfstatus_fun CODE="UAGR" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_LIST" ICON_ID="@3W@" FUN_TEXT="Liste mit Rollen" ICON_TEXT="Rollen" INFO_TEXT="Liste mit Rollen"/>
   <pfstatus_fun CODE="UPROF" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_LIST" ICON_ID="@3W@" FUN_TEXT="Liste mit Profilen" ICON_TEXT="Profile" INFO_TEXT="Liste mit Profilen"/>
   <pfstatus_men CODE="000001" NO="01" REF_TYPE="F" REF_CODE="&amp;RNT" REF_NO="001"/>
@@ -315,20 +315,12 @@
  <source>*/---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
-*|   SAPlink is free software; you can redistribute it and/or modify   |
-*|   it under the terms of the GNU General Public License as published |
-*|   by the Free Software Foundation; either version 2 of the License, |
-*|   or (at your option) any later version.                            |
+*|   The code of this project is provided to you under the current     |
+*|   version of the SAP Code Exchange Terms of Use. You can find the   |
+*|   text on the SAP Code Exchange webpage at http://www.sdn.sap.com   |
 *|                                                                     |
-*|   SAPlink is distributed in the hope that it will be useful,        |
-*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |
-*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |
-*|   GNU General Public License for more details.                      |
-*|                                                                     |
-*|   You should have received a copy of the GNU General Public License |
-*|   along with SAPlink; if not, write to the                          |
-*|   Free Software Foundation, Inc.,                                   |
-*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |
+*|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
+*|   support.                                                          |
 *\---------------------------------------------------------------------/
 */---------------------------------------------------------------------\
 *| /  __ \           | |      (_) |         | |                        |
@@ -345,8 +337,9 @@
 *| For a full list of contributors visit:                              |
 *|                                                                     |
 *| project homepage: http://saplink.org                                |
-*| discussion group: http://groups.google.com/group/saplink            |
-*| project wiki:     https://wiki.sdn.sap.com/wiki/display/HOME/SAPlink|
+*| discussion group:                                                   |
+*|            https://cw.sdn.sap.com/cw/groups/saplink?view=discussions|
+*| project wiki:     https://wiki.sdn.sap.com/wiki/display/ABAP/SAPlink|
 *\---------------------------------------------------------------------/
 REPORT  zsaplink.
 
