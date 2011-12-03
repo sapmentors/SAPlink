@@ -3582,21 +3582,22 @@ CLASS ZSAPLINK_PROGRAM IMPLEMENTATION.
 *|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
 *|   support.                                                          |
 *\---------------------------------------------------------------------/
-  data textPoolTable type standard table of textPool.
-  data textPoolRow type textPool.
-  data langIterator type ref to if_ixml_node_iterator.
-  data filter type ref to if_ixml_node_filter.
-  data textFilter type ref to if_ixml_node_filter.
-  data textIterator type ref to if_ixml_node_iterator.
-  data langNode type ref to if_ixml_element.
-  data aTextNode type ref to if_ixml_element.
-  data _objName type TROBJ_NAME.
-  data lang type spras.
-  data langNodeExists type flag.
-  data logonLanguageExists type flag.
-  data _state(1) type c.
+    data textPoolTable type standard table of textPool.
+    data textPoolRow type textPool.
+    data langIterator type ref to if_ixml_node_iterator.
+    data filter type ref to if_ixml_node_filter.
+    data textFilter type ref to if_ixml_node_filter.
+    data textIterator type ref to if_ixml_node_iterator.
+    data langNode type ref to if_ixml_element.
+    data aTextNode type ref to if_ixml_element.
+    data _objName type TROBJ_NAME.
+    data lang type spras.
+    data langNodeExists type flag.
+    data logonLanguageExists type flag.
+    data _state(1) type c.
 
     _objName = objName.
+    CHECK textPoolNode IS NOT INITIAL.
 
     filter = textPoolNode->create_filter_name( 'language' ).
     langIterator = textPoolNode->create_iterator_filtered( filter ).
