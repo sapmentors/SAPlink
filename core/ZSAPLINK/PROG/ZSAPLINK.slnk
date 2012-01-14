@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-16"?>
-<PROG NAME="ZSAPLINK" VARCL="X" DBAPL="S" DBNA="D$" SUBC="1" APPL="S" CNAM="EWH" CDAT="20060903" UNAM="BCUSER" UDAT="20110922" VERN="000191" RMAND="321" RLOAD="E" FIXPT="X" SDATE="20110922" STIME="214222" IDATE="20110922" ITIME="214222" LDBNAME="D$S" UCCHECK="X">
+<PROG NAME="ZSAPLINK" VARCL="X" DBAPL="S" DBNA="D$" SUBC="1" APPL="S" CNAM="EWH" CDAT="20060903" UNAM="DEVELOPER" UDAT="20120109" VERN="000195" RMAND="321" RLOAD="E" FIXPT="X" SDATE="20120109" STIME="113527" IDATE="20120109" ITIME="113527" LDBNAME="D$S" UCCHECK="X">
  <textPool>
   <language SPRAS="D">
-   <textElement ID="I" KEY="NGA" ENTRY="Objekt zum Nugget hinzufügen" LENGTH="28 "/>
+   <textElement ID="I" KEY="NGA" ENTRY="Objekt zum Nugget hinzufügen" LENGTH="29 "/>
    <textElement ID="I" KEY="NGC" ENTRY="Neues Nugget anlegen" LENGTH="20 "/>
    <textElement ID="I" KEY="NGI" ENTRY="Nugget importieren" LENGTH="18 "/>
    <textElement ID="I" KEY="OPT" ENTRY="Optionen" LENGTH="8 "/>
@@ -14,17 +14,17 @@
    <textElement ID="S" KEY="FILENAME" ENTRY="        SAPlink Dateiname" LENGTH="33 "/>
    <textElement ID="S" KEY="IMPORT" ENTRY="        Objekt importieren" LENGTH="26 "/>
    <textElement ID="S" KEY="NOBJNAM" ENTRY="        Objektname" LENGTH="19 "/>
-   <textElement ID="S" KEY="NOVRWR" ENTRY="        Originale überschreiben" LENGTH="31 "/>
+   <textElement ID="S" KEY="NOVRWR" ENTRY="        Originale überschreiben" LENGTH="32 "/>
    <textElement ID="S" KEY="NPLUGIN" ENTRY="        Objekttyp" LENGTH="19 "/>
-   <textElement ID="S" KEY="NUGA" ENTRY="        Zum Nugget hinzufügen" LENGTH="29 "/>
+   <textElement ID="S" KEY="NUGA" ENTRY="        Zum Nugget hinzufügen" LENGTH="30 "/>
    <textElement ID="S" KEY="NUGC" ENTRY="        Neues Nugget anlegen" LENGTH="28 "/>
    <textElement ID="S" KEY="NUGD" ENTRY="        Objekte des Nuggets anzeigen" LENGTH="36 "/>
    <textElement ID="S" KEY="NUGFILE" ENTRY="        Nugget Dateiname" LENGTH="32 "/>
    <textElement ID="S" KEY="NUGGNAM" ENTRY="        Nuggetname" LENGTH="19 "/>
    <textElement ID="S" KEY="NUGI" ENTRY="        Nugget importieren" LENGTH="26 "/>
-   <textElement ID="S" KEY="NUGP" ENTRY="        Fügen Sie Paket Nugget hinzu" LENGTH="36 "/>
+   <textElement ID="S" KEY="NUGP" ENTRY="        Fügen Sie Paket Nugget hinzu" LENGTH="37 "/>
    <textElement ID="S" KEY="OBJNAME" ENTRY="        Objektname" LENGTH="19 "/>
-   <textElement ID="S" KEY="OVERWR" ENTRY="        Originale Überschreiben" LENGTH="31 "/>
+   <textElement ID="S" KEY="OVERWR" ENTRY="        Originale Überschreiben" LENGTH="32 "/>
    <textElement ID="S" KEY="PACKAGE" ENTRY="        Packet Name" LENGTH="20 "/>
    <textElement ID="S" KEY="PLUGIN" ENTRY="        Objekttyp" LENGTH="19 "/>
   </language>
@@ -1306,15 +1306,19 @@ FORM uploadxmlfromlm USING p_filename xmlstring TYPE string .
   DATA retrc TYPE sysubrc.
   DATA retuseraction TYPE i.
   DATA temptable TYPE table_of_strings.
-  DATA temptable_bin TYPE TABLE  OF xstring.
+  DATA temptable_bin TYPE TABLE OF x255.
+  DATA filelength TYPE i.
   DATA l_filename TYPE string.
 
   l_filename = p_filename.
   CALL METHOD cl_gui_frontend_services=&gt;gui_upload
     EXPORTING
       filename                = l_filename
+      filetype                = &apos;BIN&apos;       &quot; File Type Binary
+    IMPORTING
+      filelength              = filelength
     CHANGING
-      data_tab                = temptable
+      data_tab                = temptable_bin
     EXCEPTIONS
       file_open_error         = 1
       file_read_error         = 2
@@ -1344,12 +1348,22 @@ FORM uploadxmlfromlm USING p_filename xmlstring TYPE string .
     ENDCASE.
   ENDIF.
 
+  CALL FUNCTION &apos;SCMS_BINARY_TO_STRING&apos;
+    EXPORTING
+      input_length = filelength
+    IMPORTING
+      text_buffer  = xmlstring
+    TABLES
+      binary_tab   = temptable_bin.
+  REPLACE ALL OCCURRENCES OF cl_abap_char_utilities=&gt;cr_lf
+    IN xmlstring WITH cl_abap_char_utilities=&gt;newline.
+
 *  call method CL_GUI_FRONTEND_SERVICES=&gt;GUI_UPLOAD
 *        exporting
 *          FILENAME = l_fileName
 *        changing
 *          data_tab = tempTable.
-  PERFORM createstring USING temptable CHANGING xmlstring.
+*  PERFORM createstring USING temptable CHANGING xmlstring.
 
 ENDFORM.                    &quot;uploadXMLFromLM
 *\--------------------------------------------------------------------/
