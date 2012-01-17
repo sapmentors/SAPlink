@@ -1,32 +1,35 @@
 <?xml version="1.0" encoding="utf-16"?>
-<PROG NAME="ZSAPLINK" VARCL="X" DBAPL="S" DBNA="D$" SUBC="1" APPL="S" CNAM="EWH" CDAT="20060903" UNAM="DEVELOPER" UDAT="20120109" VERN="000195" RMAND="321" RLOAD="E" FIXPT="X" SDATE="20120109" STIME="113527" IDATE="20120109" ITIME="113527" LDBNAME="D$S" UCCHECK="X">
+<PROG NAME="ZSAPLINK" VARCL="X" DBAPL="S" DBNA="D$" SUBC="1" APPL="S" CNAM="EWH" CDAT="20060903" UNAM="DEVELOPER" UDAT="20120109" VERN="000205" RMAND="321" RLOAD="E" FIXPT="X" SDATE="20120109" STIME="225302" IDATE="20120109" ITIME="225302" LDBNAME="D$S" UCCHECK="X">
  <textPool>
   <language SPRAS="D">
-   <textElement ID="I" KEY="NGA" ENTRY="Objekt zum Nugget hinzufÃ¼gen" LENGTH="29 "/>
+   <textElement ID="I" KEY="NGA" ENTRY="Objekt zum Nugget hinzufügen" LENGTH="28 "/>
    <textElement ID="I" KEY="NGC" ENTRY="Neues Nugget anlegen" LENGTH="20 "/>
    <textElement ID="I" KEY="NGI" ENTRY="Nugget importieren" LENGTH="18 "/>
    <textElement ID="I" KEY="OPT" ENTRY="Optionen" LENGTH="8 "/>
    <textElement ID="I" KEY="SLK" ENTRY="SAPlink" LENGTH="7 "/>
-   <textElement ID="I" KEY="TB1" ENTRY="Objekt" LENGTH="6 "/>
+   <textElement ID="I" KEY="TB1" ENTRY="Objekt" LENGTH="7 "/>
    <textElement ID="I" KEY="TB2" ENTRY="Nugget" LENGTH="6 "/>
-   <textElement ID="R" ENTRY="SAPlink" LENGTH="7 "/>
-   <textElement ID="S" KEY="EXPORT" ENTRY="        Objekt exportieren" LENGTH="26 "/>
+   <textElement ID="R" ENTRY="SAPlink" LENGTH="70 "/>
+   <textElement ID="S" KEY="EXPORT" ENTRY="        Objekt exportieren" LENGTH="32 "/>
    <textElement ID="S" KEY="FILENAME" ENTRY="        SAPlink Dateiname" LENGTH="33 "/>
    <textElement ID="S" KEY="IMPORT" ENTRY="        Objekt importieren" LENGTH="26 "/>
    <textElement ID="S" KEY="NOBJNAM" ENTRY="        Objektname" LENGTH="19 "/>
-   <textElement ID="S" KEY="NOVRWR" ENTRY="        Originale Ã¼berschreiben" LENGTH="32 "/>
+   <textElement ID="S" KEY="NOVRWR" ENTRY="        Originale überschreiben" LENGTH="31 "/>
    <textElement ID="S" KEY="NPLUGIN" ENTRY="        Objekttyp" LENGTH="19 "/>
-   <textElement ID="S" KEY="NUGA" ENTRY="        Zum Nugget hinzufÃ¼gen" LENGTH="30 "/>
+   <textElement ID="S" KEY="NUGA" ENTRY="        Zum Nugget hinzufügen" LENGTH="29 "/>
    <textElement ID="S" KEY="NUGC" ENTRY="        Neues Nugget anlegen" LENGTH="28 "/>
    <textElement ID="S" KEY="NUGD" ENTRY="        Objekte des Nuggets anzeigen" LENGTH="36 "/>
    <textElement ID="S" KEY="NUGFILE" ENTRY="        Nugget Dateiname" LENGTH="32 "/>
    <textElement ID="S" KEY="NUGGNAM" ENTRY="        Nuggetname" LENGTH="19 "/>
    <textElement ID="S" KEY="NUGI" ENTRY="        Nugget importieren" LENGTH="26 "/>
-   <textElement ID="S" KEY="NUGP" ENTRY="        FÃ¼gen Sie Paket Nugget hinzu" LENGTH="37 "/>
+   <textElement ID="S" KEY="NUGP" ENTRY="        Fügen Sie Paket Nugget hinzu" LENGTH="36 "/>
+   <textElement ID="S" KEY="NUGR" ENTRY="        Objekte aus Transport hinzuf." LENGTH="37 "/>
    <textElement ID="S" KEY="OBJNAME" ENTRY="        Objektname" LENGTH="19 "/>
-   <textElement ID="S" KEY="OVERWR" ENTRY="        Originale Ãœberschreiben" LENGTH="32 "/>
-   <textElement ID="S" KEY="PACKAGE" ENTRY="        Packet Name" LENGTH="20 "/>
+   <textElement ID="S" KEY="OVERWR" ENTRY="        Originale Überschreiben" LENGTH="31 "/>
+   <textElement ID="S" KEY="PACKAGE" ENTRY="        Paket Name" LENGTH="20 "/>
    <textElement ID="S" KEY="PLUGIN" ENTRY="        Objekttyp" LENGTH="19 "/>
+   <textElement ID="S" KEY="REQNUGG" ENTRY="        Transport Nummer" LENGTH="24 "/>
+   <textElement ID="S" KEY="SLPKG" ENTRY="        Paket Name" LENGTH="20 "/>
   </language>
   <language SPRAS="E">
    <textElement ID="I" KEY="NGA" ENTRY="Add Object to Nugget" LENGTH="20 "/>
@@ -56,10 +59,11 @@
    <textElement ID="S" KEY="PACKAGE" ENTRY="        Package Name" LENGTH="20 "/>
    <textElement ID="S" KEY="PLUGIN" ENTRY="        Object Type" LENGTH="19 "/>
    <textElement ID="S" KEY="REQNUGG" ENTRY="        Transport Number" LENGTH="24 "/>
+   <textElement ID="S" KEY="SLPKG" ENTRY="        Package Name" LENGTH="20 "/>
   </language>
  </textPool>
  <pfstatus>
-  <pfstatus_sta CODE="SELOBJ" MODAL="D" ACTCODE="000001" PFKCODE="000001" BUTCODE="0001" INT_NOTE="Standard fÃ¼r allgemeine Listausgabe"/>
+  <pfstatus_sta CODE="SELOBJ" MODAL="D" ACTCODE="000001" PFKCODE="000001" BUTCODE="0001" INT_NOTE="Standard für allgemeine Listausgabe"/>
   <pfstatus_fun CODE="%PC" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_EXPORT" ICON_ID="@49@" FUN_TEXT="Download" PATH="D"/>
   <pfstatus_fun CODE="%SC" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_SEARCH" ICON_ID="@13@" FUN_TEXT="Search" PATH="S"/>
   <pfstatus_fun CODE="%SC+" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_SEARCH_NEXT" ICON_ID="@4E@" FUN_TEXT="Weiter suchen" PATH="E"/>
@@ -67,7 +71,7 @@
   <pfstatus_fun CODE="&amp;ABC" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_CALCULATION" ICON_ID="@0M@" FUN_TEXT="ABC-Analyse" ICON_TEXT="ABC" PATH="A"/>
   <pfstatus_fun CODE="&amp;ALL" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_SELECT_ALL" ICON_ID="@4B@" FUN_TEXT="Select All" PATH="A"/>
   <pfstatus_fun CODE="&amp;AQW" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_CHANGE_TEXT" ICON_ID="@0Q@" FUN_TEXT="Word" PATH="W"/>
-  <pfstatus_fun CODE="&amp;AUF" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="AufriÃŸ festlegen..." PATH="U"/>
+  <pfstatus_fun CODE="&amp;AUF" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="Aufriß festlegen..." PATH="U"/>
   <pfstatus_fun CODE="&amp;AVE" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="Sichern..." PATH="S"/>
   <pfstatus_fun CODE="&amp;AVE" TEXTNO="002" TEXT_TYPE="S" TEXT_NAME="ICON_VARIANTS" ICON_ID="@0R@" FUN_TEXT="Save Variants" ICON_TEXT="Save"/>
   <pfstatus_fun CODE="&amp;BS" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_OVERVIEW" ICON_ID="@3Q@" FUN_TEXT="J"/>
@@ -88,13 +92,13 @@
   <pfstatus_fun CODE="&amp;F15" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="Cancel" PATH="A"/>
   <pfstatus_fun CODE="&amp;ILD" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="Remove Filter" PATH="L"/>
   <pfstatus_fun CODE="&amp;ILT" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_FILTER" ICON_ID="@4G@" FUN_TEXT="Filter" PATH="F"/>
-  <pfstatus_fun CODE="&amp;KOM" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_COLLAPSE" ICON_ID="@3T@" FUN_TEXT="AuswÃ¤hlen..." PATH="A"/>
+  <pfstatus_fun CODE="&amp;KOM" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_COLLAPSE" ICON_ID="@3T@" FUN_TEXT="Auswählen..." PATH="A"/>
   <pfstatus_fun CODE="&amp;LFO" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="Listenstatus..." PATH="L"/>
   <pfstatus_fun CODE="&amp;LFO" TEXTNO="002" TEXT_TYPE="S" TEXT_NAME="ICON_INFORMATION" ICON_ID="@0S@" FUN_TEXT="List Status"/>
   <pfstatus_fun CODE="&amp;LIS" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="Grundliste" PATH="G"/>
   <pfstatus_fun CODE="&amp;NFO" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_INFORMATION" ICON_ID="@0S@" FUN_TEXT="Information" ICON_TEXT="Selektionen" PATH="I"/>
   <pfstatus_fun CODE="&amp;NTE" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="Auffrischen"/>
-  <pfstatus_fun CODE="&amp;OAD" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="AuswÃ¤hlen..." PATH="U"/>
+  <pfstatus_fun CODE="&amp;OAD" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="Auswählen..." PATH="U"/>
   <pfstatus_fun CODE="&amp;OAD" TEXTNO="002" TEXT_TYPE="S" TEXT_NAME="ICON_VARIANTS" ICON_ID="@0R@" FUN_TEXT="Search Variants" ICON_TEXT="Search"/>
   <pfstatus_fun CODE="&amp;ODN" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_SORT_DOWN" ICON_ID="@3F@" FUN_TEXT="Sort Descending" PATH="O"/>
   <pfstatus_fun CODE="&amp;OL0" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_VARIANTS" ICON_ID="@0R@" FUN_TEXT="Variant"/>
@@ -116,7 +120,7 @@
   <pfstatus_fun CODE="P++" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="Last Entry"/>
   <pfstatus_fun CODE="P-" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="Previous Entry"/>
   <pfstatus_fun CODE="P--" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="First Entry"/>
-  <pfstatus_fun CODE="TAKE" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_OKAY" ICON_ID="@0V@" FUN_TEXT="Execute" INFO_TEXT="Markierte Benutzer Ã¼bernehmen"/>
+  <pfstatus_fun CODE="TAKE" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_OKAY" ICON_ID="@0V@" FUN_TEXT="Execute" INFO_TEXT="Markierte Benutzer übernehmen"/>
   <pfstatus_fun CODE="UAGR" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_LIST" ICON_ID="@3W@" FUN_TEXT="Liste mit Rollen" ICON_TEXT="Rollen" INFO_TEXT="Liste mit Rollen"/>
   <pfstatus_fun CODE="UPROF" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_LIST" ICON_ID="@3W@" FUN_TEXT="Liste mit Profilen" ICON_TEXT="Profile" INFO_TEXT="Liste mit Profilen"/>
   <pfstatus_men CODE="000001" NO="01" REF_TYPE="F" REF_CODE="&amp;RNT" REF_NO="001"/>
@@ -477,6 +481,7 @@ SELECTION-SCREEN END OF BLOCK splk.
 
 SELECTION-SCREEN BEGIN OF BLOCK opt WITH FRAME TITLE text-opt.
 PARAMETERS filename(300) LOWER CASE TYPE c MODIF ID did.
+PARAMETERS slpkg  TYPE tadir-devclass MODIF ID did.
 PARAMETERS overwr TYPE c AS CHECKBOX MODIF ID did.
 PARAMETERS plugin TYPE ko100-object MODIF ID uid.
 PARAMETERS objname(40) TYPE c MODIF ID uid.
@@ -542,8 +547,15 @@ AT SELECTION-SCREEN OUTPUT.
 *** hide/show fields according to current selection
   IF import = &apos;X&apos;.
     hidid = &apos;UID&apos;.
+    IF slpkg IS INITIAL.
+      slpkg = &apos;$TMP&apos;.
+    ENDIF.
   ELSEIF export = &apos;X&apos;.
     hidid = &apos;DID&apos;.
+  ENDIF.
+  &quot; Set default devclass for import
+  IF nugi = &apos;X&apos; AND package IS INITIAL.
+    package = &apos;$TMP&apos;.
   ENDIF.
 
   LOOP AT SCREEN.
@@ -573,7 +585,7 @@ AT SELECTION-SCREEN OUTPUT.
         screen-invisible = &apos;0&apos;.
         MODIFY SCREEN.
       ELSEIF screen-group1 = &apos;NNM&apos; OR screen-group1 =&apos;NPG&apos;
-         OR screen-group1 = &apos;NPC&apos; OR screen-group1 = &apos;RNM&apos;.
+         OR screen-group1 = &apos;RNM&apos;.
         screen-active = &apos;0&apos;.
         screen-invisible = &apos;1&apos;.
         MODIFY SCREEN.
@@ -904,7 +916,9 @@ START-OF-SELECTION.
       ENDIF.
 
 *     install object
-      PERFORM installobject USING ixmldocument overwr
+      PERFORM installobject USING ixmldocument
+                                  overwr
+                                  slpkg
                          CHANGING errorflag
                                   statusmsg.
       IF errorflag = &apos;X&apos;.
@@ -1057,7 +1071,9 @@ START-OF-SELECTION.
       anxmldoc = nugg-&gt;getnextobject( ).
       WHILE anxmldoc IS NOT INITIAL.
         CLEAR statusmsg.
-        PERFORM installobject USING anxmldoc novrwr
+        PERFORM installobject USING anxmldoc
+                                    novrwr
+                                    package
                            CHANGING errorflag
                                     statusmsg.
         IF errorflag = &apos;X&apos;.
@@ -1386,6 +1402,7 @@ ENDFORM.                    &quot;createString
 */----------------------installObject---------------------------------\
 FORM installobject USING l_ixmldocument TYPE REF TO if_ixml_document
                          l_overwriteflag TYPE flag
+                         VALUE(l_package) TYPE tadir-devclass
                 CHANGING l_errorflag TYPE flag
                          l_message TYPE string.
 
@@ -1419,11 +1436,14 @@ FORM installobject USING l_ixmldocument TYPE REF TO if_ixml_document
         (l_objline-classname)
       EXPORTING
         name                  = l_objname.
-
+    IF l_package IS INITIAL.
+      l_package = &apos;$TMP&apos;.
+    ENDIF.
     TRY.
         l_installobject = l_targetobject-&gt;createobjectfromixmldoc(
                                         ixmldocument = l_ixmldocument
-                                        overwrite = l_overwriteflag ).
+                                        devclass     = l_package  &quot;Allow overwrite of default devclass.
+                                        overwrite    = l_overwriteflag ).
 *    bad times
       CATCH zcx_saplink INTO l_excclass.
         l_message = l_excclass-&gt;get_text( ).
