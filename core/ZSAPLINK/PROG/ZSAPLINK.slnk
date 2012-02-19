@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-16"?>
-<PROG NAME="ZSAPLINK" VARCL="X" DBAPL="S" DBNA="D$" SUBC="1" APPL="S" CNAM="EWH" CDAT="20060903" UNAM="RTURNHEIM" UDAT="20120204" VERN="000213" RMAND="321" RLOAD="E" FIXPT="X" SDATE="20120204" STIME="191532" IDATE="20120204" ITIME="191532" LDBNAME="D$S" UCCHECK="X">
+<PROG NAME="ZSAPLINK" VARCL="X" DBAPL="S" DBNA="D$" SUBC="1" APPL="S" CNAM="EWH" CDAT="20060903" UNAM="DEVELOPER" UDAT="20120112" VERN="000223" RMAND="321" RLOAD="E" FIXPT="X" SDATE="20120112" STIME="125401" IDATE="20120112" ITIME="125401" LDBNAME="D$S" UCCHECK="X">
  <textPool>
   <language SPRAS="D">
-   <textElement ID="I" KEY="NGA" ENTRY="Objekt zum Nugget hinzufügen" LENGTH="28 "/>
+   <textElement ID="I" KEY="NGA" ENTRY="Objekt zum Nugget hinzufÃ¼gen" LENGTH="28 "/>
    <textElement ID="I" KEY="NGC" ENTRY="Neues Nugget anlegen" LENGTH="20 "/>
    <textElement ID="I" KEY="NGI" ENTRY="Nugget importieren" LENGTH="18 "/>
    <textElement ID="I" KEY="OPT" ENTRY="Optionen" LENGTH="8 "/>
@@ -14,18 +14,18 @@
    <textElement ID="S" KEY="FILENAME" ENTRY="        SAPlink Dateiname" LENGTH="33 "/>
    <textElement ID="S" KEY="IMPORT" ENTRY="        Objekt importieren" LENGTH="26 "/>
    <textElement ID="S" KEY="NOBJNAM" ENTRY="        Objektname" LENGTH="19 "/>
-   <textElement ID="S" KEY="NOVRWR" ENTRY="        Originale überschreiben" LENGTH="31 "/>
+   <textElement ID="S" KEY="NOVRWR" ENTRY="        Originale Ã¼berschreiben" LENGTH="31 "/>
    <textElement ID="S" KEY="NPLUGIN" ENTRY="        Objekttyp" LENGTH="19 "/>
-   <textElement ID="S" KEY="NUGA" ENTRY="        Zum Nugget hinzufügen" LENGTH="29 "/>
+   <textElement ID="S" KEY="NUGA" ENTRY="        Zum Nugget hinzufÃ¼gen" LENGTH="29 "/>
    <textElement ID="S" KEY="NUGC" ENTRY="        Neues Nugget anlegen" LENGTH="28 "/>
    <textElement ID="S" KEY="NUGD" ENTRY="        Objekte des Nuggets anzeigen" LENGTH="36 "/>
    <textElement ID="S" KEY="NUGFILE" ENTRY="        Nugget Dateiname" LENGTH="32 "/>
    <textElement ID="S" KEY="NUGGNAM" ENTRY="        Nuggetname" LENGTH="19 "/>
    <textElement ID="S" KEY="NUGI" ENTRY="        Nugget importieren" LENGTH="26 "/>
-   <textElement ID="S" KEY="NUGP" ENTRY="        Fügen Sie Paket Nugget hinzu" LENGTH="36 "/>
+   <textElement ID="S" KEY="NUGP" ENTRY="        FÃ¼gen Sie Paket Nugget hinzu" LENGTH="36 "/>
    <textElement ID="S" KEY="NUGR" ENTRY="        Objekte aus Transport hinzuf." LENGTH="37 "/>
    <textElement ID="S" KEY="OBJNAME" ENTRY="        Objektname" LENGTH="19 "/>
-   <textElement ID="S" KEY="OVERWR" ENTRY="        Originale Überschreiben" LENGTH="31 "/>
+   <textElement ID="S" KEY="OVERWR" ENTRY="        Originale Ãœberschreiben" LENGTH="31 "/>
    <textElement ID="S" KEY="PACKAGE" ENTRY="        Paket Name" LENGTH="20 "/>
    <textElement ID="S" KEY="PLUGIN" ENTRY="        Objekttyp" LENGTH="19 "/>
    <textElement ID="S" KEY="REQNUGG" ENTRY="        Transport Nummer" LENGTH="24 "/>
@@ -39,7 +39,7 @@
    <textElement ID="I" KEY="SLK" ENTRY="SAPlink" LENGTH="7 "/>
    <textElement ID="I" KEY="TB1" ENTRY="Slinkee" LENGTH="7 "/>
    <textElement ID="I" KEY="TB2" ENTRY="Nugget" LENGTH="6 "/>
-   <textElement ID="R" ENTRY="SAPlink 0.1.4" LENGTH="13 "/>
+   <textElement ID="R" ENTRY="SAPlink 0.1.5 alpha 2" LENGTH="21 "/>
    <textElement ID="S" KEY="EXPORT" ENTRY="        Export Object to Slinkee" LENGTH="32 "/>
    <textElement ID="S" KEY="FILENAME" ENTRY="        Slinkee File Name" LENGTH="33 "/>
    <textElement ID="S" KEY="IMPORT" ENTRY="        Import Slinkee" LENGTH="22 "/>
@@ -63,7 +63,7 @@
   </language>
  </textPool>
  <pfstatus>
-  <pfstatus_sta CODE="SELOBJ" MODAL="D" ACTCODE="000001" PFKCODE="000001" BUTCODE="0001" INT_NOTE="Standard für allgemeine Listausgabe"/>
+  <pfstatus_sta CODE="SELOBJ" MODAL="D" ACTCODE="000001" PFKCODE="000001" BUTCODE="0001" INT_NOTE="Standard fÃ¼r allgemeine Listausgabe"/>
   <pfstatus_fun CODE="%PC" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_EXPORT" ICON_ID="@49@" FUN_TEXT="Download" PATH="D"/>
   <pfstatus_fun CODE="%SC" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_SEARCH" ICON_ID="@13@" FUN_TEXT="Search" PATH="S"/>
   <pfstatus_fun CODE="%SC+" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_SEARCH_NEXT" ICON_ID="@4E@" FUN_TEXT="Weiter suchen" PATH="E"/>
@@ -71,7 +71,7 @@
   <pfstatus_fun CODE="&amp;ABC" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_CALCULATION" ICON_ID="@0M@" FUN_TEXT="ABC-Analyse" ICON_TEXT="ABC" PATH="A"/>
   <pfstatus_fun CODE="&amp;ALL" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_SELECT_ALL" ICON_ID="@4B@" FUN_TEXT="Select All" PATH="A"/>
   <pfstatus_fun CODE="&amp;AQW" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_CHANGE_TEXT" ICON_ID="@0Q@" FUN_TEXT="Word" PATH="W"/>
-  <pfstatus_fun CODE="&amp;AUF" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="Aufriß festlegen..." PATH="U"/>
+  <pfstatus_fun CODE="&amp;AUF" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="AufriÃŸ festlegen..." PATH="U"/>
   <pfstatus_fun CODE="&amp;AVE" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="Sichern..." PATH="S"/>
   <pfstatus_fun CODE="&amp;AVE" TEXTNO="002" TEXT_TYPE="S" TEXT_NAME="ICON_VARIANTS" ICON_ID="@0R@" FUN_TEXT="Save Variants" ICON_TEXT="Save"/>
   <pfstatus_fun CODE="&amp;BS" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_OVERVIEW" ICON_ID="@3Q@" FUN_TEXT="J"/>
@@ -92,13 +92,13 @@
   <pfstatus_fun CODE="&amp;F15" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="Cancel" PATH="A"/>
   <pfstatus_fun CODE="&amp;ILD" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="Remove Filter" PATH="L"/>
   <pfstatus_fun CODE="&amp;ILT" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_FILTER" ICON_ID="@4G@" FUN_TEXT="Filter" PATH="F"/>
-  <pfstatus_fun CODE="&amp;KOM" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_COLLAPSE" ICON_ID="@3T@" FUN_TEXT="Auswählen..." PATH="A"/>
+  <pfstatus_fun CODE="&amp;KOM" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_COLLAPSE" ICON_ID="@3T@" FUN_TEXT="AuswÃ¤hlen..." PATH="A"/>
   <pfstatus_fun CODE="&amp;LFO" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="Listenstatus..." PATH="L"/>
   <pfstatus_fun CODE="&amp;LFO" TEXTNO="002" TEXT_TYPE="S" TEXT_NAME="ICON_INFORMATION" ICON_ID="@0S@" FUN_TEXT="List Status"/>
   <pfstatus_fun CODE="&amp;LIS" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="Grundliste" PATH="G"/>
   <pfstatus_fun CODE="&amp;NFO" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_INFORMATION" ICON_ID="@0S@" FUN_TEXT="Information" ICON_TEXT="Selektionen" PATH="I"/>
   <pfstatus_fun CODE="&amp;NTE" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="Auffrischen"/>
-  <pfstatus_fun CODE="&amp;OAD" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="Auswählen..." PATH="U"/>
+  <pfstatus_fun CODE="&amp;OAD" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="AuswÃ¤hlen..." PATH="U"/>
   <pfstatus_fun CODE="&amp;OAD" TEXTNO="002" TEXT_TYPE="S" TEXT_NAME="ICON_VARIANTS" ICON_ID="@0R@" FUN_TEXT="Search Variants" ICON_TEXT="Search"/>
   <pfstatus_fun CODE="&amp;ODN" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_SORT_DOWN" ICON_ID="@3F@" FUN_TEXT="Sort Descending" PATH="O"/>
   <pfstatus_fun CODE="&amp;OL0" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_VARIANTS" ICON_ID="@0R@" FUN_TEXT="Variant"/>
@@ -120,7 +120,7 @@
   <pfstatus_fun CODE="P++" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="Last Entry"/>
   <pfstatus_fun CODE="P-" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="Previous Entry"/>
   <pfstatus_fun CODE="P--" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="First Entry"/>
-  <pfstatus_fun CODE="TAKE" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_OKAY" ICON_ID="@0V@" FUN_TEXT="Execute" INFO_TEXT="Markierte Benutzer übernehmen"/>
+  <pfstatus_fun CODE="TAKE" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_OKAY" ICON_ID="@0V@" FUN_TEXT="Execute" INFO_TEXT="Markierte Benutzer Ã¼bernehmen"/>
   <pfstatus_fun CODE="UAGR" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_LIST" ICON_ID="@3W@" FUN_TEXT="Liste mit Rollen" ICON_TEXT="Rollen" INFO_TEXT="Liste mit Rollen"/>
   <pfstatus_fun CODE="UPROF" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_LIST" ICON_ID="@3W@" FUN_TEXT="Liste mit Profilen" ICON_TEXT="Profile" INFO_TEXT="Liste mit Profilen"/>
   <pfstatus_men CODE="000001" NO="01" REF_TYPE="F" REF_CODE="&amp;RNT" REF_NO="001"/>
@@ -1296,20 +1296,79 @@ FORM putonmachine USING fullpath TYPE string xmlstring TYPE string.
 *       end of t_char.
 
 *data: tempTable_char type table of t_char,
-  DATA: temptable_char TYPE table_of_strings,
-        tempstring TYPE string.
+*  DATA: temptable_char TYPE table_of_strings,
+*        tempstring TYPE string.
+  &quot; Gregor Wolf, 2012-02-19: Switch to binary download as it&apos;s done in ZAKE
+  DATA xlm_xstring  TYPE xstring.
+  DATA temptable    TYPE w3mimetabtype.
+  DATA bin_filesize TYPE i.
 
   IF retuseract = 0.
+    &quot; Gregor Wolf, 2012-02-19:
+    &quot; Independent of Server OS the download should always use Windows Linebreaks
+    REPLACE ALL OCCURRENCES OF cl_abap_char_utilities=&gt;newline
+      IN xmlstring WITH cl_abap_char_utilities=&gt;cr_lf.
 
-    SPLIT xmlstring AT cl_abap_char_utilities=&gt;newline
-    INTO TABLE temptable_char.
-
-    CALL METHOD cl_gui_frontend_services=&gt;gui_download
+    CALL FUNCTION &apos;SCMS_STRING_TO_XSTRING&apos;
       EXPORTING
-        filename = fullpath
-        filetype = &apos;DAT&apos;
-      CHANGING
-        data_tab = temptable_char.
+        text   = xmlstring
+      IMPORTING
+        buffer = xlm_xstring.
+
+    CALL FUNCTION &apos;SCMS_XSTRING_TO_BINARY&apos;
+      EXPORTING
+        buffer        = xlm_xstring
+      IMPORTING
+        output_length = bin_filesize
+      TABLES
+        binary_tab    = temptable.
+
+    cl_gui_frontend_services=&gt;gui_download(
+       EXPORTING
+         bin_filesize = bin_filesize
+         filename     = fullpath
+         filetype     = &apos;BIN&apos;
+       CHANGING
+         data_tab     = temptable
+       EXCEPTIONS
+         file_write_error          = 1
+         no_batch                  = 2
+         gui_refuse_filetransfer   = 3
+         invalid_type              = 4
+         no_authority              = 5
+         unknown_error             = 6
+         header_not_allowed        = 7
+         separator_not_allowed     = 8
+         filesize_not_allowed      = 9
+         header_too_long           = 10
+         dp_error_create           = 11
+         dp_error_send             = 12
+         dp_error_write            = 13
+         unknown_dp_error          = 14
+         access_denied             = 15
+         dp_out_of_memory          = 16
+         disk_full                 = 17
+         dp_timeout                = 18
+         file_not_found            = 19
+         dataprovider_exception    = 20
+         control_flush_error       = 21
+         not_supported_by_gui      = 22
+         error_no_gui              = 23
+         OTHERS                    = 24
+    ).
+    IF sy-subrc &lt;&gt; 0.
+      MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
+                 WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+    ENDIF.
+*    SPLIT xmlstring AT cl_abap_char_utilities=&gt;cr_lf
+*    INTO TABLE temptable_char.
+
+*    CALL METHOD cl_gui_frontend_services=&gt;gui_download
+*      EXPORTING
+*        filename = fullpath
+*        filetype = &apos;DAT&apos;
+*      CHANGING
+*        data_tab = temptable_char.
   ENDIF.
 *&lt;--rrq: issue 43
 ENDFORM.                    &quot;putOnMachine
@@ -1371,9 +1430,14 @@ FORM uploadxmlfromlm USING p_filename xmlstring TYPE string .
       text_buffer  = xmlstring
     TABLES
       binary_tab   = temptable_bin.
+  &quot; Make sure to convert Windows Line Break to Unix as
+  &quot; this linebreak is used to get a correct import
   REPLACE ALL OCCURRENCES OF cl_abap_char_utilities=&gt;cr_lf
     IN xmlstring WITH cl_abap_char_utilities=&gt;newline.
-
+  IF sy-subrc &lt;&gt; 0.
+    &quot; Just catch the sy-subrc when there was nothing replaced
+    sy-subrc = 0.
+  ENDIF.
 *  call method CL_GUI_FRONTEND_SERVICES=&gt;GUI_UPLOAD
 *        exporting
 *          FILENAME = l_fileName
@@ -1384,20 +1448,20 @@ FORM uploadxmlfromlm USING p_filename xmlstring TYPE string .
 ENDFORM.                    &quot;uploadXMLFromLM
 *\--------------------------------------------------------------------/
 
-*/----------------------createString----------------------------------\
-FORM createstring
-      USING
-        temptable TYPE table_of_strings
-      CHANGING
-        bigstring TYPE string.
-  DATA stemp TYPE string.
-  LOOP AT temptable INTO stemp.
-    CONCATENATE bigstring stemp cl_abap_char_utilities=&gt;newline
-      INTO bigstring.
-  ENDLOOP.
-
-ENDFORM.                    &quot;createString
-*\--------------------------------------------------------------------/
+**/----------------------createString----------------------------------\
+*FORM createstring
+*      USING
+*        temptable TYPE table_of_strings
+*      CHANGING
+*        bigstring TYPE string.
+*  DATA stemp TYPE string.
+*  LOOP AT temptable INTO stemp.
+*    CONCATENATE bigstring stemp cl_abap_char_utilities=&gt;cr_lf
+*      INTO bigstring.
+*  ENDLOOP.
+*
+*ENDFORM.                    &quot;createString
+**\--------------------------------------------------------------------/
 
 */----------------------installObject---------------------------------\
 FORM installobject USING l_ixmldocument TYPE REF TO if_ixml_document
