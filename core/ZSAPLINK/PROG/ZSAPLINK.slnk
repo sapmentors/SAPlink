@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-16"?>
-<PROG NAME="ZSAPLINK" VARCL="X" DBAPL="S" DBNA="D$" SUBC="1" APPL="S" CNAM="EWH" CDAT="20060903" UNAM="DEVELOPER" UDAT="20120112" VERN="000225" RMAND="321" RLOAD="E" FIXPT="X" SDATE="20120112" STIME="131734" IDATE="20120112" ITIME="131734" LDBNAME="D$S" UCCHECK="X">
+<PROG NAME="ZSAPLINK" VARCL="X" DBAPL="S" DBNA="D$" SUBC="1" APPL="S" CNAM="EWH" CDAT="20060903" UNAM="DEVELOPER" UDAT="20120318" VERN="000231" RMAND="321" RLOAD="E" FIXPT="X" SDATE="20120318" STIME="202158" IDATE="20120318" ITIME="202158" LDBNAME="D$S" UCCHECK="X">
  <textPool>
   <language SPRAS="D">
    <textElement ID="I" KEY="INP" ENTRY="Installierte Plugins" LENGTH="25 "/>
@@ -1558,37 +1558,20 @@ ENDFORM.                    &quot;confirmOverwrite
 
 */----------------------checkObject-----------------------------------\
 FORM checkobject USING l_ixmldocument TYPE REF TO if_ixml_document
-              CHANGING l_objtype TYPE string
-                       l_objname TYPE string
+              CHANGING l_objtype      TYPE string
+                       l_objname      TYPE string
                        l_pluginexists TYPE flag
                        l_objectexists TYPE flag.
 
-  DATA l_objtable TYPE TABLE OF t_objecttable.
-  DATA l_objline TYPE t_objecttable.
-  DATA l_targetobject TYPE REF TO zsaplink.
-
-  CLEAR: l_objtype, l_objname, l_pluginexists, l_objectexists.
-  CALL METHOD zsaplink=&gt;getobjectinfofromixmldoc
+  zsaplink=&gt;checkobject(
     EXPORTING
-      ixmldocument = l_ixmldocument
+      i_ixmldocument = l_ixmldocument    &quot; IF_IXML_DOCUMENT
     IMPORTING
-      objtypename  = l_objtype
-      objname      = l_objname.
-
-  CALL METHOD zsaplink=&gt;getplugins( CHANGING objecttable = l_objtable ).
-
-  READ TABLE l_objtable INTO l_objline WITH KEY object = l_objtype.
-
-  IF sy-subrc = 0.
-    l_pluginexists = &apos;X&apos;.
-    CREATE OBJECT l_targetobject
-      TYPE
-        (l_objline-classname)
-      EXPORTING
-        name                  = l_objname.
-
-    l_objectexists = l_targetobject-&gt;checkexists( ).
-  ENDIF.
+      e_objtype      = l_objtype
+      e_objname      = l_objname
+      e_pluginexists = l_pluginexists    &quot; General Flag
+      e_objectexists = l_objectexists    &quot; General Flag
+  ).
 
 ENDFORM.                    &quot;checkObject
 *\--------------------------------------------------------------------/
