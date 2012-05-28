@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-16"?>
-<PROG NAME="ZSAPLINK_SVN" VARCL="X" SUBC="1" CNAM="DEVELOPER" CDAT="20111203" UNAM="DEVELOPER" UDAT="20120318" VERN="000025" RSTAT="T" RMAND="000" RLOAD="E" FIXPT="X" SDATE="20120318" STIME="200041" IDATE="20120318" ITIME="200041" UCCHECK="X">
+<PROG NAME="ZSAPLINK_SVN" VARCL="X" SUBC="1" CNAM="DEVELOPER" CDAT="20111203" UNAM="DEVELOPER" UDAT="20120319" VERN="000029" RSTAT="T" RMAND="000" RLOAD="E" FIXPT="X" SDATE="20120319" STIME="105929" IDATE="20120319" ITIME="105929" UCCHECK="X">
  <textPool>
   <language SPRAS="E">
    <textElement ID="R" ENTRY="Build SAPLink Installer Nugget" LENGTH="30 "/>
@@ -95,16 +95,16 @@ START-OF-SELECTION.
 
       &quot; Classes
       object-object   = &apos;CLAS&apos;.
-*      object-obj_name = &apos;ZCX_SAPLINK&apos;.
-*      APPEND object TO objects.
+      object-obj_name = &apos;ZCX_SAPLINK&apos;.
+      APPEND object TO objects.
       object-obj_name = &apos;ZSAPLINK&apos;.
       APPEND object TO objects.
-*      object-obj_name = &apos;ZSAPLINK_CLASS&apos;.
-*      APPEND object TO objects.
-*      object-obj_name = &apos;ZSAPLINK_NUGGET&apos;.
-*      APPEND object TO objects.
-*      object-obj_name = &apos;ZSAPLINK_PROGRAM&apos;.
-*      APPEND object TO objects.
+      object-obj_name = &apos;ZSAPLINK_CLASS&apos;.
+      APPEND object TO objects.
+      object-obj_name = &apos;ZSAPLINK_NUGGET&apos;.
+      APPEND object TO objects.
+      object-obj_name = &apos;ZSAPLINK_PROGRAM&apos;.
+      APPEND object TO objects.
       &quot; Program
       object-object   = &apos;PROG&apos;.
       object-obj_name = &apos;ZSAPLINK&apos;.
@@ -112,7 +112,7 @@ START-OF-SELECTION.
       object-obj_name = &apos;ZSAPLINK_SVN&apos;.
       APPEND object TO objects.
       &quot; Let add the README to the build ZIP.
-      CONCATENATE loclpath &apos;build\zsaplink_installer.txt&apos; INTO file.
+      file = &apos;C:\Projects\SAPlink\trunk\build\zsaplink_installer.txt&apos;.
       APPEND file TO files.
       zake-&gt;set_checkin_objects( objects ).
       zake-&gt;add_files_to_zip( files ).
