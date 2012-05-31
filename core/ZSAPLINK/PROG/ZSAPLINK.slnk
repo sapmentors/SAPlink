@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-16"?>
-<PROG NAME="ZSAPLINK" VARCL="X" DBAPL="S" DBNA="D$" SUBC="1" APPL="S" CNAM="EWH" CDAT="20060903" UNAM="DEVELOPER" UDAT="20120318" VERN="000231" RMAND="321" RLOAD="E" FIXPT="X" SDATE="20120318" STIME="202158" IDATE="20120318" ITIME="202158" LDBNAME="D$S" UCCHECK="X">
+<PROG NAME="ZSAPLINK" VARCL="X" DBAPL="S" DBNA="D$" SUBC="1" APPL="S" CNAM="EWH" CDAT="20060903" UNAM="DEVELOPER" UDAT="20120524" VERN="000236" RMAND="321" RLOAD="E" FIXPT="X" SDATE="20120524" STIME="223214" IDATE="20120524" ITIME="223214" LDBNAME="D$S" UCCHECK="X">
  <textPool>
   <language SPRAS="D">
    <textElement ID="I" KEY="INP" ENTRY="Installierte Plugins" LENGTH="25 "/>
@@ -528,7 +528,8 @@ SELECTION-SCREEN END OF SCREEN 120.
 */----------------------selection screen events-----------------------\
 INITIALIZATION.
   CALL METHOD zsaplink=&gt;getplugins(
-    CHANGING objecttable = objecttable ).
+    CHANGING
+      objecttable = objecttable ).
 
   IMPORT isslinkee FROM MEMORY ID &apos;ISSLNK&apos;.
 
@@ -655,7 +656,7 @@ AT SELECTION-SCREEN ON VALUE-REQUEST FOR plugin.
   CALL FUNCTION &apos;F4IF_INT_TABLE_VALUE_REQUEST&apos;
     EXPORTING
       retfield        = &apos;OBJECT&apos;
-      window_title    = &apos;Installed Plugins&apos;(INP)
+      window_title    = &apos;Installed Plugins&apos;(inp)
       dynpprog        = sy-repid
       dynpnr          = &apos;1000&apos;
       dynprofield     = &apos;PLUGIN&apos;
@@ -677,7 +678,7 @@ AT SELECTION-SCREEN ON VALUE-REQUEST FOR nplugin.
   CALL FUNCTION &apos;F4IF_INT_TABLE_VALUE_REQUEST&apos;
     EXPORTING
       retfield        = &apos;OBJECT&apos;
-      window_title    = &apos;Installed Plugins&apos;(INP)
+      window_title    = &apos;Installed Plugins&apos;(inp)
       dynpprog        = sy-repid
       dynpnr          = &apos;1000&apos;
       dynprofield     = &apos;NPLUGIN&apos;
@@ -734,9 +735,9 @@ AT SELECTION-SCREEN ON VALUE-REQUEST FOR objname.
 *    if it is found...intanciate it so you can call the right value help
       CREATE OBJECT targetobject
         TYPE
-          (objectline-classname)
+        (objectline-classname)
         EXPORTING
-          name                   = _objname.
+          name = _objname.
       _objtype = l_object_type.
       CALL METHOD targetobject-&gt;valuehelp
         EXPORTING
@@ -782,9 +783,9 @@ AT SELECTION-SCREEN ON VALUE-REQUEST FOR nobjnam.
 *    if it is found...intanciate it so you can call the right value help
       CREATE OBJECT targetobject
         TYPE
-          (objectline-classname)
+        (objectline-classname)
         EXPORTING
-          name                   = _objname.
+          name = _objname.
       _objtype = l_object_type.
       CALL METHOD targetobject-&gt;valuehelp
         EXPORTING
@@ -845,17 +846,17 @@ START-OF-SELECTION.
       ENDIF.
       READ TABLE objecttable INTO objectline WITH KEY object = plugin.
       IF sy-subrc &lt;&gt; 0.
-        CONCATENATE &apos;Plugin for object type&apos;(PLO) plugin
-          &apos;is not installed on this system&apos;(NOI) INTO errormsg
+        CONCATENATE &apos;Plugin for object type&apos;(plo) plugin
+          &apos;is not installed on this system&apos;(noi) INTO errormsg
           SEPARATED BY space.
         PERFORM writemessage USING &apos;E&apos; errormsg.
         EXIT.
       ENDIF.
       CREATE OBJECT targetobject
         TYPE
-          (objectline-classname)
+        (objectline-classname)
         EXPORTING
-          name                   = _objname.
+          name = _objname.
       TRY.
           ixmldocument = targetobject-&gt;createixmldocfromobject( ).
         CATCH zcx_saplink INTO excclass.
@@ -900,8 +901,8 @@ START-OF-SELECTION.
         MESSAGE s208(00) WITH &apos;use nugget tab for nugget import&apos;.
         EXIT.
       ELSEIF _pluginexists IS INITIAL.
-        CONCATENATE &apos;Plugin for object type&apos;(PLO) _objtype
-          &apos;is not installed on this system&apos;(NOI) INTO errormsg
+        CONCATENATE &apos;Plugin for object type&apos;(plo) _objtype
+          &apos;is not installed on this system&apos;(noi) INTO errormsg
           SEPARATED BY space.
         PERFORM writemessage USING &apos;E&apos; errormsg.
         EXIT.
@@ -959,8 +960,8 @@ START-OF-SELECTION.
       ENDIF.
       READ TABLE objecttable INTO objectline WITH KEY object = nplugin.
       IF sy-subrc &lt;&gt; 0.
-        CONCATENATE &apos;Plugin for object type&apos;(PLO) nplugin
-          &apos;is not installed on this system&apos;(NOI) INTO errormsg
+        CONCATENATE &apos;Plugin for object type&apos;(plo) nplugin
+          &apos;is not installed on this system&apos;(noi) INTO errormsg
             SEPARATED BY space.
         PERFORM writemessage USING &apos;E&apos; errormsg.
         EXIT.
@@ -1025,9 +1026,9 @@ START-OF-SELECTION.
                                      _pluginexists
                                      _objectexists.
         IF _pluginexists IS INITIAL.
-        CONCATENATE &apos;Plugin for object type&apos;(PLO) _objtype
-          &apos;is not installed on this system&apos;(NOI) INTO errormsg
-          SEPARATED BY space.
+          CONCATENATE &apos;Plugin for object type&apos;(plo) _objtype
+            &apos;is not installed on this system&apos;(noi) INTO errormsg
+            SEPARATED BY space.
           PERFORM writemessage USING &apos;E&apos; errormsg.
           errorflag = &apos;X&apos;.
         ELSEIF _objectexists = &apos;X&apos; AND novrwr IS INITIAL.
@@ -1050,7 +1051,7 @@ START-OF-SELECTION.
       ENDIF.
 
 *     confirm overwrite
-      LOOP AT it_nuggetobject INTO wa_nuggetobject WHERE EXISTS = &apos;X&apos;.
+      LOOP AT it_nuggetobject INTO wa_nuggetobject WHERE exists = &apos;X&apos;.
         CLEAR _flag.
         CONCATENATE wa_nuggetobject-objtype wa_nuggetobject-objname
           INTO stemp SEPARATED BY space.
@@ -1147,7 +1148,7 @@ START-OF-SELECTION.
       IF sy-saprl NE &apos;701&apos;.
         &quot;// Mar: Added logic discard deleted objects from Package - 10/05/2009
 
-        SELECT object obj_name srcsystem
+        SELECT object obj_name srcsystem      ##TOO_MANY_ITAB_FIELDS
             FROM tadir
             INTO CORRESPONDING FIELDS OF TABLE objects_package
             WHERE devclass  EQ package
@@ -1155,7 +1156,7 @@ START-OF-SELECTION.
 
         &quot;// Mar: Added logic discard deleted objects from Package - 10/05/2009
       ELSE.
-        SELECT object obj_name srcsystem
+        SELECT object obj_name srcsystem      ##TOO_MANY_ITAB_FIELDS
             FROM tadir
             INTO CORRESPONDING FIELDS OF TABLE objects_package
             WHERE devclass  EQ package
@@ -1269,12 +1270,17 @@ FORM downloadxmltolm USING   deffilename TYPE string
   DATA retpath TYPE string.
   DATA retfullpath TYPE string.
   DATA retuseract TYPE i.
+  DATA deffilename_cleaned TYPE string.
 
   CLEAR _errorflag.
 
+  &quot;*--- get rid of namespace slashes ---*
+  deffilename_cleaned = deffilename.
+  REPLACE ALL OCCURRENCES OF &apos;/&apos; IN deffilename_cleaned WITH &apos;.&apos;.
+
   CALL METHOD cl_gui_frontend_services=&gt;file_save_dialog
     EXPORTING
-      default_file_name = deffilename
+      default_file_name = deffilename_cleaned
     CHANGING
       filename          = retfilename
       path              = retpath
@@ -1503,9 +1509,9 @@ FORM installobject USING l_ixmldocument TYPE REF TO if_ixml_document
   ELSE.
     CREATE OBJECT l_targetobject
       TYPE
-        (l_objline-classname)
+      (l_objline-classname)
       EXPORTING
-        name                  = l_objname.
+        name = l_objname.
     IF l_package IS INITIAL.
       l_package = &apos;$TMP&apos;.
     ENDIF.
@@ -1591,28 +1597,27 @@ FORM get_current_screen_value  USING    l_screen_field
 
   CALL FUNCTION &apos;DYNP_VALUES_READ&apos;
     EXPORTING
-      dyname                         = sy-cprog
-      dynumb                         = l_screen_number
-      translate_to_upper             = &apos;X&apos;
-*     REQUEST                        = &apos; &apos;
-*     PERFORM_CONVERSION_EXITS       = &apos; &apos;
-*     PERFORM_INPUT_CONVERSION       = &apos; &apos;
-*     DETERMINE_LOOP_INDEX           = &apos; &apos;
+      dyname                   = sy-cprog
+      dynumb                   = l_screen_number
+      translate_to_upper       = &apos;X&apos;
+*     REQUEST                  = &apos; &apos;
+*     PERFORM_CONVERSION_EXITS = &apos; &apos;
+*     PERFORM_INPUT_CONVERSION = &apos; &apos;
+*     DETERMINE_LOOP_INDEX     = &apos; &apos;
     TABLES
-      dynpfields                     = it_dynpfields
+      dynpfields               = it_dynpfields
     EXCEPTIONS
-      invalid_abapworkarea           = 1
-      invalid_dynprofield            = 2
-      invalid_dynproname             = 3
-      invalid_dynpronummer           = 4
-      invalid_request                = 5
-      no_fielddescription            = 6
-      invalid_parameter              = 7
-      undefind_error                 = 8
-      double_conversion              = 9
-      stepl_not_found                = 10
-      OTHERS                         = 11
-            .
+      invalid_abapworkarea     = 1
+      invalid_dynprofield      = 2
+      invalid_dynproname       = 3
+      invalid_dynpronummer     = 4
+      invalid_request          = 5
+      no_fielddescription      = 6
+      invalid_parameter        = 7
+      undefind_error           = 8
+      double_conversion        = 9
+      stepl_not_found          = 10
+      OTHERS                   = 11.
   IF sy-subrc &lt;&gt; 0.
 *  MESSAGE ID SY-MSGID TYPE SY-MSGTY NUMBER SY-MSGNO
 *  WITH SY-MSGV1 SY-MSGV2 SY-MSGV3 SY-MSGV4.
@@ -1754,9 +1759,9 @@ FORM check_objects .
 
       CREATE OBJECT lo_object
         TYPE
-          (objectline-classname)
+        (objectline-classname)
         PARAMETER-TABLE
-          ptab.
+        ptab.
       lo_saplink ?= lo_object.
       l_flag = lo_saplink-&gt;checkexists( ).
 *        Plug-in exists... set flag and make selected by default
