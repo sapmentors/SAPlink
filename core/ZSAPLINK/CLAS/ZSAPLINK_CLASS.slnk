@@ -1700,9 +1700,11 @@ endmethod.</source>
 *       not sure inserting as active is best solution,but seems to work
         _state = &apos;A&apos;.
       endif.
+      insert textpool _objName
+        from textPooltable
+        language lang
+        state    _state.
     endif.
-    insert textpool _objName from textPooltable language lang
-    state _state.
     langNode ?= langIterator-&gt;get_next( ).
   endwhile.
 endmethod.</source>
