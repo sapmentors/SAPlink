@@ -3,6 +3,21 @@
  <textPool>
   <language SPRAS="E">
    <textElement ID="R" ENTRY="Checkin/Checkout to SVN and Build SAPLink Installer Nugget" LENGTH="58 "/>
+   <textElement ID="S" KEY="BUILD" ENTRY="        Build Nugget" LENGTH="20 "/>
+   <textElement ID="S" KEY="CHECKIN" ENTRY="        Checkin to SVN" LENGTH="22 "/>
+   <textElement ID="S" KEY="CHECKOUT" ENTRY="        Checkout from SVN" LENGTH="25 "/>
+   <textElement ID="S" KEY="COMMENT" ENTRY="        Comment" LENGTH="15 "/>
+   <textElement ID="S" KEY="EXPORT" ENTRY="        Export to Disk" LENGTH="22 "/>
+   <textElement ID="S" KEY="INCL_SVN" ENTRY="        Include ZSAPLINK_SVN in Export" LENGTH="38 "/>
+   <textElement ID="S" KEY="INSTALL" ENTRY="        Install from Disk" LENGTH="25 "/>
+   <textElement ID="S" KEY="LOCLPATH" ENTRY="        Local Path" LENGTH="18 "/>
+   <textElement ID="S" KEY="NUGGETNA" ENTRY="        Nugget Name" LENGTH="19 "/>
+   <textElement ID="S" KEY="REVISION" ENTRY="        Revision" LENGTH="16 "/>
+   <textElement ID="S" KEY="SVN" ENTRY="        Command line SVN Client" LENGTH="31 "/>
+   <textElement ID="S" KEY="SVNPATH" ENTRY="        SVN Path" LENGTH="16 "/>
+   <textElement ID="S" KEY="TESTRUN" ENTRY="        Testrun" LENGTH="15 "/>
+   <textElement ID="S" KEY="TORTOISE" ENTRY="        Tortoise SVN Client" LENGTH="27 "/>
+   <textElement ID="S" KEY="UPDATE" ENTRY="        Update from SVN" LENGTH="23 "/>
   </language>
  </textPool>
  <source>*&amp;---------------------------------------------------------------------*
@@ -70,6 +85,7 @@ PARAMETERS:
   svnpath  TYPE char512 DEFAULT &apos;https://code.sdn.sap.com/svn/saplink/trunk/&apos; LOWER CASE OBLIGATORY,
   revision TYPE i,
   comment  TYPE char512 DEFAULT &apos;&apos; LOWER CASE,
+  incl_svn TYPE flag,
   testrun  TYPE flag    DEFAULT abap_true.
 SELECTION-SCREEN END OF BLOCK c.
 
@@ -117,8 +133,10 @@ START-OF-SELECTION.
       object-object   = &apos;PROG&apos;.
       object-obj_name = &apos;ZSAPLINK&apos;.
       APPEND object TO objects.
-      object-obj_name = &apos;ZSAPLINK_SVN&apos;.
-      APPEND object TO objects.
+      IF incl_svn = abap_true.
+        object-obj_name = &apos;ZSAPLINK_SVN&apos;.
+        APPEND object TO objects.
+      ENDIF.
       &quot; Let add the README to the build ZIP.
       file = &apos;C:\Projects\SAPlink\trunk\build\zsaplink_installer.txt&apos;.
       APPEND file TO files.
