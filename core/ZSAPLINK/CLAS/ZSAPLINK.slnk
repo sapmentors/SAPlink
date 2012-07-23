@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="utf-16"?>
-<CLAS CLSNAME="ZSAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink main class" UUID="428D951874B2994889DFAA5532437B0B" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" CLSABSTRCT="X" CLSCCINCL="X" FIXPT="X" UNICODE="X" CLSBCCAT="00" DURATION_TYPE="0 " RISK_LEVEL="0 ">
+<?xml version="1.0" encoding="utf-8"?>
+<CLAS CLSNAME="ZSAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink main class" UUID="428D951874B2994889DFAA5532437B0B" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" CLSABSTRCT="X" CLSCCINCL="X" FIXPT="X" UNICODE="X" CLSBCCAT="00" WITH_UNIT_TESTS="X" DURATION_TYPE="0 " RISK_LEVEL="0 ">
  <publicSection>class ZSAPLINK definition
   public
   abstract
   create public .
 
+public section.
 *&quot;* public components of class ZSAPLINK
 *&quot;* do not include other source files here!!!
-public section.
 
   data NUGGET_LEVEL type INT4 read-only value 0. &quot;#EC NOTEXT .
 
@@ -161,6 +161,88 @@ private section.
 * by doing so you may keep this project alive.  It&apos;s up to all of
 * us now to make sure we can help SAP Code Exchange grow by
 * sharing code and collaborating on projects.</localMacros>
+ <localTestClasses>*----------------------------------------------------------------------*
+*       CLASS lc_Zsaplink_Test DEFINITION
+*----------------------------------------------------------------------*
+*
+*----------------------------------------------------------------------*
+CLASS lc_zsaplink_test DEFINITION FOR TESTING
+  &quot; DURATION SHORT
+  &quot; RISK LEVEL HARMLESS
+  &quot;#AU Duration Medium
+  &quot;#AU Risk_Level Harmless
+.
+*?﻿&lt;asx:abap xmlns:asx=&quot;http://www.sap.com/abapxml&quot; version=&quot;1.0&quot;&gt;
+*?&lt;asx:values&gt;
+*?&lt;TESTCLASS_OPTIONS&gt;
+*?&lt;TEST_CLASS&gt;lc_Zsaplink_Test
+*?&lt;/TEST_CLASS&gt;
+*?&lt;TEST_MEMBER&gt;f_Cut
+*?&lt;/TEST_MEMBER&gt;
+*?&lt;OBJECT_UNDER_TEST&gt;ZSAPLINK
+*?&lt;/OBJECT_UNDER_TEST&gt;
+*?&lt;OBJECT_IS_LOCAL/&gt;
+*?&lt;GENERATE_FIXTURE/&gt;
+*?&lt;GENERATE_CLASS_FIXTURE/&gt;
+*?&lt;GENERATE_INVOCATION/&gt;
+*?&lt;GENERATE_ASSERT_EQUAL/&gt;
+*?&lt;/TESTCLASS_OPTIONS&gt;
+*?&lt;/asx:values&gt;
+*?&lt;/asx:abap&gt;
+  PRIVATE SECTION.
+* ================
+    DATA:
+      f_cut TYPE REF TO zsaplink.  &quot;class under test
+
+    METHODS: convertixmldoctostring FOR TESTING.
+ENDCLASS.       &quot;lc_Zsaplink_Test
+
+
+*----------------------------------------------------------------------*
+*       CLASS lc_Zsaplink_Test IMPLEMENTATION
+*----------------------------------------------------------------------*
+*
+*----------------------------------------------------------------------*
+CLASS lc_zsaplink_test IMPLEMENTATION.
+* ======================================
+
+  METHOD convertixmldoctostring.
+    CONSTANTS value TYPE string VALUE &apos;Umlaut: öäü ÖÄÜ ß, Slowenisch: čćšžđ ČĆŽŠĐ&apos;.
+    DATA ixml     TYPE REF TO if_ixml.
+    DATA ixmldoc  TYPE REF TO if_ixml_document.
+    DATA rootnode TYPE REF TO if_ixml_element.
+    DATA xmlstring TYPE string.
+    DATA value_from_xml TYPE string.
+
+    &quot; Instanciate ixml
+    ixml = cl_ixml=&gt;create( ).
+    ixmldoc = ixml-&gt;create_document( ).
+    &quot; Add content
+    rootnode = ixmldoc-&gt;create_element( &apos;test&apos; ).
+    rootnode-&gt;set_value( value ).
+    ixmldoc-&gt;append_child( rootNode ).
+
+    &quot; Convert to String
+    xmlstring = zsaplink=&gt;convertixmldoctostring( ixmldoc ).
+
+    &quot; Convert back
+    FREE: ixmldoc, rootnode.
+    ixmldoc = zsaplink=&gt;convertstringtoixmldoc( xmlstring ).
+
+    rootnode = ixmldoc-&gt;get_root_element( ).
+    value_from_xml = rootnode-&gt;get_value( ).
+    cl_aunit_assert=&gt;assert_equals(
+      EXPORTING
+        exp                  = value          &quot; Data Object with Expected Type
+        act                  = value_from_xml &quot; Data Object with Current Value
+        msg                  = &apos;XML Input and Output not equal&apos;    &quot; Message in Case of Error
+    ).
+  ENDMETHOD.       &quot;convertixmldoctostring
+
+
+
+
+ENDCLASS.       &quot;lc_Zsaplink_Test</localTestClasses>
  <attribute CLSNAME="ZSAPLINK" CMPNAME="IXML" VERSION="1" LANGU="E" DESCRIPT="IF_IXML" EXPOSURE="1" STATE="1" EDITORDER="2 " ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="3" TYPE="IF_IXML" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
  <attribute CLSNAME="ZSAPLINK" CMPNAME="NUGGET_LEVEL" VERSION="1" LANGU="E" DESCRIPT="Nugget create sequence" EXPOSURE="2" STATE="1" EDITORDER="1 " ATTDECLTYP="0" ATTRDONLY="X" ATTVALUE="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="INT4" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
  <attribute CLSNAME="ZSAPLINK" CMPNAME="OBJNAME" VERSION="1" LANGU="E" DESCRIPT="IF_IXML" EXPOSURE="1" STATE="1" EDITORDER="1 " ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
@@ -307,26 +389,37 @@ endmethod.</source>
 *|   support.                                                          |
 *\---------------------------------------------------------------------/
   data _ixml type ref to if_ixml.
+  data _encoding   type ref to if_ixml_encoding.
   data _streamFactory type ref to IF_IXML_STREAM_FACTORY.
   data _outputStream type ref to IF_IXML_OSTREAM.
   data _renderer type ref to IF_IXML_RENDERER.
-  data _tempString type string.
+  data _tempString  type string.
+  data _tempStringx type xstring.
   data _printXMLDoc type ref to cl_xml_document.
   data _rc type sysubrc.
 
   _ixml = cl_ixml=&gt;create( ).
+  _encoding = _ixml-&gt;create_encoding(
+      byte_order    = if_ixml_encoding=&gt;co_none
+      character_set = &apos;utf-8&apos; ).
   _streamFactory = _ixml-&gt;CREATE_STREAM_FACTORY( ).
-  _outputStream = _streamFactory-&gt;CREATE_OSTREAM_CSTRING( _tempString ).
+  _outputStream = _streamFactory-&gt;create_ostream_xstring( _tempStringx ).
+  _outputstream-&gt;set_encoding( encoding = _encoding ).
   _renderer = _ixml-&gt;CREATE_RENDERER(
-    DOCUMENT = ixmlDocument OSTREAM = _outputStream ).
+                DOCUMENT = ixmlDocument
+                OSTREAM  = _outputStream
+              ).
   _renderer-&gt;SET_NORMALIZING( ).
   _rc = _renderer-&gt;render( ).
   create object _printXMLDoc.
   _rc = _printXMLDoc-&gt;parse_string( _tempString ).
 
-  while _tempString(1) &lt;&gt; &apos;&lt;&apos;.
-    shift _tempString left by 1 places.
-  endwhile.
+  CALL FUNCTION &apos;ECATT_CONV_XSTRING_TO_STRING&apos;
+    EXPORTING
+      im_xstring  = _tempstringx
+      im_encoding = &apos;UTF-8&apos;
+    IMPORTING
+      ex_string   = _tempstring.
 
   xmlString = _tempString.
 endmethod.</source>

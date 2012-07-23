@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-16"?>
+<?xml version="1.0" encoding="utf-8"?>
 <CLAS CLSNAME="ZSAPLINK_NUGGET" VERSION="1" LANGU="E" DESCRIPT="SAPlink Nugget" UUID="45C25992EA5308CB00000000A7E42BB2" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" CLSFINAL="X" CLSCCINCL="X" FIXPT="X" UNICODE="X" CLSBCCAT="00" DURATION_TYPE="0 " RISK_LEVEL="0 ">
  <publicSection>class ZSAPLINK_NUGGET definition
   public

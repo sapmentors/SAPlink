@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-16"?>
+<?xml version="1.0" encoding="utf-8"?>
 <PROG NAME="ZSAPLINK" VARCL="X" DBAPL="S" DBNA="D$" SUBC="1" APPL="S" RMAND="321" RLOAD="E" FIXPT="X" LDBNAME="D$S" UCCHECK="X">
  <textPool>
   <language SPRAS="D">
