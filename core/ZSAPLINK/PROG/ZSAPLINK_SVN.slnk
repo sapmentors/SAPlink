@@ -1,17 +1,24 @@
 <?xml version="1.0" encoding="utf-16"?>
-<PROG NAME="ZSAPLINK_SVN" VARCL="X" SUBC="1" CNAM="DEVELOPER" CDAT="20111203" UNAM="DEVELOPER" UDAT="20120619" VERN="000030" RSTAT="T" RMAND="000" RLOAD="E" FIXPT="X" SDATE="20120619" STIME="114546" IDATE="20120619" ITIME="114546" UCCHECK="X">
+<PROG NAME="ZSAPLINK_SVN" VARCL="X" SUBC="1" RSTAT="T" RMAND="000" RLOAD="E" FIXPT="X" UCCHECK="X">
  <textPool>
   <language SPRAS="E">
-   <textElement ID="R" ENTRY="Build SAPLink Installer Nugget" LENGTH="30 "/>
+   <textElement ID="R" ENTRY="Checkin/Checkout to SVN and Build SAPLink Installer Nugget" LENGTH="58 "/>
   </language>
  </textPool>
  <source>*&amp;---------------------------------------------------------------------*
 *&amp; Report  Z_ZAKE_SVN_TEST
-*&amp;
+*&amp; Checkin/Checkout to SVN and Build SAPLink Installer Nugget
 *&amp;---------------------------------------------------------------------*
-*&amp;
-*&amp;
-*&amp;---------------------------------------------------------------------*
+*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   The code of this project is provided to you under the current     |
+*|   version of the SAP Code Exchange Terms of Use. You can find the   |
+*|   text on the SAP Code Exchange webpage at http://www.sdn.sap.com   |
+*|                                                                     |
+*|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
+*|   support.                                                          |
+*\---------------------------------------------------------------------/
 
 REPORT  zsaplink_svn.
 
@@ -44,6 +51,7 @@ SELECTION-SCREEN BEGIN OF BLOCK a WITH FRAME TITLE a.
 PARAMETERS:
   checkout TYPE flag RADIOBUTTON GROUP act,
   update   TYPE flag RADIOBUTTON GROUP act,
+  install  TYPE flag RADIOBUTTON GROUP act,
   export   TYPE flag RADIOBUTTON GROUP act DEFAULT &apos;X&apos;,
   build    TYPE flag RADIOBUTTON GROUP act,
   checkin  TYPE flag RADIOBUTTON GROUP act.
@@ -154,11 +162,12 @@ START-OF-SELECTION.
           zake-&gt;update( ).
         ELSEIF checkout = abap_true.
           zake-&gt;checkout( revision ).
-        ENDIF.
-        zake-&gt;install_slinkees_from_lm( testrun ).
-        &quot; Activate objects
-        IF testrun = abap_false.
-          zake-&gt;activate_package_objects( ).
+        ELSEIF install = abap_true.
+          zake-&gt;install_slinkees_from_lm( testrun ).
+          &quot; Activate objects
+          IF testrun = abap_false.
+            zake-&gt;activate_package_objects( ).
+          ENDIF.
         ENDIF.
       ENDIF.
     CATCH zcx_saplink INTO ex.
