@@ -1,24 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<CLAS CLSNAME="ZSAPLINK_PROGRAM" VERSION="1" LANGU="E" DESCRIPT="SAPlink - Programs" UUID="45583FC835A702C600000000A7E42BB6" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" CLSFINAL="X" CLSCCINCL="X" FIXPT="X" UNICODE="X" CLSBCCAT="00" DURATION_TYPE="0 " RISK_LEVEL="0 " REFCLSNAME="ZSAPLINK">
+<CLAS CLSNAME="ZSAPLINK_PROGRAM" VERSION="1" LANGU="E" DESCRIPT="SAPlink - Programs" UUID="45583FC835A702C600000000A7E42BB6" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" CLSFINAL="X" CLSCCINCL="X" FIXPT="X" UNICODE="X" CLSBCCAT="00" WITH_UNIT_TESTS="X" DURATION_TYPE="0 " RISK_LEVEL="0 " REFCLSNAME="ZSAPLINK">
  <publicSection>class ZSAPLINK_PROGRAM definition
   public
   inheriting from ZSAPLINK
   final
   create public .
 
+public section.
 *&quot;* public components of class ZSAPLINK_PROGRAM
 *&quot;* do not include other source files here!!!
-public section.
 
   methods CHECKEXISTS
     redefinition .
   methods CREATEIXMLDOCFROMOBJECT
     redefinition .
   methods CREATEOBJECTFROMIXMLDOC
+    redefinition .
+  methods CREATESTRINGFROMOBJECT
     redefinition .</publicSection>
- <protectedSection>*&quot;* protected components of class ZSAPLINK_PROGRAM
+ <protectedSection>protected section.
+*&quot;* protected components of class ZSAPLINK_PROGRAM
 *&quot;* do not include other source files here!!!
-protected section.
 
   methods DELETEOBJECT
     redefinition .
@@ -28,6 +30,9 @@ protected section.
 *&quot;* private components of class ZSAPLINK_PROGRAM
 *&quot;* do not include other source files here!!!
 
+  methods GET_SOURCE
+    returning
+      value(PROGSOURCE) type RSWSOURCET .
   methods CREATE_TEXTPOOL
     importing
       !TEXTPOOLNODE type ref to IF_IXML_ELEMENT .
@@ -76,10 +81,75 @@ protected section.
 *&quot;* implementation or private method&apos;s signature</localTypes>
  <localMacros>*&quot;* use this source file for any macro definitions you need
 *&quot;* in the implementation part of the class</localMacros>
+ <localTestClasses>*----------------------------------------------------------------------*
+*       CLASS lc_Zsaplink_Program_Test DEFINITION
+*----------------------------------------------------------------------*
+*
+*----------------------------------------------------------------------*
+CLASS lc_zsaplink_program_test DEFINITION FOR TESTING
+  &quot; DURATION SHORT
+  &quot; RISK LEVEL HARMLESS
+  &quot;#AU Duration Medium
+  &quot;#AU Risk_Level Harmless
+.
+*?﻿&lt;asx:abap xmlns:asx=&quot;http://www.sap.com/abapxml&quot; version=&quot;1.0&quot;&gt;
+*?&lt;asx:values&gt;
+*?&lt;TESTCLASS_OPTIONS&gt;
+*?&lt;TEST_CLASS&gt;lc_Zsaplink_Program_Test
+*?&lt;/TEST_CLASS&gt;
+*?&lt;TEST_MEMBER&gt;f_Cut
+*?&lt;/TEST_MEMBER&gt;
+*?&lt;OBJECT_UNDER_TEST&gt;ZSAPLINK_PROGRAM
+*?&lt;/OBJECT_UNDER_TEST&gt;
+*?&lt;OBJECT_IS_LOCAL/&gt;
+*?&lt;GENERATE_FIXTURE/&gt;
+*?&lt;GENERATE_CLASS_FIXTURE/&gt;
+*?&lt;GENERATE_INVOCATION/&gt;
+*?&lt;GENERATE_ASSERT_EQUAL/&gt;
+*?&lt;/TESTCLASS_OPTIONS&gt;
+*?&lt;/asx:values&gt;
+*?&lt;/asx:abap&gt;
+  PRIVATE SECTION.
+* ================
+    DATA:
+      f_cut TYPE REF TO zsaplink_program.  &quot;class under test
+
+    METHODS: createstringfromobject FOR TESTING.
+ENDCLASS.       &quot;lc_Zsaplink_Program_Test
+
+
+*----------------------------------------------------------------------*
+*       CLASS lc_Zsaplink_Program_Test IMPLEMENTATION
+*----------------------------------------------------------------------*
+*
+*----------------------------------------------------------------------*
+CLASS lc_zsaplink_program_test IMPLEMENTATION.
+* ==============================================
+
+  METHOD createstringfromobject.
+    CONSTANTS: object_name TYPE string VALUE &apos;SFLIGHT_DATA_GEN&apos;.
+    DATA: source_string TYPE string.
+
+    CREATE OBJECT f_cut
+      EXPORTING
+        name = object_name.
+
+    source_string = f_cut-&gt;createstringfromobject( ).
+    cl_aunit_assert=&gt;assert_not_initial(
+        act = source_string               &quot; Actual Data Object
+        msg = &apos;No source string found&apos;    &quot; Message in Case of Error
+    ).
+  ENDMETHOD.       &quot;createstringfromobject
+
+
+
+
+ENDCLASS.       &quot;lc_Zsaplink_Program_Test</localTestClasses>
  <inheritance CLSNAME="ZSAPLINK_PROGRAM" REFCLSNAME="ZSAPLINK" VERSION="1" STATE="1">
   <redefinition CLSNAME="ZSAPLINK_PROGRAM" REFCLSNAME="ZSAPLINK" VERSION="1" MTDNAME="CHECKEXISTS" EXPOSURE="2"/>
   <redefinition CLSNAME="ZSAPLINK_PROGRAM" REFCLSNAME="ZSAPLINK" VERSION="1" MTDNAME="CREATEIXMLDOCFROMOBJECT" EXPOSURE="2"/>
   <redefinition CLSNAME="ZSAPLINK_PROGRAM" REFCLSNAME="ZSAPLINK" VERSION="1" MTDNAME="CREATEOBJECTFROMIXMLDOC" EXPOSURE="2"/>
+  <redefinition CLSNAME="ZSAPLINK_PROGRAM" REFCLSNAME="ZSAPLINK" VERSION="1" MTDNAME="CREATESTRINGFROMOBJECT" EXPOSURE="2"/>
   <redefinition CLSNAME="ZSAPLINK_PROGRAM" REFCLSNAME="ZSAPLINK" VERSION="1" MTDNAME="DELETEOBJECT" EXPOSURE="1"/>
   <redefinition CLSNAME="ZSAPLINK_PROGRAM" REFCLSNAME="ZSAPLINK" VERSION="1" MTDNAME="GETOBJECTTYPE" EXPOSURE="1"/>
  </inheritance>
@@ -124,7 +194,6 @@ data statusNode type ref to if_ixml_element.
 data rc type sysubrc.
 data progAttribs type trdir.
 data progSource type RSWSOURCET.
-data _objName(30) type c.
 data sourceString type string.
 data _objType type string.
 
@@ -133,10 +202,8 @@ data _objType type string.
   sourceNode = xmlDoc-&gt;create_element( &apos;source&apos; ).
   select single * from trdir into progAttribs where NAME = objName.
   if sy-subrc = 0.
-    setAttributesFromStructure( node = rootNode structure =  progAttribs
-    ).
-    _objName = objName.
-    read report _objName into progSource.
+    setAttributesFromStructure( node = rootNode structure =  progAttribs ).
+    progSource = me-&gt;get_source( ).
     sourceString = buildSourceString( sourceTable = progSource ).
     rc = sourceNode-&gt;IF_IXML_NODE~SET_VALUE( sourceString ).
     textPoolNode = get_textPool( ).
@@ -273,6 +340,23 @@ endmethod.</source>
   name = objname.
 
 endmethod.</source>
+ </method>
+ <method CLSNAME="ZSAPLINK" CMPNAME="CREATESTRINGFROMOBJECT" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+  <source>METHOD createstringfromobject.
+*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   The code of this project is provided to you under the current     |
+*|   version of the SAP Code Exchange Terms of Use. You can find the   |
+*|   text on the SAP Code Exchange webpage at http://www.sdn.sap.com   |
+*|                                                                     |
+*|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
+*|   support.                                                          |
+*\---------------------------------------------------------------------/
+  data progSource type RSWSOURCET.
+  progsource = me-&gt;get_source( ).
+  string = buildsourcestring( sourcetable = progsource ).
+ENDMETHOD.</source>
  </method>
  <method CLSNAME="ZSAPLINK_PROGRAM" CMPNAME="CREATE_DOCUMENTATION" VERSION="1" LANGU="E" DESCRIPT="Create Documentation" EXPOSURE="0" STATE="1" EDITORDER="4 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZSAPLINK_PROGRAM" CMPNAME="CREATE_DOCUMENTATION" SCONAME="DOCNODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
@@ -1487,6 +1571,27 @@ endmethod.</source>
     endloop.
 
   endif.
+
+endmethod.</source>
+ </method>
+ <method CLSNAME="ZSAPLINK_PROGRAM" CMPNAME="GET_SOURCE" VERSION="1" LANGU="E" DESCRIPT="Get Report Sourcecode" EXPOSURE="0" STATE="1" EDITORDER="0 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_PROGRAM" CMPNAME="GET_SOURCE" SCONAME="PROGSOURCE" VERSION="1" LANGU="E" DESCRIPT="ABAP Source" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="1" TYPE="RSWSOURCET"/>
+  <source>method GET_SOURCE.
+*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   The code of this project is provided to you under the current     |
+*|   version of the SAP Code Exchange Terms of Use. You can find the   |
+*|   text on the SAP Code Exchange webpage at http://www.sdn.sap.com   |
+*|                                                                     |
+*|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
+*|   support.                                                          |
+*\---------------------------------------------------------------------/
+
+  data _objName(30) type c.
+
+  _objName = me-&gt;objName.
+  read report _objName into progSource.
 
 endmethod.</source>
  </method>
