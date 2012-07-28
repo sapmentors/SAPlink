@@ -1147,7 +1147,7 @@ START-OF-SELECTION.
       IF sy-saprl NE &apos;701&apos;.
         &quot;// Mar: Added logic discard deleted objects from Package - 10/05/2009
 
-        SELECT object obj_name srcsystem      ##TOO_MANY_ITAB_FIELDS
+        SELECT object obj_name srcsystem      &quot; ##TOO_MANY_ITAB_FIELDS
             FROM tadir
             INTO CORRESPONDING FIELDS OF TABLE objects_package
             WHERE devclass  EQ package
@@ -1155,7 +1155,7 @@ START-OF-SELECTION.
 
         &quot;// Mar: Added logic discard deleted objects from Package - 10/05/2009
       ELSE.
-        SELECT object obj_name srcsystem      ##TOO_MANY_ITAB_FIELDS
+        SELECT object obj_name srcsystem      &quot; ##TOO_MANY_ITAB_FIELDS
             FROM tadir
             INTO CORRESPONDING FIELDS OF TABLE objects_package
             WHERE devclass  EQ package
