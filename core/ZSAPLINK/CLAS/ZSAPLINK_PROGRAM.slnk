@@ -883,11 +883,12 @@ endmethod.</source>
 *|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
 *|   support.                                                          |
 *\---------------------------------------------------------------------/
-data _objName type TROBJ_NAME.
-data progLine type PROGDIR.
-data titleInfo type trdirti.
-data reportLine type string.
-data miniReport type table_of_strings.
+
+  data _objName type TROBJ_NAME.
+  data progLine type PROGDIR.
+  data titleInfo type trdirti.
+  data reportLine type string.
+  data miniReport type table_of_strings.
 
   _objName = objName.
   call function &apos;RS_INSERT_INTO_WORKING_AREA&apos;
@@ -900,6 +901,11 @@ data miniReport type table_of_strings.
      program type attribs-subc.  &quot;added to handle includes, etc.
    MOVE &apos;I&apos; TO progline-STATE.
    move-corresponding attribs to progline.
+   progline-idate = sy-datum.
+   progline-itime = sy-uzeit.
+   progline-CDAT  = sy-datum.
+   progline-UDAT  = sy-datum.
+   progline-SDATE = sy-datum.
    modify progdir from progline.
 *  Are you kidding me?!?  No idea why you need to do this!!
    CONCATENATE &apos;REPORT&apos; _objName &apos;.&apos; INTO reportLine SEPARATED BY SPACE.
