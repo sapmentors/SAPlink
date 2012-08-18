@@ -137,7 +137,7 @@ START-OF-SELECTION.
         object-obj_name = &apos;ZSAPLINK_SVN&apos;.
         APPEND object TO objects.
       ENDIF.
-      &quot; Let add the README to the build ZIP.
+      &quot; Let add ZSAPLINK_INSTALER report to the build ZIP.
       file = &apos;C:\Projects\SAPlink\trunk\build\zsaplink_installer.txt&apos;.
       APPEND file TO files.
       zake-&gt;set_checkin_objects( objects ).
@@ -157,6 +157,8 @@ START-OF-SELECTION.
         zake-&gt;download_zip_to_lm_flag = abap_false.
         zake-&gt;create_slinkees( nuggetname ).
       ELSEIF build = abap_true.
+        &quot; Download ZSAPLINK_INSTALLER as plain text
+        PERFORM download_program USING &apos;ZSAPLINK_INSTALLER&apos; &apos;C:\Projects\SAPlink\trunk\build\&apos;.
 *        &quot; Fill Object Table with Slinkees from Local Machine but do not install
 *        zake-&gt;install_slinkees_from_lm( i_testrun = abap_true ).
         &quot; Change package assignment of objects
@@ -194,5 +196,32 @@ START-OF-SELECTION.
         message = ex-&gt;get_longtext( ).
       ENDIF.
       WRITE: / &apos;An Error occured: &apos;, message.
-  ENDTRY.</source>
+  ENDTRY.
+
+*&amp;---------------------------------------------------------------------*
+*&amp;      Form  DOWNLOAD_PROGRAM
+*&amp;---------------------------------------------------------------------*
+*       text
+*----------------------------------------------------------------------*
+*      --&gt;P_LV_PROG_NAME  text
+*----------------------------------------------------------------------*
+FORM download_program
+  USING
+    p_prog_name TYPE string
+    p_path      TYPE string.
+  DATA: lo_saplink_prog TYPE REF TO zsaplink,
+        lv_source       TYPE string,
+        lv_path         TYPE string.
+  CREATE OBJECT lo_saplink_prog TYPE zsaplink_program
+    EXPORTING
+      name = p_prog_name.
+  lv_source = lo_saplink_prog-&gt;createstringfromobject( ).
+  CONCATENATE p_path p_prog_name &apos;.txt&apos; INTO lv_path.
+  zake-&gt;download_xml_to_lm(
+    EXPORTING
+      i_fullpath   = lv_path
+      i_xml_string = lv_source
+  ).
+
+ENDFORM.                    &quot; DOWNLOAD_PROGRAM</source>
 </PROG>

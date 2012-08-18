@@ -50,6 +50,8 @@ public section.
 *"* public components of class ZSAPLINK
 *"* do not include other source files here!!!
 
+  data NUGGET_LEVEL type INT4 read-only value 0. "#EC NOTEXT .
+
   class-methods GETOBJECTINFOFROMIXMLDOC
     importing
       !IXMLDOCUMENT type ref to IF_IXML_DOCUMENT
@@ -82,6 +84,11 @@ public section.
       value(IXMLDOCUMENT) type ref to IF_IXML_DOCUMENT
     raising
       ZCX_SAPLINK .
+  methods CREATESTRINGFROMOBJECT
+    returning
+      value(STRING) type STRING
+    raising
+      ZCX_SAPLINK .
   methods CONSTRUCTOR
     importing
       !NAME type STRING .
@@ -101,6 +108,15 @@ public section.
       !I_OBJTYPE type STRING
     returning
       value(E_OBJNAME) type STRING .
+  class-methods CHECKOBJECT
+    importing
+      !I_IXMLDOCUMENT type ref to IF_IXML_DOCUMENT
+    exporting
+      !E_OBJTYPE type STRING
+      !E_OBJNAME type STRING
+      !E_PLUGINEXISTS type FLAG
+      !E_OBJECTEXISTS type FLAG
+      !E_TARGETOBJECT type ref to ZSAPLINK .
 *"* protected components of class ZSAPLINK
 *"* do not include other source files here!!!
 protected section.
@@ -157,12 +173,19 @@ protected section.
       !CONCEPT type SOTR_TEXT-CONCEPT
     raising
       ZCX_SAPLINK .
+PRIVATE SECTION.
 *"* private components of class ZSAPLINK
 *"* do not include other source files here!!!
-private section.
 
-  data STREAMFACTORY type ref to IF_IXML_STREAM_FACTORY .
-  data XMLDATA type STRING .
+  TYPES: BEGIN OF t_objecttable,
+           classname TYPE string,
+           object TYPE ko100-object,
+           text TYPE ko100-text,
+         END OF t_objecttable.
+
+  DATA streamfactory TYPE REF TO if_ixml_stream_factory .
+  DATA xmldata TYPE string .
+  DATA objecttable TYPE TABLE OF t_objecttable.
 ENDCLASS.
 CLASS ZSAPLINK_CLASS DEFINITION
   INHERITING FROM ZSAPLINK
@@ -229,6 +252,8 @@ CLASS ZSAPLINK_PROGRAM DEFINITION
   CREATE PUBLIC
   .
 public section.
+*"* public components of class ZSAPLINK_PROGRAM
+*"* do not include other source files here!!!
 
   methods CHECKEXISTS
     redefinition .
@@ -236,9 +261,11 @@ public section.
     redefinition .
   methods CREATEOBJECTFROMIXMLDOC
     redefinition .
+  methods CREATESTRINGFROMOBJECT
+    redefinition .
+protected section.
 *"* protected components of class ZSAPLINK_PROGRAM
 *"* do not include other source files here!!!
-protected section.
 
   methods DELETEOBJECT
     redefinition .
@@ -248,6 +275,9 @@ private section.
 *"* private components of class ZSAPLINK_PROGRAM
 *"* do not include other source files here!!!
 
+  methods GET_SOURCE
+    returning
+      value(PROGSOURCE) type RSWSOURCET .
   methods CREATE_TEXTPOOL
     importing
       !TEXTPOOLNODE type ref to IF_IXML_ELEMENT .
@@ -352,6 +382,34 @@ CLASS ZSAPLINK IMPLEMENTATION.
     split source at CL_ABAP_CHAR_UTILITIES=>NEWLINE
       into table sourceTable.
   endmethod.
+  METHOD checkobject.
+    DATA l_objtable LIKE objecttable.
+    DATA l_objline  LIKE LINE OF objecttable.
+
+    CLEAR: e_objtype, e_objname, e_pluginexists, e_objectexists.
+    CALL METHOD zsaplink=>getobjectinfofromixmldoc
+      EXPORTING
+        ixmldocument = i_ixmldocument
+      IMPORTING
+        objtypename  = e_objtype
+        objname      = e_objname.
+
+    CALL METHOD zsaplink=>getplugins( CHANGING objecttable = l_objtable ).
+
+    READ TABLE l_objtable INTO l_objline WITH KEY object = e_objtype.
+
+    IF sy-subrc = 0.
+      e_pluginexists = 'X'.
+      CREATE OBJECT e_targetobject
+        TYPE
+        (l_objline-classname)
+        EXPORTING
+          name = e_objname.
+
+      e_objectexists = e_targetobject->checkexists( ).
+    ENDIF.
+
+  ENDMETHOD.
   method CONSTRUCTOR.
 */---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
@@ -389,26 +447,38 @@ CLASS ZSAPLINK IMPLEMENTATION.
 *|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
 *|   support.                                                          |
 *\---------------------------------------------------------------------/
-  data _ixml type ref to if_ixml.
-  data _streamFactory type ref to IF_IXML_STREAM_FACTORY.
-  data _outputStream type ref to IF_IXML_OSTREAM.
-  data _renderer type ref to IF_IXML_RENDERER.
-  data _tempString type string.
-  data _printXMLDoc type ref to cl_xml_document.
-  data _rc type sysubrc.
+    data _ixml type ref to if_ixml.
+    data _encoding   type ref to if_ixml_encoding.
+    data _streamFactory type ref to IF_IXML_STREAM_FACTORY.
+    data _outputStream type ref to IF_IXML_OSTREAM.
+    data _renderer type ref to IF_IXML_RENDERER.
+    data _tempString  type string.
+    data _tempStringx type xstring.
+    data _printXMLDoc type ref to cl_xml_document.
+    data _rc type sysubrc.
+
     _ixml = cl_ixml=>create( ).
+    _encoding = _ixml->create_encoding(
+        byte_order    = if_ixml_encoding=>co_none
+        character_set = 'utf-8' ).
     _streamFactory = _ixml->CREATE_STREAM_FACTORY( ).
-    _outputStream = _streamFactory->CREATE_OSTREAM_CSTRING( _tempString ).
+    _outputStream = _streamFactory->create_ostream_xstring( _tempStringx ).
+    _outputstream->set_encoding( encoding = _encoding ).
     _renderer = _ixml->CREATE_RENDERER(
-      DOCUMENT = ixmlDocument OSTREAM = _outputStream ).
+                  DOCUMENT = ixmlDocument
+                  OSTREAM  = _outputStream
+                ).
     _renderer->SET_NORMALIZING( ).
     _rc = _renderer->render( ).
     create object _printXMLDoc.
     _rc = _printXMLDoc->parse_string( _tempString ).
 
-    while _tempString(1) <> '<'.
-      shift _tempString left by 1 places.
-    endwhile.
+    CALL FUNCTION 'ECATT_CONV_XSTRING_TO_STRING'
+      EXPORTING
+        im_xstring  = _tempstringx
+        im_encoding = 'UTF-8'
+      IMPORTING
+        ex_string   = _tempstring.
 
     xmlString = _tempString.
   endmethod.
@@ -423,11 +493,16 @@ CLASS ZSAPLINK IMPLEMENTATION.
 *|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
 *|   support.                                                          |
 *\---------------------------------------------------------------------/
-  data ixml type ref to if_ixml.
-  data streamFactory type ref to IF_IXML_STREAM_FACTORY.
-  data iStream type ref to if_ixml_istream.
-  data ixmlParser type ref to if_ixml_parser.
-  data xmlDoc type ref to if_ixml_document.
+    data ixml type ref to if_ixml.
+    data streamFactory type ref to IF_IXML_STREAM_FACTORY.
+    data iStream type ref to if_ixml_istream.
+    data ixmlParser type ref to if_ixml_parser.
+    data xmlDoc type ref to if_ixml_document.
+
+    " Make sure to convert Windows Line Break to Unix as
+    " this linebreak is used to get a correct import
+    REPLACE ALL OCCURRENCES OF cl_abap_char_utilities=>cr_lf
+      IN xmlString WITH cl_abap_char_utilities=>newline.
 
     ixml = cl_ixml=>create( ).
     xmlDoc = ixml->create_document( ).
@@ -636,6 +711,8 @@ CLASS ZSAPLINK IMPLEMENTATION.
     ENDIF.
 
   endmethod.
+  method CREATESTRINGFROMOBJECT.
+  endmethod.
   method CREATEXMLSTRING.
 */---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
@@ -701,12 +778,6 @@ CLASS ZSAPLINK IMPLEMENTATION.
 *|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
 *|   support.                                                          |
 *\---------------------------------------------------------------------/
-    types: begin of t_objectTable,
-             classname type string,
-             object type ko100-object,
-             text type ko100-text,
-           end of t_objectTable.
-
     data classList type SEO_INHERITANCES.
     data classLine type VSEOEXTEND.
     data classObject type ref to zsaplink.
@@ -822,14 +893,14 @@ CLASS ZSAPLINK IMPLEMENTATION.
 *|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
 *|   support.                                                          |
 *\---------------------------------------------------------------------/
-  data int type i.
-  int = int.
-  data structDescr type ref to cl_abap_structDescr.
-  data aComponent type abap_compdescr.
-  field-symbols <fieldValue> type any.
-  data rc type sysubrc.
-  data sName type string.
-  data sValue type string.
+    data int type i.
+    int = int.
+    data structDescr type ref to cl_abap_structDescr.
+    data aComponent type abap_compdescr.
+    field-symbols <fieldValue> type any.
+    data rc type sysubrc.
+    data sName type string.
+    data sValue type string.
 
     structDescr ?= cl_abap_structDescr=>describe_by_data( structure ).
     loop at structDescr->components into aComponent.
@@ -844,6 +915,59 @@ CLASS ZSAPLINK IMPLEMENTATION.
 *          sValue = '0'. "commented by ewH: issue 45
           when 'DEVCLASS'. "development class should always be $TMP
             sValue = '$TMP'.
+          " Developer, Date and Time Metadata has to be removed to
+          " not clutter diffs
+          "
+          " Meta Attributes for DDIC Types
+          when 'AS4USER'.
+            clear sValue.
+          when 'AS4DATE'.
+            clear sValue.
+          when 'AS4TIME'.
+            clear sValue.
+          " Meta Attributes for PROG
+          when 'CNAM'.
+            clear sValue.
+          when 'CDAT'.
+            clear sValue.
+          when 'UNAM'.
+            clear sValue.
+          when 'UDAT'.
+            clear sValue.
+          when 'VERN'.
+            clear sValue.
+          when 'SDATE'.
+            clear sValue.
+          when 'STIME'.
+            clear sValue.
+          when 'IDATE'.
+            clear sValue.
+          when 'ITIME'.
+            clear sValue.
+          " Meta Attributes for CLAS
+          when 'AUTHOR'.
+            clear sValue.
+          when 'CREATEDON'.
+            clear sValue.
+          when 'CHANGEDBY'.
+            clear sValue.
+          when 'CHANGEDON'.
+            clear sValue.
+          when 'CHANGEDON'.
+            clear sValue.
+          when 'CHGDANYON'.
+            clear sValue.
+          when 'R3RELEASE'.
+            clear sValue.
+          " SOTR
+          when 'CREA_NAME'.
+            clear sValue.
+          when 'CHAN_NAME'.
+            clear sValue.
+          when 'CREA_TSTUT'.
+            clear sValue.
+          when 'CHAN_TSTUT'.
+            clear sValue.
           when others.
             sValue = <fieldValue>.
         endcase.
@@ -2007,7 +2131,12 @@ CLASS ZSAPLINK_CLASS IMPLEMENTATION.
           SUBTRACT 1 FROM lines.
         ENDWHILE.
         wa_method_sources-cpdname = methodkey-cpdname.
-        wa_method_sources-redefine = wa_methods-redefin.
+        READ TABLE ch_redefinitions INTO wa_redefinitions
+        WITH KEY mtdname = methodkey-cpdname.
+        IF sy-subrc = 0.
+          wa_method_sources-redefine = 'X'.
+        ENDIF.
+*      wa_method_sources-redefine = wa_methods-redefin.
         wa_method_sources-source = sourcetable.
 
         APPEND wa_method_sources TO e_method_sources.
@@ -2504,9 +2633,11 @@ CLASS ZSAPLINK_CLASS IMPLEMENTATION.
 *       not sure inserting as active is best solution,but seems to work
           _state = 'A'.
         endif.
+        insert textpool _objName
+          from textPooltable
+          language lang
+          state    _state.
       endif.
-      insert textpool _objName from textPooltable language lang
-      state _state.
       langNode ?= langIterator->get_next( ).
     endwhile.
   endmethod.
@@ -2884,7 +3015,6 @@ CLASS ZSAPLINK_PROGRAM IMPLEMENTATION.
   data rc type sysubrc.
   data progAttribs type trdir.
   data progSource type RSWSOURCET.
-  data _objName(30) type c.
   data sourceString type string.
   data _objType type string.
 
@@ -2893,10 +3023,8 @@ CLASS ZSAPLINK_PROGRAM IMPLEMENTATION.
     sourceNode = xmlDoc->create_element( 'source' ).
     select single * from trdir into progAttribs where NAME = objName.
     if sy-subrc = 0.
-      setAttributesFromStructure( node = rootNode structure =  progAttribs
-      ).
-      _objName = objName.
-      read report _objName into progSource.
+      setAttributesFromStructure( node = rootNode structure =  progAttribs ).
+      progSource = me->get_source( ).
       sourceString = buildSourceString( sourceTable = progSource ).
       rc = sourceNode->IF_IXML_NODE~SET_VALUE( sourceString ).
       textPoolNode = get_textPool( ).
@@ -3031,6 +3159,21 @@ CLASS ZSAPLINK_PROGRAM IMPLEMENTATION.
     name = objname.
 
   endmethod.
+  METHOD createstringfromobject.
+*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   The code of this project is provided to you under the current     |
+*|   version of the SAP Code Exchange Terms of Use. You can find the   |
+*|   text on the SAP Code Exchange webpage at http://www.sdn.sap.com   |
+*|                                                                     |
+*|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
+*|   support.                                                          |
+*\---------------------------------------------------------------------/
+    data progSource type RSWSOURCET.
+    progsource = me->get_source( ).
+    string = buildsourcestring( sourcetable = progsource ).
+  ENDMETHOD.
   method CREATE_DOCUMENTATION.
 */---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
@@ -3544,11 +3687,12 @@ CLASS ZSAPLINK_PROGRAM IMPLEMENTATION.
 *|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
 *|   support.                                                          |
 *\---------------------------------------------------------------------/
-  data _objName type TROBJ_NAME.
-  data progLine type PROGDIR.
-  data titleInfo type trdirti.
-  data reportLine type string.
-  data miniReport type table_of_strings.
+
+    data _objName type TROBJ_NAME.
+    data progLine type PROGDIR.
+    data titleInfo type trdirti.
+    data reportLine type string.
+    data miniReport type table_of_strings.
 
     _objName = objName.
     call function 'RS_INSERT_INTO_WORKING_AREA'
@@ -3561,6 +3705,11 @@ CLASS ZSAPLINK_PROGRAM IMPLEMENTATION.
        program type attribs-subc.  "added to handle includes, etc.
      MOVE 'I' TO progline-STATE.
      move-corresponding attribs to progline.
+     progline-idate = sy-datum.
+     progline-itime = sy-uzeit.
+     progline-CDAT  = sy-datum.
+     progline-UDAT  = sy-datum.
+     progline-SDATE = sy-datum.
      modify progdir from progline.
 *  Are you kidding me?!?  No idea why you need to do this!!
      CONCATENATE 'REPORT' _objName '.' INTO reportLine SEPARATED BY SPACE.
@@ -3637,9 +3786,11 @@ CLASS ZSAPLINK_PROGRAM IMPLEMENTATION.
 *       not sure inserting as active is best solution,but seems to work
           _state = 'A'.
         endif.
+        insert textpool _objName
+          from textPooltable
+          language lang
+          state    _state.
       endif.
-      insert textpool _objName from textPooltable language lang
-      state _state.
       langNode ?= langIterator->get_next( ).
     endwhile.
   endmethod.
@@ -4208,6 +4359,24 @@ CLASS ZSAPLINK_PROGRAM IMPLEMENTATION.
       endloop.
 
     endif.
+
+  endmethod.
+  method GET_SOURCE.
+*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   The code of this project is provided to you under the current     |
+*|   version of the SAP Code Exchange Terms of Use. You can find the   |
+*|   text on the SAP Code Exchange webpage at http://www.sdn.sap.com   |
+*|                                                                     |
+*|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
+*|   support.                                                          |
+*\---------------------------------------------------------------------/
+
+    data _objName(30) type c.
+
+    _objName = me->objName.
+    read report _objName into progSource.
 
   endmethod.
   method GET_TEXTPOOL.
