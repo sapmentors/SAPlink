@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <CLAS CLSNAME="ZSAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink main class" UUID="428D951874B2994889DFAA5532437B0B" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" CLSABSTRCT="X" CLSCCINCL="X" FIXPT="X" UNICODE="X" CLSBCCAT="00" WITH_UNIT_TESTS="X" DURATION_TYPE="0 " RISK_LEVEL="0 ">
+ <types CLSNAME="ZSAPLINK" CMPNAME="T_OBJECTTABLE" VERSION="1" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="1 " TYPTYPE="4" SRCROW1="5 " SRCCOLUMN1="9 " SRCROW2="9 " SRCCOLUMN2="28 " TYPESRC_LENG="163 " TYPESRC="BEGIN OF t_objecttable,
+           classname TYPE string,
+           object TYPE ko100-object,
+           text TYPE ko100-text,
+         END OF t_objecttable
+"/>
  <publicSection>class ZSAPLINK definition
   public
   abstract
@@ -132,12 +138,19 @@ protected section.
       !CONCEPT type SOTR_TEXT-CONCEPT
     raising
       ZCX_SAPLINK .</protectedSection>
- <privateSection>*&quot;* private components of class ZSAPLINK
+ <privateSection>PRIVATE SECTION.
+*&quot;* private components of class ZSAPLINK
 *&quot;* do not include other source files here!!!
-private section.
 
-  data STREAMFACTORY type ref to IF_IXML_STREAM_FACTORY .
-  data XMLDATA type STRING .</privateSection>
+  TYPES: BEGIN OF t_objecttable,
+           classname TYPE string,
+           object TYPE ko100-object,
+           text TYPE ko100-text,
+         END OF t_objecttable.
+
+  DATA streamfactory TYPE REF TO if_ixml_stream_factory .
+  DATA xmldata TYPE string .
+  DATA objecttable TYPE TABLE OF t_objecttable.</privateSection>
  <localImplementation>*&quot;* local class implementation for public class
 *&quot;* use this source file for the implementation part of
 *&quot;* local helper classes
@@ -250,6 +263,8 @@ CLASS lc_zsaplink_test IMPLEMENTATION.
 ENDCLASS.       &quot;lc_Zsaplink_Test</localTestClasses>
  <attribute CLSNAME="ZSAPLINK" CMPNAME="IXML" VERSION="1" LANGU="E" DESCRIPT="IF_IXML" EXPOSURE="1" STATE="1" EDITORDER="2 " ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="3" TYPE="IF_IXML" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
  <attribute CLSNAME="ZSAPLINK" CMPNAME="NUGGET_LEVEL" VERSION="1" LANGU="E" DESCRIPT="Nugget create sequence" EXPOSURE="2" STATE="1" EDITORDER="1 " ATTDECLTYP="0" ATTRDONLY="X" ATTVALUE="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="INT4" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+ <attribute CLSNAME="ZSAPLINK" CMPNAME="OBJECTTABLE" VERSION="1" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="3 " ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="13 " SRCCOLUMN1="7 " SRCROW2="13 " SRCCOLUMN2="45 " TYPESRC_LENG="41 " TYPESRC="objecttable TYPE TABLE OF t_objecttable
+"/>
  <attribute CLSNAME="ZSAPLINK" CMPNAME="OBJNAME" VERSION="1" LANGU="E" DESCRIPT="IF_IXML" EXPOSURE="1" STATE="1" EDITORDER="1 " ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
  <attribute CLSNAME="ZSAPLINK" CMPNAME="STREAMFACTORY" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_STREAM_FACTORY" EXPOSURE="0" STATE="1" EDITORDER="1 " ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="3" TYPE="IF_IXML_STREAM_FACTORY" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
  <attribute CLSNAME="ZSAPLINK" CMPNAME="XMLDATA" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_STREAM_FACTORY" EXPOSURE="0" STATE="1" EDITORDER="2 " ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
@@ -321,9 +336,9 @@ endmethod.</source>
   <parameter CLSNAME="ZSAPLINK" CMPNAME="CHECKOBJECT" SCONAME="E_PLUGINEXISTS" VERSION="1" LANGU="E" DESCRIPT="General Flag" CMPTYPE="1" MTDTYPE="0" EDITORDER="4 " DISPID="0 " PARDECLTYP="1" PARPASSTYP="1" TYPTYPE="1" TYPE="FLAG"/>
   <parameter CLSNAME="ZSAPLINK" CMPNAME="CHECKOBJECT" SCONAME="E_OBJECTEXISTS" VERSION="1" LANGU="E" DESCRIPT="General Flag" CMPTYPE="1" MTDTYPE="0" EDITORDER="5 " DISPID="0 " PARDECLTYP="1" PARPASSTYP="1" TYPTYPE="1" TYPE="FLAG"/>
   <parameter CLSNAME="ZSAPLINK" CMPNAME="CHECKOBJECT" SCONAME="E_TARGETOBJECT" VERSION="1" LANGU="E" DESCRIPT="SAPlink main class" CMPTYPE="1" MTDTYPE="0" EDITORDER="6 " DISPID="0 " PARDECLTYP="1" PARPASSTYP="1" TYPTYPE="3" TYPE="ZSAPLINK"/>
-  <source>method CHECKOBJECT.
-  DATA l_objtable TYPE TABLE OF t_objecttable.
-  DATA l_objline TYPE t_objecttable.
+  <source>METHOD checkobject.
+  DATA l_objtable LIKE objecttable.
+  DATA l_objline  LIKE LINE OF objecttable.
 
   CLEAR: e_objtype, e_objname, e_pluginexists, e_objectexists.
   CALL METHOD zsaplink=&gt;getobjectinfofromixmldoc
@@ -341,14 +356,14 @@ endmethod.</source>
     e_pluginexists = &apos;X&apos;.
     CREATE OBJECT e_targetobject
       TYPE
-        (l_objline-classname)
+      (l_objline-classname)
       EXPORTING
-        name                  = e_objname.
+        name = e_objname.
 
     e_objectexists = e_targetobject-&gt;checkexists( ).
   ENDIF.
 
-endmethod.</source>
+ENDMETHOD.</source>
  </method>
  <method CLSNAME="ZSAPLINK" CMPNAME="CONSTRUCTOR" VERSION="1" LANGU="E" DESCRIPT="CONSTRUCTOR" EXPOSURE="2" STATE="1" EDITORDER="6 " DISPID="0 " MTDTYPE="2" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZSAPLINK" CMPNAME="CONSTRUCTOR" SCONAME="NAME" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="2" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
