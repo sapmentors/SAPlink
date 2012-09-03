@@ -33,6 +33,7 @@ public section.
   methods GET_SOURCE
     returning
       value(PROGSOURCE) type RSWSOURCET .
+  methods UPDATE_WB_TREE .
   methods CREATE_TEXTPOOL
     importing
       !TEXTPOOLNODE type ref to IF_IXML_ELEMENT .
@@ -334,6 +335,7 @@ endmethod.</source>
   create_pfstatus( statnode ).
 
   dequeue_abap( ).
+  update_wb_tree( ).
 *endif.
 
 * successful install
@@ -342,7 +344,7 @@ endmethod.</source>
 endmethod.</source>
  </method>
  <method CLSNAME="ZSAPLINK" CMPNAME="CREATESTRINGFROMOBJECT" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
-  <source>METHOD createstringfromobject.
+  <source>method CREATESTRINGFROMOBJECT.
 */---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
@@ -356,7 +358,7 @@ endmethod.</source>
   data progSource type RSWSOURCET.
   progsource = me-&gt;get_source( ).
   string = buildsourcestring( sourcetable = progsource ).
-ENDMETHOD.</source>
+endmethod.</source>
  </method>
  <method CLSNAME="ZSAPLINK_PROGRAM" CMPNAME="CREATE_DOCUMENTATION" VERSION="1" LANGU="E" DESCRIPT="Create Documentation" EXPOSURE="0" STATE="1" EDITORDER="4 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZSAPLINK_PROGRAM" CMPNAME="CREATE_DOCUMENTATION" SCONAME="DOCNODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
@@ -1705,5 +1707,32 @@ endmethod.</source>
   endif.
 
 endmethod.</source>
+ </method>
+ <method CLSNAME="ZSAPLINK_PROGRAM" CMPNAME="UPDATE_WB_TREE" VERSION="1" LANGU="E" DESCRIPT="Update Workbench Tree" EXPOSURE="0" STATE="1" EDITORDER="0 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+  <source>METHOD update_wb_tree.
+
+  DATA: BEGIN OF pname,
+          root(3) VALUE &apos;PG_&apos;,
+          program(27),
+        END OF pname.
+
+  DATA: trdir TYPE trdir.
+
+  pname-program = me-&gt;objname.
+
+  CALL FUNCTION &apos;WB_TREE_ACTUALIZE&apos;
+    EXPORTING
+      tree_name = pname.
+
+  trdir-name    = me-&gt;objname.
+
+  CALL FUNCTION &apos;RS_TREE_OBJECT_PLACEMENT&apos;
+    EXPORTING
+      object    = trdir-name
+      program   = trdir-name
+      operation = &apos;INSERT&apos;
+      type      = &apos;CP&apos;.
+
+ENDMETHOD.</source>
  </method>
 </CLAS>
