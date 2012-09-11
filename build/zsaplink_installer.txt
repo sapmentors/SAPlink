@@ -278,6 +278,7 @@ private section.
   methods GET_SOURCE
     returning
       value(PROGSOURCE) type RSWSOURCET .
+  methods UPDATE_WB_TREE .
   methods CREATE_TEXTPOOL
     importing
       !TEXTPOOLNODE type ref to IF_IXML_ELEMENT .
@@ -382,7 +383,7 @@ CLASS ZSAPLINK IMPLEMENTATION.
     split source at CL_ABAP_CHAR_UTILITIES=>NEWLINE
       into table sourceTable.
   endmethod.
-  METHOD checkobject.
+  method CHECKOBJECT.
     DATA l_objtable LIKE objecttable.
     DATA l_objline  LIKE LINE OF objecttable.
 
@@ -409,7 +410,7 @@ CLASS ZSAPLINK IMPLEMENTATION.
       e_objectexists = e_targetobject->checkexists( ).
     ENDIF.
 
-  ENDMETHOD.
+  endmethod.
   method CONSTRUCTOR.
 */---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
@@ -967,6 +968,13 @@ CLASS ZSAPLINK IMPLEMENTATION.
           when 'CREA_TSTUT'.
             clear sValue.
           when 'CHAN_TSTUT'.
+            clear sValue.
+          " MSAG
+          when 'LASTUSER'.
+            clear sValue.
+          when 'LDATE'.
+            clear sValue.
+          when 'LTIME'.
             clear sValue.
           when others.
             sValue = <fieldValue>.
@@ -3153,13 +3161,14 @@ CLASS ZSAPLINK_PROGRAM IMPLEMENTATION.
     create_pfstatus( statnode ).
 
     dequeue_abap( ).
+    update_wb_tree( ).
 *endif.
 
 * successful install
     name = objname.
 
   endmethod.
-  METHOD createstringfromobject.
+  method CREATESTRINGFROMOBJECT.
 */---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
@@ -3173,7 +3182,7 @@ CLASS ZSAPLINK_PROGRAM IMPLEMENTATION.
     data progSource type RSWSOURCET.
     progsource = me->get_source( ).
     string = buildsourcestring( sourcetable = progsource ).
-  ENDMETHOD.
+  endmethod.
   method CREATE_DOCUMENTATION.
 */---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
@@ -4476,6 +4485,31 @@ CLASS ZSAPLINK_PROGRAM IMPLEMENTATION.
     endif.
 
   endmethod.
+  method UPDATE_WB_TREE.
+
+    DATA: BEGIN OF pname,
+            root(3) VALUE 'PG_',
+            program(27),
+          END OF pname.
+
+    DATA: trdir TYPE trdir.
+
+    pname-program = me->objname.
+
+    CALL FUNCTION 'WB_TREE_ACTUALIZE'
+      EXPORTING
+        tree_name = pname.
+
+    trdir-name    = me->objname.
+
+    CALL FUNCTION 'RS_TREE_OBJECT_PLACEMENT'
+      EXPORTING
+        object    = trdir-name
+        program   = trdir-name
+        operation = 'INSERT'
+        type      = 'CP'.
+
+  endmethod.
 ENDCLASS.
 
 type-pools: seor, abap.
@@ -4537,16 +4571,69 @@ at selection-screen on value-request for NUGGFIL.
 *| Forms from the SAPLink Installer                                   |
 *|                                                                     |
 form uploadXMLFromLM using p_filename xmlString type string .
-  data tempTable type table_of_strings.
-  data l_fileName type string.
+  DATA retfiletable TYPE filetable.
+  DATA retrc TYPE sysubrc.
+  DATA retuseraction TYPE i.
+  DATA temptable TYPE table_of_strings.
+  DATA temptable_bin TYPE TABLE OF x255.
+  DATA filelength TYPE i.
+  DATA l_filename TYPE string.
 
-    l_fileName = p_filename.
-    call method CL_GUI_FRONTEND_SERVICES=>GUI_UPLOAD
-          exporting
-            FILENAME = l_fileName
-          changing
-            data_tab = tempTable.
-  perform createString using tempTable changing xmlString.
+  l_filename = p_filename.
+  CALL METHOD cl_gui_frontend_services=>gui_upload
+    EXPORTING
+      filename                = l_filename
+      filetype                = 'BIN'       " File Type Binary
+    IMPORTING
+      filelength              = filelength
+    CHANGING
+      data_tab                = temptable_bin
+    EXCEPTIONS
+      file_open_error         = 1
+      file_read_error         = 2
+      no_batch                = 3
+      gui_refuse_filetransfer = 4
+      invalid_type            = 5
+      no_authority            = 6
+      unknown_error           = 7
+      bad_data_format         = 8
+      header_not_allowed      = 9
+      separator_not_allowed   = 10
+      header_too_long         = 11
+      unknown_dp_error        = 12
+      access_denied           = 13
+      dp_out_of_memory        = 14
+      disk_full               = 15
+      dp_timeout              = 16
+      not_supported_by_gui    = 17
+      error_no_gui            = 18
+      OTHERS                  = 19.
+  IF sy-subrc <> 0.
+    CASE sy-subrc.
+      WHEN '1'.
+        PERFORM writemessage USING 'E' 'File Open Error'.
+      WHEN OTHERS.
+        PERFORM writemessage USING 'E' 'Unknown Error occured'.
+    ENDCASE.
+  ENDIF.
+
+  CALL FUNCTION 'SCMS_BINARY_TO_STRING'
+    EXPORTING
+      input_length = filelength
+    IMPORTING
+      text_buffer  = xmlstring
+    TABLES
+      binary_tab   = temptable_bin.
+  IF sy-subrc <> 0.
+    " Just catch the sy-subrc when there was nothing replaced
+    sy-subrc = 0.
+  ENDIF.
+*  call method CL_GUI_FRONTEND_SERVICES=>GUI_UPLOAD
+*        exporting
+*          FILENAME = l_fileName
+*        changing
+*          data_tab = tempTable.
+*  PERFORM createstring USING temptable CHANGING xmlstring.
 endform.
 *\--------------------------------------------------------------------/
 form createString
@@ -4570,15 +4657,22 @@ endform.
 *| Forms from the SAPLink Root Class                                  |
 form CONVERTSTRINGTOIXMLDOC
       using
-        xmlString type string
+        i_xmlString type string
       changing
         ixmlDocument type ref to if_ixml_document.
 
-data ixml type ref to if_ixml.
-data streamFactory type ref to IF_IXML_STREAM_FACTORY.
-data iStream type ref to if_ixml_istream.
-data ixmlParser type ref to if_ixml_parser.
-data xmlDoc type ref to if_ixml_document.
+  data xmlString type string.
+  data ixml type ref to if_ixml.
+  data streamFactory type ref to IF_IXML_STREAM_FACTORY.
+  data iStream type ref to if_ixml_istream.
+  data ixmlParser type ref to if_ixml_parser.
+  data xmlDoc type ref to if_ixml_document.
+
+  xmlString = i_xmlString.
+  " Make sure to convert Windows Line Break to Unix as
+  " this linebreak is used to get a correct import
+  REPLACE ALL OCCURRENCES OF cl_abap_char_utilities=>cr_lf
+    IN xmlString WITH cl_abap_char_utilities=>newline.
 
   ixml = cl_ixml=>create( ).
   xmlDoc = ixml->create_document( ).
@@ -4774,3 +4868,17 @@ data l_title type string.
             .
 endform.
 *\--------------------------------------------------------------------/
+*/---------------------writeMessage-----------------------\
+FORM writemessage USING value(p_type) TYPE sy-msgty
+                        value(p_msg).
+  CASE p_type.
+    WHEN 'E' OR 'A' OR 'X'.
+      WRITE / icon_led_red AS ICON.
+    WHEN 'W'.
+      WRITE / icon_led_yellow AS ICON.
+    WHEN OTHERS.
+      WRITE / icon_led_green AS ICON.
+  ENDCASE.
+
+  WRITE p_msg.
+ENDFORM.                    "WriteMessage
