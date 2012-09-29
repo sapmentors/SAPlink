@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CLAS CLSNAME="ZSAPLINK_OO" VERSION="1" LANGU="E" DESCRIPT="ZSAPLINK - OO class for CLAS and INTF plugin" UUID="505EDF5DE09602D4E1008000C008015A" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" CLSABSTRCT="X" CLSCCINCL="X" FIXPT="X" UNICODE="X" CLSBCCAT="00" DURATION_TYPE="0 " RISK_LEVEL="0 " REFCLSNAME="ZSAPLINK">
+ <localImplementation>*&quot;* local class implementation for public class
+*&quot;* use this source file for the implementation part of
+*&quot;* local helper classes</localImplementation>
+ <localTypes>*&quot;* use this source file for any type declarations (class
+*&quot;* definitions, interfaces or data types) you need for method
+*&quot;* implementation or private method&apos;s signature</localTypes>
+ <localMacros>*&quot;* use this source file for any macro definitions you need
+*&quot;* in the implementation part of the class</localMacros>
+ <typeUsage CLSNAME="ZSAPLINK_OO" TYPEGROUP="ABAP" VERSION="1" TPUTYPE="0" EXPLICIT="X"/>
+ <typeUsage CLSNAME="ZSAPLINK_OO" TYPEGROUP="SEOP" VERSION="1" TPUTYPE="0" EXPLICIT="X"/>
+ <typeUsage CLSNAME="ZSAPLINK_OO" TYPEGROUP="SEOR" VERSION="1" TPUTYPE="0" EXPLICIT="X"/>
+ <typeUsage CLSNAME="ZSAPLINK_OO" TYPEGROUP="SEOS" VERSION="1" TPUTYPE="0" EXPLICIT="X"/>
+ <typeUsage CLSNAME="ZSAPLINK_OO" TYPEGROUP="SEOT" VERSION="1" TPUTYPE="0" EXPLICIT="X"/>
+ <typeUsage CLSNAME="ZSAPLINK_OO" TYPEGROUP="SEOX" VERSION="1" TPUTYPE="0" EXPLICIT="X"/>
+ <forwardDeclaration>ABAP</forwardDeclaration>
+ <forwardDeclaration>SEOP</forwardDeclaration>
+ <forwardDeclaration>SEOR</forwardDeclaration>
+ <forwardDeclaration>SEOS</forwardDeclaration>
+ <forwardDeclaration>SEOT</forwardDeclaration>
+ <forwardDeclaration>SEOX</forwardDeclaration>
+ <attribute CLSNAME="ZSAPLINK_OO" CMPNAME="C_XML_KEY_ALIAS_METHOD" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="1 " ATTDECLTYP="2" ATTVALUE="&apos;aliasMethod&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+ <attribute CLSNAME="ZSAPLINK_OO" CMPNAME="C_XML_KEY_CLSDEFERRD" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="2 " ATTDECLTYP="2" ATTVALUE="&apos;typeClasDef&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+ <attribute CLSNAME="ZSAPLINK_OO" CMPNAME="C_XML_KEY_FORWARDDECLARATION" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="3 " ATTDECLTYP="2" ATTVALUE="&apos;forwardDeclaration&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+ <attribute CLSNAME="ZSAPLINK_OO" CMPNAME="C_XML_KEY_INTDEFERRD" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="4 " ATTDECLTYP="2" ATTVALUE="&apos;typeIntfDef&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+ <attribute CLSNAME="ZSAPLINK_OO" CMPNAME="C_XML_KEY_TYPEPUSAGE" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="5 " ATTDECLTYP="2" ATTVALUE="&apos;typeUsage&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+ <inheritance CLSNAME="ZSAPLINK_OO" REFCLSNAME="ZSAPLINK" VERSION="1" STATE="1"/>
+ <method CLSNAME="ZSAPLINK_OO" CMPNAME="CREATE_ALIAS_METHOD" VERSION="1" LANGU="E" DESCRIPT="Create alias for method" EXPOSURE="1" STATE="1" EDITORDER="1 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="CREATE_ALIAS_METHOD" SCONAME="XT_ALIASES_METHOD" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="SEOO_ALIASES_R"/>
+  <source>method CREATE_ALIAS_METHOD.
+  DATA: filter TYPE REF TO if_ixml_node_filter,
+        iterator TYPE REF TO if_ixml_node_iterator,
+        node TYPE REF TO if_ixml_element.
+
+  DATA: ls_alias_method  LIKE LINE OF xt_aliases_method.
+
+
+  filter = xmldoc-&gt;create_filter_name( c_xml_key_alias_method ).
+  iterator = xmldoc-&gt;create_iterator_filtered( filter ).
+  node ?= iterator-&gt;get_next( ).
+  WHILE node IS NOT INITIAL.
+    CLEAR ls_alias_method.
+    CALL METHOD getstructurefromattributes
+      EXPORTING
+        node      = node
+      CHANGING
+        structure = ls_alias_method.
+    INSERT ls_alias_method INTO TABLE xt_aliases_method.
+    node ?= iterator-&gt;get_next( ).
+  ENDWHILE.
+
+endmethod.</source>
+ </method>
+ <method CLSNAME="ZSAPLINK_OO" CMPNAME="CREATE_CLSDEFERRD" VERSION="1" LANGU="E" DESCRIPT="Create class deferred" EXPOSURE="1" STATE="1" EDITORDER="2 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="CREATE_CLSDEFERRD" SCONAME="XT_CLSDEFERRDS" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="SEOT_CLSDEFERRDS_R"/>
+  <source>method CREATE_CLSDEFERRD.
+  DATA: filter TYPE REF TO if_ixml_node_filter,
+        iterator TYPE REF TO if_ixml_node_iterator,
+        node TYPE REF TO if_ixml_element.
+
+  DATA: ls_clsdeferrd  LIKE LINE OF xt_clsdeferrds.
+
+
+  filter   = xmldoc-&gt;create_filter_name( c_xml_key_clsdeferrd ).
+  iterator = xmldoc-&gt;create_iterator_filtered( filter ).
+  node ?= iterator-&gt;get_next( ).
+
+  WHILE node IS NOT INITIAL.
+    CALL METHOD getstructurefromattributes
+      EXPORTING
+        node      = node
+      CHANGING
+        structure = ls_clsdeferrd.
+    APPEND ls_clsdeferrd TO xt_clsdeferrds.
+    node ?= iterator-&gt;get_next( ).
+  ENDWHILE.
+
+endmethod.</source>
+ </method>
+ <method CLSNAME="ZSAPLINK_OO" CMPNAME="CREATE_INTDEFERRD" VERSION="1" LANGU="E" DESCRIPT="Create interface deferred" EXPOSURE="1" STATE="1" EDITORDER="3 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="CREATE_INTDEFERRD" SCONAME="XT_INTDEFERRDS" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="SEOT_INTDEFERRDS_R"/>
+  <source>method CREATE_INTDEFERRD.
+  DATA: filter TYPE REF TO if_ixml_node_filter,
+        iterator TYPE REF TO if_ixml_node_iterator,
+        node TYPE REF TO if_ixml_element.
+
+  DATA: ls_intdeferrd  LIKE LINE OF xt_intdeferrds.
+
+
+  filter   = xmldoc-&gt;create_filter_name( c_xml_key_intdeferrd ).
+  iterator = xmldoc-&gt;create_iterator_filtered( filter ).
+  node ?= iterator-&gt;get_next( ).
+
+  WHILE node IS NOT INITIAL.
+    CALL METHOD getstructurefromattributes
+      EXPORTING
+        node      = node
+      CHANGING
+        structure = ls_intdeferrd.
+    APPEND ls_intdeferrd TO xt_intdeferrds.
+    node ?= iterator-&gt;get_next( ).
+  ENDWHILE.
+
+endmethod.</source>
+ </method>
+ <method CLSNAME="ZSAPLINK_OO" CMPNAME="CREATE_TYPEPUSAGE" VERSION="1" LANGU="E" DESCRIPT="Create type pool usage" EXPOSURE="1" STATE="1" EDITORDER="4 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="CREATE_TYPEPUSAGE" SCONAME="XT_TYPEPUSAGES" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="SEOT_TYPEPUSAGES_R"/>
+  <source>method CREATE_TYPEPUSAGE.
+  DATA: filter   TYPE REF TO if_ixml_node_filter,
+        iterator TYPE REF TO if_ixml_node_iterator,
+        node     TYPE REF TO if_ixml_element,
+        source   TYPE string.
+
+
+  DATA: ls_typepusage  LIKE LINE OF xt_typepusages.
+
+*rrq comments Forward nodes are created in an old version of the
+*create XML from object.  In that node, the only attribute set
+*is the &quot;TypeGroup&quot;.  All other attributes are hard coded on the
+*create Object from XML .  To fix this and make it transparent to
+*users, &quot;forwaredDeclaration&quot; nodes will be supported, and a new
+*node will be added.
+*if it is an old version XML document, forwardDeclarations nodes
+*if it is a new version XML document, typeUsages nodes
+
+  filter   = xmldoc-&gt;create_filter_name( c_xml_key_typepusage ).
+  iterator = xmldoc-&gt;create_iterator_filtered( filter ).
+  node ?= iterator-&gt;get_next( ).
+
+  WHILE node IS NOT INITIAL.
+    CALL METHOD getstructurefromattributes
+      EXPORTING
+        node      = node
+      CHANGING
+        structure = ls_typepusage.
+    APPEND ls_typepusage TO xt_typepusages.
+    node ?= iterator-&gt;get_next( ).
+  ENDWHILE.
+
+* only check forwardDeclaration if typeUsages does not exist
+* later version this will be removed
+  IF xt_typepusages IS INITIAL.
+    filter = xmldoc-&gt;create_filter_name( c_xml_key_forwarddeclaration ).
+    iterator = xmldoc-&gt;create_iterator_filtered( filter ).
+    node ?= iterator-&gt;get_next( ).
+
+    WHILE node IS NOT INITIAL.
+      CLEAR ls_typepusage.
+      source = node-&gt;get_value( ).
+      ls_typepusage-clsname = objname.
+      ls_typepusage-version = &apos;0&apos;.
+      ls_typepusage-tputype = &apos;0&apos;.
+      ls_typepusage-explicit =  &apos;X&apos;.
+      ls_typepusage-implicit = &apos;&apos;.
+      ls_typepusage-typegroup = source.
+      APPEND ls_typepusage TO xt_typepusages.
+      node ?= iterator-&gt;get_next( ).
+    ENDWHILE.
+  ENDIF.
+
+endmethod.</source>
+ </method>
+ <method CLSNAME="ZSAPLINK_OO" CMPNAME="GET_ALIAS_METHOD" VERSION="1" LANGU="E" DESCRIPT="Get alias for method" EXPOSURE="1" STATE="1" EDITORDER="5 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="GET_ALIAS_METHOD" SCONAME="IT_METHODS" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="ABAP_METHDESCR_TAB"/>
+  <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="GET_ALIAS_METHOD" SCONAME="XO_ROOTNODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
+  <source>METHOD get_alias_method.
+  DATA lo_alias  TYPE REF TO if_ixml_element.
+  DATA ls_alias  TYPE seoaliases.
+  DATA: l_rc     TYPE sy-subrc,
+        ls_method LIKE LINE OF it_methods,
+        ls_clsmethkey TYPE seocmpkey.
+
+  LOOP AT it_methods INTO ls_method.
+    ls_clsmethkey-clsname = objname.
+    ls_clsmethkey-cmpname = ls_method-name.
+    CLEAR ls_alias.
+    CALL FUNCTION &apos;SEO_ALIAS_GET&apos;
+     EXPORTING
+       cmpkey             = ls_clsmethkey
+*       VERSION            = SEOC_VERSION_INACTIVE
+     IMPORTING
+       alias              = ls_alias
+     EXCEPTIONS
+       not_existing       = 1
+       deleted            = 2
+       OTHERS             = 3
+             .
+    IF sy-subrc &lt;&gt; 0.
+* MESSAGE ID SY-MSGID TYPE SY-MSGTY NUMBER SY-MSGNO
+*         WITH SY-MSGV1 SY-MSGV2 SY-MSGV3 SY-MSGV4.
+    ELSE.
+      lo_alias = xmldoc-&gt;create_element( c_xml_key_alias_method ).
+      setattributesfromstructure( node      = lo_alias
+                                  structure = ls_alias ).
+      l_rc = xo_rootnode-&gt;append_child( lo_alias ).
+    ENDIF.
+  ENDLOOP.
+
+ENDMETHOD.</source>
+ </method>
+ <method CLSNAME="ZSAPLINK_OO" CMPNAME="GET_CLSDEFERRD" VERSION="1" LANGU="E" DESCRIPT="Get class deferred" EXPOSURE="1" STATE="1" EDITORDER="6 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="GET_CLSDEFERRD" SCONAME="XO_ROOTNODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
+  <source>method GET_CLSDEFERRD.
+  DATA: lt_clsdeferrds     TYPE seot_clsdeferrds_r,
+        lo_clsdeferrds     TYPE REF TO if_ixml_element,
+        ls_clsdeferrd      TYPE seot_typepusage_r.
+
+  DATA: l_rc               TYPE sy-subrc,
+        ls_classkey        TYPE seoclskey.
+
+  ls_classkey-clsname = objname.
+
+  CALL FUNCTION &apos;SEO_CLSDEFERRD_READ_ALL&apos;
+    EXPORTING
+      cifkey            = ls_classkey
+      version           = seoc_version_active
+    IMPORTING
+      CLASSDEFERREDS    = lt_clsdeferrds
+    EXCEPTIONS
+      clif_not_existing = 1
+      OTHERS            = 2.
+
+  LOOP AT lt_clsdeferrds INTO ls_clsdeferrd.
+    lo_clsdeferrds = xmldoc-&gt;create_element( c_xml_key_clsdeferrd ).
+    setattributesfromstructure( node      = lo_clsdeferrds
+                                structure = ls_clsdeferrd ).
+    l_rc = xo_rootnode-&gt;append_child( lo_clsdeferrds ).
+  ENDLOOP.
+endmethod.</source>
+ </method>
+ <method CLSNAME="ZSAPLINK_OO" CMPNAME="GET_INTDEFERRD" VERSION="1" LANGU="E" DESCRIPT="Get interface deferred" EXPOSURE="1" STATE="1" EDITORDER="7 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="GET_INTDEFERRD" SCONAME="XO_ROOTNODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
+  <source>method GET_INTDEFERRD.
+  DATA: lt_intdeferrds     TYPE seot_intdeferrds_r,
+        lo_intdeferrds     TYPE REF TO if_ixml_element,
+        ls_intdeferrd      TYPE seot_intdeferrd_r.
+
+  DATA: l_rc               TYPE sy-subrc,
+        ls_classkey        TYPE seoclskey.
+
+  ls_classkey-clsname = objname.
+
+  CALL FUNCTION &apos;SEO_INTDEFERRD_READ_ALL&apos;
+    EXPORTING
+      cifkey             = ls_classkey
+      version            = seoc_version_active
+    IMPORTING
+      interfacedeferreds = lt_intdeferrds
+    EXCEPTIONS
+      clif_not_existing  = 1
+      OTHERS             = 2.
+
+  LOOP AT lt_intdeferrds INTO ls_intdeferrd.
+    lo_intdeferrds = xmldoc-&gt;create_element( c_xml_key_intdeferrd ).
+    setattributesfromstructure( node      = lo_intdeferrds
+                                structure = ls_intdeferrd ).
+    l_rc = xo_rootnode-&gt;append_child( lo_intdeferrds ).
+  ENDLOOP.
+
+endmethod.</source>
+ </method>
+ <method CLSNAME="ZSAPLINK_OO" CMPNAME="GET_TYPEPUSAGE" VERSION="1" LANGU="E" DESCRIPT="Get type pool usage" EXPOSURE="1" STATE="1" EDITORDER="8 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="GET_TYPEPUSAGE" SCONAME="XO_ROOTNODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
+  <source>method GET_TYPEPUSAGE.
+  DATA: lt_typepusages     TYPE seot_typepusages_r,
+        lo_typepusages     TYPE REF TO if_ixml_element,
+        ls_typepusage      TYPE seot_typepusage_r.
+
+  DATA: l_rc               TYPE sy-subrc,
+        l_string           TYPE string,
+        ls_classkey        TYPE seoclskey.
+
+  ls_classkey-clsname = objname.
+
+  CALL FUNCTION &apos;SEO_TYPEPUSAGE_READ_ALL&apos;
+    EXPORTING
+      cifkey            = ls_classkey
+      version           = seoc_version_active
+    IMPORTING
+      typepusages       = lt_typepusages
+    EXCEPTIONS
+      clif_not_existing = 1
+      OTHERS            = 2.
+
+  LOOP AT lt_typepusages INTO ls_typepusage.
+    lo_typepusages = xmldoc-&gt;create_element( c_xml_key_typepusage ).
+    setattributesfromstructure( node      = lo_typepusages
+                                structure = ls_typepusage ).
+    l_rc = xo_rootnode-&gt;append_child( lo_typepusages ).
+  ENDLOOP.
+
+*ewH: for version 0.1.3, we will continue to generate both nodes
+* in order for upgradeability of saplink itself.  For version
+* 2.0, forwardDeclaration node generations will be deprecated.
+  LOOP AT lt_typepusages INTO ls_typepusage.
+    lo_typepusages = xmldoc-&gt;create_element( c_xml_key_forwarddeclaration ).
+    l_string       = ls_typepusage-typegroup.
+    l_rc = lo_typepusages-&gt;if_ixml_node~set_value( l_string ).
+    l_rc = xo_rootnode-&gt;append_child( lo_typepusages ).
+  ENDLOOP.
+
+endmethod.</source>
+ </method>
+</CLAS>
