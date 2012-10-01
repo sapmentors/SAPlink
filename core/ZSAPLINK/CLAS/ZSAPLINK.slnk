@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<CLAS CLSNAME="ZSAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink main class" UUID="428D951874B2994889DFAA5532437B0B" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" CLSABSTRCT="X" CLSCCINCL="X" FIXPT="X" UNICODE="X" CLSBCCAT="00" WITH_UNIT_TESTS="X" DURATION_TYPE="0 " RISK_LEVEL="0 ">
+<CLAS CLSNAME="ZSAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink main class" UUID="506292E1148A0174E1008000C008015A" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" CLSABSTRCT="X" CLSCCINCL="X" FIXPT="X" UNICODE="X" CLSBCCAT="00" WITH_UNIT_TESTS="X" DURATION_TYPE="0 " RISK_LEVEL="0 ">
  <types CLSNAME="ZSAPLINK" CMPNAME="T_OBJECTTABLE" VERSION="1" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="1 " TYPTYPE="4" SRCROW1="6 " SRCCOLUMN1="4 " SRCROW2="10 " SRCCOLUMN2="28 " TYPESRC_LENG="158 " TYPESRC="BEGIN OF t_objecttable,
            classname TYPE string,
            object TYPE ko100-object,
@@ -339,10 +339,10 @@ endmethod.</source>
   <parameter CLSNAME="ZSAPLINK" CMPNAME="CREATEIXMLDOCFROMOBJECT" SCONAME="IXMLDOCUMENT" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_DOCUMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_DOCUMENT"/>
   <exception CLSNAME="ZSAPLINK" CMPNAME="CREATEIXMLDOCFROMOBJECT" SCONAME="ZCX_SAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 "/>
  </method>
- <method CLSNAME="ZSAPLINK" CMPNAME="CREATENODEFROMOTR" VERSION="1" LANGU="E" DESCRIPT="Creates an XML node from an OTR object" EXPOSURE="1" STATE="1" EDITORDER="2 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" MTDFINAL="X" BCMTDCAT="00" BCMTDSYN="0">
+ <method CLSNAME="ZSAPLINK" CMPNAME="CREATENODEFROMOTR" VERSION="1" LANGU="E" DESCRIPT="Creates an XML node from an OTR object" EXPOSURE="1" STATE="1" EDITORDER="12 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZSAPLINK" CMPNAME="CREATENODEFROMOTR" SCONAME="OTRGUID" VERSION="1" LANGU="E" DESCRIPT="Key for Logical Object in the OTR" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="SOTR_CONC"/>
   <parameter CLSNAME="ZSAPLINK" CMPNAME="CREATENODEFROMOTR" SCONAME="NODE" VERSION="1" LANGU="E" DESCRIPT="xml Element" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
-  <source>method CREATENODEFROMOTR.
+  <source>METHOD CREATENODEFROMOTR.
 */---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
@@ -353,56 +353,55 @@ endmethod.</source>
 *|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
 *|   support.                                                          |
 *\---------------------------------------------------------------------/
-data rootNode type ref to if_ixml_element.
-data txtNode type ref to if_ixml_element.
-data rc type sysubrc.
+  DATA rootnode TYPE REF TO if_ixml_element.
+  DATA txtnode TYPE REF TO if_ixml_element.
+  DATA rc TYPE sysubrc.
 
-data sotrHeader type SOTR_HEAD.
-data sotrTextLine type SOTR_TEXT.
-data sotrTextTable type table of SOTR_TEXT.
+  DATA sotrheader TYPE sotr_head.
+  DATA sotrtextline TYPE sotr_text.
+  DATA sotrtexttable TYPE TABLE OF sotr_text.
 
-data _ixml type ref to IF_IXML.
-data _XMLDOC type ref to IF_IXML_DOCUMENT.
+  DATA _ixml TYPE REF TO if_ixml.
+  DATA _xmldoc TYPE REF TO if_ixml_document.
 
   CALL FUNCTION &apos;SOTR_GET_CONCEPT&apos;
     EXPORTING
-      concept              = otrguid
+      concept        = otrguid
     IMPORTING
-      HEADER               = sotrHeader
+      header         = sotrheader
     TABLES
-      ENTRIES              = sotrTextTable
-   EXCEPTIONS
-     NO_ENTRY_FOUND       = 1
-     OTHERS               = 2
-            .
+      entries        = sotrtexttable
+    EXCEPTIONS
+      no_entry_found = 1
+      OTHERS         = 2.
   IF sy-subrc &lt;&gt; 0.
-    exit.
+    EXIT.
   ENDIF.
 
-  sotrHeader-paket = &apos;$TMP&apos;. &quot;change devclass to $TMP for exports
+  sotrheader-paket = &apos;$TMP&apos;. &quot;change devclass to $TMP for exports
 
 * Create xml doc
-  _ixml = cl_ixml=&gt;create( ).
-  _xmlDoc = _ixml-&gt;create_document( ).
-  streamFactory = _ixml-&gt;CREATE_STREAM_FACTORY( ).
+*  _ixml = cl_ixml=&gt;create( ).
+*  _xmldoc = _ixml-&gt;create_document( ).
+*  streamfactory = _ixml-&gt;create_stream_factory( ).
 
 * Create parent node
-  rootNode = _xmlDoc-&gt;create_element( &apos;sotr&apos; ). &quot;OTR object type
-  clear sotrHeader-concept. &quot;ewH:33
-  setAttributesFromStructure( node = rootNode structure = sotrHeader ).
+  rootnode = xmldoc-&gt;create_element( zsaplink_oo=&gt;c_xml_key_sotr ). &quot;OTR object type
+  CLEAR sotrheader-concept.                                 &quot;ewH:33
+  setattributesfromstructure( node = rootnode structure = sotrheader ).
 
 * Create nodes for texts
-  loop at sotrTextTable into sotrTextLine.
-    txtNode = _xmlDoc-&gt;create_element( &apos;sotrText&apos; ).
-    clear: sotrTextLine-concept, sotrTextLine-object. &quot;ewH:33
-    setAttributesFromStructure(
-      node = txtNode structure = sotrTextLine ).
-    rc = rootNode-&gt;append_child( txtNode ).
-  endloop.
+  LOOP AT sotrtexttable INTO sotrtextline.
+    txtnode = xmldoc-&gt;create_element( zsaplink_oo=&gt;c_xml_key_sotrtext ).
+    CLEAR: sotrtextline-concept, sotrtextline-object.       &quot;ewH:33
+    setattributesfromstructure(
+      node = txtnode structure = sotrtextline ).
+    rc = rootnode-&gt;append_child( txtnode ).
+  ENDLOOP.
 
-  node = rootNode.
+  node = rootnode.
 
-endmethod.</source>
+ENDMETHOD.</source>
  </method>
  <method CLSNAME="ZSAPLINK" CMPNAME="CREATEOBJECTFROMIXMLDOC" VERSION="1" LANGU="E" DESCRIPT="Creates Object on System from IXMLDocument passed in" EXPOSURE="2" STATE="1" EDITORDER="4 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" MTDABSTRCT="X" MTDNEWEXC="X" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZSAPLINK" CMPNAME="CREATEOBJECTFROMIXMLDOC" SCONAME="IXMLDOCUMENT" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_DOCUMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_DOCUMENT"/>
@@ -411,12 +410,12 @@ endmethod.</source>
   <parameter CLSNAME="ZSAPLINK" CMPNAME="CREATEOBJECTFROMIXMLDOC" SCONAME="NAME" VERSION="1" LANGU="E" DESCRIPT="Installed object name" CMPTYPE="1" MTDTYPE="0" EDITORDER="4 " DISPID="0 " PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="1" TYPE="STRING"/>
   <exception CLSNAME="ZSAPLINK" CMPNAME="CREATEOBJECTFROMIXMLDOC" SCONAME="ZCX_SAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 "/>
  </method>
- <method CLSNAME="ZSAPLINK" CMPNAME="CREATEOTRFROMNODE" VERSION="1" LANGU="E" DESCRIPT="Creates or updates an OTR object from XML node" EXPOSURE="1" STATE="1" EDITORDER="9 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" MTDFINAL="X" MTDNEWEXC="X" BCMTDCAT="00" BCMTDSYN="0">
+ <method CLSNAME="ZSAPLINK" CMPNAME="CREATEOTRFROMNODE" VERSION="1" LANGU="E" DESCRIPT="Get an OTR object from XML node" EXPOSURE="1" STATE="1" EDITORDER="11 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZSAPLINK" CMPNAME="CREATEOTRFROMNODE" SCONAME="NODE" VERSION="1" LANGU="E" DESCRIPT="xml Element" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
-  <parameter CLSNAME="ZSAPLINK" CMPNAME="CREATEOTRFROMNODE" SCONAME="DEVCLASS" VERSION="1" LANGU="E" DESCRIPT="Development class/package" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="DEVCLASS" PARVALUE="&apos;$TMP&apos;"/>
+  <parameter CLSNAME="ZSAPLINK" CMPNAME="CREATEOTRFROMNODE" SCONAME="DEVCLASS" VERSION="1" LANGU="E" DESCRIPT="Development class/package" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="DEVCLASS" PARVALUE="&apos;$TMP&apos;" PAROPTIONL="X"/>
   <parameter CLSNAME="ZSAPLINK" CMPNAME="CREATEOTRFROMNODE" SCONAME="CONCEPT" VERSION="1" LANGU="E" DESCRIPT="Key for Logical Object in the OTR" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " PARDECLTYP="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SOTR_TEXT-CONCEPT"/>
   <exception CLSNAME="ZSAPLINK" CMPNAME="CREATEOTRFROMNODE" SCONAME="ZCX_SAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 "/>
-  <source>method CREATEOTRFROMNODE.
+  <source>METHOD CREATEOTRFROMNODE.
 */---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
@@ -427,38 +426,38 @@ endmethod.</source>
 *|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
 *|   support.                                                          |
 *\---------------------------------------------------------------------/
-data txtNode type ref to if_ixml_element.
-data filter type ref to if_ixml_node_filter.
-data iterator type ref to if_ixml_node_iterator.
+  DATA txtnode TYPE REF TO if_ixml_element.
+  DATA filter TYPE REF TO if_ixml_node_filter.
+  DATA iterator TYPE REF TO if_ixml_node_iterator.
 
-data sotrHeader type SOTR_HEAD.
-data sotrTextLine type SOTR_TEXT.
-data sotrTextTable type table of SOTR_TEXT.
-data sotrPaket type SOTR_PACK.
+  DATA sotrheader TYPE sotr_head.
+  DATA sotrtextline TYPE sotr_text.
+  DATA sotrtexttable TYPE TABLE OF sotr_text.
+  DATA sotrpaket TYPE sotr_pack.
 
 * get OTR header info
-  call method GETSTRUCTUREFROMATTRIBUTES
-        exporting
-          node = node
-        changing
-          structure = sotrHeader.
+  CALL METHOD getstructurefromattributes
+    EXPORTING
+      node      = node
+    CHANGING
+      structure = sotrheader.
 
 * get OTR text info
-  filter = node-&gt;create_filter_name( &apos;sotrText&apos; ).
+  filter = node-&gt;create_filter_name( zsaplink_oo=&gt;c_xml_key_sotrText ).
   iterator = node-&gt;create_iterator_filtered( filter ).
-  txtNode ?= iterator-&gt;get_next( ).
+  txtnode ?= iterator-&gt;get_next( ).
 
-  while txtNode is not initial.
-    clear sotrTextLine.
-    call method GETSTRUCTUREFROMATTRIBUTES
-          exporting
-            node = txtNode
-          changing
-            structure = sotrTextLine.
-    clear: sotrTextLine-concept, sotrTextLine-object. &quot;ewH:33
-    append sotrTextLine to sotrTextTable.
-    txtNode ?= iterator-&gt;get_next( ).
-  endwhile.
+  WHILE txtnode IS NOT INITIAL.
+    CLEAR sotrtextline.
+    CALL METHOD getstructurefromattributes
+      EXPORTING
+        node      = txtnode
+      CHANGING
+        structure = sotrtextline.
+    CLEAR: sotrtextline-concept, sotrtextline-object.       &quot;ewH:33
+    APPEND sotrtextline TO sotrtexttable.
+    txtnode ?= iterator-&gt;get_next( ).
+  ENDWHILE.
 
 * ewH:issue 33--&gt; in 6.40 and above, you cannot pass a default concept
 *  (otr) guid, so we will always create new
@@ -496,62 +495,62 @@ data sotrPaket type SOTR_PACK.
 *  ENDIF.
 
 
-data objectTable type SOTR_OBJECTS.
-data objectType type line of SOTR_OBJECTS.
+  DATA objecttable TYPE sotr_objects.
+  DATA objecttype TYPE LINE OF sotr_objects.
 * Retrieve object type of OTR
-  call function &apos;SOTR_OBJECT_GET_OBJECTS&apos;
-    exporting
-      object_vector    = sotrHeader-objid_vec
-    importing
-      objects          = objectTable
-    exceptions
+  CALL FUNCTION &apos;SOTR_OBJECT_GET_OBJECTS&apos;
+    EXPORTING
+      object_vector    = sotrheader-objid_vec
+    IMPORTING
+      OBJECTS          = objecttable
+    EXCEPTIONS
       object_not_found = 1
-      others           = 2.
+      OTHERS           = 2.
 
-  read table objectTable into objectType index 1.
+  READ TABLE objecttable INTO objecttype INDEX 1.
 
 * create OTR
-  sotrPaket-paket = devclass.
+  sotrpaket-paket = devclass.
   CALL FUNCTION &apos;SOTR_CREATE_CONCEPT&apos;
     EXPORTING
-      paket                               = sotrPaket
-      crea_lan                            = sotrHeader-crea_lan
-      ALIAS_NAME                          = sotrHeader-alias_name
+      paket                               = sotrpaket
+      crea_lan                            = sotrheader-crea_lan
+      alias_name                          = sotrheader-alias_name
 *      CATEGORY                            =
-      object                              = objectType
-      entries                             = sotrTextTable
+      object                              = objecttype
+      entries                             = sotrtexttable
 *     FLAG_CORRECTION_ENTRY               =
 *     IN_UPDATE_TASK                      =
 *      CONCEPT_DEFAULT                     = sotrHeader-concept &quot;ewH:33
     IMPORTING
-      CONCEPT                             = concept &quot;ewH:33
-*   EXCEPTIONS
-*     PACKAGE_MISSING                     = 1
-*     CREA_LAN_MISSING                    = 2
-*     OBJECT_MISSING                      = 3
-*     PAKET_DOES_NOT_EXIST                = 4
-*     ALIAS_ALREADY_EXIST                 = 5
-*     OBJECT_TYPE_NOT_FOUND               = 6
-*     LANGU_MISSING                       = 7
-*     IDENTICAL_CONTEXT_NOT_ALLOWED       = 8
-*     TEXT_TOO_LONG                       = 9
-*     ERROR_IN_UPDATE                     = 10
-*     NO_MASTER_LANGU                     = 11
-*     ERROR_IN_CONCEPT_ID                 = 12
-*     ALIAS_NOT_ALLOWED                   = 13
-*     TADIR_ENTRY_CREATION_FAILED         = 14
-*     INTERNAL_ERROR                      = 15
-*     ERROR_IN_CORRECTION                 = 16
-*     USER_CANCELLED                      = 17
-*     NO_ENTRY_FOUND                      = 18
-*     OTHERS                              = 19
+      concept                             = concept         &quot;ewH:33
+    EXCEPTIONS
+      package_missing                     = 1
+      crea_lan_missing                    = 2
+      object_missing                      = 3
+      paket_does_not_exist                = 4
+      alias_already_exist                 = 5
+      object_type_not_found               = 6
+      langu_missing                       = 7
+      identical_context_not_allowed       = 8
+      text_too_long                       = 9
+      error_in_update                     = 10
+      no_master_langu                     = 11
+      error_in_concept_id                 = 12
+      alias_not_allowed                   = 13
+      tadir_entry_creation_failed         = 14
+      internal_error                      = 15
+      error_in_correction                 = 16
+      user_cancelled                      = 17
+      no_entry_found                      = 18
+      OTHERS                              = 19
             .
   IF sy-subrc &lt;&gt; 0.
 *   MESSAGE ID SY-MSGID TYPE SY-MSGTY NUMBER SY-MSGNO
 *           WITH SY-MSGV1 SY-MSGV2 SY-MSGV3 SY-MSGV4.
   ENDIF.
 
-endmethod.</source>
+ENDMETHOD.</source>
  </method>
  <method CLSNAME="ZSAPLINK" CMPNAME="CREATESTRINGFROMOBJECT" VERSION="1" LANGU="E" DESCRIPT="Creates a String from the OBJNAME Attribute" EXPOSURE="2" STATE="1" EDITORDER="5 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZSAPLINK" CMPNAME="CREATESTRINGFROMOBJECT" SCONAME="STRING" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="1" TYPE="STRING"/>
@@ -629,7 +628,7 @@ endmethod.</source>
  </method>
  <method CLSNAME="ZSAPLINK" CMPNAME="GETPLUGINS" VERSION="1" LANGU="E" DESCRIPT="Get installed saplink plugins" EXPOSURE="2" STATE="1" EDITORDER="8 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="1" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZSAPLINK" CMPNAME="GETPLUGINS" SCONAME="OBJECTTABLE" VERSION="1" LANGU="E" DESCRIPT="Installed Plugin Table" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="0" TYPTYPE="1" TYPE="TABLE"/>
-  <source>method GETPLUGINS.
+  <source>METHOD getplugins.
 */---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
@@ -686,7 +685,7 @@ endmethod.</source>
       APPEND objectline TO objecttable.
     ENDLOOP.
   ENDLOOP.
-endmethod.</source>
+ENDMETHOD.</source>
  </method>
  <method CLSNAME="ZSAPLINK" CMPNAME="GETSTRUCTUREFROMATTRIBUTES" VERSION="1" LANGU="E" DESCRIPT="Updates a structure with node attributes" EXPOSURE="1" STATE="1" EDITORDER="4 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="1" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZSAPLINK" CMPNAME="GETSTRUCTUREFROMATTRIBUTES" SCONAME="NODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>

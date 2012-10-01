@@ -23,7 +23,11 @@
  <attribute CLSNAME="ZSAPLINK_OO" CMPNAME="C_XML_KEY_ALIAS_METHOD" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="1 " ATTDECLTYP="2" ATTVALUE="&apos;aliasMethod&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
  <attribute CLSNAME="ZSAPLINK_OO" CMPNAME="C_XML_KEY_CLSDEFERRD" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="2 " ATTDECLTYP="2" ATTVALUE="&apos;typeClasDef&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
  <attribute CLSNAME="ZSAPLINK_OO" CMPNAME="C_XML_KEY_FORWARDDECLARATION" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="3 " ATTDECLTYP="2" ATTVALUE="&apos;forwardDeclaration&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+ <attribute CLSNAME="ZSAPLINK_OO" CMPNAME="C_XML_KEY_FRIENDS" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="6 " ATTDECLTYP="2" ATTVALUE="&apos;friends&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+ <attribute CLSNAME="ZSAPLINK_OO" CMPNAME="C_XML_KEY_INHERITANCE" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="7 " ATTDECLTYP="2" ATTVALUE="&apos;inheritance&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
  <attribute CLSNAME="ZSAPLINK_OO" CMPNAME="C_XML_KEY_INTDEFERRD" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="4 " ATTDECLTYP="2" ATTVALUE="&apos;typeIntfDef&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+ <attribute CLSNAME="ZSAPLINK_OO" CMPNAME="C_XML_KEY_SOTR" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="8 " ATTDECLTYP="2" ATTVALUE="&apos;sotr&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+ <attribute CLSNAME="ZSAPLINK_OO" CMPNAME="C_XML_KEY_SOTRTEXT" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="9 " ATTDECLTYP="2" ATTVALUE="&apos;sotrText&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
  <attribute CLSNAME="ZSAPLINK_OO" CMPNAME="C_XML_KEY_TYPEPUSAGE" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="5 " ATTDECLTYP="2" ATTVALUE="&apos;typeUsage&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
  <inheritance CLSNAME="ZSAPLINK_OO" REFCLSNAME="ZSAPLINK" VERSION="1" STATE="1"/>
  <method CLSNAME="ZSAPLINK_OO" CMPNAME="CREATE_ALIAS_METHOD" VERSION="1" LANGU="E" DESCRIPT="Create alias for method" EXPOSURE="1" STATE="1" EDITORDER="1 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
@@ -104,7 +108,149 @@ endmethod.</source>
 
 endmethod.</source>
  </method>
- <method CLSNAME="ZSAPLINK_OO" CMPNAME="CREATE_TYPEPUSAGE" VERSION="1" LANGU="E" DESCRIPT="Create type pool usage" EXPOSURE="1" STATE="1" EDITORDER="4 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+ <method CLSNAME="ZSAPLINK_OO" CMPNAME="CREATE_OTR" VERSION="1" LANGU="E" DESCRIPT="Get an OTR object from XML node" EXPOSURE="1" STATE="1" EDITORDER="4 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="CREATE_OTR" SCONAME="NODE" VERSION="1" LANGU="E" DESCRIPT="xml Element" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
+  <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="CREATE_OTR" SCONAME="DEVCLASS" VERSION="1" LANGU="E" DESCRIPT="Development class/package" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="DEVCLASS" PARVALUE="&apos;$TMP&apos;" PAROPTIONL="X"/>
+  <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="CREATE_OTR" SCONAME="CONCEPT" VERSION="1" LANGU="E" DESCRIPT="Key for Logical Object in the OTR" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " PARDECLTYP="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SOTR_TEXT-CONCEPT"/>
+  <exception CLSNAME="ZSAPLINK_OO" CMPNAME="CREATE_OTR" SCONAME="ZCX_SAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 "/>
+  <source>METHOD create_otr.
+*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   The code of this project is provided to you under the current     |
+*|   version of the SAP Code Exchange Terms of Use. You can find the   |
+*|   text on the SAP Code Exchange webpage at http://www.sdn.sap.com   |
+*|                                                                     |
+*|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
+*|   support.                                                          |
+*\---------------------------------------------------------------------/
+  DATA txtnode TYPE REF TO if_ixml_element.
+  DATA filter TYPE REF TO if_ixml_node_filter.
+  DATA iterator TYPE REF TO if_ixml_node_iterator.
+
+  DATA sotrheader TYPE sotr_head.
+  DATA sotrtextline TYPE sotr_text.
+  DATA sotrtexttable TYPE TABLE OF sotr_text.
+  DATA sotrpaket TYPE sotr_pack.
+
+* get OTR header info
+  CALL METHOD getstructurefromattributes
+    EXPORTING
+      node      = node
+    CHANGING
+      structure = sotrheader.
+
+* get OTR text info
+  filter = node-&gt;create_filter_name( c_xml_key_sotrText ).
+  iterator = node-&gt;create_iterator_filtered( filter ).
+  txtnode ?= iterator-&gt;get_next( ).
+
+  WHILE txtnode IS NOT INITIAL.
+    CLEAR sotrtextline.
+    CALL METHOD getstructurefromattributes
+      EXPORTING
+        node      = txtnode
+      CHANGING
+        structure = sotrtextline.
+    CLEAR: sotrtextline-concept, sotrtextline-object.       &quot;ewH:33
+    APPEND sotrtextline TO sotrtexttable.
+    txtnode ?= iterator-&gt;get_next( ).
+  ENDWHILE.
+
+* ewH:issue 33--&gt; in 6.40 and above, you cannot pass a default concept
+*  (otr) guid, so we will always create new
+*  CALL FUNCTION &apos;SOTR_GET_CONCEPT&apos;
+*    EXPORTING
+*      concept              = sotrHeader-concept
+**   IMPORTING
+**     HEADER               =
+**   TABLES
+**     ENTRIES              =
+*   EXCEPTIONS
+*     NO_ENTRY_FOUND       = 1
+*     OTHERS               = 2
+*            .
+*  IF sy-subrc &lt;&gt; 1.
+**   delete OTR if exists already
+*    CALL FUNCTION &apos;SOTR_DELETE_CONCEPT&apos;
+*      EXPORTING
+*        concept                     = sotrHeader-concept
+*     EXCEPTIONS
+*       NO_AUTHORIZATION            = 1
+*       NO_ENTRY_FOUND              = 2. &quot;who cares
+**       CONCEPT_USED                = 3
+**       NO_MASTER_LANGUAGE          = 4
+**       NO_SOURCE_SYSTEM            = 5
+**       NO_TADIR_ENTRY              = 6
+**       ERROR_IN_CORRECTION         = 7
+**       USER_CANCELLED              = 8
+**       OTHERS                      = 9
+**              .
+*    if sy-subrc = 1.
+*      raise exception type zcx_saplink
+*        exporting textid = zcx_saplink=&gt;not_authorized.
+*    endif.
+*  ENDIF.
+
+
+  DATA objecttable TYPE sotr_objects.
+  DATA objecttype TYPE LINE OF sotr_objects.
+* Retrieve object type of OTR
+  CALL FUNCTION &apos;SOTR_OBJECT_GET_OBJECTS&apos;
+    EXPORTING
+      object_vector    = sotrheader-objid_vec
+    IMPORTING
+      OBJECTS          = objecttable
+    EXCEPTIONS
+      object_not_found = 1
+      OTHERS           = 2.
+
+  READ TABLE objecttable INTO objecttype INDEX 1.
+
+* create OTR
+  sotrpaket-paket = devclass.
+  CALL FUNCTION &apos;SOTR_CREATE_CONCEPT&apos;
+    EXPORTING
+      paket                               = sotrpaket
+      crea_lan                            = sotrheader-crea_lan
+      alias_name                          = sotrheader-alias_name
+*      CATEGORY                            =
+      object                              = objecttype
+      entries                             = sotrtexttable
+*     FLAG_CORRECTION_ENTRY               =
+*     IN_UPDATE_TASK                      =
+*      CONCEPT_DEFAULT                     = sotrHeader-concept &quot;ewH:33
+    IMPORTING
+      concept                             = concept         &quot;ewH:33
+    EXCEPTIONS
+      package_missing                     = 1
+      crea_lan_missing                    = 2
+      object_missing                      = 3
+      paket_does_not_exist                = 4
+      alias_already_exist                 = 5
+      object_type_not_found               = 6
+      langu_missing                       = 7
+      identical_context_not_allowed       = 8
+      text_too_long                       = 9
+      error_in_update                     = 10
+      no_master_langu                     = 11
+      error_in_concept_id                 = 12
+      alias_not_allowed                   = 13
+      tadir_entry_creation_failed         = 14
+      internal_error                      = 15
+      error_in_correction                 = 16
+      user_cancelled                      = 17
+      no_entry_found                      = 18
+      OTHERS                              = 19
+            .
+  IF sy-subrc &lt;&gt; 0.
+*   MESSAGE ID SY-MSGID TYPE SY-MSGTY NUMBER SY-MSGNO
+*           WITH SY-MSGV1 SY-MSGV2 SY-MSGV3 SY-MSGV4.
+  ENDIF.
+
+ENDMETHOD.</source>
+ </method>
+ <method CLSNAME="ZSAPLINK_OO" CMPNAME="CREATE_TYPEPUSAGE" VERSION="1" LANGU="E" DESCRIPT="Create type pool usage" EXPOSURE="1" STATE="1" EDITORDER="5 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="CREATE_TYPEPUSAGE" SCONAME="XT_TYPEPUSAGES" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="SEOT_TYPEPUSAGES_R"/>
   <source>method CREATE_TYPEPUSAGE.
   DATA: filter   TYPE REF TO if_ixml_node_filter,
@@ -161,7 +307,7 @@ endmethod.</source>
 
 endmethod.</source>
  </method>
- <method CLSNAME="ZSAPLINK_OO" CMPNAME="GET_ALIAS_METHOD" VERSION="1" LANGU="E" DESCRIPT="Get alias for method" EXPOSURE="1" STATE="1" EDITORDER="5 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+ <method CLSNAME="ZSAPLINK_OO" CMPNAME="GET_ALIAS_METHOD" VERSION="1" LANGU="E" DESCRIPT="Get alias for method" EXPOSURE="1" STATE="1" EDITORDER="6 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="GET_ALIAS_METHOD" SCONAME="IT_METHODS" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="ABAP_METHDESCR_TAB"/>
   <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="GET_ALIAS_METHOD" SCONAME="XO_ROOTNODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
   <source>METHOD get_alias_method.
@@ -199,7 +345,7 @@ endmethod.</source>
 
 ENDMETHOD.</source>
  </method>
- <method CLSNAME="ZSAPLINK_OO" CMPNAME="GET_CLSDEFERRD" VERSION="1" LANGU="E" DESCRIPT="Get class deferred" EXPOSURE="1" STATE="1" EDITORDER="6 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+ <method CLSNAME="ZSAPLINK_OO" CMPNAME="GET_CLSDEFERRD" VERSION="1" LANGU="E" DESCRIPT="Get class deferred" EXPOSURE="1" STATE="1" EDITORDER="7 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="GET_CLSDEFERRD" SCONAME="XO_ROOTNODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
   <source>method GET_CLSDEFERRD.
   DATA: lt_clsdeferrds     TYPE seot_clsdeferrds_r,
@@ -229,7 +375,7 @@ ENDMETHOD.</source>
   ENDLOOP.
 endmethod.</source>
  </method>
- <method CLSNAME="ZSAPLINK_OO" CMPNAME="GET_INTDEFERRD" VERSION="1" LANGU="E" DESCRIPT="Get interface deferred" EXPOSURE="1" STATE="1" EDITORDER="7 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+ <method CLSNAME="ZSAPLINK_OO" CMPNAME="GET_INTDEFERRD" VERSION="1" LANGU="E" DESCRIPT="Get interface deferred" EXPOSURE="1" STATE="1" EDITORDER="8 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="GET_INTDEFERRD" SCONAME="XO_ROOTNODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
   <source>method GET_INTDEFERRD.
   DATA: lt_intdeferrds     TYPE seot_intdeferrds_r,
@@ -260,7 +406,71 @@ endmethod.</source>
 
 endmethod.</source>
  </method>
- <method CLSNAME="ZSAPLINK_OO" CMPNAME="GET_TYPEPUSAGE" VERSION="1" LANGU="E" DESCRIPT="Get type pool usage" EXPOSURE="1" STATE="1" EDITORDER="8 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+ <method CLSNAME="ZSAPLINK_OO" CMPNAME="GET_OTR" VERSION="1" LANGU="E" DESCRIPT="Creates an XML node from an OTR object" EXPOSURE="1" STATE="1" EDITORDER="9 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="GET_OTR" SCONAME="OTRGUID" VERSION="1" LANGU="E" DESCRIPT="Key for Logical Object in the OTR" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="SOTR_CONC"/>
+  <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="GET_OTR" SCONAME="NODE" VERSION="1" LANGU="E" DESCRIPT="xml Element" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
+  <source>METHOD get_otr.
+*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   The code of this project is provided to you under the current     |
+*|   version of the SAP Code Exchange Terms of Use. You can find the   |
+*|   text on the SAP Code Exchange webpage at http://www.sdn.sap.com   |
+*|                                                                     |
+*|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
+*|   support.                                                          |
+*\---------------------------------------------------------------------/
+  DATA rootnode TYPE REF TO if_ixml_element.
+  DATA txtnode TYPE REF TO if_ixml_element.
+  DATA rc TYPE sysubrc.
+
+  DATA sotrheader TYPE sotr_head.
+  DATA sotrtextline TYPE sotr_text.
+  DATA sotrtexttable TYPE TABLE OF sotr_text.
+
+  DATA _ixml TYPE REF TO if_ixml.
+  DATA _xmldoc TYPE REF TO if_ixml_document.
+
+  CALL FUNCTION &apos;SOTR_GET_CONCEPT&apos;
+    EXPORTING
+      concept        = otrguid
+    IMPORTING
+      header         = sotrheader
+    TABLES
+      entries        = sotrtexttable
+    EXCEPTIONS
+      no_entry_found = 1
+      OTHERS         = 2.
+  IF sy-subrc &lt;&gt; 0.
+    EXIT.
+  ENDIF.
+
+  sotrheader-paket = &apos;$TMP&apos;. &quot;change devclass to $TMP for exports
+
+* Create xml doc
+*  _ixml = cl_ixml=&gt;create( ).
+*  _xmldoc = _ixml-&gt;create_document( ).
+*  streamfactory = _ixml-&gt;create_stream_factory( ).
+
+* Create parent node
+  rootnode = xmldoc-&gt;create_element( c_xml_key_sotr ). &quot;OTR object type
+  CLEAR sotrheader-concept.                                 &quot;ewH:33
+  setattributesfromstructure( node = rootnode structure = sotrheader ).
+
+* Create nodes for texts
+  LOOP AT sotrtexttable INTO sotrtextline.
+    txtnode = xmldoc-&gt;create_element( c_xml_key_sotrtext ).
+    CLEAR: sotrtextline-concept, sotrtextline-object.       &quot;ewH:33
+    setattributesfromstructure(
+      node = txtnode structure = sotrtextline ).
+    rc = rootnode-&gt;append_child( txtnode ).
+  ENDLOOP.
+
+  node = rootnode.
+
+ENDMETHOD.</source>
+ </method>
+ <method CLSNAME="ZSAPLINK_OO" CMPNAME="GET_TYPEPUSAGE" VERSION="1" LANGU="E" DESCRIPT="Get type pool usage" EXPOSURE="1" STATE="1" EDITORDER="10 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="GET_TYPEPUSAGE" SCONAME="XO_ROOTNODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
   <source>method GET_TYPEPUSAGE.
   DATA: lt_typepusages     TYPE seot_typepusages_r,

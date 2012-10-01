@@ -10,14 +10,14 @@
 *&quot;* in the implementation part of the class</localMacros>
  <typeUsage CLSNAME="ZSAPLINK_CLASS" TYPEGROUP="SEOO" VERSION="1" TPUTYPE="0" IMPLICIT="X"/>
  <forwardDeclaration>SEOO</forwardDeclaration>
- <attribute CLSNAME="ZSAPLINK_CLASS" CMPNAME="C_XML_KEY_CLASS_DOCUMENTATION" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="1 " ATTDECLTYP="2" ATTVALUE="&apos;classDocumentation&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
- <attribute CLSNAME="ZSAPLINK_CLASS" CMPNAME="C_XML_KEY_LANGUAGE" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="2 " ATTDECLTYP="2" ATTVALUE="`language`" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
- <attribute CLSNAME="ZSAPLINK_CLASS" CMPNAME="C_XML_KEY_METHOD_DOCUMENTATION" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="0 " ATTDECLTYP="2" ATTVALUE="&apos;methodDocumentation&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
- <attribute CLSNAME="ZSAPLINK_CLASS" CMPNAME="C_XML_KEY_OBJECT" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="3 " ATTDECLTYP="2" ATTVALUE="&apos;OBJECT&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
- <attribute CLSNAME="ZSAPLINK_CLASS" CMPNAME="C_XML_KEY_SPRAS" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="4 " ATTDECLTYP="2" ATTVALUE="&apos;SPRAS&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
- <attribute CLSNAME="ZSAPLINK_CLASS" CMPNAME="C_XML_KEY_TEXTELEMENT" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="0 " ATTDECLTYP="2" ATTVALUE="&apos;textElement&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
- <attribute CLSNAME="ZSAPLINK_CLASS" CMPNAME="C_XML_KEY_TEXTLINE" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="5 " ATTDECLTYP="2" ATTVALUE="`textLine`" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
- <attribute CLSNAME="ZSAPLINK_CLASS" CMPNAME="C_XML_KEY_TEXTPOOL" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="0 " ATTDECLTYP="2" ATTVALUE="&apos;textPool&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+ <attribute CLSNAME="ZSAPLINK_CLASS" CMPNAME="C_XML_KEY_CLASS_DOCUMENTATION" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="4 " ATTDECLTYP="2" ATTVALUE="&apos;classDocumentation&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+ <attribute CLSNAME="ZSAPLINK_CLASS" CMPNAME="C_XML_KEY_LANGUAGE" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="5 " ATTDECLTYP="2" ATTVALUE="&apos;language&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+ <attribute CLSNAME="ZSAPLINK_CLASS" CMPNAME="C_XML_KEY_METHOD_DOCUMENTATION" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="1 " ATTDECLTYP="2" ATTVALUE="&apos;methodDocumentation&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+ <attribute CLSNAME="ZSAPLINK_CLASS" CMPNAME="C_XML_KEY_OBJECT" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="6 " ATTDECLTYP="2" ATTVALUE="&apos;OBJECT&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+ <attribute CLSNAME="ZSAPLINK_CLASS" CMPNAME="C_XML_KEY_SPRAS" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="7 " ATTDECLTYP="2" ATTVALUE="&apos;SPRAS&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+ <attribute CLSNAME="ZSAPLINK_CLASS" CMPNAME="C_XML_KEY_TEXTELEMENT" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="2 " ATTDECLTYP="2" ATTVALUE="&apos;textElement&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+ <attribute CLSNAME="ZSAPLINK_CLASS" CMPNAME="C_XML_KEY_TEXTLINE" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="8 " ATTDECLTYP="2" ATTVALUE="&apos;textLine&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+ <attribute CLSNAME="ZSAPLINK_CLASS" CMPNAME="C_XML_KEY_TEXTPOOL" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="3 " ATTDECLTYP="2" ATTVALUE="&apos;textPool&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
  <inheritance CLSNAME="ZSAPLINK_CLASS" REFCLSNAME="ZSAPLINK_OO" VERSION="1" STATE="1">
   <redefinition CLSNAME="ZSAPLINK_CLASS" REFCLSNAME="ZSAPLINK_OO" VERSION="1" MTDNAME="CHECKEXISTS"/>
   <redefinition CLSNAME="ZSAPLINK_CLASS" REFCLSNAME="ZSAPLINK_OO" VERSION="1" MTDNAME="CREATEIXMLDOCFROMOBJECT"/>
@@ -166,8 +166,8 @@ endmethod.</source>
     ENDCASE.
   ENDIF.
 
-  setattributesfromstructure( node = rootnode structure =
-  classproperties ).
+  setattributesfromstructure( node      = rootnode
+                              structure = classproperties ).
   TRY.
       CALL METHOD cl_abap_classdescr=&gt;describe_by_name
         EXPORTING
@@ -248,7 +248,7 @@ endmethod.</source>
   IF sy-subrc &lt;&gt; 0.
   ENDIF.
   LOOP AT friends INTO wa_friend.
-    friends_node = xmldoc-&gt;create_element( &apos;friends&apos; ).
+    friends_node = xmldoc-&gt;create_element( c_xml_key_friends ).
     setattributesfromstructure( node = friends_node structure =
     wa_friend ).
     rc = rootnode-&gt;append_child( friends_node ).
@@ -388,15 +388,15 @@ endmethod.</source>
     IF attribproperties-type = &apos;SOTR_CONC&apos; AND attribproperties-attvalue
     IS NOT INITIAL.
       _otrguid = attribproperties-attvalue+1(32).
-      otrnode = createnodefromotr( _otrguid ).
+      otrnode = get_otr( _otrguid ).
       IF otrnode IS BOUND.
         rc = attribnode-&gt;append_child( otrnode ).
       ENDIF.
     ENDIF.
 
 *   append attribute node to parent node
-    setattributesfromstructure( node = attribnode structure =
-    attribproperties ).
+    setattributesfromstructure( node      = attribnode
+                                structure = attribproperties ).
     rc = rootnode-&gt;append_child( attribnode ).
   ENDLOOP.
 
@@ -413,7 +413,7 @@ endmethod.</source>
       OTHERS             = 2.
 
   IF inheritance IS NOT INITIAL.
-    inheritancenode = xmldoc-&gt;create_element( &apos;inheritance&apos; ).
+    inheritancenode = xmldoc-&gt;create_element( c_xml_key_inheritance ).
     setattributesfromstructure( node = inheritancenode structure =
     inheritance ).
 
@@ -680,11 +680,11 @@ ENDMETHOD.</source>
   WHILE node IS NOT INITIAL.
 *   create OTR texts if necessary (for exception classes)
     CLEAR otrconcept.
-    otrnode = node-&gt;find_from_name( &apos;sotr&apos; ).
+    otrnode = node-&gt;find_from_name( c_xml_key_sotr ).
     IF otrnode IS NOT INITIAL.
 *     ewH:33--&gt;create new concept with new guid
 *      me-&gt;createotrfromnode( otrnode ).
-      me-&gt;createotrfromnode(
+      me-&gt;create_otr(
         EXPORTING node = otrnode
         IMPORTING concept = otrconcept ).
     ENDIF.
@@ -727,7 +727,7 @@ ENDMETHOD.</source>
 */***TPJ - Added Logic for Friends  -------------------*/
 *  DATA: wa_friends type seofriends.
 
-  filter = xmldoc-&gt;create_filter_name( &apos;friends&apos; ).
+  filter = xmldoc-&gt;create_filter_name( C_XML_KEY_FRIENDS ).
   iterator = xmldoc-&gt;create_iterator_filtered( filter ).
   node ?= iterator-&gt;get_next( ).
   WHILE node IS NOT INITIAL.
@@ -796,7 +796,7 @@ ENDMETHOD.</source>
 
 *// ewH: start redesign method/inheritances--&gt;
 * inheritance
-  inheritancenode = rootnode-&gt;find_from_name( &apos;inheritance&apos; ).
+  inheritancenode = rootnode-&gt;find_from_name( c_xml_key_inheritance ).
   IF inheritancenode IS BOUND.
     CALL METHOD getstructurefromattributes
       EXPORTING
