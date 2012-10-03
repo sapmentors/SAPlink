@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-16"?>
-<PROG NAME="ZSAPLINK_STEAMROLLER" VARCL="X" SUBC="1" CNAM="USEWH90" CDAT="20061012" UNAM="BCUSER" UDAT="20110922" VERN="000032" RMAND="321" RLOAD="E" FIXPT="X" SDATE="20110922" STIME="214308" IDATE="20110922" ITIME="214308" UCCHECK="X">
+<?xml version="1.0" encoding="utf-8"?>
+<PROG NAME="ZSAPLINK_STEAMROLLER" VARCL="X" SUBC="1" RMAND="321" RLOAD="E" FIXPT="X" UCCHECK="X">
  <textPool>
   <language SPRAS="E">
    <textElement ID="I" KEY="MAN" ENTRY="Flattener" LENGTH="9 "/>
@@ -113,12 +113,13 @@ data wa_class like line of so_clas.
       else.
         reportFound = &apos;X&apos;.
       endif.
+      &quot; Replace original program name with new program name
+      REPLACE FIRST OCCURRENCE OF progName IN sourceLine WITH progNameNew.
       append sourceLine to sourceTableHead.
     else.
       append sourceLine to sourceTableHead.
     endif.
   endloop.
-
 *  loop at sourceTablebody into sourceLine.
 **  build a table of global classes being called
 *    if sourceLine CP &apos;*ZCX*&apos;.
