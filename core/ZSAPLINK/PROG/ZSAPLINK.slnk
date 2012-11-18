@@ -705,7 +705,7 @@ AT SELECTION-SCREEN ON VALUE-REQUEST FOR nugfile.
   CALL METHOD cl_gui_frontend_services=&gt;file_open_dialog
     EXPORTING
       multiselection    = abap_false
-      file_filter       = &apos;*.nugg&apos;
+      file_filter       = &apos;Nugget files (*.nugg)|*.nugg|&apos;
       default_extension = &apos;nugg&apos;
     CHANGING
       file_table        = retfiletable
