@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<CLAS CLSNAME="ZSAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink main class" UUID="506292E1148A0174E1008000C008015A" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" CLSABSTRCT="X" CLSCCINCL="X" FIXPT="X" UNICODE="X" CLSBCCAT="00" WITH_UNIT_TESTS="X" DURATION_TYPE="0 " RISK_LEVEL="0 ">
+<CLAS CLSNAME="ZSAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink main class" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" CLSABSTRCT="X" CLSCCINCL="X" FIXPT="X" UNICODE="X" CLSBCCAT="00" WITH_UNIT_TESTS="X" DURATION_TYPE="0 " RISK_LEVEL="0 ">
  <types CLSNAME="ZSAPLINK" CMPNAME="T_OBJECTTABLE" VERSION="1" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="1 " TYPTYPE="4" SRCROW1="6 " SRCCOLUMN1="4 " SRCROW2="10 " SRCCOLUMN2="28 " TYPESRC_LENG="158 " TYPESRC="BEGIN OF t_objecttable,
            classname TYPE string,
            object TYPE ko100-object,
@@ -342,7 +342,7 @@ endmethod.</source>
  <method CLSNAME="ZSAPLINK" CMPNAME="CREATENODEFROMOTR" VERSION="1" LANGU="E" DESCRIPT="Creates an XML node from an OTR object" EXPOSURE="1" STATE="1" EDITORDER="12 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZSAPLINK" CMPNAME="CREATENODEFROMOTR" SCONAME="OTRGUID" VERSION="1" LANGU="E" DESCRIPT="Key for Logical Object in the OTR" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="SOTR_CONC"/>
   <parameter CLSNAME="ZSAPLINK" CMPNAME="CREATENODEFROMOTR" SCONAME="NODE" VERSION="1" LANGU="E" DESCRIPT="xml Element" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
-  <source>METHOD CREATENODEFROMOTR.
+  <source>method CREATENODEFROMOTR.
 */---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
@@ -401,7 +401,7 @@ endmethod.</source>
 
   node = rootnode.
 
-ENDMETHOD.</source>
+endmethod.</source>
  </method>
  <method CLSNAME="ZSAPLINK" CMPNAME="CREATEOBJECTFROMIXMLDOC" VERSION="1" LANGU="E" DESCRIPT="Creates Object on System from IXMLDocument passed in" EXPOSURE="2" STATE="1" EDITORDER="4 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" MTDABSTRCT="X" MTDNEWEXC="X" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZSAPLINK" CMPNAME="CREATEOBJECTFROMIXMLDOC" SCONAME="IXMLDOCUMENT" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_DOCUMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_DOCUMENT"/>
@@ -415,7 +415,7 @@ ENDMETHOD.</source>
   <parameter CLSNAME="ZSAPLINK" CMPNAME="CREATEOTRFROMNODE" SCONAME="DEVCLASS" VERSION="1" LANGU="E" DESCRIPT="Development class/package" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="DEVCLASS" PARVALUE="&apos;$TMP&apos;" PAROPTIONL="X"/>
   <parameter CLSNAME="ZSAPLINK" CMPNAME="CREATEOTRFROMNODE" SCONAME="CONCEPT" VERSION="1" LANGU="E" DESCRIPT="Key for Logical Object in the OTR" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " PARDECLTYP="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SOTR_TEXT-CONCEPT"/>
   <exception CLSNAME="ZSAPLINK" CMPNAME="CREATEOTRFROMNODE" SCONAME="ZCX_SAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 "/>
-  <source>METHOD CREATEOTRFROMNODE.
+  <source>method CREATEOTRFROMNODE.
 */---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
@@ -550,7 +550,7 @@ ENDMETHOD.</source>
 *           WITH SY-MSGV1 SY-MSGV2 SY-MSGV3 SY-MSGV4.
   ENDIF.
 
-ENDMETHOD.</source>
+endmethod.</source>
  </method>
  <method CLSNAME="ZSAPLINK" CMPNAME="CREATESTRINGFROMOBJECT" VERSION="1" LANGU="E" DESCRIPT="Creates a String from the OBJNAME Attribute" EXPOSURE="2" STATE="1" EDITORDER="5 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZSAPLINK" CMPNAME="CREATESTRINGFROMOBJECT" SCONAME="STRING" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="1" TYPE="STRING"/>
@@ -628,7 +628,7 @@ endmethod.</source>
  </method>
  <method CLSNAME="ZSAPLINK" CMPNAME="GETPLUGINS" VERSION="1" LANGU="E" DESCRIPT="Get installed saplink plugins" EXPOSURE="2" STATE="1" EDITORDER="8 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="1" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZSAPLINK" CMPNAME="GETPLUGINS" SCONAME="OBJECTTABLE" VERSION="1" LANGU="E" DESCRIPT="Installed Plugin Table" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="0" TYPTYPE="1" TYPE="TABLE"/>
-  <source>METHOD getplugins.
+  <source>method GETPLUGINS.
 */---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
@@ -685,7 +685,7 @@ endmethod.</source>
       APPEND objectline TO objecttable.
     ENDLOOP.
   ENDLOOP.
-ENDMETHOD.</source>
+endmethod.</source>
  </method>
  <method CLSNAME="ZSAPLINK" CMPNAME="GETSTRUCTUREFROMATTRIBUTES" VERSION="1" LANGU="E" DESCRIPT="Updates a structure with node attributes" EXPOSURE="1" STATE="1" EDITORDER="4 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="1" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZSAPLINK" CMPNAME="GETSTRUCTUREFROMATTRIBUTES" SCONAME="NODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
@@ -835,6 +835,8 @@ endmethod.</source>
         when &apos;CHGDANYON&apos;.
           clear sValue.
         when &apos;R3RELEASE&apos;.
+          clear sValue.
+        when &apos;UUID&apos;.
           clear sValue.
         &quot; SOTR
         when &apos;CREA_NAME&apos;.
