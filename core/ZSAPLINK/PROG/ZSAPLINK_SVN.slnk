@@ -123,6 +123,8 @@ START-OF-SELECTION.
       APPEND object TO objects.
       object-obj_name = &apos;ZSAPLINK&apos;.
       APPEND object TO objects.
+      object-obj_name = &apos;ZSAPLINK_OO&apos;.
+      APPEND object TO objects.
       object-obj_name = &apos;ZSAPLINK_CLASS&apos;.
       APPEND object TO objects.
       object-obj_name = &apos;ZSAPLINK_NUGGET&apos;.
