@@ -1,38 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <nugget name="C:\Projects\SAPlink\trunk\build\SAPlink_Daily.nugg">
- <CLAS CLSNAME="ZCX_SAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink exception class" UUID="000C29300CB21DEFBE9C940B1A058FD6" CATEGORY="40" EXPOSURE="2" STATE="1" RELEASE="0" CLSCCINCL="X" FIXPT="X" VARCL="X" UNICODE="X" RSTAT="S" CLSBCCAT="00" DURATION_TYPE="0 " RISK_LEVEL="0 " REFCLSNAME="CX_STATIC_CHECK">
-  <publicSection>class ZCX_SAPLINK definition
-  public
-  inheriting from CX_STATIC_CHECK
-  create public .
-
-public section.
-*&quot;* public components of class ZCX_SAPLINK
-*&quot;* do not include other source files here!!!
-
-  constants EXISTING type SOTR_CONC value &apos;000C29BC2BF91ED18ED3F65AA0FCB872&apos;. &quot;#EC NOTEXT
-  constants SYSTEM_ERROR type SOTR_CONC value &apos;000C29BC2BF91ED18ED3F65AA0FD5872&apos;. &quot;#EC NOTEXT
-  constants NOT_AUTHORIZED type SOTR_CONC value &apos;000C29BC2BF91ED18ED3F65AA0FCF872&apos;. &quot;#EC NOTEXT
-  constants ERROR_MESSAGE type SOTR_CONC value &apos;000C29BC2BF91ED18ED3F65AA0FC9872&apos;. &quot;#EC NOTEXT
-  constants ZCX_SAPLINK type SOTR_CONC value &apos;000C29BC2BF91ED18ED3F65AA0FD7872&apos;. &quot;#EC NOTEXT
-  data MSG type STRING value &apos;44F7518323DB08BC02000000A7E42BB6&apos;. &quot;#EC NOTEXT .
-  constants NOT_FOUND type SOTR_CONC value &apos;000C29BC2BF91ED18ED3F65AA0FD1872&apos;. &quot;#EC NOTEXT
-  constants LOCKED type SOTR_CONC value &apos;000C29BC2BF91ED18ED3F65AA0FCD872&apos;. &quot;#EC NOTEXT
-  constants NO_PLUGIN type SOTR_CONC value &apos;000C29BC2BF91ED18ED6493728DB99D2&apos;. &quot;#EC NOTEXT
-  data OBJECT type STRING .
-
-  methods CONSTRUCTOR
-    importing
-      !TEXTID like TEXTID optional
-      !PREVIOUS like PREVIOUS optional
-      !MSG type STRING default &apos;44F7518323DB08BC02000000A7E42BB6&apos;
-      !OBJECT type STRING optional .</publicSection>
-  <protectedSection>*&quot;* protected components of class ZCX_SAPLINK
-*&quot;* do not include other source files here!!!
-protected section.</protectedSection>
-  <privateSection>private section.
-*&quot;* private components of class ZCX_SAPLINK
-*&quot;* do not include other source files here!!!</privateSection>
+ <CLAS CLSNAME="ZCX_SAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink exception class" CATEGORY="40" EXPOSURE="2" STATE="1" RELEASE="0" CLSCCINCL="X" FIXPT="X" VARCL="X" UNICODE="X" RSTAT="S" CLSBCCAT="00" DURATION_TYPE="0 " RISK_LEVEL="0 " REFCLSNAME="CX_STATIC_CHECK">
   <localImplementation>*&quot;* local class implementation for public class
 *&quot;* use this source file for the implementation part of
 *&quot;* local helper classes</localImplementation>
@@ -41,44 +9,44 @@ protected section.</protectedSection>
 *&quot;* implementation or private method&apos;s signature</localTypes>
   <localMacros>*&quot;* use this source file for any macro definitions you need
 *&quot;* in the implementation part of the class</localMacros>
-  <attribute CLSNAME="ZCX_SAPLINK" CMPNAME="ERROR_MESSAGE" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="4 " ATTDECLTYP="2" ATTVALUE="&apos;000C29BC2BF91ED1BD84143C380F08B7&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="SOTR_CONC" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " LOCKED="X" TYPESRC_LENG="0 ">
+  <attribute CLSNAME="ZCX_SAPLINK" CMPNAME="ERROR_MESSAGE" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="4 " ATTDECLTYP="2" ATTVALUE="&apos;000C29BC2BF91ED28FFECE7681F771C9&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="SOTR_CONC" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " LOCKED="X" TYPESRC_LENG="0 ">
    <sotr PAKET="$TMP" CREA_LAN="E" TRALA_TYPE="1" LST_IMPORT="00000000" TRALA_VEC="00000000000000000000" CATGY_VEC="00000000000000000000" OBJID_VEC="08000000000000000000">
     <sotrText LANGU="E" LFD_NUM="0001" FLAG_CNTXT="X" STATUS="R" VERSION="0002" LENGTH="255" TEXT="&amp;MSG&amp;"/>
    </sotr>
   </attribute>
-  <attribute CLSNAME="ZCX_SAPLINK" CMPNAME="EXISTING" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="1 " ATTDECLTYP="2" ATTVALUE="&apos;000C29BC2BF91ED1BD8414706C9E88B7&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="SOTR_CONC" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " LOCKED="X" TYPESRC_LENG="0 ">
+  <attribute CLSNAME="ZCX_SAPLINK" CMPNAME="EXISTING" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="1 " ATTDECLTYP="2" ATTVALUE="&apos;000C29BC2BF91ED28FFECE7681F791C9&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="SOTR_CONC" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " LOCKED="X" TYPESRC_LENG="0 ">
    <sotr PAKET="$TMP" CREA_LAN="E" TRALA_TYPE="1" LST_IMPORT="00000000" TRALA_VEC="00000000000000000000" CATGY_VEC="00000000000000000000" OBJID_VEC="08000000000000000000">
     <sotrText LANGU="E" LFD_NUM="0001" FLAG_CNTXT="X" STATUS="R" VERSION="0002" LENGTH="255" TEXT="A new object that you want to create already exists"/>
    </sotr>
   </attribute>
-  <attribute CLSNAME="ZCX_SAPLINK" CMPNAME="LOCKED" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="8 " ATTDECLTYP="2" ATTVALUE="&apos;000C29BC2BF91ED1BD8414706C9EA8B7&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="SOTR_CONC" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " LOCKED="X" TYPESRC_LENG="0 ">
+  <attribute CLSNAME="ZCX_SAPLINK" CMPNAME="LOCKED" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="8 " ATTDECLTYP="2" ATTVALUE="&apos;000C29BC2BF91ED28FFECE7681F7B1C9&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="SOTR_CONC" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " LOCKED="X" TYPESRC_LENG="0 ">
    <sotr PAKET="$TMP" CREA_LAN="E" TRALA_TYPE="1" LST_IMPORT="00000000" TRALA_VEC="00000000000000000000" CATGY_VEC="00000000000000000000" OBJID_VEC="08000000000000000000">
     <sotrText LANGU="E" LFD_NUM="0001" FLAG_CNTXT="X" STATUS="R" VERSION="0002" LENGTH="255" TEXT="Object is locked"/>
    </sotr>
   </attribute>
   <attribute CLSNAME="ZCX_SAPLINK" CMPNAME="MSG" VERSION="1" LANGU="E" DESCRIPT="Error message variable" EXPOSURE="2" STATE="1" EDITORDER="6 " ATTDECLTYP="0" ATTVALUE="&apos;44F7518323DB08BC02000000A7E42BB6&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " LOCKED="X" TYPESRC_LENG="0 "/>
-  <attribute CLSNAME="ZCX_SAPLINK" CMPNAME="NOT_AUTHORIZED" VERSION="1" LANGU="E" DESCRIPT="Error message variable" EXPOSURE="2" STATE="1" EDITORDER="3 " ATTDECLTYP="2" ATTVALUE="&apos;000C29BC2BF91ED1BD8414706C9EC8B7&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="SOTR_CONC" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " LOCKED="X" TYPESRC_LENG="0 ">
+  <attribute CLSNAME="ZCX_SAPLINK" CMPNAME="NOT_AUTHORIZED" VERSION="1" LANGU="E" DESCRIPT="Error message variable" EXPOSURE="2" STATE="1" EDITORDER="3 " ATTDECLTYP="2" ATTVALUE="&apos;000C29BC2BF91ED28FFECE7681F7D1C9&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="SOTR_CONC" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " LOCKED="X" TYPESRC_LENG="0 ">
    <sotr PAKET="$TMP" CREA_LAN="E" TRALA_TYPE="1" LST_IMPORT="00000000" TRALA_VEC="00000000000000000000" CATGY_VEC="00000000000000000000" OBJID_VEC="08000000000000000000">
     <sotrText LANGU="E" LFD_NUM="0001" FLAG_CNTXT="X" STATUS="R" VERSION="0002" LENGTH="255" TEXT="The user does not have the required authorization"/>
    </sotr>
   </attribute>
-  <attribute CLSNAME="ZCX_SAPLINK" CMPNAME="NOT_FOUND" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="7 " ATTDECLTYP="2" ATTVALUE="&apos;000C29BC2BF91ED1BD8414706C9EE8B7&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="SOTR_CONC" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " LOCKED="X" TYPESRC_LENG="0 ">
+  <attribute CLSNAME="ZCX_SAPLINK" CMPNAME="NOT_FOUND" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="7 " ATTDECLTYP="2" ATTVALUE="&apos;000C29BC2BF91ED28FFECE7681F7F1C9&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="SOTR_CONC" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " LOCKED="X" TYPESRC_LENG="0 ">
    <sotr PAKET="$TMP" CREA_LAN="E" TRALA_TYPE="1" LST_IMPORT="00000000" TRALA_VEC="00000000000000000000" CATGY_VEC="00000000000000000000" OBJID_VEC="08000000000000000000">
     <sotrText LANGU="E" LFD_NUM="0001" FLAG_CNTXT="X" STATUS="R" VERSION="0002" LENGTH="255" TEXT="Unable to find the requested object &amp;OBJECT&amp;"/>
    </sotr>
   </attribute>
-  <attribute CLSNAME="ZCX_SAPLINK" CMPNAME="NO_PLUGIN" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="9 " ATTDECLTYP="2" ATTVALUE="&apos;000C29BC2BF91ED1BD8414706C9F08B7&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="SOTR_CONC" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " LOCKED="X" TYPESRC_LENG="0 ">
+  <attribute CLSNAME="ZCX_SAPLINK" CMPNAME="NO_PLUGIN" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="9 " ATTDECLTYP="2" ATTVALUE="&apos;000C29BC2BF91ED28FFECE7681F811C9&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="SOTR_CONC" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " LOCKED="X" TYPESRC_LENG="0 ">
    <sotr PAKET="$TMP" CREA_LAN="E" TRALA_TYPE="1" LST_IMPORT="00000000" TRALA_VEC="00000000000000000000" CATGY_VEC="00000000000000000000" OBJID_VEC="08000000000000000000">
     <sotrText LANGU="E" LFD_NUM="0001" FLAG_CNTXT="X" STATUS="R" VERSION="0002" LENGTH="255" TEXT="The plugin &amp;MSG&amp; is not available on this system"/>
    </sotr>
   </attribute>
   <attribute CLSNAME="ZCX_SAPLINK" CMPNAME="OBJECT" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="10 " ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
-  <attribute CLSNAME="ZCX_SAPLINK" CMPNAME="SYSTEM_ERROR" VERSION="1" LANGU="E" DESCRIPT="Error message variable" EXPOSURE="2" STATE="1" EDITORDER="2 " ATTDECLTYP="2" ATTVALUE="&apos;000C29BC2BF91ED1BD8414706C9F28B7&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="SOTR_CONC" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " LOCKED="X" TYPESRC_LENG="0 ">
+  <attribute CLSNAME="ZCX_SAPLINK" CMPNAME="SYSTEM_ERROR" VERSION="1" LANGU="E" DESCRIPT="Error message variable" EXPOSURE="2" STATE="1" EDITORDER="2 " ATTDECLTYP="2" ATTVALUE="&apos;000C29BC2BF91ED28FFECE7681F831C9&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="SOTR_CONC" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " LOCKED="X" TYPESRC_LENG="0 ">
    <sotr PAKET="$TMP" CREA_LAN="E" TRALA_TYPE="1" LST_IMPORT="00000000" TRALA_VEC="00000000000000000000" CATGY_VEC="00000000000000000000" OBJID_VEC="08000000000000000000">
     <sotrText LANGU="E" LFD_NUM="0001" FLAG_CNTXT="X" STATUS="R" VERSION="0002" LENGTH="255" TEXT="ouch, your pants are on fire..better go get help"/>
    </sotr>
   </attribute>
-  <attribute CLSNAME="ZCX_SAPLINK" CMPNAME="ZCX_SAPLINK" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="5 " ATTDECLTYP="2" ATTVALUE="&apos;000C29BC2BF91ED1BD8414706C9F48B7&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="SOTR_CONC" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " LOCKED="X" TYPESRC_LENG="0 ">
+  <attribute CLSNAME="ZCX_SAPLINK" CMPNAME="ZCX_SAPLINK" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="5 " ATTDECLTYP="2" ATTVALUE="&apos;000C29BC2BF91ED28FFECE7681F851C9&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="SOTR_CONC" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " LOCKED="X" TYPESRC_LENG="0 ">
    <sotr PAKET="$TMP" CREA_LAN="E" TRALA_TYPE="1" LST_IMPORT="00000000" TRALA_VEC="00000000000000000000" CATGY_VEC="00000000000000000000" OBJID_VEC="08000000000000000000">
     <sotrText LANGU="E" LFD_NUM="0001" FLAG_CNTXT="X" STATUS="R" VERSION="0002" LENGTH="255" TEXT="&amp;MSG&amp;"/>
    </sotr>
@@ -103,158 +71,13 @@ me-&gt;OBJECT = OBJECT .
 endmethod.</source>
   </method>
  </CLAS>
- <CLAS CLSNAME="ZSAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink main class" UUID="428D951874B2994889DFAA5532437B0B" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" CLSABSTRCT="X" CLSCCINCL="X" FIXPT="X" UNICODE="X" CLSBCCAT="00" WITH_UNIT_TESTS="X" DURATION_TYPE="0 " RISK_LEVEL="0 ">
+ <CLAS CLSNAME="ZSAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink main class" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" CLSABSTRCT="X" CLSCCINCL="X" FIXPT="X" UNICODE="X" CLSBCCAT="00" WITH_UNIT_TESTS="X" DURATION_TYPE="0 " RISK_LEVEL="0 ">
   <types CLSNAME="ZSAPLINK" CMPNAME="T_OBJECTTABLE" VERSION="1" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="1 " TYPTYPE="4" SRCROW1="6 " SRCCOLUMN1="4 " SRCROW2="10 " SRCCOLUMN2="28 " TYPESRC_LENG="158 " TYPESRC="BEGIN OF t_objecttable,
            classname TYPE string,
            object TYPE ko100-object,
            text TYPE ko100-text,
          END OF t_objecttable
 "/>
-  <publicSection>class ZSAPLINK definition
-  public
-  abstract
-  create public .
-
-public section.
-*&quot;* public components of class ZSAPLINK
-*&quot;* do not include other source files here!!!
-
-  data NUGGET_LEVEL type INT4 read-only value 0. &quot;#EC NOTEXT .
-
-  class-methods GETOBJECTINFOFROMIXMLDOC
-    importing
-      !IXMLDOCUMENT type ref to IF_IXML_DOCUMENT
-    exporting
-      !OBJTYPENAME type STRING
-      !OBJNAME type STRING .
-  class-methods CONVERTSTRINGTOIXMLDOC
-    importing
-      value(XMLSTRING) type STRING
-    returning
-      value(IXMLDOCUMENT) type ref to IF_IXML_DOCUMENT .
-  class-methods CONVERTIXMLDOCTOSTRING
-    importing
-      !IXMLDOCUMENT type ref to IF_IXML_DOCUMENT
-    returning
-      value(XMLSTRING) type STRING .
-  methods CREATEOBJECTFROMIXMLDOC
-  abstract
-    importing
-      !IXMLDOCUMENT type ref to IF_IXML_DOCUMENT
-      !DEVCLASS type DEVCLASS default &apos;$TMP&apos;
-      !OVERWRITE type FLAG optional
-    returning
-      value(NAME) type STRING
-    raising
-      ZCX_SAPLINK .
-  methods CREATEIXMLDOCFROMOBJECT
-  abstract
-    returning
-      value(IXMLDOCUMENT) type ref to IF_IXML_DOCUMENT
-    raising
-      ZCX_SAPLINK .
-  methods CREATESTRINGFROMOBJECT
-    returning
-      value(STRING) type STRING
-    raising
-      ZCX_SAPLINK .
-  methods CONSTRUCTOR
-    importing
-      !NAME type STRING .
-  methods UPLOADXML
-  final
-    importing
-      !XMLDATA type STRING .
-  class-methods GETPLUGINS
-    changing
-      value(OBJECTTABLE) type TABLE .
-  methods CHECKEXISTS
-  abstract
-    returning
-      value(EXISTS) type FLAG .
-  methods VALUEHELP
-    importing
-      !I_OBJTYPE type STRING
-    returning
-      value(E_OBJNAME) type STRING .
-  class-methods CHECKOBJECT
-    importing
-      !I_IXMLDOCUMENT type ref to IF_IXML_DOCUMENT
-    exporting
-      !E_OBJTYPE type STRING
-      !E_OBJNAME type STRING
-      !E_PLUGINEXISTS type FLAG
-      !E_OBJECTEXISTS type FLAG
-      !E_TARGETOBJECT type ref to ZSAPLINK .</publicSection>
-  <protectedSection>*&quot;* protected components of class ZSAPLINK
-*&quot;* do not include other source files here!!!
-protected section.
-
-  data OBJNAME type STRING .
-  data IXML type ref to IF_IXML .
-  data XMLDOC type ref to IF_IXML_DOCUMENT .
-
-  methods DELETEOBJECT
-  abstract
-    raising
-      ZCX_SAPLINK .
-  methods CREATENODEFROMOTR
-  final
-    importing
-      !OTRGUID type SOTR_CONC
-    returning
-      value(NODE) type ref to IF_IXML_ELEMENT .
-  class-methods SETATTRIBUTESFROMSTRUCTURE
-    importing
-      !NODE type ref to IF_IXML_ELEMENT
-      !STRUCTURE type DATA .
-  class-methods GETSTRUCTUREFROMATTRIBUTES
-    importing
-      !NODE type ref to IF_IXML_ELEMENT
-      !PRESERVEVERSION type FLAG optional
-    changing
-      !STRUCTURE type DATA .
-  methods CREATEXMLSTRING
-  final
-    returning
-      value(XML) type STRING .
-  class-methods BUILDTABLEFROMSTRING
-    importing
-      !SOURCE type STRING
-    returning
-      value(SOURCETABLE) type TABLE_OF_STRINGS .
-  class-methods BUILDSOURCESTRING
-    importing
-      !SOURCETABLE type RSWSOURCET optional
-      !PAGETABLE type O2PAGELINE_TABLE optional
-    returning
-      value(SOURCESTRING) type STRING .
-  methods GETOBJECTTYPE
-  abstract
-    returning
-      value(OBJECTTYPE) type STRING .
-  methods CREATEOTRFROMNODE
-  final
-    importing
-      value(NODE) type ref to IF_IXML_ELEMENT
-      !DEVCLASS type DEVCLASS default &apos;$TMP&apos;
-    exporting
-      !CONCEPT type SOTR_TEXT-CONCEPT
-    raising
-      ZCX_SAPLINK .</protectedSection>
-  <privateSection>PRIVATE SECTION.
-*&quot;* private components of class ZSAPLINK
-*&quot;* do not include other source files here!!!
-
-  TYPES: BEGIN OF t_objecttable,
-           classname TYPE string,
-           object TYPE ko100-object,
-           text TYPE ko100-text,
-         END OF t_objecttable.
-
-  DATA streamfactory TYPE REF TO if_ixml_stream_factory .
-  DATA xmldata TYPE string .
-  DATA objecttable TYPE TABLE OF t_objecttable.</privateSection>
   <localImplementation>*&quot;* local class implementation for public class
 *&quot;* use this source file for the implementation part of
 *&quot;* local helper classes
@@ -588,7 +411,7 @@ endmethod.</source>
    <parameter CLSNAME="ZSAPLINK" CMPNAME="CREATEIXMLDOCFROMOBJECT" SCONAME="IXMLDOCUMENT" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_DOCUMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_DOCUMENT"/>
    <exception CLSNAME="ZSAPLINK" CMPNAME="CREATEIXMLDOCFROMOBJECT" SCONAME="ZCX_SAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 "/>
   </method>
-  <method CLSNAME="ZSAPLINK" CMPNAME="CREATENODEFROMOTR" VERSION="1" LANGU="E" DESCRIPT="Creates an XML node from an OTR object" EXPOSURE="1" STATE="1" EDITORDER="2 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" MTDFINAL="X" BCMTDCAT="00" BCMTDSYN="0">
+  <method CLSNAME="ZSAPLINK" CMPNAME="CREATENODEFROMOTR" VERSION="1" LANGU="E" DESCRIPT="Creates an XML node from an OTR object" EXPOSURE="1" STATE="1" EDITORDER="12 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
    <parameter CLSNAME="ZSAPLINK" CMPNAME="CREATENODEFROMOTR" SCONAME="OTRGUID" VERSION="1" LANGU="E" DESCRIPT="Key for Logical Object in the OTR" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="SOTR_CONC"/>
    <parameter CLSNAME="ZSAPLINK" CMPNAME="CREATENODEFROMOTR" SCONAME="NODE" VERSION="1" LANGU="E" DESCRIPT="xml Element" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
    <source>method CREATENODEFROMOTR.
@@ -602,54 +425,53 @@ endmethod.</source>
 *|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
 *|   support.                                                          |
 *\---------------------------------------------------------------------/
-data rootNode type ref to if_ixml_element.
-data txtNode type ref to if_ixml_element.
-data rc type sysubrc.
+  DATA rootnode TYPE REF TO if_ixml_element.
+  DATA txtnode TYPE REF TO if_ixml_element.
+  DATA rc TYPE sysubrc.
 
-data sotrHeader type SOTR_HEAD.
-data sotrTextLine type SOTR_TEXT.
-data sotrTextTable type table of SOTR_TEXT.
+  DATA sotrheader TYPE sotr_head.
+  DATA sotrtextline TYPE sotr_text.
+  DATA sotrtexttable TYPE TABLE OF sotr_text.
 
-data _ixml type ref to IF_IXML.
-data _XMLDOC type ref to IF_IXML_DOCUMENT.
+  DATA _ixml TYPE REF TO if_ixml.
+  DATA _xmldoc TYPE REF TO if_ixml_document.
 
   CALL FUNCTION &apos;SOTR_GET_CONCEPT&apos;
     EXPORTING
-      concept              = otrguid
+      concept        = otrguid
     IMPORTING
-      HEADER               = sotrHeader
+      header         = sotrheader
     TABLES
-      ENTRIES              = sotrTextTable
-   EXCEPTIONS
-     NO_ENTRY_FOUND       = 1
-     OTHERS               = 2
-            .
+      entries        = sotrtexttable
+    EXCEPTIONS
+      no_entry_found = 1
+      OTHERS         = 2.
   IF sy-subrc &lt;&gt; 0.
-    exit.
+    EXIT.
   ENDIF.
 
-  sotrHeader-paket = &apos;$TMP&apos;. &quot;change devclass to $TMP for exports
+  sotrheader-paket = &apos;$TMP&apos;. &quot;change devclass to $TMP for exports
 
 * Create xml doc
-  _ixml = cl_ixml=&gt;create( ).
-  _xmlDoc = _ixml-&gt;create_document( ).
-  streamFactory = _ixml-&gt;CREATE_STREAM_FACTORY( ).
+*  _ixml = cl_ixml=&gt;create( ).
+*  _xmldoc = _ixml-&gt;create_document( ).
+*  streamfactory = _ixml-&gt;create_stream_factory( ).
 
 * Create parent node
-  rootNode = _xmlDoc-&gt;create_element( &apos;sotr&apos; ). &quot;OTR object type
-  clear sotrHeader-concept. &quot;ewH:33
-  setAttributesFromStructure( node = rootNode structure = sotrHeader ).
+  rootnode = xmldoc-&gt;create_element( zsaplink_oo=&gt;c_xml_key_sotr ). &quot;OTR object type
+  CLEAR sotrheader-concept.                                 &quot;ewH:33
+  setattributesfromstructure( node = rootnode structure = sotrheader ).
 
 * Create nodes for texts
-  loop at sotrTextTable into sotrTextLine.
-    txtNode = _xmlDoc-&gt;create_element( &apos;sotrText&apos; ).
-    clear: sotrTextLine-concept, sotrTextLine-object. &quot;ewH:33
-    setAttributesFromStructure(
-      node = txtNode structure = sotrTextLine ).
-    rc = rootNode-&gt;append_child( txtNode ).
-  endloop.
+  LOOP AT sotrtexttable INTO sotrtextline.
+    txtnode = xmldoc-&gt;create_element( zsaplink_oo=&gt;c_xml_key_sotrtext ).
+    CLEAR: sotrtextline-concept, sotrtextline-object.       &quot;ewH:33
+    setattributesfromstructure(
+      node = txtnode structure = sotrtextline ).
+    rc = rootnode-&gt;append_child( txtnode ).
+  ENDLOOP.
 
-  node = rootNode.
+  node = rootnode.
 
 endmethod.</source>
   </method>
@@ -660,9 +482,9 @@ endmethod.</source>
    <parameter CLSNAME="ZSAPLINK" CMPNAME="CREATEOBJECTFROMIXMLDOC" SCONAME="NAME" VERSION="1" LANGU="E" DESCRIPT="Installed object name" CMPTYPE="1" MTDTYPE="0" EDITORDER="4 " DISPID="0 " PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="1" TYPE="STRING"/>
    <exception CLSNAME="ZSAPLINK" CMPNAME="CREATEOBJECTFROMIXMLDOC" SCONAME="ZCX_SAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 "/>
   </method>
-  <method CLSNAME="ZSAPLINK" CMPNAME="CREATEOTRFROMNODE" VERSION="1" LANGU="E" DESCRIPT="Creates or updates an OTR object from XML node" EXPOSURE="1" STATE="1" EDITORDER="9 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" MTDFINAL="X" MTDNEWEXC="X" BCMTDCAT="00" BCMTDSYN="0">
+  <method CLSNAME="ZSAPLINK" CMPNAME="CREATEOTRFROMNODE" VERSION="1" LANGU="E" DESCRIPT="Get an OTR object from XML node" EXPOSURE="1" STATE="1" EDITORDER="11 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" BCMTDCAT="00" BCMTDSYN="0">
    <parameter CLSNAME="ZSAPLINK" CMPNAME="CREATEOTRFROMNODE" SCONAME="NODE" VERSION="1" LANGU="E" DESCRIPT="xml Element" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
-   <parameter CLSNAME="ZSAPLINK" CMPNAME="CREATEOTRFROMNODE" SCONAME="DEVCLASS" VERSION="1" LANGU="E" DESCRIPT="Development class/package" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="DEVCLASS" PARVALUE="&apos;$TMP&apos;"/>
+   <parameter CLSNAME="ZSAPLINK" CMPNAME="CREATEOTRFROMNODE" SCONAME="DEVCLASS" VERSION="1" LANGU="E" DESCRIPT="Development class/package" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="DEVCLASS" PARVALUE="&apos;$TMP&apos;" PAROPTIONL="X"/>
    <parameter CLSNAME="ZSAPLINK" CMPNAME="CREATEOTRFROMNODE" SCONAME="CONCEPT" VERSION="1" LANGU="E" DESCRIPT="Key for Logical Object in the OTR" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " PARDECLTYP="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SOTR_TEXT-CONCEPT"/>
    <exception CLSNAME="ZSAPLINK" CMPNAME="CREATEOTRFROMNODE" SCONAME="ZCX_SAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 "/>
    <source>method CREATEOTRFROMNODE.
@@ -676,38 +498,38 @@ endmethod.</source>
 *|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
 *|   support.                                                          |
 *\---------------------------------------------------------------------/
-data txtNode type ref to if_ixml_element.
-data filter type ref to if_ixml_node_filter.
-data iterator type ref to if_ixml_node_iterator.
+  DATA txtnode TYPE REF TO if_ixml_element.
+  DATA filter TYPE REF TO if_ixml_node_filter.
+  DATA iterator TYPE REF TO if_ixml_node_iterator.
 
-data sotrHeader type SOTR_HEAD.
-data sotrTextLine type SOTR_TEXT.
-data sotrTextTable type table of SOTR_TEXT.
-data sotrPaket type SOTR_PACK.
+  DATA sotrheader TYPE sotr_head.
+  DATA sotrtextline TYPE sotr_text.
+  DATA sotrtexttable TYPE TABLE OF sotr_text.
+  DATA sotrpaket TYPE sotr_pack.
 
 * get OTR header info
-  call method GETSTRUCTUREFROMATTRIBUTES
-        exporting
-          node = node
-        changing
-          structure = sotrHeader.
+  CALL METHOD getstructurefromattributes
+    EXPORTING
+      node      = node
+    CHANGING
+      structure = sotrheader.
 
 * get OTR text info
-  filter = node-&gt;create_filter_name( &apos;sotrText&apos; ).
+  filter = node-&gt;create_filter_name( zsaplink_oo=&gt;c_xml_key_sotrText ).
   iterator = node-&gt;create_iterator_filtered( filter ).
-  txtNode ?= iterator-&gt;get_next( ).
+  txtnode ?= iterator-&gt;get_next( ).
 
-  while txtNode is not initial.
-    clear sotrTextLine.
-    call method GETSTRUCTUREFROMATTRIBUTES
-          exporting
-            node = txtNode
-          changing
-            structure = sotrTextLine.
-    clear: sotrTextLine-concept, sotrTextLine-object. &quot;ewH:33
-    append sotrTextLine to sotrTextTable.
-    txtNode ?= iterator-&gt;get_next( ).
-  endwhile.
+  WHILE txtnode IS NOT INITIAL.
+    CLEAR sotrtextline.
+    CALL METHOD getstructurefromattributes
+      EXPORTING
+        node      = txtnode
+      CHANGING
+        structure = sotrtextline.
+    CLEAR: sotrtextline-concept, sotrtextline-object.       &quot;ewH:33
+    APPEND sotrtextline TO sotrtexttable.
+    txtnode ?= iterator-&gt;get_next( ).
+  ENDWHILE.
 
 * ewH:issue 33--&gt; in 6.40 and above, you cannot pass a default concept
 *  (otr) guid, so we will always create new
@@ -745,55 +567,55 @@ data sotrPaket type SOTR_PACK.
 *  ENDIF.
 
 
-data objectTable type SOTR_OBJECTS.
-data objectType type line of SOTR_OBJECTS.
+  DATA objecttable TYPE sotr_objects.
+  DATA objecttype TYPE LINE OF sotr_objects.
 * Retrieve object type of OTR
-  call function &apos;SOTR_OBJECT_GET_OBJECTS&apos;
-    exporting
-      object_vector    = sotrHeader-objid_vec
-    importing
-      objects          = objectTable
-    exceptions
+  CALL FUNCTION &apos;SOTR_OBJECT_GET_OBJECTS&apos;
+    EXPORTING
+      object_vector    = sotrheader-objid_vec
+    IMPORTING
+      OBJECTS          = objecttable
+    EXCEPTIONS
       object_not_found = 1
-      others           = 2.
+      OTHERS           = 2.
 
-  read table objectTable into objectType index 1.
+  READ TABLE objecttable INTO objecttype INDEX 1.
 
 * create OTR
-  sotrPaket-paket = devclass.
+  sotrpaket-paket = devclass.
   CALL FUNCTION &apos;SOTR_CREATE_CONCEPT&apos;
     EXPORTING
-      paket                               = sotrPaket
-      crea_lan                            = sotrHeader-crea_lan
-      ALIAS_NAME                          = sotrHeader-alias_name
+      paket                               = sotrpaket
+      crea_lan                            = sotrheader-crea_lan
+      alias_name                          = sotrheader-alias_name
 *      CATEGORY                            =
-      object                              = objectType
-      entries                             = sotrTextTable
+      object                              = objecttype
+      entries                             = sotrtexttable
 *     FLAG_CORRECTION_ENTRY               =
 *     IN_UPDATE_TASK                      =
 *      CONCEPT_DEFAULT                     = sotrHeader-concept &quot;ewH:33
     IMPORTING
-      CONCEPT                             = concept &quot;ewH:33
-*   EXCEPTIONS
-*     PACKAGE_MISSING                     = 1
-*     CREA_LAN_MISSING                    = 2
-*     OBJECT_MISSING                      = 3
-*     PAKET_DOES_NOT_EXIST                = 4
-*     ALIAS_ALREADY_EXIST                 = 5
-*     OBJECT_TYPE_NOT_FOUND               = 6
-*     LANGU_MISSING                       = 7
-*     IDENTICAL_CONTEXT_NOT_ALLOWED       = 8
-*     TEXT_TOO_LONG                       = 9
-*     ERROR_IN_UPDATE                     = 10
-*     NO_MASTER_LANGU                     = 11
-*     ERROR_IN_CONCEPT_ID                 = 12
-*     ALIAS_NOT_ALLOWED                   = 13
-*     TADIR_ENTRY_CREATION_FAILED         = 14
-*     INTERNAL_ERROR                      = 15
-*     ERROR_IN_CORRECTION                 = 16
-*     USER_CANCELLED                      = 17
-*     NO_ENTRY_FOUND                      = 18
-*     OTHERS                              = 19
+      concept                             = concept         &quot;ewH:33
+    EXCEPTIONS
+      package_missing                     = 1
+      crea_lan_missing                    = 2
+      object_missing                      = 3
+      paket_does_not_exist                = 4
+      alias_already_exist                 = 5
+      object_type_not_found               = 6
+      langu_missing                       = 7
+      identical_context_not_allowed       = 8
+      text_too_long                       = 9
+      error_in_update                     = 10
+      no_master_langu                     = 11
+      error_in_concept_id                 = 12
+      alias_not_allowed                   = 13
+      tadir_entry_creation_failed         = 14
+      internal_error                      = 15
+      error_in_correction                 = 16
+      user_cancelled                      = 17
+      no_entry_found                      = 18
+      OTHERS                              = 19
             .
   IF sy-subrc &lt;&gt; 0.
 *   MESSAGE ID SY-MSGID TYPE SY-MSGTY NUMBER SY-MSGNO
@@ -889,45 +711,52 @@ endmethod.</source>
 *|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
 *|   support.                                                          |
 *\---------------------------------------------------------------------/
-  data classList type SEO_INHERITANCES.
-  data classLine type VSEOEXTEND.
-  data classObject type ref to zsaplink.
-  data objectLine type t_objectTable.
-  data tableTypeLine type KO105.
-  data tableTypesIn type table of KO105.
-  data tableTypesOut type TR_OBJECT_TEXTS.
-  data tableTypeOutLine type KO100.
-  data clsName type string.
-  data objType type TROBJTYPE.
+  DATA classlist TYPE seo_inheritances.
+  DATA classline TYPE vseoextend.
+  DATA classobject TYPE REF TO zsaplink.
+  DATA objectline TYPE t_objecttable.
+  DATA tabletypeline TYPE ko105.
+  DATA tabletypesin TYPE TABLE OF ko105.
+  DATA tabletypesout TYPE tr_object_texts.
+  DATA tabletypeoutline TYPE ko100.
+  DATA clsname TYPE string.
+  DATA objtype TYPE trobjtype.
 
-  refresh objectTable.
+  REFRESH objecttable.
 
-  select * from VSEOEXTEND into table classList
-    where REFCLSNAME = &apos;ZSAPLINK&apos;
-    and version = &apos;1&apos;.
+  SELECT * FROM vseoextend INTO TABLE classlist
+    WHERE refclsname like &apos;ZSAPLINK%&apos;
+    AND version = &apos;1&apos;.
 
-  loop at classList into classLine.
-    clsName = classLine-clsName.
-    create object classObject type (clsName)
-      exporting name = &apos;foo&apos;.
-    objtype = classObject-&gt;getObjectType( ).
-    clear tableTypeLine.
-    refresh tableTypesIn.
+  LOOP AT classlist INTO classline.
+    clsname = classline-clsname.
+    TRY.
+        CREATE OBJECT classobject
+          TYPE
+            (clsname)
+          EXPORTING
+            name      = &apos;foo&apos;.
+        objtype = classobject-&gt;getobjecttype( ).
+      CATCH cx_root.
+        CONTINUE.
+    ENDTRY.
+    CLEAR tabletypeline.
+    REFRESH tabletypesin.
 
-    tableTypeLine-object = objtype.
-    append tableTypeLine to tableTypesIn.
+    tabletypeline-object = objtype.
+    APPEND tabletypeline TO tabletypesin.
 
     CALL FUNCTION &apos;TRINT_OBJECT_TABLE&apos;
       TABLES
-        TT_TYPES_IN             = tableTypesIn
-        tt_types_out            = tableTypesOut.
+        tt_types_in  = tabletypesin
+        tt_types_out = tabletypesout.
 
-    loop at tableTypesOut into tableTypeOutLine.
-      objectLine-className = clsName.
-      move-corresponding tableTypeOutLine to objectLine.
-      append objectLine to objectTable.
-    endloop.
-  endloop.
+    LOOP AT tabletypesout INTO tabletypeoutline.
+      objectline-classname = clsname.
+      MOVE-CORRESPONDING tabletypeoutline TO objectline.
+      APPEND objectline TO objecttable.
+    ENDLOOP.
+  ENDLOOP.
 endmethod.</source>
   </method>
   <method CLSNAME="ZSAPLINK" CMPNAME="GETSTRUCTUREFROMATTRIBUTES" VERSION="1" LANGU="E" DESCRIPT="Updates a structure with node attributes" EXPOSURE="1" STATE="1" EDITORDER="4 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="1" BCMTDCAT="00" BCMTDSYN="0">
@@ -1079,6 +908,8 @@ endmethod.</source>
           clear sValue.
         when &apos;R3RELEASE&apos;.
           clear sValue.
+        when &apos;UUID&apos;.
+          clear sValue.
         &quot; SOTR
         when &apos;CREA_NAME&apos;.
           clear sValue.
@@ -1167,66 +998,7 @@ l_object_type = i_objType.
 endmethod.</source>
   </method>
  </CLAS>
- <CLAS CLSNAME="ZSAPLINK_CLASS" VERSION="1" LANGU="E" DESCRIPT="SAPlink Class Installer" UUID="4FA3AA52B2CB01AAE1008000C008015A" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" CLSCCINCL="X" FIXPT="X" UNICODE="X" CLSBCCAT="00" DURATION_TYPE="0 " RISK_LEVEL="0 " REFCLSNAME="ZSAPLINK">
-  <publicSection>class ZSAPLINK_CLASS definition
-  public
-  inheriting from ZSAPLINK
-  create public .
-
-public section.
-*&quot;* public components of class ZSAPLINK_CLASS
-*&quot;* do not include other source files here!!!
-  type-pools ABAP .
-  type-pools SEOP .
-  type-pools SEOR .
-  type-pools SEOS .
-  type-pools SEOT .
-  type-pools SEOX .
-
-  methods CHECKEXISTS
-    redefinition .
-  methods CREATEIXMLDOCFROMOBJECT
-    redefinition .
-  methods CREATEOBJECTFROMIXMLDOC
-    redefinition .</publicSection>
-  <protectedSection>*&quot;* protected components of class ZSAPLINK_CLASS
-*&quot;* do not include other source files here!!!
-protected section.
-
-  methods DELETEOBJECT
-    redefinition .
-  methods GETOBJECTTYPE
-    redefinition .</protectedSection>
-  <privateSection>private section.
-*&quot;* private components of class ZSAPLINK_CLASS
-*&quot;* do not include other source files here!!!
-
-  methods CREATE_TEXTPOOL
-    importing
-      !TEXTPOOLNODE type ref to IF_IXML_ELEMENT .
-  methods FINDIMPLEMENTINGCLASS
-    importing
-      !METHODNAME type STRING
-      !STARTCLASS type STRING optional
-    returning
-      value(CLASSNAME) type STRING .
-  methods GET_TEXTPOOL
-    returning
-      value(TEXTNODE) type ref to IF_IXML_ELEMENT .
-  methods CREATE_DOCUMENTATION
-    importing
-      !DOCNODE type ref to IF_IXML_ELEMENT .
-  methods GET_DOCUMENTATION
-    returning
-      value(DOCNODE) type ref to IF_IXML_ELEMENT .
-  methods GET_METHOD_DOCUMENTATION
-    importing
-      !METHOD_KEY type SEOCPDKEY
-    returning
-      value(DOCNODE) type ref to IF_IXML_ELEMENT .
-  methods CREATE_METHOD_DOCUMENTATION
-    importing
-      !METHDOCNODE type ref to IF_IXML_ELEMENT .</privateSection>
+ <CLAS CLSNAME="ZSAPLINK_OO" VERSION="1" LANGU="E" DESCRIPT="ZSAPLINK - OO class for CLAS and INTF plugin" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" CLSABSTRCT="X" CLSCCINCL="X" FIXPT="X" UNICODE="X" CLSBCCAT="00" DURATION_TYPE="0 " RISK_LEVEL="0 " REFCLSNAME="ZSAPLINK">
   <localImplementation>*&quot;* local class implementation for public class
 *&quot;* use this source file for the implementation part of
 *&quot;* local helper classes</localImplementation>
@@ -1235,26 +1007,538 @@ protected section.
 *&quot;* implementation or private method&apos;s signature</localTypes>
   <localMacros>*&quot;* use this source file for any macro definitions you need
 *&quot;* in the implementation part of the class</localMacros>
-  <typeUsage CLSNAME="ZSAPLINK_CLASS" TYPEGROUP="ABAP" VERSION="1" TPUTYPE="0" EXPLICIT="X"/>
-  <typeUsage CLSNAME="ZSAPLINK_CLASS" TYPEGROUP="SEOP" VERSION="1" TPUTYPE="0" EXPLICIT="X"/>
-  <typeUsage CLSNAME="ZSAPLINK_CLASS" TYPEGROUP="SEOR" VERSION="1" TPUTYPE="0" EXPLICIT="X"/>
-  <typeUsage CLSNAME="ZSAPLINK_CLASS" TYPEGROUP="SEOS" VERSION="1" TPUTYPE="0" EXPLICIT="X"/>
-  <typeUsage CLSNAME="ZSAPLINK_CLASS" TYPEGROUP="SEOT" VERSION="1" TPUTYPE="0" EXPLICIT="X"/>
-  <typeUsage CLSNAME="ZSAPLINK_CLASS" TYPEGROUP="SEOX" VERSION="1" TPUTYPE="0" EXPLICIT="X"/>
+  <typeUsage CLSNAME="ZSAPLINK_OO" TYPEGROUP="ABAP" VERSION="1" TPUTYPE="0" EXPLICIT="X"/>
+  <typeUsage CLSNAME="ZSAPLINK_OO" TYPEGROUP="SEOP" VERSION="1" TPUTYPE="0" EXPLICIT="X"/>
+  <typeUsage CLSNAME="ZSAPLINK_OO" TYPEGROUP="SEOR" VERSION="1" TPUTYPE="0" EXPLICIT="X"/>
+  <typeUsage CLSNAME="ZSAPLINK_OO" TYPEGROUP="SEOS" VERSION="1" TPUTYPE="0" EXPLICIT="X"/>
+  <typeUsage CLSNAME="ZSAPLINK_OO" TYPEGROUP="SEOT" VERSION="1" TPUTYPE="0" EXPLICIT="X"/>
+  <typeUsage CLSNAME="ZSAPLINK_OO" TYPEGROUP="SEOX" VERSION="1" TPUTYPE="0" EXPLICIT="X"/>
   <forwardDeclaration>ABAP</forwardDeclaration>
   <forwardDeclaration>SEOP</forwardDeclaration>
   <forwardDeclaration>SEOR</forwardDeclaration>
   <forwardDeclaration>SEOS</forwardDeclaration>
   <forwardDeclaration>SEOT</forwardDeclaration>
   <forwardDeclaration>SEOX</forwardDeclaration>
-  <inheritance CLSNAME="ZSAPLINK_CLASS" REFCLSNAME="ZSAPLINK" VERSION="1" STATE="1">
-   <redefinition CLSNAME="ZSAPLINK_CLASS" REFCLSNAME="ZSAPLINK" VERSION="1" MTDNAME="CHECKEXISTS" EXPOSURE="2"/>
-   <redefinition CLSNAME="ZSAPLINK_CLASS" REFCLSNAME="ZSAPLINK" VERSION="1" MTDNAME="CREATEIXMLDOCFROMOBJECT" EXPOSURE="2"/>
-   <redefinition CLSNAME="ZSAPLINK_CLASS" REFCLSNAME="ZSAPLINK" VERSION="1" MTDNAME="CREATEOBJECTFROMIXMLDOC" EXPOSURE="2"/>
-   <redefinition CLSNAME="ZSAPLINK_CLASS" REFCLSNAME="ZSAPLINK" VERSION="1" MTDNAME="DELETEOBJECT" EXPOSURE="1"/>
-   <redefinition CLSNAME="ZSAPLINK_CLASS" REFCLSNAME="ZSAPLINK" VERSION="1" MTDNAME="GETOBJECTTYPE" EXPOSURE="1"/>
+  <attribute CLSNAME="ZSAPLINK_OO" CMPNAME="C_XML_KEY_ALIAS_METHOD" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="1 " ATTDECLTYP="2" ATTVALUE="&apos;aliasMethod&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZSAPLINK_OO" CMPNAME="C_XML_KEY_CLSDEFERRD" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="2 " ATTDECLTYP="2" ATTVALUE="&apos;typeClasDef&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZSAPLINK_OO" CMPNAME="C_XML_KEY_FORWARDDECLARATION" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="3 " ATTDECLTYP="2" ATTVALUE="&apos;forwardDeclaration&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZSAPLINK_OO" CMPNAME="C_XML_KEY_FRIENDS" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="6 " ATTDECLTYP="2" ATTVALUE="&apos;friends&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZSAPLINK_OO" CMPNAME="C_XML_KEY_INHERITANCE" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="7 " ATTDECLTYP="2" ATTVALUE="&apos;inheritance&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZSAPLINK_OO" CMPNAME="C_XML_KEY_INTDEFERRD" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="4 " ATTDECLTYP="2" ATTVALUE="&apos;typeIntfDef&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZSAPLINK_OO" CMPNAME="C_XML_KEY_SOTR" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="8 " ATTDECLTYP="2" ATTVALUE="&apos;sotr&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZSAPLINK_OO" CMPNAME="C_XML_KEY_SOTRTEXT" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="9 " ATTDECLTYP="2" ATTVALUE="&apos;sotrText&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZSAPLINK_OO" CMPNAME="C_XML_KEY_TYPEPUSAGE" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="5 " ATTDECLTYP="2" ATTVALUE="&apos;typeUsage&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+  <inheritance CLSNAME="ZSAPLINK_OO" REFCLSNAME="ZSAPLINK" VERSION="1" STATE="1"/>
+  <method CLSNAME="ZSAPLINK_OO" CMPNAME="CREATE_ALIAS_METHOD" VERSION="1" LANGU="E" DESCRIPT="Create alias for method" EXPOSURE="1" STATE="1" EDITORDER="1 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="CREATE_ALIAS_METHOD" SCONAME="XT_ALIASES_METHOD" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="SEOO_ALIASES_R"/>
+   <source>method CREATE_ALIAS_METHOD.
+  DATA: filter TYPE REF TO if_ixml_node_filter,
+        iterator TYPE REF TO if_ixml_node_iterator,
+        node TYPE REF TO if_ixml_element.
+
+  DATA: ls_alias_method  LIKE LINE OF xt_aliases_method.
+
+
+  filter = xmldoc-&gt;create_filter_name( c_xml_key_alias_method ).
+  iterator = xmldoc-&gt;create_iterator_filtered( filter ).
+  node ?= iterator-&gt;get_next( ).
+  WHILE node IS NOT INITIAL.
+    CLEAR ls_alias_method.
+    CALL METHOD getstructurefromattributes
+      EXPORTING
+        node      = node
+      CHANGING
+        structure = ls_alias_method.
+    INSERT ls_alias_method INTO TABLE xt_aliases_method.
+    node ?= iterator-&gt;get_next( ).
+  ENDWHILE.
+
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZSAPLINK_OO" CMPNAME="CREATE_CLSDEFERRD" VERSION="1" LANGU="E" DESCRIPT="Create class deferred" EXPOSURE="1" STATE="1" EDITORDER="2 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="CREATE_CLSDEFERRD" SCONAME="XT_CLSDEFERRDS" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="SEOT_CLSDEFERRDS_R"/>
+   <source>method CREATE_CLSDEFERRD.
+  DATA: filter TYPE REF TO if_ixml_node_filter,
+        iterator TYPE REF TO if_ixml_node_iterator,
+        node TYPE REF TO if_ixml_element.
+
+  DATA: ls_clsdeferrd  LIKE LINE OF xt_clsdeferrds.
+
+
+  filter   = xmldoc-&gt;create_filter_name( c_xml_key_clsdeferrd ).
+  iterator = xmldoc-&gt;create_iterator_filtered( filter ).
+  node ?= iterator-&gt;get_next( ).
+
+  WHILE node IS NOT INITIAL.
+    CALL METHOD getstructurefromattributes
+      EXPORTING
+        node      = node
+      CHANGING
+        structure = ls_clsdeferrd.
+    APPEND ls_clsdeferrd TO xt_clsdeferrds.
+    node ?= iterator-&gt;get_next( ).
+  ENDWHILE.
+
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZSAPLINK_OO" CMPNAME="CREATE_INTDEFERRD" VERSION="1" LANGU="E" DESCRIPT="Create interface deferred" EXPOSURE="1" STATE="1" EDITORDER="3 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="CREATE_INTDEFERRD" SCONAME="XT_INTDEFERRDS" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="SEOT_INTDEFERRDS_R"/>
+   <source>method CREATE_INTDEFERRD.
+  DATA: filter TYPE REF TO if_ixml_node_filter,
+        iterator TYPE REF TO if_ixml_node_iterator,
+        node TYPE REF TO if_ixml_element.
+
+  DATA: ls_intdeferrd  LIKE LINE OF xt_intdeferrds.
+
+
+  filter   = xmldoc-&gt;create_filter_name( c_xml_key_intdeferrd ).
+  iterator = xmldoc-&gt;create_iterator_filtered( filter ).
+  node ?= iterator-&gt;get_next( ).
+
+  WHILE node IS NOT INITIAL.
+    CALL METHOD getstructurefromattributes
+      EXPORTING
+        node      = node
+      CHANGING
+        structure = ls_intdeferrd.
+    APPEND ls_intdeferrd TO xt_intdeferrds.
+    node ?= iterator-&gt;get_next( ).
+  ENDWHILE.
+
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZSAPLINK_OO" CMPNAME="CREATE_OTR" VERSION="1" LANGU="E" DESCRIPT="Get an OTR object from XML node" EXPOSURE="1" STATE="1" EDITORDER="4 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="CREATE_OTR" SCONAME="NODE" VERSION="1" LANGU="E" DESCRIPT="xml Element" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
+   <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="CREATE_OTR" SCONAME="DEVCLASS" VERSION="1" LANGU="E" DESCRIPT="Development class/package" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="DEVCLASS" PARVALUE="&apos;$TMP&apos;" PAROPTIONL="X"/>
+   <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="CREATE_OTR" SCONAME="CONCEPT" VERSION="1" LANGU="E" DESCRIPT="Key for Logical Object in the OTR" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " PARDECLTYP="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SOTR_TEXT-CONCEPT"/>
+   <exception CLSNAME="ZSAPLINK_OO" CMPNAME="CREATE_OTR" SCONAME="ZCX_SAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 "/>
+   <source>method CREATE_OTR.
+*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   The code of this project is provided to you under the current     |
+*|   version of the SAP Code Exchange Terms of Use. You can find the   |
+*|   text on the SAP Code Exchange webpage at http://www.sdn.sap.com   |
+*|                                                                     |
+*|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
+*|   support.                                                          |
+*\---------------------------------------------------------------------/
+  DATA txtnode TYPE REF TO if_ixml_element.
+  DATA filter TYPE REF TO if_ixml_node_filter.
+  DATA iterator TYPE REF TO if_ixml_node_iterator.
+
+  DATA sotrheader TYPE sotr_head.
+  DATA sotrtextline TYPE sotr_text.
+  DATA sotrtexttable TYPE TABLE OF sotr_text.
+  DATA sotrpaket TYPE sotr_pack.
+
+* get OTR header info
+  CALL METHOD getstructurefromattributes
+    EXPORTING
+      node      = node
+    CHANGING
+      structure = sotrheader.
+
+* get OTR text info
+  filter = node-&gt;create_filter_name( c_xml_key_sotrText ).
+  iterator = node-&gt;create_iterator_filtered( filter ).
+  txtnode ?= iterator-&gt;get_next( ).
+
+  WHILE txtnode IS NOT INITIAL.
+    CLEAR sotrtextline.
+    CALL METHOD getstructurefromattributes
+      EXPORTING
+        node      = txtnode
+      CHANGING
+        structure = sotrtextline.
+    CLEAR: sotrtextline-concept, sotrtextline-object.       &quot;ewH:33
+    APPEND sotrtextline TO sotrtexttable.
+    txtnode ?= iterator-&gt;get_next( ).
+  ENDWHILE.
+
+* ewH:issue 33--&gt; in 6.40 and above, you cannot pass a default concept
+*  (otr) guid, so we will always create new
+*  CALL FUNCTION &apos;SOTR_GET_CONCEPT&apos;
+*    EXPORTING
+*      concept              = sotrHeader-concept
+**   IMPORTING
+**     HEADER               =
+**   TABLES
+**     ENTRIES              =
+*   EXCEPTIONS
+*     NO_ENTRY_FOUND       = 1
+*     OTHERS               = 2
+*            .
+*  IF sy-subrc &lt;&gt; 1.
+**   delete OTR if exists already
+*    CALL FUNCTION &apos;SOTR_DELETE_CONCEPT&apos;
+*      EXPORTING
+*        concept                     = sotrHeader-concept
+*     EXCEPTIONS
+*       NO_AUTHORIZATION            = 1
+*       NO_ENTRY_FOUND              = 2. &quot;who cares
+**       CONCEPT_USED                = 3
+**       NO_MASTER_LANGUAGE          = 4
+**       NO_SOURCE_SYSTEM            = 5
+**       NO_TADIR_ENTRY              = 6
+**       ERROR_IN_CORRECTION         = 7
+**       USER_CANCELLED              = 8
+**       OTHERS                      = 9
+**              .
+*    if sy-subrc = 1.
+*      raise exception type zcx_saplink
+*        exporting textid = zcx_saplink=&gt;not_authorized.
+*    endif.
+*  ENDIF.
+
+
+  DATA objecttable TYPE sotr_objects.
+  DATA objecttype TYPE LINE OF sotr_objects.
+* Retrieve object type of OTR
+  CALL FUNCTION &apos;SOTR_OBJECT_GET_OBJECTS&apos;
+    EXPORTING
+      object_vector    = sotrheader-objid_vec
+    IMPORTING
+      OBJECTS          = objecttable
+    EXCEPTIONS
+      object_not_found = 1
+      OTHERS           = 2.
+
+  READ TABLE objecttable INTO objecttype INDEX 1.
+
+* create OTR
+  sotrpaket-paket = devclass.
+  CALL FUNCTION &apos;SOTR_CREATE_CONCEPT&apos;
+    EXPORTING
+      paket                               = sotrpaket
+      crea_lan                            = sotrheader-crea_lan
+      alias_name                          = sotrheader-alias_name
+*      CATEGORY                            =
+      object                              = objecttype
+      entries                             = sotrtexttable
+*     FLAG_CORRECTION_ENTRY               =
+*     IN_UPDATE_TASK                      =
+*      CONCEPT_DEFAULT                     = sotrHeader-concept &quot;ewH:33
+    IMPORTING
+      concept                             = concept         &quot;ewH:33
+    EXCEPTIONS
+      package_missing                     = 1
+      crea_lan_missing                    = 2
+      object_missing                      = 3
+      paket_does_not_exist                = 4
+      alias_already_exist                 = 5
+      object_type_not_found               = 6
+      langu_missing                       = 7
+      identical_context_not_allowed       = 8
+      text_too_long                       = 9
+      error_in_update                     = 10
+      no_master_langu                     = 11
+      error_in_concept_id                 = 12
+      alias_not_allowed                   = 13
+      tadir_entry_creation_failed         = 14
+      internal_error                      = 15
+      error_in_correction                 = 16
+      user_cancelled                      = 17
+      no_entry_found                      = 18
+      OTHERS                              = 19
+            .
+  IF sy-subrc &lt;&gt; 0.
+*   MESSAGE ID SY-MSGID TYPE SY-MSGTY NUMBER SY-MSGNO
+*           WITH SY-MSGV1 SY-MSGV2 SY-MSGV3 SY-MSGV4.
+  ENDIF.
+
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZSAPLINK_OO" CMPNAME="CREATE_TYPEPUSAGE" VERSION="1" LANGU="E" DESCRIPT="Create type pool usage" EXPOSURE="1" STATE="1" EDITORDER="5 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="CREATE_TYPEPUSAGE" SCONAME="XT_TYPEPUSAGES" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="SEOT_TYPEPUSAGES_R"/>
+   <source>method CREATE_TYPEPUSAGE.
+  DATA: filter   TYPE REF TO if_ixml_node_filter,
+        iterator TYPE REF TO if_ixml_node_iterator,
+        node     TYPE REF TO if_ixml_element,
+        source   TYPE string.
+
+
+  DATA: ls_typepusage  LIKE LINE OF xt_typepusages.
+
+*rrq comments Forward nodes are created in an old version of the
+*create XML from object.  In that node, the only attribute set
+*is the &quot;TypeGroup&quot;.  All other attributes are hard coded on the
+*create Object from XML .  To fix this and make it transparent to
+*users, &quot;forwaredDeclaration&quot; nodes will be supported, and a new
+*node will be added.
+*if it is an old version XML document, forwardDeclarations nodes
+*if it is a new version XML document, typeUsages nodes
+
+  filter   = xmldoc-&gt;create_filter_name( c_xml_key_typepusage ).
+  iterator = xmldoc-&gt;create_iterator_filtered( filter ).
+  node ?= iterator-&gt;get_next( ).
+
+  WHILE node IS NOT INITIAL.
+    CALL METHOD getstructurefromattributes
+      EXPORTING
+        node      = node
+      CHANGING
+        structure = ls_typepusage.
+    APPEND ls_typepusage TO xt_typepusages.
+    node ?= iterator-&gt;get_next( ).
+  ENDWHILE.
+
+* only check forwardDeclaration if typeUsages does not exist
+* later version this will be removed
+  IF xt_typepusages IS INITIAL.
+    filter = xmldoc-&gt;create_filter_name( c_xml_key_forwarddeclaration ).
+    iterator = xmldoc-&gt;create_iterator_filtered( filter ).
+    node ?= iterator-&gt;get_next( ).
+
+    WHILE node IS NOT INITIAL.
+      CLEAR ls_typepusage.
+      source = node-&gt;get_value( ).
+      ls_typepusage-clsname = objname.
+      ls_typepusage-version = &apos;0&apos;.
+      ls_typepusage-tputype = &apos;0&apos;.
+      ls_typepusage-explicit =  &apos;X&apos;.
+      ls_typepusage-implicit = &apos;&apos;.
+      ls_typepusage-typegroup = source.
+      APPEND ls_typepusage TO xt_typepusages.
+      node ?= iterator-&gt;get_next( ).
+    ENDWHILE.
+  ENDIF.
+
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZSAPLINK_OO" CMPNAME="GET_ALIAS_METHOD" VERSION="1" LANGU="E" DESCRIPT="Get alias for method" EXPOSURE="1" STATE="1" EDITORDER="6 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="GET_ALIAS_METHOD" SCONAME="IT_METHODS" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="ABAP_METHDESCR_TAB"/>
+   <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="GET_ALIAS_METHOD" SCONAME="XO_ROOTNODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
+   <source>method GET_ALIAS_METHOD.
+  DATA lo_alias  TYPE REF TO if_ixml_element.
+  DATA ls_alias  TYPE seoaliases.
+  DATA: l_rc     TYPE sy-subrc,
+        ls_method LIKE LINE OF it_methods,
+        ls_clsmethkey TYPE seocmpkey.
+
+  LOOP AT it_methods INTO ls_method.
+    ls_clsmethkey-clsname = objname.
+    ls_clsmethkey-cmpname = ls_method-name.
+    CLEAR ls_alias.
+    CALL FUNCTION &apos;SEO_ALIAS_GET&apos;
+     EXPORTING
+       cmpkey             = ls_clsmethkey
+*       VERSION            = SEOC_VERSION_INACTIVE
+     IMPORTING
+       alias              = ls_alias
+     EXCEPTIONS
+       not_existing       = 1
+       deleted            = 2
+       OTHERS             = 3
+             .
+    IF sy-subrc &lt;&gt; 0.
+* MESSAGE ID SY-MSGID TYPE SY-MSGTY NUMBER SY-MSGNO
+*         WITH SY-MSGV1 SY-MSGV2 SY-MSGV3 SY-MSGV4.
+    ELSE.
+      lo_alias = xmldoc-&gt;create_element( c_xml_key_alias_method ).
+      setattributesfromstructure( node      = lo_alias
+                                  structure = ls_alias ).
+      l_rc = xo_rootnode-&gt;append_child( lo_alias ).
+    ENDIF.
+  ENDLOOP.
+
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZSAPLINK_OO" CMPNAME="GET_CLSDEFERRD" VERSION="1" LANGU="E" DESCRIPT="Get class deferred" EXPOSURE="1" STATE="1" EDITORDER="7 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="GET_CLSDEFERRD" SCONAME="XO_ROOTNODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
+   <source>method GET_CLSDEFERRD.
+  DATA: lt_clsdeferrds     TYPE seot_clsdeferrds_r,
+        lo_clsdeferrds     TYPE REF TO if_ixml_element,
+        ls_clsdeferrd      TYPE seot_typepusage_r.
+
+  DATA: l_rc               TYPE sy-subrc,
+        ls_classkey        TYPE seoclskey.
+
+  ls_classkey-clsname = objname.
+
+  CALL FUNCTION &apos;SEO_CLSDEFERRD_READ_ALL&apos;
+    EXPORTING
+      cifkey            = ls_classkey
+      version           = seoc_version_active
+    IMPORTING
+      CLASSDEFERREDS    = lt_clsdeferrds
+    EXCEPTIONS
+      clif_not_existing = 1
+      OTHERS            = 2.
+
+  LOOP AT lt_clsdeferrds INTO ls_clsdeferrd.
+    lo_clsdeferrds = xmldoc-&gt;create_element( c_xml_key_clsdeferrd ).
+    setattributesfromstructure( node      = lo_clsdeferrds
+                                structure = ls_clsdeferrd ).
+    l_rc = xo_rootnode-&gt;append_child( lo_clsdeferrds ).
+  ENDLOOP.
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZSAPLINK_OO" CMPNAME="GET_INTDEFERRD" VERSION="1" LANGU="E" DESCRIPT="Get interface deferred" EXPOSURE="1" STATE="1" EDITORDER="8 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="GET_INTDEFERRD" SCONAME="XO_ROOTNODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
+   <source>method GET_INTDEFERRD.
+  DATA: lt_intdeferrds     TYPE seot_intdeferrds_r,
+        lo_intdeferrds     TYPE REF TO if_ixml_element,
+        ls_intdeferrd      TYPE seot_intdeferrd_r.
+
+  DATA: l_rc               TYPE sy-subrc,
+        ls_classkey        TYPE seoclskey.
+
+  ls_classkey-clsname = objname.
+
+  CALL FUNCTION &apos;SEO_INTDEFERRD_READ_ALL&apos;
+    EXPORTING
+      cifkey             = ls_classkey
+      version            = seoc_version_active
+    IMPORTING
+      interfacedeferreds = lt_intdeferrds
+    EXCEPTIONS
+      clif_not_existing  = 1
+      OTHERS             = 2.
+
+  LOOP AT lt_intdeferrds INTO ls_intdeferrd.
+    lo_intdeferrds = xmldoc-&gt;create_element( c_xml_key_intdeferrd ).
+    setattributesfromstructure( node      = lo_intdeferrds
+                                structure = ls_intdeferrd ).
+    l_rc = xo_rootnode-&gt;append_child( lo_intdeferrds ).
+  ENDLOOP.
+
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZSAPLINK_OO" CMPNAME="GET_OTR" VERSION="1" LANGU="E" DESCRIPT="Creates an XML node from an OTR object" EXPOSURE="1" STATE="1" EDITORDER="9 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="GET_OTR" SCONAME="OTRGUID" VERSION="1" LANGU="E" DESCRIPT="Key for Logical Object in the OTR" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="SOTR_CONC"/>
+   <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="GET_OTR" SCONAME="NODE" VERSION="1" LANGU="E" DESCRIPT="xml Element" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
+   <source>method GET_OTR.
+*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   The code of this project is provided to you under the current     |
+*|   version of the SAP Code Exchange Terms of Use. You can find the   |
+*|   text on the SAP Code Exchange webpage at http://www.sdn.sap.com   |
+*|                                                                     |
+*|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
+*|   support.                                                          |
+*\---------------------------------------------------------------------/
+  DATA rootnode TYPE REF TO if_ixml_element.
+  DATA txtnode TYPE REF TO if_ixml_element.
+  DATA rc TYPE sysubrc.
+
+  DATA sotrheader TYPE sotr_head.
+  DATA sotrtextline TYPE sotr_text.
+  DATA sotrtexttable TYPE TABLE OF sotr_text.
+
+  DATA _ixml TYPE REF TO if_ixml.
+  DATA _xmldoc TYPE REF TO if_ixml_document.
+
+  CALL FUNCTION &apos;SOTR_GET_CONCEPT&apos;
+    EXPORTING
+      concept        = otrguid
+    IMPORTING
+      header         = sotrheader
+    TABLES
+      entries        = sotrtexttable
+    EXCEPTIONS
+      no_entry_found = 1
+      OTHERS         = 2.
+  IF sy-subrc &lt;&gt; 0.
+    EXIT.
+  ENDIF.
+
+  sotrheader-paket = &apos;$TMP&apos;. &quot;change devclass to $TMP for exports
+
+* Create xml doc
+*  _ixml = cl_ixml=&gt;create( ).
+*  _xmldoc = _ixml-&gt;create_document( ).
+*  streamfactory = _ixml-&gt;create_stream_factory( ).
+
+* Create parent node
+  rootnode = xmldoc-&gt;create_element( c_xml_key_sotr ). &quot;OTR object type
+  CLEAR sotrheader-concept.                                 &quot;ewH:33
+  setattributesfromstructure( node = rootnode structure = sotrheader ).
+
+* Create nodes for texts
+  LOOP AT sotrtexttable INTO sotrtextline.
+    txtnode = xmldoc-&gt;create_element( c_xml_key_sotrtext ).
+    CLEAR: sotrtextline-concept, sotrtextline-object.       &quot;ewH:33
+    setattributesfromstructure(
+      node = txtnode structure = sotrtextline ).
+    rc = rootnode-&gt;append_child( txtnode ).
+  ENDLOOP.
+
+  node = rootnode.
+
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZSAPLINK_OO" CMPNAME="GET_TYPEPUSAGE" VERSION="1" LANGU="E" DESCRIPT="Get type pool usage" EXPOSURE="1" STATE="1" EDITORDER="10 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="GET_TYPEPUSAGE" SCONAME="XO_ROOTNODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
+   <source>method GET_TYPEPUSAGE.
+  DATA: lt_typepusages     TYPE seot_typepusages_r,
+        lo_typepusages     TYPE REF TO if_ixml_element,
+        ls_typepusage      TYPE seot_typepusage_r.
+
+  DATA: l_rc               TYPE sy-subrc,
+        l_string           TYPE string,
+        ls_classkey        TYPE seoclskey.
+
+  ls_classkey-clsname = objname.
+
+  CALL FUNCTION &apos;SEO_TYPEPUSAGE_READ_ALL&apos;
+    EXPORTING
+      cifkey            = ls_classkey
+      version           = seoc_version_active
+    IMPORTING
+      typepusages       = lt_typepusages
+    EXCEPTIONS
+      clif_not_existing = 1
+      OTHERS            = 2.
+
+  LOOP AT lt_typepusages INTO ls_typepusage.
+    lo_typepusages = xmldoc-&gt;create_element( c_xml_key_typepusage ).
+    setattributesfromstructure( node      = lo_typepusages
+                                structure = ls_typepusage ).
+    l_rc = xo_rootnode-&gt;append_child( lo_typepusages ).
+  ENDLOOP.
+
+*ewH: for version 0.1.3, we will continue to generate both nodes
+* in order for upgradeability of saplink itself.  For version
+* 2.0, forwardDeclaration node generations will be deprecated.
+  LOOP AT lt_typepusages INTO ls_typepusage.
+    lo_typepusages = xmldoc-&gt;create_element( c_xml_key_forwarddeclaration ).
+    l_string       = ls_typepusage-typegroup.
+    l_rc = lo_typepusages-&gt;if_ixml_node~set_value( l_string ).
+    l_rc = xo_rootnode-&gt;append_child( lo_typepusages ).
+  ENDLOOP.
+
+endmethod.</source>
+  </method>
+ </CLAS>
+ <CLAS CLSNAME="ZSAPLINK_CLASS" VERSION="1" LANGU="E" DESCRIPT="SAPlink Class Installer" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" CLSCCINCL="X" FIXPT="X" UNICODE="X" CLSBCCAT="00" DURATION_TYPE="0 " RISK_LEVEL="0 " REFCLSNAME="ZSAPLINK_OO">
+  <localImplementation>*&quot;* local class implementation for public class
+*&quot;* use this source file for the implementation part of
+*&quot;* local helper classes</localImplementation>
+  <localTypes>*&quot;* use this source file for any type declarations (class
+*&quot;* definitions, interfaces or data types) you need for method
+*&quot;* implementation or private method&apos;s signature</localTypes>
+  <localMacros>*&quot;* use this source file for any macro definitions you need
+*&quot;* in the implementation part of the class</localMacros>
+  <typeUsage CLSNAME="ZSAPLINK_CLASS" TYPEGROUP="SEOO" VERSION="1" TPUTYPE="0" IMPLICIT="X"/>
+  <forwardDeclaration>SEOO</forwardDeclaration>
+  <attribute CLSNAME="ZSAPLINK_CLASS" CMPNAME="C_XML_KEY_CLASS_DOCUMENTATION" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="4 " ATTDECLTYP="2" ATTVALUE="&apos;classDocumentation&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZSAPLINK_CLASS" CMPNAME="C_XML_KEY_LANGUAGE" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="5 " ATTDECLTYP="2" ATTVALUE="&apos;language&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZSAPLINK_CLASS" CMPNAME="C_XML_KEY_METHOD_DOCUMENTATION" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="1 " ATTDECLTYP="2" ATTVALUE="&apos;methodDocumentation&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZSAPLINK_CLASS" CMPNAME="C_XML_KEY_OBJECT" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="6 " ATTDECLTYP="2" ATTVALUE="&apos;OBJECT&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZSAPLINK_CLASS" CMPNAME="C_XML_KEY_SPRAS" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="7 " ATTDECLTYP="2" ATTVALUE="&apos;SPRAS&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZSAPLINK_CLASS" CMPNAME="C_XML_KEY_TEXTELEMENT" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="2 " ATTDECLTYP="2" ATTVALUE="&apos;textElement&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZSAPLINK_CLASS" CMPNAME="C_XML_KEY_TEXTLINE" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="8 " ATTDECLTYP="2" ATTVALUE="&apos;textLine&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZSAPLINK_CLASS" CMPNAME="C_XML_KEY_TEXTPOOL" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="3 " ATTDECLTYP="2" ATTVALUE="&apos;textPool&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+  <inheritance CLSNAME="ZSAPLINK_CLASS" REFCLSNAME="ZSAPLINK_OO" VERSION="1" STATE="1">
+   <redefinition CLSNAME="ZSAPLINK_CLASS" REFCLSNAME="ZSAPLINK_OO" VERSION="1" MTDNAME="CHECKEXISTS" EXPOSURE="0"/>
+   <redefinition CLSNAME="ZSAPLINK_CLASS" REFCLSNAME="ZSAPLINK_OO" VERSION="1" MTDNAME="CREATEIXMLDOCFROMOBJECT" EXPOSURE="0"/>
+   <redefinition CLSNAME="ZSAPLINK_CLASS" REFCLSNAME="ZSAPLINK_OO" VERSION="1" MTDNAME="CREATEOBJECTFROMIXMLDOC" EXPOSURE="0"/>
+   <redefinition CLSNAME="ZSAPLINK_CLASS" REFCLSNAME="ZSAPLINK_OO" VERSION="1" MTDNAME="DELETEOBJECT" EXPOSURE="0"/>
+   <redefinition CLSNAME="ZSAPLINK_CLASS" REFCLSNAME="ZSAPLINK_OO" VERSION="1" MTDNAME="GETOBJECTTYPE" EXPOSURE="0"/>
   </inheritance>
-  <method CLSNAME="ZSAPLINK" CMPNAME="CHECKEXISTS" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+  <method CLSNAME="ZSAPLINK_OO" CMPNAME="CHECKEXISTS" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
    <source>method CHECKEXISTS.
 */---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
@@ -1289,7 +1573,7 @@ data not_active TYPE  SEOX_BOOLEAN.
   endif.
 endmethod.</source>
   </method>
-  <method CLSNAME="ZSAPLINK" CMPNAME="CREATEIXMLDOCFROMOBJECT" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+  <method CLSNAME="ZSAPLINK_OO" CMPNAME="CREATEIXMLDOCFROMOBJECT" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
    <source>method CREATEIXMLDOCFROMOBJECT.
 */---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
@@ -1301,15 +1585,9 @@ endmethod.</source>
 *|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
 *|   support.                                                          |
 *\---------------------------------------------------------------------/
-  DATA publicsection TYPE REF TO if_ixml_element.
-  DATA protectedsection TYPE REF TO if_ixml_element.
-  DATA privatesection TYPE REF TO if_ixml_element.
   DATA localimplementation TYPE REF TO if_ixml_element.
   DATA localtypes TYPE REF TO if_ixml_element.
   DATA localmacros TYPE REF TO if_ixml_element.
-  data textPoolNode type ref to if_ixml_element.
-  data docuNode type ref to if_ixml_element.
-  data methodDocuNode  type ref to if_ixml_element.
   DATA rootnode TYPE REF TO if_ixml_element.
   DATA reportlist TYPE STANDARD TABLE OF string.
   DATA includename TYPE program.
@@ -1325,8 +1603,8 @@ endmethod.</source>
   DATA exceptionnode TYPE REF TO if_ixml_element.
   DATA exceptionlist TYPE seos_exceptions_r.
   DATA anexception TYPE vseoexcep.
-  data inheritanceNode type ref to if_ixml_element.
-  data redefNode type ref to if_ixml_element.
+  DATA inheritancenode TYPE REF TO if_ixml_element.
+  DATA redefnode TYPE REF TO if_ixml_element.
 
   DATA tempstring TYPE string.
   DATA methodkey TYPE seocpdkey.
@@ -1348,12 +1626,9 @@ endmethod.</source>
   DATA inheritanceprops TYPE vseoextend.
   DATA redefines TYPE STANDARD TABLE OF seoredef
       WITH KEY clsname refclsname version mtdname.
-  DATA inheritance TYPE SEOR_INHERITANCE_R.
+  DATA inheritance TYPE seor_inheritance_r.
   DATA redefinitions TYPE seor_redefinitions_r.
-  data redefinition like line of redefinitions.
-  DATA forwarddeclarationlist TYPE seot_typepusages_r.
-  DATA forwarddeclaration TYPE REF TO if_ixml_element.
-  DATA forwarddeclarationrow TYPE seot_typepusage_r.
+  DATA redefinition LIKE LINE OF redefinitions.
 
   DATA otrnode TYPE REF TO if_ixml_element.
   DATA _otrguid TYPE sotr_conc.
@@ -1404,8 +1679,8 @@ endmethod.</source>
     ENDCASE.
   ENDIF.
 
-  setattributesfromstructure( node = rootnode structure =
-  classproperties ).
+  setattributesfromstructure( node      = rootnode
+                              structure = classproperties ).
   TRY.
       CALL METHOD cl_abap_classdescr=&gt;describe_by_name
         EXPORTING
@@ -1479,14 +1754,14 @@ endmethod.</source>
   APPEND classkey TO clif_keys.
   CALL FUNCTION &apos;SEO_FRIENDS_SELECT&apos;
     EXPORTING
-      WITH_EXTERNAL_REF = &apos;X&apos;
+      with_external_ref = &apos;X&apos;
     TABLES
       clif_keys         = clif_keys
       friends_relations = friends.
   IF sy-subrc &lt;&gt; 0.
   ENDIF.
   LOOP AT friends INTO wa_friend.
-    friends_node = xmldoc-&gt;create_element( &apos;friends&apos; ).
+    friends_node = xmldoc-&gt;create_element( c_xml_key_friends ).
     setattributesfromstructure( node = friends_node structure =
     wa_friend ).
     rc = rootnode-&gt;append_child( friends_node ).
@@ -1494,33 +1769,33 @@ endmethod.</source>
 */***TPJ - End of Added Logic for Friends  -------------------*/
 
 */***ewH - Added Logic for Interfaces  -------------------*/
-  DATA: it_implementings type seor_implementings_r,
-        wa_implementings like line OF it_implementings,
-        implementingNode TYPE REF TO if_ixml_element.
+  DATA: it_implementings TYPE seor_implementings_r,
+        wa_implementings LIKE LINE OF it_implementings,
+        implementingnode TYPE REF TO if_ixml_element.
 
   CALL FUNCTION &apos;SEO_IMPLEMENTG_READ_ALL&apos;
     EXPORTING
-      CLSKEY             = classkey
+      clskey             = classkey
     IMPORTING
-      IMPLEMENTINGS      = it_implementings
+      implementings      = it_implementings
     EXCEPTIONS
-      CLASS_NOT_EXISTING = 1
+      class_not_existing = 1
       OTHERS             = 2.
 
   LOOP AT it_implementings INTO wa_implementings.
-    implementingNode = xmldoc-&gt;create_element( &apos;implementing&apos; ).
-    setattributesfromstructure( node = implementingNode structure =
+    implementingnode = xmldoc-&gt;create_element( &apos;implementing&apos; ).
+    setattributesfromstructure( node = implementingnode structure =
     wa_implementings ).
-    rc = rootnode-&gt;append_child( implementingNode ).
+    rc = rootnode-&gt;append_child( implementingnode ).
   ENDLOOP.
 */***ewH - End of Added Logic for Interfaces  -------------------*/
 */***rrq - Added Logic for EVENTS  -------------------*/
-  DATA: events      TYPE SEOO_EVENTS_R,
+  DATA: events      TYPE seoo_events_r,
         wa_event    LIKE LINE OF events,
         event_node  TYPE REF TO if_ixml_element,
-        eventkey    type SEOCMPKEY,
-        eventparams type seos_parameters_r,
-        wa_params   type seos_parameter_r.
+        eventkey    TYPE seocmpkey,
+        eventparams TYPE seos_parameters_r,
+        wa_params   TYPE seos_parameter_r.
   CALL FUNCTION &apos;SEO_EVENT_READ_ALL&apos;
     EXPORTING
       cifkey            = classkey
@@ -1534,18 +1809,18 @@ endmethod.</source>
   ENDIF.
   LOOP AT events INTO wa_event.
     eventkey-clsname = wa_event-clsname.
-    eventkey-cmpname = wa_event-CMPNAME.
+    eventkey-cmpname = wa_event-cmpname.
     event_node = xmldoc-&gt;create_element( &apos;events&apos; ).
     setattributesfromstructure( node = event_node structure =
     wa_event ).
     CALL FUNCTION &apos;SEO_EVENT_SIGNATURE_GET&apos;
       EXPORTING
-        EVTKEY     = eventkey
+        evtkey     = eventkey
       IMPORTING
         PARAMETERS = eventparams.
 
 *   parameters
-    loop at eventParams into wa_params.
+    LOOP AT eventparams INTO wa_params.
 
       parameternode = xmldoc-&gt;create_element( &apos;parameter&apos; ).
       setattributesfromstructure( node = parameternode
@@ -1555,29 +1830,8 @@ endmethod.</source>
     rc = rootnode-&gt;append_child( event_node ).
   ENDLOOP.
 */***rrq - End of Added Logic for EVENTS  -------------------*/
-
-*/--------------------------------------------------------------------\
-*|                                                                    |
-  includename = cl_oo_classname_service=&gt;get_pubsec_name( _classname ).
-  READ REPORT includename INTO reportlist.
-  publicsection = xmldoc-&gt;create_element( &apos;publicSection&apos; ).
-
-  reportstring = buildsourcestring( sourcetable = reportlist ).
-  rc = publicsection-&gt;if_ixml_node~set_value( reportstring ).
-  CLEAR reportstring.
-*|--------------------------------------------------------------------|
-  includename = cl_oo_classname_service=&gt;get_prosec_name( _classname ).
-  READ REPORT includename INTO reportlist.
-  protectedsection = xmldoc-&gt;create_element( &apos;protectedSection&apos; ).
-  reportstring = buildsourcestring( sourcetable = reportlist ).
-  rc = protectedsection-&gt;if_ixml_node~set_value( reportstring ).
-  CLEAR reportstring.
-*|--------------------------------------------------------------------|
-  includename = cl_oo_classname_service=&gt;get_prisec_name( _classname ).
-  READ REPORT includename INTO reportlist.
-  privatesection = xmldoc-&gt;create_element( &apos;privateSection&apos; ).
-  reportstring = buildsourcestring( sourcetable = reportlist ).
-  rc = privatesection-&gt;if_ixml_node~set_value( reportstring ).
+* removed by Rene.
+  get_sections( CHANGING rootnode = rootnode ) .
 *|--------------------------------------------------------------------|
   includename = cl_oo_classname_service=&gt;get_ccimp_name( _classname ).
   READ REPORT includename INTO reportlist.
@@ -1598,73 +1852,43 @@ endmethod.</source>
   rc = localmacros-&gt;if_ixml_node~set_value( reportstring ).
 *|--------------------------------------------------------------------|
 */***EVP - Added Logic for Local Test Classes  ----------------------*/
-  DATA localtestclasses type ref to if_ixml_element.
-  DATA localtestclassesExist type i.
+  DATA localtestclasses TYPE REF TO if_ixml_element.
+  DATA localtestclassesexist TYPE i.
 
   includename = cl_oo_classname_service=&gt;get_local_testclasses_include( _classname ).
   READ REPORT includename INTO reportlist.
   &quot; If sy-subrc = 0 the local test classes do exist
-  localtestclassesExist = sy-subrc.
-  if localtestclassesExist = 0.
+  localtestclassesexist = sy-subrc.
+  IF localtestclassesexist = 0.
     localtestclasses = xmldoc-&gt;create_element( &apos;localTestClasses&apos; ).
     reportstring = buildsourcestring( sourcetable = reportlist ).
     rc = localtestclasses-&gt;if_ixml_node~set_value( reportstring ).
-  endif.
+  ENDIF.
 */***EVP - End of Added Logic for Local Test Classes  ---------------*/
-**// Rich:  Start
-  textPoolNode = get_textPool( ).
-  docuNode = get_documentation( ).
-**// Rich:  End
 *|                                                                    |
 *\--------------------------------------------------------------------/
-  rc = rootnode-&gt;append_child( publicsection ).
-  rc = rootnode-&gt;append_child( protectedsection ).
-  rc = rootnode-&gt;append_child( privatesection ).
   rc = rootnode-&gt;append_child( localimplementation ).
   rc = rootnode-&gt;append_child( localtypes ).
   rc = rootnode-&gt;append_child( localmacros ).
 */***EVP - Added Logic for Local Test Classes  -------------------*/
-  if localtestclassesExist = 0.
+  IF localtestclassesexist = 0.
     rc = rootnode-&gt;append_child( localtestclasses ).
-  endif.
+  ENDIF.
 */***EVP - End of Added Logic for Local Test Classes  ------------*/
 **// Rich:  Start
-  rc = rootnode-&gt;append_child( textPoolNode ).
-  rc = rootnode-&gt;append_child( docuNode ).
+  get_textpool( CHANGING rootnode = rootnode ).
+  get_documentation( CHANGING rootnode = rootnode ).
 **// Rich:  End
-
-  CALL FUNCTION &apos;SEO_TYPEPUSAGE_READ_ALL&apos;
-    EXPORTING
-      cifkey      = classkey
-      version     = &apos;1&apos;
-    IMPORTING
-      typepusages = forwarddeclarationlist.
-*comment rrq old way....forwardDeclarations the only attribute
-*set was the &quot;TypeGroup&quot;
-*the new way....the entire structure is passed as in node typeUsage
-  LOOP AT forwarddeclarationlist INTO forwarddeclarationrow.
-    forwarddeclaration = xmldoc-&gt;create_element( &apos;typeUsage&apos; ).
-    setattributesfromstructure( node = forwarddeclaration structure =
-    forwarddeclarationrow ).
-    rc = rootnode-&gt;append_child( forwarddeclaration ).
-  ENDLOOP.
-
-*ewH: for version 0.1.3, we will continue to generate both nodes
-* in order for upgradeability of saplink itself.  For version
-* 2.0, forwardDeclaration node generations will be deprecated.
-  LOOP AT forwarddeclarationlist INTO forwarddeclarationrow.
-    forwarddeclaration = xmldoc-&gt;create_element( &apos;forwardDeclaration&apos; ).
-    tempstring = forwarddeclarationrow-typegroup.
-    rc = forwarddeclaration-&gt;if_ixml_node~set_value( tempstring ).
-    rc = rootnode-&gt;append_child( forwarddeclaration ).
-  ENDLOOP.
+  get_typepusage( CHANGING  xo_rootnode = rootnode ).
+  get_clsdeferrd( CHANGING  xo_rootnode = rootnode ).
+  get_intdeferrd( CHANGING  xo_rootnode = rootnode ).
 
 *  classDescriptor ?= cl_abap_typedescr=&gt;describe_by_name( className ).
   attribkey-clsname = objname.
 
   LOOP AT classdescr-&gt;attributes INTO attribdescr
   WHERE is_inherited = abap_false
-  and is_interface = abap_false. &quot;rrq:issue 46
+  AND is_interface = abap_false. &quot;rrq:issue 46
     attribnode = xmldoc-&gt;create_element( &apos;attribute&apos; ).
     attribkey-cmpname = attribdescr-name.
     CALL FUNCTION &apos;SEO_ATTRIBUTE_GET&apos;
@@ -1677,15 +1901,15 @@ endmethod.</source>
     IF attribproperties-type = &apos;SOTR_CONC&apos; AND attribproperties-attvalue
     IS NOT INITIAL.
       _otrguid = attribproperties-attvalue+1(32).
-      otrnode = createnodefromotr( _otrguid ).
-      if otrnode is bound.
+      otrnode = get_otr( _otrguid ).
+      IF otrnode IS BOUND.
         rc = attribnode-&gt;append_child( otrnode ).
-      endif.
+      ENDIF.
     ENDIF.
 
 *   append attribute node to parent node
-    setattributesfromstructure( node = attribnode structure =
-    attribproperties ).
+    setattributesfromstructure( node      = attribnode
+                                structure = attribproperties ).
     rc = rootnode-&gt;append_child( attribnode ).
   ENDLOOP.
 
@@ -1693,35 +1917,35 @@ endmethod.</source>
 * inheritances &amp; redefinitions: old source removed-recover w/subversion
   CALL FUNCTION &apos;SEO_INHERITANC_READ&apos;
     EXPORTING
-      CLSKEY             = classKey
+      clskey             = classkey
     IMPORTING
-      INHERITANCE        = inheritance
-      REDEFINITIONS      = redefinitions
+      inheritance        = inheritance
+      redefinitions      = redefinitions
     EXCEPTIONS
-      CLASS_NOT_EXISTING = 1
+      class_not_existing = 1
       OTHERS             = 2.
 
-  if inheritance is not initial.
-    inheritanceNode = xmldoc-&gt;create_element( &apos;inheritance&apos; ).
-    setattributesfromstructure( node = inheritanceNode structure =
+  IF inheritance IS NOT INITIAL.
+    inheritancenode = xmldoc-&gt;create_element( c_xml_key_inheritance ).
+    setattributesfromstructure( node = inheritancenode structure =
     inheritance ).
 
-    loop at redefinitions into redefinition.
-      redefNode = xmldoc-&gt;create_element( &apos;redefinition&apos; ).
-      setattributesfromstructure( node = redefNode structure =
+    LOOP AT redefinitions INTO redefinition.
+      redefnode = xmldoc-&gt;create_element( &apos;redefinition&apos; ).
+      setattributesfromstructure( node = redefnode structure =
       redefinition ).
-      rc = inheritanceNode-&gt;append_child( redefNode ).
-    endloop.
-    rc = rootnode-&gt;append_child( inheritanceNode ).
-  endif.
+      rc = inheritancenode-&gt;append_child( redefnode ).
+    ENDLOOP.
+    rc = rootnode-&gt;append_child( inheritancenode ).
+  ENDIF.
 
-* methods
-  LOOP AT classdescr-&gt;methods INTO methoddescr where
-  not ( is_inherited = &apos;X&apos; and is_redefined is initial ).
+* methods with out alias We handle this later
+  LOOP AT classdescr-&gt;methods INTO methoddescr WHERE alias_for IS INITIAL AND
+  NOT ( is_inherited = &apos;X&apos; AND is_redefined IS INITIAL ).
     methodkey-clsname = _classname.
     methodkey-cpdname = methoddescr-name.
 *   interface methods
-    if methoddescr-is_interface = &apos;X&apos;.
+    IF methoddescr-is_interface = &apos;X&apos;.
       CALL METHOD cl_oo_classname_service=&gt;get_method_include
         EXPORTING
           mtdkey              = methodkey
@@ -1744,25 +1968,25 @@ endmethod.</source>
         rc = rootnode-&gt;append_child( methodnode ).
       ENDIF.
 *   other methods
-    else.
+    ELSE.
       clsmethkey-clsname = _classname.
       clsmethkey-cmpname = methoddescr-name.
       CLEAR methodproperties.
 
-      if methoddescr-is_redefined = &apos;X&apos;.
+      IF methoddescr-is_redefined = &apos;X&apos;.
         methodnode = xmldoc-&gt;create_element( &apos;method&apos; ).
-        move-corresponding clsMethKey to methodProperties.
+        MOVE-CORRESPONDING clsmethkey TO methodproperties.
 *// ewh: begin of forward compatibility hack, can be removed for next
 *//      major release--&gt;
-        read table redefinitions into redefinition
-          with key mtdname = methoddescr-name.
-        if sy-subrc = 0.
-          methodProperties-clsname = redefinition-refclsname.
-        endif.
+        READ TABLE redefinitions INTO redefinition
+          WITH KEY mtdname = methoddescr-name.
+        IF sy-subrc = 0.
+          methodproperties-clsname = redefinition-refclsname.
+        ENDIF.
 *//&lt;--ewH: end of forward compatibility hack
         setattributesfromstructure( node = methodnode structure =
         methodproperties ).
-      else.
+      ELSE.
         CALL FUNCTION &apos;SEO_METHOD_GET&apos;
           EXPORTING
             mtdkey       = clsmethkey
@@ -1806,8 +2030,8 @@ endmethod.</source>
             structure = anexception ).
             rc = methodnode-&gt;append_child( exceptionnode ).
           ENDLOOP.
-        endif. &quot;method found
-      endif. &quot;is_redefined?
+        ENDIF. &quot;method found
+      ENDIF. &quot;is_redefined?
 *     source
       CALL METHOD cl_oo_classname_service=&gt;get_method_include
         EXPORTING
@@ -1822,22 +2046,24 @@ endmethod.</source>
         sourcenode = xmldoc-&gt;create_element( &apos;source&apos; ).
         rc = sourcenode-&gt;if_ixml_node~set_value( reportstring ).
         rc = methodnode-&gt;append_child( sourcenode ).
-      endif.
+      ENDIF.
 ** StartInsert Rich - Handle method documenation
-      methodDocuNode = get_method_documentation(  methodkey ).
-      rc = methodnode-&gt;append_child( methodDocuNode ).
+      get_method_documentation(  EXPORTING method_key = methodkey
+                                 CHANGING  rootnode   = methodnode ).
 ** EndInsert Rich - Handle method documenation
       rc = rootnode-&gt;append_child( methodnode ).
-    endif. &quot;is_interface?
-  endloop.
-
+    ENDIF. &quot;is_interface?
+  ENDLOOP.
+* create alias info for load.
+  get_alias_method( EXPORTING it_methods     = classdescr-&gt;methods
+                    CHANGING  xo_rootnode    = rootnode ).
 * append root node to xmldoc
   rc = xmldoc-&gt;append_child( rootnode ).
   ixmldocument = xmldoc.
 *// &lt;--ewH: end of logic for interface methods &amp; inheritance redesign
 endmethod.</source>
   </method>
-  <method CLSNAME="ZSAPLINK" CMPNAME="CREATEOBJECTFROMIXMLDOC" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+  <method CLSNAME="ZSAPLINK_OO" CMPNAME="CREATEOBJECTFROMIXMLDOC" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
    <source>method CREATEOBJECTFROMIXMLDOC.
 */---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
@@ -1869,10 +2095,8 @@ endmethod.</source>
   DATA aobjname TYPE e071-obj_name.
   DATA inheritancenode TYPE REF TO if_ixml_element.
   DATA redefnode TYPE REF TO if_ixml_element.
-  data textNode  type ref to if_ixml_element.
-  data docNode type ref to if_ixml_element.
-  data methDocNode type ref to if_ixml_element.
   DATA includename TYPE program.
+  DATA mtdkey   TYPE seocpdkey.
 
 *data excClass type ref to ZCX_SAPLINK.
 
@@ -1909,8 +2133,8 @@ endmethod.</source>
   ch_parameters            TYPE seos_parameters_r,
   ch_exceps                TYPE seos_exceptions_r,
   ch_aliases               TYPE seoo_aliases_r,
-  ch_typeusages            TYPE seot_typepusages_r,
-  ch_clsdeferreds          TYPE seot_clsdeferrds_r,
+  ch_typepusages           TYPE seot_typepusages_r,
+  ch_clsdeferrds           TYPE seot_clsdeferrds_r,
   ch_intdeferrds           TYPE seot_intdeferrds_r,
   ch_friendships           TYPE seo_friends,
 **table dataTypes
@@ -1926,10 +2150,10 @@ endmethod.</source>
   wa_methods               TYPE seoo_method_r,
   wa_parameters            TYPE seos_parameter_r,
   wa_exceps                TYPE seos_exception_r,
-  wa_typeusages            TYPE seot_typepusage_r, &quot;forward declarations
   wa_method_sources        TYPE seo_method_source,
   wa_events                TYPE seoo_event_r.
-  DATA: lines TYPE i.
+  DATA: lines TYPE i,
+        l_msg TYPE string.
 *//&lt;-- end of new data types rrq
 
   CALL FUNCTION &apos;SEO_BUFFER_INIT&apos;.
@@ -1969,11 +2193,11 @@ endmethod.</source>
   WHILE node IS NOT INITIAL.
 *   create OTR texts if necessary (for exception classes)
     CLEAR otrconcept.
-    otrnode = node-&gt;find_from_name( &apos;sotr&apos; ).
+    otrnode = node-&gt;find_from_name( c_xml_key_sotr ).
     IF otrnode IS NOT INITIAL.
 *     ewH:33--&gt;create new concept with new guid
 *      me-&gt;createotrfromnode( otrnode ).
-      me-&gt;createotrfromnode(
+      me-&gt;create_otr(
         EXPORTING node = otrnode
         IMPORTING concept = otrconcept ).
     ENDIF.
@@ -2016,7 +2240,7 @@ endmethod.</source>
 */***TPJ - Added Logic for Friends  -------------------*/
 *  DATA: wa_friends type seofriends.
 
-  filter = xmldoc-&gt;create_filter_name( &apos;friends&apos; ).
+  filter = xmldoc-&gt;create_filter_name( C_XML_KEY_FRIENDS ).
   iterator = xmldoc-&gt;create_iterator_filtered( filter ).
   node ?= iterator-&gt;get_next( ).
   WHILE node IS NOT INITIAL.
@@ -2085,7 +2309,7 @@ endmethod.</source>
 
 *// ewH: start redesign method/inheritances--&gt;
 * inheritance
-  inheritancenode = rootnode-&gt;find_from_name( &apos;inheritance&apos; ).
+  inheritancenode = rootnode-&gt;find_from_name( c_xml_key_inheritance ).
   IF inheritancenode IS BOUND.
     CALL METHOD getstructurefromattributes
       EXPORTING
@@ -2176,8 +2400,7 @@ endmethod.</source>
     APPEND wa_methods TO ch_methods.
 
 ** StartInsert Rich - Handle method documenation
-    methdocnode = node-&gt;find_from_name( &apos;methodDocumentation&apos; ).
-    create_method_documentation( methdocnode ).
+    create_method_documentation( node = node ).
 ** EndInsert Rich - Handle method documenation
 
     node ?= iterator-&gt;get_next( ).
@@ -2195,71 +2418,10 @@ endmethod.</source>
 *  ENDIF.
 *// &lt;--ewH: end of backward compatibility hack
 
+  create_typepusage( CHANGING xt_typepusages = ch_typepusages ).
+  create_clsdeferrd( CHANGING xt_clsdeferrds = ch_clsdeferrds ).
+  create_intdeferrd( CHANGING xt_intdeferrds = ch_intdeferrds ).
 
-  DATA classtype TYPE seoclstype.
-  DATA impkeys TYPE seor_implementing_keys.
-  DATA iserror TYPE boolean.
-
-*rrq comments Forward nodes are created in an old version of the
-*create XML from object.  In that node, the only attribute set
-*is the &quot;TypeGroup&quot;.  All other attributes are hard coded on the
-*create Object from XML .  To fix this and make it transparent to
-*users, &quot;forwaredDeclaration&quot; nodes will be supported, and a new
-*node will be added.
-*if it is an old version XML document, forwardDeclarations nodes
-*if it is a new version XML document, typeUsages nodes
-
-*ewH: for version 0.1.3, we will continue to generate both nodes
-* in order for upgradeability of saplink itself.  For version
-* 2.0, forwardDeclaration node generations will be deprecated.
-  filter = xmldoc-&gt;create_filter_name( &apos;typeUsage&apos; ).
-  iterator = xmldoc-&gt;create_iterator_filtered( filter ).
-  node ?= iterator-&gt;get_next( ).
-
-  WHILE node IS NOT INITIAL.
-    CALL METHOD getstructurefromattributes
-      EXPORTING
-        node      = node
-      CHANGING
-        structure = wa_typeusages.
-    APPEND wa_typeusages TO ch_typeusages.
-    node ?= iterator-&gt;get_next( ).
-  ENDWHILE.
-
-* only check forwardDeclaration if typeUsages does not exist
-  IF ch_typeusages IS INITIAL.
-    filter = xmldoc-&gt;create_filter_name( &apos;forwardDeclaration&apos; ).
-    iterator = xmldoc-&gt;create_iterator_filtered( filter ).
-    node ?= iterator-&gt;get_next( ).
-
-    WHILE node IS NOT INITIAL.
-      source = node-&gt;get_value( ).
-      wa_typeusages-typegroup = source.
-      CLEAR wa_typeusages.
-      wa_typeusages-clsname = classkey-clsname.
-      wa_typeusages-version = &apos;0&apos;.
-      wa_typeusages-tputype = &apos;0&apos;.
-      wa_typeusages-explicit =  &apos;X&apos;.
-      wa_typeusages-implicit = &apos;&apos;.
-      wa_typeusages-typegroup = source.
-      APPEND wa_typeusages TO ch_typeusages.
-      node ?= iterator-&gt;get_next( ).
-    ENDWHILE.
-  ENDIF.
-* new way....only one of these nodes should exist
-*  filter = xmldoc-&gt;create_filter_name( &apos;typeUsage&apos; ).
-*  iterator = xmldoc-&gt;create_iterator_filtered( filter ).
-*  node ?= iterator-&gt;get_next( ).
-*
-*  WHILE node IS NOT INITIAL.
-*      CALL METHOD getstructurefromattributes
-*      EXPORTING
-*        node      = node
-*      CHANGING
-*        structure = wa_typeUsages.
-*    APPEND wa_typeusages TO ch_typeusages.
-*    node ?= iterator-&gt;get_next( ).
-*  ENDWHILE.
 *Insert source code into the methods
   filter = xmldoc-&gt;create_filter_name( &apos;method&apos; ).
   iterator = xmldoc-&gt;create_iterator_filtered( filter ).
@@ -2279,30 +2441,6 @@ endmethod.</source>
       CLEAR wa_method_sources.
       source = methodsourcenode-&gt;get_value( ).
       sourcetable = buildtablefromstring( source ).
-      LOOP AT sourcetable INTO source.
-        CHECK source IS NOT INITIAL
-              &quot;// Mar: -&gt; Added of logic for comments of methods 08/20/2008
-              AND STRLEN( source ) GT 5.
-        &quot;// Mar: &lt;- Added of logic for comments of methods 08/20/2008
-        TRANSLATE source TO UPPER CASE.
-        SHIFT source LEFT DELETING LEADING space.
-        IF source+0(6) = &apos;METHOD&apos;.
-          DELETE sourcetable INDEX sy-tabix.
-          EXIT.
-        ENDIF.
-      ENDLOOP.
-      DESCRIBE TABLE sourcetable LINES lines.
-      WHILE lines &gt; 0.
-        READ TABLE sourcetable INTO source INDEX lines.
-        IF source CP &apos;*endmethod*&apos;.
-          IF sy-subrc  = 0 AND source+0(1) &lt;&gt; &apos;*&apos;.
-*          Got it and not a comment?
-            DELETE sourcetable INDEX lines.
-            EXIT.
-          ENDIF.
-        ENDIF.
-        SUBTRACT 1 FROM lines.
-      ENDWHILE.
       READ TABLE ch_redefinitions INTO wa_redefinitions
       WITH KEY mtdname = methodkey-cpdname.
       IF sy-subrc = 0.
@@ -2332,30 +2470,6 @@ endmethod.</source>
       CLEAR wa_method_sources.
       source = methodsourcenode-&gt;get_value( ).
       sourcetable = buildtablefromstring( source ).
-      LOOP AT sourcetable INTO source.
-        CHECK source IS NOT INITIAL
-              &quot;// Mar: -&gt; Added of logic for comments of methods- 08/20/2008
-              AND STRLEN( source ) GT 5.
-        &quot;// Mar: &lt;- Added of logic for comments of methods - 08/20/2008
-        TRANSLATE source TO UPPER CASE.
-        SHIFT source LEFT DELETING LEADING space.
-        IF source+0(6) = &apos;METHOD&apos;.
-          DELETE sourcetable INDEX sy-tabix.
-          EXIT.
-        ENDIF.
-      ENDLOOP.
-      DESCRIBE TABLE sourcetable LINES lines.
-      WHILE lines &gt; 0.
-        READ TABLE sourcetable INTO source INDEX lines.
-        IF source CP &apos;*endmethod*&apos;.
-          IF sy-subrc  = 0 AND source+0(1) &lt;&gt; &apos;*&apos;.
-*          Got it and not a comment?
-            DELETE sourcetable INDEX lines.
-            EXIT.
-          ENDIF.
-        ENDIF.
-        SUBTRACT 1 FROM lines.
-      ENDWHILE.
       wa_method_sources-cpdname = methodkey-cpdname.
       READ TABLE ch_redefinitions INTO wa_redefinitions
       WITH KEY mtdname = methodkey-cpdname.
@@ -2394,39 +2508,11 @@ endmethod.</source>
     source = sourcenode-&gt;get_value( ).
     e_locals_mac = buildtablefromstring( source ).
   ENDIF.
+* We don&apos;t need the sections for now. Code moved by Rene
+  create_sections( ).
 
-*ewH-not sure how this type_source param works. type sources can come
-* from private or protected sections, but there is no way to pass
-* these separately into the class create FM. After debugging into
-* FM-&gt;clif_save_all-&gt;generate_classpool it treats the source table
-* as one, so I am not sure how to get it to differentiate between
-* private and protected sections. If only one section has types
-* defined, the FM call works, otherwise all hell breaks loose. To
-* solve the problem for now, we will just do an insert report for
-* the sections after the class creation, since that&apos;s all the FM
-* does in the end anyway. Wow, this is a really long comment, but
-* I dont want to have to try to remember what the hell was going
-* on here later...sorry.  :)
-*insert code for publicSection
-*  sourcenode = xmldoc-&gt;find_from_name( &apos;publicSection&apos; )
-*  IF sourcenode IS NOT INITIAL.
-*    source = sourcenode-&gt;get_value( ).
-*    ch_type_source = buildtablefromstring( source ).
-*  ENDIF.
-**insert code for pivateSection
-*  sourcenode = xmldoc-&gt;find_from_name( &apos;privateSection&apos; ).
-*  IF sourcenode IS NOT INITIAL.
-*    source = sourcenode-&gt;get_value( ).
-*    ch_type_source_temp = buildtablefromstring( source ).
-*    append lines of ch_type_source_temp to ch_type_source.
-*  ENDIF.
-**insert code for ProtectedSection
-*  sourcenode = xmldoc-&gt;find_from_name( &apos;protectedSection&apos; ).
-*  IF sourcenode IS NOT INITIAL.
-*    source = sourcenode-&gt;get_value( ).
-*    ch_type_source_temp = buildtablefromstring( source ).
-*    append lines of ch_type_source_temp to ch_type_source.
-*  ENDIF.
+*Add Alias to new class
+  create_alias_method( CHANGING xt_aliases_method = ch_aliases ).
 
   name = objname.
 
@@ -2440,7 +2526,7 @@ endmethod.</source>
      overwrite                          = e_overwrite
 *   SUPPRESS_METHOD_GENERATION         = e_suppress_meth_gen
 *   SUPPRESS_REFACTORING_SUPPORT       = e_suppress_refac_gen
-     method_sources                     = e_method_sources
+*     method_sources                     = e_method_sources
      locals_def                         = e_locals_def
      locals_imp                         = e_locals_imp
      locals_mac                         = e_locals_mac
@@ -2465,8 +2551,8 @@ endmethod.</source>
      PARAMETERS                         = ch_parameters
      exceps                             = ch_exceps
      aliases                            = ch_aliases
-     typepusages                        = ch_typeusages
-     clsdeferrds                        = ch_clsdeferreds
+     typepusages                        = ch_typepusages
+     clsdeferrds                        = ch_clsdeferrds
      intdeferrds                        = ch_intdeferrds
      friendships                        = ch_friendships
    EXCEPTIONS
@@ -2490,6 +2576,62 @@ endmethod.</source>
         EXPORTING
           textid = zcx_saplink=&gt;system_error.
   ENDCASE.
+* Now let&apos;s add the methods
+  LOOP AT e_method_sources INTO wa_method_sources.
+    mtdkey-clsname = objname.
+    mtdkey-cpdname = wa_method_sources-cpdname.
+
+    CALL FUNCTION &apos;SEO_METHOD_GENERATE_INCLUDE&apos;
+      EXPORTING
+        mtdkey                               = mtdkey
+        version                              = e_version
+        force                                = e_overwrite
+        redefine                             = wa_method_sources-redefine
+*     SUPPRESS_CORR                        = SEOX_FALSE
+        implementation_expanded              = wa_method_sources-source
+*     IMPLEMENTATION                       =
+        suppress_mtdkey_check                = seox_true
+*     EDITOR_LOCK                          = SEOX_FALSE
+*     GENERATED                            = SEOX_FALSE
+        corrnr                               = e_corrnr
+        without_method_frame                 = seox_true
+*     WITH_SUPER_CALL                      = SEOX_FALSE
+*     SUPPRESS_INDEX_UPDATE                = SEOX_FALSE
+*     EXTEND                               = SEOX_FALSE
+*     ENHANCEMENT                          = &apos; &apos;
+*     SUPPRESS_MODIFICATION_SUPPORT        = SEOX_FALSE
+   EXCEPTIONS
+     not_existing                         = 1
+     model_only                           = 2
+     include_existing                     = 3
+     method_imp_not_generated             = 4
+     method_imp_not_initialised           = 5
+     _internal_class_not_existing         = 6
+     _internal_method_overflow            = 7
+     cancelled                            = 8
+     method_is_abstract_implemented       = 9
+     method_is_final_implemented          = 10
+     internal_error_insert_report         = 11
+     OTHERS                               = 12
+              .
+    CASE sy-subrc.
+      WHEN &apos;0&apos;.
+** i guess if we made it this far, we will assume success
+** successful install
+      WHEN &apos;3&apos;.
+        l_msg = mtdkey.
+        RAISE EXCEPTION TYPE zcx_saplink
+          EXPORTING
+            textid = zcx_saplink=&gt;existing
+            msg    = l_msg.
+      WHEN OTHERS.
+        l_msg = mtdkey.
+        RAISE EXCEPTION TYPE zcx_saplink
+          EXPORTING
+            textid = zcx_saplink=&gt;system_error
+            msg    = l_msg.
+    ENDCASE.
+  ENDLOOP.
 
 *ewH:insert pub, prot, and priv sections manually to keep any direct
 * attribute/type definitions
@@ -2527,34 +2669,32 @@ endmethod.</source>
 **local test classes
   sourcenode = xmldoc-&gt;find_from_name( &apos;localTestClasses&apos; ).
   IF sourcenode IS NOT INITIAL.
-    data clskey type seoclskey.
+    DATA clskey TYPE seoclskey.
     source = sourcenode-&gt;get_value( ).
     sourcetable = buildtablefromstring( source ).
 
     clskey-clsname = _classname.
-    call function &apos;SEO_CLASS_GENERATE_LOCALS&apos;
-      exporting
+    CALL FUNCTION &apos;SEO_CLASS_GENERATE_LOCALS&apos;
+      EXPORTING
         clskey                 = clskey
         force                  = overwrite
         locals_testclasses     = sourcetable
-      exceptions
+      EXCEPTIONS
         not_existing           = 1
         model_only             = 2
         locals_not_generated   = 3
         locals_not_initialised = 4
-        others                 = 5.
-    if sy-subrc &lt;&gt; 0.
-    endif.
+        OTHERS                 = 5.
+    IF sy-subrc &lt;&gt; 0.
+    ENDIF.
   ENDIF.
 */***EVP - End Of Added Logic for Local Test Classes  -------------------*/
 
 **// Rich:  Start
 * Create class textpool
-  textnode = xmldoc-&gt;find_from_name( &apos;textPool&apos; ).
-  create_textpool( textnode ).
+  create_textpool( ).
 
-  docnode = xmldoc-&gt;find_from_name( &apos;classDocumentation&apos; ).
-  create_documentation( docnode ).
+  create_documentation( ).
 **// Rich:  End
 
 * insert inactive sections into worklist
@@ -2588,8 +2728,7 @@ endmethod.</source>
 
 endmethod.</source>
   </method>
-  <method CLSNAME="ZSAPLINK_CLASS" CMPNAME="CREATE_DOCUMENTATION" VERSION="1" LANGU="E" DESCRIPT="Create Documentation" EXPOSURE="0" STATE="1" EDITORDER="4 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
-   <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="CREATE_DOCUMENTATION" SCONAME="DOCNODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
+  <method CLSNAME="ZSAPLINK_CLASS" CMPNAME="CREATE_DOCUMENTATION" VERSION="1" LANGU="E" DESCRIPT="Create Documentation" EXPOSURE="1" STATE="1" EDITORDER="1 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
    <source>method CREATE_DOCUMENTATION.
 */---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
@@ -2605,46 +2744,50 @@ endmethod.</source>
   DATA txtline_filter   TYPE REF TO if_ixml_node_filter.
   DATA txtline_iterator TYPE REF TO if_ixml_node_iterator.
 
-  DATA lang_node     TYPE REF TO if_ixml_element.
-  DATA lang_filter   TYPE REF TO if_ixml_node_filter.
-  DATA lang_iterator TYPE REF TO if_ixml_node_iterator.
+  DATA docnode          TYPE REF TO if_ixml_element.
 
-  data obj_name type DOKHL-OBJECT.
-  data class_name type string.
-  data language  type string.
-  data obj_langu type DOKHL-LANGU.
-  data lv_str type string.
-  data rc type sy-subrc.
+  DATA lang_node        TYPE REF TO if_ixml_element.
+  DATA lang_filter      TYPE REF TO if_ixml_node_filter.
+  DATA lang_iterator    TYPE REF TO if_ixml_node_iterator.
+
+  DATA obj_name TYPE dokhl-object.
+  DATA class_name TYPE string.
+  DATA language  TYPE string.
+  DATA obj_langu TYPE dokhl-langu.
+  DATA lv_str TYPE string.
+  DATA rc TYPE sy-subrc.
 
   DATA lt_lines  TYPE TABLE OF tline.
   FIELD-SYMBOLS: &lt;ls_lines&gt; LIKE LINE OF lt_lines.
 
-  if docnode is not bound.
-    return.
-  endif.
+  docnode = xmldoc-&gt;find_from_name( c_xml_key_class_documentation ).
 
-  class_name = docNode-&gt;get_attribute( name = &apos;OBJECT&apos; ).
+  IF docnode IS NOT BOUND.
+    RETURN.
+  ENDIF.
+
+  class_name = docnode-&gt;get_attribute( name = c_xml_key_object ).
   obj_name = class_name.
 
 * If no class name, then there was no class documenation, just return.
-  if class_name is initial.
-    return.
-  endif.
+  IF class_name IS INITIAL.
+    RETURN.
+  ENDIF.
 
 * Get languages from XML
   FREE: lang_filter, lang_iterator, lang_node.
-  lang_filter = docNode-&gt;create_filter_name( `language` ).
-  lang_iterator = docNode-&gt;create_iterator_filtered( lang_filter ).
+  lang_filter = docnode-&gt;create_filter_name( c_xml_key_language ).
+  lang_iterator = docnode-&gt;create_iterator_filtered( lang_filter ).
   lang_node ?= lang_iterator-&gt;get_next( ).
   WHILE lang_node IS NOT INITIAL.
 
-    refresh lt_lines.
-    language = lang_node-&gt;get_attribute( name = &apos;SPRAS&apos; ).
+    REFRESH lt_lines.
+    language = lang_node-&gt;get_attribute( name = c_xml_key_spras ).
     obj_langu = language.
 
 * Get TextLines from XML
     FREE: txtline_filter, txtline_iterator, txtline_node.
-    txtline_filter = lang_node-&gt;create_filter_name( `textLine` ).
+    txtline_filter = lang_node-&gt;create_filter_name( c_xml_key_textline ).
     txtline_iterator = lang_node-&gt;create_iterator_filtered( txtline_filter ).
     txtline_node ?= txtline_iterator-&gt;get_next( ).
     WHILE txtline_node IS NOT INITIAL.
@@ -2690,8 +2833,8 @@ endmethod.</source>
 
 endmethod.</source>
   </method>
-  <method CLSNAME="ZSAPLINK_CLASS" CMPNAME="CREATE_METHOD_DOCUMENTATION" VERSION="1" LANGU="E" DESCRIPT="Create Method Documentation" EXPOSURE="0" STATE="1" EDITORDER="7 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
-   <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="CREATE_METHOD_DOCUMENTATION" SCONAME="METHDOCNODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
+  <method CLSNAME="ZSAPLINK_CLASS" CMPNAME="CREATE_METHOD_DOCUMENTATION" VERSION="1" LANGU="E" DESCRIPT="Create Method Documentation" EXPOSURE="1" STATE="1" EDITORDER="2 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="CREATE_METHOD_DOCUMENTATION" SCONAME="NODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
    <source>method CREATE_METHOD_DOCUMENTATION.
 */---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
@@ -2707,9 +2850,11 @@ endmethod.</source>
   DATA txtline_filter   TYPE REF TO if_ixml_node_filter.
   DATA txtline_iterator TYPE REF TO if_ixml_node_iterator.
 
-  DATA lang_node     TYPE REF TO if_ixml_element.
-  DATA lang_filter   TYPE REF TO if_ixml_node_filter.
-  DATA lang_iterator TYPE REF TO if_ixml_node_iterator.
+  data: methdocnode     TYPE REF TO if_ixml_element.
+
+  DATA lang_node        TYPE REF TO if_ixml_element.
+  DATA lang_filter      TYPE REF TO if_ixml_node_filter.
+  DATA lang_iterator    TYPE REF TO if_ixml_node_iterator.
 
   data obj_name type DOKHL-OBJECT.
   data classmeth_name type string.
@@ -2720,6 +2865,8 @@ endmethod.</source>
 
   DATA lt_lines  TYPE TABLE OF tline.
   FIELD-SYMBOLS: &lt;ls_lines&gt; LIKE LINE OF lt_lines.
+
+  methdocnode = node-&gt;find_from_name( &apos;methodDocumentation&apos; ).
 
   if methdocnode is not bound.
     return.
@@ -2792,8 +2939,45 @@ endmethod.</source>
 
 endmethod.</source>
   </method>
-  <method CLSNAME="ZSAPLINK_CLASS" CMPNAME="CREATE_TEXTPOOL" VERSION="1" LANGU="E" DESCRIPT="Create Class Text Pool" EXPOSURE="0" STATE="1" EDITORDER="1 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
-   <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="CREATE_TEXTPOOL" SCONAME="TEXTPOOLNODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
+  <method CLSNAME="ZSAPLINK_CLASS" CMPNAME="CREATE_SECTIONS" VERSION="1" LANGU="E" DESCRIPT="Create Class sections (???)" EXPOSURE="1" STATE="1" EDITORDER="3 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+   <source>method CREATE_SECTIONS.
+
+*ewH-not sure how this type_source param works. type sources can come
+* from private or protected sections, but there is no way to pass
+* these separately into the class create FM. After debugging into
+* FM-&gt;clif_save_all-&gt;generate_classpool it treats the source table
+* as one, so I am not sure how to get it to differentiate between
+* private and protected sections. If only one section has types
+* defined, the FM call works, otherwise all hell breaks loose. To
+* solve the problem for now, we will just do an insert report for
+* the sections after the class creation, since that&apos;s all the FM
+* does in the end anyway. Wow, this is a really long comment, but
+* I dont want to have to try to remember what the hell was going
+* on here later...sorry.  :)
+*insert code for publicSection
+*  sourcenode = xmldoc-&gt;find_from_name( &apos;publicSection&apos; )
+*  IF sourcenode IS NOT INITIAL.
+*    source = sourcenode-&gt;get_value( ).
+*    ch_type_source = buildtablefromstring( source ).
+*  ENDIF.
+**insert code for pivateSection
+*  sourcenode = xmldoc-&gt;find_from_name( &apos;privateSection&apos; ).
+*  IF sourcenode IS NOT INITIAL.
+*    source = sourcenode-&gt;get_value( ).
+*    ch_type_source_temp = buildtablefromstring( source ).
+*    append lines of ch_type_source_temp to ch_type_source.
+*  ENDIF.
+**insert code for ProtectedSection
+*  sourcenode = xmldoc-&gt;find_from_name( &apos;protectedSection&apos; ).
+*  IF sourcenode IS NOT INITIAL.
+*    source = sourcenode-&gt;get_value( ).
+*    ch_type_source_temp = buildtablefromstring( source ).
+*    append lines of ch_type_source_temp to ch_type_source.
+*  ENDIF.
+
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZSAPLINK_CLASS" CMPNAME="CREATE_TEXTPOOL" VERSION="1" LANGU="E" DESCRIPT="Create Class Text Pool" EXPOSURE="1" STATE="1" EDITORDER="4 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
    <source>method CREATE_TEXTPOOL.
 */---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
@@ -2811,6 +2995,7 @@ endmethod.</source>
   data filter type ref to if_ixml_node_filter.
   data textFilter type ref to if_ixml_node_filter.
   data textIterator type ref to if_ixml_node_iterator.
+  data textpoolnode type ref to if_ixml_element.
   data langNode type ref to if_ixml_element.
   data aTextNode type ref to if_ixml_element.
   data _objName type TROBJ_NAME.
@@ -2820,6 +3005,8 @@ endmethod.</source>
   data logonLanguageExists type flag.
   data _state(1) type c.
   data classpoolname type program.
+
+  textpoolnode = xmldoc-&gt;find_from_name( &apos;textPool&apos; ).
 
   if textpoolnode is not bound.
     return.
@@ -2877,7 +3064,7 @@ endmethod.</source>
   endwhile.
 endmethod.</source>
   </method>
-  <method CLSNAME="ZSAPLINK" CMPNAME="DELETEOBJECT" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+  <method CLSNAME="ZSAPLINK_OO" CMPNAME="DELETEOBJECT" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
    <source>method DELETEOBJECT.
 */---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
@@ -2924,7 +3111,7 @@ data clsKey type SEOCLSKEY.
   endif.
 endmethod.</source>
   </method>
-  <method CLSNAME="ZSAPLINK_CLASS" CMPNAME="FINDIMPLEMENTINGCLASS" VERSION="1" LANGU="E" DESCRIPT="Find Implementing Class" EXPOSURE="0" STATE="1" EDITORDER="2 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+  <method CLSNAME="ZSAPLINK_CLASS" CMPNAME="FINDIMPLEMENTINGCLASS" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="5 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
    <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="FINDIMPLEMENTINGCLASS" SCONAME="METHODNAME" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
    <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="FINDIMPLEMENTINGCLASS" SCONAME="STARTCLASS" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING" PAROPTIONL="X"/>
    <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="FINDIMPLEMENTINGCLASS" SCONAME="CLASSNAME" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="1" TYPE="STRING"/>
@@ -2975,7 +3162,7 @@ data superClassName type string.
   endif.
 endmethod.</source>
   </method>
-  <method CLSNAME="ZSAPLINK" CMPNAME="GETOBJECTTYPE" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+  <method CLSNAME="ZSAPLINK_OO" CMPNAME="GETOBJECTTYPE" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
    <source>method GETOBJECTTYPE.
 */---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
@@ -2992,8 +3179,8 @@ endmethod.</source>
 
 endmethod.</source>
   </method>
-  <method CLSNAME="ZSAPLINK_CLASS" CMPNAME="GET_DOCUMENTATION" VERSION="1" LANGU="E" DESCRIPT="Get Documentation" EXPOSURE="0" STATE="1" EDITORDER="5 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
-   <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="GET_DOCUMENTATION" SCONAME="DOCNODE" VERSION="1" LANGU="E" DESCRIPT="Documentation Node" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
+  <method CLSNAME="ZSAPLINK_CLASS" CMPNAME="GET_DOCUMENTATION" VERSION="1" LANGU="E" DESCRIPT="Get Documentation" EXPOSURE="1" STATE="1" EDITORDER="6 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="GET_DOCUMENTATION" SCONAME="ROOTNODE" VERSION="1" LANGU="E" DESCRIPT="Documentation Node" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
    <source>method GET_DOCUMENTATION.
 */---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
@@ -3005,60 +3192,61 @@ endmethod.</source>
 *|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
 *|   support.                                                          |
 *\---------------------------------------------------------------------/
-  data languageNode   type ref to if_ixml_element.
+  DATA languagenode   TYPE REF TO if_ixml_element.
+  DATA docnode       TYPE REF TO if_ixml_element.
   DATA txtlines_node TYPE REF TO if_ixml_element.
   DATA rc            TYPE sysubrc.
   DATA _objtype      TYPE string.
 
-  Types: BEGIN OF t_dokhl,
+  TYPES: BEGIN OF t_dokhl,
           id          TYPE dokhl-id,
           object      TYPE dokhl-object,
-          langu       type dokhl-langu,
+          langu       TYPE dokhl-langu,
           typ         TYPE dokhl-typ,
           dokversion  TYPE dokhl-dokversion,
          END OF t_dokhl.
 
-  data lt_dokhl type table of t_dokhl.
-  data ls_dokhl like line of lt_dokhl.
+  DATA lt_dokhl TYPE TABLE OF t_dokhl.
+  DATA ls_dokhl LIKE LINE OF lt_dokhl.
 
   DATA lt_lines TYPE TABLE OF tline.
   DATA ls_lines LIKE LINE OF lt_lines.
 
-  data lv_str type string.
+  DATA lv_str TYPE string.
   DATA _objname TYPE e071-obj_name.
 
   _objname = objname.
 
 * Check against database
   SELECT  id object langu typ dokversion
-        INTO corresponding fields of table lt_dokhl
+        INTO CORRESPONDING FIELDS OF TABLE lt_dokhl
            FROM dokhl
              WHERE id = &apos;CL&apos;
                 AND object = _objname.
 
 * Use only most recent version.
-  sort lt_dokhl by id object langu typ ascending dokversion descending.
-  delete adjacent duplicates from lt_dokhl comparing id object typ langu.
+  SORT lt_dokhl BY id object langu typ ASCENDING dokversion DESCENDING.
+  DELETE ADJACENT DUPLICATES FROM lt_dokhl COMPARING id object typ langu.
 
 * Make sure there is at least one record here.
-  clear ls_dokhl.
-  read table lt_dokhl into ls_dokhl index 1.
-  if sy-subrc &lt;&gt; 0.
-    return.
-  endif.
+  CLEAR ls_dokhl.
+  READ TABLE lt_dokhl INTO ls_dokhl INDEX 1.
+  IF sy-subrc &lt;&gt; 0.
+    RETURN.
+  ENDIF.
 
-  docNode = xmlDoc-&gt;create_element( &apos;classDocumentation&apos; ).
+  docnode = xmldoc-&gt;create_element( c_xml_key_class_documentation ).
 
 * Set docNode object attribute
   lv_str = ls_dokhl-object.
-  rc = docNode-&gt;set_attribute( name = &apos;OBJECT&apos; value = lv_Str ).
+  rc = docnode-&gt;set_attribute( name = c_xml_key_object value = lv_str ).
 
-  Loop at lt_dokhl into ls_dokhl.
+  LOOP AT lt_dokhl INTO ls_dokhl.
 
 * Create language node, and set attribute
-    languageNode = xmlDoc-&gt;create_element( &apos;language&apos; ).
+    languagenode = xmldoc-&gt;create_element( c_xml_key_language ).
     lv_str = ls_dokhl-langu.
-    rc = languageNode-&gt;set_attribute( name = &apos;SPRAS&apos; value = lv_Str ).
+    rc = languagenode-&gt;set_attribute( name = c_xml_key_spras value = lv_str ).
 
 * Read the documentation text
     CALL FUNCTION &apos;DOCU_READ&apos;
@@ -3073,18 +3261,20 @@ endmethod.</source>
 
 * Write records to XML node
     LOOP AT lt_lines INTO ls_lines.
-      txtlines_node = xmlDoc-&gt;create_element( `textLine` ).
+      txtlines_node = xmldoc-&gt;create_element( c_xml_key_textline ).
       me-&gt;setattributesfromstructure( node = txtlines_node structure = ls_lines ).
-      rc = languageNode-&gt;append_child( txtlines_node ).
+      rc = languagenode-&gt;append_child( txtlines_node ).
     ENDLOOP.
-    rc = docNode-&gt;append_child( languageNode ) .
-  Endloop.
+    rc = docnode-&gt;append_child( languagenode ) .
+  ENDLOOP.
+
+  rc = rootnode-&gt;append_child( docnode ).
 
 endmethod.</source>
   </method>
-  <method CLSNAME="ZSAPLINK_CLASS" CMPNAME="GET_METHOD_DOCUMENTATION" VERSION="1" LANGU="E" DESCRIPT="Get Method Documentation" EXPOSURE="0" STATE="1" EDITORDER="6 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+  <method CLSNAME="ZSAPLINK_CLASS" CMPNAME="GET_METHOD_DOCUMENTATION" VERSION="1" LANGU="E" DESCRIPT="Get Method Documentation" EXPOSURE="1" STATE="1" EDITORDER="7 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
    <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="GET_METHOD_DOCUMENTATION" SCONAME="METHOD_KEY" VERSION="1" LANGU="E" DESCRIPT="Method Key" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="SEOCPDKEY"/>
-   <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="GET_METHOD_DOCUMENTATION" SCONAME="DOCNODE" VERSION="1" LANGU="E" DESCRIPT="Documentation Node" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
+   <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="GET_METHOD_DOCUMENTATION" SCONAME="ROOTNODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
    <source>method GET_METHOD_DOCUMENTATION.
 */---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
@@ -3096,60 +3286,61 @@ endmethod.</source>
 *|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
 *|   support.                                                          |
 *\---------------------------------------------------------------------/
-  data languageNode   type ref to if_ixml_element.
+  DATA languagenode   TYPE REF TO if_ixml_element.
+  DATA docnode        TYPE REF TO if_ixml_element.
   DATA txtlines_node TYPE REF TO if_ixml_element.
   DATA rc            TYPE sysubrc.
   DATA _objtype      TYPE string.
 
-  Types: BEGIN OF t_dokhl,
+  TYPES: BEGIN OF t_dokhl,
           id          TYPE dokhl-id,
           object      TYPE dokhl-object,
-          langu       type dokhl-langu,
+          langu       TYPE dokhl-langu,
           typ         TYPE dokhl-typ,
           dokversion  TYPE dokhl-dokversion,
          END OF t_dokhl.
 
-  data lt_dokhl type table of t_dokhl.
-  data ls_dokhl like line of lt_dokhl.
+  DATA lt_dokhl TYPE TABLE OF t_dokhl.
+  DATA ls_dokhl LIKE LINE OF lt_dokhl.
 
   DATA lt_lines TYPE TABLE OF tline.
   DATA ls_lines LIKE LINE OF lt_lines.
 
-  data lv_str type string.
+  DATA lv_str TYPE string.
   DATA _objname TYPE e071-obj_name.
 
   _objname = method_key.
 
 * Check against database
   SELECT  id object langu typ dokversion
-        INTO corresponding fields of table lt_dokhl
+        INTO CORRESPONDING FIELDS OF TABLE lt_dokhl
            FROM dokhl
              WHERE id = &apos;CO&apos;
                 AND object = _objname.
 
 * Use only most recent version.
-  sort lt_dokhl by id object langu typ ascending dokversion descending.
-  delete adjacent duplicates from lt_dokhl comparing id object typ langu.
+  SORT lt_dokhl BY id object langu typ ASCENDING dokversion DESCENDING.
+  DELETE ADJACENT DUPLICATES FROM lt_dokhl COMPARING id object typ langu.
 
 * Make sure there is at least one record here.
-  clear ls_dokhl.
-  read table lt_dokhl into ls_dokhl index 1.
-  if sy-subrc &lt;&gt; 0.
-    return.
-  endif.
+  CLEAR ls_dokhl.
+  READ TABLE lt_dokhl INTO ls_dokhl INDEX 1.
+  IF sy-subrc &lt;&gt; 0.
+    RETURN.
+  ENDIF.
 
-  docNode = xmlDoc-&gt;create_element( &apos;methodDocumentation&apos; ).
+  docnode = xmldoc-&gt;create_element( c_xml_key_method_documentation ).
 
 * Set docNode object attribute
   lv_str = ls_dokhl-object.
-  rc = docNode-&gt;set_attribute( name = &apos;OBJECT&apos; value = lv_Str ).
+  rc = docnode-&gt;set_attribute( name = c_xml_key_object value = lv_str ).
 
-  Loop at lt_dokhl into ls_dokhl.
+  LOOP AT lt_dokhl INTO ls_dokhl.
 
 * Create language node, and set attribute
-    languageNode = xmlDoc-&gt;create_element( &apos;language&apos; ).
+    languagenode = xmldoc-&gt;create_element( c_xml_key_language ).
     lv_str = ls_dokhl-langu.
-    rc = languageNode-&gt;set_attribute( name = &apos;SPRAS&apos; value = lv_Str ).
+    rc = languagenode-&gt;set_attribute( name = c_xml_key_spras value = lv_str ).
 
 * Read the documentation text
     CALL FUNCTION &apos;DOCU_READ&apos;
@@ -3164,17 +3355,57 @@ endmethod.</source>
 
 * Write records to XML node
     LOOP AT lt_lines INTO ls_lines.
-      txtlines_node = xmlDoc-&gt;create_element( `textLine` ).
+      txtlines_node = xmldoc-&gt;create_element( c_xml_key_textline ).
       me-&gt;setattributesfromstructure( node = txtlines_node structure = ls_lines ).
-      rc = languageNode-&gt;append_child( txtlines_node ).
+      rc = languagenode-&gt;append_child( txtlines_node ).
     ENDLOOP.
-    rc = docNode-&gt;append_child( languageNode ) .
-  Endloop.
+    rc = docnode-&gt;append_child( languagenode ) .
+  ENDLOOP.
+
+  rc = rootnode-&gt;append_child( docnode ).
 
 endmethod.</source>
   </method>
-  <method CLSNAME="ZSAPLINK_CLASS" CMPNAME="GET_TEXTPOOL" VERSION="1" LANGU="E" DESCRIPT="Get Class Text Pool" EXPOSURE="0" STATE="1" EDITORDER="3 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
-   <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="GET_TEXTPOOL" SCONAME="TEXTNODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
+  <method CLSNAME="ZSAPLINK_CLASS" CMPNAME="GET_SECTIONS" VERSION="1" LANGU="E" DESCRIPT="Get class sections ( ??? )" EXPOSURE="1" STATE="1" EDITORDER="8 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="GET_SECTIONS" SCONAME="ROOTNODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
+   <source>method GET_SECTIONS.
+  DATA publicsection TYPE REF TO if_ixml_element.
+  DATA protectedsection TYPE REF TO if_ixml_element.
+  DATA privatesection TYPE REF TO if_ixml_element.
+  DATA includename TYPE program.
+  DATA reportstring TYPE string.
+
+**/--------------------------------------------------------------------\
+**|                                                                    |
+*  includename = cl_oo_classname_service=&gt;get_pubsec_name( _classname ).
+*  READ REPORT includename INTO reportlist.
+*  publicsection = xmldoc-&gt;create_element( &apos;publicSection&apos; ).
+*
+*  reportstring = buildsourcestring( sourcetable = reportlist ).
+*  rc = publicsection-&gt;if_ixml_node~set_value( reportstring ).
+*  CLEAR reportstring.
+**|--------------------------------------------------------------------|
+*  includename = cl_oo_classname_service=&gt;get_prosec_name( _classname ).
+*  READ REPORT includename INTO reportlist.
+*  protectedsection = xmldoc-&gt;create_element( &apos;protectedSection&apos; ).
+*  reportstring = buildsourcestring( sourcetable = reportlist ).
+*  rc = protectedsection-&gt;if_ixml_node~set_value( reportstring ).
+*  CLEAR reportstring.
+**|--------------------------------------------------------------------|
+*  includename = cl_oo_classname_service=&gt;get_prisec_name( _classname ).
+*  READ REPORT includename INTO reportlist.
+*  privatesection = xmldoc-&gt;create_element( &apos;privateSection&apos; ).
+*  reportstring = buildsourcestring( sourcetable = reportlist ).
+*  rc = privatesection-&gt;if_ixml_node~set_value( reportstring ).
+
+*  rc = rootnode-&gt;append_child( publicsection ).
+*  rc = rootnode-&gt;append_child( protectedsection ).
+*  rc = rootnode-&gt;append_child( privatesection ).
+
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZSAPLINK_CLASS" CMPNAME="GET_TEXTPOOL" VERSION="1" LANGU="E" DESCRIPT="Get Class Text Pool" EXPOSURE="1" STATE="1" EDITORDER="9 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZSAPLINK_CLASS" CMPNAME="GET_TEXTPOOL" SCONAME="ROOTNODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
    <source>method GET_TEXTPOOL.
 */---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
@@ -3186,117 +3417,55 @@ endmethod.</source>
 *|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
 *|   support.                                                          |
 *\---------------------------------------------------------------------/
-  data aText type ref to if_ixml_element.
-  data textPoolTable type standard table of TEXTPOOL.
-  data textPoolRow type textPool.
-  data languageList type instLang.
-  data aLanguage type SPRAS.
-  data _objName type SEOCLSNAME.
-  data rc type i.
-  data sTemp type string.
-  data languageNode type ref to if_ixml_element.
+  DATA atext TYPE REF TO if_ixml_element.
+  DATA textpooltable TYPE STANDARD TABLE OF textpool.
+  DATA textpoolrow TYPE textpool.
+  DATA languagelist TYPE instlang.
+  DATA alanguage TYPE spras.
+  DATA _objname TYPE seoclsname.
+  DATA rc TYPE i.
+  DATA stemp TYPE string.
+  DATA languagenode TYPE REF TO if_ixml_element.
+  DATA textnode      TYPE REF TO if_ixml_element.
   DATA classpoolname TYPE program.
-  DATA firstLoop TYPE flag.
+  DATA firstloop TYPE flag.
 
-  _objName = objName.
+  _objname = objname.
 
-  classpoolname = cl_oo_classname_service=&gt;GET_CLASSPOOL_NAME( _objName ).
+  classpoolname = cl_oo_classname_service=&gt;get_classpool_name( _objname ).
 
   CALL FUNCTION &apos;RS_TEXTLOG_GET_PARAMETERS&apos;
     CHANGING
-      INSTALLED_LANGUAGES = languageList.
+      installed_languages = languagelist.
 
-  firstLoop = abap_true.
+  firstloop = abap_true.
 
-  loop at languageList into aLanguage.
-    read textpool classpoolname into textPoolTable language aLanguage.
-    if sy-subrc = 0.
-      if firstLoop = abap_true.
-        textNode = xmlDoc-&gt;create_element( &apos;textPool&apos; ).
-        firstLoop = abap_false.
-      endif.
-      languageNode = xmlDoc-&gt;create_Element( &apos;language&apos; ).
-      sTemp = aLanguage.
-      rc = languageNode-&gt;set_attribute( name = &apos;SPRAS&apos; value = sTemp ).
-      loop at textPoolTable into textPoolRow.
-        aText = xmlDoc-&gt;create_element( &apos;textElement&apos; ).
-        setAttributesFromStructure( node = aText structure =
-        textPoolRow ).
-        rc = languageNode-&gt;append_child( aText ).
-      endloop.
-      rc = textNode-&gt;append_child( languageNode ).
-    endif.
-  endloop.
+  LOOP AT languagelist INTO alanguage.
+    READ TEXTPOOL classpoolname INTO textpooltable LANGUAGE alanguage.
+    IF sy-subrc = 0.
+      IF firstloop = abap_true.
+        textnode = xmldoc-&gt;create_element( c_xml_key_textpool ).
+        firstloop = abap_false.
+      ENDIF.
+      languagenode = xmldoc-&gt;create_element( c_xml_key_language ).
+      stemp = alanguage.
+      rc = languagenode-&gt;set_attribute( name = c_xml_key_spras value = stemp ).
+      LOOP AT textpooltable INTO textpoolrow.
+        atext = xmldoc-&gt;create_element( c_xml_key_textelement ).
+        setattributesfromstructure( node = atext structure =
+        textpoolrow ).
+        rc = languagenode-&gt;append_child( atext ).
+      ENDLOOP.
+      rc = textnode-&gt;append_child( languagenode ).
+    ENDIF.
+  ENDLOOP.
+
+  rc = rootnode-&gt;append_child( textnode ).
 
 endmethod.</source>
   </method>
  </CLAS>
- <CLAS CLSNAME="ZSAPLINK_NUGGET" VERSION="1" LANGU="E" DESCRIPT="SAPlink Nugget" UUID="45C25992EA5308CB00000000A7E42BB2" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" CLSFINAL="X" CLSCCINCL="X" FIXPT="X" UNICODE="X" CLSBCCAT="00" DURATION_TYPE="0 " RISK_LEVEL="0 ">
-  <publicSection>class ZSAPLINK_NUGGET definition
-  public
-  final
-  create public .
-
-*&quot;* public components of class ZSAPLINK_NUGGET
-*&quot;* do not include other source files here!!!
-public section.
-
-  methods ADDOBJECTTONUGGET
-    importing
-      !OBJNAME type STRING optional
-      !OBJTYPE type STRING optional
-      !XMLDOCUMENT type ref to IF_IXML_DOCUMENT optional
-    raising
-      ZCX_SAPLINK .
-  methods CREATEIXMLDOCFROMNUGGET
-    returning
-      value(IXMLDOCUMENT) type ref to IF_IXML_DOCUMENT .
-  methods GETNEXTOBJECT
-    returning
-      value(IXMLDOCUMENT) type ref to IF_IXML_DOCUMENT .
-  methods RESET .
-  class-methods CREATEEMPTYXML
-    importing
-      !NUGGETNAME type STRING
-    returning
-      value(IXMLDOCUMENT) type ref to IF_IXML_DOCUMENT .
-  class-methods GETNUGGETINFO
-    importing
-      !IXMLDOCUMENT type ref to IF_IXML_DOCUMENT
-    returning
-      value(NAME) type STRING .
-  methods CONSTRUCTOR
-    importing
-      !NAME type STRING optional
-      !IXMLDOCUMENT type ref to IF_IXML_DOCUMENT optional .
-  methods CHECKOBJECTEXISTS
-    importing
-      !OBJNAME type STRING
-      !OBJTYPE type STRING
-    returning
-      value(RETVAL) type SY-SUBRC .
-  methods DELETEOBJECTFROMNUGGET
-    importing
-      !OBJNAME type STRING
-      !OBJTYPE type STRING
-    returning
-      value(RETVAL) type SY-SUBRC .</publicSection>
-  <protectedSection>*&quot;* protected components of class ZSAPLINK_NUGGET
-*&quot;* do not include other source files here!!!
-protected section.
-
-  data IXML type ref to IF_IXML .
-  data XMLDOC type ref to IF_IXML_DOCUMENT .</protectedSection>
-  <privateSection>*&quot;* private components of class ZSAPLINK_NUGGET
-*&quot;* do not include other source files here!!!
-private section.
-
-  data ITERATOR type ref to IF_IXML_NODE_ITERATOR .
-  data NUGGNAME type STRING .
-  data STREAMFACTORY type ref to IF_IXML_STREAM_FACTORY .
-  data XMLDATA type STRING .
-  data WT_OBJECTS type TT_OBJECTS .
-  data W_INDEX type SY-TABIX .</privateSection>
+ <CLAS CLSNAME="ZSAPLINK_NUGGET" VERSION="1" LANGU="E" DESCRIPT="SAPlink Nugget" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" CLSFINAL="X" CLSCCINCL="X" FIXPT="X" UNICODE="X" CLSBCCAT="00" DURATION_TYPE="0 " RISK_LEVEL="0 ">
   <localImplementation>*&quot;* local class implementation for public class
 *&quot;* use this source file for the implementation part of
 *&quot;* local helper classes</localImplementation>
@@ -3662,81 +3831,7 @@ endmethod.</source>
 endmethod.</source>
   </method>
  </CLAS>
- <CLAS CLSNAME="ZSAPLINK_PROGRAM" VERSION="1" LANGU="E" DESCRIPT="SAPlink - Programs" UUID="45583FC835A702C600000000A7E42BB6" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" CLSFINAL="X" CLSCCINCL="X" FIXPT="X" UNICODE="X" CLSBCCAT="00" WITH_UNIT_TESTS="X" DURATION_TYPE="0 " RISK_LEVEL="0 " REFCLSNAME="ZSAPLINK">
-  <publicSection>class ZSAPLINK_PROGRAM definition
-  public
-  inheriting from ZSAPLINK
-  final
-  create public .
-
-public section.
-*&quot;* public components of class ZSAPLINK_PROGRAM
-*&quot;* do not include other source files here!!!
-
-  methods CHECKEXISTS
-    redefinition .
-  methods CREATEIXMLDOCFROMOBJECT
-    redefinition .
-  methods CREATEOBJECTFROMIXMLDOC
-    redefinition .
-  methods CREATESTRINGFROMOBJECT
-    redefinition .</publicSection>
-  <protectedSection>protected section.
-*&quot;* protected components of class ZSAPLINK_PROGRAM
-*&quot;* do not include other source files here!!!
-
-  methods DELETEOBJECT
-    redefinition .
-  methods GETOBJECTTYPE
-    redefinition .</protectedSection>
-  <privateSection>private section.
-*&quot;* private components of class ZSAPLINK_PROGRAM
-*&quot;* do not include other source files here!!!
-
-  methods GET_SOURCE
-    returning
-      value(PROGSOURCE) type RSWSOURCET .
-  methods UPDATE_WB_TREE .
-  methods CREATE_TEXTPOOL
-    importing
-      !TEXTPOOLNODE type ref to IF_IXML_ELEMENT .
-  methods DEQUEUE_ABAP
-    raising
-      ZCX_SAPLINK .
-  methods GET_TEXTPOOL
-    returning
-      value(TEXTNODE) type ref to IF_IXML_ELEMENT .
-  methods CREATE_DOCUMENTATION
-    importing
-      !DOCNODE type ref to IF_IXML_ELEMENT .
-  methods CREATE_SOURCE
-    importing
-      !SOURCE type TABLE_OF_STRINGS
-      !ATTRIBS type TRDIR .
-  methods ENQUEUE_ABAP
-    raising
-      ZCX_SAPLINK .
-  methods GET_DOCUMENTATION
-    returning
-      value(DOCNODE) type ref to IF_IXML_ELEMENT .
-  methods TRANSPORT_COPY
-    importing
-      !AUTHOR type SYUNAME
-      !DEVCLASS type DEVCLASS
-    raising
-      ZCX_SAPLINK .
-  methods GET_DYNPRO
-    returning
-      value(DYNP_NODE) type ref to IF_IXML_ELEMENT .
-  methods CREATE_DYNPRO
-    importing
-      !DYNP_NODE type ref to IF_IXML_ELEMENT .
-  methods GET_PFSTATUS
-    returning
-      value(PFSTAT_NODE) type ref to IF_IXML_ELEMENT .
-  methods CREATE_PFSTATUS
-    importing
-      !PFSTAT_NODE type ref to IF_IXML_ELEMENT .</privateSection>
+ <CLAS CLSNAME="ZSAPLINK_PROGRAM" VERSION="1" LANGU="E" DESCRIPT="SAPlink - Programs" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" CLSFINAL="X" CLSCCINCL="X" FIXPT="X" UNICODE="X" CLSBCCAT="00" WITH_UNIT_TESTS="X" DURATION_TYPE="0 " RISK_LEVEL="0 " REFCLSNAME="ZSAPLINK">
   <localImplementation>*&quot;* local class implementation for public class
 *&quot;* use this source file for the implementation part of
 *&quot;* local helper classes</localImplementation>
@@ -5372,7 +5467,7 @@ endmethod.</source>
 endmethod.</source>
   </method>
   <method CLSNAME="ZSAPLINK_PROGRAM" CMPNAME="UPDATE_WB_TREE" VERSION="1" LANGU="E" DESCRIPT="Update Workbench Tree" EXPOSURE="0" STATE="1" EDITORDER="0 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
-   <source>METHOD update_wb_tree.
+   <source>method UPDATE_WB_TREE.
 
   DATA: BEGIN OF pname,
           root(3) VALUE &apos;PG_&apos;,
@@ -5396,7 +5491,7 @@ endmethod.</source>
       operation = &apos;INSERT&apos;
       type      = &apos;CP&apos;.
 
-ENDMETHOD.</source>
+endmethod.</source>
   </method>
  </CLAS>
  <PROG NAME="ZSAPLINK" VARCL="X" DBAPL="S" DBNA="D$" SUBC="1" APPL="S" RMAND="321" RLOAD="E" FIXPT="X" LDBNAME="D$S" UCCHECK="X">
@@ -6105,7 +6200,7 @@ AT SELECTION-SCREEN ON VALUE-REQUEST FOR nugfile.
   CALL METHOD cl_gui_frontend_services=&gt;file_open_dialog
     EXPORTING
       multiselection    = abap_false
-      file_filter       = &apos;*.nugg&apos;
+      file_filter       = &apos;Nugget files (*.nugg)|*.nugg|&apos;
       default_extension = &apos;nugg&apos;
     CHANGING
       file_table        = retfiletable
