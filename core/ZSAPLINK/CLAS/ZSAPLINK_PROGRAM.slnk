@@ -1,79 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<CLAS CLSNAME="ZSAPLINK_PROGRAM" VERSION="1" LANGU="E" DESCRIPT="SAPlink - Programs" UUID="45583FC835A702C600000000A7E42BB6" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" CLSFINAL="X" CLSCCINCL="X" FIXPT="X" UNICODE="X" CLSBCCAT="00" WITH_UNIT_TESTS="X" DURATION_TYPE="0 " RISK_LEVEL="0 " REFCLSNAME="ZSAPLINK">
- <publicSection>class ZSAPLINK_PROGRAM definition
-  public
-  inheriting from ZSAPLINK
-  final
-  create public .
-
-public section.
-*&quot;* public components of class ZSAPLINK_PROGRAM
-*&quot;* do not include other source files here!!!
-
-  methods CHECKEXISTS
-    redefinition .
-  methods CREATEIXMLDOCFROMOBJECT
-    redefinition .
-  methods CREATEOBJECTFROMIXMLDOC
-    redefinition .
-  methods CREATESTRINGFROMOBJECT
-    redefinition .</publicSection>
- <protectedSection>protected section.
-*&quot;* protected components of class ZSAPLINK_PROGRAM
-*&quot;* do not include other source files here!!!
-
-  methods DELETEOBJECT
-    redefinition .
-  methods GETOBJECTTYPE
-    redefinition .</protectedSection>
- <privateSection>private section.
-*&quot;* private components of class ZSAPLINK_PROGRAM
-*&quot;* do not include other source files here!!!
-
-  methods GET_SOURCE
-    returning
-      value(PROGSOURCE) type RSWSOURCET .
-  methods UPDATE_WB_TREE .
-  methods CREATE_TEXTPOOL
-    importing
-      !TEXTPOOLNODE type ref to IF_IXML_ELEMENT .
-  methods DEQUEUE_ABAP
-    raising
-      ZCX_SAPLINK .
-  methods GET_TEXTPOOL
-    returning
-      value(TEXTNODE) type ref to IF_IXML_ELEMENT .
-  methods CREATE_DOCUMENTATION
-    importing
-      !DOCNODE type ref to IF_IXML_ELEMENT .
-  methods CREATE_SOURCE
-    importing
-      !SOURCE type TABLE_OF_STRINGS
-      !ATTRIBS type TRDIR .
-  methods ENQUEUE_ABAP
-    raising
-      ZCX_SAPLINK .
-  methods GET_DOCUMENTATION
-    returning
-      value(DOCNODE) type ref to IF_IXML_ELEMENT .
-  methods TRANSPORT_COPY
-    importing
-      !AUTHOR type SYUNAME
-      !DEVCLASS type DEVCLASS
-    raising
-      ZCX_SAPLINK .
-  methods GET_DYNPRO
-    returning
-      value(DYNP_NODE) type ref to IF_IXML_ELEMENT .
-  methods CREATE_DYNPRO
-    importing
-      !DYNP_NODE type ref to IF_IXML_ELEMENT .
-  methods GET_PFSTATUS
-    returning
-      value(PFSTAT_NODE) type ref to IF_IXML_ELEMENT .
-  methods CREATE_PFSTATUS
-    importing
-      !PFSTAT_NODE type ref to IF_IXML_ELEMENT .</privateSection>
+<CLAS CLSNAME="ZSAPLINK_PROGRAM" VERSION="1" LANGU="E" DESCRIPT="SAPlink - Programs" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" CLSFINAL="X" CLSCCINCL="X" FIXPT="X" UNICODE="X" CLSBCCAT="00" WITH_UNIT_TESTS="X" DURATION_TYPE="0 " RISK_LEVEL="0 " REFCLSNAME="ZSAPLINK">
  <localImplementation>*&quot;* local class implementation for public class
 *&quot;* use this source file for the implementation part of
 *&quot;* local helper classes</localImplementation>
@@ -1709,7 +1635,7 @@ endmethod.</source>
 endmethod.</source>
  </method>
  <method CLSNAME="ZSAPLINK_PROGRAM" CMPNAME="UPDATE_WB_TREE" VERSION="1" LANGU="E" DESCRIPT="Update Workbench Tree" EXPOSURE="0" STATE="1" EDITORDER="0 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
-  <source>METHOD update_wb_tree.
+  <source>method UPDATE_WB_TREE.
 
   DATA: BEGIN OF pname,
           root(3) VALUE &apos;PG_&apos;,
@@ -1733,6 +1659,6 @@ endmethod.</source>
       operation = &apos;INSERT&apos;
       type      = &apos;CP&apos;.
 
-ENDMETHOD.</source>
+endmethod.</source>
  </method>
 </CLAS>

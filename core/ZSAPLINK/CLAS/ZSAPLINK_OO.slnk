@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<CLAS CLSNAME="ZSAPLINK_OO" VERSION="1" LANGU="E" DESCRIPT="ZSAPLINK - OO class for CLAS and INTF plugin" UUID="505EDF5DE09602D4E1008000C008015A" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" CLSABSTRCT="X" CLSCCINCL="X" FIXPT="X" UNICODE="X" CLSBCCAT="00" DURATION_TYPE="0 " RISK_LEVEL="0 " REFCLSNAME="ZSAPLINK">
+<CLAS CLSNAME="ZSAPLINK_OO" VERSION="1" LANGU="E" DESCRIPT="ZSAPLINK - OO class for CLAS and INTF plugin" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" CLSABSTRCT="X" CLSCCINCL="X" FIXPT="X" UNICODE="X" CLSBCCAT="00" DURATION_TYPE="0 " RISK_LEVEL="0 " REFCLSNAME="ZSAPLINK">
  <localImplementation>*&quot;* local class implementation for public class
 *&quot;* use this source file for the implementation part of
 *&quot;* local helper classes</localImplementation>
@@ -113,7 +113,7 @@ endmethod.</source>
   <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="CREATE_OTR" SCONAME="DEVCLASS" VERSION="1" LANGU="E" DESCRIPT="Development class/package" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="DEVCLASS" PARVALUE="&apos;$TMP&apos;" PAROPTIONL="X"/>
   <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="CREATE_OTR" SCONAME="CONCEPT" VERSION="1" LANGU="E" DESCRIPT="Key for Logical Object in the OTR" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " PARDECLTYP="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SOTR_TEXT-CONCEPT"/>
   <exception CLSNAME="ZSAPLINK_OO" CMPNAME="CREATE_OTR" SCONAME="ZCX_SAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 "/>
-  <source>METHOD create_otr.
+  <source>method CREATE_OTR.
 */---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
@@ -248,7 +248,7 @@ endmethod.</source>
 *           WITH SY-MSGV1 SY-MSGV2 SY-MSGV3 SY-MSGV4.
   ENDIF.
 
-ENDMETHOD.</source>
+endmethod.</source>
  </method>
  <method CLSNAME="ZSAPLINK_OO" CMPNAME="CREATE_TYPEPUSAGE" VERSION="1" LANGU="E" DESCRIPT="Create type pool usage" EXPOSURE="1" STATE="1" EDITORDER="5 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="CREATE_TYPEPUSAGE" SCONAME="XT_TYPEPUSAGES" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="SEOT_TYPEPUSAGES_R"/>
@@ -310,7 +310,7 @@ endmethod.</source>
  <method CLSNAME="ZSAPLINK_OO" CMPNAME="GET_ALIAS_METHOD" VERSION="1" LANGU="E" DESCRIPT="Get alias for method" EXPOSURE="1" STATE="1" EDITORDER="6 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="GET_ALIAS_METHOD" SCONAME="IT_METHODS" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="ABAP_METHDESCR_TAB"/>
   <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="GET_ALIAS_METHOD" SCONAME="XO_ROOTNODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
-  <source>METHOD get_alias_method.
+  <source>method GET_ALIAS_METHOD.
   DATA lo_alias  TYPE REF TO if_ixml_element.
   DATA ls_alias  TYPE seoaliases.
   DATA: l_rc     TYPE sy-subrc,
@@ -343,7 +343,7 @@ endmethod.</source>
     ENDIF.
   ENDLOOP.
 
-ENDMETHOD.</source>
+endmethod.</source>
  </method>
  <method CLSNAME="ZSAPLINK_OO" CMPNAME="GET_CLSDEFERRD" VERSION="1" LANGU="E" DESCRIPT="Get class deferred" EXPOSURE="1" STATE="1" EDITORDER="7 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="GET_CLSDEFERRD" SCONAME="XO_ROOTNODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
@@ -409,7 +409,7 @@ endmethod.</source>
  <method CLSNAME="ZSAPLINK_OO" CMPNAME="GET_OTR" VERSION="1" LANGU="E" DESCRIPT="Creates an XML node from an OTR object" EXPOSURE="1" STATE="1" EDITORDER="9 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="GET_OTR" SCONAME="OTRGUID" VERSION="1" LANGU="E" DESCRIPT="Key for Logical Object in the OTR" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="SOTR_CONC"/>
   <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="GET_OTR" SCONAME="NODE" VERSION="1" LANGU="E" DESCRIPT="xml Element" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
-  <source>METHOD get_otr.
+  <source>method GET_OTR.
 */---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
@@ -468,7 +468,7 @@ endmethod.</source>
 
   node = rootnode.
 
-ENDMETHOD.</source>
+endmethod.</source>
  </method>
  <method CLSNAME="ZSAPLINK_OO" CMPNAME="GET_TYPEPUSAGE" VERSION="1" LANGU="E" DESCRIPT="Get type pool usage" EXPOSURE="1" STATE="1" EDITORDER="10 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
   <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="GET_TYPEPUSAGE" SCONAME="XO_ROOTNODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
