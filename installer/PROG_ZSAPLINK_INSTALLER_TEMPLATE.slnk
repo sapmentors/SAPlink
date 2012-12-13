@@ -17,7 +17,7 @@
 *\---------------------------------------------------------------------/
 REPORT  ZSAPLINK_INSTALLER_TEMPLATE.
 
-type-pools: seor, abap.
+type-pools: seor, abap, icon.
 data retFileTable type FILETABLE.
 data retRc type sysubrc.
 data retUserAction type i.
