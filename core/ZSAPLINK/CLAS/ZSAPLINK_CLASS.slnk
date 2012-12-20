@@ -391,6 +391,11 @@ endmethod.</source>
       otrnode = get_otr( _otrguid ).
       IF otrnode IS BOUND.
         rc = attribnode-&gt;append_child( otrnode ).
+        &quot; Issue #222 - get_text empty when ZCX_SAPLINK exception is raised
+        &quot; Gregor Wolf, 2012-12-20
+        &quot; As GUID for OTR Node is created new in every system we import
+        &quot; the Slinkee we should empty it
+        CLEAR: attribproperties-attvalue.
       ENDIF.
     ENDIF.
 
