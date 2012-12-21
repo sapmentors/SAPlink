@@ -61,7 +61,7 @@ data not_active TYPE  SEOX_BOOLEAN.
 endmethod.</source>
  </method>
  <method CLSNAME="ZSAPLINK_OO" CMPNAME="CREATEIXMLDOCFROMOBJECT" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
-  <source>method CREATEIXMLDOCFROMOBJECT.
+  <source>METHOD createixmldocfromobject.
 */---------------------------------------------------------------------\
 *|   This file is part of SAPlink.                                     |
 *|                                                                     |
@@ -304,7 +304,7 @@ endmethod.</source>
       EXPORTING
         evtkey     = eventkey
       IMPORTING
-        PARAMETERS = eventparams.
+        parameters = eventparams.
 
 *   parameters
     LOOP AT eventparams INTO wa_params.
@@ -436,6 +436,13 @@ endmethod.</source>
   NOT ( is_inherited = &apos;X&apos; AND is_redefined IS INITIAL ).
     methodkey-clsname = _classname.
     methodkey-cpdname = methoddescr-name.
+*//nbus: added logic for exception class
+    IF methoddescr-name EQ &apos;CONSTRUCTOR&apos; AND classproperties-category = seoc_category_exception.
+      &quot; Constructor() will be generated automatically into the
+      &quot; target system once the class is saved
+      CONTINUE.
+    ENDIF.
+*//nbus: end of added logic for exception class
 *   interface methods
     IF methoddescr-is_interface = &apos;X&apos;.
       CALL METHOD cl_oo_classname_service=&gt;get_method_include
@@ -553,7 +560,7 @@ endmethod.</source>
   rc = xmldoc-&gt;append_child( rootnode ).
   ixmldocument = xmldoc.
 *// &lt;--ewH: end of logic for interface methods &amp; inheritance redesign
-endmethod.</source>
+ENDMETHOD.</source>
  </method>
  <method CLSNAME="ZSAPLINK_OO" CMPNAME="CREATEOBJECTFROMIXMLDOC" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
   <source>method CREATEOBJECTFROMIXMLDOC.
