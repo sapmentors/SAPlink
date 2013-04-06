@@ -256,9 +256,15 @@ endmethod.</source>
 */***TPJ - End of Added Logic for Friends  -------------------*/
 
 */***ewH - Added Logic for Interfaces  -------------------*/
+*/***uku - discard included interfaces -------------------*/
   DATA: it_implementings TYPE seor_implementings_r,
+        lt_implementings_copy TYPE seor_implementings_r,
         wa_implementings LIKE LINE OF it_implementings,
-        implementingnode TYPE REF TO if_ixml_element.
+        implementingnode TYPE REF TO if_ixml_element,
+        ls_interface TYPE seoc_interface_r,
+        lt_comprisings TYPE seor_comprisings_r,
+        ls_intfkey TYPE seoclskey.
+  FIELD-SYMBOLS &lt;ls_comprisings&gt; TYPE seor_comprising_r.
 
   CALL FUNCTION &apos;SEO_IMPLEMENTG_READ_ALL&apos;
     EXPORTING
@@ -269,12 +275,27 @@ endmethod.</source>
       class_not_existing = 1
       OTHERS             = 2.
 
+  lt_implementings_copy = it_implementings.
   LOOP AT it_implementings INTO wa_implementings.
+    CLEAR: ls_intfkey.
+    ls_intfkey-clsname = wa_implementings-refclsname.
+    CALL FUNCTION &apos;SEO_INTERFACE_TYPEINFO_GET&apos;
+      EXPORTING
+        intkey      = ls_intfkey
+      IMPORTING
+        comprisings = lt_comprisings.
+    LOOP AT lt_comprisings ASSIGNING &lt;ls_comprisings&gt;.
+      DELETE lt_implementings_copy WHERE refclsname = &lt;ls_comprisings&gt;-refclsname.
+    ENDLOOP.
+  ENDLOOP.
+
+  LOOP AT lt_implementings_copy INTO wa_implementings.
     implementingnode = xmldoc-&gt;create_element( &apos;implementing&apos; ).
     setattributesfromstructure( node = implementingnode structure =
     wa_implementings ).
     rc = rootnode-&gt;append_child( implementingnode ).
   ENDLOOP.
+*/***uku - End of discard included interfaces -------------------*/
 */***ewH - End of Added Logic for Interfaces  -------------------*/
 */***rrq - Added Logic for EVENTS  -------------------*/
   DATA: events      TYPE seoo_events_r,
