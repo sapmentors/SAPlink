@@ -3498,21 +3498,22 @@ TYPES: BEGIN OF ts_objects,
 *|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
 *|   support.                                                          |
 *\---------------------------------------------------------------------/
-types: begin of t_objectTable,
-         classname type string,
-         object type ko100-object,
-         text type ko100-text,
-       end of t_objectTable.
-data rootNode type ref to if_ixml_element.
-data saplink type ref to zsaplink.
-data objectTable type table of t_objectTable.
-data objectLine type t_objectTable.
-data ixmlDocument type ref to if_ixml_document.
-data rval type i.
-data objElement type ref to if_ixml_element.
+  types: begin of t_objectTable,
+           classname type string,
+           object type ko100-object,
+           text type ko100-text,
+         end of t_objectTable.
+  data rootNode type ref to if_ixml_element.
+  data saplink type ref to zsaplink.
+  data objectTable type table of t_objectTable.
+  data objectLine type t_objectTable.
+  data ixmlDocument type ref to if_ixml_document.
+  data rval type i.
+  data objElement type ref to if_ixml_element.
 
   rootNode = xmlDoc-&gt;GET_ROOT_ELEMENT( ).
 
+* create new object
   if xmlDocument is initial.
     call method zsaplink=&gt;getplugins( changing objectTable = objectTable ).
 
@@ -3528,6 +3529,40 @@ data objElement type ref to if_ixml_element.
     ixmlDocument = xmlDocument.
   endif.
   objElement = ixmlDocument-&gt;get_root_element( ).
+* Search and delete same object(s) in nugget
+  data: docFilter   type ref to if_ixml_node_filter,
+        docIterator type ref to if_ixml_node_iterator,
+        currentNode type ref to if_ixml_node,
+        rootAttr    type ref to IF_IXML_NAMED_NODE_MAP,
+        AttrNode    type ref to IF_IXML_NODE,
+        nodeName    type string.
+
+* create a filter to traverse the nugget by object type like CLAS or PROG
+  docFilter = xmlDoc-&gt;create_filter_name_ns( objType ).
+* apply the filter to the iterator
+  docIterator = xmlDoc-&gt;create_iterator_filtered( docFilter ).
+* get the first object of that type in the nugget
+  currentNode = docIterator-&gt;get_next( ).
+
+*  if this node is not blank proceed to check the attributes
+  while currentNode is not initial.
+*   get object name
+    rootAttr = currentNode-&gt;GET_ATTRIBUTES( ).
+    AttrNode = rootAttr-&gt;GET_ITEM( 0 ).
+    nodeName = AttrNode-&gt;GET_VALUE( ).
+*   if the name of the node is the same as the passed parameter, delete the node
+    if nodeName = objname.
+      currentNode-&gt;remove_node( ).
+      rval = sy-subrc.
+*      exit. &quot; let&apos;s remove duplicate entries as well (otherwise we could replace_child as well)
+    endif.
+    currentNode = docIterator-&gt;get_next( ).
+  endwhile.
+
+* append new object to nugget
+* get rood node of nugget
+  rootNode = xmlDoc-&gt;GET_ROOT_ELEMENT( ).
+* append new object to nugget
   rval = rootNode-&gt;append_Child( objElement ).
 
 endmethod.</source>
