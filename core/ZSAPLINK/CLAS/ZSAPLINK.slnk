@@ -830,7 +830,7 @@ endmethod.</source>
           clear sValue.
         when &apos;CHANGEDON&apos;.
           clear sValue.
-        when &apos;CHANGEDON&apos;.
+        when &apos;CHANGETIME&apos;.
           clear sValue.
         when &apos;CHGDANYON&apos;.
           clear sValue.
@@ -853,6 +853,17 @@ endmethod.</source>
         when &apos;LDATE&apos;.
           clear sValue.
         when &apos;LTIME&apos;.
+          clear sValue.
+        when &apos;DGEN&apos;.
+          clear sValue.
+        when &apos;TGEN&apos;.
+          clear sValue.
+        when &apos;GENDATE&apos;.
+          clear sValue.
+        when &apos;GENTIME&apos;.
+          clear sValue.
+        &quot; BSP
+        when &apos;IMPLCLASS&apos;.
           clear sValue.
         when others.
           sValue = &lt;fieldValue&gt;.
