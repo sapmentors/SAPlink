@@ -1,0 +1,1040 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CLAS CLSNAME="ZSAPLINK_INTERFACE" VERSION="1" LANGU="E" DESCRIPT="SapLink - Interface" UUID="50660D10EFE10283E1008000C008015A" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" CLSCCINCL="X" FIXPT="X" UNICODE="X" CLSBCCAT="00" DURATION_TYPE="0 " RISK_LEVEL="0 " REFCLSNAME="ZSAPLINK_OO">
+ <localImplementation>*&quot;* local class implementation for public class
+*&quot;* use this source file for the implementation part of
+*&quot;* local helper classes</localImplementation>
+ <localTypes>*&quot;* use this source file for any type declarations (class
+*&quot;* definitions, interfaces or data types) you need for method
+*&quot;* implementation or private method&apos;s signature</localTypes>
+ <localMacros>*&quot;* use this source file for any macro definitions you need
+*&quot;* in the implementation part of the class</localMacros>
+ <typeUsage CLSNAME="ZSAPLINK_INTERFACE" TYPEGROUP="SEOO" VERSION="1" TPUTYPE="0" IMPLICIT="X"/>
+ <forwardDeclaration>SEOO</forwardDeclaration>
+ <attribute CLSNAME="ZSAPLINK_INTERFACE" CMPNAME="XML_KEY_ATTRIBUTE" VERSION="1" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="5 " ATTDECLTYP="2" ATTVALUE="&apos;attribute&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+ <attribute CLSNAME="ZSAPLINK_INTERFACE" CMPNAME="XML_KEY_CLSDEFERRD" VERSION="1" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="7 " ATTDECLTYP="2" ATTVALUE="&apos;typeClasDef&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+ <attribute CLSNAME="ZSAPLINK_INTERFACE" CMPNAME="XML_KEY_EVENTS" VERSION="1" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="4 " ATTDECLTYP="2" ATTVALUE="&apos;events&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+ <attribute CLSNAME="ZSAPLINK_INTERFACE" CMPNAME="XML_KEY_EXCEPTION" VERSION="1" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="3 " ATTDECLTYP="2" ATTVALUE="&apos;exception&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+ <attribute CLSNAME="ZSAPLINK_INTERFACE" CMPNAME="XML_KEY_INCLUDE" VERSION="1" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="10 " ATTDECLTYP="2" ATTVALUE="&apos;include&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+ <attribute CLSNAME="ZSAPLINK_INTERFACE" CMPNAME="XML_KEY_INTDEFERRD" VERSION="1" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="8 " ATTDECLTYP="2" ATTVALUE="&apos;typeIntfDef&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+ <attribute CLSNAME="ZSAPLINK_INTERFACE" CMPNAME="XML_KEY_METHOD" VERSION="1" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="1 " ATTDECLTYP="2" ATTVALUE="&apos;method&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+ <attribute CLSNAME="ZSAPLINK_INTERFACE" CMPNAME="XML_KEY_PARAMETER" VERSION="1" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="2 " ATTDECLTYP="2" ATTVALUE="&apos;parameter&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+ <attribute CLSNAME="ZSAPLINK_INTERFACE" CMPNAME="XML_KEY_TYPEPUSAGE" VERSION="1" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="6 " ATTDECLTYP="2" ATTVALUE="&apos;typeUsage&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+ <attribute CLSNAME="ZSAPLINK_INTERFACE" CMPNAME="XML_KEY_TYPES" VERSION="1" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="9 " ATTDECLTYP="2" ATTVALUE="&apos;types&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+ <inheritance CLSNAME="ZSAPLINK_INTERFACE" REFCLSNAME="ZSAPLINK_OO" VERSION="1" STATE="1">
+  <redefinition CLSNAME="ZSAPLINK_INTERFACE" REFCLSNAME="ZSAPLINK_OO" VERSION="1" MTDNAME="CHECKEXISTS"/>
+  <redefinition CLSNAME="ZSAPLINK_INTERFACE" REFCLSNAME="ZSAPLINK_OO" VERSION="1" MTDNAME="CREATEIXMLDOCFROMOBJECT"/>
+  <redefinition CLSNAME="ZSAPLINK_INTERFACE" REFCLSNAME="ZSAPLINK_OO" VERSION="1" MTDNAME="CREATEOBJECTFROMIXMLDOC"/>
+  <redefinition CLSNAME="ZSAPLINK_INTERFACE" REFCLSNAME="ZSAPLINK_OO" VERSION="1" MTDNAME="DELETEOBJECT"/>
+  <redefinition CLSNAME="ZSAPLINK_INTERFACE" REFCLSNAME="ZSAPLINK_OO" VERSION="1" MTDNAME="GETOBJECTTYPE"/>
+ </inheritance>
+ <method CLSNAME="ZSAPLINK_OO" CMPNAME="CHECKEXISTS" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+  <source>METHOD CHECKEXISTS.
+*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   The code of this project is provided to you under the current     |
+*|   version of the SAP Code Exchange Terms of Use. You can find the   |
+*|   text on the SAP Code Exchange webpage at http://www.sdn.sap.com   |
+*|                                                                     |
+*|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
+*|   support.                                                          |
+*\---------------------------------------------------------------------/
+  DATA intkey TYPE seoclskey.
+  DATA not_active TYPE  char1.
+
+  intkey-clsname = objname.
+
+  CALL FUNCTION &apos;SEO_INTERFACE_EXISTENCE_CHECK&apos;
+    EXPORTING
+      intkey              = intkey
+    IMPORTING
+      not_active    = not_active
+    EXCEPTIONS
+*     NOT_SPECIFIED       = 1
+     not_existing        = 2
+*     IS_CLASS            = 3
+*     NO_TEXT             = 4
+*     INCONSISTENT        = 5
+*     OTHERS              = 6
+            .
+  IF sy-subrc &lt;&gt; 2.
+    exists = &apos;X&apos;.
+  ENDIF.
+ENDMETHOD.</source>
+ </method>
+ <method CLSNAME="ZSAPLINK_OO" CMPNAME="CREATEIXMLDOCFROMOBJECT" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+  <source>METHOD CREATEIXMLDOCFROMOBJECT.
+*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   The code of this project is provided to you under the current     |
+*|   version of the SAP Code Exchange Terms of Use. You can find the   |
+*|   text on the SAP Code Exchange webpage at http://www.sdn.sap.com   |
+*|                                                                     |
+*|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
+*|   support.                                                          |
+*\---------------------------------------------------------------------/
+  DATA intfsection TYPE REF TO if_ixml_element.
+  DATA rootnode TYPE REF TO if_ixml_element.
+  DATA _classname TYPE seoclsname.
+  DATA rc TYPE sysubrc.
+  DATA intfdescr TYPE REF TO cl_abap_intfdescr.
+  DATA typedescr TYPE REF TO cl_abap_typedescr.
+  DATA classkey TYPE seoclskey.
+  DATA intproperties TYPE vseointerf.
+  DATA _objtype TYPE string.
+
+  _classname = objname.
+  classkey-clsname = objname.
+
+  _objtype = getobjecttype( ).
+  rootnode = xmldoc-&gt;create_element( _objtype ).
+  CALL FUNCTION &apos;SEO_INTERFACE_GET&apos;
+    EXPORTING
+      intkey       = classkey
+      version      = &apos;1&apos;
+    IMPORTING
+      interface    = intproperties
+    EXCEPTIONS
+      not_existing = 1
+      deleted      = 2
+      is_class     = 3
+      model_only   = 4
+      OTHERS       = 5.
+
+  IF sy-subrc &lt;&gt; 0.
+    CASE sy-subrc.
+      WHEN 1.
+        RAISE EXCEPTION TYPE zcx_saplink
+          EXPORTING textid = zcx_saplink=&gt;not_found.
+      WHEN 2.
+        RAISE EXCEPTION TYPE zcx_saplink
+          EXPORTING
+            textid = zcx_saplink=&gt;error_message
+            msg = &apos;interface deleted&apos;.
+      WHEN 3.
+        RAISE EXCEPTION TYPE zcx_saplink
+          EXPORTING
+            textid = zcx_saplink=&gt;error_message
+            msg = &apos;classes not supported&apos;.
+      WHEN 4.
+        RAISE EXCEPTION TYPE zcx_saplink
+          EXPORTING
+            textid = zcx_saplink=&gt;error_message
+            msg = &apos;interface is modeled only&apos;.
+    ENDCASE.
+  ENDIF.
+
+  setattributesfromstructure( node = rootnode
+                         structure = intproperties ).
+
+  TRY.
+      CALL METHOD cl_abap_intfdescr=&gt;describe_by_name
+        EXPORTING
+          p_name         = objname
+        RECEIVING
+          p_descr_ref    = typedescr
+        EXCEPTIONS
+          type_not_found = 1.
+      IF sy-subrc = 0.
+        intfdescr ?= typedescr.
+      ENDIF.
+    CATCH cx_root.
+      RAISE EXCEPTION TYPE zcx_saplink
+        EXPORTING textid = zcx_saplink=&gt;system_error.
+  ENDTRY.
+
+*Add included interfaces to the xml document
+  CALL METHOD me-&gt;export_interfaces
+    EXPORTING
+      classkey = classkey
+    IMPORTING
+      rc       = rc
+    CHANGING
+      rootnode = rootnode.
+
+*Add types to the xml document
+  CALL METHOD me-&gt;export_types
+    EXPORTING
+      classkey = classkey
+    CHANGING
+      rc       = rc
+      rootnode = rootnode.
+
+*Add type pool groups to the xml document
+  CALL METHOD me-&gt;get_typepusage
+    CHANGING
+      xo_rootnode = rootnode.
+
+*Add class deferred type groups to the xml document
+  CALL METHOD me-&gt;get_clsdeferrd
+    CHANGING
+      xo_rootnode = rootnode.
+
+*Add interface deferred type groups to the xml document
+  CALL METHOD me-&gt;get_intdeferrd
+    CHANGING
+      xo_rootnode = rootnode.
+
+*Add events to the xml document
+  CALL METHOD me-&gt;export_events
+    EXPORTING
+      classkey = classkey
+    CHANGING
+      rc       = rc
+      rootnode = rootnode.
+
+*Add attributes to the xml document
+  CALL METHOD me-&gt;export_attributes
+    EXPORTING
+      intfdescr = intfdescr
+    CHANGING
+      rc        = rc
+      rootnode  = rootnode.
+
+*Add methods to the xml document
+  CALL METHOD me-&gt;export_methods
+    EXPORTING
+      intfdescr = intfdescr
+      classname = _classname
+    CHANGING
+      rc        = rc
+      rootnode  = rootnode.
+
+* create alias info for load.
+  get_alias_method( EXPORTING it_methods     = intfdescr-&gt;methods
+                    CHANGING  xo_rootnode    = rootnode ).
+
+* append root node to xmldoc
+  rc = xmldoc-&gt;append_child( rootnode ).
+  ixmldocument = xmldoc.
+ENDMETHOD.</source>
+ </method>
+ <method CLSNAME="ZSAPLINK_OO" CMPNAME="CREATEOBJECTFROMIXMLDOC" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+  <source>METHOD CREATEOBJECTFROMIXMLDOC.
+*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   The code of this project is provided to you under the current     |
+*|   version of the SAP Code Exchange Terms of Use. You can find the   |
+*|   text on the SAP Code Exchange webpage at http://www.sdn.sap.com   |
+*|                                                                     |
+*|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
+*|   support.                                                          |
+*\---------------------------------------------------------------------/
+  DATA rootnode TYPE REF TO if_ixml_element.
+  DATA classkey TYPE seoclskey.
+  DATA not_active TYPE boolean.
+  DATA _devclass TYPE devclass.
+  DATA _objtype TYPE string.
+  DATA checkexists TYPE flag.
+
+  DATA: e_corrnr                 TYPE trkorr,
+        e_devclass               TYPE devclass,
+        e_version                TYPE seoversion,
+        e_genflag                TYPE genflag,
+        e_authority_check        TYPE seox_boolean,
+        e_overwrite              TYPE seox_boolean.
+
+  DATA: i_korrnr TYPE trkorr.
+
+  DATA: ch_interface TYPE vseointerf,
+        ch_comprisings TYPE seor_comprisings_r,
+        ch_attributes TYPE seoo_attributes_r,
+        ch_methods TYPE seoo_methods_r,
+        ch_events TYPE seoo_events_r,
+        ch_parameters TYPE seos_parameters_r,
+        ch_exceps TYPE seos_exceptions_r,
+        ch_typepusages TYPE seot_typepusages_r,
+        ch_clsdeferrds TYPE seot_clsdeferrds_r,
+        ch_intdeferrds TYPE seot_intdeferrds_r,
+        ch_aliases     TYPE seoo_aliases_r ,
+        ch_types TYPE seoo_types_r.
+
+  CALL FUNCTION &apos;SEO_BUFFER_INIT&apos;.
+
+  e_devclass = devclass.
+  _objtype = getobjecttype( ).
+  e_overwrite = overwrite.
+
+  _devclass = devclass.
+  _objtype = getobjecttype( ).
+
+  xmldoc = ixmldocument.
+  rootnode = xmldoc-&gt;find_from_name( _objtype ).
+
+  CALL METHOD getstructurefromattributes
+    EXPORTING
+      node      = rootnode
+    CHANGING
+      structure = ch_interface.
+
+  checkexists = checkexists( ).
+  IF checkexists IS NOT INITIAL.
+    IF overwrite IS INITIAL.
+      RAISE EXCEPTION TYPE zcx_saplink
+        EXPORTING textid = zcx_saplink=&gt;existing.
+    ELSE.
+*     delete object for new install
+      deleteobject( ).
+    ENDIF.
+  ENDIF.
+
+  IF sy-subrc &lt;&gt; 0.
+    CASE sy-subrc.
+      WHEN 1.
+        RAISE EXCEPTION TYPE zcx_saplink
+          EXPORTING textid = zcx_saplink=&gt;not_authorized.
+      WHEN OTHERS.
+        RAISE EXCEPTION TYPE zcx_saplink
+          EXPORTING textid = zcx_saplink=&gt;system_error.
+    ENDCASE.
+  ENDIF.
+
+*Add attributes to new interface
+  CALL METHOD import_attributes
+    CHANGING
+      ch_attributes = ch_attributes.
+
+*Add includes
+  CALL METHOD import_interfaces
+    CHANGING
+      ch_comprisings = ch_comprisings.
+
+*Add types
+  CALL METHOD import_types
+    CHANGING
+      ch_types = ch_types.
+
+*Add type pool groups
+  CALL METHOD create_typepusage
+    CHANGING
+      xt_typepusages = ch_typepusages.
+*Add class deferred types
+  CALL METHOD create_clsdeferrd
+    CHANGING
+      xt_clsdeferrds = ch_clsdeferrds.
+*Add interface deferred types
+  CALL METHOD create_intdeferrd
+    CHANGING
+      xt_intdeferrds = ch_intdeferrds.
+
+*Add Aliases for methods
+  CALL METHOD create_alias_method
+    CHANGING
+      xt_aliases_method = ch_aliases.
+
+*Add events and event parameters
+  CALL METHOD import_events
+    CHANGING
+      ch_events     = ch_events
+      ch_parameters = ch_parameters.
+
+*Add methods, method parameters and method exceptions
+  CALL METHOD import_methods
+    CHANGING
+      ch_methods    = ch_methods
+      ch_parameters = ch_parameters
+      ch_exceps     = ch_exceps.
+
+*Create the interface
+  CALL FUNCTION &apos;SEO_INTERFACE_CREATE_COMPLETE&apos;
+   EXPORTING
+    corrnr                             = e_corrnr
+    devclass                           = e_devclass
+    version                            = e_version
+    genflag                            = e_genflag
+    authority_check                    = e_authority_check
+    overwrite                          = e_overwrite
+*     SUPPRESS_REFACTORING_SUPPORT       = SEOX_TRUE
+   IMPORTING
+    korrnr                             = i_korrnr
+* TABLES
+*   CLASS_DESCRIPTIONS                 =
+*   COMPONENT_DESCRIPTIONS             =
+*   SUBCOMPONENT_DESCRIPTIONS          =
+   CHANGING
+    interface                          = ch_interface
+    comprisings                        = ch_comprisings
+    attributes                         = ch_attributes
+    methods                            = ch_methods
+    events                             = ch_events
+    PARAMETERS                         = ch_parameters
+    exceps                             = ch_exceps
+    aliases                            = ch_aliases
+    typepusages                        = ch_typepusages
+    clsdeferrds                        = ch_clsdeferrds
+    intdeferrds                        = ch_intdeferrds
+    types                              = ch_types
+   EXCEPTIONS
+    existing                           = 1
+    is_class                           = 2
+    db_error                           = 3
+    component_error                    = 4
+    no_access                          = 5
+    other                              = 6
+    OTHERS                             = 7.
+
+  CASE sy-subrc.
+    WHEN &apos;0&apos;.
+** i guess if we made it this far, we will assume
+** successful install
+      name = objname.
+    WHEN &apos;1&apos;.
+      RAISE EXCEPTION TYPE zcx_saplink
+        EXPORTING textid = zcx_saplink=&gt;existing.
+    WHEN OTHERS.
+      RAISE EXCEPTION TYPE zcx_saplink
+        EXPORTING textid = zcx_saplink=&gt;system_error.
+  ENDCASE.
+
+ENDMETHOD.</source>
+ </method>
+ <method CLSNAME="ZSAPLINK_OO" CMPNAME="DELETEOBJECT" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+  <source>METHOD DELETEOBJECT.
+*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   The code of this project is provided to you under the current     |
+*|   version of the SAP Code Exchange Terms of Use. You can find the   |
+*|   text on the SAP Code Exchange webpage at http://www.sdn.sap.com   |
+*|                                                                     |
+*|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
+*|   support.                                                          |
+*\---------------------------------------------------------------------/
+  DATA clskey TYPE seoclskey.
+  clskey-clsname = objname.
+
+  CALL FUNCTION &apos;SEO_INTERFACE_GET&apos;
+    EXPORTING
+      intkey       = clskey
+      version      = seoc_version_inactive
+      state        = &apos;0&apos;
+    EXCEPTIONS
+      not_existing = 1
+      deleted      = 2
+      is_class     = 3
+      model_only   = 4
+      OTHERS       = 5.
+
+  IF sy-subrc &lt;&gt; 0.
+    RAISE EXCEPTION TYPE zcx_saplink
+      EXPORTING
+        textid = zcx_saplink=&gt;error_message
+        msg = &apos;interface not deleted&apos;.
+  ENDIF.
+
+  CALL FUNCTION &apos;SEO_INTERFACE_DELETE_W_DEPS&apos;
+    EXPORTING
+      intkey       = clskey
+      save         = &apos; &apos;
+    EXCEPTIONS
+      not_existing = 1
+      is_class     = 2
+      not_deleted  = 3
+      db_error     = 4
+      OTHERS       = 5.
+
+  IF sy-subrc &lt;&gt; 0.
+    CASE sy-subrc.
+      WHEN 1.
+        RAISE EXCEPTION TYPE zcx_saplink
+          EXPORTING textid = zcx_saplink=&gt;not_found.
+      WHEN 2.
+        RAISE EXCEPTION TYPE zcx_saplink
+          EXPORTING
+            textid = zcx_saplink=&gt;error_message
+            msg = &apos;class not supported&apos;.
+      WHEN 3.
+        RAISE EXCEPTION TYPE zcx_saplink
+          EXPORTING
+            textid = zcx_saplink=&gt;error_message
+            msg = &apos;interface not deleted&apos;.
+      WHEN OTHERS.
+        RAISE EXCEPTION TYPE zcx_saplink
+          EXPORTING textid = zcx_saplink=&gt;system_error.
+    ENDCASE.
+  ENDIF.
+
+  CALL FUNCTION &apos;SEO_CLIF_SAVE_ALL&apos;
+    EXPORTING
+      cifkey        = clskey
+*      CHANGING
+*        CORRNR        = corrnr
+    EXCEPTIONS
+      not_existing  = 1
+      nothing_to_do = 2
+      access_error  = 3
+      db_error      = 4
+      OTHERS        = 5.
+  IF sy-subrc &lt;&gt; 0.
+    MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
+            WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+  ENDIF.
+
+ENDMETHOD.</source>
+ </method>
+ <method CLSNAME="ZSAPLINK_INTERFACE" CMPNAME="EXPORT_ATTRIBUTES" VERSION="1" LANGU="E" DESCRIPT="Adds attributes to the xml document" EXPOSURE="0" STATE="1" EDITORDER="9 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_INTERFACE" CMPNAME="EXPORT_ATTRIBUTES" SCONAME="INTFDESCR" VERSION="1" LANGU="E" DESCRIPT="Runtime Type Services" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="CL_ABAP_INTFDESCR"/>
+  <parameter CLSNAME="ZSAPLINK_INTERFACE" CMPNAME="EXPORT_ATTRIBUTES" SCONAME="RC" VERSION="1" LANGU="E" DESCRIPT="Return Value of ABAP Statements" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="SYSUBRC"/>
+  <parameter CLSNAME="ZSAPLINK_INTERFACE" CMPNAME="EXPORT_ATTRIBUTES" SCONAME="ROOTNODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
+  <source>METHOD EXPORT_ATTRIBUTES.
+*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   The code of this project is provided to you under the current     |
+*|   version of the SAP Code Exchange Terms of Use. You can find the   |
+*|   text on the SAP Code Exchange webpage at http://www.sdn.sap.com   |
+*|                                                                     |
+*|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
+*|   support.                                                          |
+*\---------------------------------------------------------------------/
+  DATA: attribkey TYPE seocmpkey,
+        attribdescr TYPE abap_attrdescr,
+        attribnode TYPE REF TO if_ixml_element,
+        attribproperties TYPE vseoattrib,
+        _otrguid TYPE sotr_conc,
+        otrnode TYPE REF TO if_ixml_element.
+
+  attribkey-clsname = objname.
+  LOOP AT intfdescr-&gt;attributes INTO attribdescr WHERE is_inherited =
+  abap_false.
+    attribnode = xmldoc-&gt;create_element( xml_key_attribute ).
+    attribkey-cmpname = attribdescr-name.
+    CALL FUNCTION &apos;SEO_ATTRIBUTE_GET&apos;
+      EXPORTING
+        attkey    = attribkey
+      IMPORTING
+        attribute = attribproperties.
+
+*   include OTR if necessary (for exception classes)
+    IF attribproperties-type = &apos;SOTR_CONC&apos; AND attribproperties-attvalue
+    IS NOT INITIAL.
+      _otrguid = attribproperties-attvalue+1(32).
+      otrnode = get_otr( _otrguid ).
+      IF otrnode IS BOUND.
+        rc = attribnode-&gt;append_child( otrnode ).
+      ENDIF.
+    ENDIF.
+
+*   append attribute node to parent node
+    setattributesfromstructure( node = attribnode structure =
+    attribproperties ).
+    rc = rootnode-&gt;append_child( attribnode ).
+  ENDLOOP.
+
+ENDMETHOD.</source>
+ </method>
+ <method CLSNAME="ZSAPLINK_INTERFACE" CMPNAME="EXPORT_EVENTS" VERSION="1" LANGU="E" DESCRIPT="Adds events to the xml document" EXPOSURE="0" STATE="1" EDITORDER="8 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_INTERFACE" CMPNAME="EXPORT_EVENTS" SCONAME="CLASSKEY" VERSION="1" LANGU="E" DESCRIPT="Key structure of a class" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="SEOCLSKEY"/>
+  <parameter CLSNAME="ZSAPLINK_INTERFACE" CMPNAME="EXPORT_EVENTS" SCONAME="RC" VERSION="1" LANGU="E" DESCRIPT="Return Value of ABAP Statements" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="SYSUBRC"/>
+  <parameter CLSNAME="ZSAPLINK_INTERFACE" CMPNAME="EXPORT_EVENTS" SCONAME="ROOTNODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
+  <source>METHOD EXPORT_EVENTS.
+*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   The code of this project is provided to you under the current     |
+*|   version of the SAP Code Exchange Terms of Use. You can find the   |
+*|   text on the SAP Code Exchange webpage at http://www.sdn.sap.com   |
+*|                                                                     |
+*|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
+*|   support.                                                          |
+*\---------------------------------------------------------------------/
+  DATA: events      TYPE seoo_events_r,
+        wa_event    LIKE LINE OF events,
+        eventkey    TYPE seocmpkey,
+        eventparams TYPE seos_parameters_r,
+        wa_params   TYPE seos_parameter_r,
+        event_node  TYPE REF TO if_ixml_element,
+        parameternode TYPE REF TO if_ixml_element.
+
+  CALL FUNCTION &apos;SEO_EVENT_READ_ALL&apos;
+    EXPORTING
+      cifkey            = classkey
+      version           = 1
+    IMPORTING
+      events            = events
+    EXCEPTIONS
+      clif_not_existing = 1
+      OTHERS            = 2.
+
+  IF sy-subrc &lt;&gt; 0.
+  ENDIF.
+
+  LOOP AT events INTO wa_event.
+    eventkey-clsname = wa_event-clsname.
+    eventkey-cmpname = wa_event-cmpname.
+    event_node = xmldoc-&gt;create_element( xml_key_events ).
+    setattributesfromstructure( node = event_node structure =
+    wa_event ).
+    CALL FUNCTION &apos;SEO_EVENT_SIGNATURE_GET&apos;
+      EXPORTING
+        evtkey     = eventkey
+      IMPORTING
+        PARAMETERS = eventparams.
+*   event parameters
+    LOOP AT eventparams INTO wa_params.
+
+      parameternode = xmldoc-&gt;create_element( xml_key_parameter ).
+      setattributesfromstructure( node = parameternode
+      structure = wa_params ).
+      rc = event_node-&gt;append_child( parameternode ).
+    ENDLOOP.
+    rc = rootnode-&gt;append_child( event_node ).
+  ENDLOOP.
+
+ENDMETHOD.</source>
+ </method>
+ <method CLSNAME="ZSAPLINK_INTERFACE" CMPNAME="EXPORT_INTERFACES" VERSION="1" LANGU="E" DESCRIPT="Adds included interfaces to the xml document" EXPOSURE="0" STATE="1" EDITORDER="1 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_INTERFACE" CMPNAME="EXPORT_INTERFACES" SCONAME="CLASSKEY" VERSION="1" LANGU="E" DESCRIPT="Key structure of a class" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="SEOCLSKEY"/>
+  <parameter CLSNAME="ZSAPLINK_INTERFACE" CMPNAME="EXPORT_INTERFACES" SCONAME="RC" VERSION="1" LANGU="E" DESCRIPT="Return Value of ABAP Statements" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SYSUBRC"/>
+  <parameter CLSNAME="ZSAPLINK_INTERFACE" CMPNAME="EXPORT_INTERFACES" SCONAME="ROOTNODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
+  <source>METHOD EXPORT_INTERFACES.
+*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   The code of this project is provided to you under the current     |
+*|   version of the SAP Code Exchange Terms of Use. You can find the   |
+*|   text on the SAP Code Exchange webpage at http://www.sdn.sap.com   |
+*|                                                                     |
+*|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
+*|   support.                                                          |
+*\---------------------------------------------------------------------/
+  DATA: it_vseocompri TYPE TABLE OF vseocompri,
+        wa_vseocompri LIKE LINE OF it_vseocompri,
+        implementingnode TYPE REF TO if_ixml_element,
+        objname TYPE vrsd-objname.
+
+  objname = classkey.
+
+  CALL FUNCTION &apos;SVRS_GET_VERSION_INTF_40&apos;
+    EXPORTING
+*   DESTINATION                        =
+      object_name                        = objname
+      versno                             = &apos;00000&apos;
+*   IV_NO_RELEASE_TRANSFORMATION       =
+* IMPORTING
+*   INFO_LINE                          =
+  TABLES
+*   VSMODISRC                          =
+*   PSEOALIASES                        =
+*   PVSEOATTRIB                        =
+      pvseocompri                        = it_vseocompri
+*   PVSEOEVENT                         =
+*   PVSEOEXCEP                         =
+*   PVSEOINTERF                        =
+*   PSMODILOG                          =
+*   PVSEOMETHOD                        =
+*   PVSEOPARAM                         =
+*   PPOOL_SOURCE                       =
+*   PSOURCE                            =
+*   PTRDIR                             =
+*   TYPE_TAB                           =
+*   PSEOTYPEPLS                        =
+  EXCEPTIONS
+    no_version                         = 1
+    system_failure                     = 2
+    communication_failure              = 3
+    OTHERS                             = 4
+            .
+  IF sy-subrc &lt;&gt; 0.
+  ENDIF.
+
+  LOOP AT it_vseocompri INTO wa_vseocompri.
+    implementingnode = xmldoc-&gt;create_element( xml_key_include ).
+    setattributesfromstructure( node = implementingnode structure =
+    wa_vseocompri ).
+    rc = rootnode-&gt;append_child( implementingnode ).
+  ENDLOOP.
+
+ENDMETHOD.</source>
+ </method>
+ <method CLSNAME="ZSAPLINK_INTERFACE" CMPNAME="EXPORT_METHODS" VERSION="1" LANGU="E" DESCRIPT="Adds methods to the xml document" EXPOSURE="0" STATE="1" EDITORDER="7 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_INTERFACE" CMPNAME="EXPORT_METHODS" SCONAME="INTFDESCR" VERSION="1" LANGU="E" DESCRIPT="Runtime Type Services" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="CL_ABAP_INTFDESCR"/>
+  <parameter CLSNAME="ZSAPLINK_INTERFACE" CMPNAME="EXPORT_METHODS" SCONAME="CLASSNAME" VERSION="1" LANGU="E" DESCRIPT="Object Type Name" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="SEOCLSNAME"/>
+  <parameter CLSNAME="ZSAPLINK_INTERFACE" CMPNAME="EXPORT_METHODS" SCONAME="RC" VERSION="1" LANGU="E" DESCRIPT="Return Value of ABAP Statements" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="SYSUBRC"/>
+  <parameter CLSNAME="ZSAPLINK_INTERFACE" CMPNAME="EXPORT_METHODS" SCONAME="ROOTNODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="4 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
+  <source>METHOD EXPORT_METHODS.
+*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   The code of this project is provided to you under the current     |
+*|   version of the SAP Code Exchange Terms of Use. You can find the   |
+*|   text on the SAP Code Exchange webpage at http://www.sdn.sap.com   |
+*|                                                                     |
+*|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
+*|   support.                                                          |
+*\---------------------------------------------------------------------/
+  DATA: methoddescr TYPE abap_methdescr,
+        methodkey TYPE seocpdkey,
+        clsmethkey TYPE seocmpkey,
+        methodproperties TYPE vseomethod,
+        paramdescr TYPE abap_parmdescr,
+        paramproperties TYPE vseoparam,
+        paramkey TYPE seoscokey,
+        exceptionlist TYPE seos_exceptions_r,
+        anexception TYPE vseoexcep,
+        exceptionnode TYPE REF TO if_ixml_element,
+        parameternode TYPE REF TO if_ixml_element,
+        methodnode TYPE REF TO if_ixml_element.
+
+  LOOP AT intfdescr-&gt;methods INTO methoddescr WHERE alias_for IS INITIAL AND
+  NOT ( is_inherited = &apos;X&apos; AND is_redefined IS INITIAL ).
+    methodkey-clsname = classname.
+    methodkey-cpdname = methoddescr-name.
+
+    clsmethkey-clsname = classname.
+    clsmethkey-cmpname = methoddescr-name.
+    CLEAR methodproperties.
+
+    CALL FUNCTION &apos;SEO_METHOD_GET&apos;
+      EXPORTING
+        mtdkey       = clsmethkey
+      IMPORTING
+        method       = methodproperties
+      EXCEPTIONS
+        not_existing = 1.
+    IF sy-subrc = 0.
+      methodnode = xmldoc-&gt;create_element( xml_key_method ).
+      setattributesfromstructure( node = methodnode structure =
+      methodproperties ).
+
+      LOOP AT methoddescr-parameters INTO paramdescr.
+        CLEAR paramproperties.
+        parameternode = xmldoc-&gt;create_element( xml_key_parameter ).
+        paramkey-cmpname = clsmethkey-cmpname.
+        paramkey-sconame = paramdescr-name.
+        paramkey-clsname = objname.
+        CALL FUNCTION &apos;SEO_PARAMETER_GET&apos;
+          EXPORTING
+            parkey    = paramkey
+            version   = &apos;1&apos;
+          IMPORTING
+            parameter = paramproperties.
+        setattributesfromstructure( node = parameternode
+        structure = paramproperties ).
+        rc = methodnode-&gt;append_child( parameternode ).
+      ENDLOOP.
+
+*add method exceptions
+      CALL FUNCTION &apos;SEO_METHOD_SIGNATURE_GET&apos;
+        EXPORTING
+          mtdkey  = clsmethkey
+          version = &apos;1&apos;
+        IMPORTING
+          exceps  = exceptionlist.
+      LOOP AT exceptionlist INTO anexception.
+        exceptionnode = xmldoc-&gt;create_element( xml_key_exception ).
+        setattributesfromstructure( node = exceptionnode
+        structure = anexception ).
+        rc = methodnode-&gt;append_child( exceptionnode ).
+      ENDLOOP.
+    ENDIF. &quot;method found
+    rc = rootnode-&gt;append_child( methodnode ).
+  ENDLOOP.
+
+ENDMETHOD.</source>
+ </method>
+ <method CLSNAME="ZSAPLINK_INTERFACE" CMPNAME="EXPORT_TYPES" VERSION="1" LANGU="E" DESCRIPT="Adds types to the xml document" EXPOSURE="0" STATE="1" EDITORDER="10 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_INTERFACE" CMPNAME="EXPORT_TYPES" SCONAME="CLASSKEY" VERSION="1" LANGU="E" DESCRIPT="Key structure of a class" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="SEOCLSKEY"/>
+  <parameter CLSNAME="ZSAPLINK_INTERFACE" CMPNAME="EXPORT_TYPES" SCONAME="RC" VERSION="1" LANGU="E" DESCRIPT="Return Value of ABAP Statements" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="SYSUBRC"/>
+  <parameter CLSNAME="ZSAPLINK_INTERFACE" CMPNAME="EXPORT_TYPES" SCONAME="ROOTNODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
+  <source>METHOD EXPORT_TYPES.
+*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   The code of this project is provided to you under the current     |
+*|   version of the SAP Code Exchange Terms of Use. You can find the   |
+*|   text on the SAP Code Exchange webpage at http://www.sdn.sap.com   |
+*|                                                                     |
+*|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
+*|   support.                                                          |
+*\---------------------------------------------------------------------/
+  DATA: types      TYPE seoo_types_r,
+      wa_type    LIKE LINE OF types,
+      types_node TYPE REF TO if_ixml_element.
+
+  CALL FUNCTION &apos;SEO_TYPE_READ_ALL&apos;
+    EXPORTING
+      cifkey            = classkey
+      version           = 1
+    IMPORTING
+      types             = types
+    EXCEPTIONS
+      clif_not_existing = 1
+      OTHERS            = 2.
+
+  IF sy-subrc &lt;&gt; 0.
+  ENDIF.
+
+  LOOP AT types INTO wa_type.
+    types_node = xmldoc-&gt;create_element( xml_key_types ).
+    setattributesfromstructure( node = types_node structure =
+    wa_type ).
+    rc = rootnode-&gt;append_child( types_node ).
+  ENDLOOP.
+
+ENDMETHOD.</source>
+ </method>
+ <method CLSNAME="ZSAPLINK_OO" CMPNAME="GETOBJECTTYPE" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+  <source>METHOD GETOBJECTTYPE.
+*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   The code of this project is provided to you under the current     |
+*|   version of the SAP Code Exchange Terms of Use. You can find the   |
+*|   text on the SAP Code Exchange webpage at http://www.sdn.sap.com   |
+*|                                                                     |
+*|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
+*|   support.                                                          |
+*\---------------------------------------------------------------------/
+
+  objecttype = &apos;INTF&apos;.  &quot;Interface
+
+ENDMETHOD.</source>
+ </method>
+ <method CLSNAME="ZSAPLINK_INTERFACE" CMPNAME="IMPORT_ATTRIBUTES" VERSION="1" LANGU="E" DESCRIPT="Imports attributes from the xml document" EXPOSURE="0" STATE="1" EDITORDER="3 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_INTERFACE" CMPNAME="IMPORT_ATTRIBUTES" SCONAME="CH_ATTRIBUTES" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="SEOO_ATTRIBUTES_R"/>
+  <exception CLSNAME="ZSAPLINK_INTERFACE" CMPNAME="IMPORT_ATTRIBUTES" SCONAME="ZCX_SAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 "/>
+  <source>METHOD IMPORT_ATTRIBUTES.
+*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   The code of this project is provided to you under the current     |
+*|   version of the SAP Code Exchange Terms of Use. You can find the   |
+*|   text on the SAP Code Exchange webpage at http://www.sdn.sap.com   |
+*|                                                                     |
+*|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
+*|   support.                                                          |
+*\---------------------------------------------------------------------/
+  DATA: otrconcept TYPE sotr_text-concept,
+        wa_attributes LIKE LINE OF ch_attributes,
+        filter TYPE REF TO if_ixml_node_filter,
+        iterator TYPE REF TO if_ixml_node_iterator,
+        node TYPE REF TO if_ixml_element,
+        otrnode TYPE REF TO if_ixml_element.
+
+  filter = xmldoc-&gt;create_filter_name( xml_key_attribute ).
+  iterator = xmldoc-&gt;create_iterator_filtered( filter ).
+  node ?= iterator-&gt;get_next( ).
+
+  WHILE node IS NOT INITIAL.
+*   create OTR texts if necessary (for exception classes)
+    CLEAR otrconcept.
+    otrnode = node-&gt;find_from_name( &apos;sotr&apos; ).
+    IF otrnode IS NOT INITIAL.
+      me-&gt;create_otr(
+        EXPORTING node = otrnode
+        IMPORTING concept = otrconcept ).
+    ENDIF.
+    CLEAR wa_attributes.
+*   create attribute
+    CALL METHOD getstructurefromattributes
+      EXPORTING
+        node      = node
+      CHANGING
+        structure = wa_attributes.
+    wa_attributes-version = &apos;0&apos;.
+*   ewH:issue33--&gt;6.40 and above, must create new concept
+    IF otrconcept IS NOT INITIAL.
+      CONCATENATE `&apos;` otrconcept `&apos;` INTO wa_attributes-attvalue.
+    ENDIF.
+    APPEND wa_attributes TO ch_attributes.
+    node ?= iterator-&gt;get_next( ).
+  ENDWHILE.
+
+ENDMETHOD.</source>
+ </method>
+ <method CLSNAME="ZSAPLINK_INTERFACE" CMPNAME="IMPORT_EVENTS" VERSION="1" LANGU="E" DESCRIPT="Imports events from the xml document" EXPOSURE="0" STATE="1" EDITORDER="6 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_INTERFACE" CMPNAME="IMPORT_EVENTS" SCONAME="CH_EVENTS" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="SEOO_EVENTS_R"/>
+  <parameter CLSNAME="ZSAPLINK_INTERFACE" CMPNAME="IMPORT_EVENTS" SCONAME="CH_PARAMETERS" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="SEOS_PARAMETERS_R"/>
+  <source>METHOD IMPORT_EVENTS.
+*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   The code of this project is provided to you under the current     |
+*|   version of the SAP Code Exchange Terms of Use. You can find the   |
+*|   text on the SAP Code Exchange webpage at http://www.sdn.sap.com   |
+*|                                                                     |
+*|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
+*|   support.                                                          |
+*\---------------------------------------------------------------------/
+  DATA: event_filter TYPE REF TO if_ixml_node_filter,
+        parameter_filter TYPE REF TO if_ixml_node_filter,
+        event_iterator TYPE REF TO if_ixml_node_iterator,
+        parameter_iterator TYPE REF TO if_ixml_node_iterator,
+        event_node TYPE REF TO if_ixml_element,
+        parameter_node TYPE REF TO if_ixml_element,
+        wa_events LIKE LINE OF ch_events,
+        wa_parameters LIKE LINE OF ch_parameters.
+
+  event_filter = xmldoc-&gt;create_filter_name( xml_key_events ).
+  event_iterator = xmldoc-&gt;create_iterator_filtered( event_filter ).
+  event_node ?= event_iterator-&gt;get_next( ).
+  WHILE event_node IS NOT INITIAL.
+    CLEAR wa_events.
+    CALL METHOD getstructurefromattributes
+      EXPORTING
+        node      = event_node
+      CHANGING
+        structure = wa_events.
+    APPEND wa_events TO ch_events.
+    parameter_filter = event_node-&gt;create_filter_name( xml_key_parameter ).
+    parameter_iterator = event_node-&gt;create_iterator_filtered( parameter_filter ).
+    parameter_node ?= parameter_iterator-&gt;get_next( ).
+    WHILE parameter_node IS NOT INITIAL.
+      CLEAR wa_parameters.
+      CALL METHOD getstructurefromattributes
+        EXPORTING
+          node      = parameter_node
+        CHANGING
+          structure = wa_parameters.
+      APPEND wa_parameters TO ch_parameters.
+      parameter_node ?= parameter_iterator-&gt;get_next( ).
+    ENDWHILE.
+    event_node ?= event_iterator-&gt;get_next( ).
+  ENDWHILE.
+
+ENDMETHOD.</source>
+ </method>
+ <method CLSNAME="ZSAPLINK_INTERFACE" CMPNAME="IMPORT_INTERFACES" VERSION="1" LANGU="E" DESCRIPT="Imports included interfaces from the xml document" EXPOSURE="0" STATE="1" EDITORDER="4 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_INTERFACE" CMPNAME="IMPORT_INTERFACES" SCONAME="CH_COMPRISINGS" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="SEOR_COMPRISINGS_R"/>
+  <source>METHOD IMPORT_INTERFACES.
+*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   The code of this project is provided to you under the current     |
+*|   version of the SAP Code Exchange Terms of Use. You can find the   |
+*|   text on the SAP Code Exchange webpage at http://www.sdn.sap.com   |
+*|                                                                     |
+*|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
+*|   support.                                                          |
+*\---------------------------------------------------------------------/
+  DATA: filter TYPE REF TO if_ixml_node_filter,
+        iterator TYPE REF TO if_ixml_node_iterator,
+        node TYPE REF TO if_ixml_element,
+        wa_comprisings LIKE LINE OF ch_comprisings.
+
+  filter = xmldoc-&gt;create_filter_name( xml_key_include ).
+  iterator = xmldoc-&gt;create_iterator_filtered( filter ).
+  node ?= iterator-&gt;get_next( ).
+  WHILE node IS NOT INITIAL.
+    CLEAR wa_comprisings.
+    CALL METHOD getstructurefromattributes
+      EXPORTING
+        node      = node
+      CHANGING
+        structure = wa_comprisings.
+    wa_comprisings-version = &apos;0&apos;.
+    APPEND wa_comprisings TO ch_comprisings.
+    node ?= iterator-&gt;get_next( ).
+  ENDWHILE.
+
+ENDMETHOD.</source>
+ </method>
+ <method CLSNAME="ZSAPLINK_INTERFACE" CMPNAME="IMPORT_METHODS" VERSION="1" LANGU="E" DESCRIPT="Imports methods from the xml document" EXPOSURE="0" STATE="1" EDITORDER="2 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_INTERFACE" CMPNAME="IMPORT_METHODS" SCONAME="CH_METHODS" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="SEOO_METHODS_R"/>
+  <parameter CLSNAME="ZSAPLINK_INTERFACE" CMPNAME="IMPORT_METHODS" SCONAME="CH_PARAMETERS" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="SEOS_PARAMETERS_R"/>
+  <parameter CLSNAME="ZSAPLINK_INTERFACE" CMPNAME="IMPORT_METHODS" SCONAME="CH_EXCEPS" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="SEOS_EXCEPTIONS_R"/>
+  <source>METHOD IMPORT_METHODS.
+*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   The code of this project is provided to you under the current     |
+*|   version of the SAP Code Exchange Terms of Use. You can find the   |
+*|   text on the SAP Code Exchange webpage at http://www.sdn.sap.com   |
+*|                                                                     |
+*|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
+*|   support.                                                          |
+*\---------------------------------------------------------------------/
+  DATA: filter TYPE REF TO if_ixml_node_filter,
+        filter2 TYPE REF TO if_ixml_node_filter,
+        iterator TYPE REF TO if_ixml_node_iterator,
+        iterator2 TYPE REF TO if_ixml_node_iterator,
+        node TYPE REF TO if_ixml_element,
+        node2 TYPE REF TO if_ixml_element,
+        wa_parameters LIKE LINE OF ch_parameters,
+        wa_methods LIKE LINE OF ch_methods,
+        wa_exceps LIKE LINE OF ch_exceps.
+
+*Add methods to new interface
+  filter = xmldoc-&gt;create_filter_name( xml_key_method ).
+  iterator = xmldoc-&gt;create_iterator_filtered( filter ).
+  node ?= iterator-&gt;get_next( ).
+  WHILE node IS NOT INITIAL.
+    CLEAR wa_methods.
+    CALL METHOD getstructurefromattributes
+      EXPORTING
+        node      = node
+      CHANGING
+        structure = wa_methods.
+
+*Add parameters
+    filter2 = node-&gt;create_filter_name( xml_key_parameter ).
+    iterator2 = node-&gt;create_iterator_filtered( filter2 ).
+    node2 ?= iterator2-&gt;get_next( ).
+    WHILE node2 IS NOT INITIAL.
+      CLEAR wa_parameters.
+      CALL METHOD getstructurefromattributes
+        EXPORTING
+          node      = node2
+        CHANGING
+          structure = wa_parameters.
+      APPEND wa_parameters TO ch_parameters.
+      node2 ?= iterator2-&gt;get_next( ).
+    ENDWHILE.
+*Add exceptions
+    filter2 = node-&gt;create_filter_name( xml_key_exception ).
+    iterator2 = node-&gt;create_iterator_filtered( filter2 ).
+    node2 ?= iterator2-&gt;get_next( ).
+    WHILE node2 IS NOT INITIAL.
+      CALL METHOD getstructurefromattributes
+        EXPORTING
+          node      = node2
+        CHANGING
+          structure = wa_exceps.
+      APPEND wa_exceps TO ch_exceps.
+      node2 ?= iterator2-&gt;get_next( ).
+    ENDWHILE.
+    APPEND wa_methods TO ch_methods.
+    node ?= iterator-&gt;get_next( ).
+  ENDWHILE.
+
+ENDMETHOD.</source>
+ </method>
+ <method CLSNAME="ZSAPLINK_INTERFACE" CMPNAME="IMPORT_TYPES" VERSION="1" LANGU="E" DESCRIPT="Imports types and typegroups from the xml document" EXPOSURE="0" STATE="1" EDITORDER="5 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+  <parameter CLSNAME="ZSAPLINK_INTERFACE" CMPNAME="IMPORT_TYPES" SCONAME="CH_TYPES" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="SEOO_TYPES_R"/>
+  <source>METHOD IMPORT_TYPES.
+*/---------------------------------------------------------------------\
+*|   This file is part of SAPlink.                                     |
+*|                                                                     |
+*|   The code of this project is provided to you under the current     |
+*|   version of the SAP Code Exchange Terms of Use. You can find the   |
+*|   text on the SAP Code Exchange webpage at http://www.sdn.sap.com   |
+*|                                                                     |
+*|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
+*|   support.                                                          |
+*\---------------------------------------------------------------------/
+  DATA: filter TYPE REF TO if_ixml_node_filter,
+        iterator TYPE REF TO if_ixml_node_iterator,
+        node TYPE REF TO if_ixml_element,
+        wa_types       LIKE LINE OF ch_types.
+
+  filter = xmldoc-&gt;create_filter_name( xml_key_types ).
+  iterator = xmldoc-&gt;create_iterator_filtered( filter ).
+  node ?= iterator-&gt;get_next( ).
+  WHILE node IS NOT INITIAL.
+    CLEAR wa_types.
+    CALL METHOD getstructurefromattributes
+      EXPORTING
+        node      = node
+      CHANGING
+        structure = wa_types.
+    wa_types-version = &apos;0&apos;.
+    APPEND wa_types TO ch_types.
+    node ?= iterator-&gt;get_next( ).
+  ENDWHILE.
+
+ENDMETHOD.</source>
+ </method>
+</CLAS>
