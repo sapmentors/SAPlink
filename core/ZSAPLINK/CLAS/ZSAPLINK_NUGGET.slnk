@@ -29,14 +29,22 @@ TYPES: BEGIN OF ts_objects,
   <exception CLSNAME="ZSAPLINK_NUGGET" CMPNAME="ADDOBJECTTONUGGET" SCONAME="ZCX_SAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 "/>
   <source>method ADDOBJECTTONUGGET.
 */---------------------------------------------------------------------\
-*|   This file is part of SAPlink.                                     |
+*| This file is part of SAPlink.                                       |
 *|                                                                     |
-*|   The code of this project is provided to you under the current     |
-*|   version of the SAP Code Exchange Terms of Use. You can find the   |
-*|   text on the SAP Code Exchange webpage at http://www.sdn.sap.com   |
+*| Copyright 2014 SAPlink project members                              |
 *|                                                                     |
-*|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
-*|   support.                                                          |
+*| Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);     |
+*| you may not use this file except in compliance with the License.    |
+*| You may obtain a copy of the License at                             |
+*|                                                                     |
+*|     http://www.apache.org/licenses/LICENSE-2.0                      |
+*|                                                                     |
+*| Unless required by applicable law or agreed to in writing, software |
+*| distributed under the License is distributed on an &quot;AS IS&quot; BASIS,   |
+*| WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or     |
+*| implied.                                                            |
+*| See the License for the specific language governing permissions and |
+*| limitations under the License.                                      |
 *\---------------------------------------------------------------------/
   types: begin of t_objectTable,
            classname type string,
@@ -113,14 +121,22 @@ endmethod.</source>
   <parameter CLSNAME="ZSAPLINK_NUGGET" CMPNAME="CHECKOBJECTEXISTS" SCONAME="RETVAL" VERSION="1" LANGU="E" DESCRIPT="Return Value, Return Value After ABAP Statements" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="1" TYPE="SY-SUBRC"/>
   <source>method CHECKOBJECTEXISTS.
 */---------------------------------------------------------------------\
-*|   This file is part of SAPlink.                                     |
+*| This file is part of SAPlink.                                       |
 *|                                                                     |
-*|   The code of this project is provided to you under the current     |
-*|   version of the SAP Code Exchange Terms of Use. You can find the   |
-*|   text on the SAP Code Exchange webpage at http://www.sdn.sap.com   |
+*| Copyright 2014 SAPlink project members                              |
 *|                                                                     |
-*|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
-*|   support.                                                          |
+*| Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);     |
+*| you may not use this file except in compliance with the License.    |
+*| You may obtain a copy of the License at                             |
+*|                                                                     |
+*|     http://www.apache.org/licenses/LICENSE-2.0                      |
+*|                                                                     |
+*| Unless required by applicable law or agreed to in writing, software |
+*| distributed under the License is distributed on an &quot;AS IS&quot; BASIS,   |
+*| WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or     |
+*| implied.                                                            |
+*| See the License for the specific language governing permissions and |
+*| limitations under the License.                                      |
 *\---------------------------------------------------------------------/
   data: docFilter   type ref to if_ixml_node_filter,
         docIterator type ref to if_ixml_node_iterator,
@@ -162,14 +178,22 @@ endmethod.</source>
   <parameter CLSNAME="ZSAPLINK_NUGGET" CMPNAME="CONSTRUCTOR" SCONAME="IXMLDOCUMENT" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_DOCUMENT" CMPTYPE="1" MTDTYPE="2" EDITORDER="2 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_DOCUMENT" PAROPTIONL="X"/>
   <source>method CONSTRUCTOR.
 */---------------------------------------------------------------------\
-*|   This file is part of SAPlink.                                     |
+*| This file is part of SAPlink.                                       |
 *|                                                                     |
-*|   The code of this project is provided to you under the current     |
-*|   version of the SAP Code Exchange Terms of Use. You can find the   |
-*|   text on the SAP Code Exchange webpage at http://www.sdn.sap.com   |
+*| Copyright 2014 SAPlink project members                              |
 *|                                                                     |
-*|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
-*|   support.                                                          |
+*| Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);     |
+*| you may not use this file except in compliance with the License.    |
+*| You may obtain a copy of the License at                             |
+*|                                                                     |
+*|     http://www.apache.org/licenses/LICENSE-2.0                      |
+*|                                                                     |
+*| Unless required by applicable law or agreed to in writing, software |
+*| distributed under the License is distributed on an &quot;AS IS&quot; BASIS,   |
+*| WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or     |
+*| implied.                                                            |
+*| See the License for the specific language governing permissions and |
+*| limitations under the License.                                      |
 *\---------------------------------------------------------------------/
 data rootNode type ref to if_ixml_element.
 data rval type i.
@@ -203,14 +227,22 @@ endmethod.</source>
   <parameter CLSNAME="ZSAPLINK_NUGGET" CMPNAME="CREATEEMPTYXML" SCONAME="IXMLDOCUMENT" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_DOCUMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_DOCUMENT"/>
   <source>method CREATEEMPTYXML.
 */---------------------------------------------------------------------\
-*|   This file is part of SAPlink.                                     |
+*| This file is part of SAPlink.                                       |
 *|                                                                     |
-*|   The code of this project is provided to you under the current     |
-*|   version of the SAP Code Exchange Terms of Use. You can find the   |
-*|   text on the SAP Code Exchange webpage at http://www.sdn.sap.com   |
+*| Copyright 2014 SAPlink project members                              |
 *|                                                                     |
-*|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
-*|   support.                                                          |
+*| Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);     |
+*| you may not use this file except in compliance with the License.    |
+*| You may obtain a copy of the License at                             |
+*|                                                                     |
+*|     http://www.apache.org/licenses/LICENSE-2.0                      |
+*|                                                                     |
+*| Unless required by applicable law or agreed to in writing, software |
+*| distributed under the License is distributed on an &quot;AS IS&quot; BASIS,   |
+*| WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or     |
+*| implied.                                                            |
+*| See the License for the specific language governing permissions and |
+*| limitations under the License.                                      |
 *\---------------------------------------------------------------------/
 data ixml type ref to if_IXML.
 data rootNode type ref to if_ixml_element.
@@ -230,14 +262,22 @@ endmethod.</source>
   <parameter CLSNAME="ZSAPLINK_NUGGET" CMPNAME="CREATEIXMLDOCFROMNUGGET" SCONAME="IXMLDOCUMENT" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_DOCUMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_DOCUMENT"/>
   <source>method CREATEIXMLDOCFROMNUGGET.
 */---------------------------------------------------------------------\
-*|   This file is part of SAPlink.                                     |
+*| This file is part of SAPlink.                                       |
 *|                                                                     |
-*|   The code of this project is provided to you under the current     |
-*|   version of the SAP Code Exchange Terms of Use. You can find the   |
-*|   text on the SAP Code Exchange webpage at http://www.sdn.sap.com   |
+*| Copyright 2014 SAPlink project members                              |
 *|                                                                     |
-*|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
-*|   support.                                                          |
+*| Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);     |
+*| you may not use this file except in compliance with the License.    |
+*| You may obtain a copy of the License at                             |
+*|                                                                     |
+*|     http://www.apache.org/licenses/LICENSE-2.0                      |
+*|                                                                     |
+*| Unless required by applicable law or agreed to in writing, software |
+*| distributed under the License is distributed on an &quot;AS IS&quot; BASIS,   |
+*| WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or     |
+*| implied.                                                            |
+*| See the License for the specific language governing permissions and |
+*| limitations under the License.                                      |
 *\---------------------------------------------------------------------/
   ixmlDocument = xmlDoc.
 endmethod.</source>
@@ -248,14 +288,22 @@ endmethod.</source>
   <parameter CLSNAME="ZSAPLINK_NUGGET" CMPNAME="DELETEOBJECTFROMNUGGET" SCONAME="RETVAL" VERSION="1" LANGU="E" DESCRIPT="Return Value, Return Value After ABAP Statements" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="1" TYPE="SY-SUBRC"/>
   <source>method DELETEOBJECTFROMNUGGET.
 */---------------------------------------------------------------------\
-*|   This file is part of SAPlink.                                     |
+*| This file is part of SAPlink.                                       |
 *|                                                                     |
-*|   The code of this project is provided to you under the current     |
-*|   version of the SAP Code Exchange Terms of Use. You can find the   |
-*|   text on the SAP Code Exchange webpage at http://www.sdn.sap.com   |
+*| Copyright 2014 SAPlink project members                              |
 *|                                                                     |
-*|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
-*|   support.                                                          |
+*| Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);     |
+*| you may not use this file except in compliance with the License.    |
+*| You may obtain a copy of the License at                             |
+*|                                                                     |
+*|     http://www.apache.org/licenses/LICENSE-2.0                      |
+*|                                                                     |
+*| Unless required by applicable law or agreed to in writing, software |
+*| distributed under the License is distributed on an &quot;AS IS&quot; BASIS,   |
+*| WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or     |
+*| implied.                                                            |
+*| See the License for the specific language governing permissions and |
+*| limitations under the License.                                      |
 *\---------------------------------------------------------------------/
   data: docFilter   type ref to if_ixml_node_filter,
         docIterator type ref to if_ixml_node_iterator,
@@ -292,14 +340,22 @@ endmethod.</source>
   <parameter CLSNAME="ZSAPLINK_NUGGET" CMPNAME="GETNEXTOBJECT" SCONAME="IXMLDOCUMENT" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_DOCUMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_DOCUMENT"/>
   <source>method GETNEXTOBJECT.
 */---------------------------------------------------------------------\
-*|   This file is part of SAPlink.                                     |
+*| This file is part of SAPlink.                                       |
 *|                                                                     |
-*|   The code of this project is provided to you under the current     |
-*|   version of the SAP Code Exchange Terms of Use. You can find the   |
-*|   text on the SAP Code Exchange webpage at http://www.sdn.sap.com   |
+*| Copyright 2014 SAPlink project members                              |
 *|                                                                     |
-*|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
-*|   support.                                                          |
+*| Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);     |
+*| you may not use this file except in compliance with the License.    |
+*| You may obtain a copy of the License at                             |
+*|                                                                     |
+*|     http://www.apache.org/licenses/LICENSE-2.0                      |
+*|                                                                     |
+*| Unless required by applicable law or agreed to in writing, software |
+*| distributed under the License is distributed on an &quot;AS IS&quot; BASIS,   |
+*| WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or     |
+*| implied.                                                            |
+*| See the License for the specific language governing permissions and |
+*| limitations under the License.                                      |
 *\---------------------------------------------------------------------/
   DATA anode TYPE REF TO if_ixml_node.
   DATA stemp TYPE string.
@@ -366,14 +422,22 @@ endmethod.</source>
   <parameter CLSNAME="ZSAPLINK_NUGGET" CMPNAME="GETNUGGETINFO" SCONAME="NAME" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="1" TYPE="STRING"/>
   <source>method GETNUGGETINFO.
 */---------------------------------------------------------------------\
-*|   This file is part of SAPlink.                                     |
+*| This file is part of SAPlink.                                       |
 *|                                                                     |
-*|   The code of this project is provided to you under the current     |
-*|   version of the SAP Code Exchange Terms of Use. You can find the   |
-*|   text on the SAP Code Exchange webpage at http://www.sdn.sap.com   |
+*| Copyright 2014 SAPlink project members                              |
 *|                                                                     |
-*|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
-*|   support.                                                          |
+*| Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);     |
+*| you may not use this file except in compliance with the License.    |
+*| You may obtain a copy of the License at                             |
+*|                                                                     |
+*|     http://www.apache.org/licenses/LICENSE-2.0                      |
+*|                                                                     |
+*| Unless required by applicable law or agreed to in writing, software |
+*| distributed under the License is distributed on an &quot;AS IS&quot; BASIS,   |
+*| WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or     |
+*| implied.                                                            |
+*| See the License for the specific language governing permissions and |
+*| limitations under the License.                                      |
 *\---------------------------------------------------------------------/
 data rootNode type ref to if_ixml_element.
     rootNode = ixmlDocument-&gt;get_root_element( ).
@@ -383,14 +447,22 @@ endmethod.</source>
  <method CLSNAME="ZSAPLINK_NUGGET" CMPNAME="RESET" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="4 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
   <source>method RESET.
 */---------------------------------------------------------------------\
-*|   This file is part of SAPlink.                                     |
+*| This file is part of SAPlink.                                       |
 *|                                                                     |
-*|   The code of this project is provided to you under the current     |
-*|   version of the SAP Code Exchange Terms of Use. You can find the   |
-*|   text on the SAP Code Exchange webpage at http://www.sdn.sap.com   |
+*| Copyright 2014 SAPlink project members                              |
 *|                                                                     |
-*|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
-*|   support.                                                          |
+*| Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);     |
+*| you may not use this file except in compliance with the License.    |
+*| You may obtain a copy of the License at                             |
+*|                                                                     |
+*|     http://www.apache.org/licenses/LICENSE-2.0                      |
+*|                                                                     |
+*| Unless required by applicable law or agreed to in writing, software |
+*| distributed under the License is distributed on an &quot;AS IS&quot; BASIS,   |
+*| WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or     |
+*| implied.                                                            |
+*| See the License for the specific language governing permissions and |
+*| limitations under the License.                                      |
 *\---------------------------------------------------------------------/
   if iterator is not initial.
     refresh: wt_objects.

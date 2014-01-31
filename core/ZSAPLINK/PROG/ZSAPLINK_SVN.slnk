@@ -2,6 +2,9 @@
 <PROG NAME="ZSAPLINK_SVN" VARCL="X" SUBC="1" RSTAT="T" RMAND="000" RLOAD="E" FIXPT="X" UCCHECK="X">
  <textPool>
   <language SPRAS="E">
+   <textElement ID="I" KEY="ACT" ENTRY="Action" LENGTH="15 "/>
+   <textElement ID="I" KEY="PAR" ENTRY="Parameters" LENGTH="30 "/>
+   <textElement ID="I" KEY="VCS" ENTRY="Version Controll Program" LENGTH="44 "/>
    <textElement ID="R" ENTRY="Checkin/Checkout to SVN and Build SAPLink Installer Nugget" LENGTH="58 "/>
    <textElement ID="S" KEY="BUILD" ENTRY="        Build Nugget" LENGTH="20 "/>
    <textElement ID="S" KEY="CHECKIN" ENTRY="        Checkin to SVN" LENGTH="22 "/>
@@ -25,17 +28,25 @@
 *&amp; Checkin/Checkout to SVN and Build SAPLink Installer Nugget
 *&amp;---------------------------------------------------------------------*
 */---------------------------------------------------------------------\
-*|   This file is part of SAPlink.                                     |
+*| This file is part of SAPlink.                                       |
 *|                                                                     |
-*|   The code of this project is provided to you under the current     |
-*|   version of the SAP Code Exchange Terms of Use. You can find the   |
-*|   text on the SAP Code Exchange webpage at http://www.sdn.sap.com   |
+*| Copyright 2014 SAPlink project members                              |
 *|                                                                     |
-*|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
-*|   support.                                                          |
+*| Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);     |
+*| you may not use this file except in compliance with the License.    |
+*| You may obtain a copy of the License at                             |
+*|                                                                     |
+*|     http://www.apache.org/licenses/LICENSE-2.0                      |
+*|                                                                     |
+*| Unless required by applicable law or agreed to in writing, software |
+*| distributed under the License is distributed on an &quot;AS IS&quot; BASIS,   |
+*| WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or     |
+*| implied.                                                            |
+*| See the License for the specific language governing permissions and |
+*| limitations under the License.                                      |
 *\---------------------------------------------------------------------/
 
-REPORT  zsaplink_svn.
+REPORT zsaplink_svn_upd.
 
 TYPE-POOLS abap.
 
@@ -82,7 +93,7 @@ SELECTION-SCREEN BEGIN OF BLOCK c WITH FRAME TITLE c.
 PARAMETERS:
   loclpath TYPE char512 DEFAULT &apos;C:\Projects\SAPlink\trunk\core\&apos; LOWER CASE OBLIGATORY,
   nuggetna TYPE char512 DEFAULT &apos;C:\Projects\SAPlink\trunk\build\SAPlink_Daily.nugg&apos; LOWER CASE OBLIGATORY,
-  svnpath  TYPE char512 DEFAULT &apos;https://code.sdn.sap.com/svn/saplink/trunk/&apos; LOWER CASE OBLIGATORY,
+  svnpath  TYPE char512 DEFAULT &apos;https://subversion.assembla.com/svn/saplink/trunk/&apos; LOWER CASE OBLIGATORY,
   revision TYPE i,
   comment  TYPE char512 DEFAULT &apos;&apos; LOWER CASE,
   incl_svn TYPE flag,
@@ -162,9 +173,16 @@ START-OF-SELECTION.
         &quot; Download ZSAPLINK_INSTALLER as plain text
         PERFORM download_program USING &apos;ZSAPLINK_INSTALLER&apos; &apos;C:\Projects\SAPlink\trunk\build\&apos;.
 *        &quot; Fill Object Table with Slinkees from Local Machine but do not install
-*        zake-&gt;install_slinkees_from_lm( i_testrun = abap_true ).
+        zake-&gt;install_slinkees_from_lm( i_testrun = abap_true ).
+        IF incl_svn &lt;&gt; abap_true.
+          zake-&gt;unset_checkin_object_by_name(
+            EXPORTING
+              i_object      = &apos;PROG&apos;    &quot; Object Type
+              i_object_name = &apos;ZSAPLINK_SVN&apos;    &quot; Object Name in Object Directory
+          ).
+        ENDIF.
         &quot; Change package assignment of objects
-        zake-&gt;set_package_of_package_objects( ).
+*        zake-&gt;set_package_of_package_objects( ).
 *        &quot; Create Transport
 *        zake-&gt;create_transport_request( ).
 *        &quot; Add all Objects to the Transport
@@ -179,17 +197,16 @@ START-OF-SELECTION.
         zake-&gt;download_transport_to_lm = abap_false.
         &quot; Write only the ZIP-File.
         zake-&gt;create_slinkees( nuggetname ).
-      ELSE.
-        IF update = abap_true.
-          zake-&gt;update( ).
-        ELSEIF checkout = abap_true.
-          zake-&gt;checkout( revision ).
-        ELSEIF install = abap_true.
-          zake-&gt;install_slinkees_from_lm( testrun ).
-          &quot; Activate objects
-          IF testrun = abap_false.
-            zake-&gt;activate_package_objects( ).
-          ENDIF.
+      ELSEIF update = abap_true.
+        zake-&gt;update( ).
+      ELSEIF checkout = abap_true.
+        zake-&gt;checkout( revision ).
+      ELSEIF install = abap_true.
+        zake-&gt;set_package( &apos;$SAPLINK&apos; ).
+        zake-&gt;install_slinkees_from_lm( abap_false ).
+        &quot; Activate objects
+        IF testrun = abap_false.
+          zake-&gt;activate_package_objects( ).
         ENDIF.
       ENDIF.
     CATCH zcx_saplink INTO ex.
