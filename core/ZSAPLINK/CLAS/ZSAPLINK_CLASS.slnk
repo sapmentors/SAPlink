@@ -1570,15 +1570,25 @@ endmethod.</source>
   data obj_name type SEOCLSNAME.
   data lang type spras.
   data langNodeExists type flag.
-  data logonLanguageExists type flag.
+*  data logonLanguageExists type flag.                  &quot; del #255 - seemingly not used
   data _state(1) type c.
   data classpoolname type program.
+  DATA lv_original_language TYPE sylangu.                &quot; ins #255
 
   textpoolnode = xmldoc-&gt;find_from_name( &apos;textPool&apos; ).
 
   if textpoolnode is not bound.
     return.
   endif.
+
+*--------------------------------------------------------------------*
+* Ticket #255 - Error importing texts when logon language different
+*               then original language of class
+*--------------------------------------------------------------------*
+  textpoolnode = xmldoc-&gt;find_from_name( &apos;CLAS&apos; ).              &quot; ins #255
+  lv_original_language = textpoolnode-&gt;get_attribute( &apos;LANGU&apos; ).&quot; ins #255
+  SET LANGUAGE lv_original_language. &quot; ins #255
+  &quot; Gregor Wolf: With this all languages from the Nugget/Slinkee are imported
 
   obj_name = objName.
   classpoolname = cl_oo_classname_service=&gt;GET_CLASSPOOL_NAME( obj_Name ).
@@ -1587,7 +1597,6 @@ endmethod.</source>
   filter = textPoolNode-&gt;create_filter_name( &apos;language&apos; ).
   langIterator = textPoolNode-&gt;create_iterator_filtered( filter ).
   langNode ?= langIterator-&gt;get_next( ).
-
 
   while langNode is not initial.
     langNodeExists = &apos;X&apos;.
@@ -1604,23 +1613,27 @@ endmethod.</source>
 *For some reason the 1st one is blank... not sure why.
     aTextNode ?= textIterator-&gt;get_next( ).
     while aTextNode is not initial.
-      CALL METHOD GETSTRUCTUREFROMATTRIBUTES
+      getstructurefromattributes(
         EXPORTING
-          node      = aTextNode
+          node            = aTextNode
         CHANGING
-          structure = textPoolRow.
+          structure       = textPoolRow
+      ).
       append textPoolRow to textPoolTable.
       aTextNode ?= textIterator-&gt;get_next( ).
     endwhile.
     if textPoolTable is not initial.
       lang = langNode-&gt;get_attribute( &apos;SPRAS&apos; ).
-      if lang = sy-langu.
-        logonLanguageExists = &apos;X&apos;.
+*      if lang = sy-langu.                &quot; del #255 - replaced by original language
+      IF lang = lv_original_language.    &quot; ins #255 - replaced former coding
+*        logonLanguageExists = &apos;X&apos;.
         _state = &apos;I&apos;.
       else.
 *       seems that if a textpool is inserted as inactive for language
 *       other than the logon language, it is lost upon activation
 *       not sure inserting as active is best solution,but seems to work
+*       Stefan Schmöcker:  Looks like this does not trigger on logon- &quot; ins #255
+*                          but on class original language             &quot; ins #255
         _state = &apos;A&apos;.
       endif.
       insert textpool _objName
