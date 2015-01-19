@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <CLAS CLSNAME="ZSAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink main class" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" CLSABSTRCT="X" CLSCCINCL="X" FIXPT="X" UNICODE="X" CLSBCCAT="00" WITH_UNIT_TESTS="X" DURATION_TYPE="0 " RISK_LEVEL="0 ">
- <types CLSNAME="ZSAPLINK" CMPNAME="T_OBJECTTABLE" VERSION="1" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="1 " TYPTYPE="4" SRCROW1="4 " SRCCOLUMN1="4 " SRCROW2="8 " SRCCOLUMN2="28 " TYPESRC_LENG="158 " TYPESRC="BEGIN OF t_objecttable,
+ <types CLSNAME="ZSAPLINK" CMPNAME="T_OBJECTTABLE" VERSION="1" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="1 " TYPTYPE="4" SRCROW1="6 " SRCCOLUMN1="4 " SRCROW2="10 " SRCCOLUMN2="28 " TYPESRC_LENG="158 " TYPESRC="BEGIN OF t_objecttable,
            classname TYPE string,
            object TYPE ko100-object,
            text TYPE ko100-text,
@@ -45,7 +45,7 @@ CLASS lc_zsaplink_test DEFINITION FOR TESTING
   &quot;#AU Duration Medium
   &quot;#AU Risk_Level Harmless
 .
-*?ï»¿&lt;asx:abap xmlns:asx=&quot;http://www.sap.com/abapxml&quot; version=&quot;1.0&quot;&gt;
+*?&lt;asx:abap xmlns:asx=&quot;http://www.sap.com/abapxml&quot; version=&quot;1.0&quot;&gt;
 *?&lt;asx:values&gt;
 *?&lt;TESTCLASS_OPTIONS&gt;
 *?&lt;TEST_CLASS&gt;lc_Zsaplink_Test
@@ -80,7 +80,7 @@ CLASS lc_zsaplink_test IMPLEMENTATION.
 * ======================================
 
   METHOD convertixmldoctostring.
-    CONSTANTS value TYPE string VALUE &apos;Umlaut: Ã¶Ã¤Ã¼ ÃÃÃ Ã, Slowenisch: ÄÄÅ¡Å¾Ä ÄÄÅ½Å Ä&apos;.
+    CONSTANTS value TYPE string VALUE &apos;German - Umlaute: öäü ÖÄÜ ß, Special characters - slowenian: ##### #####&apos;.
     DATA ixml     TYPE REF TO if_ixml.
     DATA ixmldoc  TYPE REF TO if_ixml_document.
     DATA rootnode TYPE REF TO if_ixml_element.
@@ -118,7 +118,7 @@ CLASS lc_zsaplink_test IMPLEMENTATION.
 ENDCLASS.       &quot;lc_Zsaplink_Test</localTestClasses>
  <attribute CLSNAME="ZSAPLINK" CMPNAME="IXML" VERSION="1" LANGU="E" DESCRIPT="IF_IXML" EXPOSURE="1" STATE="1" EDITORDER="2 " ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="3" TYPE="IF_IXML" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
  <attribute CLSNAME="ZSAPLINK" CMPNAME="NUGGET_LEVEL" VERSION="1" LANGU="E" DESCRIPT="Nugget create sequence" EXPOSURE="2" STATE="1" EDITORDER="1 " ATTDECLTYP="0" ATTRDONLY="X" ATTVALUE="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="INT4" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
- <attribute CLSNAME="ZSAPLINK" CMPNAME="OBJECTTABLE" VERSION="1" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="3 " ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="13 " SRCCOLUMN1="4 " SRCROW2="13 " SRCCOLUMN2="42 " TYPESRC_LENG="40 " TYPESRC="objecttable TYPE TABLE OF t_objecttable
+ <attribute CLSNAME="ZSAPLINK" CMPNAME="OBJECTTABLE" VERSION="1" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="3 " ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="15 " SRCCOLUMN1="4 " SRCROW2="15 " SRCCOLUMN2="42 " TYPESRC_LENG="40 " TYPESRC="objecttable TYPE TABLE OF t_objecttable
 "/>
  <attribute CLSNAME="ZSAPLINK" CMPNAME="OBJNAME" VERSION="1" LANGU="E" DESCRIPT="IF_IXML" EXPOSURE="1" STATE="1" EDITORDER="1 " ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
  <attribute CLSNAME="ZSAPLINK" CMPNAME="STREAMFACTORY" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_STREAM_FACTORY" EXPOSURE="0" STATE="1" EDITORDER="1 " ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="3" TYPE="IF_IXML_STREAM_FACTORY" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
