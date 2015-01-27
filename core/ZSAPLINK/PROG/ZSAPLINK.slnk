@@ -67,7 +67,7 @@
   </language>
  </textPool>
  <pfstatus>
-  <pfstatus_sta CODE="SELOBJ" MODAL="D" ACTCODE="000001" PFKCODE="000001" BUTCODE="0001" INT_NOTE="Standard fÃƒÂ¼r allgemeine Listausgabe"/>
+  <pfstatus_sta CODE="SELOBJ" MODAL="D" ACTCODE="000001" PFKCODE="000001" BUTCODE="0001" INT_NOTE="Standard für allgemeine Listausgabe"/>
   <pfstatus_fun CODE="%PC" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_EXPORT" ICON_ID="@49@" FUN_TEXT="Download" PATH="D"/>
   <pfstatus_fun CODE="%SC" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_SEARCH" ICON_ID="@13@" FUN_TEXT="Search" PATH="S"/>
   <pfstatus_fun CODE="%SC+" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_SEARCH_NEXT" ICON_ID="@4E@" FUN_TEXT="Weiter suchen" PATH="E"/>
@@ -75,7 +75,7 @@
   <pfstatus_fun CODE="&amp;ABC" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_CALCULATION" ICON_ID="@0M@" FUN_TEXT="ABC-Analyse" ICON_TEXT="ABC" PATH="A"/>
   <pfstatus_fun CODE="&amp;ALL" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_SELECT_ALL" ICON_ID="@4B@" FUN_TEXT="Select All" PATH="A"/>
   <pfstatus_fun CODE="&amp;AQW" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_CHANGE_TEXT" ICON_ID="@0Q@" FUN_TEXT="Word" PATH="W"/>
-  <pfstatus_fun CODE="&amp;AUF" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="AufriÃƒÂŸ festlegen..." PATH="U"/>
+  <pfstatus_fun CODE="&amp;AUF" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="AufriÃÆÃÅ¸ festlegen..." PATH="U"/>
   <pfstatus_fun CODE="&amp;AVE" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="Sichern..." PATH="S"/>
   <pfstatus_fun CODE="&amp;AVE" TEXTNO="002" TEXT_TYPE="S" TEXT_NAME="ICON_VARIANTS" ICON_ID="@0R@" FUN_TEXT="Save Variants" ICON_TEXT="Save"/>
   <pfstatus_fun CODE="&amp;BS" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_OVERVIEW" ICON_ID="@3Q@" FUN_TEXT="J"/>
@@ -96,13 +96,13 @@
   <pfstatus_fun CODE="&amp;F15" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="Cancel" PATH="A"/>
   <pfstatus_fun CODE="&amp;ILD" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="Remove Filter" PATH="L"/>
   <pfstatus_fun CODE="&amp;ILT" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_FILTER" ICON_ID="@4G@" FUN_TEXT="Filter" PATH="F"/>
-  <pfstatus_fun CODE="&amp;KOM" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_COLLAPSE" ICON_ID="@3T@" FUN_TEXT="AuswÃƒÂ¤hlen..." PATH="A"/>
+  <pfstatus_fun CODE="&amp;KOM" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_COLLAPSE" ICON_ID="@3T@" FUN_TEXT="AuswÃÆÃÂ¤hlen..." PATH="A"/>
   <pfstatus_fun CODE="&amp;LFO" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="Listenstatus..." PATH="L"/>
   <pfstatus_fun CODE="&amp;LFO" TEXTNO="002" TEXT_TYPE="S" TEXT_NAME="ICON_INFORMATION" ICON_ID="@0S@" FUN_TEXT="List Status"/>
   <pfstatus_fun CODE="&amp;LIS" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="Grundliste" PATH="G"/>
   <pfstatus_fun CODE="&amp;NFO" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_INFORMATION" ICON_ID="@0S@" FUN_TEXT="Information" ICON_TEXT="Selektionen" PATH="I"/>
   <pfstatus_fun CODE="&amp;NTE" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="Auffrischen"/>
-  <pfstatus_fun CODE="&amp;OAD" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="AuswÃƒÂ¤hlen..." PATH="U"/>
+  <pfstatus_fun CODE="&amp;OAD" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="AuswÃÆÃÂ¤hlen..." PATH="U"/>
   <pfstatus_fun CODE="&amp;OAD" TEXTNO="002" TEXT_TYPE="S" TEXT_NAME="ICON_VARIANTS" ICON_ID="@0R@" FUN_TEXT="Search Variants" ICON_TEXT="Search"/>
   <pfstatus_fun CODE="&amp;ODN" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_SORT_DOWN" ICON_ID="@3F@" FUN_TEXT="Sort Descending" PATH="O"/>
   <pfstatus_fun CODE="&amp;OL0" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_VARIANTS" ICON_ID="@0R@" FUN_TEXT="Variant"/>
@@ -124,7 +124,7 @@
   <pfstatus_fun CODE="P++" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="Last Entry"/>
   <pfstatus_fun CODE="P-" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="Previous Entry"/>
   <pfstatus_fun CODE="P--" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="First Entry"/>
-  <pfstatus_fun CODE="TAKE" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_OKAY" ICON_ID="@0V@" FUN_TEXT="Execute" INFO_TEXT="Markierte Benutzer ÃƒÂ¼bernehmen"/>
+  <pfstatus_fun CODE="TAKE" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_OKAY" ICON_ID="@0V@" FUN_TEXT="Execute" INFO_TEXT="Markierte Benutzer ÃÆÃÂ¼bernehmen"/>
   <pfstatus_fun CODE="UAGR" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_LIST" ICON_ID="@3W@" FUN_TEXT="Liste mit Rollen" ICON_TEXT="Rollen" INFO_TEXT="Liste mit Rollen"/>
   <pfstatus_fun CODE="UPROF" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_LIST" ICON_ID="@3W@" FUN_TEXT="Liste mit Profilen" ICON_TEXT="Profile" INFO_TEXT="Liste mit Profilen"/>
   <pfstatus_men CODE="000001" NO="01" REF_TYPE="F" REF_CODE="&amp;RNT" REF_NO="001"/>
@@ -366,109 +366,107 @@ TYPE-POOLS: icon, slis, sabc, stms, trwbo.
 
 TYPES: BEGIN OF t_plugin,
          object TYPE ko100-object,
-         text TYPE ko100-text,
+         text   TYPE ko100-text,
        END OF t_plugin.
 
 TYPES: BEGIN OF t_objecttable,
          classname TYPE string,
-         object TYPE ko100-object,
-         text TYPE ko100-text,
+         object    TYPE ko100-object,
+         text      TYPE ko100-text,
        END OF t_objecttable.
 
 TYPES: BEGIN OF t_nuggetobject,
-          objtype TYPE string,
-          objname TYPE string,
-          exists TYPE flag,
+         objtype TYPE string,
+         objname TYPE string,
+         exists  TYPE flag,
        END OF t_nuggetobject.
 *addition of package data
 ****   Read all objects of the package
 TYPES: BEGIN OF t_objects_package,
-          select     TYPE char1,
-          object     TYPE tadir-object,
-          object_txt TYPE string,
-          obj_name   TYPE tadir-obj_name,
-          srcsystem  TYPE tadir-srcsystem,
-          down_flag  TYPE char1,
-          status     TYPE char1,
-          msg        TYPE string,
+         select     TYPE char1,
+         object     TYPE tadir-object,
+         object_txt TYPE string,
+         obj_name   TYPE tadir-obj_name,
+         srcsystem  TYPE tadir-srcsystem,
+         down_flag  TYPE char1,
+         status     TYPE char1,
+         msg        TYPE string,
        END OF t_objects_package.
 
-DATA objects_package TYPE TABLE OF t_objects_package.
-DATA packageline TYPE t_objects_package.
-FIELD-SYMBOLS: &lt;obj&gt; LIKE LINE OF objects_package.
-DATA tabletypeline TYPE ko105.
-DATA tabletypesin TYPE TABLE OF ko105.
-DATA tabletypesout TYPE tr_object_texts.
-DATA tabletypeoutline TYPE ko100.
-DATA lt_fieldcat  TYPE          slis_t_fieldcat_alv.
-DATA ls_fieldcat  LIKE LINE OF  lt_fieldcat.
-DATA ls_layout    TYPE          slis_layout_alv.
-DATA lv_count TYPE i.
-DATA lv_pers  TYPE i.
-
-*end of data addition for packages
-*addition of Transport data
 TYPES: BEGIN OF t_requestobject,
-          object   TYPE e071-object,
-          obj_name TYPE e071-obj_name,
+         object   TYPE e071-object,
+         obj_name TYPE e071-obj_name,
        END OF t_requestobject.
 
 TYPES: tt_requestobject TYPE TABLE OF t_requestobject.
 
-DATA it_requestobject TYPE TABLE OF t_requestobject.
-DATA wa_requestobject TYPE t_requestobject.
 
-*end of data addition for transport
+DATA: objects_package     TYPE TABLE OF t_objects_package,
+      packageline         TYPE t_objects_package,
+      tabletypeline       TYPE ko105,
+      tabletypesin        TYPE TABLE OF ko105,
+      tabletypesout       TYPE tr_object_texts,
+      tabletypeoutline    TYPE ko100,
+      lt_fieldcat         TYPE slis_t_fieldcat_alv,
+      ls_fieldcat         LIKE LINE OF lt_fieldcat,
+      ls_layout           TYPE slis_layout_alv,
+      lv_count            TYPE i,
+      lv_pers             TYPE i,
+*end of  addition for packages
+*addition of Transport
+      it_requestobject    TYPE TABLE OF t_requestobject,
+      wa_requestobject    TYPE t_requestobject,
+*end of  addition for transport
+      pluginline          TYPE t_plugin,
+      pluginlist          TYPE TABLE OF t_plugin,
+      hidid(3)            TYPE c,
+      currenttab          TYPE string,
+      isslinkee(1)        TYPE c VALUE &apos; &apos;,
+      objecttable         TYPE TABLE OF t_objecttable,
+      objectline          TYPE t_objecttable,
+      _objname            TYPE string,
+      _objtype            TYPE string,
+      nuggetname          TYPE string,
+      targetobject        TYPE REF TO zsaplink,
+      xml                 TYPE string,
+      excclass            TYPE REF TO zcx_saplink,
+      errormsg            TYPE string,
+      statusmsg           TYPE string,
+      _pluginexists       TYPE flag,
+      _objectexists       TYPE flag,
+      _flag               TYPE flag,
 
-DATA pluginline TYPE t_plugin.
-DATA pluginlist TYPE TABLE OF t_plugin.
-DATA hidid(3) TYPE c.
-DATA currenttab TYPE string.
-DATA isslinkee(1) TYPE c VALUE &apos; &apos;.
-DATA objecttable TYPE TABLE OF t_objecttable.
-DATA objectline TYPE t_objecttable.
-DATA _objname TYPE string.
-DATA _objtype TYPE string.
-DATA nuggetname TYPE string.
-DATA targetobject TYPE REF TO zsaplink.
-DATA xml TYPE string.
-DATA excclass TYPE REF TO zcx_saplink.
-DATA errormsg TYPE string.
-DATA statusmsg TYPE string.
-DATA _pluginexists TYPE flag.
-DATA _objectexists TYPE flag.
-DATA _flag TYPE flag.
+      errorflag           TYPE flag,
+      it_nuggetobject     TYPE TABLE OF t_nuggetobject,
+      wa_nuggetobject     TYPE t_nuggetobject,
 
-DATA errorflag TYPE flag.
-DATA it_nuggetobject TYPE TABLE OF t_nuggetobject.
-DATA wa_nuggetobject TYPE t_nuggetobject.
+      deffilename         TYPE string,
+      retfilename         TYPE string,
+      retpath             TYPE string,
+      retfullpath         TYPE string,
+      retuseract          TYPE i,
+      retfiletable        TYPE filetable,
+      retrc               TYPE sysubrc,
+      retuseraction       TYPE i,
 
-DATA deffilename TYPE string.
-DATA retfilename TYPE string.
-DATA retpath TYPE string.
-DATA retfullpath TYPE string.
-DATA retuseract TYPE i.
-DATA retfiletable TYPE filetable.
-DATA retrc TYPE sysubrc.
-DATA retuseraction TYPE i.
+      nugg                TYPE REF TO zsaplink_nugget,
+      stemp               TYPE string,
+      anxmldoc            TYPE REF TO if_ixml_document,
+      ixmldocument        TYPE REF TO if_ixml_document,
 
-DATA nugg TYPE REF TO zsaplink_nugget.
-DATA stemp TYPE string.
-DATA anxmldoc TYPE REF TO if_ixml_document.
-DATA ixmldocument TYPE REF TO if_ixml_document.
+      foo                 TYPE REF TO data,
+      len                 TYPE i,
 
-DATA foo TYPE REF TO data.
-DATA len TYPE i.
+      l_marker            TYPE i,
+      l_offset            TYPE i,
+      l_total_offset      TYPE i,
 
-DATA: l_marker TYPE i,
-      l_offset TYPE i,
-      l_total_offset TYPE i.
+      es_selected_request TYPE trwbo_request_header,
+      es_selected_task    TYPE trwbo_request_header,
+      iv_organizer_type   TYPE trwbo_calling_organizer,
+      is_selection        TYPE trwbo_selection.
 
-DATA:
-  es_selected_request TYPE trwbo_request_header,
-  es_selected_task TYPE trwbo_request_header,
-  iv_organizer_type TYPE trwbo_calling_organizer,
-  is_selection TYPE trwbo_selection.
+FIELD-SYMBOLS: &lt;obj&gt; LIKE LINE OF objects_package.
 
 *\--------------------------------------------------------------------/
 
@@ -1057,7 +1055,7 @@ START-OF-SELECTION.
       ENDIF.
 
 *     confirm overwrite
-      LOOP AT it_nuggetobject INTO wa_nuggetobject WHERE EXISTS = &apos;X&apos;.
+      LOOP AT it_nuggetobject INTO wa_nuggetobject WHERE exists = &apos;X&apos;.
         CLEAR _flag.
         CONCATENATE wa_nuggetobject-objtype wa_nuggetobject-objname
           INTO stemp SEPARATED BY space.
@@ -1112,7 +1110,12 @@ START-OF-SELECTION.
         EXIT.
       ENDIF.
       ixmldocument = zsaplink=&gt;convertstringtoixmldoc( xml ).
-      nuggetname = zsaplink_nugget=&gt;getnuggetinfo( ixmldocument ).
+      TRY.
+          nuggetname = zsaplink_nugget=&gt;getnuggetinfo( ixmldocument ).
+        CATCH zcx_saplink.
+          WRITE:/ &apos;Internal error in nuggethandling - program aborted&apos;.
+          RETURN.
+      ENDTRY.
       WRITE: / &apos;Object list for nugget &apos;, nuggetname. SKIP.
 
       CREATE OBJECT nugg
@@ -1189,7 +1192,7 @@ START-OF-SELECTION.
     ELSEIF nugr = &apos;X&apos;.
       DATA: reqname TYPE string.
 
-      DATA: l_trkorr TYPE e07t-trkorr,
+      DATA: l_trkorr  TYPE e07t-trkorr,
             l_as4text TYPE e07t-as4text.
 
       IF nugfile IS INITIAL.
@@ -1218,8 +1221,8 @@ START-OF-SELECTION.
 
 *     ewH--&gt;retrieve tasks as well as transports
       RANGES: ra_reqnugg FOR e070-trkorr.
-      DATA: wa_trkorr TYPE e070-trkorr,
-            it_trkorr TYPE TABLE OF e070-trkorr,
+      DATA: wa_trkorr  TYPE e070-trkorr,
+            it_trkorr  TYPE TABLE OF e070-trkorr,
             wa_reqnugg LIKE LINE OF ra_reqnugg.
 
       SELECT trkorr FROM e070 INTO TABLE it_trkorr
@@ -1456,7 +1459,9 @@ FORM uploadxmlfromlm USING p_filename xmlstring TYPE string .
     IMPORTING
       text_buffer  = xmlstring
     TABLES
-      binary_tab   = temptable_bin.
+      binary_tab   = temptable_bin
+    EXCEPTIONS
+      OTHERS       = 1.
   IF sy-subrc &lt;&gt; 0.
     &quot; Just catch the sy-subrc when there was nothing replaced
     sy-subrc = 0.
@@ -1489,27 +1494,35 @@ ENDFORM.                    &quot;uploadXMLFromLM
 */----------------------installObject---------------------------------\
 FORM installobject USING l_ixmldocument TYPE REF TO if_ixml_document
                          l_overwriteflag TYPE flag
-                         value(l_package) TYPE tadir-devclass
+                         VALUE(l_package) TYPE tadir-devclass
                 CHANGING l_errorflag TYPE flag
                          l_message TYPE string.
 
   DATA l_objname TYPE string.
   DATA l_objtype TYPE string.
-  DATA l_objtable TYPE TABLE OF t_objecttable.
+*  DATA l_objtable TYPE TABLE OF t_objecttable.                             &quot; del Stefan
+  STATICS l_objtable TYPE TABLE OF t_objecttable.                           &quot; ins Stefan
   DATA l_objline TYPE t_objecttable.
   DATA l_targetobject TYPE REF TO zsaplink.
   DATA l_installobject TYPE string.
   DATA l_excclass TYPE REF TO zcx_saplink.
 
   CLEAR l_errorflag.
-  CALL METHOD zsaplink=&gt;getobjectinfofromixmldoc
-    EXPORTING
-      ixmldocument = l_ixmldocument
-    IMPORTING
-      objtypename  = l_objtype
-      objname      = l_objname.
+  TRY.
+      CALL METHOD zsaplink=&gt;getobjectinfofromixmldoc
+        EXPORTING
+          ixmldocument = l_ixmldocument
+        IMPORTING
+          objtypename  = l_objtype
+          objname      = l_objname.
+    CATCH zcx_saplink.
+      l_errorflag = &apos;X&apos;.
+      l_message = &apos;Error retrieving object information ixml document&apos;.
+  ENDTRY.
 
-  CALL METHOD zsaplink=&gt;getplugins( CHANGING objecttable = l_objtable ).
+  IF l_objtable IS INITIAL.                                                 &quot; ins Stefan
+    CALL METHOD zsaplink=&gt;getplugins( CHANGING objecttable = l_objtable ).
+  ENDIF.                                                                    &quot; ins Stefan
 
   READ TABLE l_objtable INTO l_objline WITH KEY object = l_objtype.
 
@@ -1608,27 +1621,27 @@ FORM get_current_screen_value  USING    l_screen_field
 
   CALL FUNCTION &apos;DYNP_VALUES_READ&apos;
     EXPORTING
-      dyname                   = sy-cprog
-      dynumb                   = l_screen_number
-      translate_to_upper       = &apos;X&apos;
-*     REQUEST                  = &apos; &apos;
+      dyname               = sy-cprog
+      dynumb               = l_screen_number
+      translate_to_upper   = &apos;X&apos;
+*     REQUEST              = &apos; &apos;
 *     PERFORM_CONVERSION_EXITS = &apos; &apos;
 *     PERFORM_INPUT_CONVERSION = &apos; &apos;
-*     DETERMINE_LOOP_INDEX     = &apos; &apos;
+*     DETERMINE_LOOP_INDEX = &apos; &apos;
     TABLES
-      dynpfields               = it_dynpfields
+      dynpfields           = it_dynpfields
     EXCEPTIONS
-      invalid_abapworkarea     = 1
-      invalid_dynprofield      = 2
-      invalid_dynproname       = 3
-      invalid_dynpronummer     = 4
-      invalid_request          = 5
-      no_fielddescription      = 6
-      invalid_parameter        = 7
-      undefind_error           = 8
-      double_conversion        = 9
-      stepl_not_found          = 10
-      OTHERS                   = 11.
+      invalid_abapworkarea = 1
+      invalid_dynprofield  = 2
+      invalid_dynproname   = 3
+      invalid_dynpronummer = 4
+      invalid_request      = 5
+      no_fielddescription  = 6
+      invalid_parameter    = 7
+      undefind_error       = 8
+      double_conversion    = 9
+      stepl_not_found      = 10
+      OTHERS               = 11.
   IF sy-subrc &lt;&gt; 0.
 *  MESSAGE ID SY-MSGID TYPE SY-MSGTY NUMBER SY-MSGNO
 *  WITH SY-MSGV1 SY-MSGV2 SY-MSGV3 SY-MSGV4.
@@ -1643,8 +1656,8 @@ FORM get_current_screen_value  USING    l_screen_field
 
 ENDFORM.                    &quot; get_current_screen_value
 */---------------------writeMessage-----------------------\
-FORM writemessage USING value(p_type) TYPE sy-msgty
-                        value(p_msg).
+FORM writemessage USING VALUE(p_type) TYPE sy-msgty
+                        VALUE(p_msg).
   CASE p_type.
     WHEN &apos;E&apos; OR &apos;A&apos; OR &apos;X&apos;.
       WRITE / icon_led_red AS ICON.
@@ -1748,11 +1761,11 @@ ENDFORM.                    &quot; showResultsGrid
 *  &lt;--  p2        text
 *----------------------------------------------------------------------*
 FORM check_objects .
-  DATA: lo_object   TYPE REF TO object,
-        lo_saplink  TYPE REF TO zsaplink,
-        l_flag      TYPE flag,
-        l_name      TYPE string.
-  DATA: ptab TYPE abap_parmbind_tab,
+  DATA: lo_object  TYPE REF TO object,
+        lo_saplink TYPE REF TO zsaplink,
+        l_flag     TYPE flag,
+        l_name     TYPE string.
+  DATA: ptab      TYPE abap_parmbind_tab,
         ptab_line TYPE abap_parmbind.
   LOOP AT objects_package ASSIGNING &lt;obj&gt;.
 *     Check what can be downloaded and what can not.
