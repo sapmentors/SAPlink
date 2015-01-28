@@ -1332,6 +1332,8 @@ FORM putonmachine USING fullpath TYPE string xmlstring TYPE string.
   IF retuseract = 0.
     &quot; Gregor Wolf, 2012-02-19:
     &quot; Independent of Server OS the download should always use Windows Linebreaks
+    REPLACE ALL OCCURRENCES OF cl_abap_char_utilities=&gt;cr_lf
+      IN xmlstring WITH cl_abap_char_utilities=&gt;newline.
     REPLACE ALL OCCURRENCES OF cl_abap_char_utilities=&gt;newline
       IN xmlstring WITH cl_abap_char_utilities=&gt;cr_lf.
 
