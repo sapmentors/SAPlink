@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<CLAS CLSNAME="ZSAPLINK_TOOLS" VERSION="1" LANGU="E" DESCRIPT="SAPlink tools and utilities" UUID="506806C247560283E1008000C008015A" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" CLSCCINCL="X" FIXPT="X" UNICODE="X" CLSBCCAT="00" DURATION_TYPE="0 " RISK_LEVEL="0 ">
+<CLAS CLSNAME="ZSAPLINK_TOOLS" VERSION="1" LANGU="E" DESCRIPT="SAPlink tools and utilities" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" CLSCCINCL="X" FIXPT="X" UNICODE="X" CLSBCCAT="00" DURATION_TYPE="0 " RISK_LEVEL="0 ">
  <localImplementation>*&quot;* local class implementation for public class
 *&quot;* use this source file for the implementation part of
 *&quot;* local helper classes</localImplementation>
@@ -18,14 +18,22 @@
   <parameter CLSNAME="ZSAPLINK_TOOLS" CMPNAME="BUILDSOURCESTRING" SCONAME="SOURCESTRING" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="1" TYPE="STRING"/>
   <source>method BUILDSOURCESTRING.
 */---------------------------------------------------------------------\
-*|   This file is part of SAPlink.                                     |
+*| This file is part of SAPlink.                                       |
 *|                                                                     |
-*|   The code of this project is provided to you under the current     |
-*|   version of the SAP Code Exchange Terms of Use. You can find the   |
-*|   text on the SAP Code Exchange webpage at http://www.sdn.sap.com   |
+*| Copyright 2014 SAPlink project members                              |
 *|                                                                     |
-*|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
-*|   support.                                                          |
+*| Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);     |
+*| you may not use this file except in compliance with the License.    |
+*| You may obtain a copy of the License at                             |
+*|                                                                     |
+*|     http://www.apache.org/licenses/LICENSE-2.0                      |
+*|                                                                     |
+*| Unless required by applicable law or agreed to in writing, software |
+*| distributed under the License is distributed on an &quot;AS IS&quot; BASIS,   |
+*| WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or     |
+*| implied.                                                            |
+*| See the License for the specific language governing permissions and |
+*| limitations under the License.                                      |
 *\---------------------------------------------------------------------/
 data sTemp type string.
 data pageLine type O2PAGELINE.
@@ -56,14 +64,22 @@ endmethod.</source>
   <parameter CLSNAME="ZSAPLINK_TOOLS" CMPNAME="BUILDTABLEFROMSTRING" SCONAME="SOURCETABLE" VERSION="1" LANGU="E" DESCRIPT="Table of Strings" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="1" TYPE="TABLE_OF_STRINGS"/>
   <source>method BUILDTABLEFROMSTRING.
 */---------------------------------------------------------------------\
-*|   This file is part of SAPlink.                                     |
+*| This file is part of SAPlink.                                       |
 *|                                                                     |
-*|   The code of this project is provided to you under the current     |
-*|   version of the SAP Code Exchange Terms of Use. You can find the   |
-*|   text on the SAP Code Exchange webpage at http://www.sdn.sap.com   |
+*| Copyright 2014 SAPlink project members                              |
 *|                                                                     |
-*|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
-*|   support.                                                          |
+*| Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);     |
+*| you may not use this file except in compliance with the License.    |
+*| You may obtain a copy of the License at                             |
+*|                                                                     |
+*|     http://www.apache.org/licenses/LICENSE-2.0                      |
+*|                                                                     |
+*| Unless required by applicable law or agreed to in writing, software |
+*| distributed under the License is distributed on an &quot;AS IS&quot; BASIS,   |
+*| WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or     |
+*| implied.                                                            |
+*| See the License for the specific language governing permissions and |
+*| limitations under the License.                                      |
 *\---------------------------------------------------------------------/
   split source at CL_ABAP_CHAR_UTILITIES=&gt;NEWLINE
     into table sourceTable.
@@ -74,14 +90,23 @@ endmethod.</source>
   <parameter CLSNAME="ZSAPLINK_TOOLS" CMPNAME="GETSTRUCTUREFROMATTRIBUTES" SCONAME="STRUCTURE" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="DATA"/>
   <source>method GETSTRUCTUREFROMATTRIBUTES.
 */---------------------------------------------------------------------\
-*|   This file is part of SAPlink.                                     |
+*| This file is part of SAPlink.                                       |
 *|                                                                     |
-*|   The code of this project is provided to you under the current     |
-*|   version of the SAP Code Exchange Terms of Use. You can find the   |
-*|   text on the SAP Code Exchange webpage at http://www.sdn.sap.com   |
+*| Copyright 2014 SAPlink project members                              |
 *|                                                                     |
-*|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
-*|   support.                                                          |
+*| Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);     |
+*| you may not use this file except in compliance with the License.    |
+*| You may obtain a copy of the License at                             |
+*|                                                                     |
+*|     http://www.apache.org/licenses/LICENSE-2.0                      |
+*|                                                                     |
+*| Unless required by applicable law or agreed to in writing, software |
+*| distributed under the License is distributed on an &quot;AS IS&quot; BASIS,   |
+*| WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or     |
+*| implied.                                                            |
+*| See the License for the specific language governing permissions and |
+*| limitations under the License.                                      |
+*\---------------------------------------------------------------------/
 *\---------------------------------------------------------------------/
 data attributeList type ref to IF_IXML_NAMED_NODE_MAP.
 data nodeIterator type ref to IF_IXML_NODE_ITERATOR.
@@ -132,14 +157,22 @@ endmethod.</source>
   <parameter CLSNAME="ZSAPLINK_TOOLS" CMPNAME="GLOBALCLASSTOLOCALCLASS" SCONAME="LOCAL_CLASS_XML" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_DOCUMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_DOCUMENT"/>
   <source>METHOD globalclasstolocalclass.
 */---------------------------------------------------------------------\
-*|   This file is part of SAPlink.                                     |
+*| This file is part of SAPlink.                                       |
 *|                                                                     |
-*|   The code of this project is provided to you under the current     |
-*|   version of the SAP Code Exchange Terms of Use. You can find the   |
-*|   text on the SAP Code Exchange webpage at http://www.sdn.sap.com   |
+*| Copyright 2014 SAPlink project members                              |
 *|                                                                     |
-*|   SAPlink is provided to you AS IS with no guarantee, warranty or   |
-*|   support.                                                          |
+*| Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);     |
+*| you may not use this file except in compliance with the License.    |
+*| You may obtain a copy of the License at                             |
+*|                                                                     |
+*|     http://www.apache.org/licenses/LICENSE-2.0                      |
+*|                                                                     |
+*| Unless required by applicable law or agreed to in writing, software |
+*| distributed under the License is distributed on an &quot;AS IS&quot; BASIS,   |
+*| WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or     |
+*| implied.                                                            |
+*| See the License for the specific language governing permissions and |
+*| limitations under the License.                                      |
 *\---------------------------------------------------------------------/
   DATA xmldoc	TYPE REF TO if_ixml_document.
   DATA xmldocout TYPE REF TO if_ixml_document.
