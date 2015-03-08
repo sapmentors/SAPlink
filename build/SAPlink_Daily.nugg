@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <nugget name="C:\Projects\SAPlink\trunk\build\SAPlink_Daily.nugg">
- <CLAS CLSNAME="ZCX_SAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink exception class" CATEGORY="40" EXPOSURE="2" STATE="1" RELEASE="0" CLSCCINCL="X" FIXPT="X" VARCL="X" UNICODE="X" RSTAT="S" CLSBCCAT="00" DURATION_TYPE="0 " RISK_LEVEL="0 " REFCLSNAME="CX_STATIC_CHECK">
+ <CLAS CLSNAME="ZCX_SAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink exception class" CATEGORY="40" EXPOSURE="2" STATE="1" RELEASE="0" CLSCCINCL="X" FIXPT="X" VARCL="X" UNICODE="X" RSTAT="S" CLSBCCAT="00" DURATION_TYPE="0 " RISK_LEVEL="0 " ZSAPLINK_PLUGIN_MAJOR_VERSION="0 " ZSAPLINK_PLUGIN_MINOR_VERSION="1 " ZSAPLINK_PLUGIN_BUILD_VERSION="0 " ZSAPLINK_PLUGIN_INFO1="ZSAPLINK_CLASS is part of the main ZSAPLINK project --&gt; This plugin found there instead of ZSAPLINK_PLUGINS projects" ZSAPLINK_PLUGIN_INFO2="SAPLINK homepage: https://www.assembla.com/spaces/saplink/wiki" ZSAPLINK_PLUGIN_INFO3="Download from https://www.assembla.com/code/saplink/subversion/nodes" ZSAPLINK_PLUGIN_INFO4="and navigate to:  trunk -&gt; core -&gt; ZSAPLINK -&gt; CLAS -&gt; ZSAPLINK_CLASS.slnk" REFCLSNAME="CX_STATIC_CHECK">
   <localImplementation>*&quot;* local class implementation for public class
 *&quot;* use this source file for the implementation part of
 *&quot;* local helper classes</localImplementation>
@@ -9,28 +9,28 @@
 *&quot;* implementation or private method&apos;s signature</localTypes>
   <localMacros>*&quot;* use this source file for any macro definitions you need
 *&quot;* in the implementation part of the class</localMacros>
-  <attribute CLSNAME="ZCX_SAPLINK" CMPNAME="ERROR_MESSAGE" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="5 " ATTDECLTYP="2" ATTEXPVIRT="0" TYPTYPE="1" TYPE="SOTR_CONC" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " LOCKED="X" TYPESRC_LENG="0 ">
+  <attribute CLSNAME="ZCX_SAPLINK" CMPNAME="ERROR_MESSAGE" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="1 " ATTDECLTYP="2" ATTEXPVIRT="0" TYPTYPE="1" TYPE="SOTR_CONC" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " LOCKED="X" TYPESRC_LENG="0 ">
    <sotr PAKET="$TMP" CREA_LAN="E" TRALA_TYPE="1" LST_IMPORT="00000000" TRALA_VEC="00000000000000000000" CATGY_VEC="00000000000000000000" OBJID_VEC="08000000000000000000">
     <sotrText LANGU="E" LFD_NUM="0001" FLAG_CNTXT="X" STATUS="R" VERSION="0002" LENGTH="255" TEXT="&amp;MSG&amp;"/>
    </sotr>
   </attribute>
-  <attribute CLSNAME="ZCX_SAPLINK" CMPNAME="EXISTING" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="1 " ATTDECLTYP="2" ATTEXPVIRT="0" TYPTYPE="1" TYPE="SOTR_CONC" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " LOCKED="X" TYPESRC_LENG="0 ">
+  <attribute CLSNAME="ZCX_SAPLINK" CMPNAME="EXISTING" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="2 " ATTDECLTYP="2" ATTEXPVIRT="0" TYPTYPE="1" TYPE="SOTR_CONC" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " LOCKED="X" TYPESRC_LENG="0 ">
    <sotr PAKET="$TMP" CREA_LAN="E" TRALA_TYPE="1" LST_IMPORT="00000000" TRALA_VEC="00000000000000000000" CATGY_VEC="00000000000000000000" OBJID_VEC="08000000000000000000">
     <sotrText LANGU="E" LFD_NUM="0001" FLAG_CNTXT="X" STATUS="R" VERSION="0002" LENGTH="255" TEXT="A new object that you want to create already exists"/>
    </sotr>
   </attribute>
-  <attribute CLSNAME="ZCX_SAPLINK" CMPNAME="INCORRECT_FILE_FORMAT" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="11 " ATTDECLTYP="2" ATTEXPVIRT="0" TYPTYPE="1" TYPE="SOTR_CONC" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " LOCKED="X" TYPESRC_LENG="0 ">
+  <attribute CLSNAME="ZCX_SAPLINK" CMPNAME="INCORRECT_FILE_FORMAT" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="3 " ATTDECLTYP="2" ATTEXPVIRT="0" TYPTYPE="1" TYPE="SOTR_CONC" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " LOCKED="X" TYPESRC_LENG="0 ">
    <sotr PAKET="$TMP" CREA_LAN="E" TRALA_TYPE="1" LST_IMPORT="00000000" TRALA_VEC="00000000000000000000" CATGY_VEC="00000000000000000000" OBJID_VEC="08000000000000000000">
     <sotrText LANGU="E" LFD_NUM="0001" FLAG_CNTXT="X" STATUS="R" VERSION="0002" LENGTH="255" TEXT="File is not a valid nugget/slinkee file"/>
    </sotr>
   </attribute>
-  <attribute CLSNAME="ZCX_SAPLINK" CMPNAME="LOCKED" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="8 " ATTDECLTYP="2" ATTEXPVIRT="0" TYPTYPE="1" TYPE="SOTR_CONC" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " LOCKED="X" TYPESRC_LENG="0 ">
+  <attribute CLSNAME="ZCX_SAPLINK" CMPNAME="LOCKED" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="4 " ATTDECLTYP="2" ATTEXPVIRT="0" TYPTYPE="1" TYPE="SOTR_CONC" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " LOCKED="X" TYPESRC_LENG="0 ">
    <sotr PAKET="$TMP" CREA_LAN="E" TRALA_TYPE="1" LST_IMPORT="00000000" TRALA_VEC="00000000000000000000" CATGY_VEC="00000000000000000000" OBJID_VEC="08000000000000000000">
     <sotrText LANGU="E" LFD_NUM="0001" FLAG_CNTXT="X" STATUS="R" VERSION="0002" LENGTH="255" TEXT="Object &amp;OBJECT&amp; is locked"/>
    </sotr>
   </attribute>
-  <attribute CLSNAME="ZCX_SAPLINK" CMPNAME="MSG" VERSION="1" LANGU="E" DESCRIPT="Error message variable" EXPOSURE="2" STATE="1" EDITORDER="6 " ATTDECLTYP="0" ATTVALUE="&apos;44F7518323DB08BC02000000A7E42BB6&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " LOCKED="X" TYPESRC_LENG="0 "/>
-  <attribute CLSNAME="ZCX_SAPLINK" CMPNAME="NOT_AUTHORIZED" VERSION="1" LANGU="E" DESCRIPT="Error message variable" EXPOSURE="2" STATE="1" EDITORDER="3 " ATTDECLTYP="2" ATTEXPVIRT="0" TYPTYPE="1" TYPE="SOTR_CONC" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " LOCKED="X" TYPESRC_LENG="0 ">
+  <attribute CLSNAME="ZCX_SAPLINK" CMPNAME="MSG" VERSION="1" LANGU="E" DESCRIPT="Error message variable" EXPOSURE="2" STATE="1" EDITORDER="5 " ATTDECLTYP="0" ATTVALUE="&apos;44F7518323DB08BC02000000A7E42BB6&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " LOCKED="X" TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZCX_SAPLINK" CMPNAME="NOT_AUTHORIZED" VERSION="1" LANGU="E" DESCRIPT="Error message variable" EXPOSURE="2" STATE="1" EDITORDER="6 " ATTDECLTYP="2" ATTEXPVIRT="0" TYPTYPE="1" TYPE="SOTR_CONC" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " LOCKED="X" TYPESRC_LENG="0 ">
    <sotr PAKET="$TMP" CREA_LAN="E" TRALA_TYPE="1" LST_IMPORT="00000000" TRALA_VEC="00000000000000000000" CATGY_VEC="00000000000000000000" OBJID_VEC="08000000000000000000">
     <sotrText LANGU="E" LFD_NUM="0001" FLAG_CNTXT="X" STATUS="R" VERSION="0002" LENGTH="255" TEXT="The user does not have the required authorization"/>
    </sotr>
@@ -40,30 +40,48 @@
     <sotrText LANGU="E" LFD_NUM="0001" FLAG_CNTXT="X" STATUS="R" VERSION="0002" LENGTH="255" TEXT="Unable to find the requested object &amp;OBJECT&amp;"/>
    </sotr>
   </attribute>
-  <attribute CLSNAME="ZCX_SAPLINK" CMPNAME="NO_PLUGIN" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="9 " ATTDECLTYP="2" ATTEXPVIRT="0" TYPTYPE="1" TYPE="SOTR_CONC" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " LOCKED="X" TYPESRC_LENG="0 ">
+  <attribute CLSNAME="ZCX_SAPLINK" CMPNAME="NO_PLUGIN" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="8 " ATTDECLTYP="2" ATTEXPVIRT="0" TYPTYPE="1" TYPE="SOTR_CONC" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " LOCKED="X" TYPESRC_LENG="0 ">
    <sotr PAKET="$TMP" CREA_LAN="E" TRALA_TYPE="1" LST_IMPORT="00000000" TRALA_VEC="00000000000000000000" CATGY_VEC="00000000000000000000" OBJID_VEC="08000000000000000000">
     <sotrText LANGU="E" LFD_NUM="0001" FLAG_CNTXT="X" STATUS="R" VERSION="0002" LENGTH="255" TEXT="The plugin &amp;MSG&amp; is not available on this system"/>
    </sotr>
   </attribute>
-  <attribute CLSNAME="ZCX_SAPLINK" CMPNAME="OBJECT" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="10 " ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
-  <attribute CLSNAME="ZCX_SAPLINK" CMPNAME="SYSTEM_ERROR" VERSION="1" LANGU="E" DESCRIPT="Error message variable" EXPOSURE="2" STATE="1" EDITORDER="2 " ATTDECLTYP="2" ATTEXPVIRT="0" TYPTYPE="1" TYPE="SOTR_CONC" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " LOCKED="X" TYPESRC_LENG="0 ">
+  <attribute CLSNAME="ZCX_SAPLINK" CMPNAME="OBJECT" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="9 " ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZCX_SAPLINK" CMPNAME="SYSTEM_ERROR" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="10 " ATTDECLTYP="2" ATTEXPVIRT="0" TYPTYPE="1" TYPE="SOTR_CONC" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " LOCKED="X" TYPESRC_LENG="0 ">
    <sotr PAKET="$TMP" CREA_LAN="E" TRALA_TYPE="1" LST_IMPORT="00000000" TRALA_VEC="00000000000000000000" CATGY_VEC="00000000000000000000" OBJID_VEC="08000000000000000000">
-    <sotrText LANGU="E" LFD_NUM="0001" FLAG_CNTXT="X" STATUS="R" VERSION="0002" LENGTH="255" TEXT="ouch, your pants are on fire..better go get help"/>
+    <sotrText LANGU="E" LFD_NUM="0001" FLAG_CNTXT="X" STATUS="R" VERSION="0002" LENGTH="255" TEXT="Internal error - you need to debug to identify the problem"/>
    </sotr>
   </attribute>
-  <attribute CLSNAME="ZCX_SAPLINK" CMPNAME="ZCX_SAPLINK" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="4 " ATTDECLTYP="2" ATTEXPVIRT="0" TYPTYPE="1" TYPE="SOTR_CONC" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " LOCKED="X" TYPESRC_LENG="0 ">
+  <attribute CLSNAME="ZCX_SAPLINK" CMPNAME="ZCX_SAPLINK" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="11 " ATTDECLTYP="2" ATTEXPVIRT="0" TYPTYPE="1" TYPE="SOTR_CONC" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " LOCKED="X" TYPESRC_LENG="0 ">
    <sotr PAKET="$TMP" CREA_LAN="E" TRALA_TYPE="1" LST_IMPORT="00000000" TRALA_VEC="00000000000000000000" CATGY_VEC="00000000000000000000" OBJID_VEC="08000000000000000000">
     <sotrText LANGU="E" LFD_NUM="0001" FLAG_CNTXT="X" STATUS="R" VERSION="0002" LENGTH="255" TEXT="&amp;MSG&amp;"/>
    </sotr>
   </attribute>
   <inheritance CLSNAME="ZCX_SAPLINK" REFCLSNAME="CX_STATIC_CHECK" VERSION="1" STATE="1"/>
  </CLAS>
- <CLAS CLSNAME="ZSAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink main class" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" CLSABSTRCT="X" CLSCCINCL="X" FIXPT="X" UNICODE="X" CLSBCCAT="00" WITH_UNIT_TESTS="X" DURATION_TYPE="0 " RISK_LEVEL="0 ">
-  <types CLSNAME="ZSAPLINK" CMPNAME="T_OBJECTTABLE" VERSION="1" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="1 " TYPTYPE="4" SRCROW1="4 " SRCCOLUMN1="4 " SRCROW2="8 " SRCCOLUMN2="28 " TYPESRC_LENG="158 " TYPESRC="BEGIN OF t_objecttable,
+ <CLAS CLSNAME="ZSAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink main class" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" CLSABSTRCT="X" CLSCCINCL="X" FIXPT="X" UNICODE="X" CLSBCCAT="00" WITH_UNIT_TESTS="X" DURATION_TYPE="0 " RISK_LEVEL="0 " ZSAPLINK_PLUGIN_MAJOR_VERSION="0 " ZSAPLINK_PLUGIN_MINOR_VERSION="1 " ZSAPLINK_PLUGIN_BUILD_VERSION="0 " ZSAPLINK_PLUGIN_INFO1="ZSAPLINK_CLASS is part of the main ZSAPLINK project --&gt; This plugin found there instead of ZSAPLINK_PLUGINS projects" ZSAPLINK_PLUGIN_INFO2="SAPLINK homepage: https://www.assembla.com/spaces/saplink/wiki" ZSAPLINK_PLUGIN_INFO3="Download from https://www.assembla.com/code/saplink/subversion/nodes" ZSAPLINK_PLUGIN_INFO4="and navigate to:  trunk -&gt; core -&gt; ZSAPLINK -&gt; CLAS -&gt; ZSAPLINK_CLASS.slnk">
+  <types CLSNAME="ZSAPLINK" CMPNAME="T_OBJECTTABLE" VERSION="1" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="1 " TYPTYPE="4" SRCROW1="6 " SRCCOLUMN1="4 " SRCROW2="10 " SRCCOLUMN2="28 " TYPESRC_LENG="0 " TYPESRC="BEGIN OF t_objecttable,
            classname TYPE string,
            object TYPE ko100-object,
            text TYPE ko100-text,
          END OF t_objecttable
+"/>
+  <types CLSNAME="ZSAPLINK" CMPNAME="GTS_VERSION_INFO" VERSION="1" LANGU="E" DESCRIPT="Version information" EXPOSURE="2" STATE="1" EDITORDER="1 " TYPTYPE="4" SRCROW1="11 " SRCCOLUMN1="4 " SRCROW2="27 " SRCCOLUMN2="33 " TYPESRC_LENG="0 " TYPESRC="BEGIN OF  gts_version_info,
+*     Change this if import or export is incompatible to older major versions or if enhancements are so important to force the new version of the plugin
+*     Please comment changes in major version in class documentation
+             zsaplink_plugin_major_version TYPE i,
+*     Change this if bugfixes are being done but the basic structure and im- and exportbehaviour don&apos;t change.  Reset to 0 when incrementing major version
+*     Please comment changes in minor version in class documentation
+             zsaplink_plugin_minor_version TYPE i,
+*     Change this if cosmetic changes are being done or if internal handling changed but no change to import- or exportbehaviour
+*    ( i.e. speeding up the plugin will fall into this ).  Reset to 0 when incrementeing major or minor version
+             zsaplink_plugin_build_version TYPE i,
+*
+             zsaplink_plugin_info1  TYPE string,  &quot; Plugin info - part 1    -  See demoimplementation how this may be used
+             zsaplink_plugin_info2  TYPE string,  &quot; Plugin info - part 2
+             zsaplink_plugin_info3  TYPE string,  &quot; Plugin info - part 3
+             zsaplink_plugin_info4  TYPE string,  &quot; Plugin info - part 4
+             zsaplink_plugin_info5  TYPE string,  &quot; Plugin info - part 5
+           END OF gts_version_info
 "/>
   <localImplementation>*&quot;* local class implementation for public class
 *&quot;* use this source file for the implementation part of
@@ -104,7 +122,7 @@ CLASS lc_zsaplink_test DEFINITION FOR TESTING
   &quot;#AU Duration Medium
   &quot;#AU Risk_Level Harmless
 .
-*?ï»¿&lt;asx:abap xmlns:asx=&quot;http://www.sap.com/abapxml&quot; version=&quot;1.0&quot;&gt;
+*?&lt;asx:abap xmlns:asx=&quot;http://www.sap.com/abapxml&quot; version=&quot;1.0&quot;&gt;
 *?&lt;asx:values&gt;
 *?&lt;TESTCLASS_OPTIONS&gt;
 *?&lt;TEST_CLASS&gt;lc_Zsaplink_Test
@@ -139,7 +157,7 @@ CLASS lc_zsaplink_test IMPLEMENTATION.
 * ======================================
 
   METHOD convertixmldoctostring.
-    CONSTANTS value TYPE string VALUE &apos;Umlaut: Ã¶Ã¤Ã¼ ÃÃÃ Ã, Slowenisch: ÄÄÅ¡Å¾Ä ÄÄÅ½Å Ä&apos;.
+    CONSTANTS value TYPE string VALUE &apos;German - Umlaute: öäü ÖÄÜ ß, Special characters - slowenian: ##### #####&apos;.
     DATA ixml     TYPE REF TO if_ixml.
     DATA ixmldoc  TYPE REF TO if_ixml_document.
     DATA rootnode TYPE REF TO if_ixml_element.
@@ -175,9 +193,23 @@ CLASS lc_zsaplink_test IMPLEMENTATION.
 
 
 ENDCLASS.       &quot;lc_Zsaplink_Test</localTestClasses>
+  <classDocumentation OBJECT="ZSAPLINK">
+   <language SPRAS="E">
+    <textLine TDFORMAT="U1" TDLINE="&amp;FUNCTIONALITY&amp;"/>
+    <textLine TDFORMAT="AS"/>
+    <textLine TDFORMAT="U1" TDLINE="&amp;RELATIONS&amp;"/>
+    <textLine TDFORMAT="AS"/>
+    <textLine TDFORMAT="U1" TDLINE="&amp;EXAMPLE&amp;"/>
+    <textLine TDFORMAT="AS"/>
+    <textLine TDFORMAT="U1" TDLINE="&amp;HINTS&amp;"/>
+    <textLine TDFORMAT="AS"/>
+    <textLine TDFORMAT="U1" TDLINE="&amp;FURTHER_SOURCES_OF_INF&amp;"/>
+    <textLine TDFORMAT="AS" TDLINE="Version 1.0.0:  Added functionality to pass version information"/>
+   </language>
+  </classDocumentation>
   <attribute CLSNAME="ZSAPLINK" CMPNAME="IXML" VERSION="1" LANGU="E" DESCRIPT="IF_IXML" EXPOSURE="1" STATE="1" EDITORDER="2 " ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="3" TYPE="IF_IXML" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
   <attribute CLSNAME="ZSAPLINK" CMPNAME="NUGGET_LEVEL" VERSION="1" LANGU="E" DESCRIPT="Nugget create sequence" EXPOSURE="2" STATE="1" EDITORDER="1 " ATTDECLTYP="0" ATTRDONLY="X" ATTVALUE="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="INT4" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
-  <attribute CLSNAME="ZSAPLINK" CMPNAME="OBJECTTABLE" VERSION="1" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="3 " ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="13 " SRCCOLUMN1="4 " SRCROW2="13 " SRCCOLUMN2="42 " TYPESRC_LENG="40 " TYPESRC="objecttable TYPE TABLE OF t_objecttable
+  <attribute CLSNAME="ZSAPLINK" CMPNAME="OBJECTTABLE" VERSION="1" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="3 " ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="15 " SRCCOLUMN1="4 " SRCROW2="15 " SRCCOLUMN2="42 " TYPESRC_LENG="40 " TYPESRC="objecttable TYPE TABLE OF t_objecttable
 "/>
   <attribute CLSNAME="ZSAPLINK" CMPNAME="OBJNAME" VERSION="1" LANGU="E" DESCRIPT="IF_IXML" EXPOSURE="1" STATE="1" EDITORDER="1 " ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
   <attribute CLSNAME="ZSAPLINK" CMPNAME="STREAMFACTORY" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_STREAM_FACTORY" EXPOSURE="0" STATE="1" EDITORDER="1 " ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="3" TYPE="IF_IXML_STREAM_FACTORY" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
@@ -256,10 +288,10 @@ endmethod.</source>
     into table sourceTable.
 endmethod.</source>
   </method>
-  <method CLSNAME="ZSAPLINK" CMPNAME="CHECKEXISTS" VERSION="1" LANGU="E" DESCRIPT="Check if object exists" EXPOSURE="2" STATE="1" EDITORDER="10 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" MTDABSTRCT="X" BCMTDCAT="00" BCMTDSYN="0">
+  <method CLSNAME="ZSAPLINK" CMPNAME="CHECKEXISTS" VERSION="1" LANGU="E" DESCRIPT="Check if object exists" EXPOSURE="2" STATE="1" EDITORDER="11 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" MTDABSTRCT="X" BCMTDCAT="00" BCMTDSYN="0">
    <parameter CLSNAME="ZSAPLINK" CMPNAME="CHECKEXISTS" SCONAME="EXISTS" VERSION="1" LANGU="E" DESCRIPT="object exists flag" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="1" TYPE="FLAG"/>
   </method>
-  <method CLSNAME="ZSAPLINK" CMPNAME="CHECKOBJECT" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="12 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="1" MTDNEWEXC="X" BCMTDCAT="00" BCMTDSYN="0">
+  <method CLSNAME="ZSAPLINK" CMPNAME="CHECKOBJECT" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="13 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="1" BCMTDCAT="00" BCMTDSYN="0">
    <parameter CLSNAME="ZSAPLINK" CMPNAME="CHECKOBJECT" SCONAME="I_IXMLDOCUMENT" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_DOCUMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_DOCUMENT"/>
    <parameter CLSNAME="ZSAPLINK" CMPNAME="CHECKOBJECT" SCONAME="E_OBJTYPE" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="1" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
    <parameter CLSNAME="ZSAPLINK" CMPNAME="CHECKOBJECT" SCONAME="E_OBJNAME" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " PARDECLTYP="1" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
@@ -298,7 +330,7 @@ endmethod.</source>
 
 ENDMETHOD.</source>
   </method>
-  <method CLSNAME="ZSAPLINK" CMPNAME="CONSTRUCTOR" VERSION="1" LANGU="E" DESCRIPT="CONSTRUCTOR" EXPOSURE="2" STATE="1" EDITORDER="7 " DISPID="0 " MTDTYPE="2" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+  <method CLSNAME="ZSAPLINK" CMPNAME="CONSTRUCTOR" VERSION="1" LANGU="E" DESCRIPT="CONSTRUCTOR" EXPOSURE="2" STATE="1" EDITORDER="8 " DISPID="0 " MTDTYPE="2" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
    <parameter CLSNAME="ZSAPLINK" CMPNAME="CONSTRUCTOR" SCONAME="NAME" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="2" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
    <source>method CONSTRUCTOR.
 */---------------------------------------------------------------------\
@@ -394,8 +426,8 @@ endmethod.</source>
 endmethod.</source>
   </method>
   <method CLSNAME="ZSAPLINK" CMPNAME="CONVERTSTRINGTOIXMLDOC" VERSION="1" LANGU="E" DESCRIPT="Converts any String into an IF_IXML_DOCUMENT" EXPOSURE="2" STATE="1" EDITORDER="2 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="1" BCMTDCAT="00" BCMTDSYN="0">
-   <parameter CLSNAME="ZSAPLINK" CMPNAME="CONVERTSTRINGTOIXMLDOC" SCONAME="XMLSTRING" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="STRING"/>
-   <parameter CLSNAME="ZSAPLINK" CMPNAME="CONVERTSTRINGTOIXMLDOC" SCONAME="IXMLDOCUMENT" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_DOCUMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_DOCUMENT"/>
+   <parameter CLSNAME="ZSAPLINK" CMPNAME="CONVERTSTRINGTOIXMLDOC" SCONAME="XMLSTRING" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="STRING"/>
+   <parameter CLSNAME="ZSAPLINK" CMPNAME="CONVERTSTRINGTOIXMLDOC" SCONAME="IXMLDOCUMENT" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_DOCUMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_DOCUMENT"/>
    <source>method CONVERTSTRINGTOIXMLDOC.
 */---------------------------------------------------------------------\
 *| This file is part of SAPlink.                                       |
@@ -437,7 +469,7 @@ endmethod.</source>
   ixmlDocument = xmlDoc.
 endmethod.</source>
   </method>
-  <method CLSNAME="ZSAPLINK" CMPNAME="CREATEIXMLDOCFROMOBJECT" VERSION="1" LANGU="E" DESCRIPT="Creates an IF_IXML_DOCUMENT from the OBJNAME Attribute" EXPOSURE="2" STATE="1" EDITORDER="5 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" MTDABSTRCT="X" MTDNEWEXC="X" BCMTDCAT="00" BCMTDSYN="0">
+  <method CLSNAME="ZSAPLINK" CMPNAME="CREATEIXMLDOCFROMOBJECT" VERSION="1" LANGU="E" DESCRIPT="Creates an IF_IXML_DOCUMENT from the OBJNAME Attribute" EXPOSURE="2" STATE="1" EDITORDER="6 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" MTDABSTRCT="X" MTDNEWEXC="X" BCMTDCAT="00" BCMTDSYN="0">
    <parameter CLSNAME="ZSAPLINK" CMPNAME="CREATEIXMLDOCFROMOBJECT" SCONAME="IXMLDOCUMENT" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_DOCUMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_DOCUMENT"/>
    <exception CLSNAME="ZSAPLINK" CMPNAME="CREATEIXMLDOCFROMOBJECT" SCONAME="ZCX_SAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 "/>
   </method>
@@ -513,7 +545,7 @@ endmethod.</source>
 
 endmethod.</source>
   </method>
-  <method CLSNAME="ZSAPLINK" CMPNAME="CREATEOBJECTFROMIXMLDOC" VERSION="1" LANGU="E" DESCRIPT="Creates Object on System from IXMLDocument passed in" EXPOSURE="2" STATE="1" EDITORDER="4 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" MTDABSTRCT="X" MTDNEWEXC="X" BCMTDCAT="00" BCMTDSYN="0">
+  <method CLSNAME="ZSAPLINK" CMPNAME="CREATEOBJECTFROMIXMLDOC" VERSION="1" LANGU="E" DESCRIPT="Creates Object on System from IXMLDocument passed in" EXPOSURE="2" STATE="1" EDITORDER="5 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" MTDABSTRCT="X" MTDNEWEXC="X" BCMTDCAT="00" BCMTDSYN="0">
    <parameter CLSNAME="ZSAPLINK" CMPNAME="CREATEOBJECTFROMIXMLDOC" SCONAME="IXMLDOCUMENT" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_DOCUMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_DOCUMENT"/>
    <parameter CLSNAME="ZSAPLINK" CMPNAME="CREATEOBJECTFROMIXMLDOC" SCONAME="DEVCLASS" VERSION="1" LANGU="E" DESCRIPT="Development class/package" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="DEVCLASS" PARVALUE="&apos;$TMP&apos;"/>
    <parameter CLSNAME="ZSAPLINK" CMPNAME="CREATEOBJECTFROMIXMLDOC" SCONAME="OVERWRITE" VERSION="1" LANGU="E" DESCRIPT="Overwrite original objects" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="FLAG" PAROPTIONL="X"/>
@@ -670,7 +702,7 @@ endmethod.</source>
 
 endmethod.</source>
   </method>
-  <method CLSNAME="ZSAPLINK" CMPNAME="CREATESTRINGFROMOBJECT" VERSION="1" LANGU="E" DESCRIPT="Creates a String from the OBJNAME Attribute" EXPOSURE="2" STATE="1" EDITORDER="6 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" BCMTDCAT="00" BCMTDSYN="0">
+  <method CLSNAME="ZSAPLINK" CMPNAME="CREATESTRINGFROMOBJECT" VERSION="1" LANGU="E" DESCRIPT="Creates a String from the OBJNAME Attribute" EXPOSURE="2" STATE="1" EDITORDER="7 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" BCMTDCAT="00" BCMTDSYN="0">
    <parameter CLSNAME="ZSAPLINK" CMPNAME="CREATESTRINGFROMOBJECT" SCONAME="STRING" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="1" TYPE="STRING"/>
    <exception CLSNAME="ZSAPLINK" CMPNAME="CREATESTRINGFROMOBJECT" SCONAME="ZCX_SAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 "/>
    <source>method CREATESTRINGFROMOBJECT.
@@ -766,7 +798,7 @@ ENDMETHOD.</source>
   <method CLSNAME="ZSAPLINK" CMPNAME="GETOBJECTTYPE" VERSION="1" LANGU="E" DESCRIPT="Get object type of plugin" EXPOSURE="1" STATE="1" EDITORDER="7 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" MTDABSTRCT="X" BCMTDCAT="00" BCMTDSYN="0">
    <parameter CLSNAME="ZSAPLINK" CMPNAME="GETOBJECTTYPE" SCONAME="OBJECTTYPE" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="1" TYPE="STRING"/>
   </method>
-  <method CLSNAME="ZSAPLINK" CMPNAME="GETPLUGINS" VERSION="1" LANGU="E" DESCRIPT="Get installed saplink plugins" EXPOSURE="2" STATE="1" EDITORDER="9 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="1" BCMTDCAT="00" BCMTDSYN="0">
+  <method CLSNAME="ZSAPLINK" CMPNAME="GETPLUGINS" VERSION="1" LANGU="E" DESCRIPT="Get installed saplink plugins" EXPOSURE="2" STATE="1" EDITORDER="10 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="1" BCMTDCAT="00" BCMTDSYN="0">
    <parameter CLSNAME="ZSAPLINK" CMPNAME="GETPLUGINS" SCONAME="OBJECTTABLE" VERSION="1" LANGU="E" DESCRIPT="Installed Plugin Table" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="0" TYPTYPE="1" TYPE="TABLE"/>
    <source>method GETPLUGINS.
 */---------------------------------------------------------------------\
@@ -912,6 +944,45 @@ field-symbols &lt;value&gt; type any.
 * http://saplink.org
 endmethod.</source>
   </method>
+  <method CLSNAME="ZSAPLINK" CMPNAME="GET_VERSION_INFO" VERSION="1" LANGU="E" DESCRIPT="Get version info for this class - redefinable by child class" EXPOSURE="2" STATE="1" EDITORDER="14 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZSAPLINK" CMPNAME="GET_VERSION_INFO" SCONAME="RS_VERSION_INFO" VERSION="1" LANGU="E" DESCRIPT="Version informatino" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="1" TYPE="GTS_VERSION_INFO"/>
+   <source>METHOD GET_VERSION_INFO.
+
+*--------------------------------------------------------------------*
+* Please use the following 6 lines of code when versioning a
+* SAPLINK-Plugin.  See documentation of Type GTS_VERSION_INFO
+* what should be put here
+*--------------------------------------------------------------------*
+  rs_version_info-zsaplink_plugin_major_version = 0.  &quot; Default for all child classes, that have not been updated to return a version info.
+  rs_version_info-zsaplink_plugin_minor_version = 0.  &quot; Default for all child classes, that have not been updated to return a version info.
+  rs_version_info-zsaplink_plugin_build_version = 0.  &quot; Default for all child classes, that have not been updated to return a version info.
+
+  rs_version_info-zsaplink_plugin_info1         = &apos;&apos;. &quot; Sufficient to set this the first time a child class is being updated
+  rs_version_info-zsaplink_plugin_info2         = &apos;&apos;. &quot; Sufficient to set this the first time a child class is being updated
+  rs_version_info-zsaplink_plugin_info3         = &apos;&apos;. &quot; Sufficient to set this the first time a child class is being updated
+  rs_version_info-zsaplink_plugin_info4         = &apos;&apos;. &quot; Sufficient to set this the first time a child class is being updated
+  rs_version_info-zsaplink_plugin_info5         = &apos;&apos;. &quot; Sufficient to set this the first time a child class is being updated
+
+* Hint - see redefinition of this class in ZSAPLINK_CLASS how information may be set
+ENDMETHOD.</source>
+  </method>
+  <method CLSNAME="ZSAPLINK" CMPNAME="GET_VERSION_INFO_STATIC" VERSION="1" LANGU="E" DESCRIPT="Get version info for this class" EXPOSURE="2" STATE="1" EDITORDER="4 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="1" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZSAPLINK" CMPNAME="GET_VERSION_INFO_STATIC" SCONAME="IV_CLASSNAME" VERSION="1" LANGU="E" DESCRIPT="Name of class" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="CLIKE"/>
+   <parameter CLSNAME="ZSAPLINK" CMPNAME="GET_VERSION_INFO_STATIC" SCONAME="RS_VERSION_INFO" VERSION="1" LANGU="E" DESCRIPT="Version informatino" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="1" TYPE="GTS_VERSION_INFO"/>
+   <source>METHOD get_version_info_static.
+
+  DATA: lo_zsaplink TYPE REF TO zsaplink.
+
+  TRY.
+      CREATE OBJECT lo_zsaplink TYPE (iv_classname)
+         EXPORTING
+           name = &apos;Not needed for versio info&apos;.
+      rs_version_info = lo_zsaplink-&gt;get_version_info( ).
+    CATCH cx_root.  &quot; Don&apos;t pass version info for unknown or abstract classes
+  ENDTRY.
+
+ENDMETHOD.</source>
+  </method>
   <method CLSNAME="ZSAPLINK" CMPNAME="SETATTRIBUTESFROMSTRUCTURE" VERSION="1" LANGU="E" DESCRIPT="Creates an XML Attribute list from any structure" EXPOSURE="1" STATE="1" EDITORDER="2 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="1" BCMTDCAT="00" BCMTDSYN="0">
    <parameter CLSNAME="ZSAPLINK" CMPNAME="SETATTRIBUTESFROMSTRUCTURE" SCONAME="NODE" VERSION="1" LANGU="E" DESCRIPT="xml Element" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
    <parameter CLSNAME="ZSAPLINK" CMPNAME="SETATTRIBUTESFROMSTRUCTURE" SCONAME="STRUCTURE" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="DATA"/>
@@ -1041,7 +1112,7 @@ endmethod.</source>
   endloop.
 endmethod.</source>
   </method>
-  <method CLSNAME="ZSAPLINK" CMPNAME="UPLOADXML" VERSION="1" LANGU="E" DESCRIPT="Upload XML" EXPOSURE="2" STATE="1" EDITORDER="8 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" MTDFINAL="X" BCMTDCAT="00" BCMTDSYN="0">
+  <method CLSNAME="ZSAPLINK" CMPNAME="UPLOADXML" VERSION="1" LANGU="E" DESCRIPT="Upload XML" EXPOSURE="2" STATE="1" EDITORDER="9 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" MTDFINAL="X" BCMTDCAT="00" BCMTDSYN="0">
    <parameter CLSNAME="ZSAPLINK" CMPNAME="UPLOADXML" SCONAME="XMLDATA" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
    <source>method UPLOADXML.
 */---------------------------------------------------------------------\
@@ -1073,7 +1144,7 @@ data ixmlParser type ref to if_ixml_parser.
 
 endmethod.</source>
   </method>
-  <method CLSNAME="ZSAPLINK" CMPNAME="VALUEHELP" VERSION="1" LANGU="E" DESCRIPT="Get Value help..default is DDIC types...over Wright for BI" EXPOSURE="2" STATE="1" EDITORDER="11 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+  <method CLSNAME="ZSAPLINK" CMPNAME="VALUEHELP" VERSION="1" LANGU="E" DESCRIPT="Get Value help..default is DDIC types...over Wright for BI" EXPOSURE="2" STATE="1" EDITORDER="12 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
    <parameter CLSNAME="ZSAPLINK" CMPNAME="VALUEHELP" SCONAME="I_OBJTYPE" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
    <parameter CLSNAME="ZSAPLINK" CMPNAME="VALUEHELP" SCONAME="E_OBJNAME" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="1" TYPE="STRING"/>
    <source>method VALUEHELP.
@@ -1117,7 +1188,7 @@ l_object_type = i_objType.
 endmethod.</source>
   </method>
  </CLAS>
- <CLAS CLSNAME="ZSAPLINK_OO" VERSION="1" LANGU="E" DESCRIPT="ZSAPLINK - OO class for CLAS and INTF plugin" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" CLSABSTRCT="X" CLSCCINCL="X" FIXPT="X" UNICODE="X" CLSBCCAT="00" DURATION_TYPE="0 " RISK_LEVEL="0 " REFCLSNAME="ZSAPLINK">
+ <CLAS CLSNAME="ZSAPLINK_CLASS" VERSION="1" LANGU="E" DESCRIPT="SAPlink Class Installer" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" CLSCCINCL="X" FIXPT="X" UNICODE="X" CLSBCCAT="00" DURATION_TYPE="0 " RISK_LEVEL="0 " ZSAPLINK_PLUGIN_MAJOR_VERSION="0 " ZSAPLINK_PLUGIN_MINOR_VERSION="1 " ZSAPLINK_PLUGIN_BUILD_VERSION="0 " ZSAPLINK_PLUGIN_INFO1="ZSAPLINK_CLASS is part of the main ZSAPLINK project --&gt; This plugin found there instead of ZSAPLINK_PLUGINS projects" ZSAPLINK_PLUGIN_INFO2="SAPLINK homepage: https://www.assembla.com/spaces/saplink/wiki" ZSAPLINK_PLUGIN_INFO3="Download from https://www.assembla.com/code/saplink/subversion/nodes" ZSAPLINK_PLUGIN_INFO4="and navigate to:  trunk -&gt; core -&gt; ZSAPLINK -&gt; CLAS -&gt; ZSAPLINK_CLASS.slnk" REFCLSNAME="ZSAPLINK_OO">
   <localImplementation>*&quot;* local class implementation for public class
 *&quot;* use this source file for the implementation part of
 *&quot;* local helper classes</localImplementation>
@@ -1126,537 +1197,9 @@ endmethod.</source>
 *&quot;* implementation or private method&apos;s signature</localTypes>
   <localMacros>*&quot;* use this source file for any macro definitions you need
 *&quot;* in the implementation part of the class</localMacros>
-  <typeUsage CLSNAME="ZSAPLINK_OO" TYPEGROUP="ABAP" VERSION="1" TPUTYPE="0" EXPLICIT="X"/>
-  <typeUsage CLSNAME="ZSAPLINK_OO" TYPEGROUP="SEOP" VERSION="1" TPUTYPE="0" EXPLICIT="X"/>
-  <typeUsage CLSNAME="ZSAPLINK_OO" TYPEGROUP="SEOR" VERSION="1" TPUTYPE="0" EXPLICIT="X"/>
-  <typeUsage CLSNAME="ZSAPLINK_OO" TYPEGROUP="SEOS" VERSION="1" TPUTYPE="0" EXPLICIT="X"/>
-  <typeUsage CLSNAME="ZSAPLINK_OO" TYPEGROUP="SEOT" VERSION="1" TPUTYPE="0" EXPLICIT="X"/>
-  <typeUsage CLSNAME="ZSAPLINK_OO" TYPEGROUP="SEOX" VERSION="1" TPUTYPE="0" EXPLICIT="X"/>
-  <forwardDeclaration>ABAP</forwardDeclaration>
-  <forwardDeclaration>SEOP</forwardDeclaration>
-  <forwardDeclaration>SEOR</forwardDeclaration>
-  <forwardDeclaration>SEOS</forwardDeclaration>
-  <forwardDeclaration>SEOT</forwardDeclaration>
-  <forwardDeclaration>SEOX</forwardDeclaration>
-  <attribute CLSNAME="ZSAPLINK_OO" CMPNAME="C_XML_KEY_ALIAS_METHOD" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="1 " ATTDECLTYP="2" ATTVALUE="&apos;aliasMethod&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
-  <attribute CLSNAME="ZSAPLINK_OO" CMPNAME="C_XML_KEY_CLSDEFERRD" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="2 " ATTDECLTYP="2" ATTVALUE="&apos;typeClasDef&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
-  <attribute CLSNAME="ZSAPLINK_OO" CMPNAME="C_XML_KEY_FORWARDDECLARATION" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="3 " ATTDECLTYP="2" ATTVALUE="&apos;forwardDeclaration&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
-  <attribute CLSNAME="ZSAPLINK_OO" CMPNAME="C_XML_KEY_FRIENDS" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="6 " ATTDECLTYP="2" ATTVALUE="&apos;friends&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
-  <attribute CLSNAME="ZSAPLINK_OO" CMPNAME="C_XML_KEY_INHERITANCE" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="7 " ATTDECLTYP="2" ATTVALUE="&apos;inheritance&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
-  <attribute CLSNAME="ZSAPLINK_OO" CMPNAME="C_XML_KEY_INTDEFERRD" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="4 " ATTDECLTYP="2" ATTVALUE="&apos;typeIntfDef&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
-  <attribute CLSNAME="ZSAPLINK_OO" CMPNAME="C_XML_KEY_SOTR" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="8 " ATTDECLTYP="2" ATTVALUE="&apos;sotr&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
-  <attribute CLSNAME="ZSAPLINK_OO" CMPNAME="C_XML_KEY_SOTRTEXT" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="9 " ATTDECLTYP="2" ATTVALUE="&apos;sotrText&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
-  <attribute CLSNAME="ZSAPLINK_OO" CMPNAME="C_XML_KEY_TYPEPUSAGE" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="5 " ATTDECLTYP="2" ATTVALUE="&apos;typeUsage&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
-  <inheritance CLSNAME="ZSAPLINK_OO" REFCLSNAME="ZSAPLINK" VERSION="1" STATE="1"/>
-  <method CLSNAME="ZSAPLINK_OO" CMPNAME="CREATE_ALIAS_METHOD" VERSION="1" LANGU="E" DESCRIPT="Create alias for method" EXPOSURE="1" STATE="1" EDITORDER="1 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
-   <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="CREATE_ALIAS_METHOD" SCONAME="XT_ALIASES_METHOD" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="SEOO_ALIASES_R"/>
-   <source>method CREATE_ALIAS_METHOD.
-  DATA: filter TYPE REF TO if_ixml_node_filter,
-        iterator TYPE REF TO if_ixml_node_iterator,
-        node TYPE REF TO if_ixml_element.
-
-  DATA: ls_alias_method  LIKE LINE OF xt_aliases_method.
-
-
-  filter = xmldoc-&gt;create_filter_name( c_xml_key_alias_method ).
-  iterator = xmldoc-&gt;create_iterator_filtered( filter ).
-  node ?= iterator-&gt;get_next( ).
-  WHILE node IS NOT INITIAL.
-    CLEAR ls_alias_method.
-    CALL METHOD getstructurefromattributes
-      EXPORTING
-        node      = node
-      CHANGING
-        structure = ls_alias_method.
-    INSERT ls_alias_method INTO TABLE xt_aliases_method.
-    node ?= iterator-&gt;get_next( ).
-  ENDWHILE.
-
-endmethod.</source>
-  </method>
-  <method CLSNAME="ZSAPLINK_OO" CMPNAME="CREATE_CLSDEFERRD" VERSION="1" LANGU="E" DESCRIPT="Create class deferred" EXPOSURE="1" STATE="1" EDITORDER="2 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
-   <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="CREATE_CLSDEFERRD" SCONAME="XT_CLSDEFERRDS" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="SEOT_CLSDEFERRDS_R"/>
-   <source>method CREATE_CLSDEFERRD.
-  DATA: filter TYPE REF TO if_ixml_node_filter,
-        iterator TYPE REF TO if_ixml_node_iterator,
-        node TYPE REF TO if_ixml_element.
-
-  DATA: ls_clsdeferrd  LIKE LINE OF xt_clsdeferrds.
-
-
-  filter   = xmldoc-&gt;create_filter_name( c_xml_key_clsdeferrd ).
-  iterator = xmldoc-&gt;create_iterator_filtered( filter ).
-  node ?= iterator-&gt;get_next( ).
-
-  WHILE node IS NOT INITIAL.
-    CALL METHOD getstructurefromattributes
-      EXPORTING
-        node      = node
-      CHANGING
-        structure = ls_clsdeferrd.
-    APPEND ls_clsdeferrd TO xt_clsdeferrds.
-    node ?= iterator-&gt;get_next( ).
-  ENDWHILE.
-
-endmethod.</source>
-  </method>
-  <method CLSNAME="ZSAPLINK_OO" CMPNAME="CREATE_INTDEFERRD" VERSION="1" LANGU="E" DESCRIPT="Create interface deferred" EXPOSURE="1" STATE="1" EDITORDER="3 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
-   <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="CREATE_INTDEFERRD" SCONAME="XT_INTDEFERRDS" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="SEOT_INTDEFERRDS_R"/>
-   <source>method CREATE_INTDEFERRD.
-  DATA: filter TYPE REF TO if_ixml_node_filter,
-        iterator TYPE REF TO if_ixml_node_iterator,
-        node TYPE REF TO if_ixml_element.
-
-  DATA: ls_intdeferrd  LIKE LINE OF xt_intdeferrds.
-
-
-  filter   = xmldoc-&gt;create_filter_name( c_xml_key_intdeferrd ).
-  iterator = xmldoc-&gt;create_iterator_filtered( filter ).
-  node ?= iterator-&gt;get_next( ).
-
-  WHILE node IS NOT INITIAL.
-    CALL METHOD getstructurefromattributes
-      EXPORTING
-        node      = node
-      CHANGING
-        structure = ls_intdeferrd.
-    APPEND ls_intdeferrd TO xt_intdeferrds.
-    node ?= iterator-&gt;get_next( ).
-  ENDWHILE.
-
-endmethod.</source>
-  </method>
-  <method CLSNAME="ZSAPLINK_OO" CMPNAME="CREATE_OTR" VERSION="1" LANGU="E" DESCRIPT="Get an OTR object from XML node" EXPOSURE="1" STATE="1" EDITORDER="4 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" BCMTDCAT="00" BCMTDSYN="0">
-   <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="CREATE_OTR" SCONAME="NODE" VERSION="1" LANGU="E" DESCRIPT="xml Element" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
-   <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="CREATE_OTR" SCONAME="DEVCLASS" VERSION="1" LANGU="E" DESCRIPT="Development class/package" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="DEVCLASS" PARVALUE="&apos;$TMP&apos;" PAROPTIONL="X"/>
-   <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="CREATE_OTR" SCONAME="CONCEPT" VERSION="1" LANGU="E" DESCRIPT="Key for Logical Object in the OTR" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " PARDECLTYP="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SOTR_TEXT-CONCEPT"/>
-   <exception CLSNAME="ZSAPLINK_OO" CMPNAME="CREATE_OTR" SCONAME="ZCX_SAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 "/>
-   <source>method CREATE_OTR.
-*/---------------------------------------------------------------------\
-*| This file is part of SAPlink.                                       |
-*|                                                                     |
-*| Copyright 2014 SAPlink project members                              |
-*|                                                                     |
-*| Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);     |
-*| you may not use this file except in compliance with the License.    |
-*| You may obtain a copy of the License at                             |
-*|                                                                     |
-*|     http://www.apache.org/licenses/LICENSE-2.0                      |
-*|                                                                     |
-*| Unless required by applicable law or agreed to in writing, software |
-*| distributed under the License is distributed on an &quot;AS IS&quot; BASIS,   |
-*| WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or     |
-*| implied.                                                            |
-*| See the License for the specific language governing permissions and |
-*| limitations under the License.                                      |
-*\---------------------------------------------------------------------/
-  DATA txtnode TYPE REF TO if_ixml_element.
-  DATA filter TYPE REF TO if_ixml_node_filter.
-  DATA iterator TYPE REF TO if_ixml_node_iterator.
-
-  DATA sotrheader TYPE sotr_head.
-  DATA sotrtextline TYPE sotr_text.
-  DATA sotrtexttable TYPE TABLE OF sotr_text.
-  DATA sotrpaket TYPE sotr_pack.
-
-* get OTR header info
-  CALL METHOD getstructurefromattributes
-    EXPORTING
-      node      = node
-    CHANGING
-      structure = sotrheader.
-
-* get OTR text info
-  filter = node-&gt;create_filter_name( c_xml_key_sotrText ).
-  iterator = node-&gt;create_iterator_filtered( filter ).
-  txtnode ?= iterator-&gt;get_next( ).
-
-  WHILE txtnode IS NOT INITIAL.
-    CLEAR sotrtextline.
-    CALL METHOD getstructurefromattributes
-      EXPORTING
-        node      = txtnode
-      CHANGING
-        structure = sotrtextline.
-    CLEAR: sotrtextline-concept, sotrtextline-object.       &quot;ewH:33
-    APPEND sotrtextline TO sotrtexttable.
-    txtnode ?= iterator-&gt;get_next( ).
-  ENDWHILE.
-
-* ewH:issue 33--&gt; in 6.40 and above, you cannot pass a default concept
-*  (otr) guid, so we will always create new
-*  CALL FUNCTION &apos;SOTR_GET_CONCEPT&apos;
-*    EXPORTING
-*      concept              = sotrHeader-concept
-**   IMPORTING
-**     HEADER               =
-**   TABLES
-**     ENTRIES              =
-*   EXCEPTIONS
-*     NO_ENTRY_FOUND       = 1
-*     OTHERS               = 2
-*            .
-*  IF sy-subrc &lt;&gt; 1.
-**   delete OTR if exists already
-*    CALL FUNCTION &apos;SOTR_DELETE_CONCEPT&apos;
-*      EXPORTING
-*        concept                     = sotrHeader-concept
-*     EXCEPTIONS
-*       NO_AUTHORIZATION            = 1
-*       NO_ENTRY_FOUND              = 2. &quot;who cares
-**       CONCEPT_USED                = 3
-**       NO_MASTER_LANGUAGE          = 4
-**       NO_SOURCE_SYSTEM            = 5
-**       NO_TADIR_ENTRY              = 6
-**       ERROR_IN_CORRECTION         = 7
-**       USER_CANCELLED              = 8
-**       OTHERS                      = 9
-**              .
-*    if sy-subrc = 1.
-*      raise exception type zcx_saplink
-*        exporting textid = zcx_saplink=&gt;not_authorized.
-*    endif.
-*  ENDIF.
-
-
-  DATA objecttable TYPE sotr_objects.
-  DATA objecttype TYPE LINE OF sotr_objects.
-* Retrieve object type of OTR
-  CALL FUNCTION &apos;SOTR_OBJECT_GET_OBJECTS&apos;
-    EXPORTING
-      object_vector    = sotrheader-objid_vec
-    IMPORTING
-      OBJECTS          = objecttable
-    EXCEPTIONS
-      object_not_found = 1
-      OTHERS           = 2.
-
-  READ TABLE objecttable INTO objecttype INDEX 1.
-
-* create OTR
-  sotrpaket-paket = devclass.
-  CALL FUNCTION &apos;SOTR_CREATE_CONCEPT&apos;
-    EXPORTING
-      paket                               = sotrpaket
-      crea_lan                            = sotrheader-crea_lan
-      alias_name                          = sotrheader-alias_name
-*      CATEGORY                            =
-      object                              = objecttype
-      entries                             = sotrtexttable
-*     FLAG_CORRECTION_ENTRY               =
-*     IN_UPDATE_TASK                      =
-*      CONCEPT_DEFAULT                     = sotrHeader-concept &quot;ewH:33
-    IMPORTING
-      concept                             = concept         &quot;ewH:33
-    EXCEPTIONS
-      package_missing                     = 1
-      crea_lan_missing                    = 2
-      object_missing                      = 3
-      paket_does_not_exist                = 4
-      alias_already_exist                 = 5
-      object_type_not_found               = 6
-      langu_missing                       = 7
-      identical_context_not_allowed       = 8
-      text_too_long                       = 9
-      error_in_update                     = 10
-      no_master_langu                     = 11
-      error_in_concept_id                 = 12
-      alias_not_allowed                   = 13
-      tadir_entry_creation_failed         = 14
-      internal_error                      = 15
-      error_in_correction                 = 16
-      user_cancelled                      = 17
-      no_entry_found                      = 18
-      OTHERS                              = 19
-            .
-  IF sy-subrc &lt;&gt; 0.
-*   MESSAGE ID SY-MSGID TYPE SY-MSGTY NUMBER SY-MSGNO
-*           WITH SY-MSGV1 SY-MSGV2 SY-MSGV3 SY-MSGV4.
-  ENDIF.
-
-endmethod.</source>
-  </method>
-  <method CLSNAME="ZSAPLINK_OO" CMPNAME="CREATE_TYPEPUSAGE" VERSION="1" LANGU="E" DESCRIPT="Create type pool usage" EXPOSURE="1" STATE="1" EDITORDER="5 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
-   <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="CREATE_TYPEPUSAGE" SCONAME="XT_TYPEPUSAGES" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="SEOT_TYPEPUSAGES_R"/>
-   <source>method CREATE_TYPEPUSAGE.
-  DATA: filter   TYPE REF TO if_ixml_node_filter,
-        iterator TYPE REF TO if_ixml_node_iterator,
-        node     TYPE REF TO if_ixml_element,
-        source   TYPE string.
-
-
-  DATA: ls_typepusage  LIKE LINE OF xt_typepusages.
-
-*rrq comments Forward nodes are created in an old version of the
-*create XML from object.  In that node, the only attribute set
-*is the &quot;TypeGroup&quot;.  All other attributes are hard coded on the
-*create Object from XML .  To fix this and make it transparent to
-*users, &quot;forwaredDeclaration&quot; nodes will be supported, and a new
-*node will be added.
-*if it is an old version XML document, forwardDeclarations nodes
-*if it is a new version XML document, typeUsages nodes
-
-  filter   = xmldoc-&gt;create_filter_name( c_xml_key_typepusage ).
-  iterator = xmldoc-&gt;create_iterator_filtered( filter ).
-  node ?= iterator-&gt;get_next( ).
-
-  WHILE node IS NOT INITIAL.
-    CALL METHOD getstructurefromattributes
-      EXPORTING
-        node      = node
-      CHANGING
-        structure = ls_typepusage.
-    APPEND ls_typepusage TO xt_typepusages.
-    node ?= iterator-&gt;get_next( ).
-  ENDWHILE.
-
-* only check forwardDeclaration if typeUsages does not exist
-* later version this will be removed
-  IF xt_typepusages IS INITIAL.
-    filter = xmldoc-&gt;create_filter_name( c_xml_key_forwarddeclaration ).
-    iterator = xmldoc-&gt;create_iterator_filtered( filter ).
-    node ?= iterator-&gt;get_next( ).
-
-    WHILE node IS NOT INITIAL.
-      CLEAR ls_typepusage.
-      source = node-&gt;get_value( ).
-      ls_typepusage-clsname = objname.
-      ls_typepusage-version = &apos;0&apos;.
-      ls_typepusage-tputype = &apos;0&apos;.
-      ls_typepusage-explicit =  &apos;X&apos;.
-      ls_typepusage-implicit = &apos;&apos;.
-      ls_typepusage-typegroup = source.
-      APPEND ls_typepusage TO xt_typepusages.
-      node ?= iterator-&gt;get_next( ).
-    ENDWHILE.
-  ENDIF.
-
-endmethod.</source>
-  </method>
-  <method CLSNAME="ZSAPLINK_OO" CMPNAME="GET_ALIAS_METHOD" VERSION="1" LANGU="E" DESCRIPT="Get alias for method" EXPOSURE="1" STATE="1" EDITORDER="6 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
-   <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="GET_ALIAS_METHOD" SCONAME="IT_METHODS" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="ABAP_METHDESCR_TAB"/>
-   <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="GET_ALIAS_METHOD" SCONAME="XO_ROOTNODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
-   <source>method GET_ALIAS_METHOD.
-  DATA lo_alias  TYPE REF TO if_ixml_element.
-  DATA ls_alias  TYPE seoaliases.
-  DATA: l_rc     TYPE sy-subrc,
-        ls_method LIKE LINE OF it_methods,
-        ls_clsmethkey TYPE seocmpkey.
-
-  LOOP AT it_methods INTO ls_method.
-    ls_clsmethkey-clsname = objname.
-    ls_clsmethkey-cmpname = ls_method-name.
-    CLEAR ls_alias.
-    CALL FUNCTION &apos;SEO_ALIAS_GET&apos;
-     EXPORTING
-       cmpkey             = ls_clsmethkey
-*       VERSION            = SEOC_VERSION_INACTIVE
-     IMPORTING
-       alias              = ls_alias
-     EXCEPTIONS
-       not_existing       = 1
-       deleted            = 2
-       OTHERS             = 3
-             .
-    IF sy-subrc &lt;&gt; 0.
-* MESSAGE ID SY-MSGID TYPE SY-MSGTY NUMBER SY-MSGNO
-*         WITH SY-MSGV1 SY-MSGV2 SY-MSGV3 SY-MSGV4.
-    ELSE.
-      lo_alias = xmldoc-&gt;create_element( c_xml_key_alias_method ).
-      setattributesfromstructure( node      = lo_alias
-                                  structure = ls_alias ).
-      l_rc = xo_rootnode-&gt;append_child( lo_alias ).
-    ENDIF.
-  ENDLOOP.
-
-endmethod.</source>
-  </method>
-  <method CLSNAME="ZSAPLINK_OO" CMPNAME="GET_CLSDEFERRD" VERSION="1" LANGU="E" DESCRIPT="Get class deferred" EXPOSURE="1" STATE="1" EDITORDER="7 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
-   <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="GET_CLSDEFERRD" SCONAME="XO_ROOTNODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
-   <source>method GET_CLSDEFERRD.
-  DATA: lt_clsdeferrds     TYPE seot_clsdeferrds_r,
-        lo_clsdeferrds     TYPE REF TO if_ixml_element,
-        ls_clsdeferrd      TYPE seot_typepusage_r.
-
-  DATA: l_rc               TYPE sy-subrc,
-        ls_classkey        TYPE seoclskey.
-
-  ls_classkey-clsname = objname.
-
-  CALL FUNCTION &apos;SEO_CLSDEFERRD_READ_ALL&apos;
-    EXPORTING
-      cifkey            = ls_classkey
-      version           = seoc_version_active
-    IMPORTING
-      CLASSDEFERREDS    = lt_clsdeferrds
-    EXCEPTIONS
-      clif_not_existing = 1
-      OTHERS            = 2.
-
-  LOOP AT lt_clsdeferrds INTO ls_clsdeferrd.
-    lo_clsdeferrds = xmldoc-&gt;create_element( c_xml_key_clsdeferrd ).
-    setattributesfromstructure( node      = lo_clsdeferrds
-                                structure = ls_clsdeferrd ).
-    l_rc = xo_rootnode-&gt;append_child( lo_clsdeferrds ).
-  ENDLOOP.
-endmethod.</source>
-  </method>
-  <method CLSNAME="ZSAPLINK_OO" CMPNAME="GET_INTDEFERRD" VERSION="1" LANGU="E" DESCRIPT="Get interface deferred" EXPOSURE="1" STATE="1" EDITORDER="8 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
-   <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="GET_INTDEFERRD" SCONAME="XO_ROOTNODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
-   <source>method GET_INTDEFERRD.
-  DATA: lt_intdeferrds     TYPE seot_intdeferrds_r,
-        lo_intdeferrds     TYPE REF TO if_ixml_element,
-        ls_intdeferrd      TYPE seot_intdeferrd_r.
-
-  DATA: l_rc               TYPE sy-subrc,
-        ls_classkey        TYPE seoclskey.
-
-  ls_classkey-clsname = objname.
-
-  CALL FUNCTION &apos;SEO_INTDEFERRD_READ_ALL&apos;
-    EXPORTING
-      cifkey             = ls_classkey
-      version            = seoc_version_active
-    IMPORTING
-      interfacedeferreds = lt_intdeferrds
-    EXCEPTIONS
-      clif_not_existing  = 1
-      OTHERS             = 2.
-
-  LOOP AT lt_intdeferrds INTO ls_intdeferrd.
-    lo_intdeferrds = xmldoc-&gt;create_element( c_xml_key_intdeferrd ).
-    setattributesfromstructure( node      = lo_intdeferrds
-                                structure = ls_intdeferrd ).
-    l_rc = xo_rootnode-&gt;append_child( lo_intdeferrds ).
-  ENDLOOP.
-
-endmethod.</source>
-  </method>
-  <method CLSNAME="ZSAPLINK_OO" CMPNAME="GET_OTR" VERSION="1" LANGU="E" DESCRIPT="Creates an XML node from an OTR object" EXPOSURE="1" STATE="1" EDITORDER="9 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
-   <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="GET_OTR" SCONAME="OTRGUID" VERSION="1" LANGU="E" DESCRIPT="Key for Logical Object in the OTR" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="SOTR_CONC"/>
-   <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="GET_OTR" SCONAME="NODE" VERSION="1" LANGU="E" DESCRIPT="xml Element" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
-   <source>method GET_OTR.
-*/---------------------------------------------------------------------\
-*| This file is part of SAPlink.                                       |
-*|                                                                     |
-*| Copyright 2014 SAPlink project members                              |
-*|                                                                     |
-*| Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);     |
-*| you may not use this file except in compliance with the License.    |
-*| You may obtain a copy of the License at                             |
-*|                                                                     |
-*|     http://www.apache.org/licenses/LICENSE-2.0                      |
-*|                                                                     |
-*| Unless required by applicable law or agreed to in writing, software |
-*| distributed under the License is distributed on an &quot;AS IS&quot; BASIS,   |
-*| WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or     |
-*| implied.                                                            |
-*| See the License for the specific language governing permissions and |
-*| limitations under the License.                                      |
-*\---------------------------------------------------------------------/
-  DATA rootnode TYPE REF TO if_ixml_element.
-  DATA txtnode TYPE REF TO if_ixml_element.
-  DATA rc TYPE sysubrc.
-
-  DATA sotrheader TYPE sotr_head.
-  DATA sotrtextline TYPE sotr_text.
-  DATA sotrtexttable TYPE TABLE OF sotr_text.
-
-  DATA _ixml TYPE REF TO if_ixml.
-  DATA _xmldoc TYPE REF TO if_ixml_document.
-
-  CALL FUNCTION &apos;SOTR_GET_CONCEPT&apos;
-    EXPORTING
-      concept        = otrguid
-    IMPORTING
-      header         = sotrheader
-    TABLES
-      entries        = sotrtexttable
-    EXCEPTIONS
-      no_entry_found = 1
-      OTHERS         = 2.
-  IF sy-subrc &lt;&gt; 0.
-    EXIT.
-  ENDIF.
-
-  sotrheader-paket = &apos;$TMP&apos;. &quot;change devclass to $TMP for exports
-
-* Create xml doc
-*  _ixml = cl_ixml=&gt;create( ).
-*  _xmldoc = _ixml-&gt;create_document( ).
-*  streamfactory = _ixml-&gt;create_stream_factory( ).
-
-* Create parent node
-  rootnode = xmldoc-&gt;create_element( c_xml_key_sotr ). &quot;OTR object type
-  CLEAR sotrheader-concept.                                 &quot;ewH:33
-  setattributesfromstructure( node = rootnode structure = sotrheader ).
-
-* Create nodes for texts
-  LOOP AT sotrtexttable INTO sotrtextline.
-    txtnode = xmldoc-&gt;create_element( c_xml_key_sotrtext ).
-    CLEAR: sotrtextline-concept, sotrtextline-object.       &quot;ewH:33
-    setattributesfromstructure(
-      node = txtnode structure = sotrtextline ).
-    rc = rootnode-&gt;append_child( txtnode ).
-  ENDLOOP.
-
-  node = rootnode.
-
-endmethod.</source>
-  </method>
-  <method CLSNAME="ZSAPLINK_OO" CMPNAME="GET_TYPEPUSAGE" VERSION="1" LANGU="E" DESCRIPT="Get type pool usage" EXPOSURE="1" STATE="1" EDITORDER="10 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
-   <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="GET_TYPEPUSAGE" SCONAME="XO_ROOTNODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
-   <source>method GET_TYPEPUSAGE.
-  DATA: lt_typepusages     TYPE seot_typepusages_r,
-        lo_typepusages     TYPE REF TO if_ixml_element,
-        ls_typepusage      TYPE seot_typepusage_r.
-
-  DATA: l_rc               TYPE sy-subrc,
-        l_string           TYPE string,
-        ls_classkey        TYPE seoclskey.
-
-  ls_classkey-clsname = objname.
-
-  CALL FUNCTION &apos;SEO_TYPEPUSAGE_READ_ALL&apos;
-    EXPORTING
-      cifkey            = ls_classkey
-      version           = seoc_version_active
-    IMPORTING
-      typepusages       = lt_typepusages
-    EXCEPTIONS
-      clif_not_existing = 1
-      OTHERS            = 2.
-
-  LOOP AT lt_typepusages INTO ls_typepusage.
-    lo_typepusages = xmldoc-&gt;create_element( c_xml_key_typepusage ).
-    setattributesfromstructure( node      = lo_typepusages
-                                structure = ls_typepusage ).
-    l_rc = xo_rootnode-&gt;append_child( lo_typepusages ).
-  ENDLOOP.
-
-*ewH: for version 0.1.3, we will continue to generate both nodes
-* in order for upgradeability of saplink itself.  For version
-* 2.0, forwardDeclaration node generations will be deprecated.
-  LOOP AT lt_typepusages INTO ls_typepusage.
-    lo_typepusages = xmldoc-&gt;create_element( c_xml_key_forwarddeclaration ).
-    l_string       = ls_typepusage-typegroup.
-    l_rc = lo_typepusages-&gt;if_ixml_node~set_value( l_string ).
-    l_rc = xo_rootnode-&gt;append_child( lo_typepusages ).
-  ENDLOOP.
-
-endmethod.</source>
-  </method>
- </CLAS>
- <CLAS CLSNAME="ZSAPLINK_CLASS" VERSION="1" LANGU="E" DESCRIPT="SAPlink Class Installer" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" CLSCCINCL="X" FIXPT="X" UNICODE="X" CLSBCCAT="00" DURATION_TYPE="0 " RISK_LEVEL="0 " REFCLSNAME="ZSAPLINK_OO">
-  <localImplementation>*&quot;* local class implementation for public class
-*&quot;* use this source file for the implementation part of
-*&quot;* local helper classes</localImplementation>
-  <localTypes>*&quot;* use this source file for any type declarations (class
-*&quot;* definitions, interfaces or data types) you need for method
-*&quot;* implementation or private method&apos;s signature</localTypes>
-  <localMacros>*&quot;* use this source file for any macro definitions you need
-*&quot;* in the implementation part of the class</localMacros>
+  <typeUsage CLSNAME="ZSAPLINK_CLASS" TYPEGROUP="ABAP" VERSION="1" TPUTYPE="0" IMPLICIT="X"/>
   <typeUsage CLSNAME="ZSAPLINK_CLASS" TYPEGROUP="SEOO" VERSION="1" TPUTYPE="0" IMPLICIT="X"/>
+  <forwardDeclaration>ABAP</forwardDeclaration>
   <forwardDeclaration>SEOO</forwardDeclaration>
   <attribute CLSNAME="ZSAPLINK_CLASS" CMPNAME="C_XML_KEY_CLASS_DOCUMENTATION" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="4 " ATTDECLTYP="2" ATTVALUE="&apos;classDocumentation&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
   <attribute CLSNAME="ZSAPLINK_CLASS" CMPNAME="C_XML_KEY_LANGUAGE" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="5 " ATTDECLTYP="2" ATTVALUE="&apos;language&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
@@ -1666,12 +1209,14 @@ endmethod.</source>
   <attribute CLSNAME="ZSAPLINK_CLASS" CMPNAME="C_XML_KEY_TEXTELEMENT" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="2 " ATTDECLTYP="2" ATTVALUE="&apos;textElement&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
   <attribute CLSNAME="ZSAPLINK_CLASS" CMPNAME="C_XML_KEY_TEXTLINE" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="8 " ATTDECLTYP="2" ATTVALUE="&apos;textLine&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
   <attribute CLSNAME="ZSAPLINK_CLASS" CMPNAME="C_XML_KEY_TEXTPOOL" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="3 " ATTDECLTYP="2" ATTVALUE="&apos;textPool&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZSAPLINK_CLASS" CMPNAME="MV_STEAMROLLER" VERSION="1" LANGU="E" DESCRIPT="If true impl. of exceptionclass constructur get exported" EXPOSURE="2" STATE="1" EDITORDER="9 " ATTDECLTYP="0" ATTVALUE="ABAP_FALSE" ATTEXPVIRT="0" TYPTYPE="1" TYPE="ABAP_BOOL" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
   <inheritance CLSNAME="ZSAPLINK_CLASS" REFCLSNAME="ZSAPLINK_OO" VERSION="1" STATE="1">
    <redefinition CLSNAME="ZSAPLINK_CLASS" REFCLSNAME="ZSAPLINK_OO" VERSION="1" MTDNAME="CHECKEXISTS" EXPOSURE="0"/>
    <redefinition CLSNAME="ZSAPLINK_CLASS" REFCLSNAME="ZSAPLINK_OO" VERSION="1" MTDNAME="CREATEIXMLDOCFROMOBJECT" EXPOSURE="0"/>
    <redefinition CLSNAME="ZSAPLINK_CLASS" REFCLSNAME="ZSAPLINK_OO" VERSION="1" MTDNAME="CREATEOBJECTFROMIXMLDOC" EXPOSURE="0"/>
    <redefinition CLSNAME="ZSAPLINK_CLASS" REFCLSNAME="ZSAPLINK_OO" VERSION="1" MTDNAME="DELETEOBJECT" EXPOSURE="0"/>
    <redefinition CLSNAME="ZSAPLINK_CLASS" REFCLSNAME="ZSAPLINK_OO" VERSION="1" MTDNAME="GETOBJECTTYPE" EXPOSURE="0"/>
+   <redefinition CLSNAME="ZSAPLINK_CLASS" REFCLSNAME="ZSAPLINK_OO" VERSION="1" MTDNAME="GET_VERSION_INFO" EXPOSURE="2"/>
   </inheritance>
   <method CLSNAME="ZSAPLINK_OO" CMPNAME="CHECKEXISTS" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
    <source>method CHECKEXISTS.
@@ -1784,6 +1329,8 @@ endmethod.</source>
   DATA otrnode TYPE REF TO if_ixml_element.
   DATA _otrguid TYPE sotr_conc.
 
+  data: ls_version_info type gts_version_info.
+
   _classname = objname.
   classkey-clsname = objname.
 
@@ -1832,6 +1379,13 @@ endmethod.</source>
 
   setattributesfromstructure( node      = rootnode
                               structure = classproperties ).
+*--------------------------------------------------------------------*
+* Added versioning info
+*--------------------------------------------------------------------*
+  ls_version_info = get_version_info( ).
+  setattributesfromstructure( node      = rootnode
+                              structure = ls_version_info ).
+
   TRY.
       CALL METHOD cl_abap_classdescr=&gt;describe_by_name
         EXPORTING
@@ -1890,6 +1444,7 @@ endmethod.</source>
   ENDIF.
   LOOP AT types INTO wa_type.
     types_node = xmldoc-&gt;create_element( &apos;types&apos; ).
+    clear wa_type-TYPESRC_LENG. &quot; Will be recalculated on import, differs depending on OS due to linebreaks
     setattributesfromstructure( node = types_node structure =
     wa_type ).
     rc = rootnode-&gt;append_child( types_node ).
@@ -2122,7 +1677,9 @@ endmethod.</source>
     methodkey-clsname = _classname.
     methodkey-cpdname = methoddescr-name.
 *//nbus: added logic for exception class
-    IF methoddescr-name EQ &apos;CONSTRUCTOR&apos; AND classproperties-category = seoc_category_exception.
+    IF    methoddescr-name         =  &apos;CONSTRUCTOR&apos;
+      AND classproperties-category =  seoc_category_exception
+      and me-&gt;mv_steamroller       &lt;&gt; abap_true.
       &quot; Constructor() will be generated automatically into the
       &quot; target system once the class is saved
       CONTINUE.
@@ -3218,15 +2775,25 @@ endmethod.</source>
   data obj_name type SEOCLSNAME.
   data lang type spras.
   data langNodeExists type flag.
-  data logonLanguageExists type flag.
+*  data logonLanguageExists type flag.                  &quot; del #255 - seemingly not used
   data _state(1) type c.
   data classpoolname type program.
+  DATA lv_original_language TYPE sylangu.                &quot; ins #255
 
   textpoolnode = xmldoc-&gt;find_from_name( &apos;textPool&apos; ).
 
   if textpoolnode is not bound.
     return.
   endif.
+
+*--------------------------------------------------------------------*
+* Ticket #255 - Error importing texts when logon language different
+*               then original language of class
+*--------------------------------------------------------------------*
+  textpoolnode = xmldoc-&gt;find_from_name( &apos;CLAS&apos; ).              &quot; ins #255
+  lv_original_language = textpoolnode-&gt;get_attribute( &apos;LANGU&apos; ).&quot; ins #255
+  SET LANGUAGE lv_original_language. &quot; ins #255
+  &quot; Gregor Wolf: With this all languages from the Nugget/Slinkee are imported
 
   obj_name = objName.
   classpoolname = cl_oo_classname_service=&gt;GET_CLASSPOOL_NAME( obj_Name ).
@@ -3235,7 +2802,6 @@ endmethod.</source>
   filter = textPoolNode-&gt;create_filter_name( &apos;language&apos; ).
   langIterator = textPoolNode-&gt;create_iterator_filtered( filter ).
   langNode ?= langIterator-&gt;get_next( ).
-
 
   while langNode is not initial.
     langNodeExists = &apos;X&apos;.
@@ -3252,23 +2818,27 @@ endmethod.</source>
 *For some reason the 1st one is blank... not sure why.
     aTextNode ?= textIterator-&gt;get_next( ).
     while aTextNode is not initial.
-      CALL METHOD GETSTRUCTUREFROMATTRIBUTES
+      getstructurefromattributes(
         EXPORTING
-          node      = aTextNode
+          node            = aTextNode
         CHANGING
-          structure = textPoolRow.
+          structure       = textPoolRow
+      ).
       append textPoolRow to textPoolTable.
       aTextNode ?= textIterator-&gt;get_next( ).
     endwhile.
     if textPoolTable is not initial.
       lang = langNode-&gt;get_attribute( &apos;SPRAS&apos; ).
-      if lang = sy-langu.
-        logonLanguageExists = &apos;X&apos;.
+*      if lang = sy-langu.                &quot; del #255 - replaced by original language
+      IF lang = lv_original_language.    &quot; ins #255 - replaced former coding
+*        logonLanguageExists = &apos;X&apos;.
         _state = &apos;I&apos;.
       else.
 *       seems that if a textpool is inserted as inactive for language
 *       other than the logon language, it is lost upon activation
 *       not sure inserting as active is best solution,but seems to work
+*       Stefan Schmöcker:  Looks like this does not trigger on logon- &quot; ins #255
+*                          but on class original language             &quot; ins #255
         _state = &apos;A&apos;.
       endif.
       insert textpool _objName
@@ -3728,8 +3298,23 @@ endmethod.</source>
 
 endmethod.</source>
   </method>
+  <method CLSNAME="ZSAPLINK_OO" CMPNAME="GET_VERSION_INFO" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+   <source>METHOD get_version_info.
+
+  rs_version_info-zsaplink_plugin_major_version = 0.  &quot; We will still import anything written by older version, versioning doesn&apos;t change in- or ouptut
+  rs_version_info-zsaplink_plugin_minor_version = 1.  &quot; Since we add versioning info this has to increase
+  rs_version_info-zsaplink_plugin_build_version = 0.  &quot; minor version increased --&gt; reset to 0
+
+  rs_version_info-zsaplink_plugin_info1         = &apos;ZSAPLINK_CLASS is part of the main ZSAPLINK project --&gt; This plugin found there instead of ZSAPLINK_PLUGINS projects&apos;.
+  rs_version_info-zsaplink_plugin_info2         = &apos;SAPLINK homepage: https://www.assembla.com/spaces/saplink/wiki&apos;.
+  rs_version_info-zsaplink_plugin_info3         = &apos;Download from https://www.assembla.com/code/saplink/subversion/nodes&apos;.
+  rs_version_info-zsaplink_plugin_info4         = &apos;and navigate to:  trunk -&gt; core -&gt; ZSAPLINK -&gt; CLAS -&gt; ZSAPLINK_CLASS.slnk&apos;.
+  rs_version_info-zsaplink_plugin_info5         = &apos;&apos;.
+
+ENDMETHOD.</source>
+  </method>
  </CLAS>
- <CLAS CLSNAME="ZSAPLINK_NUGGET" VERSION="1" LANGU="E" DESCRIPT="SAPlink Nugget" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" CLSFINAL="X" CLSCCINCL="X" FIXPT="X" UNICODE="X" CLSBCCAT="00" DURATION_TYPE="0 " RISK_LEVEL="0 ">
+ <CLAS CLSNAME="ZSAPLINK_NUGGET" VERSION="1" LANGU="E" DESCRIPT="SAPlink Nugget" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" CLSFINAL="X" CLSCCINCL="X" FIXPT="X" UNICODE="X" CLSBCCAT="00" DURATION_TYPE="0 " RISK_LEVEL="0 " ZSAPLINK_PLUGIN_MAJOR_VERSION="0 " ZSAPLINK_PLUGIN_MINOR_VERSION="1 " ZSAPLINK_PLUGIN_BUILD_VERSION="0 " ZSAPLINK_PLUGIN_INFO1="ZSAPLINK_CLASS is part of the main ZSAPLINK project --&gt; This plugin found there instead of ZSAPLINK_PLUGINS projects" ZSAPLINK_PLUGIN_INFO2="SAPLINK homepage: https://www.assembla.com/spaces/saplink/wiki" ZSAPLINK_PLUGIN_INFO3="Download from https://www.assembla.com/code/saplink/subversion/nodes" ZSAPLINK_PLUGIN_INFO4="and navigate to:  trunk -&gt; core -&gt; ZSAPLINK -&gt; CLAS -&gt; ZSAPLINK_CLASS.slnk">
   <localImplementation>*&quot;* local class implementation for public class
 *&quot;* use this source file for the implementation part of
 *&quot;* local helper classes</localImplementation>
@@ -3744,6 +3329,7 @@ TYPES: BEGIN OF ts_objects,
        tt_objects TYPE SORTED TABLE OF ts_objects WITH UNIQUE KEY nugget_level sort.</localTypes>
   <localMacros>*&quot;* use this source file for any macro definitions you need
 *&quot;* in the implementation part of the class</localMacros>
+  <localTestClasses>*&quot;* use this source file for your ABAP unit test classes</localTestClasses>
   <attribute CLSNAME="ZSAPLINK_NUGGET" CMPNAME="ITERATOR" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_NODE_ITERATOR" EXPOSURE="0" STATE="1" EDITORDER="3 " ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="3" TYPE="IF_IXML_NODE_ITERATOR" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
   <attribute CLSNAME="ZSAPLINK_NUGGET" CMPNAME="IXML" VERSION="1" LANGU="E" DESCRIPT="IF_IXML" EXPOSURE="1" STATE="1" EDITORDER="1 " ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="3" TYPE="IF_IXML" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
   <attribute CLSNAME="ZSAPLINK_NUGGET" CMPNAME="NUGGNAME" VERSION="1" LANGU="E" DESCRIPT="Nugget Name" EXPOSURE="0" STATE="1" EDITORDER="4 " ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
@@ -3903,10 +3489,11 @@ endmethod.</source>
   endif.
 endmethod.</source>
   </method>
-  <method CLSNAME="ZSAPLINK_NUGGET" CMPNAME="CONSTRUCTOR" VERSION="1" LANGU="E" DESCRIPT="CONSTRUCTOR" EXPOSURE="2" STATE="1" EDITORDER="7 " DISPID="0 " MTDTYPE="2" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+  <method CLSNAME="ZSAPLINK_NUGGET" CMPNAME="CONSTRUCTOR" VERSION="1" LANGU="E" DESCRIPT="CONSTRUCTOR" EXPOSURE="2" STATE="1" EDITORDER="7 " DISPID="0 " MTDTYPE="2" MTDDECLTYP="0" MTDNEWEXC="X" BCMTDCAT="00" BCMTDSYN="0">
    <parameter CLSNAME="ZSAPLINK_NUGGET" CMPNAME="CONSTRUCTOR" SCONAME="NAME" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="2" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING" PAROPTIONL="X"/>
    <parameter CLSNAME="ZSAPLINK_NUGGET" CMPNAME="CONSTRUCTOR" SCONAME="IXMLDOCUMENT" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_DOCUMENT" CMPTYPE="1" MTDTYPE="2" EDITORDER="2 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_DOCUMENT" PAROPTIONL="X"/>
-   <source>method CONSTRUCTOR.
+   <exception CLSNAME="ZSAPLINK_NUGGET" CMPNAME="CONSTRUCTOR" SCONAME="ZCX_SAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="2" EDITORDER="1 "/>
+   <source>METHOD constructor.
 */---------------------------------------------------------------------\
 *| This file is part of SAPlink.                                       |
 *|                                                                     |
@@ -3925,32 +3512,39 @@ endmethod.</source>
 *| See the License for the specific language governing permissions and |
 *| limitations under the License.                                      |
 *\---------------------------------------------------------------------/
-data rootNode type ref to if_ixml_element.
-data rval type i.
+  DATA rootnode TYPE REF TO if_ixml_element.
+  DATA rval TYPE i.
 *data xmlDoc type ref to if_ixml_document.
 
-  if name is not initial.
-    NuggName = name.
+  IF name IS NOT INITIAL.
+    nuggname = name.
     ixml = cl_ixml=&gt;create( ).
-    xmlDoc = ixml-&gt;create_document( ).
+    xmldoc = ixml-&gt;create_document( ).
 *  may need this from create empty nugget
 *dan this was commented out, any ideas why??  Uncommented for Zake.
-    rootNode = xmlDoc-&gt;create_element( &apos;nugget&apos; ).
-    rval = rootNode-&gt;SET_ATTRIBUTE( name = &apos;name&apos; value = nuggName ).
-    rval = xmlDoc-&gt;append_child( rootNode ).
+    rootnode = xmldoc-&gt;create_element( &apos;nugget&apos; ).
+    rval = rootnode-&gt;set_attribute( name = &apos;name&apos; value = nuggname ).
+    rval = xmldoc-&gt;append_child( rootnode ).
 
-    streamFactory = ixml-&gt;CREATE_STREAM_FACTORY( ).
-  elseif ixmlDocument is not initial.
-    ixml = cl_ixml=&gt;create( ).
-    xmlDoc = ixmlDocument.
-    rootNode = xmlDoc-&gt;get_root_element( ).
-    nuggName = rootNode-&gt;get_attribute( &apos;name&apos; ).
-    streamFactory = ixml-&gt;CREATE_STREAM_FACTORY( ).
-  else.
-    raise exception type zcx_saplink
-      exporting textid = zcx_saplink=&gt;system_error.
-  endif.
-endmethod.</source>
+    streamfactory = ixml-&gt;create_stream_factory( ).
+  ELSEIF ixmldocument IS NOT INITIAL.
+    TRY.
+        ixml = cl_ixml=&gt;create( ).
+        xmldoc = ixmldocument.
+        rootnode = xmldoc-&gt;get_root_element( ).
+        nuggname = rootnode-&gt;get_attribute( &apos;name&apos; ).
+        streamfactory = ixml-&gt;create_stream_factory( ).
+      CATCH cx_root. &quot; May happen if someone passed a file that is no nugget
+        RAISE EXCEPTION TYPE zcx_saplink
+          EXPORTING
+            textid = zcx_saplink=&gt;system_error.
+    ENDTRY.
+  ELSE.
+    RAISE EXCEPTION TYPE zcx_saplink
+      EXPORTING
+        textid = zcx_saplink=&gt;system_error.
+  ENDIF.
+ENDMETHOD.</source>
   </method>
   <method CLSNAME="ZSAPLINK_NUGGET" CMPNAME="CREATEEMPTYXML" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="5 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="1" BCMTDCAT="00" BCMTDSYN="0">
    <parameter CLSNAME="ZSAPLINK_NUGGET" CMPNAME="CREATEEMPTYXML" SCONAME="NUGGETNAME" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
@@ -4147,10 +3741,11 @@ endmethod.</source>
 
 endmethod.</source>
   </method>
-  <method CLSNAME="ZSAPLINK_NUGGET" CMPNAME="GETNUGGETINFO" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="6 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="1" BCMTDCAT="00" BCMTDSYN="0">
+  <method CLSNAME="ZSAPLINK_NUGGET" CMPNAME="GETNUGGETINFO" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="6 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="1" MTDNEWEXC="X" BCMTDCAT="00" BCMTDSYN="0">
    <parameter CLSNAME="ZSAPLINK_NUGGET" CMPNAME="GETNUGGETINFO" SCONAME="IXMLDOCUMENT" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_DOCUMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_DOCUMENT"/>
    <parameter CLSNAME="ZSAPLINK_NUGGET" CMPNAME="GETNUGGETINFO" SCONAME="NAME" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="1" TYPE="STRING"/>
-   <source>method GETNUGGETINFO.
+   <exception CLSNAME="ZSAPLINK_NUGGET" CMPNAME="GETNUGGETINFO" SCONAME="ZCX_SAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 "/>
+   <source>METHOD getnuggetinfo.
 */---------------------------------------------------------------------\
 *| This file is part of SAPlink.                                       |
 *|                                                                     |
@@ -4169,10 +3764,16 @@ endmethod.</source>
 *| See the License for the specific language governing permissions and |
 *| limitations under the License.                                      |
 *\---------------------------------------------------------------------/
-data rootNode type ref to if_ixml_element.
-    rootNode = ixmlDocument-&gt;get_root_element( ).
-    name = rootNode-&gt;get_attribute( &apos;name&apos; ).
-endmethod.</source>
+  DATA rootnode TYPE REF TO if_ixml_element.
+  TRY.
+      rootnode = ixmldocument-&gt;get_root_element( ).
+      name = rootnode-&gt;get_attribute( &apos;name&apos; ).
+    CATCH cx_root. &quot; May happen if someone passed a file that is no nugget
+      RAISE EXCEPTION TYPE zcx_saplink
+        EXPORTING
+          textid = zcx_saplink=&gt;system_error.
+  ENDTRY.
+ENDMETHOD.</source>
   </method>
   <method CLSNAME="ZSAPLINK_NUGGET" CMPNAME="RESET" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="4 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
    <source>method RESET.
@@ -4202,7 +3803,537 @@ endmethod.</source>
 endmethod.</source>
   </method>
  </CLAS>
- <CLAS CLSNAME="ZSAPLINK_PROGRAM" VERSION="1" LANGU="E" DESCRIPT="SAPlink - Programs" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" CLSFINAL="X" CLSCCINCL="X" FIXPT="X" UNICODE="X" CLSBCCAT="00" WITH_UNIT_TESTS="X" DURATION_TYPE="0 " RISK_LEVEL="0 " REFCLSNAME="ZSAPLINK">
+ <CLAS CLSNAME="ZSAPLINK_OO" VERSION="1" LANGU="E" DESCRIPT="ZSAPLINK - OO class for CLAS and INTF plugin" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" CLSABSTRCT="X" CLSCCINCL="X" FIXPT="X" UNICODE="X" CLSBCCAT="00" DURATION_TYPE="0 " RISK_LEVEL="0 " ZSAPLINK_PLUGIN_MAJOR_VERSION="0 " ZSAPLINK_PLUGIN_MINOR_VERSION="1 " ZSAPLINK_PLUGIN_BUILD_VERSION="0 " ZSAPLINK_PLUGIN_INFO1="ZSAPLINK_CLASS is part of the main ZSAPLINK project --&gt; This plugin found there instead of ZSAPLINK_PLUGINS projects" ZSAPLINK_PLUGIN_INFO2="SAPLINK homepage: https://www.assembla.com/spaces/saplink/wiki" ZSAPLINK_PLUGIN_INFO3="Download from https://www.assembla.com/code/saplink/subversion/nodes" ZSAPLINK_PLUGIN_INFO4="and navigate to:  trunk -&gt; core -&gt; ZSAPLINK -&gt; CLAS -&gt; ZSAPLINK_CLASS.slnk" REFCLSNAME="ZSAPLINK">
+  <localImplementation>*&quot;* local class implementation for public class
+*&quot;* use this source file for the implementation part of
+*&quot;* local helper classes</localImplementation>
+  <localTypes>*&quot;* use this source file for any type declarations (class
+*&quot;* definitions, interfaces or data types) you need for method
+*&quot;* implementation or private method&apos;s signature</localTypes>
+  <localMacros>*&quot;* use this source file for any macro definitions you need
+*&quot;* in the implementation part of the class</localMacros>
+  <typeUsage CLSNAME="ZSAPLINK_OO" TYPEGROUP="ABAP" VERSION="1" TPUTYPE="0" EXPLICIT="X"/>
+  <typeUsage CLSNAME="ZSAPLINK_OO" TYPEGROUP="SEOP" VERSION="1" TPUTYPE="0" EXPLICIT="X"/>
+  <typeUsage CLSNAME="ZSAPLINK_OO" TYPEGROUP="SEOR" VERSION="1" TPUTYPE="0" EXPLICIT="X"/>
+  <typeUsage CLSNAME="ZSAPLINK_OO" TYPEGROUP="SEOS" VERSION="1" TPUTYPE="0" EXPLICIT="X"/>
+  <typeUsage CLSNAME="ZSAPLINK_OO" TYPEGROUP="SEOT" VERSION="1" TPUTYPE="0" EXPLICIT="X"/>
+  <typeUsage CLSNAME="ZSAPLINK_OO" TYPEGROUP="SEOX" VERSION="1" TPUTYPE="0" EXPLICIT="X"/>
+  <forwardDeclaration>ABAP</forwardDeclaration>
+  <forwardDeclaration>SEOP</forwardDeclaration>
+  <forwardDeclaration>SEOR</forwardDeclaration>
+  <forwardDeclaration>SEOS</forwardDeclaration>
+  <forwardDeclaration>SEOT</forwardDeclaration>
+  <forwardDeclaration>SEOX</forwardDeclaration>
+  <attribute CLSNAME="ZSAPLINK_OO" CMPNAME="C_XML_KEY_ALIAS_METHOD" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="1 " ATTDECLTYP="2" ATTVALUE="&apos;aliasMethod&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZSAPLINK_OO" CMPNAME="C_XML_KEY_CLSDEFERRD" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="2 " ATTDECLTYP="2" ATTVALUE="&apos;typeClasDef&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZSAPLINK_OO" CMPNAME="C_XML_KEY_FORWARDDECLARATION" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="3 " ATTDECLTYP="2" ATTVALUE="&apos;forwardDeclaration&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZSAPLINK_OO" CMPNAME="C_XML_KEY_FRIENDS" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="6 " ATTDECLTYP="2" ATTVALUE="&apos;friends&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZSAPLINK_OO" CMPNAME="C_XML_KEY_INHERITANCE" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="7 " ATTDECLTYP="2" ATTVALUE="&apos;inheritance&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZSAPLINK_OO" CMPNAME="C_XML_KEY_INTDEFERRD" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="4 " ATTDECLTYP="2" ATTVALUE="&apos;typeIntfDef&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZSAPLINK_OO" CMPNAME="C_XML_KEY_SOTR" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="8 " ATTDECLTYP="2" ATTVALUE="&apos;sotr&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZSAPLINK_OO" CMPNAME="C_XML_KEY_SOTRTEXT" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="9 " ATTDECLTYP="2" ATTVALUE="&apos;sotrText&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZSAPLINK_OO" CMPNAME="C_XML_KEY_TYPEPUSAGE" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="5 " ATTDECLTYP="2" ATTVALUE="&apos;typeUsage&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+  <inheritance CLSNAME="ZSAPLINK_OO" REFCLSNAME="ZSAPLINK" VERSION="1" STATE="1"/>
+  <method CLSNAME="ZSAPLINK_OO" CMPNAME="CREATE_ALIAS_METHOD" VERSION="1" LANGU="E" DESCRIPT="Create alias for method" EXPOSURE="1" STATE="1" EDITORDER="1 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="CREATE_ALIAS_METHOD" SCONAME="XT_ALIASES_METHOD" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="SEOO_ALIASES_R"/>
+   <source>method CREATE_ALIAS_METHOD.
+  DATA: filter TYPE REF TO if_ixml_node_filter,
+        iterator TYPE REF TO if_ixml_node_iterator,
+        node TYPE REF TO if_ixml_element.
+
+  DATA: ls_alias_method  LIKE LINE OF xt_aliases_method.
+
+
+  filter = xmldoc-&gt;create_filter_name( c_xml_key_alias_method ).
+  iterator = xmldoc-&gt;create_iterator_filtered( filter ).
+  node ?= iterator-&gt;get_next( ).
+  WHILE node IS NOT INITIAL.
+    CLEAR ls_alias_method.
+    CALL METHOD getstructurefromattributes
+      EXPORTING
+        node      = node
+      CHANGING
+        structure = ls_alias_method.
+    INSERT ls_alias_method INTO TABLE xt_aliases_method.
+    node ?= iterator-&gt;get_next( ).
+  ENDWHILE.
+
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZSAPLINK_OO" CMPNAME="CREATE_CLSDEFERRD" VERSION="1" LANGU="E" DESCRIPT="Create class deferred" EXPOSURE="1" STATE="1" EDITORDER="2 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="CREATE_CLSDEFERRD" SCONAME="XT_CLSDEFERRDS" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="SEOT_CLSDEFERRDS_R"/>
+   <source>method CREATE_CLSDEFERRD.
+  DATA: filter TYPE REF TO if_ixml_node_filter,
+        iterator TYPE REF TO if_ixml_node_iterator,
+        node TYPE REF TO if_ixml_element.
+
+  DATA: ls_clsdeferrd  LIKE LINE OF xt_clsdeferrds.
+
+
+  filter   = xmldoc-&gt;create_filter_name( c_xml_key_clsdeferrd ).
+  iterator = xmldoc-&gt;create_iterator_filtered( filter ).
+  node ?= iterator-&gt;get_next( ).
+
+  WHILE node IS NOT INITIAL.
+    CALL METHOD getstructurefromattributes
+      EXPORTING
+        node      = node
+      CHANGING
+        structure = ls_clsdeferrd.
+    APPEND ls_clsdeferrd TO xt_clsdeferrds.
+    node ?= iterator-&gt;get_next( ).
+  ENDWHILE.
+
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZSAPLINK_OO" CMPNAME="CREATE_INTDEFERRD" VERSION="1" LANGU="E" DESCRIPT="Create interface deferred" EXPOSURE="1" STATE="1" EDITORDER="3 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="CREATE_INTDEFERRD" SCONAME="XT_INTDEFERRDS" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="SEOT_INTDEFERRDS_R"/>
+   <source>method CREATE_INTDEFERRD.
+  DATA: filter TYPE REF TO if_ixml_node_filter,
+        iterator TYPE REF TO if_ixml_node_iterator,
+        node TYPE REF TO if_ixml_element.
+
+  DATA: ls_intdeferrd  LIKE LINE OF xt_intdeferrds.
+
+
+  filter   = xmldoc-&gt;create_filter_name( c_xml_key_intdeferrd ).
+  iterator = xmldoc-&gt;create_iterator_filtered( filter ).
+  node ?= iterator-&gt;get_next( ).
+
+  WHILE node IS NOT INITIAL.
+    CALL METHOD getstructurefromattributes
+      EXPORTING
+        node      = node
+      CHANGING
+        structure = ls_intdeferrd.
+    APPEND ls_intdeferrd TO xt_intdeferrds.
+    node ?= iterator-&gt;get_next( ).
+  ENDWHILE.
+
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZSAPLINK_OO" CMPNAME="CREATE_OTR" VERSION="1" LANGU="E" DESCRIPT="Get an OTR object from XML node" EXPOSURE="1" STATE="1" EDITORDER="4 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="CREATE_OTR" SCONAME="NODE" VERSION="1" LANGU="E" DESCRIPT="xml Element" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
+   <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="CREATE_OTR" SCONAME="DEVCLASS" VERSION="1" LANGU="E" DESCRIPT="Development class/package" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="DEVCLASS" PARVALUE="&apos;$TMP&apos;" PAROPTIONL="X"/>
+   <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="CREATE_OTR" SCONAME="CONCEPT" VERSION="1" LANGU="E" DESCRIPT="Key for Logical Object in the OTR" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " PARDECLTYP="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SOTR_TEXT-CONCEPT"/>
+   <exception CLSNAME="ZSAPLINK_OO" CMPNAME="CREATE_OTR" SCONAME="ZCX_SAPLINK" VERSION="1" LANGU="E" DESCRIPT="SAPlink exception class" MTDTYPE="0" EDITORDER="1 "/>
+   <source>method CREATE_OTR.
+*/---------------------------------------------------------------------\
+*| This file is part of SAPlink.                                       |
+*|                                                                     |
+*| Copyright 2014 SAPlink project members                              |
+*|                                                                     |
+*| Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);     |
+*| you may not use this file except in compliance with the License.    |
+*| You may obtain a copy of the License at                             |
+*|                                                                     |
+*|     http://www.apache.org/licenses/LICENSE-2.0                      |
+*|                                                                     |
+*| Unless required by applicable law or agreed to in writing, software |
+*| distributed under the License is distributed on an &quot;AS IS&quot; BASIS,   |
+*| WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or     |
+*| implied.                                                            |
+*| See the License for the specific language governing permissions and |
+*| limitations under the License.                                      |
+*\---------------------------------------------------------------------/
+  DATA txtnode TYPE REF TO if_ixml_element.
+  DATA filter TYPE REF TO if_ixml_node_filter.
+  DATA iterator TYPE REF TO if_ixml_node_iterator.
+
+  DATA sotrheader TYPE sotr_head.
+  DATA sotrtextline TYPE sotr_text.
+  DATA sotrtexttable TYPE TABLE OF sotr_text.
+  DATA sotrpaket TYPE sotr_pack.
+
+* get OTR header info
+  CALL METHOD getstructurefromattributes
+    EXPORTING
+      node      = node
+    CHANGING
+      structure = sotrheader.
+
+* get OTR text info
+  filter = node-&gt;create_filter_name( c_xml_key_sotrText ).
+  iterator = node-&gt;create_iterator_filtered( filter ).
+  txtnode ?= iterator-&gt;get_next( ).
+
+  WHILE txtnode IS NOT INITIAL.
+    CLEAR sotrtextline.
+    CALL METHOD getstructurefromattributes
+      EXPORTING
+        node      = txtnode
+      CHANGING
+        structure = sotrtextline.
+    CLEAR: sotrtextline-concept, sotrtextline-object.       &quot;ewH:33
+    APPEND sotrtextline TO sotrtexttable.
+    txtnode ?= iterator-&gt;get_next( ).
+  ENDWHILE.
+
+* ewH:issue 33--&gt; in 6.40 and above, you cannot pass a default concept
+*  (otr) guid, so we will always create new
+*  CALL FUNCTION &apos;SOTR_GET_CONCEPT&apos;
+*    EXPORTING
+*      concept              = sotrHeader-concept
+**   IMPORTING
+**     HEADER               =
+**   TABLES
+**     ENTRIES              =
+*   EXCEPTIONS
+*     NO_ENTRY_FOUND       = 1
+*     OTHERS               = 2
+*            .
+*  IF sy-subrc &lt;&gt; 1.
+**   delete OTR if exists already
+*    CALL FUNCTION &apos;SOTR_DELETE_CONCEPT&apos;
+*      EXPORTING
+*        concept                     = sotrHeader-concept
+*     EXCEPTIONS
+*       NO_AUTHORIZATION            = 1
+*       NO_ENTRY_FOUND              = 2. &quot;who cares
+**       CONCEPT_USED                = 3
+**       NO_MASTER_LANGUAGE          = 4
+**       NO_SOURCE_SYSTEM            = 5
+**       NO_TADIR_ENTRY              = 6
+**       ERROR_IN_CORRECTION         = 7
+**       USER_CANCELLED              = 8
+**       OTHERS                      = 9
+**              .
+*    if sy-subrc = 1.
+*      raise exception type zcx_saplink
+*        exporting textid = zcx_saplink=&gt;not_authorized.
+*    endif.
+*  ENDIF.
+
+
+  DATA objecttable TYPE sotr_objects.
+  DATA objecttype TYPE LINE OF sotr_objects.
+* Retrieve object type of OTR
+  CALL FUNCTION &apos;SOTR_OBJECT_GET_OBJECTS&apos;
+    EXPORTING
+      object_vector    = sotrheader-objid_vec
+    IMPORTING
+      OBJECTS          = objecttable
+    EXCEPTIONS
+      object_not_found = 1
+      OTHERS           = 2.
+
+  READ TABLE objecttable INTO objecttype INDEX 1.
+
+* create OTR
+  sotrpaket-paket = devclass.
+  CALL FUNCTION &apos;SOTR_CREATE_CONCEPT&apos;
+    EXPORTING
+      paket                               = sotrpaket
+      crea_lan                            = sotrheader-crea_lan
+      alias_name                          = sotrheader-alias_name
+*      CATEGORY                            =
+      object                              = objecttype
+      entries                             = sotrtexttable
+*     FLAG_CORRECTION_ENTRY               =
+*     IN_UPDATE_TASK                      =
+*      CONCEPT_DEFAULT                     = sotrHeader-concept &quot;ewH:33
+    IMPORTING
+      concept                             = concept         &quot;ewH:33
+    EXCEPTIONS
+      package_missing                     = 1
+      crea_lan_missing                    = 2
+      object_missing                      = 3
+      paket_does_not_exist                = 4
+      alias_already_exist                 = 5
+      object_type_not_found               = 6
+      langu_missing                       = 7
+      identical_context_not_allowed       = 8
+      text_too_long                       = 9
+      error_in_update                     = 10
+      no_master_langu                     = 11
+      error_in_concept_id                 = 12
+      alias_not_allowed                   = 13
+      tadir_entry_creation_failed         = 14
+      internal_error                      = 15
+      error_in_correction                 = 16
+      user_cancelled                      = 17
+      no_entry_found                      = 18
+      OTHERS                              = 19
+            .
+  IF sy-subrc &lt;&gt; 0.
+*   MESSAGE ID SY-MSGID TYPE SY-MSGTY NUMBER SY-MSGNO
+*           WITH SY-MSGV1 SY-MSGV2 SY-MSGV3 SY-MSGV4.
+  ENDIF.
+
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZSAPLINK_OO" CMPNAME="CREATE_TYPEPUSAGE" VERSION="1" LANGU="E" DESCRIPT="Create type pool usage" EXPOSURE="1" STATE="1" EDITORDER="5 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="CREATE_TYPEPUSAGE" SCONAME="XT_TYPEPUSAGES" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="SEOT_TYPEPUSAGES_R"/>
+   <source>method CREATE_TYPEPUSAGE.
+  DATA: filter   TYPE REF TO if_ixml_node_filter,
+        iterator TYPE REF TO if_ixml_node_iterator,
+        node     TYPE REF TO if_ixml_element,
+        source   TYPE string.
+
+
+  DATA: ls_typepusage  LIKE LINE OF xt_typepusages.
+
+*rrq comments Forward nodes are created in an old version of the
+*create XML from object.  In that node, the only attribute set
+*is the &quot;TypeGroup&quot;.  All other attributes are hard coded on the
+*create Object from XML .  To fix this and make it transparent to
+*users, &quot;forwaredDeclaration&quot; nodes will be supported, and a new
+*node will be added.
+*if it is an old version XML document, forwardDeclarations nodes
+*if it is a new version XML document, typeUsages nodes
+
+  filter   = xmldoc-&gt;create_filter_name( c_xml_key_typepusage ).
+  iterator = xmldoc-&gt;create_iterator_filtered( filter ).
+  node ?= iterator-&gt;get_next( ).
+
+  WHILE node IS NOT INITIAL.
+    CALL METHOD getstructurefromattributes
+      EXPORTING
+        node      = node
+      CHANGING
+        structure = ls_typepusage.
+    APPEND ls_typepusage TO xt_typepusages.
+    node ?= iterator-&gt;get_next( ).
+  ENDWHILE.
+
+* only check forwardDeclaration if typeUsages does not exist
+* later version this will be removed
+  IF xt_typepusages IS INITIAL.
+    filter = xmldoc-&gt;create_filter_name( c_xml_key_forwarddeclaration ).
+    iterator = xmldoc-&gt;create_iterator_filtered( filter ).
+    node ?= iterator-&gt;get_next( ).
+
+    WHILE node IS NOT INITIAL.
+      CLEAR ls_typepusage.
+      source = node-&gt;get_value( ).
+      ls_typepusage-clsname = objname.
+      ls_typepusage-version = &apos;0&apos;.
+      ls_typepusage-tputype = &apos;0&apos;.
+      ls_typepusage-explicit =  &apos;X&apos;.
+      ls_typepusage-implicit = &apos;&apos;.
+      ls_typepusage-typegroup = source.
+      APPEND ls_typepusage TO xt_typepusages.
+      node ?= iterator-&gt;get_next( ).
+    ENDWHILE.
+  ENDIF.
+
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZSAPLINK_OO" CMPNAME="GET_ALIAS_METHOD" VERSION="1" LANGU="E" DESCRIPT="Get alias for method" EXPOSURE="1" STATE="1" EDITORDER="6 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="GET_ALIAS_METHOD" SCONAME="IT_METHODS" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="ABAP_METHDESCR_TAB"/>
+   <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="GET_ALIAS_METHOD" SCONAME="XO_ROOTNODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
+   <source>method GET_ALIAS_METHOD.
+  DATA lo_alias  TYPE REF TO if_ixml_element.
+  DATA ls_alias  TYPE seoaliases.
+  DATA: l_rc     TYPE sy-subrc,
+        ls_method LIKE LINE OF it_methods,
+        ls_clsmethkey TYPE seocmpkey.
+
+  LOOP AT it_methods INTO ls_method.
+    ls_clsmethkey-clsname = objname.
+    ls_clsmethkey-cmpname = ls_method-name.
+    CLEAR ls_alias.
+    CALL FUNCTION &apos;SEO_ALIAS_GET&apos;
+     EXPORTING
+       cmpkey             = ls_clsmethkey
+*       VERSION            = SEOC_VERSION_INACTIVE
+     IMPORTING
+       alias              = ls_alias
+     EXCEPTIONS
+       not_existing       = 1
+       deleted            = 2
+       OTHERS             = 3
+             .
+    IF sy-subrc &lt;&gt; 0.
+* MESSAGE ID SY-MSGID TYPE SY-MSGTY NUMBER SY-MSGNO
+*         WITH SY-MSGV1 SY-MSGV2 SY-MSGV3 SY-MSGV4.
+    ELSE.
+      lo_alias = xmldoc-&gt;create_element( c_xml_key_alias_method ).
+      setattributesfromstructure( node      = lo_alias
+                                  structure = ls_alias ).
+      l_rc = xo_rootnode-&gt;append_child( lo_alias ).
+    ENDIF.
+  ENDLOOP.
+
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZSAPLINK_OO" CMPNAME="GET_CLSDEFERRD" VERSION="1" LANGU="E" DESCRIPT="Get class deferred" EXPOSURE="1" STATE="1" EDITORDER="7 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="GET_CLSDEFERRD" SCONAME="XO_ROOTNODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
+   <source>method GET_CLSDEFERRD.
+  DATA: lt_clsdeferrds     TYPE seot_clsdeferrds_r,
+        lo_clsdeferrds     TYPE REF TO if_ixml_element,
+        ls_clsdeferrd      TYPE seot_typepusage_r.
+
+  DATA: l_rc               TYPE sy-subrc,
+        ls_classkey        TYPE seoclskey.
+
+  ls_classkey-clsname = objname.
+
+  CALL FUNCTION &apos;SEO_CLSDEFERRD_READ_ALL&apos;
+    EXPORTING
+      cifkey            = ls_classkey
+      version           = seoc_version_active
+    IMPORTING
+      CLASSDEFERREDS    = lt_clsdeferrds
+    EXCEPTIONS
+      clif_not_existing = 1
+      OTHERS            = 2.
+
+  LOOP AT lt_clsdeferrds INTO ls_clsdeferrd.
+    lo_clsdeferrds = xmldoc-&gt;create_element( c_xml_key_clsdeferrd ).
+    setattributesfromstructure( node      = lo_clsdeferrds
+                                structure = ls_clsdeferrd ).
+    l_rc = xo_rootnode-&gt;append_child( lo_clsdeferrds ).
+  ENDLOOP.
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZSAPLINK_OO" CMPNAME="GET_INTDEFERRD" VERSION="1" LANGU="E" DESCRIPT="Get interface deferred" EXPOSURE="1" STATE="1" EDITORDER="8 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="GET_INTDEFERRD" SCONAME="XO_ROOTNODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
+   <source>method GET_INTDEFERRD.
+  DATA: lt_intdeferrds     TYPE seot_intdeferrds_r,
+        lo_intdeferrds     TYPE REF TO if_ixml_element,
+        ls_intdeferrd      TYPE seot_intdeferrd_r.
+
+  DATA: l_rc               TYPE sy-subrc,
+        ls_classkey        TYPE seoclskey.
+
+  ls_classkey-clsname = objname.
+
+  CALL FUNCTION &apos;SEO_INTDEFERRD_READ_ALL&apos;
+    EXPORTING
+      cifkey             = ls_classkey
+      version            = seoc_version_active
+    IMPORTING
+      interfacedeferreds = lt_intdeferrds
+    EXCEPTIONS
+      clif_not_existing  = 1
+      OTHERS             = 2.
+
+  LOOP AT lt_intdeferrds INTO ls_intdeferrd.
+    lo_intdeferrds = xmldoc-&gt;create_element( c_xml_key_intdeferrd ).
+    setattributesfromstructure( node      = lo_intdeferrds
+                                structure = ls_intdeferrd ).
+    l_rc = xo_rootnode-&gt;append_child( lo_intdeferrds ).
+  ENDLOOP.
+
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZSAPLINK_OO" CMPNAME="GET_OTR" VERSION="1" LANGU="E" DESCRIPT="Creates an XML node from an OTR object" EXPOSURE="1" STATE="1" EDITORDER="9 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="GET_OTR" SCONAME="OTRGUID" VERSION="1" LANGU="E" DESCRIPT="Key for Logical Object in the OTR" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="SOTR_CONC"/>
+   <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="GET_OTR" SCONAME="NODE" VERSION="1" LANGU="E" DESCRIPT="xml Element" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
+   <source>method GET_OTR.
+*/---------------------------------------------------------------------\
+*| This file is part of SAPlink.                                       |
+*|                                                                     |
+*| Copyright 2014 SAPlink project members                              |
+*|                                                                     |
+*| Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);     |
+*| you may not use this file except in compliance with the License.    |
+*| You may obtain a copy of the License at                             |
+*|                                                                     |
+*|     http://www.apache.org/licenses/LICENSE-2.0                      |
+*|                                                                     |
+*| Unless required by applicable law or agreed to in writing, software |
+*| distributed under the License is distributed on an &quot;AS IS&quot; BASIS,   |
+*| WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or     |
+*| implied.                                                            |
+*| See the License for the specific language governing permissions and |
+*| limitations under the License.                                      |
+*\---------------------------------------------------------------------/
+  DATA rootnode TYPE REF TO if_ixml_element.
+  DATA txtnode TYPE REF TO if_ixml_element.
+  DATA rc TYPE sysubrc.
+
+  DATA sotrheader TYPE sotr_head.
+  DATA sotrtextline TYPE sotr_text.
+  DATA sotrtexttable TYPE TABLE OF sotr_text.
+
+  DATA _ixml TYPE REF TO if_ixml.
+  DATA _xmldoc TYPE REF TO if_ixml_document.
+
+  CALL FUNCTION &apos;SOTR_GET_CONCEPT&apos;
+    EXPORTING
+      concept        = otrguid
+    IMPORTING
+      header         = sotrheader
+    TABLES
+      entries        = sotrtexttable
+    EXCEPTIONS
+      no_entry_found = 1
+      OTHERS         = 2.
+  IF sy-subrc &lt;&gt; 0.
+    EXIT.
+  ENDIF.
+
+  sotrheader-paket = &apos;$TMP&apos;. &quot;change devclass to $TMP for exports
+
+* Create xml doc
+*  _ixml = cl_ixml=&gt;create( ).
+*  _xmldoc = _ixml-&gt;create_document( ).
+*  streamfactory = _ixml-&gt;create_stream_factory( ).
+
+* Create parent node
+  rootnode = xmldoc-&gt;create_element( c_xml_key_sotr ). &quot;OTR object type
+  CLEAR sotrheader-concept.                                 &quot;ewH:33
+  setattributesfromstructure( node = rootnode structure = sotrheader ).
+
+* Create nodes for texts
+  LOOP AT sotrtexttable INTO sotrtextline.
+    txtnode = xmldoc-&gt;create_element( c_xml_key_sotrtext ).
+    CLEAR: sotrtextline-concept, sotrtextline-object.       &quot;ewH:33
+    setattributesfromstructure(
+      node = txtnode structure = sotrtextline ).
+    rc = rootnode-&gt;append_child( txtnode ).
+  ENDLOOP.
+
+  node = rootnode.
+
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZSAPLINK_OO" CMPNAME="GET_TYPEPUSAGE" VERSION="1" LANGU="E" DESCRIPT="Get type pool usage" EXPOSURE="1" STATE="1" EDITORDER="10 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZSAPLINK_OO" CMPNAME="GET_TYPEPUSAGE" SCONAME="XO_ROOTNODE" VERSION="1" LANGU="E" DESCRIPT="IF_IXML_ELEMENT" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT"/>
+   <source>method GET_TYPEPUSAGE.
+  DATA: lt_typepusages     TYPE seot_typepusages_r,
+        lo_typepusages     TYPE REF TO if_ixml_element,
+        ls_typepusage      TYPE seot_typepusage_r.
+
+  DATA: l_rc               TYPE sy-subrc,
+        l_string           TYPE string,
+        ls_classkey        TYPE seoclskey.
+
+  ls_classkey-clsname = objname.
+
+  CALL FUNCTION &apos;SEO_TYPEPUSAGE_READ_ALL&apos;
+    EXPORTING
+      cifkey            = ls_classkey
+      version           = seoc_version_active
+    IMPORTING
+      typepusages       = lt_typepusages
+    EXCEPTIONS
+      clif_not_existing = 1
+      OTHERS            = 2.
+
+  LOOP AT lt_typepusages INTO ls_typepusage.
+    lo_typepusages = xmldoc-&gt;create_element( c_xml_key_typepusage ).
+    setattributesfromstructure( node      = lo_typepusages
+                                structure = ls_typepusage ).
+    l_rc = xo_rootnode-&gt;append_child( lo_typepusages ).
+  ENDLOOP.
+
+*ewH: for version 0.1.3, we will continue to generate both nodes
+* in order for upgradeability of saplink itself.  For version
+* 2.0, forwardDeclaration node generations will be deprecated.
+  LOOP AT lt_typepusages INTO ls_typepusage.
+    lo_typepusages = xmldoc-&gt;create_element( c_xml_key_forwarddeclaration ).
+    l_string       = ls_typepusage-typegroup.
+    l_rc = lo_typepusages-&gt;if_ixml_node~set_value( l_string ).
+    l_rc = xo_rootnode-&gt;append_child( lo_typepusages ).
+  ENDLOOP.
+
+endmethod.</source>
+  </method>
+ </CLAS>
+ <CLAS CLSNAME="ZSAPLINK_PROGRAM" VERSION="1" LANGU="E" DESCRIPT="SAPlink - Programs" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" CLSFINAL="X" CLSCCINCL="X" FIXPT="X" UNICODE="X" CLSBCCAT="00" WITH_UNIT_TESTS="X" DURATION_TYPE="0 " RISK_LEVEL="0 " ZSAPLINK_PLUGIN_MAJOR_VERSION="0 " ZSAPLINK_PLUGIN_MINOR_VERSION="1 " ZSAPLINK_PLUGIN_BUILD_VERSION="0 " ZSAPLINK_PLUGIN_INFO1="ZSAPLINK_CLASS is part of the main ZSAPLINK project --&gt; This plugin found there instead of ZSAPLINK_PLUGINS projects" ZSAPLINK_PLUGIN_INFO2="SAPLINK homepage: https://www.assembla.com/spaces/saplink/wiki" ZSAPLINK_PLUGIN_INFO3="Download from https://www.assembla.com/code/saplink/subversion/nodes" ZSAPLINK_PLUGIN_INFO4="and navigate to:  trunk -&gt; core -&gt; ZSAPLINK -&gt; CLAS -&gt; ZSAPLINK_CLASS.slnk" REFCLSNAME="ZSAPLINK">
   <localImplementation>*&quot;* local class implementation for public class
 *&quot;* use this source file for the implementation part of
 *&quot;* local helper classes</localImplementation>
@@ -4222,7 +4353,7 @@ CLASS lc_zsaplink_program_test DEFINITION FOR TESTING
   &quot;#AU Duration Medium
   &quot;#AU Risk_Level Harmless
 .
-*?﻿&lt;asx:abap xmlns:asx=&quot;http://www.sap.com/abapxml&quot; version=&quot;1.0&quot;&gt;
+*?ï»¿&lt;asx:abap xmlns:asx=&quot;http://www.sap.com/abapxml&quot; version=&quot;1.0&quot;&gt;
 *?&lt;asx:values&gt;
 *?&lt;TESTCLASS_OPTIONS&gt;
 *?&lt;TEST_CLASS&gt;lc_Zsaplink_Program_Test
@@ -4276,12 +4407,12 @@ CLASS lc_zsaplink_program_test IMPLEMENTATION.
 
 ENDCLASS.       &quot;lc_Zsaplink_Program_Test</localTestClasses>
   <inheritance CLSNAME="ZSAPLINK_PROGRAM" REFCLSNAME="ZSAPLINK" VERSION="1" STATE="1">
-   <redefinition CLSNAME="ZSAPLINK_PROGRAM" REFCLSNAME="ZSAPLINK" VERSION="1" MTDNAME="CHECKEXISTS" EXPOSURE="2"/>
-   <redefinition CLSNAME="ZSAPLINK_PROGRAM" REFCLSNAME="ZSAPLINK" VERSION="1" MTDNAME="CREATEIXMLDOCFROMOBJECT" EXPOSURE="2"/>
-   <redefinition CLSNAME="ZSAPLINK_PROGRAM" REFCLSNAME="ZSAPLINK" VERSION="1" MTDNAME="CREATEOBJECTFROMIXMLDOC" EXPOSURE="2"/>
-   <redefinition CLSNAME="ZSAPLINK_PROGRAM" REFCLSNAME="ZSAPLINK" VERSION="1" MTDNAME="CREATESTRINGFROMOBJECT" EXPOSURE="2"/>
-   <redefinition CLSNAME="ZSAPLINK_PROGRAM" REFCLSNAME="ZSAPLINK" VERSION="1" MTDNAME="DELETEOBJECT" EXPOSURE="1"/>
-   <redefinition CLSNAME="ZSAPLINK_PROGRAM" REFCLSNAME="ZSAPLINK" VERSION="1" MTDNAME="GETOBJECTTYPE" EXPOSURE="1"/>
+   <redefinition CLSNAME="ZSAPLINK_PROGRAM" REFCLSNAME="ZSAPLINK" VERSION="1" MTDNAME="CHECKEXISTS" EXPOSURE="0"/>
+   <redefinition CLSNAME="ZSAPLINK_PROGRAM" REFCLSNAME="ZSAPLINK" VERSION="1" MTDNAME="CREATEIXMLDOCFROMOBJECT" EXPOSURE="0"/>
+   <redefinition CLSNAME="ZSAPLINK_PROGRAM" REFCLSNAME="ZSAPLINK" VERSION="1" MTDNAME="CREATEOBJECTFROMIXMLDOC" EXPOSURE="0"/>
+   <redefinition CLSNAME="ZSAPLINK_PROGRAM" REFCLSNAME="ZSAPLINK" VERSION="1" MTDNAME="CREATESTRINGFROMOBJECT" EXPOSURE="0"/>
+   <redefinition CLSNAME="ZSAPLINK_PROGRAM" REFCLSNAME="ZSAPLINK" VERSION="1" MTDNAME="DELETEOBJECT" EXPOSURE="0"/>
+   <redefinition CLSNAME="ZSAPLINK_PROGRAM" REFCLSNAME="ZSAPLINK" VERSION="1" MTDNAME="GETOBJECTTYPE" EXPOSURE="0"/>
   </inheritance>
   <method CLSNAME="ZSAPLINK" CMPNAME="CHECKEXISTS" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
    <source>method CHECKEXISTS.
@@ -6062,6 +6193,8 @@ endmethod.</source>
     <textElement ID="I" KEY="SLK" ENTRY="SAPlink" LENGTH="7 "/>
     <textElement ID="I" KEY="TB1" ENTRY="Slinkee" LENGTH="7 "/>
     <textElement ID="I" KEY="TB2" ENTRY="Nugget" LENGTH="6 "/>
+    <textElement ID="I" KEY="URL" ENTRY="Visit http://www.saplink.org" LENGTH="60 "/>
+    <textElement ID="I" KEY="VER" ENTRY="Updated version of CLASS ZSAPLINK available" LENGTH="60 "/>
     <textElement ID="S" KEY="EXPORT" ENTRY="        Export Object to Slinkee" LENGTH="32 "/>
     <textElement ID="S" KEY="FILENAME" ENTRY="        Slinkee File Name" LENGTH="33 "/>
     <textElement ID="S" KEY="IMPORT" ENTRY="        Import Slinkee" LENGTH="22 "/>
@@ -6085,7 +6218,7 @@ endmethod.</source>
    </language>
   </textPool>
   <pfstatus>
-   <pfstatus_sta CODE="SELOBJ" MODAL="D" ACTCODE="000001" PFKCODE="000001" BUTCODE="0001" INT_NOTE="Standard fÃƒÂ¼r allgemeine Listausgabe"/>
+   <pfstatus_sta CODE="SELOBJ" MODAL="D" ACTCODE="000001" PFKCODE="000001" BUTCODE="0001" INT_NOTE="Standard für allgemeine Listausgabe"/>
    <pfstatus_fun CODE="%PC" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_EXPORT" ICON_ID="@49@" FUN_TEXT="Download" PATH="D"/>
    <pfstatus_fun CODE="%SC" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_SEARCH" ICON_ID="@13@" FUN_TEXT="Search" PATH="S"/>
    <pfstatus_fun CODE="%SC+" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_SEARCH_NEXT" ICON_ID="@4E@" FUN_TEXT="Weiter suchen" PATH="E"/>
@@ -6093,7 +6226,7 @@ endmethod.</source>
    <pfstatus_fun CODE="&amp;ABC" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_CALCULATION" ICON_ID="@0M@" FUN_TEXT="ABC-Analyse" ICON_TEXT="ABC" PATH="A"/>
    <pfstatus_fun CODE="&amp;ALL" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_SELECT_ALL" ICON_ID="@4B@" FUN_TEXT="Select All" PATH="A"/>
    <pfstatus_fun CODE="&amp;AQW" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_CHANGE_TEXT" ICON_ID="@0Q@" FUN_TEXT="Word" PATH="W"/>
-   <pfstatus_fun CODE="&amp;AUF" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="AufriÃƒÂŸ festlegen..." PATH="U"/>
+   <pfstatus_fun CODE="&amp;AUF" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="AufriÃÆÃÅ¸ festlegen..." PATH="U"/>
    <pfstatus_fun CODE="&amp;AVE" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="Sichern..." PATH="S"/>
    <pfstatus_fun CODE="&amp;AVE" TEXTNO="002" TEXT_TYPE="S" TEXT_NAME="ICON_VARIANTS" ICON_ID="@0R@" FUN_TEXT="Save Variants" ICON_TEXT="Save"/>
    <pfstatus_fun CODE="&amp;BS" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_OVERVIEW" ICON_ID="@3Q@" FUN_TEXT="J"/>
@@ -6114,13 +6247,13 @@ endmethod.</source>
    <pfstatus_fun CODE="&amp;F15" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="Cancel" PATH="A"/>
    <pfstatus_fun CODE="&amp;ILD" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="Remove Filter" PATH="L"/>
    <pfstatus_fun CODE="&amp;ILT" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_FILTER" ICON_ID="@4G@" FUN_TEXT="Filter" PATH="F"/>
-   <pfstatus_fun CODE="&amp;KOM" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_COLLAPSE" ICON_ID="@3T@" FUN_TEXT="AuswÃƒÂ¤hlen..." PATH="A"/>
+   <pfstatus_fun CODE="&amp;KOM" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_COLLAPSE" ICON_ID="@3T@" FUN_TEXT="AuswÃÆÃÂ¤hlen..." PATH="A"/>
    <pfstatus_fun CODE="&amp;LFO" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="Listenstatus..." PATH="L"/>
    <pfstatus_fun CODE="&amp;LFO" TEXTNO="002" TEXT_TYPE="S" TEXT_NAME="ICON_INFORMATION" ICON_ID="@0S@" FUN_TEXT="List Status"/>
    <pfstatus_fun CODE="&amp;LIS" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="Grundliste" PATH="G"/>
    <pfstatus_fun CODE="&amp;NFO" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_INFORMATION" ICON_ID="@0S@" FUN_TEXT="Information" ICON_TEXT="Selektionen" PATH="I"/>
    <pfstatus_fun CODE="&amp;NTE" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="Auffrischen"/>
-   <pfstatus_fun CODE="&amp;OAD" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="AuswÃƒÂ¤hlen..." PATH="U"/>
+   <pfstatus_fun CODE="&amp;OAD" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="AuswÃÆÃÂ¤hlen..." PATH="U"/>
    <pfstatus_fun CODE="&amp;OAD" TEXTNO="002" TEXT_TYPE="S" TEXT_NAME="ICON_VARIANTS" ICON_ID="@0R@" FUN_TEXT="Search Variants" ICON_TEXT="Search"/>
    <pfstatus_fun CODE="&amp;ODN" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_SORT_DOWN" ICON_ID="@3F@" FUN_TEXT="Sort Descending" PATH="O"/>
    <pfstatus_fun CODE="&amp;OL0" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_VARIANTS" ICON_ID="@0R@" FUN_TEXT="Variant"/>
@@ -6142,7 +6275,7 @@ endmethod.</source>
    <pfstatus_fun CODE="P++" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="Last Entry"/>
    <pfstatus_fun CODE="P-" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="Previous Entry"/>
    <pfstatus_fun CODE="P--" TEXTNO="001" TEXT_TYPE="S" FUN_TEXT="First Entry"/>
-   <pfstatus_fun CODE="TAKE" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_OKAY" ICON_ID="@0V@" FUN_TEXT="Execute" INFO_TEXT="Markierte Benutzer ÃƒÂ¼bernehmen"/>
+   <pfstatus_fun CODE="TAKE" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_OKAY" ICON_ID="@0V@" FUN_TEXT="Execute" INFO_TEXT="Markierte Benutzer ÃÆÃÂ¼bernehmen"/>
    <pfstatus_fun CODE="UAGR" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_LIST" ICON_ID="@3W@" FUN_TEXT="Liste mit Rollen" ICON_TEXT="Rollen" INFO_TEXT="Liste mit Rollen"/>
    <pfstatus_fun CODE="UPROF" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_LIST" ICON_ID="@3W@" FUN_TEXT="Liste mit Profilen" ICON_TEXT="Profile" INFO_TEXT="Liste mit Profilen"/>
    <pfstatus_men CODE="000001" NO="01" REF_TYPE="F" REF_CODE="&amp;RNT" REF_NO="001"/>
@@ -6384,114 +6517,120 @@ TYPE-POOLS: icon, slis, sabc, stms, trwbo.
 
 TYPES: BEGIN OF t_plugin,
          object TYPE ko100-object,
-         text TYPE ko100-text,
+         text   TYPE ko100-text,
        END OF t_plugin.
 
 TYPES: BEGIN OF t_objecttable,
          classname TYPE string,
-         object TYPE ko100-object,
-         text TYPE ko100-text,
+         object    TYPE ko100-object,
+         text      TYPE ko100-text,
        END OF t_objecttable.
 
 TYPES: BEGIN OF t_nuggetobject,
-          objtype TYPE string,
-          objname TYPE string,
-          exists TYPE flag,
+         objtype TYPE string,
+         objname TYPE string,
+         exists  TYPE flag,
        END OF t_nuggetobject.
 *addition of package data
 ****   Read all objects of the package
 TYPES: BEGIN OF t_objects_package,
-          select     TYPE char1,
-          object     TYPE tadir-object,
-          object_txt TYPE string,
-          obj_name   TYPE tadir-obj_name,
-          srcsystem  TYPE tadir-srcsystem,
-          down_flag  TYPE char1,
-          status     TYPE char1,
-          msg        TYPE string,
+         select     TYPE char1,
+         object     TYPE tadir-object,
+         object_txt TYPE string,
+         obj_name   TYPE tadir-obj_name,
+         srcsystem  TYPE tadir-srcsystem,
+         down_flag  TYPE char1,
+         status     TYPE char1,
+         msg        TYPE string,
        END OF t_objects_package.
 
-DATA objects_package TYPE TABLE OF t_objects_package.
-DATA packageline TYPE t_objects_package.
-FIELD-SYMBOLS: &lt;obj&gt; LIKE LINE OF objects_package.
-DATA tabletypeline TYPE ko105.
-DATA tabletypesin TYPE TABLE OF ko105.
-DATA tabletypesout TYPE tr_object_texts.
-DATA tabletypeoutline TYPE ko100.
-DATA lt_fieldcat  TYPE          slis_t_fieldcat_alv.
-DATA ls_fieldcat  LIKE LINE OF  lt_fieldcat.
-DATA ls_layout    TYPE          slis_layout_alv.
-DATA lv_count TYPE i.
-DATA lv_pers  TYPE i.
-
-*end of data addition for packages
-*addition of Transport data
 TYPES: BEGIN OF t_requestobject,
-          object   TYPE e071-object,
-          obj_name TYPE e071-obj_name,
+         object   TYPE e071-object,
+         obj_name TYPE e071-obj_name,
        END OF t_requestobject.
 
 TYPES: tt_requestobject TYPE TABLE OF t_requestobject.
 
-DATA it_requestobject TYPE TABLE OF t_requestobject.
-DATA wa_requestobject TYPE t_requestobject.
+TYPES: BEGIN OF gts_versions_delta,
+         classname    TYPE classname,
+         version_ixml TYPE zsaplink=&gt;gts_version_info,
+         version_sap  TYPE zsaplink=&gt;gts_version_info,
+       END OF gts_versions_delta.
 
-*end of data addition for transport
+DATA: objects_package     TYPE TABLE OF t_objects_package,
+      packageline         TYPE t_objects_package,
+      tabletypeline       TYPE ko105,
+      tabletypesin        TYPE TABLE OF ko105,
+      tabletypesout       TYPE tr_object_texts,
+      tabletypeoutline    TYPE ko100,
+      lt_fieldcat         TYPE slis_t_fieldcat_alv,
+      ls_fieldcat         LIKE LINE OF lt_fieldcat,
+      ls_layout           TYPE slis_layout_alv,
+      lv_count            TYPE i,
+      lv_pers             TYPE i,
+*end of  addition for packages
+*addition of Transport
+      it_requestobject    TYPE TABLE OF t_requestobject,
+      wa_requestobject    TYPE t_requestobject,
+*end of  addition for transport
+      pluginline          TYPE t_plugin,
+      pluginlist          TYPE TABLE OF t_plugin,
+      hidid(3)            TYPE c,
+      currenttab          TYPE string,
+      isslinkee(1)        TYPE c VALUE &apos; &apos;,
+      objecttable         TYPE TABLE OF t_objecttable,
+      objectline          TYPE t_objecttable,
+      _objname            TYPE string,
+      _objtype            TYPE string,
+      nuggetname          TYPE string,
+      targetobject        TYPE REF TO zsaplink,
+      xml                 TYPE string,
+      excclass            TYPE REF TO zcx_saplink,
+      errormsg            TYPE string,
+      statusmsg           TYPE string,
+      _pluginexists       TYPE flag,
+      _objectexists       TYPE flag,
+      _flag               TYPE flag,
 
-DATA pluginline TYPE t_plugin.
-DATA pluginlist TYPE TABLE OF t_plugin.
-DATA hidid(3) TYPE c.
-DATA currenttab TYPE string.
-DATA isslinkee(1) TYPE c VALUE &apos; &apos;.
-DATA objecttable TYPE TABLE OF t_objecttable.
-DATA objectline TYPE t_objecttable.
-DATA _objname TYPE string.
-DATA _objtype TYPE string.
-DATA nuggetname TYPE string.
-DATA targetobject TYPE REF TO zsaplink.
-DATA xml TYPE string.
-DATA excclass TYPE REF TO zcx_saplink.
-DATA errormsg TYPE string.
-DATA statusmsg TYPE string.
-DATA _pluginexists TYPE flag.
-DATA _objectexists TYPE flag.
-DATA _flag TYPE flag.
+      errorflag           TYPE flag,
+      it_nuggetobject     TYPE TABLE OF t_nuggetobject,
+      wa_nuggetobject     TYPE t_nuggetobject,
 
-DATA errorflag TYPE flag.
-DATA it_nuggetobject TYPE TABLE OF t_nuggetobject.
-DATA wa_nuggetobject TYPE t_nuggetobject.
+      deffilename         TYPE string,
+      retfilename         TYPE string,
+      retpath             TYPE string,
+      retfullpath         TYPE string,
+      retuseract          TYPE i,
+      retfiletable        TYPE filetable,
+      retrc               TYPE sysubrc,
+      retuseraction       TYPE i,
 
-DATA deffilename TYPE string.
-DATA retfilename TYPE string.
-DATA retpath TYPE string.
-DATA retfullpath TYPE string.
-DATA retuseract TYPE i.
-DATA retfiletable TYPE filetable.
-DATA retrc TYPE sysubrc.
-DATA retuseraction TYPE i.
+      nugg                TYPE REF TO zsaplink_nugget,
+      stemp               TYPE string,
+      anxmldoc            TYPE REF TO if_ixml_document,
+      ixmldocument        TYPE REF TO if_ixml_document,
 
-DATA nugg TYPE REF TO zsaplink_nugget.
-DATA stemp TYPE string.
-DATA anxmldoc TYPE REF TO if_ixml_document.
-DATA ixmldocument TYPE REF TO if_ixml_document.
+      foo                 TYPE REF TO data,
+      len                 TYPE i,
 
-DATA foo TYPE REF TO data.
-DATA len TYPE i.
+      l_marker            TYPE i,
+      l_offset            TYPE i,
+      l_total_offset      TYPE i,
 
-DATA: l_marker TYPE i,
-      l_offset TYPE i,
-      l_total_offset TYPE i.
+      es_selected_request TYPE trwbo_request_header,
+      es_selected_task    TYPE trwbo_request_header,
+      iv_organizer_type   TYPE trwbo_calling_organizer,
+      is_selection        TYPE trwbo_selection,
+      gt_versions_delta   TYPE STANDARD TABLE OF gts_versions_delta WITH NON-UNIQUE DEFAULT KEY,
+      gv_version_line     TYPE sytabix.
 
-DATA:
-  es_selected_request TYPE trwbo_request_header,
-  es_selected_task TYPE trwbo_request_header,
-  iv_organizer_type TYPE trwbo_calling_organizer,
-  is_selection TYPE trwbo_selection.
+FIELD-SYMBOLS: &lt;obj&gt; LIKE LINE OF objects_package.
 
 *\--------------------------------------------------------------------/
 
 
 */------------------------SELECTION SCREEN----------------------------\
+
 
 SELECTION-SCREEN BEGIN OF TABBED BLOCK tabb FOR 20 LINES.
 SELECTION-SCREEN TAB (17) text-tb2 USER-COMMAND nugg
@@ -6499,6 +6638,9 @@ SELECTION-SCREEN TAB (17) text-tb2 USER-COMMAND nugg
 SELECTION-SCREEN TAB (17) text-tb1 USER-COMMAND obj
                      DEFAULT SCREEN 110.
 SELECTION-SCREEN END OF BLOCK tabb.
+SELECTION-SCREEN SKIP.
+SELECTION-SCREEN COMMENT /1(60) cmt_ver MODIF ID ver.
+SELECTION-SCREEN COMMENT /1(60) cmt_url MODIF ID ver.
 
 *Slinkee tab
 SELECTION-SCREEN BEGIN OF SCREEN 110 AS SUBSCREEN.
@@ -6590,56 +6732,69 @@ AT SELECTION-SCREEN OUTPUT.
   ENDIF.
 
   LOOP AT SCREEN.
+
     IF screen-group1 = hidid.
-      screen-active = &apos;0&apos;.
+      screen-active    = &apos;0&apos;.
       screen-invisible = &apos;1&apos;.
-      MODIFY SCREEN.
     ENDIF.
+
+    MODIFY SCREEN.
+
   ENDLOOP.
 
   LOOP AT SCREEN.
     IF nugc = &apos;X&apos;.
       IF screen-group1 = &apos;NNM&apos;.
-        screen-active = &apos;1&apos;.
+        screen-active    = &apos;1&apos;.
         screen-invisible = &apos;0&apos;.
         MODIFY SCREEN.
-      ELSEIF screen-group1 = &apos;NPG&apos; OR screen-group1 = &apos;NFL&apos;
-        OR screen-group1 = &apos;NOW&apos; OR screen-group1 = &apos;NPC&apos;
-        OR screen-group1 = &apos;RNM&apos;.
-        screen-active = &apos;0&apos;.
+      ELSEIF screen-group1 = &apos;NPG&apos;
+          OR screen-group1 = &apos;NFL&apos;
+          OR screen-group1 = &apos;NOW&apos;
+          OR screen-group1 = &apos;NPC&apos;
+          OR screen-group1 = &apos;RNM&apos;.
+        screen-active    = &apos;0&apos;.
         screen-invisible = &apos;1&apos;.
         MODIFY SCREEN.
       ENDIF.
     ELSEIF nugi = &apos;X&apos;.
-      IF screen-group1 = &apos;NFL&apos; OR screen-group1 = &apos;NOW&apos;.
-        screen-active = &apos;1&apos;.
+      IF   screen-group1 = &apos;NFL&apos;
+        OR screen-group1 = &apos;NOW&apos;.
+        screen-active    = &apos;1&apos;.
         screen-invisible = &apos;0&apos;.
         MODIFY SCREEN.
-      ELSEIF screen-group1 = &apos;NNM&apos; OR screen-group1 =&apos;NPG&apos;
-         OR screen-group1 = &apos;RNM&apos;.
-        screen-active = &apos;0&apos;.
+      ELSEIF screen-group1 = &apos;NNM&apos;
+          OR screen-group1 =&apos;NPG&apos;
+          OR screen-group1 = &apos;RNM&apos;.
+        screen-active    = &apos;0&apos;.
         screen-invisible = &apos;1&apos;.
         MODIFY SCREEN.
       ENDIF.
     ELSEIF nuga = &apos;X&apos;.
-      IF screen-group1 = &apos;NFL&apos; OR screen-group1 = &apos;NPG&apos;.
-        screen-active = &apos;1&apos;.
+      IF   screen-group1 = &apos;NFL&apos;
+        OR screen-group1 = &apos;NPG&apos;.
+        screen-active    = &apos;1&apos;.
         screen-invisible = &apos;0&apos;.
         MODIFY SCREEN.
-      ELSEIF screen-group1 = &apos;NNM&apos; OR screen-group1 = &apos;NOW&apos;
-         OR screen-group1 = &apos;NPC&apos; OR screen-group1 = &apos;RNM&apos;.
-        screen-active = &apos;0&apos;.
+      ELSEIF screen-group1 = &apos;NNM&apos;
+          OR screen-group1 = &apos;NOW&apos;
+          OR screen-group1 = &apos;NPC&apos;
+          OR screen-group1 = &apos;RNM&apos;.
+        screen-active    = &apos;0&apos;.
         screen-invisible = &apos;1&apos;.
         MODIFY SCREEN.
       ENDIF.
     ELSEIF nugp = &apos;X&apos;.
-      IF screen-group1 = &apos;NFL&apos; OR screen-group1 = &apos;NPC&apos;.
-        screen-active = &apos;1&apos;.
+      IF   screen-group1 = &apos;NFL&apos;
+        OR screen-group1 = &apos;NPC&apos;.
+        screen-active    = &apos;1&apos;.
         screen-invisible = &apos;0&apos;.
         MODIFY SCREEN.
-      ELSEIF screen-group1 = &apos;NNM&apos; OR screen-group1 = &apos;NOW&apos;
-        OR screen-group1 = &apos;NPG&apos; OR screen-group1 = &apos;RNM&apos;.
-        screen-active = &apos;0&apos;.
+      ELSEIF screen-group1 = &apos;NNM&apos;
+          OR screen-group1 = &apos;NOW&apos;
+          OR screen-group1 = &apos;NPG&apos;
+          OR screen-group1 = &apos;RNM&apos;.
+        screen-active    = &apos;0&apos;.
         screen-invisible = &apos;1&apos;.
         MODIFY SCREEN.
       ENDIF.
@@ -6648,21 +6803,26 @@ AT SELECTION-SCREEN OUTPUT.
         screen-active = &apos;1&apos;.
         screen-invisible = &apos;0&apos;.
         MODIFY SCREEN.
-      ELSEIF screen-group1 = &apos;NNM&apos; OR screen-group1 =&apos;NPG&apos;
-       OR screen-group1 = &apos;NOW&apos; OR screen-group1 = &apos;NPC&apos;
-       OR screen-group1 = &apos;RNM&apos;.
-        screen-active = &apos;0&apos;.
+      ELSEIF screen-group1 = &apos;NNM&apos;
+          OR screen-group1 = &apos;NPG&apos;
+          OR screen-group1 = &apos;NOW&apos;
+          OR screen-group1 = &apos;NPC&apos;
+          OR screen-group1 = &apos;RNM&apos;.
+        screen-active    = &apos;0&apos;.
         screen-invisible = &apos;1&apos;.
         MODIFY SCREEN.
       ENDIF.
     ELSEIF nugr = &apos;X&apos;.
-      IF screen-group1 = &apos;NFL&apos; OR screen-group1 = &apos;RNM&apos;.
-        screen-active = &apos;1&apos;.
+      IF   screen-group1 = &apos;NFL&apos;
+        OR screen-group1 = &apos;RNM&apos;.
+        screen-active    = &apos;1&apos;.
         screen-invisible = &apos;0&apos;.
         MODIFY SCREEN.
-      ELSEIF screen-group1 = &apos;NNM&apos; OR screen-group1 = &apos;NOW&apos;
-        OR screen-group1 = &apos;NPG&apos; OR screen-group1 = &apos;NPC&apos;.
-        screen-active = &apos;0&apos;.
+      ELSEIF screen-group1 = &apos;NNM&apos;
+          OR screen-group1 = &apos;NOW&apos;
+          OR screen-group1 = &apos;NPG&apos;
+          OR screen-group1 = &apos;NPC&apos;.
+        screen-active    = &apos;0&apos;.
         screen-invisible = &apos;1&apos;.
         MODIFY SCREEN.
       ENDIF.
@@ -6851,6 +7011,13 @@ AT SELECTION-SCREEN ON VALUE-REQUEST FOR reqnugg-low.
 
   reqnugg-low = es_selected_request-trkorr.
 
+
+AT LINE-SELECTION.
+  IF gv_version_line IS NOT INITIAL.
+    PERFORM show_version_info.
+    CLEAR gv_version_line.
+  ENDIF.
+
 *\--------------------------------------------------------------------/
 
 */----------------------main------------------------------------------\
@@ -6859,420 +7026,34 @@ START-OF-SELECTION.
 ************* S L I N K E E *************
   IF isslinkee IS NOT INITIAL.
     _objname = objname.
-*   Export slinkee
     IF export = &apos;X&apos;.
-      IF plugin IS INITIAL.
-        MESSAGE s208(00) WITH &apos;object type required&apos;.
-        EXIT.
-      ELSEIF _objname IS INITIAL.
-        MESSAGE s208(00) WITH &apos;object name required&apos;.
-        EXIT.
-      ENDIF.
-      READ TABLE objecttable INTO objectline WITH KEY object = plugin.
-      IF sy-subrc &lt;&gt; 0.
-        CONCATENATE &apos;Plugin for object type&apos;(plo) plugin
-          &apos;is not installed on this system&apos;(noi) INTO errormsg
-          SEPARATED BY space.
-        PERFORM writemessage USING &apos;E&apos; errormsg.
-        EXIT.
-      ENDIF.
-      CREATE OBJECT targetobject
-        TYPE
-          (objectline-classname)
-        EXPORTING
-          name                   = _objname.
-      TRY.
-          ixmldocument = targetobject-&gt;createixmldocfromobject( ).
-        CATCH zcx_saplink INTO excclass.
-          errormsg = excclass-&gt;get_text( ).
-          PERFORM writemessage USING &apos;E&apos; errormsg.
-      ENDTRY.
-      IF errormsg IS NOT INITIAL.
-        EXIT.
-      ENDIF.
-      xml = zsaplink=&gt;convertixmldoctostring( ixmldocument ).
-
-      CONCATENATE plugin &apos;_&apos; _objname &apos;.slnk&apos; INTO deffilename.
-      CLEAR errorflag.
-      PERFORM downloadxmltolm USING deffilename xml
-                              CHANGING errorflag.
-      IF errorflag IS NOT INITIAL.
-        MESSAGE s208(00) WITH &apos;Action cancelled&apos;.
-        EXIT.
-      ENDIF.
-      PERFORM displayxmlonscreen USING xml.
-*   Import slinkee
+*   Export slinkee
+      PERFORM slinkee_export.
     ELSEIF import = &apos;X&apos;.
-      IF filename IS INITIAL.
-        MESSAGE s208(00) WITH &apos;slinkee filename required&apos;.
-        EXIT.
-      ENDIF.
-      PERFORM uploadxmlfromlm USING filename xml.
-      IF sy-subrc &lt;&gt; 0.
-        EXIT.
-      ENDIF.
-      ixmldocument = zsaplink=&gt;convertstringtoixmldoc( xml ).
-*     run some checks before install
-      PERFORM checkobject USING ixmldocument
-                          CHANGING _objtype
-                                   _objname
-                                   _pluginexists
-                                   _objectexists.
-      MOVE _objtype TO plugin.
-      READ TABLE objecttable INTO objectline WITH KEY object = plugin.
-
-      IF _objtype = &apos;NUGG&apos;.
-        MESSAGE s208(00) WITH &apos;use nugget tab for nugget import&apos;.
-        EXIT.
-      ELSEIF _pluginexists IS INITIAL.
-        CONCATENATE &apos;Plugin for object type&apos;(plo) _objtype
-          &apos;is not installed on this system&apos;(noi) INTO errormsg
-          SEPARATED BY space.
-        PERFORM writemessage USING &apos;E&apos; errormsg.
-        EXIT.
-      ELSEIF _objectexists = &apos;X&apos; AND overwr IS INITIAL.
-        CONCATENATE _objtype objectline-text _objname
-          &apos;already exists. Use overwrite orginals option to replace&apos;
-          INTO errormsg SEPARATED BY space.
-        PERFORM writemessage USING &apos;E&apos; errormsg.
-        EXIT.
-      ELSEIF _objectexists = &apos;X&apos; AND overwr = &apos;X&apos;.
-        CONCATENATE _objtype _objname INTO stemp SEPARATED BY space.
-        PERFORM confirmoverwrite USING stemp
-                              CHANGING _flag.
-        IF _flag = &apos;A&apos;. &quot;cancel
-          PERFORM writemessage USING &apos;W&apos; &apos;Import cancelled by user&apos;.
-          EXIT.
-        ENDIF.
-      ENDIF.
-
-*     install object
-      PERFORM installobject USING ixmldocument
-                                  overwr
-                                  slpkg
-                         CHANGING errorflag
-                                  statusmsg.
-      IF errorflag = &apos;X&apos;.
-        PERFORM writemessage USING &apos;E&apos; statusmsg.
-        EXIT.
-      ELSE.
-        PERFORM writemessage USING &apos;S&apos; statusmsg.
-      ENDIF.
-      MESSAGE s208(00) WITH &apos;Import successful&apos;.
+*   Import slinkee
+      PERFORM slinkee_import.
     ENDIF.
   ELSE.
 ************* N U G G E T *************
-*   create empty nugget
     IF nugc = &apos;X&apos;.
-      IF nuggnam IS INITIAL.
-        MESSAGE s208(00) WITH &apos;enter name of new nugget to be created&apos;.
-        EXIT.
-      ENDIF.
-      stemp = nuggnam.
-      PERFORM createemptynugget USING stemp.
-*   add object to nugget
+*   create empty nugget
+      PERFORM nugget_create.
     ELSEIF nuga = &apos;X&apos;.
-      IF nplugin IS INITIAL.
-        MESSAGE s208(00) WITH &apos;object type required&apos;.
-        EXIT.
-      ELSEIF nobjnam IS INITIAL.
-        MESSAGE s208(00) WITH &apos;object name required&apos;.
-        EXIT.
-      ELSEIF nugfile IS INITIAL.
-        MESSAGE s208(00) WITH &apos;nugget filename required&apos;.
-        EXIT.
-      ENDIF.
-      READ TABLE objecttable INTO objectline WITH KEY object = nplugin.
-      IF sy-subrc &lt;&gt; 0.
-        CONCATENATE &apos;Plugin for object type&apos;(plo) nplugin
-          &apos;is not installed on this system&apos;(noi) INTO errormsg
-            SEPARATED BY space.
-        PERFORM writemessage USING &apos;E&apos; errormsg.
-        EXIT.
-      ENDIF.
-      stemp = nuggnam.
-      PERFORM uploadxmlfromlm USING nugfile xml.
-      IF sy-subrc &lt;&gt; 0.
-        EXIT.
-      ENDIF.
-      ixmldocument = zsaplink=&gt;convertstringtoixmldoc( xml ).
-      CREATE OBJECT nugg
-        EXPORTING
-          ixmldocument = ixmldocument.
-
-      _objname = nobjnam.
-      stemp = nplugin.
-
-      TRY.
-          nugg-&gt;addobjecttonugget( objname = _objname objtype = stemp ).
-        CATCH zcx_saplink INTO excclass.
-          errormsg = excclass-&gt;get_text( ).
-          PERFORM writemessage USING &apos;E&apos; errormsg.
-          EXIT.
-      ENDTRY.
-      ixmldocument = nugg-&gt;createixmldocfromnugget( ).
-      xml = zsaplink=&gt;convertixmldoctostring( ixmldocument ).
-*      concatenate  nuggNam &apos;.nugg&apos; into sTemp.
-      stemp = nugfile.
-      PERFORM putonmachine USING stemp xml.
-*   import nugget
+*   add object to nugget
+      PERFORM nugget_add_object.
     ELSEIF nugi = &apos;X&apos;.
-      IF nugfile IS INITIAL.
-        MESSAGE s208(00) WITH &apos;nugget filename required&apos;.
-        EXIT.
-      ENDIF.
-      PERFORM uploadxmlfromlm USING nugfile xml.
-      IF sy-subrc &lt;&gt; 0.
-        EXIT.
-      ENDIF.
-      ixmldocument = zsaplink=&gt;convertstringtoixmldoc( xml ).
-      nuggetname = zsaplink_nugget=&gt;getnuggetinfo( ixmldocument ).
-      CONCATENATE &apos;Start import of nugget&apos; nuggetname INTO statusmsg
-        SEPARATED BY space.
-
-      PERFORM writemessage USING &apos;S&apos; statusmsg.
-      SKIP.
-
-      CREATE OBJECT nugg
-        EXPORTING
-          ixmldocument = ixmldocument.
-
-*     check for installed plugins
-      CLEAR errorflag.
-      REFRESH it_nuggetobject.
-      anxmldoc = nugg-&gt;getnextobject( ).
-      WHILE anxmldoc IS NOT INITIAL.
-        CLEAR: _objtype, _objname, _pluginexists, _objectexists,
-               wa_nuggetobject.
-        PERFORM checkobject USING anxmldoc
-                            CHANGING _objtype
-                                     _objname
-                                     _pluginexists
-                                     _objectexists.
-        IF _pluginexists IS INITIAL.
-          CONCATENATE &apos;Plugin for object type&apos;(plo) _objtype
-            &apos;is not installed on this system&apos;(noi) INTO errormsg
-            SEPARATED BY space.
-          PERFORM writemessage USING &apos;E&apos; errormsg.
-          errorflag = &apos;X&apos;.
-        ELSEIF _objectexists = &apos;X&apos; AND novrwr IS INITIAL.
-          CONCATENATE _objtype _objname &apos;already exists. Use overwrite&apos;
-            &apos;orginals option to replace&apos;
-              INTO errormsg SEPARATED BY space.
-          PERFORM writemessage USING &apos;W&apos; errormsg.
-          errorflag = &apos;X&apos;.
-        ENDIF.
-        wa_nuggetobject-objtype = _objtype.
-        wa_nuggetobject-objname = _objname.
-        wa_nuggetobject-exists = _objectexists.
-        APPEND wa_nuggetobject TO it_nuggetobject.
-
-        anxmldoc = nugg-&gt;getnextobject( ).
-      ENDWHILE.
-
-      IF errorflag = &apos;X&apos;.
-        EXIT.
-      ENDIF.
-
-*     confirm overwrite
-      LOOP AT it_nuggetobject INTO wa_nuggetobject WHERE EXISTS = &apos;X&apos;.
-        CLEAR _flag.
-        CONCATENATE wa_nuggetobject-objtype wa_nuggetobject-objname
-          INTO stemp SEPARATED BY space.
-        PERFORM confirmoverwrite USING stemp
-                              CHANGING _flag.
-        IF _flag = &apos;1&apos;. &quot;yes
-          CONTINUE.
-        ELSEIF _flag = &apos;2&apos;. &quot;yes to all
-          CLEAR errorflag.
-          EXIT.
-        ELSEIF _flag = &apos;A&apos;. &quot;cancel
-          PERFORM writemessage USING &apos;W&apos; &apos;Import cancelled by user&apos;.
-          errorflag = &apos;X&apos;.
-          EXIT.
-        ENDIF.
-      ENDLOOP.
-
-      IF errorflag = &apos;X&apos;.
-        EXIT.
-      ENDIF.
-
-*     install
-      nugg-&gt;reset( ). &quot;reset nugget iterator
-      anxmldoc = nugg-&gt;getnextobject( ).
-      WHILE anxmldoc IS NOT INITIAL.
-        CLEAR statusmsg.
-        PERFORM installobject USING anxmldoc
-                                    novrwr
-                                    package
-                           CHANGING errorflag
-                                    statusmsg.
-        IF errorflag = &apos;X&apos;.
-          PERFORM writemessage USING &apos;E&apos; statusmsg.
-          EXIT.
-        ELSE.
-          PERFORM writemessage USING &apos;S&apos; statusmsg.
-          anxmldoc = nugg-&gt;getnextobject( ).
-        ENDIF.
-      ENDWHILE.
-
-      IF errorflag = &apos;X&apos;.
-        EXIT.
-      ENDIF.
-*   display objects in a nugget
+*   import nugget
+      PERFORM nugget_import.
     ELSEIF nugd = &apos;X&apos;.
-      IF nugfile IS INITIAL.
-        MESSAGE s208(00) WITH &apos;nugget filename required&apos;.
-        EXIT.
-      ENDIF.
-      PERFORM uploadxmlfromlm USING nugfile xml.
-      IF sy-subrc &lt;&gt; 0.
-        EXIT.
-      ENDIF.
-      ixmldocument = zsaplink=&gt;convertstringtoixmldoc( xml ).
-      nuggetname = zsaplink_nugget=&gt;getnuggetinfo( ixmldocument ).
-      WRITE: / &apos;Object list for nugget &apos;, nuggetname. SKIP.
-
-      CREATE OBJECT nugg
-        EXPORTING
-          ixmldocument = ixmldocument.
-      anxmldoc = nugg-&gt;getnextobject( ).
-
-      IF anxmldoc IS INITIAL.
-        errormsg = &apos;You have an empty Nugget&apos;.
-        PERFORM writemessage USING &apos;W&apos; errormsg.
-        EXIT.
-      ENDIF.
-
-      WHILE anxmldoc IS NOT INITIAL.
-        TRY.
-            CALL METHOD zsaplink=&gt;getobjectinfofromixmldoc
-              EXPORTING
-                ixmldocument = anxmldoc
-              IMPORTING
-                objtypename  = _objtype
-                objname      = _objname.
-          CATCH zcx_saplink.
-            errormsg = &apos;You have a corrupt Nugget&apos;.
-            PERFORM writemessage USING &apos;E&apos; errormsg.
-            EXIT.
-        ENDTRY.
-        CONCATENATE _objtype _objname INTO statusmsg SEPARATED BY space.
-        PERFORM writemessage USING &apos;S&apos; statusmsg.
-        anxmldoc = nugg-&gt;getnextobject( ).
-      ENDWHILE.
-
-*   rrq: enhancement 3--&gt;
-*   add package to nugget
+*   display objects in a nugget
+      PERFORM nugget_display.
     ELSEIF nugp = &apos;X&apos;.
-      IF package  IS INITIAL.
-        MESSAGE s208(00) WITH &apos;package required&apos;.
-        EXIT.
-      ENDIF.
-      IF nugfile IS INITIAL.
-        MESSAGE s208(00) WITH &apos;nugget filename required&apos;.
-        EXIT.
-      ENDIF.
-      &quot;// Mar: Added logic discard deleted objects from Package - 10/05/2009
-      IF sy-saprl NE &apos;701&apos;.
-        &quot;// Mar: Added logic discard deleted objects from Package - 10/05/2009
-
-        SELECT object obj_name srcsystem       &quot; ##TOO_MANY_ITAB_FIELDS
-            FROM tadir
-            INTO CORRESPONDING FIELDS OF TABLE objects_package
-            WHERE devclass  EQ package
-            AND  pgmid      EQ &apos;R3TR&apos;.
-
-        &quot;// Mar: Added logic discard deleted objects from Package - 10/05/2009
-      ELSE.
-        SELECT object obj_name srcsystem      &quot; ##TOO_MANY_ITAB_FIELDS
-            FROM tadir
-            INTO CORRESPONDING FIELDS OF TABLE objects_package
-            WHERE devclass  EQ package
-            AND  pgmid      EQ &apos;R3TR&apos;
-            AND  delflag    NE &apos;X&apos;.
-      ENDIF.
-      &quot;// Mar: Added logic discard deleted objects from Package - 10/05/2009
-
-      IF sy-subrc &lt;&gt; 0.
-        MESSAGE s208(00) WITH &apos;Package does not exist or empty&apos;.
-        RETURN.
-      ENDIF.
-
-      PERFORM addobjectstonugget.
-*   &lt;-- rrq: enhancement 3
-
+*   add package to nugget
+      PERFORM nugget_add_package.
 *   rrq: enhancement 42--&gt;
-*   add objects from a transport to a nugget
     ELSEIF nugr = &apos;X&apos;.
-      DATA: reqname TYPE string.
-
-      DATA: l_trkorr TYPE e07t-trkorr,
-            l_as4text TYPE e07t-as4text.
-
-      IF nugfile IS INITIAL.
-        MESSAGE s208(00) WITH &apos;nugget filename required&apos;.
-        EXIT.
-      ENDIF.
-
-      IF reqnugg[] IS INITIAL.
-        MESSAGE s208(00) WITH &apos;Request number required&apos;.
-        EXIT.
-      ENDIF.
-
-      SELECT SINGLE trkorr FROM e070 INTO l_trkorr
-        WHERE trkorr IN reqnugg.
-
-      IF sy-subrc &lt;&gt; 0.
-        MESSAGE s208(00) WITH &apos;Transport not found&apos;.
-        EXIT.
-      ENDIF.
-
-      SELECT SINGLE trkorr as4text
-      FROM  e07t
-      INTO (l_trkorr, l_as4text)
-      WHERE  trkorr   IN reqnugg
-        AND  langu    EQ sy-langu.
-
-*     ewH--&gt;retrieve tasks as well as transports
-      RANGES: ra_reqnugg FOR e070-trkorr.
-      DATA: wa_trkorr TYPE e070-trkorr,
-            it_trkorr TYPE TABLE OF e070-trkorr,
-            wa_reqnugg LIKE LINE OF ra_reqnugg.
-
-      SELECT trkorr FROM e070 INTO TABLE it_trkorr
-        WHERE strkorr IN reqnugg.
-
-      ra_reqnugg[] = reqnugg[].
-
-      LOOP AT it_trkorr INTO wa_trkorr.
-        wa_reqnugg-sign = &apos;I&apos;.
-        wa_reqnugg-option = &apos;EQ&apos;.
-        wa_reqnugg-low = wa_trkorr.
-        APPEND wa_reqnugg TO ra_reqnugg.
-      ENDLOOP.
-*     &lt;--ewH
-
-      SELECT object obj_name
-      FROM  e071
-      INTO TABLE it_requestobject
-*      WHERE  TRKORR in ReqNugg.
-      WHERE  trkorr IN ra_reqnugg &quot;ewH
-      AND pgmid = &apos;R3TR&apos;. &quot;ewH: don&apos;t need subobjects
-
-      IF sy-subrc = 0.
-        reqname = l_trkorr.
-      ELSE.
-        MESSAGE s208(00) WITH &apos;No R3TR objects in request&apos;.
-        EXIT.
-      ENDIF.
-
-      LOOP AT it_requestobject INTO wa_requestobject.
-        MOVE-CORRESPONDING wa_requestobject TO packageline.
-        APPEND packageline TO objects_package.
-      ENDLOOP.
-
-      PERFORM addobjectstonugget.
+*   add objects from a transport to a nugget
+      PERFORM nugget_add_from_transport.
     ENDIF.
   ENDIF.
 
@@ -7347,6 +7128,8 @@ FORM putonmachine USING fullpath TYPE string xmlstring TYPE string.
   IF retuseract = 0.
     &quot; Gregor Wolf, 2012-02-19:
     &quot; Independent of Server OS the download should always use Windows Linebreaks
+    REPLACE ALL OCCURRENCES OF cl_abap_char_utilities=&gt;cr_lf
+      IN xmlstring WITH cl_abap_char_utilities=&gt;newline.
     REPLACE ALL OCCURRENCES OF cl_abap_char_utilities=&gt;newline
       IN xmlstring WITH cl_abap_char_utilities=&gt;cr_lf.
 
@@ -7474,7 +7257,9 @@ FORM uploadxmlfromlm USING p_filename xmlstring TYPE string .
     IMPORTING
       text_buffer  = xmlstring
     TABLES
-      binary_tab   = temptable_bin.
+      binary_tab   = temptable_bin
+    EXCEPTIONS
+      OTHERS       = 1.
   IF sy-subrc &lt;&gt; 0.
     &quot; Just catch the sy-subrc when there was nothing replaced
     sy-subrc = 0.
@@ -7507,27 +7292,35 @@ ENDFORM.                    &quot;uploadXMLFromLM
 */----------------------installObject---------------------------------\
 FORM installobject USING l_ixmldocument TYPE REF TO if_ixml_document
                          l_overwriteflag TYPE flag
-                         value(l_package) TYPE tadir-devclass
+                         VALUE(l_package) TYPE tadir-devclass
                 CHANGING l_errorflag TYPE flag
                          l_message TYPE string.
 
   DATA l_objname TYPE string.
   DATA l_objtype TYPE string.
-  DATA l_objtable TYPE TABLE OF t_objecttable.
+*  DATA l_objtable TYPE TABLE OF t_objecttable.                             &quot; del Stefan
+  STATICS l_objtable TYPE TABLE OF t_objecttable.                           &quot; ins Stefan
   DATA l_objline TYPE t_objecttable.
   DATA l_targetobject TYPE REF TO zsaplink.
   DATA l_installobject TYPE string.
   DATA l_excclass TYPE REF TO zcx_saplink.
 
   CLEAR l_errorflag.
-  CALL METHOD zsaplink=&gt;getobjectinfofromixmldoc
-    EXPORTING
-      ixmldocument = l_ixmldocument
-    IMPORTING
-      objtypename  = l_objtype
-      objname      = l_objname.
+  TRY.
+      CALL METHOD zsaplink=&gt;getobjectinfofromixmldoc
+        EXPORTING
+          ixmldocument = l_ixmldocument
+        IMPORTING
+          objtypename  = l_objtype
+          objname      = l_objname.
+    CATCH zcx_saplink.
+      l_errorflag = &apos;X&apos;.
+      l_message = &apos;Error retrieving object information ixml document&apos;.
+  ENDTRY.
 
-  CALL METHOD zsaplink=&gt;getplugins( CHANGING objecttable = l_objtable ).
+  IF l_objtable IS INITIAL.                                                 &quot; ins Stefan
+    CALL METHOD zsaplink=&gt;getplugins( CHANGING objecttable = l_objtable ).
+  ENDIF.                                                                    &quot; ins Stefan
 
   READ TABLE l_objtable INTO l_objline WITH KEY object = l_objtype.
 
@@ -7626,27 +7419,27 @@ FORM get_current_screen_value  USING    l_screen_field
 
   CALL FUNCTION &apos;DYNP_VALUES_READ&apos;
     EXPORTING
-      dyname                   = sy-cprog
-      dynumb                   = l_screen_number
-      translate_to_upper       = &apos;X&apos;
-*     REQUEST                  = &apos; &apos;
+      dyname               = sy-cprog
+      dynumb               = l_screen_number
+      translate_to_upper   = &apos;X&apos;
+*     REQUEST              = &apos; &apos;
 *     PERFORM_CONVERSION_EXITS = &apos; &apos;
 *     PERFORM_INPUT_CONVERSION = &apos; &apos;
-*     DETERMINE_LOOP_INDEX     = &apos; &apos;
+*     DETERMINE_LOOP_INDEX = &apos; &apos;
     TABLES
-      dynpfields               = it_dynpfields
+      dynpfields           = it_dynpfields
     EXCEPTIONS
-      invalid_abapworkarea     = 1
-      invalid_dynprofield      = 2
-      invalid_dynproname       = 3
-      invalid_dynpronummer     = 4
-      invalid_request          = 5
-      no_fielddescription      = 6
-      invalid_parameter        = 7
-      undefind_error           = 8
-      double_conversion        = 9
-      stepl_not_found          = 10
-      OTHERS                   = 11.
+      invalid_abapworkarea = 1
+      invalid_dynprofield  = 2
+      invalid_dynproname   = 3
+      invalid_dynpronummer = 4
+      invalid_request      = 5
+      no_fielddescription  = 6
+      invalid_parameter    = 7
+      undefind_error       = 8
+      double_conversion    = 9
+      stepl_not_found      = 10
+      OTHERS               = 11.
   IF sy-subrc &lt;&gt; 0.
 *  MESSAGE ID SY-MSGID TYPE SY-MSGTY NUMBER SY-MSGNO
 *  WITH SY-MSGV1 SY-MSGV2 SY-MSGV3 SY-MSGV4.
@@ -7661,8 +7454,8 @@ FORM get_current_screen_value  USING    l_screen_field
 
 ENDFORM.                    &quot; get_current_screen_value
 */---------------------writeMessage-----------------------\
-FORM writemessage USING value(p_type) TYPE sy-msgty
-                        value(p_msg).
+FORM writemessage USING VALUE(p_type) TYPE sy-msgty
+                        VALUE(p_msg).
   CASE p_type.
     WHEN &apos;E&apos; OR &apos;A&apos; OR &apos;X&apos;.
       WRITE / icon_led_red AS ICON.
@@ -7766,11 +7559,11 @@ ENDFORM.                    &quot; showResultsGrid
 *  &lt;--  p2        text
 *----------------------------------------------------------------------*
 FORM check_objects .
-  DATA: lo_object   TYPE REF TO object,
-        lo_saplink  TYPE REF TO zsaplink,
-        l_flag      TYPE flag,
-        l_name      TYPE string.
-  DATA: ptab TYPE abap_parmbind_tab,
+  DATA: lo_object  TYPE REF TO object,
+        lo_saplink TYPE REF TO zsaplink,
+        l_flag     TYPE flag,
+        l_name     TYPE string.
+  DATA: ptab      TYPE abap_parmbind_tab,
         ptab_line TYPE abap_parmbind.
   LOOP AT objects_package ASSIGNING &lt;obj&gt;.
 *     Check what can be downloaded and what can not.
@@ -7872,9 +7665,14 @@ FORM addobjectstonugget .
 
   ixmldocument = zsaplink=&gt;convertstringtoixmldoc( xml ).
 
-  CREATE OBJECT nugg
-    EXPORTING
-      ixmldocument = ixmldocument.
+  TRY.
+      CREATE OBJECT nugg
+        EXPORTING
+          ixmldocument = ixmldocument.
+    CATCH zcx_saplink.
+      MESSAGE &apos;Internal error createing nugget &apos; TYPE &apos;I&apos;.
+      RETURN.
+  ENDTRY.
 
   DESCRIBE TABLE objects_package LINES lv_count.
   LOOP AT objects_package ASSIGNING &lt;obj&gt;
@@ -7914,6 +7712,586 @@ FORM addobjectstonugget .
   PERFORM showresultsgrid TABLES objects_package.
 
 ENDFORM.                    &quot; addObjectstoNugget
-*  &lt;--rrq: enhancement 3 &amp; 42</source>
+*  &lt;--rrq: enhancement 3 &amp; 42
+
+*&amp;---------------------------------------------------------------------*
+*&amp;      Form  WRITE_PLUGIN_VERSION_INFO
+*&amp;---------------------------------------------------------------------*
+*  Inform of updated versions of plugins if information found in file
+*----------------------------------------------------------------------*
+FORM write_plugin_version_info USING io_ixml_document TYPE REF TO if_ixml_document
+                                     iv_object_type   TYPE clike.
+
+  DATA: rootnode         TYPE REF TO if_ixml_node,
+        rootattr         TYPE REF TO if_ixml_named_node_map,
+        attrnode         TYPE REF TO if_ixml_node,
+        nodename         TYPE string,
+        attributelist    TYPE REF TO if_ixml_named_node_map,
+        nodeiterator     TYPE REF TO if_ixml_node_iterator,
+        attributenode    TYPE REF TO if_ixml_node,
+        value            TYPE string,
+        name             TYPE string,
+        ls_version_delta LIKE LINE OF gt_versions_delta.
+
+
+  FIELD-SYMBOLS:&lt;value&gt;          TYPE any,
+                &lt;ls_objecttable&gt; LIKE LINE OF objecttable.
+*--------------------------------------------------------------------*
+* Get Version information from class
+*--------------------------------------------------------------------*
+  READ TABLE objecttable ASSIGNING &lt;ls_objecttable&gt; WITH KEY object = iv_object_type.
+  CHECK sy-subrc = 0. &quot; No corresponding plugin --&gt; we already display a message &quot;missing plugin&quot;
+  ls_version_delta-version_sap = zsaplink=&gt;get_version_info_static( &lt;ls_objecttable&gt;-classname ).
+
+*--------------------------------------------------------------------*
+* Get Version information from ixml
+*--------------------------------------------------------------------*
+  CHECK io_ixml_document IS BOUND.  &quot; no need to continue if this is no valid ixml document
+  rootnode ?= io_ixml_document-&gt;get_root_element( ).
+
+  attributelist = rootnode-&gt;get_attributes( ).
+  CHECK attributelist IS BOUND.
+  nodeiterator = attributelist-&gt;create_iterator( ).
+  CHECK nodeiterator IS BOUND.
+  attributenode = nodeiterator-&gt;get_next( ).
+  WHILE attributenode IS NOT INITIAL.
+    name = attributenode-&gt;get_name( ).
+    ASSIGN COMPONENT name OF STRUCTURE ls_version_delta-version_ixml TO &lt;value&gt;.
+    IF sy-subrc = 0.
+      &lt;value&gt; = attributenode-&gt;get_value( ).
+    ENDIF.
+    attributenode = nodeiterator-&gt;get_next( ).
+  ENDWHILE.
+
+*--------------------------------------------------------------------*
+* Compare versions
+*--------------------------------------------------------------------*
+  ls_version_delta-classname =  &lt;ls_objecttable&gt;-classname.
+* Major version
+  IF ls_version_delta-version_ixml-zsaplink_plugin_major_version &lt; ls_version_delta-version_sap-zsaplink_plugin_major_version.
+    RETURN.  &quot; we have a newer version --&gt; good
+  ELSEIF ls_version_delta-version_ixml-zsaplink_plugin_major_version &gt; ls_version_delta-version_sap-zsaplink_plugin_major_version.
+    WRITE: &apos;Major update in plugin&apos; COLOR 6,
+           &lt;ls_objecttable&gt;-classname COLOR 3,
+           &apos;. Update of plugin necessary --&gt; see information&apos; COLOR 6, icon_information AS ICON HOTSPOT ON.
+    APPEND ls_version_delta  TO gt_versions_delta.
+    gv_version_line = sy-tabix.
+    HIDE  gv_version_line.
+    CLEAR gv_version_line.
+    RETURN.
+  ENDIF.
+* Major version equal - now check minor version
+  IF ls_version_delta-version_ixml-zsaplink_plugin_minor_version &lt; ls_version_delta-version_sap-zsaplink_plugin_minor_version.
+    RETURN.  &quot; we have a newer version --&gt; good
+  ELSEIF ls_version_delta-version_ixml-zsaplink_plugin_minor_version &gt; ls_version_delta-version_sap-zsaplink_plugin_minor_version.
+    WRITE: &apos;Minor update in plugin&apos; COLOR 7,
+           &lt;ls_objecttable&gt;-classname COLOR 3,
+           &apos;. Update of plugin recommended --&gt; see information&apos; COLOR 7, icon_information AS ICON HOTSPOT ON.
+    APPEND ls_version_delta  TO gt_versions_delta.
+    gv_version_line = sy-tabix.
+    HIDE  gv_version_line.
+    CLEAR gv_version_line.
+    RETURN.
+  ENDIF.
+* Major and minor version equal - build-numer doesn&apos;t matter here
+
+
+ENDFORM.                    &quot; WRITE_PLUGIN_VERSION_INFO
+
+
+*&amp;---------------------------------------------------------------------*
+*&amp;      Form  SHOW_VERSION_INFO
+*&amp;---------------------------------------------------------------------*
+FORM show_version_info.
+
+  FIELD-SYMBOLS: &lt;ls_version_delta&gt; LIKE LINE OF gt_versions_delta.
+
+  READ TABLE gt_versions_delta ASSIGNING &lt;ls_version_delta&gt; INDEX gv_version_line.
+  CHECK sy-subrc = 0.
+
+  WRITE:/ &apos;New version of class&apos;, &lt;ls_version_delta&gt;-classname COLOR 6,&apos;found&apos;.
+  SKIP 2.
+  IF &lt;ls_version_delta&gt;-version_ixml-zsaplink_plugin_major_version &gt; &lt;ls_version_delta&gt;-version_sap-zsaplink_plugin_major_version.
+    WRITE:/ &apos;Major version - Installed in SAP:&apos;  COLOR 7,                 &lt;ls_version_delta&gt;-version_sap-zsaplink_plugin_major_version COLOR 7,
+          / &apos;Major version - Found  in   file:&apos;  COLOR 7 INTENSIFIED OFF, &lt;ls_version_delta&gt;-version_ixml-zsaplink_plugin_major_version COLOR 7.
+  ELSEIF &lt;ls_version_delta&gt;-version_ixml-zsaplink_plugin_minor_version &gt; &lt;ls_version_delta&gt;-version_sap-zsaplink_plugin_minor_version.
+    WRITE:/ &apos;Minor version - Installed in SAP:&apos;  COLOR 7,                 &lt;ls_version_delta&gt;-version_sap-zsaplink_plugin_minor_version COLOR 7,
+          / &apos;Minor version - Found  in   file:&apos;  COLOR 7 INTENSIFIED OFF, &lt;ls_version_delta&gt;-version_ixml-zsaplink_plugin_minor_version COLOR 7.
+  ENDIF.
+  WRITE:/   &apos;Build         - Installed in SAP:&apos;  COLOR 5 INTENSIFIED OFF, &lt;ls_version_delta&gt;-version_sap-zsaplink_plugin_build_version,
+        /   &apos;Build         - Found   in  file:&apos;  COLOR 5 INTENSIFIED OFF, &lt;ls_version_delta&gt;-version_ixml-zsaplink_plugin_build_version.
+
+  SKIP.
+  WRITE:/   &apos;Info - Part1  - Found   in  file:&apos;  COLOR 5 INTENSIFIED OFF, &lt;ls_version_delta&gt;-version_ixml-zsaplink_plugin_info1,
+        /   &apos;Info - Part2  - Found   in  file:&apos;  COLOR 5 INTENSIFIED OFF, &lt;ls_version_delta&gt;-version_ixml-zsaplink_plugin_info2,
+        /   &apos;Info - Part3  - Found   in  file:&apos;  COLOR 5 INTENSIFIED OFF, &lt;ls_version_delta&gt;-version_ixml-zsaplink_plugin_info3,
+        /   &apos;Info - Part4  - Found   in  file:&apos;  COLOR 5 INTENSIFIED OFF, &lt;ls_version_delta&gt;-version_ixml-zsaplink_plugin_info4,
+        /   &apos;Info - Part5  - Found   in  file:&apos;  COLOR 5 INTENSIFIED OFF, &lt;ls_version_delta&gt;-version_ixml-zsaplink_plugin_info5.
+
+ENDFORM.                    &quot; SHOW_VERSION_INFO
+
+*&amp;---------------------------------------------------------------------*
+*&amp;      Form  SLINKEE_EXPORT
+*&amp;---------------------------------------------------------------------*
+FORM slinkee_export.
+  IF plugin IS INITIAL.
+    MESSAGE s208(00) WITH &apos;object type required&apos;.
+    EXIT.
+  ELSEIF _objname IS INITIAL.
+    MESSAGE s208(00) WITH &apos;object name required&apos;.
+    EXIT.
+  ENDIF.
+  READ TABLE objecttable INTO objectline WITH KEY object = plugin.
+  IF sy-subrc &lt;&gt; 0.
+    CONCATENATE &apos;Plugin for object type&apos;(plo) plugin
+      &apos;is not installed on this system&apos;(noi) INTO errormsg
+      SEPARATED BY space.
+    PERFORM writemessage USING &apos;E&apos; errormsg.
+    EXIT.
+  ENDIF.
+  CREATE OBJECT targetobject
+    TYPE
+      (objectline-classname)
+    EXPORTING
+      name                   = _objname.
+  TRY.
+      ixmldocument = targetobject-&gt;createixmldocfromobject( ).
+    CATCH zcx_saplink INTO excclass.
+      errormsg = excclass-&gt;get_text( ).
+      PERFORM writemessage USING &apos;E&apos; errormsg.
+  ENDTRY.
+  IF errormsg IS NOT INITIAL.
+    EXIT.
+  ENDIF.
+  xml = zsaplink=&gt;convertixmldoctostring( ixmldocument ).
+
+  CONCATENATE plugin &apos;_&apos; _objname &apos;.slnk&apos; INTO deffilename.
+  CLEAR errorflag.
+  PERFORM downloadxmltolm USING deffilename xml
+                          CHANGING errorflag.
+  IF errorflag IS NOT INITIAL.
+    MESSAGE s208(00) WITH &apos;Action cancelled&apos;.
+    EXIT.
+  ENDIF.
+  PERFORM displayxmlonscreen USING xml.
+ENDFORM.                    &quot; SLINKEE_EXPORT
+
+
+*&amp;---------------------------------------------------------------------*
+*&amp;      Form  SLINKEE_IMPORT
+*&amp;---------------------------------------------------------------------*
+FORM slinkee_import .
+  IF filename IS INITIAL.
+    MESSAGE s208(00) WITH &apos;slinkee filename required&apos;.
+    EXIT.
+  ENDIF.
+  PERFORM uploadxmlfromlm USING filename xml.
+  IF sy-subrc &lt;&gt; 0.
+    EXIT.
+  ENDIF.
+  ixmldocument = zsaplink=&gt;convertstringtoixmldoc( xml ).
+*     run some checks before install
+  PERFORM checkobject USING ixmldocument
+                      CHANGING _objtype
+                               _objname
+                               _pluginexists
+                               _objectexists.
+  MOVE _objtype TO plugin.
+  READ TABLE objecttable INTO objectline WITH KEY object = plugin.
+
+  IF _objtype = &apos;NUGG&apos;.
+    MESSAGE s208(00) WITH &apos;use nugget tab for nugget import&apos;.
+    EXIT.
+  ELSEIF _pluginexists IS INITIAL.
+    CONCATENATE &apos;Plugin for object type&apos;(plo) _objtype
+      &apos;is not installed on this system&apos;(noi) INTO errormsg
+      SEPARATED BY space.
+    PERFORM writemessage USING &apos;E&apos; errormsg.
+    EXIT.
+  ELSEIF _objectexists = &apos;X&apos; AND overwr IS INITIAL.
+    CONCATENATE _objtype objectline-text _objname
+      &apos;already exists. Use overwrite orginals option to replace&apos;
+      INTO errormsg SEPARATED BY space.
+    PERFORM writemessage USING &apos;E&apos; errormsg.
+    EXIT.
+  ELSEIF _objectexists = &apos;X&apos; AND overwr = &apos;X&apos;.
+    CONCATENATE _objtype _objname INTO stemp SEPARATED BY space.
+    PERFORM confirmoverwrite USING stemp
+                          CHANGING _flag.
+    IF _flag = &apos;A&apos;. &quot;cancel
+      PERFORM writemessage USING &apos;W&apos; &apos;Import cancelled by user&apos;.
+      EXIT.
+    ENDIF.
+  ENDIF.
+
+*     install object
+  PERFORM installobject USING ixmldocument
+                              overwr
+                              slpkg
+                     CHANGING errorflag
+                              statusmsg.
+  IF errorflag = &apos;X&apos;.
+    PERFORM writemessage USING &apos;E&apos; statusmsg.
+    EXIT.
+  ELSE.
+    PERFORM writemessage USING &apos;S&apos; statusmsg.
+  ENDIF.
+  MESSAGE s208(00) WITH &apos;Import successful&apos;.
+ENDFORM.                    &quot; SLINKEE_IMPORT
+
+
+*&amp;---------------------------------------------------------------------*
+*&amp;      Form  NUGGET_CREATE
+*&amp;---------------------------------------------------------------------*
+FORM nugget_create .
+  IF nuggnam IS INITIAL.
+    MESSAGE s208(00) WITH &apos;enter name of new nugget to be created&apos;.
+    EXIT.
+  ENDIF.
+  stemp = nuggnam.
+  PERFORM createemptynugget USING stemp.
+ENDFORM.                    &quot; NUGGET_CREATE
+
+
+*&amp;---------------------------------------------------------------------*
+*&amp;      Form  NUGGET_ADD_OBJECT
+*&amp;---------------------------------------------------------------------*
+FORM nugget_add_object .
+  IF nplugin IS INITIAL.
+    MESSAGE s208(00) WITH &apos;object type required&apos;.
+    EXIT.
+  ELSEIF nobjnam IS INITIAL.
+    MESSAGE s208(00) WITH &apos;object name required&apos;.
+    EXIT.
+  ELSEIF nugfile IS INITIAL.
+    MESSAGE s208(00) WITH &apos;nugget filename required&apos;.
+    EXIT.
+  ENDIF.
+  READ TABLE objecttable INTO objectline WITH KEY object = nplugin.
+  IF sy-subrc &lt;&gt; 0.
+    CONCATENATE &apos;Plugin for object type&apos;(plo) nplugin
+      &apos;is not installed on this system&apos;(noi) INTO errormsg
+        SEPARATED BY space.
+    PERFORM writemessage USING &apos;E&apos; errormsg.
+    EXIT.
+  ENDIF.
+  stemp = nuggnam.
+  PERFORM uploadxmlfromlm USING nugfile xml.
+  IF sy-subrc &lt;&gt; 0.
+    EXIT.
+  ENDIF.
+  ixmldocument = zsaplink=&gt;convertstringtoixmldoc( xml ).
+  CREATE OBJECT nugg
+    EXPORTING
+      ixmldocument = ixmldocument.
+
+  _objname = nobjnam.
+  stemp = nplugin.
+
+  TRY.
+      nugg-&gt;addobjecttonugget( objname = _objname objtype = stemp ).
+    CATCH zcx_saplink INTO excclass.
+      errormsg = excclass-&gt;get_text( ).
+      PERFORM writemessage USING &apos;E&apos; errormsg.
+      EXIT.
+  ENDTRY.
+  ixmldocument = nugg-&gt;createixmldocfromnugget( ).
+  xml = zsaplink=&gt;convertixmldoctostring( ixmldocument ).
+*      concatenate  nuggNam &apos;.nugg&apos; into sTemp.
+  stemp = nugfile.
+  PERFORM putonmachine USING stemp xml.
+ENDFORM.                    &quot; NUGGET_ADD_OBJECT
+
+
+*&amp;---------------------------------------------------------------------*
+*&amp;      Form  NUGGET_IMPORT
+*&amp;---------------------------------------------------------------------*
+FORM nugget_import .
+  IF nugfile IS INITIAL.
+    MESSAGE s208(00) WITH &apos;nugget filename required&apos;.
+    EXIT.
+  ENDIF.
+  PERFORM uploadxmlfromlm USING nugfile xml.
+  IF sy-subrc &lt;&gt; 0.
+    EXIT.
+  ENDIF.
+  ixmldocument = zsaplink=&gt;convertstringtoixmldoc( xml ).
+  nuggetname = zsaplink_nugget=&gt;getnuggetinfo( ixmldocument ).
+  CONCATENATE &apos;Start import of nugget&apos; nuggetname INTO statusmsg
+    SEPARATED BY space.
+
+  PERFORM writemessage USING &apos;S&apos; statusmsg.
+  SKIP.
+
+  CREATE OBJECT nugg
+    EXPORTING
+      ixmldocument = ixmldocument.
+
+*     check for installed plugins
+  CLEAR errorflag.
+  REFRESH it_nuggetobject.
+  anxmldoc = nugg-&gt;getnextobject( ).
+  WHILE anxmldoc IS NOT INITIAL.
+    CLEAR: _objtype, _objname, _pluginexists, _objectexists,
+           wa_nuggetobject.
+    PERFORM checkobject USING anxmldoc
+                        CHANGING _objtype
+                                 _objname
+                                 _pluginexists
+                                 _objectexists.
+    IF _pluginexists IS INITIAL.
+      CONCATENATE &apos;Plugin for object type&apos;(plo) _objtype
+        &apos;is not installed on this system&apos;(noi) INTO errormsg
+        SEPARATED BY space.
+      PERFORM writemessage USING &apos;E&apos; errormsg.
+      errorflag = &apos;X&apos;.
+    ELSEIF _objectexists = &apos;X&apos; AND novrwr IS INITIAL.
+      CONCATENATE _objtype _objname &apos;already exists. Use overwrite&apos;
+        &apos;orginals option to replace&apos;
+          INTO errormsg SEPARATED BY space.
+      PERFORM writemessage USING &apos;W&apos; errormsg.
+      PERFORM write_plugin_version_info USING anxmldoc
+                                              _objtype.
+
+      errorflag = &apos;X&apos;.
+    else.
+      CONCATENATE _objtype _objname
+          INTO errormsg SEPARATED BY space.
+      PERFORM writemessage USING &apos;S&apos; errormsg.
+      PERFORM write_plugin_version_info USING anxmldoc
+                                              _objtype.
+    ENDIF.
+    wa_nuggetobject-objtype = _objtype.
+    wa_nuggetobject-objname = _objname.
+    wa_nuggetobject-exists = _objectexists.
+    APPEND wa_nuggetobject TO it_nuggetobject.
+
+    anxmldoc = nugg-&gt;getnextobject( ).
+  ENDWHILE.
+
+  IF errorflag = &apos;X&apos;.
+    EXIT.
+  ENDIF.
+
+*     confirm overwrite
+  LOOP AT it_nuggetobject INTO wa_nuggetobject WHERE exists = &apos;X&apos;.
+    CLEAR _flag.
+    CONCATENATE wa_nuggetobject-objtype wa_nuggetobject-objname
+      INTO stemp SEPARATED BY space.
+    PERFORM confirmoverwrite USING stemp
+                          CHANGING _flag.
+    IF _flag = &apos;1&apos;. &quot;yes
+      CONTINUE.
+    ELSEIF _flag = &apos;2&apos;. &quot;yes to all
+      CLEAR errorflag.
+      EXIT.
+    ELSEIF _flag = &apos;A&apos;. &quot;cancel
+      PERFORM writemessage USING &apos;W&apos; &apos;Import cancelled by user&apos;.
+      errorflag = &apos;X&apos;.
+      EXIT.
+    ENDIF.
+  ENDLOOP.
+
+  IF errorflag = &apos;X&apos;.
+    EXIT.
+  ENDIF.
+
+*     install
+  nugg-&gt;reset( ). &quot;reset nugget iterator
+  anxmldoc = nugg-&gt;getnextobject( ).
+  WHILE anxmldoc IS NOT INITIAL.
+    CLEAR statusmsg.
+    PERFORM installobject USING anxmldoc
+                                novrwr
+                                package
+                       CHANGING errorflag
+                                statusmsg.
+    IF errorflag = &apos;X&apos;.
+      PERFORM writemessage USING &apos;E&apos; statusmsg.
+      EXIT.
+    ELSE.
+      PERFORM writemessage USING &apos;S&apos; statusmsg.
+      anxmldoc = nugg-&gt;getnextobject( ).
+    ENDIF.
+  ENDWHILE.
+
+  IF errorflag = &apos;X&apos;.
+    EXIT.
+  ENDIF.
+ENDFORM.                    &quot; NUGGET_IMPORT
+
+
+*&amp;---------------------------------------------------------------------*
+*&amp;      Form  NUGGET_DISPLAY
+*&amp;---------------------------------------------------------------------*
+FORM nugget_display .
+  IF nugfile IS INITIAL.
+    MESSAGE s208(00) WITH &apos;nugget filename required&apos;.
+    EXIT.
+  ENDIF.
+  PERFORM uploadxmlfromlm USING nugfile xml.
+  IF sy-subrc &lt;&gt; 0.
+    EXIT.
+  ENDIF.
+  ixmldocument = zsaplink=&gt;convertstringtoixmldoc( xml ).
+  TRY.
+      nuggetname = zsaplink_nugget=&gt;getnuggetinfo( ixmldocument ).
+    CATCH zcx_saplink.
+      WRITE:/ &apos;Internal error in nuggethandling - program aborted&apos;.
+      RETURN.
+  ENDTRY.
+  WRITE: / &apos;Object list for nugget &apos;, nuggetname. SKIP.
+
+  CREATE OBJECT nugg
+    EXPORTING
+      ixmldocument = ixmldocument.
+  anxmldoc = nugg-&gt;getnextobject( ).
+
+  IF anxmldoc IS INITIAL.
+    errormsg = &apos;You have an empty Nugget&apos;.
+    PERFORM writemessage USING &apos;W&apos; errormsg.
+    EXIT.
+  ENDIF.
+
+  WHILE anxmldoc IS NOT INITIAL.
+    TRY.
+        CALL METHOD zsaplink=&gt;getobjectinfofromixmldoc
+          EXPORTING
+            ixmldocument = anxmldoc
+          IMPORTING
+            objtypename  = _objtype
+            objname      = _objname.
+      CATCH zcx_saplink.
+        errormsg = &apos;You have a corrupt Nugget&apos;.
+        PERFORM writemessage USING &apos;E&apos; errormsg.
+        EXIT.
+    ENDTRY.
+    CONCATENATE _objtype _objname INTO statusmsg SEPARATED BY space.
+    PERFORM writemessage USING &apos;S&apos; statusmsg.
+    PERFORM write_plugin_version_info USING anxmldoc
+                                            _objtype.
+    anxmldoc = nugg-&gt;getnextobject( ).
+  ENDWHILE.
+
+ENDFORM.                    &quot; NUGGET_DISPLAY
+*&amp;---------------------------------------------------------------------*
+*&amp;      Form  NUGGET_ADD_PACKAGE
+*&amp;---------------------------------------------------------------------*
+*       text
+*----------------------------------------------------------------------*
+FORM nugget_add_package .
+*   rrq: enhancement 3--&gt;
+  IF package  IS INITIAL.
+    MESSAGE s208(00) WITH &apos;package required&apos;.
+    EXIT.
+  ENDIF.
+  IF nugfile IS INITIAL.
+    MESSAGE s208(00) WITH &apos;nugget filename required&apos;.
+    EXIT.
+  ENDIF.
+  &quot;// Mar: Added logic discard deleted objects from Package - 10/05/2009
+  IF sy-saprl NE &apos;701&apos;.
+    &quot;// Mar: Added logic discard deleted objects from Package - 10/05/2009
+
+    SELECT object obj_name srcsystem       &quot; ##TOO_MANY_ITAB_FIELDS
+        FROM tadir
+        INTO CORRESPONDING FIELDS OF TABLE objects_package
+        WHERE devclass  EQ package
+        AND  pgmid      EQ &apos;R3TR&apos;.
+
+    &quot;// Mar: Added logic discard deleted objects from Package - 10/05/2009
+  ELSE.
+    SELECT object obj_name srcsystem      &quot; ##TOO_MANY_ITAB_FIELDS
+        FROM tadir
+        INTO CORRESPONDING FIELDS OF TABLE objects_package
+        WHERE devclass  EQ package
+        AND  pgmid      EQ &apos;R3TR&apos;
+        AND  delflag    NE &apos;X&apos;.
+  ENDIF.
+  &quot;// Mar: Added logic discard deleted objects from Package - 10/05/2009
+
+  IF sy-subrc &lt;&gt; 0.
+    MESSAGE s208(00) WITH &apos;Package does not exist or empty&apos;.
+    RETURN.
+  ENDIF.
+
+  PERFORM addobjectstonugget.
+*   &lt;-- rrq: enhancement 3
+ENDFORM.                    &quot; NUGGET_ADD_PACKAGE
+
+
+*&amp;---------------------------------------------------------------------*
+*&amp;      Form  NUGGET_ADD_FROM_TRANSPORT
+*&amp;---------------------------------------------------------------------*
+FORM nugget_add_from_transport .
+  DATA: reqname TYPE string.
+
+  DATA: l_trkorr  TYPE e07t-trkorr,
+        l_as4text TYPE e07t-as4text.
+
+  IF nugfile IS INITIAL.
+    MESSAGE s208(00) WITH &apos;nugget filename required&apos;.
+    EXIT.
+  ENDIF.
+
+  IF reqnugg[] IS INITIAL.
+    MESSAGE s208(00) WITH &apos;Request number required&apos;.
+    EXIT.
+  ENDIF.
+
+  SELECT SINGLE trkorr FROM e070 INTO l_trkorr
+    WHERE trkorr IN reqnugg.
+
+  IF sy-subrc &lt;&gt; 0.
+    MESSAGE s208(00) WITH &apos;Transport not found&apos;.
+    EXIT.
+  ENDIF.
+
+  SELECT SINGLE trkorr as4text
+  FROM  e07t
+  INTO (l_trkorr, l_as4text)
+  WHERE  trkorr   IN reqnugg
+    AND  langu    EQ sy-langu.
+
+*     ewH--&gt;retrieve tasks as well as transports
+  RANGES: ra_reqnugg FOR e070-trkorr.
+  DATA: wa_trkorr  TYPE e070-trkorr,
+        it_trkorr  TYPE TABLE OF e070-trkorr,
+        wa_reqnugg LIKE LINE OF ra_reqnugg.
+
+  SELECT trkorr FROM e070 INTO TABLE it_trkorr
+    WHERE strkorr IN reqnugg.
+
+  ra_reqnugg[] = reqnugg[].
+
+  LOOP AT it_trkorr INTO wa_trkorr.
+    wa_reqnugg-sign = &apos;I&apos;.
+    wa_reqnugg-option = &apos;EQ&apos;.
+    wa_reqnugg-low = wa_trkorr.
+    APPEND wa_reqnugg TO ra_reqnugg.
+  ENDLOOP.
+*     &lt;--ewH
+
+  SELECT object obj_name
+  FROM  e071
+  INTO TABLE it_requestobject
+*      WHERE  TRKORR in ReqNugg.
+  WHERE  trkorr IN ra_reqnugg &quot;ewH
+  AND pgmid = &apos;R3TR&apos;. &quot;ewH: don&apos;t need subobjects
+
+  IF sy-subrc = 0.
+    reqname = l_trkorr.
+  ELSE.
+    MESSAGE s208(00) WITH &apos;No R3TR objects in request&apos;.
+    EXIT.
+  ENDIF.
+
+  LOOP AT it_requestobject INTO wa_requestobject.
+    MOVE-CORRESPONDING wa_requestobject TO packageline.
+    APPEND packageline TO objects_package.
+  ENDLOOP.
+
+  PERFORM addobjectstonugget.
+ENDFORM.                    &quot; NUGGET_ADD_FROM_TRANSPORT</source>
  </PROG>
 </nugget>

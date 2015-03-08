@@ -44,6 +44,8 @@
    <textElement ID="I" KEY="SLK" ENTRY="SAPlink" LENGTH="7 "/>
    <textElement ID="I" KEY="TB1" ENTRY="Slinkee" LENGTH="7 "/>
    <textElement ID="I" KEY="TB2" ENTRY="Nugget" LENGTH="6 "/>
+   <textElement ID="I" KEY="URL" ENTRY="Visit http://www.saplink.org" LENGTH="60 "/>
+   <textElement ID="I" KEY="VER" ENTRY="Updated version of CLASS ZSAPLINK available" LENGTH="60 "/>
    <textElement ID="S" KEY="EXPORT" ENTRY="        Export Object to Slinkee" LENGTH="32 "/>
    <textElement ID="S" KEY="FILENAME" ENTRY="        Slinkee File Name" LENGTH="33 "/>
    <textElement ID="S" KEY="IMPORT" ENTRY="        Import Slinkee" LENGTH="22 "/>
@@ -400,6 +402,11 @@ TYPES: BEGIN OF t_requestobject,
 
 TYPES: tt_requestobject TYPE TABLE OF t_requestobject.
 
+TYPES: BEGIN OF gts_versions_delta,
+         classname    TYPE classname,
+         version_ixml TYPE zsaplink=&gt;gts_version_info,
+         version_sap  TYPE zsaplink=&gt;gts_version_info,
+       END OF gts_versions_delta.
 
 DATA: objects_package     TYPE TABLE OF t_objects_package,
       packageline         TYPE t_objects_package,
@@ -464,7 +471,9 @@ DATA: objects_package     TYPE TABLE OF t_objects_package,
       es_selected_request TYPE trwbo_request_header,
       es_selected_task    TYPE trwbo_request_header,
       iv_organizer_type   TYPE trwbo_calling_organizer,
-      is_selection        TYPE trwbo_selection.
+      is_selection        TYPE trwbo_selection,
+      gt_versions_delta   TYPE STANDARD TABLE OF gts_versions_delta WITH NON-UNIQUE DEFAULT KEY,
+      gv_version_line     TYPE sytabix.
 
 FIELD-SYMBOLS: &lt;obj&gt; LIKE LINE OF objects_package.
 
@@ -473,12 +482,16 @@ FIELD-SYMBOLS: &lt;obj&gt; LIKE LINE OF objects_package.
 
 */------------------------SELECTION SCREEN----------------------------\
 
+
 SELECTION-SCREEN BEGIN OF TABBED BLOCK tabb FOR 20 LINES.
 SELECTION-SCREEN TAB (17) text-tb2 USER-COMMAND nugg
                      DEFAULT SCREEN 120.
 SELECTION-SCREEN TAB (17) text-tb1 USER-COMMAND obj
                      DEFAULT SCREEN 110.
 SELECTION-SCREEN END OF BLOCK tabb.
+SELECTION-SCREEN SKIP.
+SELECTION-SCREEN COMMENT /1(60) cmt_ver MODIF ID ver.
+SELECTION-SCREEN COMMENT /1(60) cmt_url MODIF ID ver.
 
 *Slinkee tab
 SELECTION-SCREEN BEGIN OF SCREEN 110 AS SUBSCREEN.
@@ -570,56 +583,69 @@ AT SELECTION-SCREEN OUTPUT.
   ENDIF.
 
   LOOP AT SCREEN.
+
     IF screen-group1 = hidid.
-      screen-active = &apos;0&apos;.
+      screen-active    = &apos;0&apos;.
       screen-invisible = &apos;1&apos;.
-      MODIFY SCREEN.
     ENDIF.
+
+    MODIFY SCREEN.
+
   ENDLOOP.
 
   LOOP AT SCREEN.
     IF nugc = &apos;X&apos;.
       IF screen-group1 = &apos;NNM&apos;.
-        screen-active = &apos;1&apos;.
+        screen-active    = &apos;1&apos;.
         screen-invisible = &apos;0&apos;.
         MODIFY SCREEN.
-      ELSEIF screen-group1 = &apos;NPG&apos; OR screen-group1 = &apos;NFL&apos;
-        OR screen-group1 = &apos;NOW&apos; OR screen-group1 = &apos;NPC&apos;
-        OR screen-group1 = &apos;RNM&apos;.
-        screen-active = &apos;0&apos;.
+      ELSEIF screen-group1 = &apos;NPG&apos;
+          OR screen-group1 = &apos;NFL&apos;
+          OR screen-group1 = &apos;NOW&apos;
+          OR screen-group1 = &apos;NPC&apos;
+          OR screen-group1 = &apos;RNM&apos;.
+        screen-active    = &apos;0&apos;.
         screen-invisible = &apos;1&apos;.
         MODIFY SCREEN.
       ENDIF.
     ELSEIF nugi = &apos;X&apos;.
-      IF screen-group1 = &apos;NFL&apos; OR screen-group1 = &apos;NOW&apos;.
-        screen-active = &apos;1&apos;.
+      IF   screen-group1 = &apos;NFL&apos;
+        OR screen-group1 = &apos;NOW&apos;.
+        screen-active    = &apos;1&apos;.
         screen-invisible = &apos;0&apos;.
         MODIFY SCREEN.
-      ELSEIF screen-group1 = &apos;NNM&apos; OR screen-group1 =&apos;NPG&apos;
-         OR screen-group1 = &apos;RNM&apos;.
-        screen-active = &apos;0&apos;.
+      ELSEIF screen-group1 = &apos;NNM&apos;
+          OR screen-group1 =&apos;NPG&apos;
+          OR screen-group1 = &apos;RNM&apos;.
+        screen-active    = &apos;0&apos;.
         screen-invisible = &apos;1&apos;.
         MODIFY SCREEN.
       ENDIF.
     ELSEIF nuga = &apos;X&apos;.
-      IF screen-group1 = &apos;NFL&apos; OR screen-group1 = &apos;NPG&apos;.
-        screen-active = &apos;1&apos;.
+      IF   screen-group1 = &apos;NFL&apos;
+        OR screen-group1 = &apos;NPG&apos;.
+        screen-active    = &apos;1&apos;.
         screen-invisible = &apos;0&apos;.
         MODIFY SCREEN.
-      ELSEIF screen-group1 = &apos;NNM&apos; OR screen-group1 = &apos;NOW&apos;
-         OR screen-group1 = &apos;NPC&apos; OR screen-group1 = &apos;RNM&apos;.
-        screen-active = &apos;0&apos;.
+      ELSEIF screen-group1 = &apos;NNM&apos;
+          OR screen-group1 = &apos;NOW&apos;
+          OR screen-group1 = &apos;NPC&apos;
+          OR screen-group1 = &apos;RNM&apos;.
+        screen-active    = &apos;0&apos;.
         screen-invisible = &apos;1&apos;.
         MODIFY SCREEN.
       ENDIF.
     ELSEIF nugp = &apos;X&apos;.
-      IF screen-group1 = &apos;NFL&apos; OR screen-group1 = &apos;NPC&apos;.
-        screen-active = &apos;1&apos;.
+      IF   screen-group1 = &apos;NFL&apos;
+        OR screen-group1 = &apos;NPC&apos;.
+        screen-active    = &apos;1&apos;.
         screen-invisible = &apos;0&apos;.
         MODIFY SCREEN.
-      ELSEIF screen-group1 = &apos;NNM&apos; OR screen-group1 = &apos;NOW&apos;
-        OR screen-group1 = &apos;NPG&apos; OR screen-group1 = &apos;RNM&apos;.
-        screen-active = &apos;0&apos;.
+      ELSEIF screen-group1 = &apos;NNM&apos;
+          OR screen-group1 = &apos;NOW&apos;
+          OR screen-group1 = &apos;NPG&apos;
+          OR screen-group1 = &apos;RNM&apos;.
+        screen-active    = &apos;0&apos;.
         screen-invisible = &apos;1&apos;.
         MODIFY SCREEN.
       ENDIF.
@@ -628,21 +654,26 @@ AT SELECTION-SCREEN OUTPUT.
         screen-active = &apos;1&apos;.
         screen-invisible = &apos;0&apos;.
         MODIFY SCREEN.
-      ELSEIF screen-group1 = &apos;NNM&apos; OR screen-group1 =&apos;NPG&apos;
-       OR screen-group1 = &apos;NOW&apos; OR screen-group1 = &apos;NPC&apos;
-       OR screen-group1 = &apos;RNM&apos;.
-        screen-active = &apos;0&apos;.
+      ELSEIF screen-group1 = &apos;NNM&apos;
+          OR screen-group1 = &apos;NPG&apos;
+          OR screen-group1 = &apos;NOW&apos;
+          OR screen-group1 = &apos;NPC&apos;
+          OR screen-group1 = &apos;RNM&apos;.
+        screen-active    = &apos;0&apos;.
         screen-invisible = &apos;1&apos;.
         MODIFY SCREEN.
       ENDIF.
     ELSEIF nugr = &apos;X&apos;.
-      IF screen-group1 = &apos;NFL&apos; OR screen-group1 = &apos;RNM&apos;.
-        screen-active = &apos;1&apos;.
+      IF   screen-group1 = &apos;NFL&apos;
+        OR screen-group1 = &apos;RNM&apos;.
+        screen-active    = &apos;1&apos;.
         screen-invisible = &apos;0&apos;.
         MODIFY SCREEN.
-      ELSEIF screen-group1 = &apos;NNM&apos; OR screen-group1 = &apos;NOW&apos;
-        OR screen-group1 = &apos;NPG&apos; OR screen-group1 = &apos;NPC&apos;.
-        screen-active = &apos;0&apos;.
+      ELSEIF screen-group1 = &apos;NNM&apos;
+          OR screen-group1 = &apos;NOW&apos;
+          OR screen-group1 = &apos;NPG&apos;
+          OR screen-group1 = &apos;NPC&apos;.
+        screen-active    = &apos;0&apos;.
         screen-invisible = &apos;1&apos;.
         MODIFY SCREEN.
       ENDIF.
@@ -831,6 +862,13 @@ AT SELECTION-SCREEN ON VALUE-REQUEST FOR reqnugg-low.
 
   reqnugg-low = es_selected_request-trkorr.
 
+
+AT LINE-SELECTION.
+  IF gv_version_line IS NOT INITIAL.
+    PERFORM show_version_info.
+    CLEAR gv_version_line.
+  ENDIF.
+
 *\--------------------------------------------------------------------/
 
 */----------------------main------------------------------------------\
@@ -839,425 +877,34 @@ START-OF-SELECTION.
 ************* S L I N K E E *************
   IF isslinkee IS NOT INITIAL.
     _objname = objname.
-*   Export slinkee
     IF export = &apos;X&apos;.
-      IF plugin IS INITIAL.
-        MESSAGE s208(00) WITH &apos;object type required&apos;.
-        EXIT.
-      ELSEIF _objname IS INITIAL.
-        MESSAGE s208(00) WITH &apos;object name required&apos;.
-        EXIT.
-      ENDIF.
-      READ TABLE objecttable INTO objectline WITH KEY object = plugin.
-      IF sy-subrc &lt;&gt; 0.
-        CONCATENATE &apos;Plugin for object type&apos;(plo) plugin
-          &apos;is not installed on this system&apos;(noi) INTO errormsg
-          SEPARATED BY space.
-        PERFORM writemessage USING &apos;E&apos; errormsg.
-        EXIT.
-      ENDIF.
-      CREATE OBJECT targetobject
-        TYPE
-          (objectline-classname)
-        EXPORTING
-          name                   = _objname.
-      TRY.
-          ixmldocument = targetobject-&gt;createixmldocfromobject( ).
-        CATCH zcx_saplink INTO excclass.
-          errormsg = excclass-&gt;get_text( ).
-          PERFORM writemessage USING &apos;E&apos; errormsg.
-      ENDTRY.
-      IF errormsg IS NOT INITIAL.
-        EXIT.
-      ENDIF.
-      xml = zsaplink=&gt;convertixmldoctostring( ixmldocument ).
-
-      CONCATENATE plugin &apos;_&apos; _objname &apos;.slnk&apos; INTO deffilename.
-      CLEAR errorflag.
-      PERFORM downloadxmltolm USING deffilename xml
-                              CHANGING errorflag.
-      IF errorflag IS NOT INITIAL.
-        MESSAGE s208(00) WITH &apos;Action cancelled&apos;.
-        EXIT.
-      ENDIF.
-      PERFORM displayxmlonscreen USING xml.
-*   Import slinkee
+*   Export slinkee
+      PERFORM slinkee_export.
     ELSEIF import = &apos;X&apos;.
-      IF filename IS INITIAL.
-        MESSAGE s208(00) WITH &apos;slinkee filename required&apos;.
-        EXIT.
-      ENDIF.
-      PERFORM uploadxmlfromlm USING filename xml.
-      IF sy-subrc &lt;&gt; 0.
-        EXIT.
-      ENDIF.
-      ixmldocument = zsaplink=&gt;convertstringtoixmldoc( xml ).
-*     run some checks before install
-      PERFORM checkobject USING ixmldocument
-                          CHANGING _objtype
-                                   _objname
-                                   _pluginexists
-                                   _objectexists.
-      MOVE _objtype TO plugin.
-      READ TABLE objecttable INTO objectline WITH KEY object = plugin.
-
-      IF _objtype = &apos;NUGG&apos;.
-        MESSAGE s208(00) WITH &apos;use nugget tab for nugget import&apos;.
-        EXIT.
-      ELSEIF _pluginexists IS INITIAL.
-        CONCATENATE &apos;Plugin for object type&apos;(plo) _objtype
-          &apos;is not installed on this system&apos;(noi) INTO errormsg
-          SEPARATED BY space.
-        PERFORM writemessage USING &apos;E&apos; errormsg.
-        EXIT.
-      ELSEIF _objectexists = &apos;X&apos; AND overwr IS INITIAL.
-        CONCATENATE _objtype objectline-text _objname
-          &apos;already exists. Use overwrite orginals option to replace&apos;
-          INTO errormsg SEPARATED BY space.
-        PERFORM writemessage USING &apos;E&apos; errormsg.
-        EXIT.
-      ELSEIF _objectexists = &apos;X&apos; AND overwr = &apos;X&apos;.
-        CONCATENATE _objtype _objname INTO stemp SEPARATED BY space.
-        PERFORM confirmoverwrite USING stemp
-                              CHANGING _flag.
-        IF _flag = &apos;A&apos;. &quot;cancel
-          PERFORM writemessage USING &apos;W&apos; &apos;Import cancelled by user&apos;.
-          EXIT.
-        ENDIF.
-      ENDIF.
-
-*     install object
-      PERFORM installobject USING ixmldocument
-                                  overwr
-                                  slpkg
-                         CHANGING errorflag
-                                  statusmsg.
-      IF errorflag = &apos;X&apos;.
-        PERFORM writemessage USING &apos;E&apos; statusmsg.
-        EXIT.
-      ELSE.
-        PERFORM writemessage USING &apos;S&apos; statusmsg.
-      ENDIF.
-      MESSAGE s208(00) WITH &apos;Import successful&apos;.
+*   Import slinkee
+      PERFORM slinkee_import.
     ENDIF.
   ELSE.
 ************* N U G G E T *************
-*   create empty nugget
     IF nugc = &apos;X&apos;.
-      IF nuggnam IS INITIAL.
-        MESSAGE s208(00) WITH &apos;enter name of new nugget to be created&apos;.
-        EXIT.
-      ENDIF.
-      stemp = nuggnam.
-      PERFORM createemptynugget USING stemp.
-*   add object to nugget
+*   create empty nugget
+      PERFORM nugget_create.
     ELSEIF nuga = &apos;X&apos;.
-      IF nplugin IS INITIAL.
-        MESSAGE s208(00) WITH &apos;object type required&apos;.
-        EXIT.
-      ELSEIF nobjnam IS INITIAL.
-        MESSAGE s208(00) WITH &apos;object name required&apos;.
-        EXIT.
-      ELSEIF nugfile IS INITIAL.
-        MESSAGE s208(00) WITH &apos;nugget filename required&apos;.
-        EXIT.
-      ENDIF.
-      READ TABLE objecttable INTO objectline WITH KEY object = nplugin.
-      IF sy-subrc &lt;&gt; 0.
-        CONCATENATE &apos;Plugin for object type&apos;(plo) nplugin
-          &apos;is not installed on this system&apos;(noi) INTO errormsg
-            SEPARATED BY space.
-        PERFORM writemessage USING &apos;E&apos; errormsg.
-        EXIT.
-      ENDIF.
-      stemp = nuggnam.
-      PERFORM uploadxmlfromlm USING nugfile xml.
-      IF sy-subrc &lt;&gt; 0.
-        EXIT.
-      ENDIF.
-      ixmldocument = zsaplink=&gt;convertstringtoixmldoc( xml ).
-      CREATE OBJECT nugg
-        EXPORTING
-          ixmldocument = ixmldocument.
-
-      _objname = nobjnam.
-      stemp = nplugin.
-
-      TRY.
-          nugg-&gt;addobjecttonugget( objname = _objname objtype = stemp ).
-        CATCH zcx_saplink INTO excclass.
-          errormsg = excclass-&gt;get_text( ).
-          PERFORM writemessage USING &apos;E&apos; errormsg.
-          EXIT.
-      ENDTRY.
-      ixmldocument = nugg-&gt;createixmldocfromnugget( ).
-      xml = zsaplink=&gt;convertixmldoctostring( ixmldocument ).
-*      concatenate  nuggNam &apos;.nugg&apos; into sTemp.
-      stemp = nugfile.
-      PERFORM putonmachine USING stemp xml.
-*   import nugget
+*   add object to nugget
+      PERFORM nugget_add_object.
     ELSEIF nugi = &apos;X&apos;.
-      IF nugfile IS INITIAL.
-        MESSAGE s208(00) WITH &apos;nugget filename required&apos;.
-        EXIT.
-      ENDIF.
-      PERFORM uploadxmlfromlm USING nugfile xml.
-      IF sy-subrc &lt;&gt; 0.
-        EXIT.
-      ENDIF.
-      ixmldocument = zsaplink=&gt;convertstringtoixmldoc( xml ).
-      nuggetname = zsaplink_nugget=&gt;getnuggetinfo( ixmldocument ).
-      CONCATENATE &apos;Start import of nugget&apos; nuggetname INTO statusmsg
-        SEPARATED BY space.
-
-      PERFORM writemessage USING &apos;S&apos; statusmsg.
-      SKIP.
-
-      CREATE OBJECT nugg
-        EXPORTING
-          ixmldocument = ixmldocument.
-
-*     check for installed plugins
-      CLEAR errorflag.
-      REFRESH it_nuggetobject.
-      anxmldoc = nugg-&gt;getnextobject( ).
-      WHILE anxmldoc IS NOT INITIAL.
-        CLEAR: _objtype, _objname, _pluginexists, _objectexists,
-               wa_nuggetobject.
-        PERFORM checkobject USING anxmldoc
-                            CHANGING _objtype
-                                     _objname
-                                     _pluginexists
-                                     _objectexists.
-        IF _pluginexists IS INITIAL.
-          CONCATENATE &apos;Plugin for object type&apos;(plo) _objtype
-            &apos;is not installed on this system&apos;(noi) INTO errormsg
-            SEPARATED BY space.
-          PERFORM writemessage USING &apos;E&apos; errormsg.
-          errorflag = &apos;X&apos;.
-        ELSEIF _objectexists = &apos;X&apos; AND novrwr IS INITIAL.
-          CONCATENATE _objtype _objname &apos;already exists. Use overwrite&apos;
-            &apos;orginals option to replace&apos;
-              INTO errormsg SEPARATED BY space.
-          PERFORM writemessage USING &apos;W&apos; errormsg.
-          errorflag = &apos;X&apos;.
-        ENDIF.
-        wa_nuggetobject-objtype = _objtype.
-        wa_nuggetobject-objname = _objname.
-        wa_nuggetobject-exists = _objectexists.
-        APPEND wa_nuggetobject TO it_nuggetobject.
-
-        anxmldoc = nugg-&gt;getnextobject( ).
-      ENDWHILE.
-
-      IF errorflag = &apos;X&apos;.
-        EXIT.
-      ENDIF.
-
-*     confirm overwrite
-      LOOP AT it_nuggetobject INTO wa_nuggetobject WHERE exists = &apos;X&apos;.
-        CLEAR _flag.
-        CONCATENATE wa_nuggetobject-objtype wa_nuggetobject-objname
-          INTO stemp SEPARATED BY space.
-        PERFORM confirmoverwrite USING stemp
-                              CHANGING _flag.
-        IF _flag = &apos;1&apos;. &quot;yes
-          CONTINUE.
-        ELSEIF _flag = &apos;2&apos;. &quot;yes to all
-          CLEAR errorflag.
-          EXIT.
-        ELSEIF _flag = &apos;A&apos;. &quot;cancel
-          PERFORM writemessage USING &apos;W&apos; &apos;Import cancelled by user&apos;.
-          errorflag = &apos;X&apos;.
-          EXIT.
-        ENDIF.
-      ENDLOOP.
-
-      IF errorflag = &apos;X&apos;.
-        EXIT.
-      ENDIF.
-
-*     install
-      nugg-&gt;reset( ). &quot;reset nugget iterator
-      anxmldoc = nugg-&gt;getnextobject( ).
-      WHILE anxmldoc IS NOT INITIAL.
-        CLEAR statusmsg.
-        PERFORM installobject USING anxmldoc
-                                    novrwr
-                                    package
-                           CHANGING errorflag
-                                    statusmsg.
-        IF errorflag = &apos;X&apos;.
-          PERFORM writemessage USING &apos;E&apos; statusmsg.
-          EXIT.
-        ELSE.
-          PERFORM writemessage USING &apos;S&apos; statusmsg.
-          anxmldoc = nugg-&gt;getnextobject( ).
-        ENDIF.
-      ENDWHILE.
-
-      IF errorflag = &apos;X&apos;.
-        EXIT.
-      ENDIF.
-*   display objects in a nugget
+*   import nugget
+      PERFORM nugget_import.
     ELSEIF nugd = &apos;X&apos;.
-      IF nugfile IS INITIAL.
-        MESSAGE s208(00) WITH &apos;nugget filename required&apos;.
-        EXIT.
-      ENDIF.
-      PERFORM uploadxmlfromlm USING nugfile xml.
-      IF sy-subrc &lt;&gt; 0.
-        EXIT.
-      ENDIF.
-      ixmldocument = zsaplink=&gt;convertstringtoixmldoc( xml ).
-      TRY.
-          nuggetname = zsaplink_nugget=&gt;getnuggetinfo( ixmldocument ).
-        CATCH zcx_saplink.
-          WRITE:/ &apos;Internal error in nuggethandling - program aborted&apos;.
-          RETURN.
-      ENDTRY.
-      WRITE: / &apos;Object list for nugget &apos;, nuggetname. SKIP.
-
-      CREATE OBJECT nugg
-        EXPORTING
-          ixmldocument = ixmldocument.
-      anxmldoc = nugg-&gt;getnextobject( ).
-
-      IF anxmldoc IS INITIAL.
-        errormsg = &apos;You have an empty Nugget&apos;.
-        PERFORM writemessage USING &apos;W&apos; errormsg.
-        EXIT.
-      ENDIF.
-
-      WHILE anxmldoc IS NOT INITIAL.
-        TRY.
-            CALL METHOD zsaplink=&gt;getobjectinfofromixmldoc
-              EXPORTING
-                ixmldocument = anxmldoc
-              IMPORTING
-                objtypename  = _objtype
-                objname      = _objname.
-          CATCH zcx_saplink.
-            errormsg = &apos;You have a corrupt Nugget&apos;.
-            PERFORM writemessage USING &apos;E&apos; errormsg.
-            EXIT.
-        ENDTRY.
-        CONCATENATE _objtype _objname INTO statusmsg SEPARATED BY space.
-        PERFORM writemessage USING &apos;S&apos; statusmsg.
-        anxmldoc = nugg-&gt;getnextobject( ).
-      ENDWHILE.
-
-*   rrq: enhancement 3--&gt;
-*   add package to nugget
+*   display objects in a nugget
+      PERFORM nugget_display.
     ELSEIF nugp = &apos;X&apos;.
-      IF package  IS INITIAL.
-        MESSAGE s208(00) WITH &apos;package required&apos;.
-        EXIT.
-      ENDIF.
-      IF nugfile IS INITIAL.
-        MESSAGE s208(00) WITH &apos;nugget filename required&apos;.
-        EXIT.
-      ENDIF.
-      &quot;// Mar: Added logic discard deleted objects from Package - 10/05/2009
-      IF sy-saprl NE &apos;701&apos;.
-        &quot;// Mar: Added logic discard deleted objects from Package - 10/05/2009
-
-        SELECT object obj_name srcsystem       &quot; ##TOO_MANY_ITAB_FIELDS
-            FROM tadir
-            INTO CORRESPONDING FIELDS OF TABLE objects_package
-            WHERE devclass  EQ package
-            AND  pgmid      EQ &apos;R3TR&apos;.
-
-        &quot;// Mar: Added logic discard deleted objects from Package - 10/05/2009
-      ELSE.
-        SELECT object obj_name srcsystem      &quot; ##TOO_MANY_ITAB_FIELDS
-            FROM tadir
-            INTO CORRESPONDING FIELDS OF TABLE objects_package
-            WHERE devclass  EQ package
-            AND  pgmid      EQ &apos;R3TR&apos;
-            AND  delflag    NE &apos;X&apos;.
-      ENDIF.
-      &quot;// Mar: Added logic discard deleted objects from Package - 10/05/2009
-
-      IF sy-subrc &lt;&gt; 0.
-        MESSAGE s208(00) WITH &apos;Package does not exist or empty&apos;.
-        RETURN.
-      ENDIF.
-
-      PERFORM addobjectstonugget.
-*   &lt;-- rrq: enhancement 3
-
+*   add package to nugget
+      PERFORM nugget_add_package.
 *   rrq: enhancement 42--&gt;
-*   add objects from a transport to a nugget
     ELSEIF nugr = &apos;X&apos;.
-      DATA: reqname TYPE string.
-
-      DATA: l_trkorr  TYPE e07t-trkorr,
-            l_as4text TYPE e07t-as4text.
-
-      IF nugfile IS INITIAL.
-        MESSAGE s208(00) WITH &apos;nugget filename required&apos;.
-        EXIT.
-      ENDIF.
-
-      IF reqnugg[] IS INITIAL.
-        MESSAGE s208(00) WITH &apos;Request number required&apos;.
-        EXIT.
-      ENDIF.
-
-      SELECT SINGLE trkorr FROM e070 INTO l_trkorr
-        WHERE trkorr IN reqnugg.
-
-      IF sy-subrc &lt;&gt; 0.
-        MESSAGE s208(00) WITH &apos;Transport not found&apos;.
-        EXIT.
-      ENDIF.
-
-      SELECT SINGLE trkorr as4text
-      FROM  e07t
-      INTO (l_trkorr, l_as4text)
-      WHERE  trkorr   IN reqnugg
-        AND  langu    EQ sy-langu.
-
-*     ewH--&gt;retrieve tasks as well as transports
-      RANGES: ra_reqnugg FOR e070-trkorr.
-      DATA: wa_trkorr  TYPE e070-trkorr,
-            it_trkorr  TYPE TABLE OF e070-trkorr,
-            wa_reqnugg LIKE LINE OF ra_reqnugg.
-
-      SELECT trkorr FROM e070 INTO TABLE it_trkorr
-        WHERE strkorr IN reqnugg.
-
-      ra_reqnugg[] = reqnugg[].
-
-      LOOP AT it_trkorr INTO wa_trkorr.
-        wa_reqnugg-sign = &apos;I&apos;.
-        wa_reqnugg-option = &apos;EQ&apos;.
-        wa_reqnugg-low = wa_trkorr.
-        APPEND wa_reqnugg TO ra_reqnugg.
-      ENDLOOP.
-*     &lt;--ewH
-
-      SELECT object obj_name
-      FROM  e071
-      INTO TABLE it_requestobject
-*      WHERE  TRKORR in ReqNugg.
-      WHERE  trkorr IN ra_reqnugg &quot;ewH
-      AND pgmid = &apos;R3TR&apos;. &quot;ewH: don&apos;t need subobjects
-
-      IF sy-subrc = 0.
-        reqname = l_trkorr.
-      ELSE.
-        MESSAGE s208(00) WITH &apos;No R3TR objects in request&apos;.
-        EXIT.
-      ENDIF.
-
-      LOOP AT it_requestobject INTO wa_requestobject.
-        MOVE-CORRESPONDING wa_requestobject TO packageline.
-        APPEND packageline TO objects_package.
-      ENDLOOP.
-
-      PERFORM addobjectstonugget.
+*   add objects from a transport to a nugget
+      PERFORM nugget_add_from_transport.
     ENDIF.
   ENDIF.
 
@@ -1869,9 +1516,14 @@ FORM addobjectstonugget .
 
   ixmldocument = zsaplink=&gt;convertstringtoixmldoc( xml ).
 
-  CREATE OBJECT nugg
-    EXPORTING
-      ixmldocument = ixmldocument.
+  TRY.
+      CREATE OBJECT nugg
+        EXPORTING
+          ixmldocument = ixmldocument.
+    CATCH zcx_saplink.
+      MESSAGE &apos;Internal error createing nugget &apos; TYPE &apos;I&apos;.
+      RETURN.
+  ENDTRY.
 
   DESCRIBE TABLE objects_package LINES lv_count.
   LOOP AT objects_package ASSIGNING &lt;obj&gt;
@@ -1911,5 +1563,585 @@ FORM addobjectstonugget .
   PERFORM showresultsgrid TABLES objects_package.
 
 ENDFORM.                    &quot; addObjectstoNugget
-*  &lt;--rrq: enhancement 3 &amp; 42</source>
+*  &lt;--rrq: enhancement 3 &amp; 42
+
+*&amp;---------------------------------------------------------------------*
+*&amp;      Form  WRITE_PLUGIN_VERSION_INFO
+*&amp;---------------------------------------------------------------------*
+*  Inform of updated versions of plugins if information found in file
+*----------------------------------------------------------------------*
+FORM write_plugin_version_info USING io_ixml_document TYPE REF TO if_ixml_document
+                                     iv_object_type   TYPE clike.
+
+  DATA: rootnode         TYPE REF TO if_ixml_node,
+        rootattr         TYPE REF TO if_ixml_named_node_map,
+        attrnode         TYPE REF TO if_ixml_node,
+        nodename         TYPE string,
+        attributelist    TYPE REF TO if_ixml_named_node_map,
+        nodeiterator     TYPE REF TO if_ixml_node_iterator,
+        attributenode    TYPE REF TO if_ixml_node,
+        value            TYPE string,
+        name             TYPE string,
+        ls_version_delta LIKE LINE OF gt_versions_delta.
+
+
+  FIELD-SYMBOLS:&lt;value&gt;          TYPE any,
+                &lt;ls_objecttable&gt; LIKE LINE OF objecttable.
+*--------------------------------------------------------------------*
+* Get Version information from class
+*--------------------------------------------------------------------*
+  READ TABLE objecttable ASSIGNING &lt;ls_objecttable&gt; WITH KEY object = iv_object_type.
+  CHECK sy-subrc = 0. &quot; No corresponding plugin --&gt; we already display a message &quot;missing plugin&quot;
+  ls_version_delta-version_sap = zsaplink=&gt;get_version_info_static( &lt;ls_objecttable&gt;-classname ).
+
+*--------------------------------------------------------------------*
+* Get Version information from ixml
+*--------------------------------------------------------------------*
+  CHECK io_ixml_document IS BOUND.  &quot; no need to continue if this is no valid ixml document
+  rootnode ?= io_ixml_document-&gt;get_root_element( ).
+
+  attributelist = rootnode-&gt;get_attributes( ).
+  CHECK attributelist IS BOUND.
+  nodeiterator = attributelist-&gt;create_iterator( ).
+  CHECK nodeiterator IS BOUND.
+  attributenode = nodeiterator-&gt;get_next( ).
+  WHILE attributenode IS NOT INITIAL.
+    name = attributenode-&gt;get_name( ).
+    ASSIGN COMPONENT name OF STRUCTURE ls_version_delta-version_ixml TO &lt;value&gt;.
+    IF sy-subrc = 0.
+      &lt;value&gt; = attributenode-&gt;get_value( ).
+    ENDIF.
+    attributenode = nodeiterator-&gt;get_next( ).
+  ENDWHILE.
+
+*--------------------------------------------------------------------*
+* Compare versions
+*--------------------------------------------------------------------*
+  ls_version_delta-classname =  &lt;ls_objecttable&gt;-classname.
+* Major version
+  IF ls_version_delta-version_ixml-zsaplink_plugin_major_version &lt; ls_version_delta-version_sap-zsaplink_plugin_major_version.
+    RETURN.  &quot; we have a newer version --&gt; good
+  ELSEIF ls_version_delta-version_ixml-zsaplink_plugin_major_version &gt; ls_version_delta-version_sap-zsaplink_plugin_major_version.
+    WRITE: &apos;Major update in plugin&apos; COLOR 6,
+           &lt;ls_objecttable&gt;-classname COLOR 3,
+           &apos;. Update of plugin necessary --&gt; see information&apos; COLOR 6, icon_information AS ICON HOTSPOT ON.
+    APPEND ls_version_delta  TO gt_versions_delta.
+    gv_version_line = sy-tabix.
+    HIDE  gv_version_line.
+    CLEAR gv_version_line.
+    RETURN.
+  ENDIF.
+* Major version equal - now check minor version
+  IF ls_version_delta-version_ixml-zsaplink_plugin_minor_version &lt; ls_version_delta-version_sap-zsaplink_plugin_minor_version.
+    RETURN.  &quot; we have a newer version --&gt; good
+  ELSEIF ls_version_delta-version_ixml-zsaplink_plugin_minor_version &gt; ls_version_delta-version_sap-zsaplink_plugin_minor_version.
+    WRITE: &apos;Minor update in plugin&apos; COLOR 7,
+           &lt;ls_objecttable&gt;-classname COLOR 3,
+           &apos;. Update of plugin recommended --&gt; see information&apos; COLOR 7, icon_information AS ICON HOTSPOT ON.
+    APPEND ls_version_delta  TO gt_versions_delta.
+    gv_version_line = sy-tabix.
+    HIDE  gv_version_line.
+    CLEAR gv_version_line.
+    RETURN.
+  ENDIF.
+* Major and minor version equal - build-numer doesn&apos;t matter here
+
+
+ENDFORM.                    &quot; WRITE_PLUGIN_VERSION_INFO
+
+
+*&amp;---------------------------------------------------------------------*
+*&amp;      Form  SHOW_VERSION_INFO
+*&amp;---------------------------------------------------------------------*
+FORM show_version_info.
+
+  FIELD-SYMBOLS: &lt;ls_version_delta&gt; LIKE LINE OF gt_versions_delta.
+
+  READ TABLE gt_versions_delta ASSIGNING &lt;ls_version_delta&gt; INDEX gv_version_line.
+  CHECK sy-subrc = 0.
+
+  WRITE:/ &apos;New version of class&apos;, &lt;ls_version_delta&gt;-classname COLOR 6,&apos;found&apos;.
+  SKIP 2.
+  IF &lt;ls_version_delta&gt;-version_ixml-zsaplink_plugin_major_version &gt; &lt;ls_version_delta&gt;-version_sap-zsaplink_plugin_major_version.
+    WRITE:/ &apos;Major version - Installed in SAP:&apos;  COLOR 7,                 &lt;ls_version_delta&gt;-version_sap-zsaplink_plugin_major_version COLOR 7,
+          / &apos;Major version - Found  in   file:&apos;  COLOR 7 INTENSIFIED OFF, &lt;ls_version_delta&gt;-version_ixml-zsaplink_plugin_major_version COLOR 7.
+  ELSEIF &lt;ls_version_delta&gt;-version_ixml-zsaplink_plugin_minor_version &gt; &lt;ls_version_delta&gt;-version_sap-zsaplink_plugin_minor_version.
+    WRITE:/ &apos;Minor version - Installed in SAP:&apos;  COLOR 7,                 &lt;ls_version_delta&gt;-version_sap-zsaplink_plugin_minor_version COLOR 7,
+          / &apos;Minor version - Found  in   file:&apos;  COLOR 7 INTENSIFIED OFF, &lt;ls_version_delta&gt;-version_ixml-zsaplink_plugin_minor_version COLOR 7.
+  ENDIF.
+  WRITE:/   &apos;Build         - Installed in SAP:&apos;  COLOR 5 INTENSIFIED OFF, &lt;ls_version_delta&gt;-version_sap-zsaplink_plugin_build_version,
+        /   &apos;Build         - Found   in  file:&apos;  COLOR 5 INTENSIFIED OFF, &lt;ls_version_delta&gt;-version_ixml-zsaplink_plugin_build_version.
+
+  SKIP.
+  WRITE:/   &apos;Info - Part1  - Found   in  file:&apos;  COLOR 5 INTENSIFIED OFF, &lt;ls_version_delta&gt;-version_ixml-zsaplink_plugin_info1,
+        /   &apos;Info - Part2  - Found   in  file:&apos;  COLOR 5 INTENSIFIED OFF, &lt;ls_version_delta&gt;-version_ixml-zsaplink_plugin_info2,
+        /   &apos;Info - Part3  - Found   in  file:&apos;  COLOR 5 INTENSIFIED OFF, &lt;ls_version_delta&gt;-version_ixml-zsaplink_plugin_info3,
+        /   &apos;Info - Part4  - Found   in  file:&apos;  COLOR 5 INTENSIFIED OFF, &lt;ls_version_delta&gt;-version_ixml-zsaplink_plugin_info4,
+        /   &apos;Info - Part5  - Found   in  file:&apos;  COLOR 5 INTENSIFIED OFF, &lt;ls_version_delta&gt;-version_ixml-zsaplink_plugin_info5.
+
+ENDFORM.                    &quot; SHOW_VERSION_INFO
+
+*&amp;---------------------------------------------------------------------*
+*&amp;      Form  SLINKEE_EXPORT
+*&amp;---------------------------------------------------------------------*
+FORM slinkee_export.
+  IF plugin IS INITIAL.
+    MESSAGE s208(00) WITH &apos;object type required&apos;.
+    EXIT.
+  ELSEIF _objname IS INITIAL.
+    MESSAGE s208(00) WITH &apos;object name required&apos;.
+    EXIT.
+  ENDIF.
+  READ TABLE objecttable INTO objectline WITH KEY object = plugin.
+  IF sy-subrc &lt;&gt; 0.
+    CONCATENATE &apos;Plugin for object type&apos;(plo) plugin
+      &apos;is not installed on this system&apos;(noi) INTO errormsg
+      SEPARATED BY space.
+    PERFORM writemessage USING &apos;E&apos; errormsg.
+    EXIT.
+  ENDIF.
+  CREATE OBJECT targetobject
+    TYPE
+      (objectline-classname)
+    EXPORTING
+      name                   = _objname.
+  TRY.
+      ixmldocument = targetobject-&gt;createixmldocfromobject( ).
+    CATCH zcx_saplink INTO excclass.
+      errormsg = excclass-&gt;get_text( ).
+      PERFORM writemessage USING &apos;E&apos; errormsg.
+  ENDTRY.
+  IF errormsg IS NOT INITIAL.
+    EXIT.
+  ENDIF.
+  xml = zsaplink=&gt;convertixmldoctostring( ixmldocument ).
+
+  CONCATENATE plugin &apos;_&apos; _objname &apos;.slnk&apos; INTO deffilename.
+  CLEAR errorflag.
+  PERFORM downloadxmltolm USING deffilename xml
+                          CHANGING errorflag.
+  IF errorflag IS NOT INITIAL.
+    MESSAGE s208(00) WITH &apos;Action cancelled&apos;.
+    EXIT.
+  ENDIF.
+  PERFORM displayxmlonscreen USING xml.
+ENDFORM.                    &quot; SLINKEE_EXPORT
+
+
+*&amp;---------------------------------------------------------------------*
+*&amp;      Form  SLINKEE_IMPORT
+*&amp;---------------------------------------------------------------------*
+FORM slinkee_import .
+  IF filename IS INITIAL.
+    MESSAGE s208(00) WITH &apos;slinkee filename required&apos;.
+    EXIT.
+  ENDIF.
+  PERFORM uploadxmlfromlm USING filename xml.
+  IF sy-subrc &lt;&gt; 0.
+    EXIT.
+  ENDIF.
+  ixmldocument = zsaplink=&gt;convertstringtoixmldoc( xml ).
+*     run some checks before install
+  PERFORM checkobject USING ixmldocument
+                      CHANGING _objtype
+                               _objname
+                               _pluginexists
+                               _objectexists.
+  MOVE _objtype TO plugin.
+  READ TABLE objecttable INTO objectline WITH KEY object = plugin.
+
+  IF _objtype = &apos;NUGG&apos;.
+    MESSAGE s208(00) WITH &apos;use nugget tab for nugget import&apos;.
+    EXIT.
+  ELSEIF _pluginexists IS INITIAL.
+    CONCATENATE &apos;Plugin for object type&apos;(plo) _objtype
+      &apos;is not installed on this system&apos;(noi) INTO errormsg
+      SEPARATED BY space.
+    PERFORM writemessage USING &apos;E&apos; errormsg.
+    EXIT.
+  ELSEIF _objectexists = &apos;X&apos; AND overwr IS INITIAL.
+    CONCATENATE _objtype objectline-text _objname
+      &apos;already exists. Use overwrite orginals option to replace&apos;
+      INTO errormsg SEPARATED BY space.
+    PERFORM writemessage USING &apos;E&apos; errormsg.
+    EXIT.
+  ELSEIF _objectexists = &apos;X&apos; AND overwr = &apos;X&apos;.
+    CONCATENATE _objtype _objname INTO stemp SEPARATED BY space.
+    PERFORM confirmoverwrite USING stemp
+                          CHANGING _flag.
+    IF _flag = &apos;A&apos;. &quot;cancel
+      PERFORM writemessage USING &apos;W&apos; &apos;Import cancelled by user&apos;.
+      EXIT.
+    ENDIF.
+  ENDIF.
+
+*     install object
+  PERFORM installobject USING ixmldocument
+                              overwr
+                              slpkg
+                     CHANGING errorflag
+                              statusmsg.
+  IF errorflag = &apos;X&apos;.
+    PERFORM writemessage USING &apos;E&apos; statusmsg.
+    EXIT.
+  ELSE.
+    PERFORM writemessage USING &apos;S&apos; statusmsg.
+  ENDIF.
+  MESSAGE s208(00) WITH &apos;Import successful&apos;.
+ENDFORM.                    &quot; SLINKEE_IMPORT
+
+
+*&amp;---------------------------------------------------------------------*
+*&amp;      Form  NUGGET_CREATE
+*&amp;---------------------------------------------------------------------*
+FORM nugget_create .
+  IF nuggnam IS INITIAL.
+    MESSAGE s208(00) WITH &apos;enter name of new nugget to be created&apos;.
+    EXIT.
+  ENDIF.
+  stemp = nuggnam.
+  PERFORM createemptynugget USING stemp.
+ENDFORM.                    &quot; NUGGET_CREATE
+
+
+*&amp;---------------------------------------------------------------------*
+*&amp;      Form  NUGGET_ADD_OBJECT
+*&amp;---------------------------------------------------------------------*
+FORM nugget_add_object .
+  IF nplugin IS INITIAL.
+    MESSAGE s208(00) WITH &apos;object type required&apos;.
+    EXIT.
+  ELSEIF nobjnam IS INITIAL.
+    MESSAGE s208(00) WITH &apos;object name required&apos;.
+    EXIT.
+  ELSEIF nugfile IS INITIAL.
+    MESSAGE s208(00) WITH &apos;nugget filename required&apos;.
+    EXIT.
+  ENDIF.
+  READ TABLE objecttable INTO objectline WITH KEY object = nplugin.
+  IF sy-subrc &lt;&gt; 0.
+    CONCATENATE &apos;Plugin for object type&apos;(plo) nplugin
+      &apos;is not installed on this system&apos;(noi) INTO errormsg
+        SEPARATED BY space.
+    PERFORM writemessage USING &apos;E&apos; errormsg.
+    EXIT.
+  ENDIF.
+  stemp = nuggnam.
+  PERFORM uploadxmlfromlm USING nugfile xml.
+  IF sy-subrc &lt;&gt; 0.
+    EXIT.
+  ENDIF.
+  ixmldocument = zsaplink=&gt;convertstringtoixmldoc( xml ).
+  CREATE OBJECT nugg
+    EXPORTING
+      ixmldocument = ixmldocument.
+
+  _objname = nobjnam.
+  stemp = nplugin.
+
+  TRY.
+      nugg-&gt;addobjecttonugget( objname = _objname objtype = stemp ).
+    CATCH zcx_saplink INTO excclass.
+      errormsg = excclass-&gt;get_text( ).
+      PERFORM writemessage USING &apos;E&apos; errormsg.
+      EXIT.
+  ENDTRY.
+  ixmldocument = nugg-&gt;createixmldocfromnugget( ).
+  xml = zsaplink=&gt;convertixmldoctostring( ixmldocument ).
+*      concatenate  nuggNam &apos;.nugg&apos; into sTemp.
+  stemp = nugfile.
+  PERFORM putonmachine USING stemp xml.
+ENDFORM.                    &quot; NUGGET_ADD_OBJECT
+
+
+*&amp;---------------------------------------------------------------------*
+*&amp;      Form  NUGGET_IMPORT
+*&amp;---------------------------------------------------------------------*
+FORM nugget_import .
+  IF nugfile IS INITIAL.
+    MESSAGE s208(00) WITH &apos;nugget filename required&apos;.
+    EXIT.
+  ENDIF.
+  PERFORM uploadxmlfromlm USING nugfile xml.
+  IF sy-subrc &lt;&gt; 0.
+    EXIT.
+  ENDIF.
+  ixmldocument = zsaplink=&gt;convertstringtoixmldoc( xml ).
+  nuggetname = zsaplink_nugget=&gt;getnuggetinfo( ixmldocument ).
+  CONCATENATE &apos;Start import of nugget&apos; nuggetname INTO statusmsg
+    SEPARATED BY space.
+
+  PERFORM writemessage USING &apos;S&apos; statusmsg.
+  SKIP.
+
+  CREATE OBJECT nugg
+    EXPORTING
+      ixmldocument = ixmldocument.
+
+*     check for installed plugins
+  CLEAR errorflag.
+  REFRESH it_nuggetobject.
+  anxmldoc = nugg-&gt;getnextobject( ).
+  WHILE anxmldoc IS NOT INITIAL.
+    CLEAR: _objtype, _objname, _pluginexists, _objectexists,
+           wa_nuggetobject.
+    PERFORM checkobject USING anxmldoc
+                        CHANGING _objtype
+                                 _objname
+                                 _pluginexists
+                                 _objectexists.
+    IF _pluginexists IS INITIAL.
+      CONCATENATE &apos;Plugin for object type&apos;(plo) _objtype
+        &apos;is not installed on this system&apos;(noi) INTO errormsg
+        SEPARATED BY space.
+      PERFORM writemessage USING &apos;E&apos; errormsg.
+      errorflag = &apos;X&apos;.
+    ELSEIF _objectexists = &apos;X&apos; AND novrwr IS INITIAL.
+      CONCATENATE _objtype _objname &apos;already exists. Use overwrite&apos;
+        &apos;orginals option to replace&apos;
+          INTO errormsg SEPARATED BY space.
+      PERFORM writemessage USING &apos;W&apos; errormsg.
+      PERFORM write_plugin_version_info USING anxmldoc
+                                              _objtype.
+
+      errorflag = &apos;X&apos;.
+    else.
+      CONCATENATE _objtype _objname
+          INTO errormsg SEPARATED BY space.
+      PERFORM writemessage USING &apos;S&apos; errormsg.
+      PERFORM write_plugin_version_info USING anxmldoc
+                                              _objtype.
+    ENDIF.
+    wa_nuggetobject-objtype = _objtype.
+    wa_nuggetobject-objname = _objname.
+    wa_nuggetobject-exists = _objectexists.
+    APPEND wa_nuggetobject TO it_nuggetobject.
+
+    anxmldoc = nugg-&gt;getnextobject( ).
+  ENDWHILE.
+
+  IF errorflag = &apos;X&apos;.
+    EXIT.
+  ENDIF.
+
+*     confirm overwrite
+  LOOP AT it_nuggetobject INTO wa_nuggetobject WHERE exists = &apos;X&apos;.
+    CLEAR _flag.
+    CONCATENATE wa_nuggetobject-objtype wa_nuggetobject-objname
+      INTO stemp SEPARATED BY space.
+    PERFORM confirmoverwrite USING stemp
+                          CHANGING _flag.
+    IF _flag = &apos;1&apos;. &quot;yes
+      CONTINUE.
+    ELSEIF _flag = &apos;2&apos;. &quot;yes to all
+      CLEAR errorflag.
+      EXIT.
+    ELSEIF _flag = &apos;A&apos;. &quot;cancel
+      PERFORM writemessage USING &apos;W&apos; &apos;Import cancelled by user&apos;.
+      errorflag = &apos;X&apos;.
+      EXIT.
+    ENDIF.
+  ENDLOOP.
+
+  IF errorflag = &apos;X&apos;.
+    EXIT.
+  ENDIF.
+
+*     install
+  nugg-&gt;reset( ). &quot;reset nugget iterator
+  anxmldoc = nugg-&gt;getnextobject( ).
+  WHILE anxmldoc IS NOT INITIAL.
+    CLEAR statusmsg.
+    PERFORM installobject USING anxmldoc
+                                novrwr
+                                package
+                       CHANGING errorflag
+                                statusmsg.
+    IF errorflag = &apos;X&apos;.
+      PERFORM writemessage USING &apos;E&apos; statusmsg.
+      EXIT.
+    ELSE.
+      PERFORM writemessage USING &apos;S&apos; statusmsg.
+      anxmldoc = nugg-&gt;getnextobject( ).
+    ENDIF.
+  ENDWHILE.
+
+  IF errorflag = &apos;X&apos;.
+    EXIT.
+  ENDIF.
+ENDFORM.                    &quot; NUGGET_IMPORT
+
+
+*&amp;---------------------------------------------------------------------*
+*&amp;      Form  NUGGET_DISPLAY
+*&amp;---------------------------------------------------------------------*
+FORM nugget_display .
+  IF nugfile IS INITIAL.
+    MESSAGE s208(00) WITH &apos;nugget filename required&apos;.
+    EXIT.
+  ENDIF.
+  PERFORM uploadxmlfromlm USING nugfile xml.
+  IF sy-subrc &lt;&gt; 0.
+    EXIT.
+  ENDIF.
+  ixmldocument = zsaplink=&gt;convertstringtoixmldoc( xml ).
+  TRY.
+      nuggetname = zsaplink_nugget=&gt;getnuggetinfo( ixmldocument ).
+    CATCH zcx_saplink.
+      WRITE:/ &apos;Internal error in nuggethandling - program aborted&apos;.
+      RETURN.
+  ENDTRY.
+  WRITE: / &apos;Object list for nugget &apos;, nuggetname. SKIP.
+
+  CREATE OBJECT nugg
+    EXPORTING
+      ixmldocument = ixmldocument.
+  anxmldoc = nugg-&gt;getnextobject( ).
+
+  IF anxmldoc IS INITIAL.
+    errormsg = &apos;You have an empty Nugget&apos;.
+    PERFORM writemessage USING &apos;W&apos; errormsg.
+    EXIT.
+  ENDIF.
+
+  WHILE anxmldoc IS NOT INITIAL.
+    TRY.
+        CALL METHOD zsaplink=&gt;getobjectinfofromixmldoc
+          EXPORTING
+            ixmldocument = anxmldoc
+          IMPORTING
+            objtypename  = _objtype
+            objname      = _objname.
+      CATCH zcx_saplink.
+        errormsg = &apos;You have a corrupt Nugget&apos;.
+        PERFORM writemessage USING &apos;E&apos; errormsg.
+        EXIT.
+    ENDTRY.
+    CONCATENATE _objtype _objname INTO statusmsg SEPARATED BY space.
+    PERFORM writemessage USING &apos;S&apos; statusmsg.
+    PERFORM write_plugin_version_info USING anxmldoc
+                                            _objtype.
+    anxmldoc = nugg-&gt;getnextobject( ).
+  ENDWHILE.
+
+ENDFORM.                    &quot; NUGGET_DISPLAY
+*&amp;---------------------------------------------------------------------*
+*&amp;      Form  NUGGET_ADD_PACKAGE
+*&amp;---------------------------------------------------------------------*
+*       text
+*----------------------------------------------------------------------*
+FORM nugget_add_package .
+*   rrq: enhancement 3--&gt;
+  IF package  IS INITIAL.
+    MESSAGE s208(00) WITH &apos;package required&apos;.
+    EXIT.
+  ENDIF.
+  IF nugfile IS INITIAL.
+    MESSAGE s208(00) WITH &apos;nugget filename required&apos;.
+    EXIT.
+  ENDIF.
+  &quot;// Mar: Added logic discard deleted objects from Package - 10/05/2009
+  IF sy-saprl NE &apos;701&apos;.
+    &quot;// Mar: Added logic discard deleted objects from Package - 10/05/2009
+
+    SELECT object obj_name srcsystem       &quot; ##TOO_MANY_ITAB_FIELDS
+        FROM tadir
+        INTO CORRESPONDING FIELDS OF TABLE objects_package
+        WHERE devclass  EQ package
+        AND  pgmid      EQ &apos;R3TR&apos;.
+
+    &quot;// Mar: Added logic discard deleted objects from Package - 10/05/2009
+  ELSE.
+    SELECT object obj_name srcsystem      &quot; ##TOO_MANY_ITAB_FIELDS
+        FROM tadir
+        INTO CORRESPONDING FIELDS OF TABLE objects_package
+        WHERE devclass  EQ package
+        AND  pgmid      EQ &apos;R3TR&apos;
+        AND  delflag    NE &apos;X&apos;.
+  ENDIF.
+  &quot;// Mar: Added logic discard deleted objects from Package - 10/05/2009
+
+  IF sy-subrc &lt;&gt; 0.
+    MESSAGE s208(00) WITH &apos;Package does not exist or empty&apos;.
+    RETURN.
+  ENDIF.
+
+  PERFORM addobjectstonugget.
+*   &lt;-- rrq: enhancement 3
+ENDFORM.                    &quot; NUGGET_ADD_PACKAGE
+
+
+*&amp;---------------------------------------------------------------------*
+*&amp;      Form  NUGGET_ADD_FROM_TRANSPORT
+*&amp;---------------------------------------------------------------------*
+FORM nugget_add_from_transport .
+  DATA: reqname TYPE string.
+
+  DATA: l_trkorr  TYPE e07t-trkorr,
+        l_as4text TYPE e07t-as4text.
+
+  IF nugfile IS INITIAL.
+    MESSAGE s208(00) WITH &apos;nugget filename required&apos;.
+    EXIT.
+  ENDIF.
+
+  IF reqnugg[] IS INITIAL.
+    MESSAGE s208(00) WITH &apos;Request number required&apos;.
+    EXIT.
+  ENDIF.
+
+  SELECT SINGLE trkorr FROM e070 INTO l_trkorr
+    WHERE trkorr IN reqnugg.
+
+  IF sy-subrc &lt;&gt; 0.
+    MESSAGE s208(00) WITH &apos;Transport not found&apos;.
+    EXIT.
+  ENDIF.
+
+  SELECT SINGLE trkorr as4text
+  FROM  e07t
+  INTO (l_trkorr, l_as4text)
+  WHERE  trkorr   IN reqnugg
+    AND  langu    EQ sy-langu.
+
+*     ewH--&gt;retrieve tasks as well as transports
+  RANGES: ra_reqnugg FOR e070-trkorr.
+  DATA: wa_trkorr  TYPE e070-trkorr,
+        it_trkorr  TYPE TABLE OF e070-trkorr,
+        wa_reqnugg LIKE LINE OF ra_reqnugg.
+
+  SELECT trkorr FROM e070 INTO TABLE it_trkorr
+    WHERE strkorr IN reqnugg.
+
+  ra_reqnugg[] = reqnugg[].
+
+  LOOP AT it_trkorr INTO wa_trkorr.
+    wa_reqnugg-sign = &apos;I&apos;.
+    wa_reqnugg-option = &apos;EQ&apos;.
+    wa_reqnugg-low = wa_trkorr.
+    APPEND wa_reqnugg TO ra_reqnugg.
+  ENDLOOP.
+*     &lt;--ewH
+
+  SELECT object obj_name
+  FROM  e071
+  INTO TABLE it_requestobject
+*      WHERE  TRKORR in ReqNugg.
+  WHERE  trkorr IN ra_reqnugg &quot;ewH
+  AND pgmid = &apos;R3TR&apos;. &quot;ewH: don&apos;t need subobjects
+
+  IF sy-subrc = 0.
+    reqname = l_trkorr.
+  ELSE.
+    MESSAGE s208(00) WITH &apos;No R3TR objects in request&apos;.
+    EXIT.
+  ENDIF.
+
+  LOOP AT it_requestobject INTO wa_requestobject.
+    MOVE-CORRESPONDING wa_requestobject TO packageline.
+    APPEND packageline TO objects_package.
+  ENDLOOP.
+
+  PERFORM addobjectstonugget.
+ENDFORM.                    &quot; NUGGET_ADD_FROM_TRANSPORT</source>
 </PROG>
