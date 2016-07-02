@@ -192,6 +192,14 @@ END-OF-SELECTION.
       INTO sourcestringnew.
   ENDLOOP.
 
+*--------------------------------------------------------------------*
+* Since pragmas before closing period are not supported in older SAP-versions
+* The steamroller does not create a universal installer.
+* --&gt; Delete pragmas in installer
+*--------------------------------------------------------------------*
+  REPLACE ALL OCCURRENCES OF REGEX &apos;##\w*.&apos; IN sourcestringnew WITH &apos;.&apos;.
+*--------------------------------------------------------------------*
+
 * change progam name in attributes to new prog name
   ixmlprognew = ixmlprog.
   rootnode = ixmlprognew-&gt;find_from_name( &apos;PROG&apos; ).

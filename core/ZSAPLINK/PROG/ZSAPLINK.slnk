@@ -360,6 +360,7 @@
 *| project wiki:     https://wiki.sdn.sap.com/wiki/display/ABAP/SAPlink|
 *\---------------------------------------------------------------------/
 REPORT  zsaplink.
+class zsaplink DEFINITION load. &quot; Convenience for older SAP-Releases
 
 */------------------------DATA----------------------------\
 TABLES: sscrfields, e071, e07t.

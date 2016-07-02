@@ -24,16 +24,16 @@ CLASS ZCX_SAPLINK DEFINITION
   .
 public section.
 
-  constants ERROR_MESSAGE type SOTR_CONC value 'E40421B84B051AF1B83A0050568C0F65'. "#EC NOTEXT
-  constants EXISTING type SOTR_CONC value 'E40421B84B051BF1B83A0050568C0F65'. "#EC NOTEXT
-  constants INCORRECT_FILE_FORMAT type SOTR_CONC value 'E40421B84B051CF1B83A0050568C0F65'. "#EC NOTEXT
-  constants LOCKED type SOTR_CONC value 'E40421B84B051DF1B83A0050568C0F65'. "#EC NOTEXT
-  data MSG type STRING value '44F7518323DB08BC02000000A7E42BB6'. "#EC NOTEXT
-  constants NOT_AUTHORIZED type SOTR_CONC value 'E40421B84B051EF1B83A0050568C0F65'. "#EC NOTEXT
-  constants NOT_FOUND type SOTR_CONC value 'E40421B84B051FF1B83A0050568C0F65'. "#EC NOTEXT
-  constants NO_PLUGIN type SOTR_CONC value 'E40421B84B0520F1B83A0050568C0F65'. "#EC NOTEXT
-  constants SYSTEM_ERROR type SOTR_CONC value '005056B811CD1ED4B195DC694F38E0C3'. "#EC NOTEXT
-  constants ZCX_SAPLINK type SOTR_CONC value 'E40421B84B0522F1B83A0050568C0F65'. "#EC NOTEXT
+  constants ERROR_MESSAGE type SOTR_CONC value '005056A7624D1ED6908BB83135080B54' .
+  constants EXISTING type SOTR_CONC value '005056A7624D1ED6908BB83135082B54' .
+  constants INCORRECT_FILE_FORMAT type SOTR_CONC value '005056A7624D1ED6908BB83135084B54' .
+  constants LOCKED type SOTR_CONC value '005056A7624D1ED6908BB83135086B54' .
+  data MSG type STRING value '44F7518323DB08BC02000000A7E42BB6' .
+  constants NOT_AUTHORIZED type SOTR_CONC value '005056A7624D1ED6908BB83135088B54' .
+  constants NOT_FOUND type SOTR_CONC value '005056A7624D1ED6908BB8313508AB54' .
+  constants NO_PLUGIN type SOTR_CONC value '005056A7624D1ED6908BB8313508CB54' .
+  constants SYSTEM_ERROR type SOTR_CONC value '005056A7624D1ED6908BB8313508EB54' .
+  constants ZCX_SAPLINK type SOTR_CONC value '005056A7624D1ED6908BB83135090B54' .
   data OBJECT type STRING .
 
   methods CONSTRUCTOR
@@ -42,11 +42,7 @@ public section.
       !PREVIOUS like PREVIOUS optional
       !MSG type STRING default '44F7518323DB08BC02000000A7E42BB6'
       !OBJECT type STRING optional .
-*"* protected components of class ZCX_SAPLINK
-*"* do not include other source files here!!!
 protected section.
-*"* private components of class ZCX_SAPLINK
-*"* do not include other source files here!!!
 private section.
 ENDCLASS.
 CLASS ZSAPLINK DEFINITION
@@ -74,7 +70,7 @@ public section.
              zsaplink_plugin_info5  TYPE string,  " Plugin info - part 5
            END OF gts_version_info .
 
-  data NUGGET_LEVEL type INT4 read-only value 0. "#EC NOTEXT
+  data NUGGET_LEVEL type INT4 read-only value 0 .
 
   class-methods GETOBJECTINFOFROMIXMLDOC
     importing
@@ -151,8 +147,6 @@ public section.
   methods GET_VERSION_INFO
     returning
       value(RS_VERSION_INFO) type GTS_VERSION_INFO .
-*"* protected components of class ZSAPLINK
-*"* do not include other source files here!!!
 protected section.
 
   data OBJNAME type STRING .
@@ -205,8 +199,6 @@ protected section.
       !OTRGUID type SOTR_CONC
     returning
       value(NODE) type ref to IF_IXML_ELEMENT .
-*"* private components of class ZSAPLINK
-*"* do not include other source files here!!!
 private section.
 
   types:
@@ -234,19 +226,17 @@ public section.
   type-pools SEOT .
   type-pools SEOX .
 
-  constants C_XML_KEY_FRIENDS type STRING value 'friends'. "#EC NOTEXT
-  constants C_XML_KEY_INHERITANCE type STRING value 'inheritance'. "#EC NOTEXT
-  constants C_XML_KEY_SOTR type STRING value 'sotr'. "#EC NOTEXT
-  constants C_XML_KEY_SOTRTEXT type STRING value 'sotrText'. "#EC NOTEXT
-*"* protected components of class ZSAPLINK_OO
-*"* do not include other source files here!!!
+  constants C_XML_KEY_FRIENDS type STRING value 'friends' .
+  constants C_XML_KEY_INHERITANCE type STRING value 'inheritance' .
+  constants C_XML_KEY_SOTR type STRING value 'sotr' .
+  constants C_XML_KEY_SOTRTEXT type STRING value 'sotrText' .
 protected section.
 
-  constants C_XML_KEY_ALIAS_METHOD type STRING value 'aliasMethod'. "#EC NOTEXT
-  constants C_XML_KEY_CLSDEFERRD type STRING value 'typeClasDef'. "#EC NOTEXT
-  constants C_XML_KEY_FORWARDDECLARATION type STRING value 'forwardDeclaration'. "#EC NOTEXT
-  constants C_XML_KEY_INTDEFERRD type STRING value 'typeIntfDef'. "#EC NOTEXT
-  constants C_XML_KEY_TYPEPUSAGE type STRING value 'typeUsage'. "#EC NOTEXT
+  constants C_XML_KEY_ALIAS_METHOD type STRING value 'aliasMethod' .
+  constants C_XML_KEY_CLSDEFERRD type STRING value 'typeClasDef' .
+  constants C_XML_KEY_FORWARDDECLARATION type STRING value 'forwardDeclaration' .
+  constants C_XML_KEY_INTDEFERRD type STRING value 'typeIntfDef' .
+  constants C_XML_KEY_TYPEPUSAGE type STRING value 'typeUsage' .
 
   methods CREATE_ALIAS_METHOD
     changing
@@ -287,8 +277,6 @@ protected section.
   methods GET_TYPEPUSAGE
     changing
       !XO_ROOTNODE type ref to IF_IXML_ELEMENT .
-*"* private components of class ZSAPLINK_OO
-*"* do not include other source files here!!!
 private section.
 ENDCLASS.
 CLASS ZSAPLINK_CLASS DEFINITION
@@ -297,8 +285,7 @@ CLASS ZSAPLINK_CLASS DEFINITION
   .
 public section.
 
-  type-pools ABAP .
-  data MV_STEAMROLLER type ABAP_BOOL value ABAP_FALSE. "#EC NOTEXT
+  data MV_STEAMROLLER type ABAP_BOOL value ABAP_FALSE .
 
   methods CHECKEXISTS
     redefinition .
@@ -308,18 +295,16 @@ public section.
     redefinition .
   methods GET_VERSION_INFO
     redefinition .
-*"* protected components of class ZSAPLINK_CLASS
-*"* do not include other source files here!!!
 protected section.
 
-  constants C_XML_KEY_METHOD_DOCUMENTATION type STRING value 'methodDocumentation'. "#EC NOTEXT
-  constants C_XML_KEY_TEXTELEMENT type STRING value 'textElement'. "#EC NOTEXT
-  constants C_XML_KEY_TEXTPOOL type STRING value 'textPool'. "#EC NOTEXT
-  constants C_XML_KEY_CLASS_DOCUMENTATION type STRING value 'classDocumentation'. "#EC NOTEXT
-  constants C_XML_KEY_LANGUAGE type STRING value 'language'. "#EC NOTEXT
-  constants C_XML_KEY_OBJECT type STRING value 'OBJECT'. "#EC NOTEXT
-  constants C_XML_KEY_SPRAS type STRING value 'SPRAS'. "#EC NOTEXT
-  constants C_XML_KEY_TEXTLINE type STRING value 'textLine'. "#EC NOTEXT
+  constants C_XML_KEY_METHOD_DOCUMENTATION type STRING value 'methodDocumentation' .
+  constants C_XML_KEY_TEXTELEMENT type STRING value 'textElement' .
+  constants C_XML_KEY_TEXTPOOL type STRING value 'textPool' .
+  constants C_XML_KEY_CLASS_DOCUMENTATION type STRING value 'classDocumentation' .
+  constants C_XML_KEY_LANGUAGE type STRING value 'language' .
+  constants C_XML_KEY_OBJECT type STRING value 'OBJECT' .
+  constants C_XML_KEY_SPRAS type STRING value 'SPRAS' .
+  constants C_XML_KEY_TEXTLINE type STRING value 'textLine' .
 
   methods CREATE_DOCUMENTATION .
   methods CREATE_METHOD_DOCUMENTATION
@@ -352,8 +337,6 @@ protected section.
     redefinition .
   methods GETOBJECTTYPE
     redefinition .
-*"* private components of class ZSAPLINK_CLASS
-*"* do not include other source files here!!!
 private section.
 ENDCLASS.
 CLASS ZSAPLINK_PROGRAM DEFINITION
@@ -371,16 +354,12 @@ public section.
     redefinition .
   methods CREATESTRINGFROMOBJECT
     redefinition .
-*"* protected components of class ZSAPLINK_PROGRAM
-*"* do not include other source files here!!!
 protected section.
 
   methods DELETEOBJECT
     redefinition .
   methods GETOBJECTTYPE
     redefinition .
-*"* private components of class ZSAPLINK_PROGRAM
-*"* do not include other source files here!!!
 private section.
 
   methods GET_SOURCE
@@ -4569,6 +4548,8 @@ CLASS ZSAPLINK_PROGRAM IMPLEMENTATION.
     xtrkey-obj_name = _program.
     xtrkey-sub_type = 'CUAD'.
     xtrkey-sub_name = _program.
+
+    xadm-actcode = 'X'. " Issues #276
 
     call function 'RS_CUA_INTERNAL_WRITE'
       exporting
