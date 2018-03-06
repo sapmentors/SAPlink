@@ -2138,6 +2138,8 @@ FORM nugget_add_from_transport .
     EXIT.
   ENDIF.
 
+  SORT it_requestobject.
+  DELETE ADJACENT DUPLICATES FROM it_requestobject.
   LOOP AT it_requestobject INTO wa_requestobject.
     MOVE-CORRESPONDING wa_requestobject TO packageline.
     APPEND packageline TO objects_package.
