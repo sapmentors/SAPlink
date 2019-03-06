@@ -645,6 +645,10 @@ endmethod.</source>
   data filter     type ref to if_ixml_node_filter.
   data iterator   type ref to if_ixml_node_iterator.
 
+  data: ls_iact type rsmpe_act,
+        ls_ipfk type rsmpe_pfk,
+        ls_imen type rsmpe_men.
+
   _objname = objname.
 
   stat_node =  pfstat_node.
@@ -823,7 +827,15 @@ endmethod.</source>
   xtrkey-sub_type = &apos;CUAD&apos;.
   xtrkey-sub_name = _program.
 
-  xadm-actcode = &apos;X&apos;. &quot; Issues #276
+  loop at iact into ls_iact.
+    xadm-actcode = ls_iact-code.
+  endloop.
+  loop at ipfk into ls_ipfk.
+    xadm-pfkcode = ls_ipfk-code.
+  endloop.
+  loop at imen into ls_imen.
+    xadm-mencode = ls_imen-code.
+  endloop.
 
   call function &apos;RS_CUA_INTERNAL_WRITE&apos;
     exporting
